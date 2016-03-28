@@ -24,7 +24,7 @@
 
 ## 使用说明
 
-基于我维护的镜像 [alpine-hexo][alpine-hexo-link] 自定义自己的博客系统非常的容易，参见 [Dockerfile][Dockerfile] 文件并仿照结构自行创建和配置。
+基于我维护的镜像 [alpine-hexo][alpine-hexo-link] 自定义自己的博客系统非常的容易，参见 [Dockerfile](Dockerfile) 文件并仿照结构自行创建和配置。
 
 - 添加 source 目录
 - 添加 _config.json 博客全局配置文件
