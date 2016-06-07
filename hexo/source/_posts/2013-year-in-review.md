@@ -1,7 +1,7 @@
 title: 2013 年终总结
-date: 2013-12-30 12:34:56 
+date: 2013-12-30 12:34:56
 category: Life
-tags: 
+tags:
 - 年终总结
 permalink: 2013-in-review
 
@@ -65,7 +65,7 @@ permalink: 2013-in-review
 
 ### 阅读
 
-![2013豆瓣阅读图表](http://chart.apis.google.com/chart?chs=370x200&cht=bvs&chxp=2,100&chxt=y,x,x&chxl=0:|0|1|2|3|4|5|6|7|8|9|10|1:|1|2|3|4|5|6|7|8|9|10|11|12|2:|month&chf=c,lg,90,76A4FB,0.5,ffffff,0|bg,s,EFEFEF&chd=t:0,60,10,0,0,0,30,40,40,40,0,20&chco=0000ff&chtt=2013+年共阅读+24+本书)
+![2013豆瓣阅读图表](https://chart.googleapis.com/chart?chs=370x200&cht=bvs&chxp=2,100&chxt=y,x,x&chxl=0:|0|1|2|3|4|5|6|7|8|9|10|1:|1|2|3|4|5|6|7|8|9|10|11|12|2:|month&chf=c,lg,90,76A4FB,0.5,ffffff,0|bg,s,EFEFEF&chd=t:0,60,10,0,0,0,30,40,40,40,0,20&chco=0000ff&chtt=2013+年共阅读+24+本书)
 
 上半年总把玩着 iPad，积攒的实体书虽多，看完的较少，更别提存储量更大的电子书了；下半年开始有读书量得益于从日本 amazon 海淘了一个 kindle paperwhite，加上豆瓣阅读和多看的给力，也购买了不少在价格上更有优势的电子书。
 
@@ -79,7 +79,7 @@ permalink: 2013-in-review
 
 ### 电影
 
-![2013豆瓣观影图表](http://chart.apis.google.com/chart?chs=370x200&cht=bvs&chxp=2,100&chxt=y,x,x&chxl=0:|0|5|10|15|20|1:|1|2|3|4|5|6|7|8|9|10|11|12|2:|month&chf=c,lg,90,76A4FB,0.5,ffffff,0|bg,s,EFEFEF&chd=t:60,80,60,20,75,30,65,40,50,55,30,35&chco=0000ff&chtt=2013+年共观影+120+部)
+![2013豆瓣观影图表](https://chart.googleapis.com/chart?chs=370x200&cht=bvs&chxp=2,100&chxt=y,x,x&chxl=0:|0|5|10|15|20|1:|1|2|3|4|5|6|7|8|9|10|11|12|2:|month&chf=c,lg,90,76A4FB,0.5,ffffff,0|bg,s,EFEFEF&chd=t:60,80,60,20,75,30,65,40,50,55,30,35&chco=0000ff&chtt=2013+年共观影+120+部)
 
 囧，居然看了那么多电影，我自己都有些惊讶...
 
