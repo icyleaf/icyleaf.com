@@ -18,6 +18,14 @@
 - [jwilder/nginx-proxy][nginx-proxy-link]
 - [JrCs/docker-letsencrypt-nginx-proxy-companion][ngix-proxy-ssl-link]
 
+### 部署
+
+```bash
+$ [sudo] docker-compose -f docker-compose.yml -f production.yml up -d
+```
+
+关于更多 `docker-compose` 在生产环境下的用法，请看 [Using Compose in production][compose-production-link]
+
 ## 为什么要这样做
 
 > TODO: 完成文章并添加链接
@@ -46,7 +54,7 @@ $ git submodule init --update
 $ cd icyleaf.com
 $ [sudo] docker build -t alpine-hexo .
 $ [sudo] docker run -d --name icyleaf.com -p 80:80 alpine-hexo
-```  
+```
 
 ### 隔离部署
 
@@ -81,3 +89,4 @@ $ [sudo] docker run -d --name icyleaf.com -p 80:80 alpine-hexo
 [alpine-hexo-link]: https://github.com/icyleaf/alpine-hexo
 [nginx-proxy-link]: https://github.com/jwilder/nginx-proxy
 [ngix-proxy-ssl-link]: https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion
+[compose-production-link]: https://docs.docker.com/compose/production/

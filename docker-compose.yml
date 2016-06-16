@@ -1,0 +1,9 @@
+blog:
+  build: .
+  ports:
+    - "8800:80"
+  environment:
+    VIRTUAL_HOST: icyleaf.com
+    LETENCRYPT_HOST: icyleaf.com
+    LETENCRYPT_EMAIL: icyleaf.cn@gmail.com
+  restart: always
