@@ -1,0 +1,7 @@
+blog:
+  build: .
+  environment:
+    VIRTUAL_HOST: icyleaf.com
+    LETENCRYPT_HOST: icyleaf.com
+    LETENCRYPT_EMAIL: icyleaf.cn@gmail.com
+  restart: always

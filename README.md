@@ -21,13 +21,14 @@
 ### 部署
 
 ```bash
-$ [sudo] docker-compose -f docker-compose.yml -f production.yml up -d
+$ [sudo] docker-compose -f docker-compose.yml -f production-single.yml up -d
 ```
 
-如果服务器已经运行了 `nginx-proxy` 和 `docker-letsencrypt-nginx-proxy-companion` 可用：
+如果博客需要支持 `nginx-proxy` 和 `docker-letsencrypt-nginx-proxy-companion` 可用：
 
 ```bash
-$ [sudo] docker-compose up -d
+# 该命令还有缺陷，请勿使用
+$ [sudo] docker-compose -f docker-compose.yml -f production-single.yml up -d
 ```
 
 关于更多 `docker-compose` 在生产环境下的用法，请看 [Using Compose in production][compose-production-link]
@@ -77,7 +78,7 @@ $ [sudo] docker run -d --name icyleaf.com -p 80:80 alpine-hexo
 ## 下一步工作
 
 - [x] 支持 docker
-- [x] 自动关联和启用 Let's Encrypt
+- [ ] 自动关联和启用 Let's Encrypt
 - [ ] 自动发布
 
 ## 支持一下
