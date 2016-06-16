@@ -11,7 +11,7 @@ nginx:
   restart: always
 letencrypt:
   image: jrcs/letsencrypt-nginx-proxy-companion
-  volumes-from:
+  volumes_from:
     - nginx-proxy
   volumes:
     - /var/run/docker.sock:/tmp/docker.sock:ro
