@@ -27,7 +27,7 @@ $ [sudo] docker-compose -f docker-compose.yml -f production-single.yml up -d
 如果博客需要支持 `nginx-proxy` 和 `docker-letsencrypt-nginx-proxy-companion` 可用：
 
 ```bash
-# 该命令还有缺陷，请勿使用
+# 该命令还有缺陷，请勿使用！！！
 $ [sudo] docker-compose -f docker-compose.yml -f production-single.yml up -d
 ```
 
