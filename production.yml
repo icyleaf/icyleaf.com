@@ -1,22 +1,23 @@
 nginx:
   image: jwilder/nginx-proxy
   volumes:
-    - /var/run/docker.sock:/tmp/docker.sock:ro
     - /data/certs:/etc/nginx/certs:ro
     - /etc/nginx/vhost.d
     - /usr/share/nginx/html
+    - /var/run/docker.sock:/tmp/docker.sock:ro
   ports:
-    - 80
+    - 80:80
+    - 443:443
   restart: always
 letencrypt:
   image: jrcs/letsencrypt-nginx-proxy-companion
+  volumes-from:
+    - nginx-proxy
   volumes:
     - /var/run/docker.sock:/tmp/docker.sock:ro
   restart: always
 blog:
   build: .
-  ports:
-    - "8800:80"
   environment:
     VIRTUAL_HOST: icyleaf.com
     LETENCRYPT_HOST: icyleaf.com
