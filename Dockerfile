@@ -9,3 +9,5 @@ RUN npm install hexo-generator-feed --save \
 RUN hexo clean && rm -rf ./source
 ADD hexo .
 ADD config .
+
+EXPOSE 80
