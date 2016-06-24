@@ -18,6 +18,24 @@
 - [jwilder/nginx-proxy][nginx-proxy-link]
 - [JrCs/docker-letsencrypt-nginx-proxy-companion][ngix-proxy-ssl-link]
 
+### Hexo
+
+主题使用 [Next](https://github.com/iissnan/hexo-theme-next) 和一些插件：
+
+- hexo-generator-feed
+- hexo-generator-seo-friendly-sitemap
+
+### 初始化
+
+```bash
+$ git clone https://github.com/icyleaf/icyleaf.com.git && cd icyleaf.com
+$ git submodule update --init
+```
+
+### 结构
+
+
+
 ### 部署
 
 ```bash
