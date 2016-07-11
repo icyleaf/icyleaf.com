@@ -81,10 +81,8 @@ theme: next
 
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
-# deploy:
-#   type: rsync
-#   host: icyleaf.com
-#   user: icyleaf
-#   root: /home/icyleaf/icyleaf.com
-#   delete: true
-#   verbose: true
+deploy:
+  type: rsync
+  host: icyleaf.com
+  user: icyleaf
+  root: /data/data/icyleaf.com

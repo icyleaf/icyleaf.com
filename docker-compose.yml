@@ -9,5 +9,5 @@ services:
       - "./hexo/source:/DATA/source"
       - "./hexo/themes:/DATA/themes"
       - "./config/_config.yml:/DATA/_config.yml"
+      - "./public:/DATA/public"
       - "./config/themes/next/_config.yml:/DATA/themes/next/_config.yml"
-    restart: always

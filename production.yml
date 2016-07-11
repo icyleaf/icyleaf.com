@@ -15,7 +15,7 @@ services:
       - LETENCRYPT_EMAIL=icyleaf.cn@gmail.com
     depends_on:
       - nginx-proxy
-      - letencrypt
+      - nginx-letencrypt
     restart: always
   nginx-proxy:
     image: jwilder/nginx-proxy
@@ -24,17 +24,17 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - /data/certs:/etc/nginx/certs:ro
+      - /etc/nginx/certs:/etc/nginx/certs:ro
       - /etc/nginx/vhost.d
       - /usr/share/nginx/html
       - /var/run/docker.sock:/tmp/docker.sock:ro
     restart: always
-  letencrypt:
+  nginx-letencrypt:
     image: jrcs/letsencrypt-nginx-proxy-companion
     container_name: nginx-letencrypt
     volumes_from:
       - nginx-proxy
     volumes:
-      - /data/certs:/etc/nginx/certs:rw
+      - /etc/nginx/certs:/etc/nginx/certs:rw
       - /var/run/docker.sock:/var/run/docker.sock:ro
     restart: always

@@ -4,7 +4,6 @@ tags:
 - Ruby
 - Gem
 permalink: intro-ruby-gem-guard
-
 date: 2014-01-25 12:34:56
 ---
 
