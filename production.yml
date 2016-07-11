@@ -13,7 +13,7 @@ services:
       - LETENCRYPT_HOST="icyleaf.com,www.icyleaf.com"
       - LETENCRYPT_EMAIL="icyleaf.cn@gmail.com"
     restart: always
-  nginx:
+  nginx-proxy:
     image: jwilder/nginx-proxy
     volumes:
       - /data/certs:/etc/nginx/certs:ro
@@ -27,7 +27,8 @@ services:
   letencrypt:
     image: jrcs/letsencrypt-nginx-proxy-companion
     volumes_from:
-      - nginx
+      - nginx-proxy
     volumes:
+      - /data/certs:/etc/nginx/certs:rw
       - /var/run/docker.sock:/var/run/docker.sock:ro
     restart: always
