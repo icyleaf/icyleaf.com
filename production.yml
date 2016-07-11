@@ -16,13 +16,13 @@ services:
   nginx-proxy:
     image: jwilder/nginx-proxy
     volumes:
-      - /data/certs:/etc/nginx/certs:ro
+      - /data/certs:/etc/nginx/certs
       - /etc/nginx/vhost.d
       - /usr/share/nginx/html
       - /var/run/docker.sock:/tmp/docker.sock:ro
     ports:
-      - 80:80
-      - 443:443
+      - "80:80"
+      - "443:443"
     restart: always
   letencrypt:
     image: jrcs/letsencrypt-nginx-proxy-companion
