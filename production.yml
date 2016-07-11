@@ -13,6 +13,9 @@ services:
       - VIRTUAL_HOST=icyleaf.com
       - LETENCRYPT_HOST=icyleaf.com
       - LETENCRYPT_EMAIL=icyleaf.cn@gmail.com
+    depends_on:
+      - nginx-proxy
+      - letencrypt
     restart: always
   nginx-proxy:
     image: jwilder/nginx-proxy
