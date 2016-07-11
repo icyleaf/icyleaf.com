@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-docker rm -f $(docker ps -a | grep icyleaf-blog | awk '{print $1}')
-docker run -d --name icyleaf-blog -p 80:80 icyleaf-blog-dev
-docker logs -f icyleaf-blog

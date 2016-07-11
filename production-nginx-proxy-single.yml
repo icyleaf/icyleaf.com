@@ -1,7 +1,15 @@
-blog:
-  build: .
-  environment:
-    VIRTUAL_HOST: icyleaf.com
-    LETENCRYPT_HOST: icyleaf.com
-    LETENCRYPT_EMAIL: icyleaf.cn@gmail.com
-  restart: always
+version: '2'
+
+services:
+  blog:
+    build: .
+    volumes:
+      - "./hexo/source:/DATA/source"
+      - "./hexo/themes:/DATA/themes"
+      - "./config/_config.yml:/DATA/_config.yml"
+      - "./config/themes/next/_config.yml:/DATA/themes/next/_config.yml"
+    environment:
+      - VIRTUAL_HOST=icyleaf.com
+      - LETENCRYPT_HOST=icyleaf.com
+      - LETENCRYPT_EMAIL=icyleaf.cn@gmail.com
+    restart: always
