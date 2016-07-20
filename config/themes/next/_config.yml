@@ -6,7 +6,7 @@
 favicon: /favicon.ico
 
 # Set default keywords (Use a comma to separate)
-keywords: "icyleaf, Linux, Mac, Git, iOS, Ruby, Android, Java, PHP"
+keywords: "icyleaf, Linux, Mac, Git, iOS, Ruby, Android, Java, PHP, Docker, Crystal"
 
 # Set rss to false to disable feed link.
 # Leave rss as empty to use site's feed link.
@@ -75,6 +75,7 @@ social:
   Twitter: https://twitter.com/icyleaf
   Weibo: http://www.weibo.com/icyleaf
   Douban: http://www.douban.com/people/icyleaf
+  QYer: http://www.qyer.com/u/1357827
 
 # Social Icons
 social_icons:
@@ -85,6 +86,7 @@ social_icons:
   Twitter: twitter
   Weibo: weibo
   Douban: douban
+  QYer: qyer
 
 
 # Sidebar Avatar

@@ -12,6 +12,11 @@ permalink: intro-fastlane-automation-for-ios-and-android
 date: 2016-07-11 12:36:07
 ---
 
+## 系列索引
+
+1. [Fastlane - iOS 和 Android 的自动化构建工具](https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/)
+2. [深入浅出 Fastlane 一看你就懂](https://icyleaf.com/2016/07/fastlane-in-action/)
+
 ## 前言
 
 这篇文章整理了很久，发现在一篇文章里无法一一讲述和全面的覆盖，初步打算是把这个做成一个系列，想到哪里就写到哪里，如果恰好有读者爱戴并有一些建议反馈，我也会根据大家的需要调整内容的方向和深度。论美剧的编剧的重要性(笑)。
