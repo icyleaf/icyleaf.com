@@ -1093,6 +1093,10 @@ body:not(.post-template) .post-title {
     display: none;
 }
 
+.post-content {
+  padding-top: 1em;
+}
+
 /* Keep images centered, and allow images wider than the main
    text column to break out. */
 .post-content img {
