@@ -1,0 +1,12 @@
+{{ if eq .Params.index true }}
+<div class="vertical">
+  <div class="main-header-content inner">
+    <h1 class="page-title">{{ .Title }}</h1>
+    <h2 class="page-description">
+      {{ if .Params.description }}
+        {{ .Params.description }}
+      {{ end }}
+    </h2>
+  </div>
+</div>
+{{ end }}

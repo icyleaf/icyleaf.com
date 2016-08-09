@@ -1,0 +1,5 @@
+{{ if or (eq (substr .Site.Params.cover 0 7) "http://") (eq (substr .Site.Params.cover 0 8) "https://") }}
+<header class="main-header" style="background-image: url({{ .Site.Params.cover }})">
+{{ else }}
+<header class="main-header" style="background-image: url({{ .Site.BaseURL }}{{ .Site.Params.cover }})">
+{{ end }}
