@@ -1,0 +1,26 @@
+{{ partial "header.html" . }}
+{{ if .Params.image }}
+  {{ partial "header/post_cover.html" . }}
+{{ else if .Site.Params.cover }}
+  {{ partial "header/tag_cover.html" . }}
+{{ else }}
+  <header class="main-header post-head no-cover">
+{{ end }}
+
+  {{ partial "navigation.html" . }}
+  {{ partial "header/title.html" . }}
+</header>
+
+<main class="content" role="main">
+  <section class="terms-cloud">
+    <div class="terms-cloud-title">{{ len .Data.Terms }} in total</div>
+    <div class="terms-cloud-tags">
+      {{ $data := .Data }}
+      {{ range $key, $value := .Data.Terms }}
+        <a href="{{ $data.Plural }}/{{ $key | urlize }}">{{ $key }}</a>
+      {{ end }}
+    </div>
+  </section>
+</main>
+
+{{ partial "footer.html" . }}

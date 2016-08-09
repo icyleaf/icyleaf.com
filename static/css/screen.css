@@ -1189,6 +1189,25 @@ body:not(.post-template) .post-title {
     color: #50585D;
 }
 
+/* ==========================================================================
+   5.1. Tag cloud
+   ========================================================================== */
+
+.terms-cloud {
+  text-align: center;
+}
+
+.terms-cloud-tags {
+  padding-top: 2em;
+}
+
+.terms-cloud a {
+  display: inline-block;
+  margin: 10px;
+  text-decoration: none;
+  border-bottom: 1px solid #999;
+  word-wrap: break-word;
+}
 
 /* ==========================================================================
    6. Author profile
