@@ -1,6 +1,6 @@
 {{ partial "header.html" . }}
 {{ if .Params.image }}
-  {{ partial "header/post_cover.html" . }}
+  {{ partial "header/page_cover.html" . }}
 {{ else if .Site.Params.cover }}
   {{ partial "header/tag_cover.html" . }}
 {{ else }}
@@ -12,12 +12,13 @@
 </header>
 
 <main class="content" role="main">
-  <section class="terms-cloud">
+  <section class="post terms-cloud">
     <div class="terms-cloud-title">{{ len .Data.Terms }} in total</div>
     <div class="terms-cloud-tags">
       {{ $data := .Data }}
+      {{ $baseurl := .Site.BaseURL }}
       {{ range $key, $value := .Data.Terms }}
-        <a href="{{ $data.Plural }}/{{ $key | urlize }}">{{ $key }}</a>
+        <a href="{{ $baseurl }}{{ $data.Plural }}/{{ $key | urlize }}">{{ $key }}</a>
       {{ end }}
     </div>
   </section>

@@ -1,4 +1,4 @@
-{{ if eq .Params.index true }}
+{{ if or (and (eq .Params.index true) .IsPage) .IsNode }}
 <div class="vertical">
   <div class="main-header-content inner">
     <h1 class="page-title">{{ .Title }}</h1>

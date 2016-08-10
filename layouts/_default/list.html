@@ -1,6 +1,6 @@
 {{ partial "header.html" . }}
 {{ if .Params.image }}
-  {{ partial "header/post_cover.html" . }}
+  {{ partial "header/page_cover.html" . }}
 {{ else if .Site.Params.cover }}
   {{ partial "header/tag_cover.html" . }}
 {{ else }}

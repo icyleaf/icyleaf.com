@@ -1,9 +1,5 @@
 {{ partial "header.html" . }}
-{{ if .Site.Params.cover }}
-  {{ partial "header/main_cover.html" . }}
-{{else}}
-  <header class="main-header no-cover">
-{{end}}
+{{ partial "header/site_cover.html" . }}
 
   {{ partial "navigation.html" . }}
   <div class="vertical">
