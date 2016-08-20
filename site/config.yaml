@@ -1,4 +1,4 @@
-baseurl: localhost
+baseurl: http://icyleaf.com
 languageCode: en-us
 title: icyleaf
 theme: casper
