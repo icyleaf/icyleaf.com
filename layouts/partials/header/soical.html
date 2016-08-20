@@ -1,3 +1,15 @@
+{{ if isset .Site.Params "socials" }}
+
+{{ range .Site.Params.socials }}
+  <a class="bloglogo" href="{{ .link }}" target="_blank">
+    <i class="icon-{{ .name }}"></i>
+  </a>
+  &nbsp;
+{{ end }}
+
+{{ end }}
+
+<!--
 {{ if .Site.Params.linkedinName }}
   <a class="bloglogo" href="https://www.linkedin.com/in/{{ .Site.Params.linkedinName }}" target="_blank">
     <span class="icon-linkedin" style="color:white;font-size:2em"></span>
@@ -7,7 +19,7 @@
 
 {{ if .Site.Params.githubName }}
   <a class="bloglogo" href="https://github.com/{{ .Site.Params.githubName }}" target="_blank">
-    <span class="icon-github" style="color:white;font-size:2em"></span>
+    <i class="icon-github" style="color:white;font-size:2em"></i>
   </a>
 &nbsp;
 {{ end }}
@@ -45,4 +57,4 @@
     <span class="icon-google-plus" style="color:white;font-size:2em"></span>
   </a>
 &nbsp;
-{{ end }}
+{{ end }} -->

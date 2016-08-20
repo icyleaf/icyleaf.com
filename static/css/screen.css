@@ -105,76 +105,63 @@ table { border-collapse: collapse; border-spacing: 0; }
 
 /* Import the font file with the icons in it */
 @font-face {
-  font-family: 'genericons';
-  src: url('../fonts/Genericons.eot');
-  src: url('../fonts/Genericons.eot?#iefix') format('embedded-opentype'),
-       url('../fonts/Genericons.woff') format('woff'),
-       url('../fonts/Genericons.ttf') format('truetype'),
-       url('../fonts/Genericons.svg#entypo') format('svg');
-  font-weight: normal; font-style: normal;
+    font-family: 'iconfont';
+    src: url('../iconfonts/iconfont.eot');
+    src: url('../iconfonts/iconfont.eot?#iefix') format('embedded-opentype'),
+         url('../iconfonts/iconfont.woff') format('woff'),
+         url('../iconfonts/iconfont.ttf') format('truetype'),
+         url('../iconfonts/iconfont.svg#iconfont') format('svg');
 }
 
-/* Apply these base styles to all icons */
 [class^="icon-"]:before, [class*=" icon-"]:before {
-    font-family: "genericons", "Open Sans", sans-serif;
-    speak: none;
+    font-family:"iconfont" !important;
     font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1;
-    text-decoration: none !important;
     -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
     -moz-osx-font-smoothing: grayscale;
 }
 
 /* Each icon is created by inserting the correct character into the
    content of the :before pseudo element. Like a boss. */
 .icon-github:before {
-    content: "\f200";
-}
-
-.icon-hugo:before{
-    content:"\f216";
-}
-
-.icon-ghost:before {
-    content: "\f100";
-}
-.icon-feed:before {
-    content: "\f413";
+    content: "\e60d";
 }
 .icon-twitter:before {
-    content: "\f202";
+    content: "\e608";
 }
 .icon-google-plus:before {
     content: "\f206";
 }
 .icon-facebook:before {
-    content: "\f203";
+    content: "\e601";
 }
 .icon-instagram:before {
-    content: "\f215";
-}
-.icon-pinterest:before {
-    content: "\f210";
+    content: "\e606";
 }
 .icon-linkedin:before {
-    content: "\f208";
+    content: "\e604";
+}
+.icon-douban:before {
+    content: "\e607";
+}
+.icon-weibo:before {
+    content: "\e600";
+}
+.icon-feed:before {
+    content: "\e605";
 }
 .icon-arrow-left:before {
-    content: "\f431";
+    content: "\e61d";
 }
 .icon-stats:before {
-    content: "\f508";
+    content: "\e61a";
 }
 .icon-location:before {
-    content: "\f417";
+    content: "\e60e";
 }
 .icon-link:before {
-    content: "\f442";
+    content: "\e619";
 }
-
 
 /* ==========================================================================
    2. General - Setting up some base styles
@@ -522,6 +509,11 @@ body.nav-opened .site-wrapper {
 
 .main-header a.bloglogo {
     text-decoration: none;
+}
+
+.main-header a.bloglogo i {
+    color:white;
+    font-size:2em
 }
 
 .main-nav {
@@ -1178,9 +1170,9 @@ body:not(.post-template) .post-title {
 }
 
 .post-footer .share a {
-    font-size: 1.8rem;
+    font-size: 3rem;
     display: inline-block;
-    margin: 1rem 1.6rem 1.6rem 0;
+    margin: 1rem 0.1rem 1.6rem 0;
     color: #BBC7CC;
     text-decoration: none;
 }
@@ -1216,6 +1208,7 @@ body:not(.post-template) .post-title {
 .post-head.main-header {
     height: 65vh;
     min-height: 180px;
+    background: #FFF;
 }
 
 .no-cover.post-head.main-header {
