@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Hexo on icyleaf</title>
-    <link>http://icyleaf.com/tags/hexo/</link>
+    <link>http://icyleaf.github.io/icyleaf.com/tags/hexo/</link>
     <description>Recent content in Hexo on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
     <lastBuildDate>Thu, 17 Dec 2015 15:01:56 +0800</lastBuildDate>
-    <atom:link href="http://icyleaf.com/tags/hexo/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://icyleaf.github.io/icyleaf.com/tags/hexo/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>博客迁徙记</title>
-      <link>http://icyleaf.com/2015/12/%E5%8D%9A%E5%AE%A2%E8%BF%81%E5%BE%99%E8%AE%B0</link>
+      <link>http://icyleaf.github.io/icyleaf.com/2015/12/%E5%8D%9A%E5%AE%A2%E8%BF%81%E5%BE%99%E8%AE%B0</link>
       <pubDate>Thu, 17 Dec 2015 15:01:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2015/12/%E5%8D%9A%E5%AE%A2%E8%BF%81%E5%BE%99%E8%AE%B0</guid>
+      <guid>http://icyleaf.github.io/icyleaf.com/2015/12/%E5%8D%9A%E5%AE%A2%E8%BF%81%E5%BE%99%E8%AE%B0</guid>
       <description>
 
 &lt;p&gt;长期的不更新导致更新最新的 Hexo 之后各种的不兼容，费了一番功夫迁移，难得有一番时间给这里拔拔草，休憩一番。然后再吼一嗓子：&lt;/p&gt;
@@ -231,10 +231,10 @@
     
     <item>
       <title>Hexo 主题推荐 NexT</title>
-      <link>http://icyleaf.com/2015/12/hexo-%E4%B8%BB%E9%A2%98%E6%8E%A8%E8%8D%90-next</link>
+      <link>http://icyleaf.github.io/icyleaf.com/2015/12/hexo-%E4%B8%BB%E9%A2%98%E6%8E%A8%E8%8D%90-next</link>
       <pubDate>Thu, 17 Dec 2015 14:41:00 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2015/12/hexo-%E4%B8%BB%E9%A2%98%E6%8E%A8%E8%8D%90-next</guid>
+      <guid>http://icyleaf.github.io/icyleaf.com/2015/12/hexo-%E4%B8%BB%E9%A2%98%E6%8E%A8%E8%8D%90-next</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://camo.githubusercontent.com/2e2c5c6d351ebe899fcebed0f56a5b72b2660b06/687474703a2f2f696973736e616e2e636f6d2f6e657875732f6e6578742f6e6578742d736368656d65732e6a7067&#34; alt=&#34;Snapshot&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;这是我见过配备最完善的 hexo 主题，支持丰富的配置，和 hexo 一样完善的文档。兼容国内外的扩展服务，最重要的主题作者还是国人。&lt;/p&gt;

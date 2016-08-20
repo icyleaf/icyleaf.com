@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>校内 on icyleaf</title>
-    <link>http://icyleaf.com/tags/%E6%A0%A1%E5%86%85/</link>
+    <link>http://icyleaf.github.io/icyleaf.com/tags/%E6%A0%A1%E5%86%85/</link>
     <description>Recent content in 校内 on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
     <lastBuildDate>Fri, 10 Oct 2008 12:34:56 +0800</lastBuildDate>
-    <atom:link href="http://icyleaf.com/tags/%E6%A0%A1%E5%86%85/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://icyleaf.github.io/icyleaf.com/tags/%E6%A0%A1%E5%86%85/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>校内网，海内网，开心网用户隐私查看器</title>
-      <link>http://icyleaf.com/2008/10/the-school-network-network-happy-at-home-and-network-user-privacy-viewer</link>
+      <link>http://icyleaf.github.io/icyleaf.com/2008/10/the-school-network-network-happy-at-home-and-network-user-privacy-viewer</link>
       <pubDate>Fri, 10 Oct 2008 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2008/10/the-school-network-network-happy-at-home-and-network-user-privacy-viewer</guid>
+      <guid>http://icyleaf.github.io/icyleaf.com/2008/10/the-school-network-network-happy-at-home-and-network-user-privacy-viewer</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;更新&lt;/strong&gt;：目前校内网已经修补了此漏洞，所以大家可以放弃了，除非你想抓住那 1% 的机会&lt;/p&gt;
 &lt;/blockquote&gt;

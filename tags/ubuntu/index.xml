@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Ubuntu on icyleaf</title>
-    <link>http://icyleaf.com/tags/ubuntu/</link>
+    <link>http://icyleaf.github.io/icyleaf.com/tags/ubuntu/</link>
     <description>Recent content in Ubuntu on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
     <lastBuildDate>Wed, 03 Nov 2010 12:34:56 +0800</lastBuildDate>
-    <atom:link href="http://icyleaf.com/tags/ubuntu/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://icyleaf.github.io/icyleaf.com/tags/ubuntu/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Ubuntu 解决 public key is not available 问题</title>
-      <link>http://icyleaf.com/2010/11/apt-get-gpg-error-public-key-not-available</link>
+      <link>http://icyleaf.github.io/icyleaf.com/2010/11/apt-get-gpg-error-public-key-not-available</link>
       <pubDate>Wed, 03 Nov 2010 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2010/11/apt-get-gpg-error-public-key-not-available</guid>
+      <guid>http://icyleaf.github.io/icyleaf.com/2010/11/apt-get-gpg-error-public-key-not-available</guid>
       <description>&lt;p&gt;自 Ubuntu 10.04 升级至 10.10 之后，系统就有些不注意的小毛病，包括系统的各个软件的配置文件可能有改动，加上常年累计尝试并添加很多 ppa&lt;/p&gt;
 
 &lt;p&gt;的源，自定义的软件源在升级兼容的考虑下全部金禁用了导致原本软件源的注解名称也没有了，自己不知道各个软件源是干什么的&amp;hellip;于是手动在软件源管理（a本放在了 Applications -&amp;gt; Ubuntu Software Center 程序里面 Edit 菜单下面）清理。&lt;/p&gt;

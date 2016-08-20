@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Php on icyleaf</title>
-    <link>http://icyleaf.com/tags/php/</link>
+    <link>http://icyleaf.github.io/icyleaf.com/tags/php/</link>
     <description>Recent content in Php on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
     <lastBuildDate>Mon, 02 May 2011 12:34:56 +0800</lastBuildDate>
-    <atom:link href="http://icyleaf.com/tags/php/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://icyleaf.github.io/icyleaf.com/tags/php/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>魔豆及其豆瓣 API 测试平台开源咯</title>
-      <link>http://icyleaf.com/2011/05/modou-and-douban-api-console-is-open-source-now</link>
+      <link>http://icyleaf.github.io/icyleaf.com/2011/05/modou-and-douban-api-console-is-open-source-now</link>
       <pubDate>Mon, 02 May 2011 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2011/05/modou-and-douban-api-console-is-open-source-now</guid>
+      <guid>http://icyleaf.github.io/icyleaf.com/2011/05/modou-and-douban-api-console-is-open-source-now</guid>
       <description>&lt;p&gt;这是作为 2011 年 5 月 1 日劳动节的福利发放，欢迎各位 Kohana 开发者及其爱好者围观领取，领取内容及其使用方式请前往本人 Github 的项目地址：&lt;a href=&#34;https://github.com/icyleaf/modou&#34;&gt;https://github.com/icyleaf/modou&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Nginx&#43;FastCGI 环境搭建 Kohana</title>
-      <link>http://icyleaf.com/2010/05/nginx-with-fastcgi-build-kohana</link>
+      <link>http://icyleaf.github.io/icyleaf.com/2010/05/nginx-with-fastcgi-build-kohana</link>
       <pubDate>Mon, 31 May 2010 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2010/05/nginx-with-fastcgi-build-kohana</guid>
+      <guid>http://icyleaf.github.io/icyleaf.com/2010/05/nginx-with-fastcgi-build-kohana</guid>
       <description>
 
 &lt;p&gt;Kohana 默认仅对 Apache 环境提供的部署支持，其实对于 Nginx+FastCGI
@@ -254,10 +254,10 @@ rewrite ^/(.*)$ /index.php?kohana_uri=/$1 last;
     
     <item>
       <title>如何获取 Element 的 XPath [PHP/Javascript]</title>
-      <link>http://icyleaf.com/2010/04/how-to-get-xpath-of-an-element-for-php-and-javascript</link>
+      <link>http://icyleaf.github.io/icyleaf.com/2010/04/how-to-get-xpath-of-an-element-for-php-and-javascript</link>
       <pubDate>Fri, 02 Apr 2010 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2010/04/how-to-get-xpath-of-an-element-for-php-and-javascript</guid>
+      <guid>http://icyleaf.github.io/icyleaf.com/2010/04/how-to-get-xpath-of-an-element-for-php-and-javascript</guid>
       <description>&lt;p&gt;这两天研究 HTML 的 DOM 需要寻找某个 Element 元素的完整 XPath 路径，由于使用的是 &lt;a href=&#34;http://simplehtmldom.sourceforge.net/manual.htm&#34;&gt;PHP Simple HTML DOM Parser&lt;/a&gt; 开源库，这个库类的使用方法几乎兼容 Javascript 的 DOM 语法并附带 DOM 选择器。虽然功能强大但是并不能直接获取 Element 的 XPath。这个怎么办呢，依稀记得 Firebug 有一个功能，选择某个元素在它的控制台可以显示 XPath。嗯，着手实践一下发现不仅可以显示而且还可以复制 XPath。&lt;/p&gt;
 
 &lt;p&gt;于是想，如果可以找到 Javascript 版的相关代码就一定可以改成 PHP 版本的，结果在 Google 搜索找到了&amp;hellip;&lt;/p&gt;
@@ -350,10 +350,10 @@ function getElementIdx($elt){
     
     <item>
       <title>Douban API Package 发布！</title>
-      <link>http://icyleaf.com/2010/01/douban-api-package</link>
+      <link>http://icyleaf.github.io/icyleaf.com/2010/01/douban-api-package</link>
       <pubDate>Fri, 08 Jan 2010 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2010/01/douban-api-package</guid>
+      <guid>http://icyleaf.github.io/icyleaf.com/2010/01/douban-api-package</guid>
       <description>&lt;p&gt;Douban API Package 是一个使用 PHP 开发且基于 Kohana v3 开发的一个扩展（Module）。&lt;/p&gt;
 
 &lt;p&gt;它对&lt;a href=&#34;http://www.douban.com/&#34;&gt;豆瓣&lt;/a&gt; &lt;a href=&#34;http://www.douban.com/service/apidoc/&#34;&gt;API&lt;/a&gt; 进行重新封包。它使用起来非常方便，可以快速开发一个 web 应用。&lt;/p&gt;
@@ -444,10 +444,10 @@ function getElementIdx($elt){
     
     <item>
       <title>Kohana 官方 2.3，2.4，3.0 的最终裁决！</title>
-      <link>http://icyleaf.com/2009/07/official-2-3-2-4-3-0-decisions</link>
+      <link>http://icyleaf.github.io/icyleaf.com/2009/07/official-2-3-2-4-3-0-decisions</link>
       <pubDate>Fri, 24 Jul 2009 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2009/07/official-2-3-2-4-3-0-decisions</guid>
+      <guid>http://icyleaf.github.io/icyleaf.com/2009/07/official-2-3-2-4-3-0-decisions</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;更新：Kohana 官方已经做出&lt;a href=&#34;http://forum.khnfans.cn/topic/view/167/1.html&#34;&gt;最终裁决&lt;/a&gt;！&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -492,10 +492,10 @@ editor on Fedora 10&lt;/a&gt;&lt;/p&gt;
     
     <item>
       <title>豆瓣API测试控制台</title>
-      <link>http://icyleaf.com/2009/07/douban-api-console</link>
+      <link>http://icyleaf.github.io/icyleaf.com/2009/07/douban-api-console</link>
       <pubDate>Mon, 06 Jul 2009 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2009/07/douban-api-console</guid>
+      <guid>http://icyleaf.github.io/icyleaf.com/2009/07/douban-api-console</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;项目已开源: &lt;a href=&#34;http://github.com/icyleaf/modou&#34;&gt;http://github.com/icyleaf/modou&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -561,10 +561,10 @@ id 留空或者设置为 ‘me’ （不带引号），这样调用结果显示�
     
     <item>
       <title>魔豆：豆瓣网非官方移动版本</title>
-      <link>http://icyleaf.com/2009/06/modou</link>
+      <link>http://icyleaf.github.io/icyleaf.com/2009/06/modou</link>
       <pubDate>Mon, 22 Jun 2009 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2009/06/modou</guid>
+      <guid>http://icyleaf.github.io/icyleaf.com/2009/06/modou</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;项目已开源: &lt;a href=&#34;http://github.com/icyleaf/modou&#34;&gt;http://github.com/icyleaf/modou&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -619,10 +619,10 @@ Zend Framework 和 Gdata，使用自己维护中文化的 &lt;a href=&#34;http:/
     
     <item>
       <title>Modules Library 和 DBManager Module</title>
-      <link>http://icyleaf.com/2009/03/modules-helper-and-dbmanager-module</link>
+      <link>http://icyleaf.github.io/icyleaf.com/2009/03/modules-helper-and-dbmanager-module</link>
       <pubDate>Thu, 05 Mar 2009 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2009/03/modules-helper-and-dbmanager-module</guid>
+      <guid>http://icyleaf.github.io/icyleaf.com/2009/03/modules-helper-and-dbmanager-module</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;Hi, Don&amp;rsquo;t understand Chinese? ok, No problem. Here to view &lt;a href=&#34;http://forum.kohanaphp.com/comments.php?DiscussionID=2117&amp;amp;page=1&#34;&gt;Modules Library&lt;/a&gt; and &lt;a href=&#34;http://forum.kohanaphp.com/comments.php?DiscussionID=2156&amp;amp;page=1&#34;&gt;DBManager Module&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -688,10 +688,10 @@ $module-&amp;gt;add(&#39;sample_module&#39;, &#39;Just a sample module&#39;);
     
     <item>
       <title>校内网，海内网，开心网用户隐私查看器</title>
-      <link>http://icyleaf.com/2008/10/the-school-network-network-happy-at-home-and-network-user-privacy-viewer</link>
+      <link>http://icyleaf.github.io/icyleaf.com/2008/10/the-school-network-network-happy-at-home-and-network-user-privacy-viewer</link>
       <pubDate>Fri, 10 Oct 2008 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2008/10/the-school-network-network-happy-at-home-and-network-user-privacy-viewer</guid>
+      <guid>http://icyleaf.github.io/icyleaf.com/2008/10/the-school-network-network-happy-at-home-and-network-user-privacy-viewer</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;更新&lt;/strong&gt;：目前校内网已经修补了此漏洞，所以大家可以放弃了，除非你想抓住那 1% 的机会&lt;/p&gt;
 &lt;/blockquote&gt;

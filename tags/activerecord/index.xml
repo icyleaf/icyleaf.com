@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Activerecord on icyleaf</title>
-    <link>http://icyleaf.com/tags/activerecord/</link>
+    <link>http://icyleaf.github.io/icyleaf.com/tags/activerecord/</link>
     <description>Recent content in Activerecord on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
     <lastBuildDate>Tue, 03 Dec 2013 12:34:56 +0800</lastBuildDate>
-    <atom:link href="http://icyleaf.com/tags/activerecord/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://icyleaf.github.io/icyleaf.com/tags/activerecord/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>ActiveRecord 使用秘笈</title>
-      <link>http://icyleaf.com/2013/12/activerecord-tips</link>
+      <link>http://icyleaf.github.io/icyleaf.com/2013/12/activerecord-tips</link>
       <pubDate>Tue, 03 Dec 2013 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2013/12/activerecord-tips</guid>
+      <guid>http://icyleaf.github.io/icyleaf.com/2013/12/activerecord-tips</guid>
       <description>
 
 &lt;p&gt;ActiveRecord 是 Rails 内置的 ORM 框架，大多数人学习 Ruby 都是从 rails 开始，接触的也是这个 ORM，因此就有了这个使用秘笈。&lt;/p&gt;

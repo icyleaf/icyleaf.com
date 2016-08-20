@@ -2,29 +2,29 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Pages on icyleaf</title>
-    <link>http://icyleaf.com/page/</link>
+    <link>http://icyleaf.github.io/icyleaf.com/page/</link>
     <description>Recent content in Pages on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
     <lastBuildDate>Wed, 10 Aug 2016 11:19:27 +0800</lastBuildDate>
-    <atom:link href="http://icyleaf.com/page/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://icyleaf.github.io/icyleaf.com/page/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>project</title>
-      <link>http://icyleaf.com/project</link>
+      <link>http://icyleaf.github.io/icyleaf.com/project</link>
       <pubDate>Wed, 10 Aug 2016 11:19:27 +0800</pubDate>
       
-      <guid>http://icyleaf.com/project</guid>
+      <guid>http://icyleaf.github.io/icyleaf.com/project</guid>
       <description></description>
     </item>
     
     <item>
       <title>About</title>
-      <link>http://icyleaf.com/about</link>
+      <link>http://icyleaf.github.io/icyleaf.com/about</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://icyleaf.com/about</guid>
+      <guid>http://icyleaf.github.io/icyleaf.com/about</guid>
       <description>&lt;p&gt;很高兴认识你！我叫&lt;code&gt;王燊(shēn)&lt;/code&gt;，自从 04 年开始使用 &lt;code&gt;icyleaf&lt;/code&gt; 作为我的网络称呼。&lt;/p&gt;
 
 &lt;blockquote&gt;

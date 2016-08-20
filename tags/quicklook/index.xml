@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Quicklook on icyleaf</title>
-    <link>http://icyleaf.com/tags/quicklook/</link>
+    <link>http://icyleaf.github.io/icyleaf.com/tags/quicklook/</link>
     <description>Recent content in Quicklook on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
     <lastBuildDate>Mon, 30 Apr 2012 12:34:56 +0800</lastBuildDate>
-    <atom:link href="http://icyleaf.com/tags/quicklook/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://icyleaf.github.io/icyleaf.com/tags/quicklook/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>QuickLook 感悟</title>
-      <link>http://icyleaf.com/2012/04/thinking-in-quicklook</link>
+      <link>http://icyleaf.github.io/icyleaf.com/2012/04/thinking-in-quicklook</link>
       <pubDate>Mon, 30 Apr 2012 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2012/04/thinking-in-quicklook</guid>
+      <guid>http://icyleaf.github.io/icyleaf.com/2012/04/thinking-in-quicklook</guid>
       <description>
 
 &lt;p&gt;前段时间对 OS X 系统的 &lt;a href=&#34;http://en.wikipedia.org/wiki/Quick_Look&#34;&gt;QuickLook&lt;/a&gt; 非常感兴趣，能够随着开发者的定制，针对不同的文件呈现符合用户需求的预览功能，然后认为它属于是万能的。随后可以琢磨利用它做些意思的事情。&lt;/p&gt;

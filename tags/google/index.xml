@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Google on icyleaf</title>
-    <link>http://icyleaf.com/tags/google/</link>
+    <link>http://icyleaf.github.io/icyleaf.com/tags/google/</link>
     <description>Recent content in Google on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
     <lastBuildDate>Mon, 02 May 2011 12:34:56 +0800</lastBuildDate>
-    <atom:link href="http://icyleaf.com/tags/google/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://icyleaf.github.io/icyleaf.com/tags/google/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>如何在开发和发布环境使用 Android Map Key</title>
-      <link>http://icyleaf.com/2011/05/how-to-using-android-map-key-both-in-development-and-production</link>
+      <link>http://icyleaf.github.io/icyleaf.com/2011/05/how-to-using-android-map-key-both-in-development-and-production</link>
       <pubDate>Mon, 02 May 2011 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2011/05/how-to-using-android-map-key-both-in-development-and-production</guid>
+      <guid>http://icyleaf.github.io/icyleaf.com/2011/05/how-to-using-android-map-key-both-in-development-and-production</guid>
       <description>&lt;p&gt;在项目中第一次使用并涉及 Google Map 的功能，而由于 Google 的限制，Google Map 模块出来需要单独下载模块之外，对于每一个应用还都必须具有一个 Google Map Key，这点和使用 Web 开发调用 Google Map API 是一致的。&lt;/p&gt;
 
 &lt;p&gt;对于 Android 采用的 Google Map Key 来说，是由一串 MD5 值（类似这样：94:1E:43:49:87:73:BB:E6:A6:88:D7:20:F1:8E:B5:98）生成的。那么这个 MD5 是哪来的呢？&lt;/p&gt;
@@ -48,10 +48,10 @@ Certificate fingerprint (MD5): 94:1E43:49:87:73:BB:E6:A6:88:D7:20:F1:8E:B5:98
     
     <item>
       <title>如何制定免费短信提醒新邮件</title>
-      <link>http://icyleaf.com/2008/06/how-to-prepare-for-free-sms-alerts-for-new-mail</link>
+      <link>http://icyleaf.github.io/icyleaf.com/2008/06/how-to-prepare-for-free-sms-alerts-for-new-mail</link>
       <pubDate>Mon, 16 Jun 2008 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2008/06/how-to-prepare-for-free-sms-alerts-for-new-mail</guid>
+      <guid>http://icyleaf.github.io/icyleaf.com/2008/06/how-to-prepare-for-free-sms-alerts-for-new-mail</guid>
       <description>&lt;p&gt;邮箱每个人都有，而且大部分应该还不只一个而已，分类使用，工作用一个，生活用一个，申请会员/社区再用一个&amp;hellip;.不过多少个一般都会有一个比较重要的，和朋友交流的email。比如我，平时和朋友聊天以及WordPress的留言自动邮件都是发到一个指定的邮件里。一旦到了周六，周日休息的时候，可能会错过一些重要的邮件，而用手机上网收发邮件虽然可以，但是我们总可能一直在刷新吧，所以几天突然想起来邮箱都是由自动转发功能的，那么利用什么做中间介质发短信通知到自己的手机上呢？&lt;/p&gt;
 
 &lt;p&gt;中国移动间接的为我们提供了一个非常棒的服务：&lt;a href=&#34;http://mail.139.com&#34;&gt;手机邮箱(&lt;/a&gt;又名139邮箱)，中国移动免费提供1G的服务，直接申请就可以了，然后无论什么时候，只要139邮箱有了新邮件，它就会发一个免费短信到自己的手机上，而且还支持在手机上阅读哦！那么我们开始行动吧。&lt;/p&gt;
