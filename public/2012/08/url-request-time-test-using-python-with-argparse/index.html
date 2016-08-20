@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  	<meta property="og:title" content=" 利用 argparse 写的脚本命令：测试 URL 响应时间 &middot;  icyleaf" />
+  	<meta property="og:site_name" content="icyleaf" />
+  	<meta property="og:url" content="/localhost/2012/08/url-request-time-test-using-python-with-argparse" />
+
+    
+  	<meta property="og:type" content="article" />
+
+    <meta property="og:article:published_time" content="2012-08-02T12:34:56&#43;08:00" />
+
+    
+    <meta property="og:article:tag" content="Python" />
+    
+    <meta property="og:article:tag" content="Ruby" />
+    
+    
+
+  <title>
+     利用 argparse 写的脚本命令：测试 URL 响应时间 &middot;  icyleaf
+  </title>
+
+    <meta name="description" content="热爱户外的码农、下厨初心者" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="localhost/localhostimages/favicon.ico">
+	  <link rel="apple-touch-icon" href="localhost/localhostimages/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="localhost/localhostcss/screen.css" />
+    <link rel="stylesheet" type="text/css" href="localhost/localhostcss/nav.css" />
+
+
+
+    
+        <link href="feed.xml" rel="alternate" type="application/rss+xml" title="icyleaf" />
+    
+    <meta name="generator" content="Hugo 0.17-DEV" />
+
+    <link rel="canonical" href="localhost/localhost/2012/08/url-request-time-test-using-python-with-argparse" />
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-2570916-5', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+</head>
+<body class="nav-closed">
+
+  <div class="nav">
+  <h3 class="nav-title">Menu</h3>
+  <a href="#" class="nav-close">
+    <span class="hidden">Close</span>
+  </a>
+  <ul>
+    
+
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="localhost/">Home</a>
+      </li>
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="localhost/categories/technology">Technology</a>
+      </li>
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="localhost/tags">Tags</a>
+      </li>
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="localhost/about">About</a>
+      </li>
+    
+  </ul>
+
+  
+    <a class="subscribe-button icon-feed" href="localhost/localhostfeed.xml">Subscribe</a>
+  
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+  <header class="main-header post-head no-cover">
+
+
+  <nav class="main-nav overlay clearfix">
+  
+    <a class="blog-logo" href="localhost/localhost"><img src="localhost/localhostimages/icyleaf-icon.png" alt="Blog Logo" /></a>
+  
+
+  
+    <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+</nav>
+  
+</header>
+
+<main class="content" role="main">
+  <article class="post post">
+    <header class="post-header">
+      <h1 class="post-title">利用 argparse 写的脚本命令：测试 URL 响应时间</h1>
+      <small></small>
+
+      <section class="post-meta">
+      
+      
+        <time class="post-date" datetime="2012-08-02T12:34:56&#43;08:00">
+          Aug 2, 2012
+        </time>
+      
+       
+        <span class="post-tag small"><a href="localhost/localhosttags/python/">#Python</a></span>
+       
+        <span class="post-tag small"><a href="localhost/localhosttags/ruby/">#Ruby</a></span>
+       
+      </section>
+    </header>
+
+    <section class="post-content">
+      <p>前几天看完《<a href="http://woodpecker.org.cn/abyteofpython_cn/chinese/">Python简明教程</a>》，预想练手，想起同事的一个 ruby 代码，尝试改写成 python，顺便看看两个语言的简练程度。下面是原始的 ruby 代码：</p>
+
+<pre><code>#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'net/http'
+
+urls = [&quot;http://icyleaf.com&quot;]
+50.times do
+  urls.each do |url|
+    start_at = Time.now
+    Net::HTTP.get URI.parse(url)
+    end_at = Time.now
+    diff = end_at - start_at
+    if diff &lt; 0.3 then
+      color_code = 32
+    elsif diff &gt; 0.8 then
+      color_code = 31
+    else
+      color_code = 33
+    end
+    puts &quot;#{url}\n time: \033[#{color_code}m#{diff}\033[0m seconds&quot;
+  end
+end
+</code></pre>
+
+<p>改写 python 的同时，考虑脚本的灵活性准备增加两个参数，第一个是请求测试次数，第二个是请求测试的 URL，而 python 默认提供了 <a href="http://docs.python.org/dev/library/argparse.html">argparse</a> 库，可以很方便的生成 &ndash;help 的帮助和解析传递的参数：</p>
+
+<pre><code>#!/usr/bin/env python
+
+import urllib2
+import time
+import sys
+import argparse
+
+def benchmark(url, count):
+	for i in range(count):
+		s = time.time()
+		r = urllib2.urlopen(urllib2.Request(url))
+		e = time.time()
+		diff = e - s
+
+		if diff &lt; 0.3:
+			color_code = 32
+		elif diff &gt; 0.8:
+			color_code = 31
+		else:
+			color_code = 33
+
+		print '# %d' % (i + 1)
+		print '\tStauts: %s' % r.getcode()
+		print '\tTime: \033[%dm%f\033[0m second(s)' % (color_code, diff)
+
+
+def main(argv):
+	parser = argparse.ArgumentParser(description='url request time test')
+
+	parser.add_argument('URL', help='request url')
+	parser.add_argument('-t', '--time', action='store', dest='count', type=int, default=10, help='request times')
+	args = parser.parse_args(argv)
+
+	benchmark(args.URL, args.count)
+
+
+if __name__ == '__main__':
+	main(sys.argv[1:])
+</code></pre>
+
+<p>当然，我主要是为了练手 python 才去写的，ruby 本身也有 <a href="http://ruby-doc.org/stdlib-1.9.3/libdoc/optparse/rdoc/OptionParser.html">optparse</a> 库用于解析参数，但是需要自己手写生成 &ndash;help 的输出，而且需要对每个参数做相应的 callback。</p>
+
+<p>效果如下：</p>
+
+<p><img src="http://ww3.sinaimg.cn/large/65d1d65bgw1dvi5nsc4sdj.jpg" alt="screenshot" /></p>
+
+    </section>
+
+  <footer class="post-footer">
+    
+    <figure class="author-image">
+        <a class="img" href="localhost/localhost" style="background-image: url(/localhostimages/icyleaf-icon.png)"><span class="hidden">icyleaf's Picture</span></a>
+    </figure>
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="localhost/localhost">icyleaf</a></h4>
+  
+  <p>热爱户外的码农、下厨初心者</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">Beijing, China</span>
+    <span class="author-link icon-link"><a href="http://icyleaf.com">http://icyleaf.com</a></span>
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" href="https://twitter.com/share?text=%e5%88%a9%e7%94%a8%20argparse%20%e5%86%99%e7%9a%84%e8%84%9a%e6%9c%ac%e5%91%bd%e4%bb%a4%ef%bc%9a%e6%b5%8b%e8%af%95%20URL%20%e5%93%8d%e5%ba%94%e6%97%b6%e9%97%b4&nbsp;-&nbsp;icyleaf&amp;url=%2flocalhost%2f2012%2f08%2furl-request-time-test-using-python-with-argparse"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=%2flocalhost%2f2012%2f08%2furl-request-time-test-using-python-with-argparse"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-weibo"href="http://service.weibo.com/share/share.php?url=%2flocalhost%2f2012%2f08%2furl-request-time-test-using-python-with-argparse&amp;title=%e5%88%a9%e7%94%a8%20argparse%20%e5%86%99%e7%9a%84%e8%84%9a%e6%9c%ac%e5%91%bd%e4%bb%a4%ef%bc%9a%e6%b5%8b%e8%af%95%20URL%20%e5%93%8d%e5%ba%94%e6%97%b6%e9%97%b4&nbsp;-&nbsp;icyleaf"
+      onclick="window.open(this.href, 'weibo-share','width=580,height=296');return false;">
+      <span class="hidden">新浪微博</span>
+  </a>
+  <a class="icon-douban" href="javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:'',r='https://www.douban.com/recommend/?url='+e(d.location.href)+'&title='+e(d.title)+'&sel='+e(s)+'&v=1',w=450,h=330,x=function(){if(!window.open(r,'douban','toolbar=0,resizable=1,scrollbars=yes,status=1,width='+w+',height='+h+',left='+(screen.width-w)/2+',top='+(screen.height-h)/2))location.href=r+'&r=1'};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()">
+      <span class="hidden">豆瓣</span>
+  </a>
+</section>
+
+
+
+    
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  var disqus_shortname = 'icyleaf';
+  var disqus_url = '\/localhost\/2012\/08\/url-request-time-test-using-python-with-argparse';
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+  </footer>
+</article>
+
+</main>
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">icyleaf</a> All rights reserved - 2007</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+  </div>
+  <script type="text/javascript" src="localhost/localhostjs/jquery.js"></script>
+  <script type="text/javascript" src="localhost/localhostjs/jquery.fitvids.js"></script>
+  <script type="text/javascript" src="localhost/localhostjs/index.js"></script>
+  
+</body>
+</html>
+

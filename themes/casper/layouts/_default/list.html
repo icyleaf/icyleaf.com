@@ -1,0 +1,28 @@
+{{ partial "header.html" . }}
+{{ if .Params.image }}
+  {{ partial "header/page_cover.html" . }}
+{{ else if .Site.Params.cover }}
+  {{ partial "header/tag_cover.html" . }}
+{{ else }}
+  <header class="main-header post-head no-cover">
+{{ end }}
+
+  {{ partial "navigation.html" . }}
+  {{ partial "header/title.html" . }}
+</header>
+
+<main class="content" role="main">
+  {{ $paginator := .Paginator }}
+
+  <div class="extra-pagination inner">
+    {{ partial "pagination.html" $paginator }}
+  </div>
+
+  {{ range $index, $page := $paginator.Pages }}
+    {{ partial "posts.html" . }}
+  {{ end }}
+
+  {{ partial "pagination.html" $paginator }}
+</main>
+
+{{ partial "footer.html" . }}

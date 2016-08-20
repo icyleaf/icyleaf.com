@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  	<meta property="og:title" content=" 标签(Tag)的数据库设计 &middot;  icyleaf" />
+  	<meta property="og:site_name" content="icyleaf" />
+  	<meta property="og:url" content="/localhost/2008/06/tags-database-schemas" />
+
+    
+  	<meta property="og:type" content="article" />
+
+    <meta property="og:article:published_time" content="2008-06-21T12:34:56&#43;08:00" />
+
+    
+    <meta property="og:article:tag" content="Database" />
+    
+    
+
+  <title>
+     标签(Tag)的数据库设计 &middot;  icyleaf
+  </title>
+
+    <meta name="description" content="热爱户外的码农、下厨初心者" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="localhost/localhostimages/favicon.ico">
+	  <link rel="apple-touch-icon" href="localhost/localhostimages/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="localhost/localhostcss/screen.css" />
+    <link rel="stylesheet" type="text/css" href="localhost/localhostcss/nav.css" />
+
+
+
+    
+        <link href="feed.xml" rel="alternate" type="application/rss+xml" title="icyleaf" />
+    
+    <meta name="generator" content="Hugo 0.17-DEV" />
+
+    <link rel="canonical" href="localhost/localhost/2008/06/tags-database-schemas" />
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-2570916-5', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+</head>
+<body class="nav-closed">
+
+  <div class="nav">
+  <h3 class="nav-title">Menu</h3>
+  <a href="#" class="nav-close">
+    <span class="hidden">Close</span>
+  </a>
+  <ul>
+    
+
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="localhost/">Home</a>
+      </li>
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="localhost/categories/technology">Technology</a>
+      </li>
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="localhost/tags">Tags</a>
+      </li>
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="localhost/about">About</a>
+      </li>
+    
+  </ul>
+
+  
+    <a class="subscribe-button icon-feed" href="localhost/localhostfeed.xml">Subscribe</a>
+  
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+  <header class="main-header post-head no-cover">
+
+
+  <nav class="main-nav overlay clearfix">
+  
+    <a class="blog-logo" href="localhost/localhost"><img src="localhost/localhostimages/icyleaf-icon.png" alt="Blog Logo" /></a>
+  
+
+  
+    <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+</nav>
+  
+</header>
+
+<main class="content" role="main">
+  <article class="post post">
+    <header class="post-header">
+      <h1 class="post-title">标签(Tag)的数据库设计</h1>
+      <small></small>
+
+      <section class="post-meta">
+      
+      
+        <time class="post-date" datetime="2008-06-21T12:34:56&#43;08:00">
+          Jun 21, 2008
+        </time>
+      
+       
+        <span class="post-tag small"><a href="localhost/localhosttags/database/">#Database</a></span>
+       
+      </section>
+    </header>
+
+    <section class="post-content">
+      
+
+<p>原文来自：<a href="http://www.pui.ch/phred/archives/2005/04/tags-database-schemas.html">Then each went to his own home</a></p>
+
+<p>原文作者：<a href="http://www.pui.ch/phred/about">Philipp Keller</a></p>
+
+<p>译者注：本文在涉及到专业术语或者译者表达不明白的地方均会保留原英文。</p>
+
+<p>最近，在<a href="http://lists.del.icio.us/pipermail/discuss/2005-April/002827.html">del.icio.us mailinglist</a>（译者按：应该是美味书签的讨论版块。以下del.icio.us翻译为<strong>美味书签</strong>）上面发了一个问题：“有人知道美味书签的数据库设计吗？”。之后我得到了一些回复，所以我想把这部分东西的知识分享给大家。</p>
+
+<h2 id="疑问">疑问</h2>
+
+<p>当你要为一个书签添加你认为需要的一个或多个标签时（或日志或其他）其数据库是如何设计的？然后，执行查询时取消这些书签中标签的合集（<a href="http://en.wikipedia.org/wiki/Union_%28set_theory%29">union</a>）或交集（<a href="http://en.wikipedia.org/wiki/Intersection_%28set_theory%29">intersection</a>）。也能从搜索结果中减少一些标签。</p>
+
+<p>大致有三种不同的解决方案：（<strong>注意</strong>：如果你开发了一个网站使得任何人都可以添加标签，而且是一个较大规模的网站则请务必看下其作者写的另外一篇文章：<a href="http://www.pui.ch/phred/archives/2005/06/tagsystems-performance-tests.html">标签系统的性能测试</a>）</p>
+
+<h2 id="mysqlicious-方法-solution">“MySQLicious” 方法(solution)</h2>
+
+<p>在这个方法中仅架构了一个表，它是去规范化（<a href="http://en.wikipedia.org/wiki/Denormalization">denormalized</a>）表。</p>
+
+<p>这个类型被叫做“MySQLicious
+方法(solution)”，因为MySQLicious使用这种结构可以把美味书签的数据导入到一个表中。</p>
+
+<p>译者注：MySQLicious是一个把del.icio.us书签镜像到MySQL数据库中的工具。</p>
+
+<h3 id="交集-and">交集(AND)</h3>
+
+<p>查询方式： “search+webservice+semweb”:</p>
+
+<pre><code>SELECT *FROM `delicious`WHERE tags LIKE &quot;%search%&quot;AND tags LIKE &quot;%webservice%&quot;AND tags LIKE &quot;%semweb%&quot;
+</code></pre>
+
+<h3 id="合集-or">合集(OR)</h3>
+
+<p>查询方式： “search|webservice|semweb”:</p>
+
+<pre><code>SELECT *FROM `delicious`WHERE tags LIKE &quot;%search%&quot;OR tags LIKE &quot;%webservice%&quot;OR tags LIKE &quot;%semweb%&quot;
+</code></pre>
+
+<h3 id="减少-exclusion">减少(Exclusion)</h3>
+
+<p>查询方式： “search+webservice-semweb”</p>
+
+<pre><code>SELECT *FROM `delicious`WHERE tags LIKE &quot;%search%&quot;AND tags LIKE &quot;%webservice%&quot;AND tags NOT LIKE &quot;%semweb%&quot;
+</code></pre>
+
+<h3 id="结论">结论</h3>
+
+<p>优点：</p>
+
+<ul>
+<li>只用一个表。</li>
+<li>查询方式简单易懂。</li>
+<li>一次就能获得全文搜索结果，可能速度快一些。</li>
+<li>我猜测查询在基于<a href="http://www.pui.ch/phred/archives/2005/04/tags-database-schemas.html#comment-57">良好</a>的<a href="http://www.pui.ch/phred/archives/2005/04/tags-database-schemas.html#comment-62">参数</a>下是相当的快（<a href="http://www.petercooper.co.uk/archives/000648.html">Peter Cooper</a>的博客也提到：去规范化！去规范化！去规范化！)</li>
+<li><a href="http://www.pui.ch/phred/archives/2005/05/tags-with-mysql-fulltext.html">在我随后的日志交待使用MySQL fulltext出来有关标签的事情</a>。</li>
+</ul>
+
+<p>缺点：</p>
+
+<ul>
+<li>每个书签的标签数量是有限的。通常情况下是在数据库中使用一个256字节的域（VCHAIR），否则，假设你用 <strong>Text</strong> 或类似的域，则速度将会慢下来。</li>
+<li>如果你注意了（就像<a href="http://www.pui.ch/phred/archives/2005/04/tags-database-schemas.html#comment-63">Patrice</a>那样）你会发现当你以 “websearch” 使用 <strong>Like “%search”</strong>  搜索标签时它也能搜索到，当你修改并使用 <strong>Like “%search%”</strong> 时你最终必须使用一个混乱的解决方法：在标签头添加一个空格，这样才能使其工作。</li>
+</ul>
+
+<h2 id="scuttle-方法-solution">“Scuttle” 方法(solution)</h2>
+
+<p>分离（Scuttle）字段，并归类到两个表中。右图表“scCategories”是一个标签表，通过一个外来的ID链接书签表。</p>
+
+<h3 id="交集-and-1">交集(AND)</h3>
+
+<p>查询方式：“bookmark+webservice+semweb”:</p>
+
+<pre><code>SELECT b.*FROM scBookmarks b, scCategories cWHERE c.bId = b.bIdAND (c.category IN ('bookmark', 'webservice', 'semweb'))GROUP BY b.bIdHAVING COUNT( b.bId )=3
+</code></pre>
+
+<p>首先，当搜索的标签为“bookmark”，“webservice“或“semweb”（例如：<strong><code>c.category IN ('bookmark', 'webservice', 'semweb')</code></strong> ）时所有名为&rdquo;bookmark&rdquo;的标签都会被搜索，然后所有包含这三个标签的书签将筛选出来 (<strong><code>HAVING COUNT(b.bId)=3</code></strong>)。</p>
+
+<h3 id="合集-or-1">合集(OR)</h3>
+
+<p>查询方式：“bookmark|webservice|semweb”:</p>
+
+<p>Just leave out the <code>HAVING</code> clause and you have union:</p>
+
+<pre><code>SELECT b.*FROM scBookmarks b, scCategories cWHERE c.bId = b.bIdAND (c.category IN ('bookmark', 'webservice', 'semweb'))GROUP BY b.bId
+</code></pre>
+
+<h3 id="减少-exclusion-1">减少(Exclusion)</h3>
+
+<p>查询方式：“bookmark+webservice-semweb”，意味着：<code>bookmark AND webservice AND NOT semweb</code></p>
+
+<pre><code>SELECT b. *FROM scBookmarks b, scCategories cWHERE b.bId = c.bIdAND (c.category IN ('bookmark', 'webservice'))AND b.bId NOTIN (SELECT b.bId FROM scBookmarks b, scCategories c WHERE b.bId = c.bId AND c.category = 'semweb')GROUP BY b.bIdHAVING COUNT( b.bId ) =2
+</code></pre>
+
+<p>省略掉 <strong><code>HAVING COUNT</code></strong> 会导致搜索方式变为“bookmark|webservice-semweb”.</p>
+
+<p>信息来源：<a href="http://www.metafilter.com/user/26222">Rhomboid</a>写的<a href="http://ask.metafilter.com/mefi/34897#544185">helping me out with this query</a>.</p>
+
+<h3 id="结论-1">结论</h3>
+
+<p>我猜测这个解决方案主要有利点是使得他更正常化，比第一个解决方案比较而言，好处在于可以为每一个书签添加无限数量的标签。</p>
+
+<h2 id="toxi-方法-solution">“Toxi” 方法(solution)</h2>
+
+<p><a href="http://toxi.co.uk/">Toxi</a> 提出了一个三个表的结构，通过表”tagmap“的书签和标签的n-to-m关联。每一个标签都可以在不同的书签一期使用，反之亦然。这种数据库结构也被用在<a href="http://wordpress.org/">Wordpress</a>之中。</p>
+
+<h3 id="交集-and-2">交集(AND)</h3>
+
+<p>查询方式：“bookmark+webservice+semweb”</p>
+
+<pre><code>SELECT b.*FROM tagmap bt, bookmark b, tag tWHERE bt.tag_id = t.tag_idAND (t.name IN ('bookmark', 'webservice', 'semweb'))AND b.id = bt.bookmark_idGROUP BY b.idHAVING COUNT( b.id )=3
+</code></pre>
+
+<h3 id="合集-or-2">合集(OR)</h3>
+
+<p>查询方式：“bookmark|webservice|semweb”</p>
+
+<pre><code>SELECT b.*FROM tagmap bt, bookmark b, tag tWHERE bt.tag_id = t.tag_idAND (t.name IN ('bookmark', 'webservice', 'semweb'))AND b.id = bt.bookmark_idGROUP BY b.id
+</code></pre>
+
+<h3 id="减少-exclusion-2">减少(Exclusion)</h3>
+
+<p>查询方式：“bookmark+webservice-semweb”，意味：bookmark AND webservice AND NOT semweb.</p>
+
+<pre><code>SELECT b. *FROM bookmark b, tagmap bt, tag tWHERE b.id = bt.bookmark_idAND bt.tag_id = t.tag_idAND (t.name IN ('Programming', 'Algorithms'))AND b.id NOT IN (SELECT b.id FROM bookmark b, tagmap bt, tag t WHERE b.id = bt.bookmark_id AND bt.tag_id = t.tag_id AND t.name = 'Python')GROUP BY b.idHAVING COUNT( b.id ) =2
+</code></pre>
+
+<p>省略掉 <strong><code>HAVING COUNT</code></strong> 会导致搜索方式变为“bookmark|webservice-semweb”.</p>
+
+<p>信息来源：<a href="http://www.metafilter.com/user/26222">Rhomboid</a>写的<a href="http://ask.metafilter.com/mefi/34897#544185">helping me out with this query</a>.</p>
+
+<h3 id="结论-2">结论</h3>
+
+<p>优点：</p>
+
+<ul>
+<li>可以为每个标签节省额外的信息（描述，分类等）</li>
+<li>这是一个最正常化的解决方案（即，第三范式：<a href="http://en.wikipedia.org/wiki/3NF">3NF</a>）</li>
+</ul>
+
+<p>缺点：</p>
+
+<ul>
+<li><p>当修改或删除书签后，需要删除中间表的相应数据（When altering or deleting bookmarks you can end up with tag-orphans）。</p>
+
+<p>如果你想要更复杂的查询，比如”<strong>(bookmarks OR bookmark) AND (webservice or WS) AND NOT (semweb or semanticweb)</strong>“这样的查询语句，我建议参见以下查询/计算过程：</p></li>
+</ul>
+
+<ol>
+<li>为每一个标签出现在你的”“tag-query”时执行一个查询（Run a query for each tag appearing in your
+“tag-query”）：<strong><code>SELECT b.id FROM tagmap bt, bookmark b, tag t WHERE bt.tag_id = t.tag_id AND b.id = bt.bookmark_id AND t.name = &quot;semweb&quot;</code></strong></li>
+<li>把每一个编号集从结果中导到一个数值里面（使用你喜欢的编码语言），这样可以缓存你想要的数组。</li>
+<li>使用合集或交集或其他方式限制数组。</li>
+</ol>
+
+<p>通过这种方式，你也可以查询<code>&quot;(del.icio.us|delicious)+(semweb|semantic_web)-search&quot;，这种类型的查询（即，括号内）利用去规范化的</code>“MySQLicious solution”<code>不能这样做。</code></p>
+
+<p>这是最灵活的数据结构和我猜想它的效果相当好（即，使用一些缓存技术）。</code></p>
+
+<p><strong>2006年5月更新</strong>：这篇文章获得了大家的注视。我真的不是为此而准备的！看来大家不断的提到了他，甚至一些网站转载我的文章，我认为，这些不同方式的理论的知识应该归功于：<a href="http://nanovivid.com/projects/mysqlicious/">MySQLicious</a>,
+<a href="http://sourceforge.net/projects/scuttle/">scuttle</a>, <a href="http://toxi.co.uk/">Toxi</a>以及所有参与并贡献的评论者（请务必阅读！）</p>
+
+<p>p.s. 感谢<a href="http://toxi.co.uk/">Toxi</a>发给我关于三个表结构的疑问，Benjamin
+Reitzammer为我指点的<a href="http://laughingmeme.org/archives/002918.html">文章</a>（一个很好的标签查询参考）和powerlinux提供的<a href="http://sourceforge.net/projects/scuttle/">scuttle</a>指引。</p>
+
+<h2 id="扩展阅读">扩展阅读</h2>
+
+<ul>
+<li><a href="http://lists.tagschema.com/mailman/listinfo/tagdb">Taglist: a mailing list dedicated to schemas with tagging</a></li>
+<li><a href="http://tagschema.com/blogs/tagschema/">Tagschema: A blog dedicated to tagging schemas</a></li>
+<li><a href="http://www.bigbold.com/snippets/tags/tagging">Tag-related Queries on Snippets</a></li>
+<li><a href="http://www.getluky.net/freetag/">Freetag</a> is a php “library” with which you can add tags to whatever object you like. It actually uses the “toxi schema”.</li>
+<li>Hammy <a href="http://hellojoseph.com/tags-howto.php">gives an insight</a> how he did his tagging system with “less DB and more code” (that is: regular expressions), interesting!</li>
+<li>Brad Choate <a href="http://bradchoate.com/weblog/2004/10/06/delicious">has got some ideas</a> which tag queries should be possible</li>
+<li>Feedmaker has written <a href="http://blog.feedmarker.com/2005/04/26/tagging-in-mysql/">a sort of reply to this article</a></li>
+</ul>
+
+    </section>
+
+  <footer class="post-footer">
+    
+    <figure class="author-image">
+        <a class="img" href="localhost/localhost" style="background-image: url(/localhostimages/icyleaf-icon.png)"><span class="hidden">icyleaf's Picture</span></a>
+    </figure>
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="localhost/localhost">icyleaf</a></h4>
+  
+  <p>热爱户外的码农、下厨初心者</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">Beijing, China</span>
+    <span class="author-link icon-link"><a href="http://icyleaf.com">http://icyleaf.com</a></span>
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" href="https://twitter.com/share?text=%e6%a0%87%e7%ad%be%28Tag%29%e7%9a%84%e6%95%b0%e6%8d%ae%e5%ba%93%e8%ae%be%e8%ae%a1&nbsp;-&nbsp;icyleaf&amp;url=%2flocalhost%2f2008%2f06%2ftags-database-schemas"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=%2flocalhost%2f2008%2f06%2ftags-database-schemas"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-weibo"href="http://service.weibo.com/share/share.php?url=%2flocalhost%2f2008%2f06%2ftags-database-schemas&amp;title=%e6%a0%87%e7%ad%be%28Tag%29%e7%9a%84%e6%95%b0%e6%8d%ae%e5%ba%93%e8%ae%be%e8%ae%a1&nbsp;-&nbsp;icyleaf"
+      onclick="window.open(this.href, 'weibo-share','width=580,height=296');return false;">
+      <span class="hidden">新浪微博</span>
+  </a>
+  <a class="icon-douban" href="javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:'',r='https://www.douban.com/recommend/?url='+e(d.location.href)+'&title='+e(d.title)+'&sel='+e(s)+'&v=1',w=450,h=330,x=function(){if(!window.open(r,'douban','toolbar=0,resizable=1,scrollbars=yes,status=1,width='+w+',height='+h+',left='+(screen.width-w)/2+',top='+(screen.height-h)/2))location.href=r+'&r=1'};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()">
+      <span class="hidden">豆瓣</span>
+  </a>
+</section>
+
+
+
+    
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  var disqus_shortname = 'icyleaf';
+  var disqus_url = '\/localhost\/2008\/06\/tags-database-schemas';
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+  </footer>
+</article>
+
+</main>
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">icyleaf</a> All rights reserved - 2007</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+  </div>
+  <script type="text/javascript" src="localhost/localhostjs/jquery.js"></script>
+  <script type="text/javascript" src="localhost/localhostjs/jquery.fitvids.js"></script>
+  <script type="text/javascript" src="localhost/localhostjs/index.js"></script>
+  
+</body>
+</html>
+

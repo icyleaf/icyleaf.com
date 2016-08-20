@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Centos on icyleaf</title>
+    <link>localhost/tags/centos/</link>
+    <description>Recent content in Centos on icyleaf</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>All rights reserved - 2007</copyright>
+    <lastBuildDate>Tue, 17 Sep 2013 12:34:56 +0800</lastBuildDate>
+    <atom:link href="localhost/tags/centos/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>如何在 CentOS 上安装 Gitlab</title>
+      <link>/localhost/2013/09/how-to-install-gitlab-on-centos</link>
+      <pubDate>Tue, 17 Sep 2013 12:34:56 +0800</pubDate>
+      
+      <guid>/localhost/2013/09/how-to-install-gitlab-on-centos</guid>
+      <description>
+
+&lt;p&gt;2013 年 08 月的 OpenParty &amp;ldquo;&lt;a href=&#34;http://www.beijing-open-party.org/event/25&#34;&gt;花事如期&lt;/a&gt;&amp;rdquo; 活动上，&lt;a href=&#34;https://github.com/vecio&#34;&gt;晓东&lt;/a&gt;在他的机器上演示了自建 Gitlab 的项目，看到 Gitlab 目前已经比较成熟，而不像早期寒碜的界面，这个时候看安装一下也是不错的事情，不过他们的项目文档只提供了 Ubuntu 系统的&lt;a href=&#34;https://github.com/gitlabhq/gitlabhq#installation&#34;&gt;安装文档&lt;/a&gt;，对于 CentOS 没有提到，非官方的文档有比较老久，凭着之前熟悉 Ubuntu 和学习 CentOS，那就开始安装吧：&lt;/p&gt;
+
+&lt;p&gt;以下教程在 &lt;code&gt;CentOS 6 x86_64&lt;/code&gt; 版本下操作。&lt;/p&gt;
+
+&lt;h2 id=&#34;首先安装-epel-和编译依赖库&#34;&gt;首先安装 EPEL 和编译依赖库&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;$ rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;如果你是非 64 位，去上面的网址找到适合你发行版的最新版本的 epel rpm&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;$ yum -y update
+$ yum -y install gcc gcc-c++ make autoconf libyaml-devel gdbm-devel ncurses-devel openssl-devel zlib-devel readline-devel curl-devel expat-devel gettext-devel  tk-devel libxml2-devel libffi-devel libxslt-devel libicu-devel sendmail patch libyaml* pcre-devel sqlite-devel vim
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;安装-python-2-7&#34;&gt;安装 Python 2.7+&lt;/h2&gt;
+
+&lt;p&gt;Gitlab 要求 Python 2.5.5+ 以及 Ruby 1.9+&lt;/p&gt;
+
+&lt;p&gt;系统 Python 默认是 2.6.x，如果你想把 Python 升级到目前比较流行的 2.7.x 就参照下面步骤，否则直接跳过。（Gitlab 目前不支持 Python 3.0）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ mkdir /tmp/gitlab &amp;amp;&amp;amp; cd /tmp/gitlab
+$ curl --progress http://python.org/ftp/python/2.7.5/Python-2.7.5.tgz | tar xvf
+$ cd Python-2.7.5
+$ ./configure --prefix=/usr/local
+$ make &amp;amp;&amp;amp; make altinstall
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;安装好之后，需要做两件事情，替换默认 python 的版本至最新版本，&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo ln -s /usr/local/bin/python2.7 /usr/local/bin/python
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;因为系统默认 &lt;code&gt;PATH&lt;/code&gt; 的寻址路径是 &lt;code&gt;/usr/local/bin&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;最后看下 Python 版本是否是刚刚安装的版本：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ python --version
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;由于 &lt;code&gt;yum&lt;/code&gt; 是 python 的一个 module，所以这块修改可能会引起无法调用 yum 脚本，所以需要修改这个文件 &lt;code&gt;/usr/bin/yum&lt;/code&gt; 的第一行为 &lt;code&gt;!#/usr/bin/python2.6&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;安装-ruby-2-0&#34;&gt;安装 Ruby 2.0&lt;/h2&gt;
+
+&lt;p&gt;Ruby 1.9 和 2.0 的特性差别不大，索性升级至最新 2.0 版本即可&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cd /tmp/gitlab
+$ curl --progress http://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p247.tar.gz | tar xz
+$ cd ruby-2.0.0-p247
+$ ./configure
+$ make
+$ make install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ruby 2.0 已经内置 gem (v2.0.3)，只需要安装 bundler&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ gem install bundler
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;若在执行 &lt;code&gt;sudo ruby&lt;/code&gt; 或 &lt;code&gt;sudo gem&lt;/code&gt; 找不到命令，因为编译的路径配置到了 &lt;code&gt;/usr/local/bin&lt;/code&gt;，我们只需要做下软链接到 root 用户可以找到的 &lt;code&gt;$PATH&lt;/code&gt; 路径：&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ln -s /usr/local/bin/ruby /usr/bin/ruby
+$ ln -s /usr/local/bin/gem /usr/bin/gem
+$ ln -s /usr/local/bin/bundle /usr/bin/bundle
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;安装-git-和-gitolite&#34;&gt;安装 Git 和 Gitolite&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;$ yum -y install git-all gitolite
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;安装-nginx&#34;&gt;安装 Nginx&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;$ yum -y install nginx
+$ service nginx start
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;nginx 需要从 EPEL 中安装，默认系统没有 nginx 包。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;安装-mysql-和-redis&#34;&gt;安装 Mysql 和 Redis&lt;/h2&gt;
+
+&lt;p&gt;Gitlab 要求强制安装 redis 处理一些数据，另外支持 MySQL 和 PostgreSQL，这里主要以 MySQL 为例&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ yum -y install mysql mysql-devel mysql-server redis
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;配置 Mysql 和 gitlab 需要的用户和数据库&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ service mysqld start
+$ mysql -u root
+$ mysql&amp;gt; CREATE USER &#39;gitlab&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;gitlab&#39;;
+$ mysql&amp;gt; CREATE DATABASE IF NOT EXISTS `gitlabhq_production` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`;
+$ mysql&amp;gt; GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER ON `gitlabhq_production`.* TO &#39;gitlab&#39;@&#39;localhost&#39;;
+$ mysql&amp;gt; \q
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Redis 使用默认配置即可，直接启动&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ service redis start
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;添加-gitlab-用户&#34;&gt;添加 Gitlab 用户&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;$ useradd -c &#39;GitLab&#39; git
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;CentOS 的命令没有办法直接禁止用户的访问的参数，需要用下面命令：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ passwd -l git 	
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;安装-gitlab-shell&#34;&gt;安装 Gitlab-shell&lt;/h2&gt;
+
+&lt;p&gt;使用 root 账户切换到 git 账户下操作，可以比官方教程省去一些麻烦的输入&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ su git &amp;amp;&amp;amp; cd /home/git
+$ git clone https://github.com/gitlabhq/gitlab-shell.git
+$ cd gitlab-shell
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;通过 &lt;code&gt;git tag&lt;/code&gt; 查看最新版本并切换之&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ git checkout v1.7.1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;编辑配置文件修改你要设定的域名（domain），比如 &lt;code&gt;http://gitlab.dev/&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ vim config.yml
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;完成之后执行安装脚本&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ./bin/install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;安装-gitlab&#34;&gt;安装 Gitlab&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cd /home/git
+$ git clone https://github.com/gitlabhq/gitlabhq.git gitlab
+$ cd /home/git/gitlab
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;通过 &lt;code&gt;git tag&lt;/code&gt; 查看最新版本并切换之&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ git checkout 6.0.1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这里需要配置的东西多一些，这里参考&lt;a href=&#34;https://github.com/gitlabhq/gitlabhq/blob/master/doc/install/installation.md#configure-it&#34;&gt;官方的文档&lt;/a&gt;，也可以安装我下面的步骤来：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cd /home/git/gitlab
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;复制配置文件，修改 host 相关的配置项，主要是 domain 要和上面的 &lt;code&gt;http://gitlab.dev&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cp config.yml{.example,}
+$ vim config/gitlab.yml
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;确认 gitlab 以下目录的权限是否正确&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ mkdir tmp/pids/
+$ mkdir tmp/sockets/
+$ chown -R git log/
+$ chown -R git tmp/
+$ chmod -R u+rwX log/
+$ chmod -R u+rwX tmp/
+$ chmod -R u+rwX tmp/pids/
+$ chmod -R u+rwX tmp/sockets/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;创建 satellites 目录，这个目录是保存各个用户的仓库&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ mkdir /home/git/gitlab-satellites
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;创建 uploads 目录（为什么 gitlab 不在项目中创建呢= =！）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ mkdir public/uploads
+$ chmod -R u+rwX  public/uploads
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;复制 unicorn 配置文件&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cp config/unicorn.rb{.example,}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;设置 ruby web 容器的参数，比如 2GB RAM 服务器可以设置 3 个 worker。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;如果系统其他服务占用了 unicorn 的端口，记得改名。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;$ vim config/unicorn.rb
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;设置一些 git 全局参数&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ git config --global user.name &amp;quot;GitLab&amp;quot;
+$ git config --global user.email &amp;quot;gitlab@localhost&amp;quot;
+$ git config --global core.autocrlf input
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;配置 gitlab 数据库设置&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cp config/database.yml{.mysql,}
+$ vim config/database.yml
+$ chmod o-rwx config/database.yml
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;安装必需的 Ruby Gems&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cd /home/git/gitlab
+$ [sudo] gem install charlock_holmes --version &#39;0.6.9.4&#39;
+$ bundle install --deployment --without development test postgres aws
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;初始化数据库数据（执行输入 &lt;code&gt;Yes&lt;/code&gt; 继续创建）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ bundle exec rake gitlab:setup RAILS_ENV=production
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;设置 init 脚本&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo cp lib/support/init.d/gitlab /etc/init.d/gitlab
+$ sudo chmod +x /etc/init.d/gitlab
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;检查-gitlab-状态&#34;&gt;检查 Gitlab 状态&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;$ bundle exec rake gitlab:env:info RAILS_ENV=production
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;启动 gitlab 服务&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo service gitlab start
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;再起检查，保证所有项目都是绿色&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ bundle exec rake gitlab:check RAILS_ENV=production
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;配置-nginx&#34;&gt;配置 nginx&lt;/h2&gt;
+
+&lt;p&gt;根据 nginx 的安装路径适当修改下面的路径即可，我们先把 gitlab 提供的配置文件拷贝过去&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo mkdir -p /etc/nginx/conf/sites/
+$ sudo cp lib/support/nginx/gitlab /etc/nginx/conf/sites/gitlab.conf
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;根据 nginx 版本和不同发行版的不同，配置结构可能不同根据你的实际情况加载 &lt;code&gt;gitlab.conf&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;修改 &lt;code&gt;gitlab.conf&lt;/code&gt; 的 &lt;code&gt;YOUR_SERVER_FQDN&lt;/code&gt; 为上面设置的 domain。
+最后修改 &lt;code&gt;nginx.conf&lt;/code&gt; 或者 &lt;code&gt;default.conf&lt;/code&gt; 加载 &lt;code&gt;/etc/nginx/conf/site&lt;/code&gt; 下所有 conf 文件&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;http {
+
+	include /etc/nginx/conf/site/*.conf;
+
+	server {
+		…
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;保存后，重启各个服务&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo service nginx reload
+$ sudo service gitlab restart
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;开始-gitlab-之旅&#34;&gt;开始 Gitlab 之旅&lt;/h2&gt;
+
+&lt;p&gt;配置好 hosts 即可访问 &lt;code&gt;gitlab.dev&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ echo &amp;quot;127.0.0.1 gitlab.dev&amp;quot; &amp;gt;&amp;gt; /etc/hosts
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;默认的用户名密码：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;admin@local.host
+5iveL!fe
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;各种坑&#34;&gt;各种坑&lt;/h2&gt;
+
+&lt;h3 id=&#34;1-错误日志报权限错误&#34;&gt;1. 错误日志报权限错误&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;2013/11/07 00:42:21 [crit] 15875#0: *2 stat() &amp;quot;/home/git/gitlab/public/favicon.ico.html&amp;quot; failed (13: Permission denied), client: 33.33.33.1, server: gitlab.web.lo, request: &amp;quot;GET /favicon.ico HTTP/1.1&amp;quot;, host: &amp;quot;gitlab.web.lo&amp;quot;
+2013/11/07 00:42:21 [crit] 15875#0: *2 connect() to unix:/home/git/gitlab/tmp/sockets/gitlab.socket failed (13: Permission denied) while connecting to upstream, client: 33.33.33.1, server: gitlab.web.lo, request: &amp;quot;GET /favicon.ico HTTP/1.1&amp;quot;, upstream: &amp;quot;http://unix:/home/git/gitlab/tmp/sockets/gitlab.socket:/favicon.ico&amp;quot;, host: &amp;quot;gitlab.web.lo&amp;quot;
+2013/11/07 00:42:31 [crit] 15875#0: *2 stat() &amp;quot;/home/git/gitlab/public/&amp;quot; failed (13: Permission denied), client: 33.33.33.1, server: gitlab.web.lo, request: &amp;quot;GET / HTTP/1.1&amp;quot;, host: &amp;quot;gitlab.web.lo&amp;quot;
+2013/11/07 00:42:31 [crit] 15875#0: *2 stat() &amp;quot;/home/git/gitlab/public//index.html&amp;quot; failed (13: Permission denied), client: 33.33.33.1, server: gitlab.web.lo, request: &amp;quot;GET / HTTP/1.1&amp;quot;, host: &amp;quot;gitlab.web.lo&amp;quot;
+2013/11/07 00:42:31 [crit] 15875#0: *2 stat() &amp;quot;/home/git/gitlab/public/.html&amp;quot; failed (13: Permission denied), client: 33.33.33.1, server: gitlab.web.lo, request: &amp;quot;GET / HTTP/1.1&amp;quot;, host: &amp;quot;gitlab.web.lo&amp;quot;
+2013/11/07 00:42:31 [crit] 15875#0: *2 connect() to unix:/home/git/gitlab/tmp/sockets/gitlab.socket failed (13: Permission denied) while connecting to upstream, client: 33.33.33.1, server: gitlab.web.lo, request: &amp;quot;GET / HTTP/1.1&amp;quot;, upstream: &amp;quot;http://unix:/home/git/gitlab/tmp/sockets/gitlab.socket:/&amp;quot;, host: &amp;quot;gitlab.web.lo&amp;quot;
+2013/11/07 00:42:31 [crit] 15875#0: *2 stat() &amp;quot;/home/git/gitlab/public/favicon.ico&amp;quot; failed (13: Permission denied), client: 33.33.33.1, server: gitlab.web.lo, request: &amp;quot;GET /favicon.ico HTTP/1.1&amp;quot;, host: &amp;quot;gitlab.web.lo&amp;quot;
+2013/11/07 00:42:31 [crit] 15875#0: *2 stat() &amp;quot;/home/git/gitlab/public/favicon.ico/index.html&amp;quot; failed (13: Permission denied), client: 33.33.33.1, server: gitlab.web.lo, request: &amp;quot;GET /favicon.ico HTTP/1.1&amp;quot;, host: &amp;quot;gitlab.web.lo&amp;quot;
+2013/11/07 00:42:31 [crit] 15875#0: *2 stat() &amp;quot;/home/git/gitlab/public/favicon.ico.html&amp;quot; failed (13: Permission denied), client: 33.33.33.1, server: gitlab.web.lo, request: &amp;quot;GET /favicon.ico HTTP/1.1&amp;quot;, host: &amp;quot;gitlab.web.lo&amp;quot;
+2013/11/07 00:42:31 [crit] 15875#0: *2 connect() to unix:/home/git/gitlab/tmp/sockets/gitlab.socket failed (13: Permission denied) while connecting to upstream, client: 33.33.33.1, server: gitlab.web.lo, request: &amp;quot;GET /favicon.ico HTTP/1.1&amp;quot;, upstream: &amp;quot;http://unix:/home/git/gitlab/tmp/sockets/gitlab.socket:/favicon.ico&amp;quot;, host: &amp;quot;gitlab.web.lo&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;解决方案:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ (sudo) chmod o+x /home/git
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;2-8080-端口被占用&#34;&gt;2. 8080 端口被占用&lt;/h3&gt;
+
+&lt;p&gt;这样主要是因为 nginx 的配置是做 unicorn 的代理转发，实际上 gitlab 是由 unicorn 容器驱动，而在配置里默认绑定的是 &lt;code&gt;8080&lt;/code&gt; 端口&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ vim /home/git/gitlab/config/unicorn.rb
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;找到 &lt;code&gt;listen &amp;quot;127.0.0.1:8080&amp;quot;, :tcp_nopush =&amp;gt; true&lt;/code&gt; 修改成其他未占用的端口号即可。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>配置 CentOS 的网络联网设置</title>
+      <link>/localhost/2013/09/network-configuration-in-centos</link>
+      <pubDate>Thu, 05 Sep 2013 12:34:56 +0800</pubDate>
+      
+      <guid>/localhost/2013/09/network-configuration-in-centos</guid>
+      <description>
+
+&lt;p&gt;安装完毕 CentOS 6 Server 开始配置网络设置，网上有很多的教程，用的方法要么不全，要么操作方式比较早期，花点时间整理了下方法：&lt;/p&gt;
+
+&lt;h2 id=&#34;dhcp-设定&#34;&gt;DHCP 设定&lt;/h2&gt;
+
+&lt;p&gt;CentOS 默认使用了 &lt;code&gt;dhcp&lt;/code&gt; 但是可恨的是没有开启。首先我们先看看本机的网卡信息&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ip a
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;返回结果：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;1: lo:  mtu 16436 qdisc noqueue state UNKNOWN
+link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+inet 127.0.0.1/8 scope host lo
+inet6 ::1/128 scope host
+valid_lft forever preferred_lft forever
+2: eth0:  mtu 1500 qdisc mq state UP qlen 1000
+link/ether 00:22:19:09:4d:3c brd ff:ff:ff:ff:ff:ff
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;其中 &lt;code&gt;lo&lt;/code&gt; 是回路路由，咱们不必管它，这里 &lt;code&gt;eth0&lt;/code&gt; 大家会很熟悉吧，这表示第一块网卡。好了，我们需要改改它的配置文件(CentOS 默认没有安装 &lt;code&gt;vim&lt;/code&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ vi /etc/sysconfig/network-scripts/ifcfg-eth0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;如果你要改其他网卡，比如 &lt;code&gt;eth1&lt;/code&gt; 那需要修改 &lt;code&gt;/etc/.../ifcfg-eth1&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;DEVICE=eth0
+HWADDR=&amp;quot;00:22:19:09:4D:3C&amp;quot;
+NM_CONTROLLED=yes
+ONBOOT=yes      # 默认是 no，我们要改成 yes
+BOOTPROTO=dhcp  # 如果不是这个值也要修改
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;最后重启 network service 即可：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ service network restart
+# 或者比较原始的方法
+$ /etc/init.d/network restart
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;如果你看到它在重启并配置 DHCP 服务，那就说明没有问题了&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Bringing up loopback interface:                [  OK  ]
+Bringing up interface eth0:
+Determining IP information for eth0... done.   [  OK  ]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;测试一下&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ping google.com
+$ ifconfig
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;手动设定&#34;&gt;手动设定&lt;/h2&gt;
+
+&lt;p&gt;大部分操作和上面的一直，唯一不同的就是修改 &lt;code&gt;/etc/sysconfig/network-scripts/ifcfg-*&lt;/code&gt; 文件：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;DEVICE=eth0
+HWADDR=&amp;quot;00:22:19:09:4D:3C&amp;quot;
+NM_CONTROLLED=yes
+ONBOOT=yes      		# 默认是 no，我们要改成 yes
+BOOTPROTO=static  		# 改成静态模式
+IPADDR=192.168.1.11 	# 设定 ip 地址
+NETMASK=255.255.255.0 	# 设定子网掩码
+GATEWAY=192.168.1.1 	# 设定网关 ip
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;修改 DNS 地址&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ vi /etc/resolve.conf
+
+nameserver 8.8.8.8 # 主 DNS
+nameserver 8.8.4.4 # 备选 DNS
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,1528 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ruby on icyleaf</title>
+    <link>localhost/tags/ruby/</link>
+    <description>Recent content in Ruby on icyleaf</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>All rights reserved - 2007</copyright>
+    <lastBuildDate>Tue, 19 Jul 2016 20:12:07 +0800</lastBuildDate>
+    <atom:link href="localhost/tags/ruby/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>深入浅出 Fastlane 一看你就懂</title>
+      <link>/localhost/2016/07/fastlane-in-action</link>
+      <pubDate>Tue, 19 Jul 2016 20:12:07 +0800</pubDate>
+      
+      <guid>/localhost/2016/07/fastlane-in-action</guid>
+      <description>
+
+&lt;p&gt;这是《 &lt;a href=&#34;https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/&#34;&gt;Fastlane - iOS 和 Android 的自动化构建工具&lt;/a&gt;》系列的第二篇。&lt;/p&gt;
+
+&lt;p&gt;本篇我想着重介绍 &lt;code&gt;fastlane&lt;/code&gt; 本身的基本使用，这里使用 fastlane v1.98.0 作为演示版本。&lt;/p&gt;
+
+&lt;h3 id=&#34;系列索引&#34;&gt;系列索引&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/&#34;&gt;Fastlane - iOS 和 Android 的自动化构建工具&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://icyleaf.com/2016/07/fastlane-in-action/&#34;&gt;深入浅出 Fastlane 一看你就懂&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;命令行工具&#34;&gt;命令行工具&lt;/h2&gt;
+
+&lt;p&gt;安装之后默认会安装一个命令行工具 &lt;code&gt;fastlane&lt;/code&gt;，利用它可以初始化、执行任务、查看任务定义、查看可用的动作和动作的详细定义，甚至可以用它来创建自定义的动作、插件以及一些辅助功能。想了解的话可以先看看它的帮助：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ fastlane --help
+
+  fastlane
+
+  CLI for &#39;fastlane&#39; - The easiest way to automate building and releasing your iOS and Android apps
+
+        Run using `fastlane [platform] [lane_name]`
+        To pass values to the lanes use `fastlane [platform] [lane_name] key:value key2:value2`
+
+  Commands:
+    action                  Shows more information for a specific command
+    actions                 Lists all available fastlane actions
+    add_plugin              Add a new plugin to your fastlane setup
+    disable_crash_reporting Deprecated: fastlane doesn&#39;t use a crash reporter any more
+    docs                    Generate a markdown based documentation based on the Fastfile
+    enable_auto_complete    Enable tab auto completion
+    enable_crash_reporting  Deprecated: fastlane doesn&#39;t use a crash reporter any more
+    help                    Display global or [command] help documentation
+    init                    Helps you with your initial fastlane setup
+    install_plugins         Install all plugins for this project
+    lanes                   Lists all available lanes and shows their description
+    list                    Lists all available lanes without description
+    new_action              Create a new custom action for fastlane.
+    new_plugin              Create a new plugin that can be used with fastlane
+    run                     Run a fastlane one-off action without a full lane
+    search_plugins          Search for plugins, search query is optional
+    trigger                 Run a sepcific lane. Pass the lane name and optionally the platform first.
+    update_plugins          Update all plugin dependencies
+
+  Global Options:
+    --verbose
+    -h, --help           Display help documentation
+    -v, --version        Display version information
+
+  Author:
+    Felix Krause &amp;lt;fastlane@krausefx.com&amp;gt;
+
+  Website:
+    https://fastlane.tools
+
+  GitHub:
+    https://github.com/fastlane/fastlane
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;我会随着下面每个概念的解释和展开来配合上面的命令一起讲解。&lt;/p&gt;
+
+&lt;h2 id=&#34;生命周期&#34;&gt;生命周期&lt;/h2&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;执行顺序&lt;/th&gt;
+&lt;th&gt;方法名&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;before_all&lt;/td&gt;
+&lt;td&gt;在执行 lane 之前只执行一次&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;before_each&lt;/td&gt;
+&lt;td&gt;每次执行 lane 之前都会执行一次&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;lane&lt;/td&gt;
+&lt;td&gt;自定义的任务&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;after_each&lt;/td&gt;
+&lt;td&gt;每次执行 lane 之后都会执行一次&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;after_all&lt;/td&gt;
+&lt;td&gt;在执行 lane 成功结束之后执行一次&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;6&lt;/td&gt;
+&lt;td&gt;error&lt;/td&gt;
+&lt;td&gt;在执行上述情况任意环境报错都会中止并执行一次&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;以上的部分大家在上一篇已经见识过了，有些还没接触到，不用着急都会一一说明。&lt;/p&gt;
+
+&lt;h2 id=&#34;任务-lane&#34;&gt;任务（lane）&lt;/h2&gt;
+
+&lt;p&gt;正常情况下你可能只会是用到一种任务方法 &lt;code&gt;lane&lt;/code&gt; 但其实它会包含很多中高级用法。在文章的末尾会详细描述。&lt;/p&gt;
+
+&lt;h3 id=&#34;任务定义&#34;&gt;任务定义&lt;/h3&gt;
+
+&lt;p&gt;定义任务的方法类似于 rake 的 task，但使用上缺比前者要好用很多，见下表：&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;定义&lt;/th&gt;
+&lt;th&gt;是否必须&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;th&gt;备注&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;desc&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;false&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;方法描述&lt;/td&gt;
+&lt;td&gt;可多次使用打到换行的目的&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;name&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;true&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;方法名&lt;/td&gt;
+&lt;td&gt;符号化的方法名&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;options&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;false&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;方法参数&lt;/td&gt;
+&lt;td&gt;返回 Hash 类型&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;task&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;true&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;方法主体&lt;/td&gt;
+&lt;td&gt;参考 ruby 的方法代码且支持 ruby 代码&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;desc &#39;定义一个 build 方法&#39;
+desc &#39;参数 adhoc 判断是否为内测版本, 默认为 false&#39;
+desc &#39;fastlane build&#39;
+desc &#39;fastlane build adhoc:true&#39;
+lane :build do |options|
+  # task to do something
+  adhoc = options[:adhoc] || false
+  puts &amp;quot;adhoc: #{adhoc}&amp;quot;
+
+  gym(type: adhoc ? &#39;adhoc&#39; : &#39;appstore&#39;)
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;任务执行&#34;&gt;任务执行&lt;/h3&gt;
+
+&lt;p&gt;一般情况下它需要配合定义好的 lane 才能使用，刚刚我们定义的一个 build 方法，我们这里就试着执行一下吧。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 默认执行
+$ fastlane build
+# 传递参数
+$ fastlane build adhoc:true
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;任务互调&#34;&gt;任务互调&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;lane&lt;/code&gt; 其实可以理解为 &lt;code&gt;def&lt;/code&gt; 的别名，因此多个 lane 的话实际上是可以相互调用的，这个其实特别实用，这样其实我就可以把 cocoapods 的执行放到单独的 lane 里面而不是 &lt;code&gt;before_all&lt;/code&gt;，这样执行非构建的任务就不会执行不相关的任务或动作，因此 fastlane 而产生了一个私有任务用内部使用 &lt;code&gt;private_lane&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;
+default_platform :ios
+
+platform :ios do
+  desc &#39;构建前的准备工作&#39;
+  desc &#39;这是一个私有任务，仅供 Fastfile 内部 lane 调用使用&#39;
+  lane :prepare do
+    cocoapods
+    match
+  end
+
+  desc &#39;通用的构建任务&#39;
+  desc &#39;fastlane build&#39;
+  desc &#39;fastlane build type:adhoc&#39;
+  lane :build do |options|
+    # 调用上面 prepare 私有任务
+    prepare
+
+    case options[:type]
+    when &#39;adhoc&#39;
+      # 调用 下面 adhoc 任务
+      adhoc
+    else
+      # 调用下面 appstore 任务
+      appstore
+    end
+  end
+
+  desc &#39;构建 adhoc 任务&#39;
+  desc &#39;fastlane adhoc&#39;
+  lane :adhoc do
+    gym(type: &#39;adhoc&#39;)
+  end
+
+  desc &#39;构建 appstore 任务&#39;
+  desc &#39;fastlane appstore&#39;
+  lane :appstore do
+    gym(type: &#39;appstore&#39;)
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上面的任务中，&lt;code&gt;build&lt;/code&gt;/&lt;code&gt;adhoc&lt;/code&gt;/&lt;code&gt;appstore&lt;/code&gt; 都可以执行，只有 &lt;code&gt;prepare&lt;/code&gt; 是无法通过命令行外部执行，如果执行会直接报错：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ fastlane prepare
+[19:17:42]: You can&#39;t call the private lane &#39;prepare&#39; directly
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;任务返回值&#34;&gt;任务返回值&lt;/h3&gt;
+
+&lt;p&gt;和 ruby 的方法一致，每个 lane 最后一行会默认作为返回值（无需 &lt;a href=&#34;http://learnrubythehardway.org/book/ex21.html&#34;&gt;return&lt;/a&gt;）。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;
+lane :sum do |options|
+  options[:a] + optiona[:b]
+end
+
+lane :calculate do
+  value = sum(a: 3, b: 5)
+  puts value #=&amp;gt; 8
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;引入外部任务文件&#34;&gt;引入外部任务文件&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;Fastfile&lt;/code&gt; 除了自身以外还能够引入外部其他的 &lt;code&gt;Fastfile&lt;/code&gt; 并调用任务，只需要导入外部文件并使用特殊的方法标识即可：&lt;/p&gt;
+
+&lt;h4 id=&#34;1-import-导入本地文件&#34;&gt;1. import - 导入本地文件&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# 导入 lanes 目录的 AndroidFastfile
+import &amp;quot;lanes/AndroidFastfile&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;2-import-from-git-导入-git-仓库文件&#34;&gt;2. import_from_git - 导入 git 仓库文件&lt;/h4&gt;
+
+&lt;p&gt;可以直接引入 git 仓库的 Fastfile 文件是一个非常赞的功能，通过使用发现其实现原理是先把 git 仓库克隆下来后在引入相对于的文件，因此建议国内在没有网络加速（翻墙）的情况下尽量不用引入比较大的 git 仓库，否则使用会需要漫长的等待&amp;hellip;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# 导入 mozilla/firefox-ios 项目下 fastlane 下面 Fastfile 文件
+import_from_git(url: &#39;https://github.com/mozilla/firefox-ios&#39;)
+# 或者
+import_from_git(url: &#39;git@github.com:mozilla/firefox-ios.git&#39;,
+               path: &#39;fastlane/Fastfile&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;假若外部引入的 &lt;code&gt;Fastfile&lt;/code&gt; 有个方法是 &lt;strong&gt;build&lt;/strong&gt;，在命令行工具直接执行即可，如果外部和内部都有相同的任务名，执行会直接报错：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ fastlane ios build
+
+[!] Lane &#39;gradle&#39; was defined multiple times!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;如果发生这样的事情且你希望在主体 &lt;code&gt;Fastfile&lt;/code&gt; 也调用的话需要使用特殊的方法定义：&lt;code&gt;override_lane&lt;/code&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;注意：此方法只会覆盖外部的相同方法名的代码执行，目前暂时无法使用类似 ruby 的 &lt;code&gt;super&lt;/code&gt; 继承原由方法！&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;override_lane :build do
+  ...
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;任务查看&#34;&gt;任务查看&lt;/h3&gt;
+
+&lt;p&gt;只需执行下面这行命令就可以看到非私有任务的可用列表信息&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ fastlane lanes
+
+--------- ios---------
+----- fastlane ios build
+通用的构建任务
+fastlane build
+fastlane build type:adhoc
+
+----- fastlane ios adhoc
+构建 adhoc 任务
+
+----- fastlane ios appstore
+构建 appstore 任务
+
+Execute using `fastlane [lane_name]`
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;扩展-action&#34;&gt;扩展（Action）&lt;/h2&gt;
+
+&lt;p&gt;扩展是 fastlane 的杀手锏，重在集成了众多非常优秀好用的方法供 lane 内部使用，截至 fastlane v&lt;code&gt;1.98.0&lt;/code&gt; 版本以包含 175 个扩展，这个数量还在陆续增加中。扩展初期是由发起人一个人完成，后续的大部分都是社区共享，如果你发现没有你想要的扩展，可以先去 &lt;a href=&#34;https://github.com/fastlane/fastlane/issues?q=is%3Aopen+is%3Aissue+label%3Aaction&#34;&gt;issues&lt;/a&gt; 搜索下没有要么自己动手提交要么只有等待了.&lt;/p&gt;
+
+&lt;h3 id=&#34;扩展列表&#34;&gt;扩展列表&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ fastlane actions
++--------------------+-------------------------------------------------------------+------------------+
+|                                   Available fastlane actions                                        |
++--------------------+-------------------------------------------------------------+------------------+
+| Action             | Description                                                 | Author           |
++--------------------+-------------------------------------------------------------+------------------+
+| adb                | Run ADB Actions                                             | hjanuschka       |
+| adb_devices        | Get an Array of Connected android device serials            | hjanuschka       |
+| add_git_tag        | This will add an annotated git tag to the current branch    | Multiple         |
+...
++--------------------+-------------------------------------------------------------+------------------+
+  Total of 175 actions
+
+Get more information for one specific action using `fastlane action [name]`
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;扩展使用帮助&#34;&gt;扩展使用帮助&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 查看 adb 扩展的使用帮助
+$ fastlane action adb
+Loading documentation for adb:
+
++---------------------------------+
+|               adb               |
++---------------------------------+
+| Run ADB Actions                 |
+|                                 |
+| see adb --help for more details |
+|                                 |
+| Created by hjanuschka           |
++---------------------------------+
+
++----------+----------------------------------------------------------------------+-------------------+---------+
+|                                                  adb Options                                                  |
++----------+----------------------------------------------------------------------+-------------------+---------+
+| Key      | Description                                                          | Env Var           | Default |
++----------+----------------------------------------------------------------------+-------------------+---------+
+| serial   | Android serial, which device should be used for this command         | FL_ANDROID_SERIAL |         |
+| command  | All commands you want to pass to the adb command, e.g. `kill-server` | FL_ADB_COMMAND    |         |
+| adb_path | The path to your `adb` binary                                        | FL_ADB_PATH       | adb     |
++----------+----------------------------------------------------------------------+-------------------+---------+
+
++-------------------------------+
+|       adb Return Value        |
++-------------------------------+
+| The output of the adb command |
++-------------------------------+
+
+More information can be found on https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Actions.md
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;创建自定义扩展&#34;&gt;创建自定义扩展&lt;/h3&gt;
+
+&lt;p&gt;通过内置的命令创建你需要的扩展，扩展名必须是全部小写且只能使用下划线分割词组，生成好的扩展文件会在 &lt;code&gt;fastlane/actions&lt;/code&gt; 目录找到:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ fastlane new_action
+Must be lower case, and use a &#39;_&#39; between words. Do not use &#39;.&#39;
+examples: &#39;testflight&#39;, &#39;upload_to_s3&#39;
+Name of your action: hello
+[15:33:15]: Created new action file &#39;./fastlane/actions/hello.rb&#39;. Edit it to implement your custom action.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这块会占比较大的篇幅，尽情期待后续的展开。&lt;/p&gt;
+
+&lt;h3 id=&#34;引入外部扩展&#34;&gt;引入外部扩展&lt;/h3&gt;
+
+&lt;p&gt;这块其实也有两种方法可以引入，文件引入是官方教程提供的方法，第二种是我个人尝试出来的，第三种是最近版本才官方支持的。&lt;/p&gt;
+
+&lt;h4 id=&#34;1-本地文件引入&#34;&gt;1. 本地文件引入&lt;/h4&gt;
+
+&lt;p&gt;自定义的扩展其实也算是本地文件引入的一种形式，当然位于其他路径的通过指定方法也能做到&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# 引入项目根目录 script/share_actions 路径
+actions_path &#39;../script/share_actions&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;2-rubygem-引入&#34;&gt;2. rubygem 引入&lt;/h4&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;不再建议使用本方法，请看第三种插件引入。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;我在团队内部创建了一个自定义的扩展，仅限于团队内部使用而无法贡献社区，我只能采取封装成 ruby gem 包，通过 ruby 的 &lt;code&gt;require&lt;/code&gt; 方式引入，最终可以完美支持，目前已在项目中使用大半年之久。最重要的是我是开源的：&lt;a href=&#34;https://github.com/icyleaf/fastlane-qyer&#34;&gt;fastlane-qyer&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# 首先安装需要的 rubygem: gem install fastlane-qyer
+require &#39;fastlane-qyer&#39;
+
+lane :upload do
+  qyer(api_key: &#39;[token]&#39;)
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;注意，使用 rubygem 引入的无法在 fastlane actions 中显示出来，也无法使用 fastlane action [name] 查看使用帮助。我猜想一是官方没有这样提供思路，二是就算你引入了 gem 也不是特别好判断里面的文件结构。&lt;/p&gt;
+
+&lt;h4 id=&#34;3-插件引入&#34;&gt;3. 插件引入&lt;/h4&gt;
+
+&lt;p&gt;我注意到 &lt;a href=&#34;https://github.com/fastlane/fastlane/releases/tag/1.93.0&#34;&gt;1.93.0&lt;/a&gt; 增加了插件机制，很好的解决第二种出现的一些问题。大概看了一下主要是采用 &lt;code&gt;Gemfile&lt;/code&gt; 的方式使用 &lt;code&gt;Pluginfile&lt;/code&gt; 维护了引入第三方插件列表。实现原理还是属于第二种方法。&lt;/p&gt;
+
+&lt;p&gt;通过 &lt;code&gt;fastlane search_plugins&lt;/code&gt; 查看当前支持的插件，并使用 &lt;code&gt;fastlane add_plugins [name]&lt;/code&gt; 引入。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ fastlane search_plugins
+[16:04:33]: Listing all available fastlane plugins
+
++--------------------------+---------------------------------------------------+-----------+
+|                                Available fastlane plugins                                |
++--------------------------+---------------------------------------------------+-----------+
+| Name                     | Description                                       | Downloads |
++--------------------------+---------------------------------------------------+-----------+
+| ruby                     | Useful fastlane actions for Ruby projects         | 782       |
+| versioning               | Allows to work set/get app version directly       | 758       |
+|                          | to/from Info.plist                                |           |
+| branding                 | Add some branding to your fastlane output         | 716       |
+| instrumented_tests       | New action to run instrumented tests for android. | 590       |
+|                          | This basically creates and boots an emulator      |           |
+|                          | before running an gradle commands so that you can |           |
+|                          | run instrumented tests against that emulator.     |           |
+|                          | After the gradle command is executed, the avd     |           |
+|                          | gets shut down and deleted. This is really        |           |
+|                          | helpful on CI services, keeping them clean and    |           |
+|                          | always having a fresh avd for testing.            |           |
+| xamarin_build            | Build xamarin android\ios projects                | 582       |
+| appicon                  | Generate required icon sizes and iconset from a   | 509       |
+|                          | master application icon.                          |           |
+...
+| download_file            | This action downloads a file from an HTTP/HTTPS   | 171       |
+|                          | url (e.g. ZIP file) and puts it in a destination  |           |
+|                          | path                                              |           |
++--------------------------+---------------------------------------------------+-----------+
+
+# 添加 sentry 插件
+$ fastlane add_plugin sentry
+[16:16:23]: Plugin &#39;fastlane-plugin-sentry&#39; was added to &#39;./fastlane/Pluginfile&#39;
+[16:16:23]: It looks like fastlane plugins are not yet set up for this project.
+[16:16:23]: fastlane will create a new Gemfile at path &#39;Gemfile&#39;
+[16:16:23]: This change is neccessary for fastlane plugins to work
+Should fastlane modify the Gemfile at path &#39;Gemfile&#39; for you? (y/n)
+y
+[16:16:29]: Successfully modified &#39;Gemfile&#39;
+[16:16:29]: Make sure to commit your Gemfile, Gemfile.lock and Pluginfile to version control
+Installing plugin dependencies...
+Successfully installed plugins
+
+$ cat fastlane/Pluginfile
+# Autogenerated by fastlane
+#
+# Ensure this file is checked in to source control!
+
+gem &#39;fastlane-plugin-sentry&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;更详细的继续期待后续报道，我要挖坑无数。&lt;/p&gt;
+
+&lt;h3 id=&#34;扩展的命令行调用&#34;&gt;扩展的命令行调用&lt;/h3&gt;
+
+&lt;p&gt;社区的力量果然是很强大的，陆续添加了那么多功能，早期用户表示不开心！嗯，由于社区的呼声和贡献目前可以通过命令调用扩展：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 使用 notification 扩展发送一个通知消息
+$ fastlane run notification message:&amp;quot;Hi macOS&amp;quot; title:&amp;quot;Fastlane Notification&amp;quot;
+[15:58:05]: --------------------------
+[15:58:05]: --- Step: notification ---
+[15:58:05]: --------------------------
+[15:58:05]: Result: true
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;辅助功能&#34;&gt;辅助功能&lt;/h2&gt;
+
+&lt;h3 id=&#34;自动更新&#34;&gt;自动更新&lt;/h3&gt;
+
+&lt;p&gt;fastlane 提供一个方法 &lt;code&gt;update_fastlane&lt;/code&gt; 用于对于自身的版本检查和更新，这个第一篇文章我也有提到过。它其实一个是一个扩展，使用 &lt;code&gt;fastlane action update_fastlane&lt;/code&gt; 能够看到使用帮助。它有一个参数是可以指定检查特定的 fastlane 工具并进行更新，但其实它是使用 rubygems 进行对 gem 的更新，因此这块其实可以传入任何需要检查并更新的 gem：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;update_fastlane(tools:&#39;fastlane,gym,match,cocoapods,rest-client&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;环境变量&#34;&gt;环境变量&lt;/h3&gt;
+
+&lt;p&gt;从 fastlane 的设计体系上在各个地方都加入了环境变量的支持，每个扩展的参数、以及扩展需要共享给其他扩展和任务读取的数据都是通过环境变量获取，如下是我收集的比较常用的列表：&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;环境变量&lt;/th&gt;
+&lt;th&gt;来源&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;th&gt;备注&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;FASTLANE_USER&lt;/td&gt;
+&lt;td&gt;credentials_manager&lt;/td&gt;
+&lt;td&gt;Apple 开发者账户名&lt;/td&gt;
+&lt;td&gt;验证通过后会保存 Keychain&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;FASTLANE_PASSWORD&lt;/td&gt;
+&lt;td&gt;credentials_manager&lt;/td&gt;
+&lt;td&gt;Apple 开发者账户密码&lt;/td&gt;
+&lt;td&gt;验证通过后会保存 Keychain&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;FASTLANE_TEAM_ID&lt;br /&gt;CERT_TEAM_ID&lt;/td&gt;
+&lt;td&gt;produce&lt;br /&gt;sigh&lt;/td&gt;
+&lt;td&gt;Apple 团队 ID&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;DELIVER_USER&lt;br \&gt;PRODUCE_USERNAME&lt;/td&gt;
+&lt;td&gt;deliver&lt;br /&gt;produce&lt;/td&gt;
+&lt;td&gt;iTunesConnect 账户名&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;DELIVER_PASSWORD&lt;/td&gt;
+&lt;td&gt;deliver&lt;/td&gt;
+&lt;td&gt;iTunesConnect 账户密码&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;MATCH_PASSWORD&lt;/td&gt;
+&lt;td&gt;match&lt;/td&gt;
+&lt;td&gt;证书加/解密密码&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;FASTLANE_XCODE_LIST_TIMEOUT&lt;/td&gt;
+&lt;td&gt;fastlane_core&lt;/td&gt;
+&lt;td&gt;获取 iOS Scheme 的超时时间&lt;/td&gt;
+&lt;td&gt;默认 10s&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Gitlab API Wrapper for Crystal</title>
+      <link>/localhost/2016/07/gitlab-api-wrapper-for-crystal</link>
+      <pubDate>Mon, 11 Jul 2016 20:41:26 +0800</pubDate>
+      
+      <guid>/localhost/2016/07/gitlab-api-wrapper-for-crystal</guid>
+      <description>
+
+&lt;h2 id=&#34;gitlab-cr&#34;&gt;Gitlab.cr&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/icyleaf/gitlab.cr&#34;&gt;gitlab.cr&lt;/a&gt; 是我最近课下练习的新语言 &lt;a href=&#34;http://crystal-lang.org/&#34;&gt;Crystal&lt;/a&gt; 写的 gitlab 包，方法和功能和 &lt;a href=&#34;https://github.com/NARKOZ/gitlab&#34;&gt;gitlab ruby 版本&lt;/a&gt;基本类似。&lt;/p&gt;
+
+&lt;p&gt;目前已经完成了大部分 API 的封装，在一边熟悉 crystal 的同时一边补充，其中肯定有一些性能问题和坑，毕竟没有任何依赖都是自己实现的。比较坑爹的是官方手册太简单，也没有实时跟进，能够好好翻阅的其实也就是官方的 API 文档和源码。不过 crystal 还算比较人性化的一面，默认集成了类似 rspce 的单元测试（简化版）和依赖库管理 shards（类似 bundler）和生成文档的工具。通过 &lt;a href=&#34;https://travis-ci.org/``&#34;&gt;travis-ci&lt;/a&gt; 会自动生成每次 git push 的变化。&lt;/p&gt;
+
+&lt;p&gt;API 文档：&lt;a href=&#34;http://icyleaf.github.io/gitlab.cr/&#34;&gt;http://icyleaf.github.io/gitlab.cr/&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;为什么学习-crystal&#34;&gt;为什么学习 Crystal？&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://cloud.githubusercontent.com/assets/209371/13291809/022e2360-daf8-11e5-8be7-d02c1c8b38fb.png&#34; alt=&#34;crystal logo&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Ruby 的缺点众所周知的一个点就是慢，虽说用它的人都不在乎主要是用的爽，so what！这一致命的坑其实默默的被承受着，很多的 Ruby 开发者也在一直寻觅着新的更高性能的语言。比如 Gitlab 的 Build Runner 使用 Go 实现了。Rails 的核心开发者基于多年对 Ruby 的怨念而开发的 Elixir，还有 Firefox 主导的 Rust 也吸引了不少目光。有那么多选择为什么偏偏选了这么一个没有听说过的语言？&lt;/p&gt;
+
+&lt;h2 id=&#34;语言优势&#34;&gt;语言优势&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;类似 Ruby 风格语法（但舍弃了一些动态特性）&lt;/li&gt;
+&lt;li&gt;一切都是对象（和 Ruby 一样）&lt;/li&gt;
+&lt;li&gt;自动类型推荐和静态类型检查&lt;/li&gt;
+&lt;li&gt;支持方法重载&lt;/li&gt;
+&lt;li&gt;易用的 C 语言库的绑定机制&lt;/li&gt;
+&lt;li&gt;基于 LLVM（目前不支持 Windows）&lt;/li&gt;
+&lt;li&gt;编译性语言，可以打包二进制包&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;仅仅是这些可能大家觉得没什么，其实对我来说也不够冲击力，最重要的关键是在我从订阅的 Ruby Weekly 周刊看到 sidekiq 的作者用 crystal 重新实现了核心部分发的&lt;a href=&#34;http://www.mikeperham.com/2016/05/25/sidekiq-for-crystal/&#34;&gt;博文分享&lt;/a&gt;，提到的一点：&lt;strong&gt;至少是比 ruby 2.3 大部分代码要快 3-5 倍，减少至少 3 倍的内存占用&lt;/strong&gt;。怀着怀疑的态度我大概的研究了这个语言，确实看到了新希望。&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;库&lt;/th&gt;
+&lt;th&gt;语言&lt;/th&gt;
+&lt;th&gt;并发量&lt;/th&gt;
+&lt;th&gt;平均响应时间&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/sdogruyol/fast-http-server&#34;&gt;fast-http-server&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;Crystal&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;18348.47rpm&lt;/td&gt;
+&lt;td&gt;8.67ms&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/indexzero/http-server&#34;&gt;http-server&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;Node.js&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;2105.55rpm&lt;/td&gt;
+&lt;td&gt;47.92ms&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;https://docs.python.org/2/library/simplehttpserver.html&#34;&gt;SimpleHTTPServer&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;Python&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;785.14rpm&lt;/td&gt;
+&lt;td&gt;1.91ms&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;还有一份一直再更新维护的语言之间的&lt;a href=&#34;https://github.com/kostya/benchmarks&#34;&gt;评测&lt;/a&gt;仅供参考，看着里面的数据还是蛮吸引人的。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;评测数据来源: &lt;a href=&#34;http://www.akitaonrails.com/2016/05/31/flirting-with-crystal-a-rubyist-perspective&#34;&gt;Flirting with Crystal, a Rubyist Perspective&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;语言友好&#34;&gt;语言友好&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# File: server.cr
+require &amp;quot;http/server&amp;quot;
+
+server = HTTP::Server.new(8080) do |context|
+  context.response.content_type = &amp;quot;text/plain&amp;quot;
+  context.response.print &amp;quot;Hello world! The time is #{Time.now}&amp;quot;
+end
+
+puts &amp;quot;Listening on http://0.0.0.0:8080&amp;quot;
+server.listen
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;看着是不是是不是和 Ruby 差不多。通过命令编译成二进制在运行试试：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ crystal build --release server.cr
+$ ./server
+Listening on http://0.0.0.0:8080
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;macOS 用户可以通过 brew 进行安装 &lt;code&gt;brew install crystal-lang&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;语言限制&#34;&gt;语言限制&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;没有了强大的黑魔法，尤其是针对 &lt;code&gt;eval&lt;/code&gt; 和 &lt;code&gt;send&lt;/code&gt; 两个的缺失。提供了 macro 的方式可以实现部分动态定义方法的机制。&lt;/li&gt;
+&lt;li&gt;require 引入必须放置在头部（crystal 0.7.7 以上版本的限制）&lt;/li&gt;
+&lt;li&gt;有待优化的 gc 机制（目前采用的是 &lt;a href=&#34;https://zh.wikipedia.org/wiki/%E8%B2%9D%E5%A7%86%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8&#34;&gt;Hans Boehm GC&lt;/a&gt;）&lt;/li&gt;
+&lt;li&gt;还在开发中的语言，API 变化很快&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;最后想说的话&#34;&gt;最后想说的话&lt;/h2&gt;
+
+&lt;p&gt;总体来说是一个让人眼前一亮的语言，很是期待后续的进化。我相信 sidekiq 作者的那篇博文也让无数开发者看到了新大陆。目前项目也在&lt;a href=&#34;https://salt.bountysource.com/teams/crystal-lang&#34;&gt;捐献&lt;/a&gt;中，如果你对它感兴趣不妨慷慨的动动自己的钱包，Ruby 的创始人 matz 直接捐献了 $500。&lt;/p&gt;
+
+&lt;h2 id=&#34;相关资源&#34;&gt;相关资源&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;作者 Twitter: &lt;a href=&#34;https://twitter.com/asterite&#34;&gt;https://twitter.com/asterite&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Awesome Crystal: &lt;a href=&#34;http://awesome-crystal.com/&#34;&gt;http://awesome-crystal.com/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Sidekiq for Crystal: &lt;a href=&#34;http://www.mikeperham.com/2016/05/25/sidekiq-for-crystal/&#34;&gt;http://www.mikeperham.com/2016/05/25/sidekiq-for-crystal/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Test Driving Sidekiq and Crystal: &lt;a href=&#34;http://www.mikeperham.com/2016/06/14/test-driving-sidekiq-and-crystal/&#34;&gt;http://www.mikeperham.com/2016/06/14/test-driving-sidekiq-and-crystal/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Flirting with Crystal, a Rubyist Perspective: &lt;a href=&#34;http://www.akitaonrails.com/2016/05/31/flirting-with-crystal-a-rubyist-perspective&#34;&gt;http://www.akitaonrails.com/2016/05/31/flirting-with-crystal-a-rubyist-perspective&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Fastlane - iOS 和 Android 的自动化构建工具</title>
+      <link>/localhost/2016/07/intro-fastlane-automation-for-ios-and-android</link>
+      <pubDate>Mon, 11 Jul 2016 12:36:07 +0800</pubDate>
+      
+      <guid>/localhost/2016/07/intro-fastlane-automation-for-ios-and-android</guid>
+      <description>
+
+&lt;h3 id=&#34;系列索引&#34;&gt;系列索引&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/&#34;&gt;Fastlane - iOS 和 Android 的自动化构建工具&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://icyleaf.com/2016/07/fastlane-in-action/&#34;&gt;深入浅出 Fastlane 一看你就懂&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+
+&lt;p&gt;这篇文章整理了很久，发现在一篇文章里无法一一讲述和全面的覆盖，初步打算是把这个做成一个系列，想到哪里就写到哪里，如果恰好有读者爱戴并有一些建议反馈，我也会根据大家的需要调整内容的方向和深度。论美剧的编剧的重要性(笑)。&lt;/p&gt;
+
+&lt;h2 id=&#34;初次邂逅&#34;&gt;初次邂逅&lt;/h2&gt;
+
+&lt;p&gt;初时 fastlane 的时候是去年的 11 月份，看到大就感觉遇到了神器一般的惊喜。它一个针对于 iOS 和 Android（后来才支持的）全方位自动化流程的工具，请看下图&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://fastlane.tools/assets/img/intro-fastlane-tree.png&#34; alt=&#34;fastlane-flow&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;流程图中每个环节都是独立的工具，每个工具只干一件事情，分工非常的明确。以下是我在团队项目中用到的：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/fastlane/fastlane/tree/master/scan&#34;&gt;scan&lt;/a&gt; 自动化测试工具，很好的封装了 Unit Test&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/fastlane/fastlane/tree/master/sigh&#34;&gt;sigh&lt;/a&gt; 针对于 iOS 项目开发证书和 Provision file 的下载工具&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/fastlane/fastlane/tree/master/match&#34;&gt;match&lt;/a&gt; 同步团队每个人的证书和 Provision file 的超赞工具，规范&lt;a href=&#34;https://codesigning.guide/&#34;&gt;代码签名&lt;/a&gt;（虽然里面有些设定比较损）&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/fastlane/fastlane/tree/master/gym&#34;&gt;gym&lt;/a&gt; 针对于 iOS 打包和签名的自动化工具，完爆 &lt;code&gt;xctool&lt;/code&gt;，而 &lt;code&gt;shenzhen&lt;/code&gt; 也放弃维护&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/icyleaf/fastlane-qyer&#34;&gt;qyer&lt;/a&gt; 团队定制的工具，用于检测包和上传到自己的内部分发平台&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/fastlane/fastlane&#34;&gt;fastlane&lt;/a&gt; 简单理解就是控制整体流程和实现的框架容器&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;利用目前支持的工具可以做所有包含自动化和可持续化构建的每个环节，比如单元测试、截图、分发渠道、上传元数据和 ipa 包提交审核等等。看到这这些是不是很兴奋？
+反正我看到之后就像黑夜看到了光明，果断抛弃自己维护的脚本。&lt;/p&gt;
+
+&lt;h2 id=&#34;基本构成&#34;&gt;基本构成&lt;/h2&gt;
+
+&lt;p&gt;Fastlane 提供的流程的众多工具都是可以独立存在和使用（提供 cli 命令），也可以统一由 fastlane 来控制。它在使用中提出了两个概念：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;action&lt;/code&gt;: Fastlane 的插件，截至当前内置 165 个至多，不过每个动作的颗粒度大小不一。&lt;a href=&#34;https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Actions.md&#34;&gt;查看详情&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;lane&lt;/code&gt;: Fastlane 的任务（或者可以理解为命令），一个可以包含多个 lanes，通过 &lt;code&gt;fastlane&lt;/code&gt; cli 传入制定的 lane 来执行。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;光说不干假把式，看法宝：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;lane :adhoc do
+  # build version 自动加一
+  increment_build_number
+  # 执行 pod install
+  cocoapods
+  # 调用 facebook 的 xctool 进行单元测试
+  xctool
+  # 对模拟器运行的 App 进行截图
+  snapshot
+  # 安装团队证书和 profiles
+  match
+  # 上传 App 元数据和签名的 ipa 到 iTunes Conneects
+  deliver
+  # 把截图套进一个设备外壳
+  frameit
+  # 允许自定义的脚本文件
+  sh &amp;quot;./customScript.sh&amp;quot;
+  # 发消息到 slack
+  slack
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;
+
+&lt;p&gt;工具的起源本身是专门针对 iOS 项目，因此目前依赖于 macOS 10.9 以上系统，Ruby 是一个众所周知的轮子发明者，很多知名的工具都是它开发的，fastlane 也不例外。以下是依赖环境：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;macOS 10.9+&lt;/li&gt;
+&lt;li&gt;Ruby 2.0+ (推荐 rvm 或 rbenv 安装)&lt;/li&gt;
+&lt;li&gt;Xcode + command line tools&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;以上依赖配置好之后就可以通过 rubygem 进行安装：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ [sudo] gem install fastlane
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;fastlane 默认会把核心工具都会进行安装，需要大家耐心等待一会&amp;hellip;&lt;/p&gt;
+
+&lt;h2 id=&#34;初始化&#34;&gt;初始化&lt;/h2&gt;
+
+&lt;p&gt;有两种方法可以初始化，一种是通过命令，一种是自己创建指定的（至少包含一个）约束文件 &lt;code&gt;Fastfile&lt;/code&gt;。首先我先介绍大家使用命令初始化:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 切换只你开发的 iOS 项目根目录
+$ cd to/your/ios/project
+$ fastlane init
+[11:46:34]: Detected iOS/Mac project in current directory...
+[11:46:34]: This setup will help you get up and running in no time.
+[11:46:34]: fastlane will check what tools you&#39;re already using and set up
+[11:46:34]: the tool automatically for you. Have fun!
+[11:46:34]: Created new folder &#39;./fastlane&#39;.
+...
+Your Apple ID (e.g. fastlane@krausefx.com): xxx@gmail.com
+[11:46:59]: Verifying if app is available on the Apple Developer Portal and iTunes Connect...
+[11:46:59]: Starting login with user &#39;xxx@gmail.com&#39;
+Multiple teams found on the Developer Portal, please enter the number of the team you want to use:
+1) XXXXXXXXXX &amp;quot;XXXXXXXXXX&amp;quot; (In-House)
+2) YYYYYYYYYY &amp;quot;YYYYYYYYYY&amp;quot; (Company/Organization)
++----------------+----------------------------------------------------------------------------+
+|                                       Detected Values                                       |
++----------------+----------------------------------------------------------------------------+
+| Apple ID       | xxx@gmail.com                                                              |
+| App Name       | Hello Fastlane                                                             |
+| App Identifier | com.icyleaf.demo.HelloFastlane                                             |
+| Workspace      | /Users/icyleaf/Development/iOS/HelloFastlane.xcworkspace                   |
++----------------+----------------------------------------------------------------------------+
+
+[11:48:36]: This app identifier doesn&#39;t exist on iTunes Connect yet, it will be created for you
+Please confirm the above values (y/n) n
+App Identifier (com.krausefx.app): com.icyleaf.demo.HelloFastlane
+[11:50:04]: Created new file &#39;./fastlane/Appfile&#39;. Edit it to manage your preferred app metadata information.
+Optional: The scheme name of your app (If you don&#39;t need one, just hit Enter): AppDemo
+[11:50:40]: &#39;snapshot&#39; not enabled.
+[11:50:40]: &#39;cocoapods&#39; enabled.
+[11:50:40]: &#39;carthage&#39; not enabled.
+[11:50:40]: Created new file &#39;./fastlane/Fastfile&#39;. Edit it to manage your own deployment lanes.
+[11:50:40]: fastlane will send the number of errors for each action to
+[11:50:40]: https://github.com/fastlane/enhancer to detect integration issues
+[11:50:40]: No sensitive/private information will be uploaded
+[11:50:40]: Successfully finished setting up fastlane
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这部分会进行联网，并提示输入你的 Apple ID 来验证你的应用是否存在（没有也会帮你自动创建）并获取相应的关键信息，通过一系列的流程下来把获取的信息会创建一个 &lt;code&gt;fastlane&lt;/code&gt; 目录
+并并写入相应的文件（如果某些信息没有填写会忽略某些文件的生成）：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Fastfile&lt;/code&gt;: 核心文件，主要用于 cli 调用和处理具体的流程，&lt;a href=&#34;https://github.com/fastlane/fastlane/tree/master/fastlane/docs#fastfile&#34;&gt;了解详情&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Appfile&lt;/code&gt;: 从 Apple Developer Portal 获取和项目相关的信息，&lt;a href=&#34;https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Appfile.md&#34;&gt;了解详情&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Deliverfile&lt;/code&gt;: 从 iTunes Connect 获取和项目相关的信息，&lt;a href=&#34;https://github.com/fastlane/fastlane/blob/master/deliver/Deliverfile.md&#34;&gt;了解详情&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;抛开其他的几个文件先不说，大家先把注意力放到刚创建好的 &lt;code&gt;Fastfile&lt;/code&gt; 文件上面（可能有变化，仅作参考），如果大家对 Ruby 有了解的话，它定义的 DSL 语言非常类似 &lt;a href=&#34;https://github.com/ruby/rake&#34;&gt;rake&lt;/a&gt;，但流程上有参考的 &lt;a href=&#34;https://github.com/rspec/rspec&#34;&gt;rspec&lt;/a&gt;，一旦不满足需求还可以使用 Ruby 代码来实现。单凭 DSL 语言来说就算对于 Ruby 没有基础的也能很快掌握，大多都是比较简单易懂的语法。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# Customise this file, documentation can be found here:
+# https://github.com/fastlane/fastlane/tree/master/fastlane/docs
+# All available actions: https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Actions.md
+# can also be listed using the `fastlane actions` command
+
+# Change the syntax highlighting to Ruby
+# All lines starting with a # are ignored when running `fastlane`
+
+# If you want to automatically update fastlane if a new version is available:
+# update_fastlane
+
+# This is the minimum version number required.
+# Update this, if you use features of a newer version
+fastlane_version &amp;quot;1.95.0&amp;quot;
+
+default_platform :ios
+
+platform :ios do
+  # 执行所有命令前都会先执行这里
+  before_all do
+    # ENV[&amp;quot;SLACK_URL&amp;quot;] = &amp;quot;https://hooks.slack.com/services/...&amp;quot;
+    cocoapods
+  end
+
+  desc &amp;quot;Runs all the tests&amp;quot;
+  lane :test do
+    scan
+  end
+
+  desc &amp;quot;Submit a new Beta Build to Apple TestFlight&amp;quot;
+  desc &amp;quot;This will also make sure the profile is up to date&amp;quot;
+  lane :beta do
+    # match(type: &amp;quot;appstore&amp;quot;) # more information: https://codesigning.guide
+    gym(scheme: &amp;quot;AppDemo&amp;quot;) # Build your app - more options available
+    pilot
+
+    # sh &amp;quot;your_script.sh&amp;quot;
+    # You can also use other beta testing services here (run `fastlane actions`)
+  end
+
+  desc &amp;quot;Deploy a new version to the App Store&amp;quot;
+  lane :appstore do
+    # match(type: &amp;quot;appstore&amp;quot;)
+    # snapshot
+    gym(scheme: &amp;quot;AppDemo&amp;quot;) # Build your app - more options available
+    deliver(force: true)
+    # frameit
+  end
+
+  # 你可以定义属于自己的 lane（任务）
+  lane :hello do
+    puts &amp;quot;hello world&amp;quot;
+  end
+
+  # 仅当上述流程全部执行成功后才会走这里。其实应该定义为 after_success
+  after_all do |lane|
+    # slack(
+    #   message: &amp;quot;Successfully deployed new App Update.&amp;quot;
+    # )
+  end
+
+  # 如果流程发生异常会走这里并终止
+  error do |lane, exception|
+    # slack(
+    #   message: exception.message,
+    #   success: false
+    # )
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;通过上面的注解，我想大家对它已经有了初步的了解，那么定义完之后该如何执行呢？回到刚才的终端（关闭了？那再切换到刚才的 iOS 项目的根目录）：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ fastlane ios hello
+[11:56:24]: -------------------------------------------------
+[11:56:24]: --- Step: Verifying required fastlane version ---
+[11:56:24]: -------------------------------------------------
+[11:56:24]: fastlane version valid
+[11:56:24]: ------------------------------
+[11:56:24]: --- Step: default_platform ---
+[11:56:24]: ------------------------------
+[11:56:24]: Driving the lane &#39;ios hello&#39; 🚀
+[11:56:24]: -----------------------
+[11:56:24]: --- Step: cocoapods ---
+[11:56:24]: -----------------------
+[11:56:24]: $ pod install
+...
+[11:56:28]: hello world
+
++------+-------------------------------------+-------------+
+|                     fastlane summary                     |
++------+-------------------------------------+-------------+
+| Step | Action                              | Time (in s) |
++------+-------------------------------------+-------------+
+| 1    | Verifying required fastlane version | 0           |
+| 2    | default_platform                    | 0           |
+| 3    | cocoapods                           | 4           |
++------+-------------------------------------+-------------+
+
+[11:56:28]: fastlane.tools finished successfully 🎉
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;哒哒！一个简单的任务执行完毕！&lt;/p&gt;
+
+&lt;p&gt;如果大家注意观察上面的文件可能注意到一些小细节：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# 自动更新 fastlane 工具，需要 rubygems &amp;gt;= 2.1.0
+update_fastlane
+
+# 最低兼容版本，由于 fastlane 还是逐步健壮的阶段更新速度还是蛮快的，
+# 为了防止新特性在旧版本的不支持会强制设置一个最低兼容版本
+# 不过工具特别贴心的会在每次执行之后会检查是否有新版本，如果有会在最后末尾追加新版本提醒
+fastlane_version &amp;quot;1.95.0&amp;quot;
+
+# 默认使用平台是 ios，也就是说文件可以定义多个平台，
+# 通过上述执行的命令也能看出来是执行的 ios 平台下面的 hello 任务。
+# 这个的作用是可以在执行 fastlane 的时候省略 ios，不信你执行 fastlane hello 试试。
+default_platform :ios
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;android-的支持&#34;&gt;Android 的支持&lt;/h2&gt;
+
+&lt;p&gt;这个的支持我觉得关键是社区的呼声太大，加上贡献者的热情（我提交过许多 issues 和个别 PL，响应非常的迅速）很快就加上了其支持，
+但具体的特性不是特别多，主要是对于 &lt;code&gt;gradle&lt;/code&gt; 的封装，我先不做展开介绍，大家可以先看看&lt;a href=&#34;https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Android.md&#34;&gt;官方文档&lt;/a&gt;，如果后续有特别不明白的地方我在做具体的讲解。&lt;/p&gt;
+
+&lt;p&gt;今天就先写到这里后续我会继续整理更多的使用指南和实战范例共大家参考，最后给大家附赠官方给大家的一些&lt;a href=&#34;https://github.com/fastlane/examples&#34;&gt;范例&lt;/a&gt;。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Puma 替换 Unicorn 跑 Gitlab</title>
+      <link>/localhost/2014/01/moving-unicorn-to-puma-on-gitlab</link>
+      <pubDate>Sun, 26 Jan 2014 12:34:56 +0800</pubDate>
+      
+      <guid>/localhost/2014/01/moving-unicorn-to-puma-on-gitlab</guid>
+      <description>
+
+&lt;p&gt;前篇介绍到如何在《&lt;a href=&#34;http://icyleaf.com/2013/09/how-to-install-gitlab-on-centos/&#34;&gt;CentoOS 上面安装 Gitlab&lt;/a&gt;》一文，gitlab 默认使用的是 &lt;code&gt;unicorn&lt;/code&gt; 作为内部的 app server，再用 &lt;code&gt;nginx&lt;/code&gt; 做代理转发。之前是在公司内部搭建了一个平台，用着还算可以。有打算在 &lt;a href=&#34;https://www.linode.com/?r=66b0730eca572d3e45f083e29b1b3f8781b2a009&#34;&gt;Linode 购买的 VPS&lt;/a&gt; 上面，使用 &lt;code&gt;unicorn&lt;/code&gt; 跑服务的时候 &lt;code&gt;ruby&lt;/code&gt; 的进程居然占了 400-500M 左右，对于 Linode 刚刚免费升级之后才有 1G 内存的环境上，我还真有点放弃安装它的欲望。于是在想是否可以使用 &lt;code&gt;puma&lt;/code&gt; 替换掉原先的。&lt;/p&gt;
+
+&lt;h2 id=&#34;puma&#34;&gt;puma&lt;/h2&gt;
+
+&lt;p&gt;简单介绍下 &lt;a href=&#34;http://puma.io/&#34;&gt;&lt;code&gt;puma&lt;/code&gt;&lt;/a&gt;，它是一个由 ruby 编写的转为 &lt;a href=&#34;http://rack.github.io/&#34;&gt;&lt;code&gt;rack&lt;/code&gt;&lt;/a&gt; 设计的 app server，在性能和资源占有上却有极大的优势（下表数据来自官方）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;PUMA - 78 Mb
+RAINBOWS! (1X16) - 120 Mb
+UNICORN - 1076 Mb
+RAINBOWS! (16X32) - 1138 Mb
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;而且集成也非常的简单，若使用 rails 或者 sinatra（及 padrino）都已经支持，直接 &lt;code&gt;gem install puma&lt;/code&gt;，然后跑默认的 &lt;code&gt;rails/padrino server&lt;/code&gt; 会自动加载。&lt;/p&gt;
+
+&lt;h2 id=&#34;教程&#34;&gt;教程&lt;/h2&gt;
+
+&lt;p&gt;Okay，经过一番查找，官方在收集的 &lt;a href=&#34;https://gitlab.com/gitlab-org/gitlab-recipes/tree/master&#34;&gt;repices&lt;/a&gt; 里面有关于 &lt;code&gt;puma&lt;/code&gt; 的一些配置。他们也是收集的非官方资料，里面的资料只有借鉴意义，真正拿来用的时候各种问题，所以才有了本篇文字。&lt;/p&gt;
+
+&lt;p&gt;首先是关闭启动的 &lt;code&gt;gitlab&lt;/code&gt; 服务&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ (sudo) service gitlab stop
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;关闭之后，添加 puma gem，打开 &lt;code&gt;Gemfile&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;group :unicorn do
+  gem &#39;unicorn&#39;, &#39;~&amp;gt; 4.6.3&#39;
+	gem &#39;unicorn-worker-killer&#39;
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;找到上面的这段 group 替换成：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gem &#39;puma&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;再者修改 &lt;code&gt;config.ru&lt;/code&gt;，把下面这段代码做下替换，删除 unicorn 的代码，加载 puma：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;unless defined?(PhusionPassenger)
+  require &#39;unicorn&#39;
+  # Unicorn self-process killer
+  require &#39;unicorn/worker_killer&#39;
+  # Max memory size (RSS) per worker
+  use Unicorn::WorkerKiller::Oom, (200 * (1 &amp;lt;&amp;lt; 20)), (250 * (1 &amp;lt;&amp;lt; 20))
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;更新成&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;unless defined?(PhusionPassenger)
+  require &#39;puma&#39;
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;替换完毕更新 &lt;code&gt;gem&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# mysql 数据库
+bundle install --without development test postgres --path vendor/bundle --no-deployment
+# postgres 数据库
+bundle install --without development test mysql --path vendor/bundle --no-deployment 	
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;最后还有两处需要修改，添加 &lt;code&gt;config/puma.rb&lt;/code&gt;（替代 &lt;code&gt;config/unicorn.rb&lt;/code&gt;） 以及替换 &lt;code&gt;/etc/init.d/gitlab&lt;/code&gt; 服务脚本代码。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;config/puma.rb&lt;/code&gt;的代码在&lt;a href=&#34;https://gitlab.com/gitlab-org/gitlab-recipes/blob/master/app-server/puma/puma.rb&#34;&gt;这里可以下载&lt;/a&gt;，无需做任何的修改。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;/etc/init.d/gitlab&lt;/code&gt; 服务脚本：&lt;a href=&#34;https://gitlab.com/gitlab-org/gitlab-recipes/tree/master/init/sysvinit/centos&#34;&gt;CentOS&lt;/a&gt; | &lt;a href=&#34;https://gitlab.com/gitlab-org/gitlab-recipes/tree/master/init/sysvinit/debian&#34;&gt;Debian(Ubuntu)&lt;/a&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;服务脚本需要设置下执行权限： chmod +x /etc/init.d/gitlab&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;最后开启服务应该就完美了&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ (sudo) service gitlab start
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;我想用-apache-怎么办&#34;&gt;我想用 Apache 怎么办？&lt;/h2&gt;
+
+&lt;p&gt;嗯，我没尝试过，官方有提供收集的资料，&lt;a href=&#34;https://gitlab.com/gitlab-org/gitlab-recipes/tree/master/web-server&#34;&gt;自己查看下吧&lt;/a&gt;，记得要活学活用，直接套肯定会出问题的。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>初识 Ruby Gem Guard</title>
+      <link>/localhost/2014/01/intro-ruby-gem-guard</link>
+      <pubDate>Sat, 25 Jan 2014 12:34:56 +0800</pubDate>
+      
+      <guid>/localhost/2014/01/intro-ruby-gem-guard</guid>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;http://guardgem.org&#34;&gt;Guard&lt;/a&gt; 是一个很好的 Web 辅助开发工具，因为看了 tutsplus 网站的介绍视频：&lt;a href=&#34;http://net.tutsplus.com/tutorials/tools-and-tips/guard-is-your-best-friend/&#34;&gt;Guard is your best firend&lt;/a&gt;。这里把视频的东西提取出来自我消化：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ gem install guard
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;它实际的工作就像名字那样，实时守卫这某些文件并做出对应的操作，本质上相当于一个有这个思想的禁卫兵，通过指派命令（安装扩展 gem）而负责守卫和执行，比如视频中提到的：&lt;/p&gt;
+
+&lt;p&gt;上面是概念的理解，实际上的流程是，设定一系列的规则，让他监控文件内容（修改时间）的动态，一旦发生变化则根据不同的命令执行不同的操作。&lt;/p&gt;
+
+&lt;p&gt;具体基本操作不再多少，官方 &lt;a href=&#34;https://github.com/guard/guard&#34;&gt;README&lt;/a&gt; 写的非常详细，或者通过上面视频也能熟悉。&lt;/p&gt;
+
+&lt;h2 id=&#34;guard-sass&#34;&gt;guard-sass&lt;/h2&gt;
+
+&lt;p&gt;监听 &lt;a href=&#34;http://sass-lang.com/&#34;&gt;sass&lt;/a&gt; 文件并转换成 css 文件&lt;/p&gt;
+
+&lt;h2 id=&#34;guard-coffeescript&#34;&gt;guard-coffeescript&lt;/h2&gt;
+
+&lt;p&gt;监听 &lt;a href=&#34;http://coffeescript.org/&#34;&gt;coffeescript&lt;/a&gt; 文件并转换成 js 文件&lt;/p&gt;
+
+&lt;h2 id=&#34;guard-rspec&#34;&gt;guard-rspec&lt;/h2&gt;
+
+&lt;p&gt;自动跑 &lt;a href=&#34;https://github.com/rspec/rspec-core&#34;&gt;rspec&lt;/a&gt; test&lt;/p&gt;
+
+&lt;h2 id=&#34;guard-livereload&#34;&gt;guard-livereload&lt;/h2&gt;
+
+&lt;p&gt;配合浏览器的辅助工具，做到无需手动刷新页面即可看到 html/css/js 的修改变化，浏览器需要安装配套插件。&lt;/p&gt;
+
+&lt;h2 id=&#34;guard-zeus&#34;&gt;guard-zeus&lt;/h2&gt;
+
+&lt;p&gt;自动接管 &lt;a href=&#34;https://github.com/burke/zeus&#34;&gt;zeus&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;guard-puma&#34;&gt;guard-puma&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://puma.io&#34;&gt;puma&lt;/a&gt; 是目前比较新的一个 web 服务器，这个扩展可以监听配置变化从而自动重启服务器。&lt;/p&gt;
+
+&lt;p&gt;官方列举的所有扩展：&lt;a href=&#34;https://github.com/guard/guard/wiki/List-of-available-Guards&#34;&gt;List of available Guards&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>学习 Ansible &#43; Vagrant</title>
+      <link>/localhost/2013/12/learning-ansible-and-vagrant</link>
+      <pubDate>Sat, 21 Dec 2013 12:34:56 +0800</pubDate>
+      
+      <guid>/localhost/2013/12/learning-ansible-and-vagrant</guid>
+      <description>
+
+&lt;blockquote&gt;
+&lt;p&gt;Ansible is a radically simple IT orchestration engine that makes your applications and systems easier to deploy. Avoid writing scripts or custom code to deploy and update your applications— automate in a language that approaches plain English, using SSH, with no agents to install on remote systems.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;简单来说 &lt;a href=&#34;https://github.com/ansible/ansible&#34;&gt;Ansible&lt;/a&gt; 是一个极简化的应用和系统部署工具，类似 &lt;a href=&#34;https://github.com/puppetlabs/puppet&#34;&gt;Puppet&lt;/a&gt;、&lt;a href=&#34;https://github.com/opscode/chef&#34;&gt;Chef&lt;/a&gt;、&lt;a href=&#34;https://github.com/saltstack/salt&#34;&gt;SaltStack&lt;/a&gt;。由于默认使用 &lt;code&gt;ssh&lt;/code&gt; 管理服务器（集群），配置文件采用 yaml 而不是某一种特定语言制定。方便至极。&lt;/p&gt;
+
+&lt;p&gt;很多人说 salt 也很用的，为什么不考虑呢，我个人觉得，ansible 的配置文件编写起来比较方便，不需要使用 &lt;a href=&#34;http://jinja.pocoo.org/&#34;&gt;jinja2&lt;/a&gt; 模板引擎适合非 &lt;code&gt;python&lt;/code&gt; 用户管理。而且我也较同意 &amp;ldquo;&lt;a href=&#34;http://missingm.co/2013/06/ansible-and-salt-a-detailed-comparison/&#34;&gt;Ansible and Salt: A detailed comparison&lt;/a&gt;&amp;rdquo; 文章的评测。&lt;/p&gt;
+
+&lt;p&gt;由于个人之前没用过任何其他工具，至于你想知道上面哪些之间有什么区别的话，参见此文：&lt;a href=&#34;http://www.infoworld.com/d/data-center/review-puppet-vs-chef-vs-ansible-vs-salt-231308?page=0,0&#34;&gt;Review: Puppet vs. Chef vs. Ansible vs. Salt&lt;/a&gt; 或 &amp;ldquo;&lt;a href=&#34;http://ttyn.me/2013/02/19/ansible_intro.html&#34;&gt;开始使用配置和发布管理&lt;/a&gt;&amp;rdquo; 一文中也有提到其特性。&lt;/p&gt;
+
+&lt;h1 id=&#34;安装&#34;&gt;安装&lt;/h1&gt;
+
+&lt;p&gt;大家移步 LinuxToy 的 &lt;a href=&#34;https://linuxtoy.org/archives/hands-on-with-ansible.html&#34;&gt;Ansible 快速上手&lt;/a&gt; 一文，以及 &lt;a href=&#34;http://gogojimmy.net/2013/05/26/vagrant-tutorial/&#34;&gt;使用Vagrant練習環境佈署&lt;/a&gt; 作为学习铺垫，我就不再多写。这里我想重点介绍下 Ansible + Vagrant 配合使用技巧。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;其实上面 &amp;ldquo;使用Vagrant練習環境佈署&amp;rdquo; 提到的配置文件是 Vagrantfile config version = 1 时候的，当前 vagrant 版本是 1.4.1， Vagrantfile config version = 2，因此配置的部分已经有所变动。大家需要做下更新。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;如果你使用的是 Vagrant 1.4.0+，工具已经完全集成了上述的 DevOps 工具（甚至 Docker，另外一神器，后续看看能否给个介绍）。默认配置文件只包含了 Puppet 和 Chef，大家需要看&lt;a href=&#34;http://docs.vagrantup.com/v2/provisioning/index.html&#34;&gt;官方文档&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;如果你是 Mac OS 用户，可以通过 &lt;code&gt;brew&lt;/code&gt; 和 &lt;code&gt;brew-cask&lt;/code&gt; 命令安装：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ brew update
+$ brew install ansible
+$ brew cask install vagrant
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;创建-vagrant-实例&#34;&gt;创建 Vagrant 实例&lt;/h1&gt;
+
+&lt;p&gt;首先创建学习目录(&lt;code&gt;~/src/learn_ansible&lt;/code&gt;)和一个实例，采用 CentOS 6.5 x64 系统：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ vagrant init centos65 https://github.com/2creatives/vagrant-centos/releases/download/v6.5.1/centos65-x86_64-20131205.box
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;下载完毕之后，编辑 &lt;code&gt;Vagrantfile&lt;/code&gt; 添加如下内容：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;config.vm.network :private_network, ip: &amp;quot;33.33.33.10&amp;quot;
+config.vm.provision :ansible do |ansible|
+
+ansible.inventory_path = &amp;quot;ansbile/hosts&amp;quot;
+	ansible.playbook = &amp;quot;ansbile/playbook.yml&amp;quot;
+
+	# 默认使用 sudo 权限
+	ansible.sudo = true
+	# 开启调试信息模式
+	ansible.verbose = &#39;vvv&#39;
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;并在学习目录创建 &lt;code&gt;ansible&lt;/code&gt; 目录以及下面两个文件，结构如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ tree
+.
+├── Vagrantfile
+└── ansible
+    ├── hosts
+    └── playbook.yml
+1 directory, 3 files
+
+`hosts` 文件内容，ip 地址和上面 `Vagrantfile` 设置的一致：
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;[webserver]
+33.33.33.10&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+`playbook.yml` 文件内容：
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&#34;ansbile-的配置文件-这里指定只作用于-webserver-服务器&#34;&gt;ansbile 的配置文件，这里指定只作用于 webserver 服务器&lt;/h1&gt;
+
+&lt;h1 id=&#34;使用-vagrant-的-sudu-权限执行任务&#34;&gt;使用 vagrant 的 sudu 权限执行任务&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;hosts: webserver
+user: vagrant
+sudo: yes
+tasks:&lt;/p&gt;
+
+&lt;h1 id=&#34;任务只有一个-就是安装-nginx&#34;&gt;任务只有一个，就是安装 nginx&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;name: Install Nginx
+yum: name=nginx state=present
+```&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;连接-部署&#34;&gt;连接 &amp;amp; 部署&lt;/h1&gt;
+
+&lt;p&gt;使用 Vagrant 的好处在于，它集成了这些工具，并通过 &lt;code&gt;vagrant provision&lt;/code&gt; 这个命令就能连接服务器并部署。这里我想让大家学习到如何通过传统 ssh 链接 vagrant 虚拟机的方法：&lt;/p&gt;
+
+&lt;p&gt;从上面的配置文件我们得知，服务器的 ip 是 &lt;code&gt;33.33.33.10&lt;/code&gt; 而且默认登录到虚拟机上的用户是 vagrant（密码也是用户名），链接端口是 22。我们先拷贝 ssh public key 到服务器上：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ssh-copy-id vagrant@33.33.33.10
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;完成之后，我们就可以通过下面命令测试是否配置成功：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ansible -u vagrant -i ansible/hosts all -m ping
+
+webserver | success &amp;gt;&amp;gt; {
+    &amp;quot;changed&amp;quot;: false,
+    &amp;quot;ping&amp;quot;: &amp;quot;pong&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;返回 &lt;code&gt;ping: pong&lt;/code&gt; 即为连接成功并可以进行部署。若你之前执行了 &lt;code&gt;vagrant provision&lt;/code&gt; 就会自动执行 &lt;code&gt;playbook.yml&lt;/code&gt; 的内容。&lt;/p&gt;
+
+&lt;p&gt;今天初探就到此结束，希望通过本篇文字大家对它有个大概的了解。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>ActiveRecord 使用秘笈</title>
+      <link>/localhost/2013/12/activerecord-tips</link>
+      <pubDate>Tue, 03 Dec 2013 12:34:56 +0800</pubDate>
+      
+      <guid>/localhost/2013/12/activerecord-tips</guid>
+      <description>
+
+&lt;p&gt;ActiveRecord 是 Rails 内置的 ORM 框架，大多数人学习 Ruby 都是从 rails 开始，接触的也是这个 ORM，因此就有了这个使用秘笈。&lt;/p&gt;
+
+&lt;h1 id=&#34;支持-rake-db-xxx-命令&#34;&gt;支持 &lt;code&gt;rake db:xxx&lt;/code&gt; 命令&lt;/h1&gt;
+
+&lt;p&gt;在非 rails 项目怎么让 rake 支持 db:xxx 命令呢？把如下代码放到 &lt;code&gt;Rakefile&lt;/code&gt; 中:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;namespace :db do
+  require &#39;activerecord&#39;
+  require &#39;yaml&#39;
+
+  desc &amp;quot;加载项目表数据到数据库&amp;quot;
+  task :init =&amp;gt; :dbenv do
+    file = &amp;quot;db/schema.rb&amp;quot;
+    load(file) # 参考 rails 文件结构
+  end
+
+  desc &amp;quot;创建数据库初始化数据&amp;quot;
+  task :seed =&amp;gt; :dbenv do
+    seed_file = File.join(File.dirname(__FILE__), &#39;db&#39;, &#39;seeds.rb&#39;)
+    load(seed_file) if File.exist?(seed_file)
+  end
+
+  desc &amp;quot;合并 db/migrate 目录下的数据库文件&amp;quot;
+  task :migrate =&amp;gt; :dbenv do
+    ActiveRecord::Migration.verbose = ENV[&amp;quot;VERBOSE&amp;quot;] ? ENV[&amp;quot;VERBOSE&amp;quot;] == &amp;quot;true&amp;quot; : true
+    ActiveRecord::Migrator.migrate(&amp;quot;db/migrate/&amp;quot;, ENV[&amp;quot;VERSION&amp;quot;] ? ENV[&amp;quot;VERSION&amp;quot;].to_i : nil)
+    Rake::Task[&amp;quot;db:schema:dump&amp;quot;].invoke if ActiveRecord::Base.schema_format == :ruby
+  end
+
+  desc &#39;设定 STEP=n 回滚之前版本的数据库结构&#39;
+  task :rollback =&amp;gt; :dbenv do
+    step = ENV[&#39;STEP&#39;] ? ENV[&#39;STEP&#39;].to_i : 1
+    ActiveRecord::Migrator.rollback(&#39;db/migrate/&#39;, step)
+    Rake::Task[&amp;quot;db:schema:dump&amp;quot;].invoke if ActiveRecord::Base.schema_format == :ruby
+  end
+
+  task :dbenv do
+    dbname = ENV[&#39;db&#39;] || &#39;development&#39;
+  	$dbconfig = YAML::load(&#39;db/database.yml&#39;)
+    ActiveRecord::Base.establish_connection($dbconfig[dbname])
+  end
+
+  namespace :schema do
+    desc &amp;quot;把数据库结构写入 db/schema.rb 文件&amp;quot;
+    task :dump =&amp;gt; :dbenv do
+      require &#39;active_record/schema_dumper&#39;
+      File.open(ENV[&#39;SCHEMA&#39;] || &amp;quot;db/schema.rb&amp;quot;, &amp;quot;w&amp;quot;) do |file|
+        ActiveRecord::SchemaDumper.dump(ActiveRecord::Base.connection, file)
+      end
+    end
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;初始化数据库结构&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ rake db:init
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;支持-sql-server&#34;&gt;支持 SQL Server&lt;/h1&gt;
+
+&lt;p&gt;只针对 *nix 系统：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;安装 freetds&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;pre&gt;&lt;code&gt;* Mac OS: `brew install freetds`
+* CentOS: `yum install -y freetds`
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;gem install tiny_tds&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;gem install activerecord-sqlserver-adapter&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;引用如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;require &#39;tiny_tds&#39;
+require &#39;activerecord-sqlserver-adapter&#39;
+require &#39;active_record&#39;
+
+ActiveRecord::Base.establish_connection({
+  :adapter =&amp;gt; &#39;sqlserver&#39;
+ :host =&amp;gt; &#39;10.10.10.10&#39;,
+ :username =&amp;gt; &#39;sa&#39;,
+  :password =&amp;gt; &#39;p@ssword&#39;,
+  :database =&amp;gt; &#39;development&#39;,
+  :timeout =&amp;gt; 10,
+  :port =&amp;gt; 1433,
+})
+
+class Users &amp;lt; ActiveRecord::Base
+	self.table_name = &#39;User&#39;
+	default_scope { lock(&#39;WITH (NOLOCK)&#39;) }
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;多数据库支持&#34;&gt;多数据库支持&lt;/h1&gt;
+
+&lt;p&gt;创建 &lt;code&gt;config/database.yml&lt;/code&gt; 文件:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;development:
+  adapter: mysql2
+  host: localhost
+  username: root
+  password:
+  database: development
+  timeout: 10
+  port: 3306
+test:
+  adapter: mysql2
+  host: 10.10.10.10
+  username: root
+  password: p@ssword
+  database: test
+  timeout: 10
+  port: 1433
+production:
+  adapter: mysql2
+  host: 33.33.33.33
+  username: root
+  password: p@ssword
+  database: production
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;创建 &lt;code&gt;lib/model.rb&lt;/code&gt; 文件:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$dbconfig = YAML::load(File::open(&#39;config/database.yml&#39;))
+
+class User &amp;lt; ActiveRecord::Base
+  establish_connection $dbconfig[&#39;development&#39;]
+end
+
+class Post &amp;lt; ActiveRecord::Base
+  establish_connection $dbconfig[&#39;test&#39;]
+end
+
+class Tag &amp;lt; ActiveRecord::Base
+  establish_connection $dbconfig[&#39;production&#39;]
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;动态创建表名&#34;&gt;动态创建表名&lt;/h1&gt;
+
+&lt;p&gt;假若有个需求需要按照每月分表（当然也可以安装业务分表什么的），我们可以通过下面方式调用：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# 插入 post，如果表不存在则创建后插入
+post = Post.date(&#39;201312&#39;).get_or_create_table.create(
+  title:&#39;test&#39;,
+  content:&#39;body&#39;
+)
+
+# Model 实现代码
+class Post &amp;lt; ActiveRecord::Base
+  @date = Time.now.strftime(&amp;quot;%Y%02m&amp;quot;)
+
+  def self.date(date)
+  	@date = date
+  end
+
+  def self.get_or_create_table(params={})
+    self.date(params[:date]) if params[:date]
+    self.create_table(params) if !self.exists?
+  end
+
+  def self.create_table(params={})
+    self.date(params[:date]) if params[:date]
+    table_name = self.table_name
+    ActiveRecord::Schema.define do
+      create_table table_name do |table|
+        table.column :title, :string
+        table.column :content, :text
+        table.column :created_at, :datetime
+        table.column :updated_at, :datetime
+      end
+    end
+
+    return self
+  end
+
+  def self.table_exists?
+    # 如果你设置了多数据库请取消下行注解并更改配置名（参考上个技巧）
+    # ActiveRecord::Base.establish_connection($dbconfig[&#39;development&#39;])
+
+    ActiveRecord::Base.connection.tables.include?(self.table_name)
+  end
+
+  def table_name
+    &amp;quot;#{@date_users}&amp;quot;
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>利用 argparse 写的脚本命令：测试 URL 响应时间</title>
+      <link>/localhost/2012/08/url-request-time-test-using-python-with-argparse</link>
+      <pubDate>Thu, 02 Aug 2012 12:34:56 +0800</pubDate>
+      
+      <guid>/localhost/2012/08/url-request-time-test-using-python-with-argparse</guid>
+      <description>&lt;p&gt;前几天看完《&lt;a href=&#34;http://woodpecker.org.cn/abyteofpython_cn/chinese/&#34;&gt;Python简明教程&lt;/a&gt;》，预想练手，想起同事的一个 ruby 代码，尝试改写成 python，顺便看看两个语言的简练程度。下面是原始的 ruby 代码：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/env ruby
+
+require &#39;rubygems&#39;
+require &#39;net/http&#39;
+
+urls = [&amp;quot;http://icyleaf.com&amp;quot;]
+50.times do
+  urls.each do |url|
+    start_at = Time.now
+    Net::HTTP.get URI.parse(url)
+    end_at = Time.now
+    diff = end_at - start_at
+    if diff &amp;lt; 0.3 then
+      color_code = 32
+    elsif diff &amp;gt; 0.8 then
+      color_code = 31
+    else
+      color_code = 33
+    end
+    puts &amp;quot;#{url}\n time: \033[#{color_code}m#{diff}\033[0m seconds&amp;quot;
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;改写 python 的同时，考虑脚本的灵活性准备增加两个参数，第一个是请求测试次数，第二个是请求测试的 URL，而 python 默认提供了 &lt;a href=&#34;http://docs.python.org/dev/library/argparse.html&#34;&gt;argparse&lt;/a&gt; 库，可以很方便的生成 &amp;ndash;help 的帮助和解析传递的参数：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/env python
+
+import urllib2
+import time
+import sys
+import argparse
+
+def benchmark(url, count):
+	for i in range(count):
+		s = time.time()
+		r = urllib2.urlopen(urllib2.Request(url))
+		e = time.time()
+		diff = e - s
+
+		if diff &amp;lt; 0.3:
+			color_code = 32
+		elif diff &amp;gt; 0.8:
+			color_code = 31
+		else:
+			color_code = 33
+
+		print &#39;# %d&#39; % (i + 1)
+		print &#39;\tStauts: %s&#39; % r.getcode()
+		print &#39;\tTime: \033[%dm%f\033[0m second(s)&#39; % (color_code, diff)
+
+
+def main(argv):
+	parser = argparse.ArgumentParser(description=&#39;url request time test&#39;)
+
+	parser.add_argument(&#39;URL&#39;, help=&#39;request url&#39;)
+	parser.add_argument(&#39;-t&#39;, &#39;--time&#39;, action=&#39;store&#39;, dest=&#39;count&#39;, type=int, default=10, help=&#39;request times&#39;)
+	args = parser.parse_args(argv)
+
+	benchmark(args.URL, args.count)
+
+
+if __name__ == &#39;__main__&#39;:
+	main(sys.argv[1:])
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;当然，我主要是为了练手 python 才去写的，ruby 本身也有 &lt;a href=&#34;http://ruby-doc.org/stdlib-1.9.3/libdoc/optparse/rdoc/OptionParser.html&#34;&gt;optparse&lt;/a&gt; 库用于解析参数，但是需要自己手写生成 &amp;ndash;help 的输出，而且需要对每个参数做相应的 callback。&lt;/p&gt;
+
+&lt;p&gt;效果如下：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://ww3.sinaimg.cn/large/65d1d65bgw1dvi5nsc4sdj.jpg&#34; alt=&#34;screenshot&#34; /&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

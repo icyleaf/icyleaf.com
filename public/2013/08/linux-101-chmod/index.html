@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  	<meta property="og:title" content=" Linux 101 系列：chmod 文件权限工具 &middot;  icyleaf" />
+  	<meta property="og:site_name" content="icyleaf" />
+  	<meta property="og:url" content="/localhost/2013/08/linux-101-chmod" />
+
+    
+  	<meta property="og:type" content="article" />
+
+    <meta property="og:article:published_time" content="2013-08-28T12:34:56&#43;08:00" />
+
+    
+    <meta property="og:article:tag" content="Linux" />
+    
+    
+
+  <title>
+     Linux 101 系列：chmod 文件权限工具 &middot;  icyleaf
+  </title>
+
+    <meta name="description" content="热爱户外的码农、下厨初心者" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="localhost/localhostimages/favicon.ico">
+	  <link rel="apple-touch-icon" href="localhost/localhostimages/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="localhost/localhostcss/screen.css" />
+    <link rel="stylesheet" type="text/css" href="localhost/localhostcss/nav.css" />
+
+
+
+    
+        <link href="feed.xml" rel="alternate" type="application/rss+xml" title="icyleaf" />
+    
+    <meta name="generator" content="Hugo 0.17-DEV" />
+
+    <link rel="canonical" href="localhost/localhost/2013/08/linux-101-chmod" />
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-2570916-5', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+</head>
+<body class="nav-closed">
+
+  <div class="nav">
+  <h3 class="nav-title">Menu</h3>
+  <a href="#" class="nav-close">
+    <span class="hidden">Close</span>
+  </a>
+  <ul>
+    
+
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="localhost/">Home</a>
+      </li>
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="localhost/categories/technology">Technology</a>
+      </li>
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="localhost/tags">Tags</a>
+      </li>
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="localhost/about">About</a>
+      </li>
+    
+  </ul>
+
+  
+    <a class="subscribe-button icon-feed" href="localhost/localhostfeed.xml">Subscribe</a>
+  
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+  <header class="main-header post-head no-cover">
+
+
+  <nav class="main-nav overlay clearfix">
+  
+    <a class="blog-logo" href="localhost/localhost"><img src="localhost/localhostimages/icyleaf-icon.png" alt="Blog Logo" /></a>
+  
+
+  
+    <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+</nav>
+  
+</header>
+
+<main class="content" role="main">
+  <article class="post post">
+    <header class="post-header">
+      <h1 class="post-title">Linux 101 系列：chmod 文件权限工具</h1>
+      <small></small>
+
+      <section class="post-meta">
+      
+      
+        <time class="post-date" datetime="2013-08-28T12:34:56&#43;08:00">
+          Aug 28, 2013
+        </time>
+      
+       
+        <span class="post-tag small"><a href="localhost/localhosttags/linux/">#Linux</a></span>
+       
+      </section>
+    </header>
+
+    <section class="post-content">
+      
+
+<blockquote>
+<p>chmod 是用来管理文件访问权限的命令，大家是使用 *nix 系统的时候经常跟它打交道。</p>
+</blockquote>
+
+<h2 id="基本常识">基本常识</h2>
+
+<h3 id="用户和用户组">用户和用户组</h3>
+
+<p>参数|英文|说明
+&ndash;|&ndash;|&ndash;
+u|Use|当前用户
+g|Group|所属用户组
+o|Others|其他人（其他用户及用户组，包含访客用户）</p>
+
+<h3 id="数字与参数">数字与参数</h3>
+
+<p>数字|符号|说明|对文件|对目录
+&ndash;|&ndash;|&ndash;|&ndash;|&ndash;
+1|x|可执行权限|可被系统执行的权限| 无
+2|w|写权限|可以编辑或修改文件内容，但不含删除该文件|增删改该目录及目录下全部文件
+4|r|读权限|可读取文件的内容|可读取目录结构</p>
+
+<blockquote>
+<p>备注：<code>ls -l</code>对于文件权限是由 rwx 倒序组成。比如 <code>-rwxr--r--</code>，说明当前用户拥有全部权限，所属用户组和其他人只有读权限。</p>
+</blockquote>
+
+<h2 id="实例">实例</h2>
+
+<h3 id="数字篇">数字篇</h3>
+
+<h4 id="1-当前用户拥有所有权限-其他只有读权限">1. 当前用户拥有所有权限，其他只有读权限</h4>
+
+<p>u|g|o
+-|-|-
+6|4|4
+rw|r|r</p>
+
+<h4 id="2-所有用户及用户组添加全部权限-谨慎使用">2. 所有用户及用户组添加全部权限 （<strong>谨慎使用</strong>）</h4>
+
+<p>u|g|o
+-|-|-
+7|7|7
+rwx|rwx|rwx</p>
+
+<h3 id="符号篇">符号篇</h3>
+
+<pre><code>通用公式：[用户(组)] + [操作] + [符号]
+</code></pre>
+
+<p>其中<code>操作</code>是由如下表构成：</p>
+
+<p>操作|说明
+&ndash;|&ndash;
+-|移除权限
++|增加权限
+=|设定权限</p>
+
+<h4 id="1-所有用户及用户组添加执行权限">1. 所有用户及用户组添加执行权限</h4>
+
+<pre><code>$ chmod +x [file]
+</code></pre>
+
+<h5 id="2-不允许其他人有写权限">2. 不允许其他人有写权限</h5>
+
+<pre><code>$ chmod o-w [file]
+</code></pre>
+
+<h4 id="3-增加用户组的读写权限">3. 增加用户组的读写权限</h4>
+
+<pre><code>$ chmod g+rw [file]
+</code></pre>
+
+<h4 id="4-除了当前用户都移除读写权限">4. 除了当前用户都移除读写权限</h4>
+
+<pre><code>$ chmod go-rw [file]
+</code></pre>
+
+<h4 id="5-设置当前用户所有权限-所属用户组和其他人保留读权限">5. 设置当前用户所有权限，所属用户组和其他人保留读权限</h4>
+
+<p>```
+$ chmod u=rwx,g=r,o=r [file]</p>
+
+    </section>
+
+  <footer class="post-footer">
+    
+    <figure class="author-image">
+        <a class="img" href="localhost/localhost" style="background-image: url(/localhostimages/icyleaf-icon.png)"><span class="hidden">icyleaf's Picture</span></a>
+    </figure>
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="localhost/localhost">icyleaf</a></h4>
+  
+  <p>热爱户外的码农、下厨初心者</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">Beijing, China</span>
+    <span class="author-link icon-link"><a href="http://icyleaf.com">http://icyleaf.com</a></span>
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" href="https://twitter.com/share?text=Linux%20101%20%e7%b3%bb%e5%88%97%ef%bc%9achmod%20%e6%96%87%e4%bb%b6%e6%9d%83%e9%99%90%e5%b7%a5%e5%85%b7&nbsp;-&nbsp;icyleaf&amp;url=%2flocalhost%2f2013%2f08%2flinux-101-chmod"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=%2flocalhost%2f2013%2f08%2flinux-101-chmod"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-weibo"href="http://service.weibo.com/share/share.php?url=%2flocalhost%2f2013%2f08%2flinux-101-chmod&amp;title=Linux%20101%20%e7%b3%bb%e5%88%97%ef%bc%9achmod%20%e6%96%87%e4%bb%b6%e6%9d%83%e9%99%90%e5%b7%a5%e5%85%b7&nbsp;-&nbsp;icyleaf"
+      onclick="window.open(this.href, 'weibo-share','width=580,height=296');return false;">
+      <span class="hidden">新浪微博</span>
+  </a>
+  <a class="icon-douban" href="javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:'',r='https://www.douban.com/recommend/?url='+e(d.location.href)+'&title='+e(d.title)+'&sel='+e(s)+'&v=1',w=450,h=330,x=function(){if(!window.open(r,'douban','toolbar=0,resizable=1,scrollbars=yes,status=1,width='+w+',height='+h+',left='+(screen.width-w)/2+',top='+(screen.height-h)/2))location.href=r+'&r=1'};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()">
+      <span class="hidden">豆瓣</span>
+  </a>
+</section>
+
+
+
+    
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  var disqus_shortname = 'icyleaf';
+  var disqus_url = '\/localhost\/2013\/08\/linux-101-chmod';
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+  </footer>
+</article>
+
+</main>
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">icyleaf</a> All rights reserved - 2007</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+  </div>
+  <script type="text/javascript" src="localhost/localhostjs/jquery.js"></script>
+  <script type="text/javascript" src="localhost/localhostjs/jquery.fitvids.js"></script>
+  <script type="text/javascript" src="localhost/localhostjs/index.js"></script>
+  
+</body>
+</html>
+

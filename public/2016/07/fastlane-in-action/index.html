@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  	<meta property="og:title" content=" 深入浅出 Fastlane 一看你就懂 &middot;  icyleaf" />
+  	<meta property="og:site_name" content="icyleaf" />
+  	<meta property="og:url" content="/localhost/2016/07/fastlane-in-action" />
+
+    
+  	<meta property="og:type" content="article" />
+
+    <meta property="og:article:published_time" content="2016-07-19T20:12:07&#43;08:00" />
+
+    
+    <meta property="og:article:tag" content="iOS" />
+    
+    <meta property="og:article:tag" content="Android" />
+    
+    <meta property="og:article:tag" content="CI" />
+    
+    <meta property="og:article:tag" content="CD" />
+    
+    <meta property="og:article:tag" content="Ruby" />
+    
+    <meta property="og:article:tag" content="Fastlane" />
+    
+    
+
+  <title>
+     深入浅出 Fastlane 一看你就懂 &middot;  icyleaf
+  </title>
+
+    <meta name="description" content="热爱户外的码农、下厨初心者" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="localhost/localhostimages/favicon.ico">
+	  <link rel="apple-touch-icon" href="localhost/localhostimages/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="localhost/localhostcss/screen.css" />
+    <link rel="stylesheet" type="text/css" href="localhost/localhostcss/nav.css" />
+
+
+
+    
+        <link href="feed.xml" rel="alternate" type="application/rss+xml" title="icyleaf" />
+    
+    <meta name="generator" content="Hugo 0.17-DEV" />
+
+    <link rel="canonical" href="localhost/localhost/2016/07/fastlane-in-action" />
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-2570916-5', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+</head>
+<body class="nav-closed">
+
+  <div class="nav">
+  <h3 class="nav-title">Menu</h3>
+  <a href="#" class="nav-close">
+    <span class="hidden">Close</span>
+  </a>
+  <ul>
+    
+
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="localhost/">Home</a>
+      </li>
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="localhost/categories/technology">Technology</a>
+      </li>
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="localhost/tags">Tags</a>
+      </li>
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="localhost/about">About</a>
+      </li>
+    
+  </ul>
+
+  
+    <a class="subscribe-button icon-feed" href="localhost/localhostfeed.xml">Subscribe</a>
+  
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+  <header class="main-header post-head no-cover">
+
+
+  <nav class="main-nav overlay clearfix">
+  
+    <a class="blog-logo" href="localhost/localhost"><img src="localhost/localhostimages/icyleaf-icon.png" alt="Blog Logo" /></a>
+  
+
+  
+    <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+</nav>
+  
+</header>
+
+<main class="content" role="main">
+  <article class="post post">
+    <header class="post-header">
+      <h1 class="post-title">深入浅出 Fastlane 一看你就懂</h1>
+      <small></small>
+
+      <section class="post-meta">
+      
+      
+        <time class="post-date" datetime="2016-07-19T20:12:07&#43;08:00">
+          Jul 19, 2016
+        </time>
+      
+       
+        <span class="post-tag small"><a href="localhost/localhosttags/ios/">#iOS</a></span>
+       
+        <span class="post-tag small"><a href="localhost/localhosttags/android/">#Android</a></span>
+       
+        <span class="post-tag small"><a href="localhost/localhosttags/ci/">#CI</a></span>
+       
+        <span class="post-tag small"><a href="localhost/localhosttags/cd/">#CD</a></span>
+       
+        <span class="post-tag small"><a href="localhost/localhosttags/ruby/">#Ruby</a></span>
+       
+        <span class="post-tag small"><a href="localhost/localhosttags/fastlane/">#Fastlane</a></span>
+       
+      </section>
+    </header>
+
+    <section class="post-content">
+      
+
+<p>这是《 <a href="https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/">Fastlane - iOS 和 Android 的自动化构建工具</a>》系列的第二篇。</p>
+
+<p>本篇我想着重介绍 <code>fastlane</code> 本身的基本使用，这里使用 fastlane v1.98.0 作为演示版本。</p>
+
+<h3 id="系列索引">系列索引</h3>
+
+<ol>
+<li><a href="https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/">Fastlane - iOS 和 Android 的自动化构建工具</a></li>
+<li><a href="https://icyleaf.com/2016/07/fastlane-in-action/">深入浅出 Fastlane 一看你就懂</a></li>
+</ol>
+
+<h2 id="命令行工具">命令行工具</h2>
+
+<p>安装之后默认会安装一个命令行工具 <code>fastlane</code>，利用它可以初始化、执行任务、查看任务定义、查看可用的动作和动作的详细定义，甚至可以用它来创建自定义的动作、插件以及一些辅助功能。想了解的话可以先看看它的帮助：</p>
+
+<pre><code class="language-bash">$ fastlane --help
+
+  fastlane
+
+  CLI for 'fastlane' - The easiest way to automate building and releasing your iOS and Android apps
+
+        Run using `fastlane [platform] [lane_name]`
+        To pass values to the lanes use `fastlane [platform] [lane_name] key:value key2:value2`
+
+  Commands:
+    action                  Shows more information for a specific command
+    actions                 Lists all available fastlane actions
+    add_plugin              Add a new plugin to your fastlane setup
+    disable_crash_reporting Deprecated: fastlane doesn't use a crash reporter any more
+    docs                    Generate a markdown based documentation based on the Fastfile
+    enable_auto_complete    Enable tab auto completion
+    enable_crash_reporting  Deprecated: fastlane doesn't use a crash reporter any more
+    help                    Display global or [command] help documentation
+    init                    Helps you with your initial fastlane setup
+    install_plugins         Install all plugins for this project
+    lanes                   Lists all available lanes and shows their description
+    list                    Lists all available lanes without description
+    new_action              Create a new custom action for fastlane.
+    new_plugin              Create a new plugin that can be used with fastlane
+    run                     Run a fastlane one-off action without a full lane
+    search_plugins          Search for plugins, search query is optional
+    trigger                 Run a sepcific lane. Pass the lane name and optionally the platform first.
+    update_plugins          Update all plugin dependencies
+
+  Global Options:
+    --verbose
+    -h, --help           Display help documentation
+    -v, --version        Display version information
+
+  Author:
+    Felix Krause &lt;fastlane@krausefx.com&gt;
+
+  Website:
+    https://fastlane.tools
+
+  GitHub:
+    https://github.com/fastlane/fastlane
+</code></pre>
+
+<p>我会随着下面每个概念的解释和展开来配合上面的命令一起讲解。</p>
+
+<h2 id="生命周期">生命周期</h2>
+
+<table>
+<thead>
+<tr>
+<th>执行顺序</th>
+<th>方法名</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>1</td>
+<td>before_all</td>
+<td>在执行 lane 之前只执行一次</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>before_each</td>
+<td>每次执行 lane 之前都会执行一次</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>lane</td>
+<td>自定义的任务</td>
+</tr>
+
+<tr>
+<td>4</td>
+<td>after_each</td>
+<td>每次执行 lane 之后都会执行一次</td>
+</tr>
+
+<tr>
+<td>5</td>
+<td>after_all</td>
+<td>在执行 lane 成功结束之后执行一次</td>
+</tr>
+
+<tr>
+<td>6</td>
+<td>error</td>
+<td>在执行上述情况任意环境报错都会中止并执行一次</td>
+</tr>
+</tbody>
+</table>
+
+<p>以上的部分大家在上一篇已经见识过了，有些还没接触到，不用着急都会一一说明。</p>
+
+<h2 id="任务-lane">任务（lane）</h2>
+
+<p>正常情况下你可能只会是用到一种任务方法 <code>lane</code> 但其实它会包含很多中高级用法。在文章的末尾会详细描述。</p>
+
+<h3 id="任务定义">任务定义</h3>
+
+<p>定义任务的方法类似于 rake 的 task，但使用上缺比前者要好用很多，见下表：</p>
+
+<table>
+<thead>
+<tr>
+<th>定义</th>
+<th>是否必须</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>desc</td>
+<td><code>false</code></td>
+<td>方法描述</td>
+<td>可多次使用打到换行的目的</td>
+</tr>
+
+<tr>
+<td>name</td>
+<td><code>true</code></td>
+<td>方法名</td>
+<td>符号化的方法名</td>
+</tr>
+
+<tr>
+<td>options</td>
+<td><code>false</code></td>
+<td>方法参数</td>
+<td>返回 Hash 类型</td>
+</tr>
+
+<tr>
+<td>task</td>
+<td><code>true</code></td>
+<td>方法主体</td>
+<td>参考 ruby 的方法代码且支持 ruby 代码</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-ruby">desc '定义一个 build 方法'
+desc '参数 adhoc 判断是否为内测版本, 默认为 false'
+desc 'fastlane build'
+desc 'fastlane build adhoc:true'
+lane :build do |options|
+  # task to do something
+  adhoc = options[:adhoc] || false
+  puts &quot;adhoc: #{adhoc}&quot;
+
+  gym(type: adhoc ? 'adhoc' : 'appstore')
+end
+</code></pre>
+
+<h3 id="任务执行">任务执行</h3>
+
+<p>一般情况下它需要配合定义好的 lane 才能使用，刚刚我们定义的一个 build 方法，我们这里就试着执行一下吧。</p>
+
+<pre><code class="language-bash"># 默认执行
+$ fastlane build
+# 传递参数
+$ fastlane build adhoc:true
+</code></pre>
+
+<h3 id="任务互调">任务互调</h3>
+
+<p><code>lane</code> 其实可以理解为 <code>def</code> 的别名，因此多个 lane 的话实际上是可以相互调用的，这个其实特别实用，这样其实我就可以把 cocoapods 的执行放到单独的 lane 里面而不是 <code>before_all</code>，这样执行非构建的任务就不会执行不相关的任务或动作，因此 fastlane 而产生了一个私有任务用内部使用 <code>private_lane</code></p>
+
+<pre><code class="language-ruby">
+default_platform :ios
+
+platform :ios do
+  desc '构建前的准备工作'
+  desc '这是一个私有任务，仅供 Fastfile 内部 lane 调用使用'
+  lane :prepare do
+    cocoapods
+    match
+  end
+
+  desc '通用的构建任务'
+  desc 'fastlane build'
+  desc 'fastlane build type:adhoc'
+  lane :build do |options|
+    # 调用上面 prepare 私有任务
+    prepare
+
+    case options[:type]
+    when 'adhoc'
+      # 调用 下面 adhoc 任务
+      adhoc
+    else
+      # 调用下面 appstore 任务
+      appstore
+    end
+  end
+
+  desc '构建 adhoc 任务'
+  desc 'fastlane adhoc'
+  lane :adhoc do
+    gym(type: 'adhoc')
+  end
+
+  desc '构建 appstore 任务'
+  desc 'fastlane appstore'
+  lane :appstore do
+    gym(type: 'appstore')
+  end
+end
+</code></pre>
+
+<p>上面的任务中，<code>build</code>/<code>adhoc</code>/<code>appstore</code> 都可以执行，只有 <code>prepare</code> 是无法通过命令行外部执行，如果执行会直接报错：</p>
+
+<pre><code class="language-bash">$ fastlane prepare
+[19:17:42]: You can't call the private lane 'prepare' directly
+</code></pre>
+
+<h3 id="任务返回值">任务返回值</h3>
+
+<p>和 ruby 的方法一致，每个 lane 最后一行会默认作为返回值（无需 <a href="http://learnrubythehardway.org/book/ex21.html">return</a>）。</p>
+
+<pre><code class="language-ruby">
+lane :sum do |options|
+  options[:a] + optiona[:b]
+end
+
+lane :calculate do
+  value = sum(a: 3, b: 5)
+  puts value #=&gt; 8
+end
+</code></pre>
+
+<h3 id="引入外部任务文件">引入外部任务文件</h3>
+
+<p><code>Fastfile</code> 除了自身以外还能够引入外部其他的 <code>Fastfile</code> 并调用任务，只需要导入外部文件并使用特殊的方法标识即可：</p>
+
+<h4 id="1-import-导入本地文件">1. import - 导入本地文件</h4>
+
+<pre><code class="language-ruby"># 导入 lanes 目录的 AndroidFastfile
+import &quot;lanes/AndroidFastfile&quot;
+</code></pre>
+
+<h4 id="2-import-from-git-导入-git-仓库文件">2. import_from_git - 导入 git 仓库文件</h4>
+
+<p>可以直接引入 git 仓库的 Fastfile 文件是一个非常赞的功能，通过使用发现其实现原理是先把 git 仓库克隆下来后在引入相对于的文件，因此建议国内在没有网络加速（翻墙）的情况下尽量不用引入比较大的 git 仓库，否则使用会需要漫长的等待&hellip;</p>
+
+<pre><code class="language-ruby"># 导入 mozilla/firefox-ios 项目下 fastlane 下面 Fastfile 文件
+import_from_git(url: 'https://github.com/mozilla/firefox-ios')
+# 或者
+import_from_git(url: 'git@github.com:mozilla/firefox-ios.git',
+               path: 'fastlane/Fastfile')
+</code></pre>
+
+<p>假若外部引入的 <code>Fastfile</code> 有个方法是 <strong>build</strong>，在命令行工具直接执行即可，如果外部和内部都有相同的任务名，执行会直接报错：</p>
+
+<pre><code class="language-bash">$ fastlane ios build
+
+[!] Lane 'gradle' was defined multiple times!
+</code></pre>
+
+<p>如果发生这样的事情且你希望在主体 <code>Fastfile</code> 也调用的话需要使用特殊的方法定义：<code>override_lane</code></p>
+
+<blockquote>
+<p>注意：此方法只会覆盖外部的相同方法名的代码执行，目前暂时无法使用类似 ruby 的 <code>super</code> 继承原由方法！</p>
+</blockquote>
+
+<pre><code class="language-ruby">override_lane :build do
+  ...
+end
+</code></pre>
+
+<h3 id="任务查看">任务查看</h3>
+
+<p>只需执行下面这行命令就可以看到非私有任务的可用列表信息</p>
+
+<pre><code class="language-bash">$ fastlane lanes
+
+--------- ios---------
+----- fastlane ios build
+通用的构建任务
+fastlane build
+fastlane build type:adhoc
+
+----- fastlane ios adhoc
+构建 adhoc 任务
+
+----- fastlane ios appstore
+构建 appstore 任务
+
+Execute using `fastlane [lane_name]`
+</code></pre>
+
+<h2 id="扩展-action">扩展（Action）</h2>
+
+<p>扩展是 fastlane 的杀手锏，重在集成了众多非常优秀好用的方法供 lane 内部使用，截至 fastlane v<code>1.98.0</code> 版本以包含 175 个扩展，这个数量还在陆续增加中。扩展初期是由发起人一个人完成，后续的大部分都是社区共享，如果你发现没有你想要的扩展，可以先去 <a href="https://github.com/fastlane/fastlane/issues?q=is%3Aopen+is%3Aissue+label%3Aaction">issues</a> 搜索下没有要么自己动手提交要么只有等待了.</p>
+
+<h3 id="扩展列表">扩展列表</h3>
+
+<pre><code class="language-bash">$ fastlane actions
++--------------------+-------------------------------------------------------------+------------------+
+|                                   Available fastlane actions                                        |
++--------------------+-------------------------------------------------------------+------------------+
+| Action             | Description                                                 | Author           |
++--------------------+-------------------------------------------------------------+------------------+
+| adb                | Run ADB Actions                                             | hjanuschka       |
+| adb_devices        | Get an Array of Connected android device serials            | hjanuschka       |
+| add_git_tag        | This will add an annotated git tag to the current branch    | Multiple         |
+...
++--------------------+-------------------------------------------------------------+------------------+
+  Total of 175 actions
+
+Get more information for one specific action using `fastlane action [name]`
+</code></pre>
+
+<h3 id="扩展使用帮助">扩展使用帮助</h3>
+
+<pre><code class="language-bash"># 查看 adb 扩展的使用帮助
+$ fastlane action adb
+Loading documentation for adb:
+
++---------------------------------+
+|               adb               |
++---------------------------------+
+| Run ADB Actions                 |
+|                                 |
+| see adb --help for more details |
+|                                 |
+| Created by hjanuschka           |
++---------------------------------+
+
++----------+----------------------------------------------------------------------+-------------------+---------+
+|                                                  adb Options                                                  |
++----------+----------------------------------------------------------------------+-------------------+---------+
+| Key      | Description                                                          | Env Var           | Default |
++----------+----------------------------------------------------------------------+-------------------+---------+
+| serial   | Android serial, which device should be used for this command         | FL_ANDROID_SERIAL |         |
+| command  | All commands you want to pass to the adb command, e.g. `kill-server` | FL_ADB_COMMAND    |         |
+| adb_path | The path to your `adb` binary                                        | FL_ADB_PATH       | adb     |
++----------+----------------------------------------------------------------------+-------------------+---------+
+
++-------------------------------+
+|       adb Return Value        |
++-------------------------------+
+| The output of the adb command |
++-------------------------------+
+
+More information can be found on https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Actions.md
+</code></pre>
+
+<h3 id="创建自定义扩展">创建自定义扩展</h3>
+
+<p>通过内置的命令创建你需要的扩展，扩展名必须是全部小写且只能使用下划线分割词组，生成好的扩展文件会在 <code>fastlane/actions</code> 目录找到:</p>
+
+<pre><code class="language-bash">$ fastlane new_action
+Must be lower case, and use a '_' between words. Do not use '.'
+examples: 'testflight', 'upload_to_s3'
+Name of your action: hello
+[15:33:15]: Created new action file './fastlane/actions/hello.rb'. Edit it to implement your custom action.
+</code></pre>
+
+<p>这块会占比较大的篇幅，尽情期待后续的展开。</p>
+
+<h3 id="引入外部扩展">引入外部扩展</h3>
+
+<p>这块其实也有两种方法可以引入，文件引入是官方教程提供的方法，第二种是我个人尝试出来的，第三种是最近版本才官方支持的。</p>
+
+<h4 id="1-本地文件引入">1. 本地文件引入</h4>
+
+<p>自定义的扩展其实也算是本地文件引入的一种形式，当然位于其他路径的通过指定方法也能做到</p>
+
+<pre><code class="language-ruby"># 引入项目根目录 script/share_actions 路径
+actions_path '../script/share_actions'
+</code></pre>
+
+<h4 id="2-rubygem-引入">2. rubygem 引入</h4>
+
+<blockquote>
+<p>不再建议使用本方法，请看第三种插件引入。</p>
+</blockquote>
+
+<p>我在团队内部创建了一个自定义的扩展，仅限于团队内部使用而无法贡献社区，我只能采取封装成 ruby gem 包，通过 ruby 的 <code>require</code> 方式引入，最终可以完美支持，目前已在项目中使用大半年之久。最重要的是我是开源的：<a href="https://github.com/icyleaf/fastlane-qyer">fastlane-qyer</a></p>
+
+<pre><code class="language-ruby"># 首先安装需要的 rubygem: gem install fastlane-qyer
+require 'fastlane-qyer'
+
+lane :upload do
+  qyer(api_key: '[token]')
+end
+</code></pre>
+
+<p>注意，使用 rubygem 引入的无法在 fastlane actions 中显示出来，也无法使用 fastlane action [name] 查看使用帮助。我猜想一是官方没有这样提供思路，二是就算你引入了 gem 也不是特别好判断里面的文件结构。</p>
+
+<h4 id="3-插件引入">3. 插件引入</h4>
+
+<p>我注意到 <a href="https://github.com/fastlane/fastlane/releases/tag/1.93.0">1.93.0</a> 增加了插件机制，很好的解决第二种出现的一些问题。大概看了一下主要是采用 <code>Gemfile</code> 的方式使用 <code>Pluginfile</code> 维护了引入第三方插件列表。实现原理还是属于第二种方法。</p>
+
+<p>通过 <code>fastlane search_plugins</code> 查看当前支持的插件，并使用 <code>fastlane add_plugins [name]</code> 引入。</p>
+
+<pre><code class="language-bash">$ fastlane search_plugins
+[16:04:33]: Listing all available fastlane plugins
+
++--------------------------+---------------------------------------------------+-----------+
+|                                Available fastlane plugins                                |
++--------------------------+---------------------------------------------------+-----------+
+| Name                     | Description                                       | Downloads |
++--------------------------+---------------------------------------------------+-----------+
+| ruby                     | Useful fastlane actions for Ruby projects         | 782       |
+| versioning               | Allows to work set/get app version directly       | 758       |
+|                          | to/from Info.plist                                |           |
+| branding                 | Add some branding to your fastlane output         | 716       |
+| instrumented_tests       | New action to run instrumented tests for android. | 590       |
+|                          | This basically creates and boots an emulator      |           |
+|                          | before running an gradle commands so that you can |           |
+|                          | run instrumented tests against that emulator.     |           |
+|                          | After the gradle command is executed, the avd     |           |
+|                          | gets shut down and deleted. This is really        |           |
+|                          | helpful on CI services, keeping them clean and    |           |
+|                          | always having a fresh avd for testing.            |           |
+| xamarin_build            | Build xamarin android\ios projects                | 582       |
+| appicon                  | Generate required icon sizes and iconset from a   | 509       |
+|                          | master application icon.                          |           |
+...
+| download_file            | This action downloads a file from an HTTP/HTTPS   | 171       |
+|                          | url (e.g. ZIP file) and puts it in a destination  |           |
+|                          | path                                              |           |
++--------------------------+---------------------------------------------------+-----------+
+
+# 添加 sentry 插件
+$ fastlane add_plugin sentry
+[16:16:23]: Plugin 'fastlane-plugin-sentry' was added to './fastlane/Pluginfile'
+[16:16:23]: It looks like fastlane plugins are not yet set up for this project.
+[16:16:23]: fastlane will create a new Gemfile at path 'Gemfile'
+[16:16:23]: This change is neccessary for fastlane plugins to work
+Should fastlane modify the Gemfile at path 'Gemfile' for you? (y/n)
+y
+[16:16:29]: Successfully modified 'Gemfile'
+[16:16:29]: Make sure to commit your Gemfile, Gemfile.lock and Pluginfile to version control
+Installing plugin dependencies...
+Successfully installed plugins
+
+$ cat fastlane/Pluginfile
+# Autogenerated by fastlane
+#
+# Ensure this file is checked in to source control!
+
+gem 'fastlane-plugin-sentry'
+</code></pre>
+
+<p>更详细的继续期待后续报道，我要挖坑无数。</p>
+
+<h3 id="扩展的命令行调用">扩展的命令行调用</h3>
+
+<p>社区的力量果然是很强大的，陆续添加了那么多功能，早期用户表示不开心！嗯，由于社区的呼声和贡献目前可以通过命令调用扩展：</p>
+
+<pre><code class="language-bash"># 使用 notification 扩展发送一个通知消息
+$ fastlane run notification message:&quot;Hi macOS&quot; title:&quot;Fastlane Notification&quot;
+[15:58:05]: --------------------------
+[15:58:05]: --- Step: notification ---
+[15:58:05]: --------------------------
+[15:58:05]: Result: true
+</code></pre>
+
+<h2 id="辅助功能">辅助功能</h2>
+
+<h3 id="自动更新">自动更新</h3>
+
+<p>fastlane 提供一个方法 <code>update_fastlane</code> 用于对于自身的版本检查和更新，这个第一篇文章我也有提到过。它其实一个是一个扩展，使用 <code>fastlane action update_fastlane</code> 能够看到使用帮助。它有一个参数是可以指定检查特定的 fastlane 工具并进行更新，但其实它是使用 rubygems 进行对 gem 的更新，因此这块其实可以传入任何需要检查并更新的 gem：</p>
+
+<pre><code class="language-ruby">update_fastlane(tools:'fastlane,gym,match,cocoapods,rest-client')
+</code></pre>
+
+<h3 id="环境变量">环境变量</h3>
+
+<p>从 fastlane 的设计体系上在各个地方都加入了环境变量的支持，每个扩展的参数、以及扩展需要共享给其他扩展和任务读取的数据都是通过环境变量获取，如下是我收集的比较常用的列表：</p>
+
+<table>
+<thead>
+<tr>
+<th>环境变量</th>
+<th>来源</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>FASTLANE_USER</td>
+<td>credentials_manager</td>
+<td>Apple 开发者账户名</td>
+<td>验证通过后会保存 Keychain</td>
+</tr>
+
+<tr>
+<td>FASTLANE_PASSWORD</td>
+<td>credentials_manager</td>
+<td>Apple 开发者账户密码</td>
+<td>验证通过后会保存 Keychain</td>
+</tr>
+
+<tr>
+<td>FASTLANE_TEAM_ID<br />CERT_TEAM_ID</td>
+<td>produce<br />sigh</td>
+<td>Apple 团队 ID</td>
+<td></td>
+</tr>
+
+<tr>
+<td>DELIVER_USER<br \>PRODUCE_USERNAME</td>
+<td>deliver<br />produce</td>
+<td>iTunesConnect 账户名</td>
+<td></td>
+</tr>
+
+<tr>
+<td>DELIVER_PASSWORD</td>
+<td>deliver</td>
+<td>iTunesConnect 账户密码</td>
+<td></td>
+</tr>
+
+<tr>
+<td>MATCH_PASSWORD</td>
+<td>match</td>
+<td>证书加/解密密码</td>
+<td></td>
+</tr>
+
+<tr>
+<td>FASTLANE_XCODE_LIST_TIMEOUT</td>
+<td>fastlane_core</td>
+<td>获取 iOS Scheme 的超时时间</td>
+<td>默认 10s</td>
+</tr>
+</tbody>
+</table>
+
+    </section>
+
+  <footer class="post-footer">
+    
+    <figure class="author-image">
+        <a class="img" href="localhost/localhost" style="background-image: url(/localhostimages/icyleaf-icon.png)"><span class="hidden">icyleaf's Picture</span></a>
+    </figure>
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="localhost/localhost">icyleaf</a></h4>
+  
+  <p>热爱户外的码农、下厨初心者</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">Beijing, China</span>
+    <span class="author-link icon-link"><a href="http://icyleaf.com">http://icyleaf.com</a></span>
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" href="https://twitter.com/share?text=%e6%b7%b1%e5%85%a5%e6%b5%85%e5%87%ba%20Fastlane%20%e4%b8%80%e7%9c%8b%e4%bd%a0%e5%b0%b1%e6%87%82&nbsp;-&nbsp;icyleaf&amp;url=%2flocalhost%2f2016%2f07%2ffastlane-in-action"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=%2flocalhost%2f2016%2f07%2ffastlane-in-action"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-weibo"href="http://service.weibo.com/share/share.php?url=%2flocalhost%2f2016%2f07%2ffastlane-in-action&amp;title=%e6%b7%b1%e5%85%a5%e6%b5%85%e5%87%ba%20Fastlane%20%e4%b8%80%e7%9c%8b%e4%bd%a0%e5%b0%b1%e6%87%82&nbsp;-&nbsp;icyleaf"
+      onclick="window.open(this.href, 'weibo-share','width=580,height=296');return false;">
+      <span class="hidden">新浪微博</span>
+  </a>
+  <a class="icon-douban" href="javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:'',r='https://www.douban.com/recommend/?url='+e(d.location.href)+'&title='+e(d.title)+'&sel='+e(s)+'&v=1',w=450,h=330,x=function(){if(!window.open(r,'douban','toolbar=0,resizable=1,scrollbars=yes,status=1,width='+w+',height='+h+',left='+(screen.width-w)/2+',top='+(screen.height-h)/2))location.href=r+'&r=1'};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()">
+      <span class="hidden">豆瓣</span>
+  </a>
+</section>
+
+
+
+    
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  var disqus_shortname = 'icyleaf';
+  var disqus_url = '\/localhost\/2016\/07\/fastlane-in-action';
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+  </footer>
+</article>
+
+</main>
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">icyleaf</a> All rights reserved - 2007</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+  </div>
+  <script type="text/javascript" src="localhost/localhostjs/jquery.js"></script>
+  <script type="text/javascript" src="localhost/localhostjs/jquery.fitvids.js"></script>
+  <script type="text/javascript" src="localhost/localhostjs/index.js"></script>
+  
+</body>
+</html>
+

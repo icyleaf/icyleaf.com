@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  	<meta property="og:title" content=" 如何针对 iOS 设备进行网络抓包分析 &middot;  icyleaf" />
+  	<meta property="og:site_name" content="icyleaf" />
+  	<meta property="og:url" content="/localhost/2012/10/%E5%A6%82%E4%BD%95%E9%92%88%E5%AF%B9-ios-%E8%AE%BE%E5%A4%87%E8%BF%9B%E8%A1%8C%E7%BD%91%E7%BB%9C%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90" />
+
+    
+  	<meta property="og:type" content="article" />
+
+    <meta property="og:article:published_time" content="2012-10-15T12:34:56&#43;08:00" />
+
+    
+    <meta property="og:article:tag" content="Mac" />
+    
+    <meta property="og:article:tag" content="iOS" />
+    
+    <meta property="og:article:tag" content="Shell" />
+    
+    
+
+  <title>
+     如何针对 iOS 设备进行网络抓包分析 &middot;  icyleaf
+  </title>
+
+    <meta name="description" content="热爱户外的码农、下厨初心者" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="localhost/localhostimages/favicon.ico">
+	  <link rel="apple-touch-icon" href="localhost/localhostimages/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="localhost/localhostcss/screen.css" />
+    <link rel="stylesheet" type="text/css" href="localhost/localhostcss/nav.css" />
+
+
+
+    
+        <link href="feed.xml" rel="alternate" type="application/rss+xml" title="icyleaf" />
+    
+    <meta name="generator" content="Hugo 0.17-DEV" />
+
+    <link rel="canonical" href="localhost/localhost/2012/10/%E5%A6%82%E4%BD%95%E9%92%88%E5%AF%B9-ios-%E8%AE%BE%E5%A4%87%E8%BF%9B%E8%A1%8C%E7%BD%91%E7%BB%9C%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90" />
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-2570916-5', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+</head>
+<body class="nav-closed">
+
+  <div class="nav">
+  <h3 class="nav-title">Menu</h3>
+  <a href="#" class="nav-close">
+    <span class="hidden">Close</span>
+  </a>
+  <ul>
+    
+
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="localhost/">Home</a>
+      </li>
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="localhost/categories/technology">Technology</a>
+      </li>
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="localhost/tags">Tags</a>
+      </li>
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="localhost/about">About</a>
+      </li>
+    
+  </ul>
+
+  
+    <a class="subscribe-button icon-feed" href="localhost/localhostfeed.xml">Subscribe</a>
+  
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+  <header class="main-header post-head no-cover">
+
+
+  <nav class="main-nav overlay clearfix">
+  
+    <a class="blog-logo" href="localhost/localhost"><img src="localhost/localhostimages/icyleaf-icon.png" alt="Blog Logo" /></a>
+  
+
+  
+    <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+</nav>
+  
+</header>
+
+<main class="content" role="main">
+  <article class="post post">
+    <header class="post-header">
+      <h1 class="post-title">如何针对 iOS 设备进行网络抓包分析</h1>
+      <small></small>
+
+      <section class="post-meta">
+      
+      
+        <time class="post-date" datetime="2012-10-15T12:34:56&#43;08:00">
+          Oct 15, 2012
+        </time>
+      
+       
+        <span class="post-tag small"><a href="localhost/localhosttags/mac/">#Mac</a></span>
+       
+        <span class="post-tag small"><a href="localhost/localhosttags/ios/">#iOS</a></span>
+       
+        <span class="post-tag small"><a href="localhost/localhosttags/shell/">#Shell</a></span>
+       
+      </section>
+    </header>
+
+    <section class="post-content">
+      <p>Charles 目前是 OS X 上面最好的抓包分析软件，相比 WireShark 功能更加强大，并支持代理功能。</p>
+
+<ol>
+<li><a href="http://www.ravelrumba.com/blog/ipad-http-debugging/">iPad HTTP Debugging with Charles</a> - 教大家如何使用它进行代理抓包</li>
+<li><a href="http://www.skinkers.com/2012/06/12/testing-tethering-data-driven-mobile-apps-with-charles-and-osx-ipad-iphone-http-debugging/">Testing / Tethering Data Driven Mobile Apps with Charles and OSX</a> - 教大家如何进行 request remap，适合不改动代码的情况下修改域名切换环境</li>
+</ol>
+
+<p>不过 Charles 的确定就是共享软件，未注册版本可以使用全功能但是限制是只能允许使用 30 分钟，那么&hellip;习惯用 Terminal 的还有一个方法：<a href="http://useyourloaf.com/blog/2012/02/07/remote-packet-capture-for-ios-devices.html">Remote Packet Capture for iOS Devices</a></p>
+
+<pre><code>$ rvictl -s &lt;UDID&gt;
+$ rvictl -l
+$ tcpdump -n -t -i rvi0 -q tcp
+</code></pre>
+
+    </section>
+
+  <footer class="post-footer">
+    
+    <figure class="author-image">
+        <a class="img" href="localhost/localhost" style="background-image: url(/localhostimages/icyleaf-icon.png)"><span class="hidden">icyleaf's Picture</span></a>
+    </figure>
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="localhost/localhost">icyleaf</a></h4>
+  
+  <p>热爱户外的码农、下厨初心者</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">Beijing, China</span>
+    <span class="author-link icon-link"><a href="http://icyleaf.com">http://icyleaf.com</a></span>
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" href="https://twitter.com/share?text=%e5%a6%82%e4%bd%95%e9%92%88%e5%af%b9%20iOS%20%e8%ae%be%e5%a4%87%e8%bf%9b%e8%a1%8c%e7%bd%91%e7%bb%9c%e6%8a%93%e5%8c%85%e5%88%86%e6%9e%90&nbsp;-&nbsp;icyleaf&amp;url=%2flocalhost%2f2012%2f10%2f%25E5%25A6%2582%25E4%25BD%2595%25E9%2592%2588%25E5%25AF%25B9-ios-%25E8%25AE%25BE%25E5%25A4%2587%25E8%25BF%259B%25E8%25A1%258C%25E7%25BD%2591%25E7%25BB%259C%25E6%258A%2593%25E5%258C%2585%25E5%2588%2586%25E6%259E%2590"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=%2flocalhost%2f2012%2f10%2f%25E5%25A6%2582%25E4%25BD%2595%25E9%2592%2588%25E5%25AF%25B9-ios-%25E8%25AE%25BE%25E5%25A4%2587%25E8%25BF%259B%25E8%25A1%258C%25E7%25BD%2591%25E7%25BB%259C%25E6%258A%2593%25E5%258C%2585%25E5%2588%2586%25E6%259E%2590"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-weibo"href="http://service.weibo.com/share/share.php?url=%2flocalhost%2f2012%2f10%2f%25E5%25A6%2582%25E4%25BD%2595%25E9%2592%2588%25E5%25AF%25B9-ios-%25E8%25AE%25BE%25E5%25A4%2587%25E8%25BF%259B%25E8%25A1%258C%25E7%25BD%2591%25E7%25BB%259C%25E6%258A%2593%25E5%258C%2585%25E5%2588%2586%25E6%259E%2590&amp;title=%e5%a6%82%e4%bd%95%e9%92%88%e5%af%b9%20iOS%20%e8%ae%be%e5%a4%87%e8%bf%9b%e8%a1%8c%e7%bd%91%e7%bb%9c%e6%8a%93%e5%8c%85%e5%88%86%e6%9e%90&nbsp;-&nbsp;icyleaf"
+      onclick="window.open(this.href, 'weibo-share','width=580,height=296');return false;">
+      <span class="hidden">新浪微博</span>
+  </a>
+  <a class="icon-douban" href="javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:'',r='https://www.douban.com/recommend/?url='+e(d.location.href)+'&title='+e(d.title)+'&sel='+e(s)+'&v=1',w=450,h=330,x=function(){if(!window.open(r,'douban','toolbar=0,resizable=1,scrollbars=yes,status=1,width='+w+',height='+h+',left='+(screen.width-w)/2+',top='+(screen.height-h)/2))location.href=r+'&r=1'};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()">
+      <span class="hidden">豆瓣</span>
+  </a>
+</section>
+
+
+
+    
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  var disqus_shortname = 'icyleaf';
+  var disqus_url = '\/localhost\/2012\/10\/%E5%A6%82%E4%BD%95%E9%92%88%E5%AF%B9-ios-%E8%AE%BE%E5%A4%87%E8%BF%9B%E8%A1%8C%E7%BD%91%E7%BB%9C%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90';
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+  </footer>
+</article>
+
+</main>
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">icyleaf</a> All rights reserved - 2007</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+  </div>
+  <script type="text/javascript" src="localhost/localhostjs/jquery.js"></script>
+  <script type="text/javascript" src="localhost/localhostjs/jquery.fitvids.js"></script>
+  <script type="text/javascript" src="localhost/localhostjs/index.js"></script>
+  
+</body>
+</html>
+

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  	<meta property="og:title" content=" Modules Library 和 DBManager Module &middot;  icyleaf" />
+  	<meta property="og:site_name" content="icyleaf" />
+  	<meta property="og:url" content="/localhost/2009/03/modules-helper-and-dbmanager-module" />
+
+    
+  	<meta property="og:type" content="article" />
+
+    <meta property="og:article:published_time" content="2009-03-05T12:34:56&#43;08:00" />
+
+    
+    <meta property="og:article:tag" content="Kohana" />
+    
+    <meta property="og:article:tag" content="PHP" />
+    
+    
+
+  <title>
+     Modules Library 和 DBManager Module &middot;  icyleaf
+  </title>
+
+    <meta name="description" content="热爱户外的码农、下厨初心者" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="localhost/localhostimages/favicon.ico">
+	  <link rel="apple-touch-icon" href="localhost/localhostimages/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="localhost/localhostcss/screen.css" />
+    <link rel="stylesheet" type="text/css" href="localhost/localhostcss/nav.css" />
+
+
+
+    
+        <link href="feed.xml" rel="alternate" type="application/rss+xml" title="icyleaf" />
+    
+    <meta name="generator" content="Hugo 0.17-DEV" />
+
+    <link rel="canonical" href="localhost/localhost/2009/03/modules-helper-and-dbmanager-module" />
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-2570916-5', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+</head>
+<body class="nav-closed">
+
+  <div class="nav">
+  <h3 class="nav-title">Menu</h3>
+  <a href="#" class="nav-close">
+    <span class="hidden">Close</span>
+  </a>
+  <ul>
+    
+
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="localhost/">Home</a>
+      </li>
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="localhost/categories/technology">Technology</a>
+      </li>
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="localhost/tags">Tags</a>
+      </li>
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="localhost/about">About</a>
+      </li>
+    
+  </ul>
+
+  
+    <a class="subscribe-button icon-feed" href="localhost/localhostfeed.xml">Subscribe</a>
+  
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+  <header class="main-header post-head no-cover">
+
+
+  <nav class="main-nav overlay clearfix">
+  
+    <a class="blog-logo" href="localhost/localhost"><img src="localhost/localhostimages/icyleaf-icon.png" alt="Blog Logo" /></a>
+  
+
+  
+    <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+</nav>
+  
+</header>
+
+<main class="content" role="main">
+  <article class="post post">
+    <header class="post-header">
+      <h1 class="post-title">Modules Library 和 DBManager Module</h1>
+      <small></small>
+
+      <section class="post-meta">
+      
+      
+        <time class="post-date" datetime="2009-03-05T12:34:56&#43;08:00">
+          Mar 5, 2009
+        </time>
+      
+       
+        <span class="post-tag small"><a href="localhost/localhosttags/kohana/">#Kohana</a></span>
+       
+        <span class="post-tag small"><a href="localhost/localhosttags/php/">#PHP</a></span>
+       
+      </section>
+    </header>
+
+    <section class="post-content">
+      <blockquote>
+<p>Hi, Don&rsquo;t understand Chinese? ok, No problem. Here to view <a href="http://forum.kohanaphp.com/comments.php?DiscussionID=2117&amp;page=1">Modules Library</a> and <a href="http://forum.kohanaphp.com/comments.php?DiscussionID=2156&amp;page=1">DBManager Module</a></p>
+</blockquote>
+
+<p>或许大家可能有了解到，本人目前一直在对 <a href="http://kohanaphp.com">Kohana</a>这个纯 PHP5
+框架进行文档翻译和维护，同时也建立一个站点：<a href="http://khnfans.cn/" title="Kohana爱好者">Kohana爱好者</a>。
+站点提供中文化的文档，包含中文语言包的中文镜像下载支持以及中文化论坛。Kohana 
+凭借着基于 CodeIgniter
+框架+PHP5，赢得了一群使用者，我也希望无论是国外的还是国内的使用者都能共享自己的力量。</p>
+
+<p>恩&hellip;以上算是给自己打个广告。Modules Library 和 DBManager Module 均是为
+Kohana 框架编写的，以后会根据自己和大家的寻求做适当的更新。</p>
+
+<p><strong>Modules Library</strong>，中文译为 扩展管理库，是一个方便管理 Kohana
+系统自身扩展配置的库类，通过它使用代码就可以轻松实现获取当前所有 Modules
+信息，已激活的 Moduels， 未激活的 Modules，最重要的是还可以添加
+Modules，激活和关闭 Module。</p>
+
+<p>范例代码：</p>
+
+<pre><code class="language-php">// Instance Module library
+$module = Module::instance();
+
+// list all modules of application in application/config/config.php
+echo Kohana::debug($module-&gt;list_all());
+
+// list active modules of application in application/config/config.php
+echo Kohana::debug($module-&gt;list_active());
+
+// list inactive modules of application in application/config/config.ph	p
+echo Kohana::debug($module-&gt;list_inactive());
+
+// active 'auth' module
+$module-&gt;active('auth');
+
+// inactive 'auth' module
+$module-&gt;inactive('auth');
+
+// add 'sample_module' module with description.
+$module-&gt;add('sample_module', 'Just a sample module');
+</code></pre>
+
+<p><strong>DBManager Module</strong>灵感来自 WordPress 插件 WP_DBManager，就连名字都很类似，其实对于其功能也是按照它实现。哈哈～～</p>
+
+<p>目前对于此扩展实现的功能如下：</p>
+
+<ul>
+<li>获得当前 Mysql 版本以及 Kohana 连接数据库等信息</li>
+<li>获取当前所有表数据</li>
+<li>备份数据库（支持Gzip压缩和自动备份）</li>
+<li>优化数据库（支持自动优化）</li>
+<li>修复数据库</li>
+<li>获得，下载，删除数据库备份文件</li>
+</ul>
+
+<p>此扩展支持配置和 i18n，以及对目前来说一个简易的演示页面。</p>
+
+<p>目前还没有对实现自动备份后进行 Email 通知的功能，以及以后会对多种数据库支持。和限制最大化数据库备份文件。至于是否可以在进行数据库表数据的操作（比如查询，删除表，修改表等）是否还需要支持？</p>
+
+<p>以后对自己发布的 Kohana 相关的代码都会托管在 Google Code 上面，地址：<a href="http://code.google.com/p/kohana-fans-cn/">http://code.google.com/p/kohana-fans-cn/</a></p>
+
+    </section>
+
+  <footer class="post-footer">
+    
+    <figure class="author-image">
+        <a class="img" href="localhost/localhost" style="background-image: url(/localhostimages/icyleaf-icon.png)"><span class="hidden">icyleaf's Picture</span></a>
+    </figure>
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="localhost/localhost">icyleaf</a></h4>
+  
+  <p>热爱户外的码农、下厨初心者</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">Beijing, China</span>
+    <span class="author-link icon-link"><a href="http://icyleaf.com">http://icyleaf.com</a></span>
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" href="https://twitter.com/share?text=Modules%20Library%20%e5%92%8c%20DBManager%20Module&nbsp;-&nbsp;icyleaf&amp;url=%2flocalhost%2f2009%2f03%2fmodules-helper-and-dbmanager-module"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=%2flocalhost%2f2009%2f03%2fmodules-helper-and-dbmanager-module"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-weibo"href="http://service.weibo.com/share/share.php?url=%2flocalhost%2f2009%2f03%2fmodules-helper-and-dbmanager-module&amp;title=Modules%20Library%20%e5%92%8c%20DBManager%20Module&nbsp;-&nbsp;icyleaf"
+      onclick="window.open(this.href, 'weibo-share','width=580,height=296');return false;">
+      <span class="hidden">新浪微博</span>
+  </a>
+  <a class="icon-douban" href="javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:'',r='https://www.douban.com/recommend/?url='+e(d.location.href)+'&title='+e(d.title)+'&sel='+e(s)+'&v=1',w=450,h=330,x=function(){if(!window.open(r,'douban','toolbar=0,resizable=1,scrollbars=yes,status=1,width='+w+',height='+h+',left='+(screen.width-w)/2+',top='+(screen.height-h)/2))location.href=r+'&r=1'};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()">
+      <span class="hidden">豆瓣</span>
+  </a>
+</section>
+
+
+
+    
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  var disqus_shortname = 'icyleaf';
+  var disqus_url = '\/localhost\/2009\/03\/modules-helper-and-dbmanager-module';
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+  </footer>
+</article>
+
+</main>
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">icyleaf</a> All rights reserved - 2007</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+  </div>
+  <script type="text/javascript" src="localhost/localhostjs/jquery.js"></script>
+  <script type="text/javascript" src="localhost/localhostjs/jquery.fitvids.js"></script>
+  <script type="text/javascript" src="localhost/localhostjs/index.js"></script>
+  
+</body>
+</html>
+

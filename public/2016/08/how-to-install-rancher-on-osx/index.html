@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  	<meta property="og:title" content=" 如何在 OS X 上安装 Rancher &middot;  icyleaf" />
+  	<meta property="og:site_name" content="icyleaf" />
+  	<meta property="og:url" content="/localhost/2016/08/how-to-install-rancher-on-osx" />
+
+    
+  	<meta property="og:type" content="article" />
+
+    <meta property="og:article:published_time" content="2016-08-05T17:21:08&#43;08:00" />
+
+    
+    <meta property="og:article:tag" content="Mac" />
+    
+    <meta property="og:article:tag" content="OSX" />
+    
+    <meta property="og:article:tag" content="Docker" />
+    
+    <meta property="og:article:tag" content="Rancher" />
+    
+    
+
+  <title>
+     如何在 OS X 上安装 Rancher &middot;  icyleaf
+  </title>
+
+    <meta name="description" content="热爱户外的码农、下厨初心者" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="localhost/localhostimages/favicon.ico">
+	  <link rel="apple-touch-icon" href="localhost/localhostimages/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="localhost/localhostcss/screen.css" />
+    <link rel="stylesheet" type="text/css" href="localhost/localhostcss/nav.css" />
+
+
+
+    
+        <link href="feed.xml" rel="alternate" type="application/rss+xml" title="icyleaf" />
+    
+    <meta name="generator" content="Hugo 0.17-DEV" />
+
+    <link rel="canonical" href="localhost/localhost/2016/08/how-to-install-rancher-on-osx" />
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-2570916-5', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+</head>
+<body class="nav-closed">
+
+  <div class="nav">
+  <h3 class="nav-title">Menu</h3>
+  <a href="#" class="nav-close">
+    <span class="hidden">Close</span>
+  </a>
+  <ul>
+    
+
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="localhost/">Home</a>
+      </li>
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="localhost/categories/technology">Technology</a>
+      </li>
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="localhost/tags">Tags</a>
+      </li>
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="localhost/about">About</a>
+      </li>
+    
+  </ul>
+
+  
+    <a class="subscribe-button icon-feed" href="localhost/localhostfeed.xml">Subscribe</a>
+  
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+  
+<header class="main-header post-head" style="background-image: url(http://docs.rancher.com/img/rancher/rancher_overview_2.png)">
+
+
+
+  <nav class="main-nav overlay clearfix">
+  
+    <a class="blog-logo" href="localhost/localhost"><img src="localhost/localhostimages/icyleaf-icon.png" alt="Blog Logo" /></a>
+  
+
+  
+    <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+</nav>
+  
+</header>
+
+<main class="content" role="main">
+  <article class="post post">
+    <header class="post-header">
+      <h1 class="post-title">如何在 OS X 上安装 Rancher</h1>
+      <small></small>
+
+      <section class="post-meta">
+      
+      
+        <time class="post-date" datetime="2016-08-05T17:21:08&#43;08:00">
+          Aug 5, 2016
+        </time>
+      
+       
+        <span class="post-tag small"><a href="localhost/localhosttags/mac/">#Mac</a></span>
+       
+        <span class="post-tag small"><a href="localhost/localhosttags/osx/">#OSX</a></span>
+       
+        <span class="post-tag small"><a href="localhost/localhosttags/docker/">#Docker</a></span>
+       
+        <span class="post-tag small"><a href="localhost/localhosttags/rancher/">#Rancher</a></span>
+       
+      </section>
+    </header>
+
+    <section class="post-content">
+      
+
+<p>Rancher 是 Docker 编排解决方案的一种，好处在于可以做容器编排，网络，存储，负载均衡，还能够支持云服务器（比如 Amazon EC2/Azure/DigitalOcean）也能够兼容 Docker Swarm/Mesos/Kubernetes 等其他的解决方案。自它还没有发布 <a href="http://rancher.com/announcing-rancher-1-0-ga/">1.0</a> 版本之前也有持续的关注。它自身还有个 <a href="http://www.infoq.com/cn/news/2015/03/rancheros-docker-linux">RancherOS</a> 对于 CoreOS 也是一个不小的威胁。</p>
+
+<p><img src="http://docs.rancher.com/img/rancher/rancher_overview_2.png" alt="rancher-intro" /></p>
+
+<p>由于它提供非常优化的后台管理界面，同时也提供 REST API，日常开发使用中异常的方便。如果非要说出一点不好的，那可能就是它对内存有点小要求：<strong>最小 1GB 内存</strong>，因此如果想放在自己 VPS 上的童鞋需要评估下了。</p>
+
+<h2 id="mac-安装">Mac 安装</h2>
+
+<p>这块也趁着 <a href="https://docs.docker.com/docker-for-mac/">Docker for Mac</a> 的好处，终于摆脱的 <code>docker-machine</code> 的折磨，不用在依赖 VirtualBox，也不在每次装载 machine 的变量和查找虚拟机的 IP。映射的端口端口都通过 <code>localhost</code> 访问。</p>
+
+<p>Rancher 通过 Docker 来安装本来说是非常简单的，它分为服务端和客户端。本教程以 <a href="http://docs.rancher.com/rancher/latest/en/installing-rancher/installing-server/">Single Node</a> 来讲解，不考虑 <a href="http://docs.rancher.com/rancher/latest/en/installing-rancher/installing-server/multi-nodes/">Multi Node</a>。</p>
+
+<p>这块网上一直没有太好的解决方案，我看很多国外给出的<a href="https://gist.github.com/axnux/09dc375d71398cbbee44ebd23ba35a08">解决方案</a>也比较麻烦，主要是由于 Docker for mac 使用的是 xhyve 作为轻量化的虚拟化方案，而 rancher 安装 server 端没有任何问题，在添加主机的时候需要通过 HTTP 来连接 server 端而失败。下面我来带大家用最简单的方案来拆解。无需任何第三方的辅助。</p>
+
+<h3 id="服务端">服务端</h3>
+
+<blockquote>
+<p>如果网速连接 docker hub 过慢可考虑使用代理设置或者国内的镜像服务，我这里分享一个 <code>https://docker.mirrors.ustc.edu.cn</code>，可在 Docker -&gt; Preferences&hellip; -&gt; Advanced -&gt; Registry Mirror 添加。</p>
+</blockquote>
+
+<pre><code class="language-bash">$ docker run -d --name rancher-server --restart=always -p 8080:8080 rancher/server
+$ docker logs -f rancher-server
+
+time=&quot;2016-08-05T16:48:52Z&quot; level=info msg=&quot;Creating schema machine, roles [service]&quot; id=1ds17
+time=&quot;2016-08-05T16:48:53Z&quot; level=info msg=&quot;Creating schema machine, roles [project member owner]&quot; id=1ds18
+time=&quot;2016-08-05T16:48:53Z&quot; level=info msg=&quot;Creating schema machine, roles [admin user readAdmin]&quot; id=1ds19
+time=&quot;2016-08-05T16:48:53Z&quot; level=info msg=&quot;Creating schema machine, roles [readonly]&quot; id=1ds20
+</code></pre>
+
+<p>看到如上类似的日志说明服务已经初始化完毕，通过浏览器访问 <code>http://localhost:8080</code> 就可以看到后台管理界面。</p>
+
+<h3 id="客户端">客户端</h3>
+
+<p>先不着急继续页面操作，回到终端上执行如下命令获取 rancher-server 容器的 IP 地址备用</p>
+
+<pre><code class="language-bash">$ docker inspect --format '{{ .NetworkSettings.IPAddress }}' rancher-server
+172.17.0.2
+</code></pre>
+
+<p>接着上面的步骤，在打开页面能看到 Add Host 按钮并点击对于弹出 “Host Registration URL” 选择 “Something else:” 在后面的输入框填入上面的 IP 和端口号 <code>http://172.17.0.2:8080</code> 并保存。</p>
+
+<p>之后就是给你一个客户端（部署主机）的选项，由于我们只添加本机作为部署主机使用，因此这里选择 Custom，其他不用任何设置，直接滑倒最底部找到一个执行 docker 命令的区域：</p>
+
+<p><img src="http://ww2.sinaimg.cn/large/006tNbRwjw1f6jdkffiqhj31ee150k0c.jpg" alt="add rancher host" /></p>
+
+<pre><code class="language-bash">$ docker run -d --privileged -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/rancher:/var/lib/rancher rancher/agent:v1.0.2 http://172.17.0.2:8080/v1/scripts/676576FFEC2212A68391:1470416400000:tfqxfdglHL6Qw8dpLVtbOesYY4
+</code></pre>
+
+<p>你会发现执行可能会报错：</p>
+
+<pre><code class="language-bash">docker: Error response from daemon: Mounts denied:
+The path /var/lib/rancher
+is not shared from OS X and is not known to Docker.
+You can configure shared paths from Docker -&gt; Preferences... -&gt; File Sharing.
+See https://docs.docker.com/docker-for-mac/osxfs/#namespaces for more info.
+</code></pre>
+
+<p>目前有可能是一个 Docker 的 Bug，因为 <code>/var/lib/rancher</code> 是挂载到已经默认添加 <code>/private</code> 文件共享，但是它还是报错，如果你在 Docker 设置的 File Sharing 添加的话它也不会让你添加，因此我们需要做一点小修改：</p>
+
+<pre><code class="language-bash">$ docker run -d --privileged -v /var/run/docker.sock:/var/run/docker.sock -v ${HOME}/docker/rancher/var/lib/rancher:/var/lib/rancher rancher/agent:v1.0.2 http://172.17.0.2:8080/v1/scripts/676576FFEC2212A68391:1470416400000:tfqxfdglHL6Qw8dpLVtbOesYY4
+5cf22a10cf28b4182b6e205fa631146e86d67c3c9d86901ff8cf7ab087319a29
+</code></pre>
+
+<p>最后点击页面的 Close 后会跳转到 Host 的列表，你就能惊喜的发现添加成功了！</p>
+
+<p><img src="http://ww2.sinaimg.cn/large/006tNbRwjw1f6jdidcojkj315y0m4dik.jpg" alt="rancher host" /></p>
+
+<h2 id="结尾">结尾</h2>
+
+<p>本篇只先解决这一个问题，更多使用的资料请看<a href="http://rancher.hidocker.io/">Rancher 实战红宝书</a>。</p>
+
+    </section>
+
+  <footer class="post-footer">
+    
+    <figure class="author-image">
+        <a class="img" href="localhost/localhost" style="background-image: url(/localhostimages/icyleaf-icon.png)"><span class="hidden">icyleaf's Picture</span></a>
+    </figure>
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="localhost/localhost">icyleaf</a></h4>
+  
+  <p>热爱户外的码农、下厨初心者</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">Beijing, China</span>
+    <span class="author-link icon-link"><a href="http://icyleaf.com">http://icyleaf.com</a></span>
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" href="https://twitter.com/share?text=%e5%a6%82%e4%bd%95%e5%9c%a8%20OS%20X%20%e4%b8%8a%e5%ae%89%e8%a3%85%20Rancher&nbsp;-&nbsp;icyleaf&amp;url=%2flocalhost%2f2016%2f08%2fhow-to-install-rancher-on-osx"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=%2flocalhost%2f2016%2f08%2fhow-to-install-rancher-on-osx"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-weibo"href="http://service.weibo.com/share/share.php?url=%2flocalhost%2f2016%2f08%2fhow-to-install-rancher-on-osx&amp;title=%e5%a6%82%e4%bd%95%e5%9c%a8%20OS%20X%20%e4%b8%8a%e5%ae%89%e8%a3%85%20Rancher&nbsp;-&nbsp;icyleaf"
+      onclick="window.open(this.href, 'weibo-share','width=580,height=296');return false;">
+      <span class="hidden">新浪微博</span>
+  </a>
+  <a class="icon-douban" href="javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:'',r='https://www.douban.com/recommend/?url='+e(d.location.href)+'&title='+e(d.title)+'&sel='+e(s)+'&v=1',w=450,h=330,x=function(){if(!window.open(r,'douban','toolbar=0,resizable=1,scrollbars=yes,status=1,width='+w+',height='+h+',left='+(screen.width-w)/2+',top='+(screen.height-h)/2))location.href=r+'&r=1'};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()">
+      <span class="hidden">豆瓣</span>
+  </a>
+</section>
+
+
+
+    
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  var disqus_shortname = 'icyleaf';
+  var disqus_url = '\/localhost\/2016\/08\/how-to-install-rancher-on-osx';
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+  </footer>
+</article>
+
+</main>
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">icyleaf</a> All rights reserved - 2007</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+  </div>
+  <script type="text/javascript" src="localhost/localhostjs/jquery.js"></script>
+  <script type="text/javascript" src="localhost/localhostjs/jquery.fitvids.js"></script>
+  <script type="text/javascript" src="localhost/localhostjs/index.js"></script>
+  
+</body>
+</html>
+

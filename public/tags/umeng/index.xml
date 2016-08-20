@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Umeng on icyleaf</title>
+    <link>localhost/tags/umeng/</link>
+    <description>Recent content in Umeng on icyleaf</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>All rights reserved - 2007</copyright>
+    <lastBuildDate>Thu, 10 May 2012 12:34:56 +0800</lastBuildDate>
+    <atom:link href="localhost/tags/umeng/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>友盟 iOS 发布渠道自动化脚本</title>
+      <link>/localhost/2012/05/ios-publish-channel-packger-for-umeng</link>
+      <pubDate>Thu, 10 May 2012 12:34:56 +0800</pubDate>
+      
+      <guid>/localhost/2012/05/ios-publish-channel-packger-for-umeng</guid>
+      <description>&lt;p&gt;现在公司的大多数手机项目的统计服务都是用的&lt;a href=&#34;http:///www.umeng.com&#34;&gt;友盟&lt;/a&gt;，而自使用之初到现在都有一个渠道管理的功能，这个最后打包的时候实际上可能会产生一点点的麻烦，最早第一个 app 发布的时候，写了一个半自动的脚本，凑合用了很久，现在觉得需要完全自动化，于是借鉴之前 &lt;a href=&#34;http://icyleaf.com/2012/04/automating-script-to-testFlight-from-xcode/&#34;&gt;testflightapp 的自动化脚本&lt;/a&gt;，重新改造脚本。&lt;/p&gt;
+
+&lt;p&gt;实现分两部分：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;iOS 代码&lt;/li&gt;
+&lt;li&gt;自动化脚本&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;实现原理很简单，我利用一个文本文件放置在项目当中（比如：&lt;code&gt;PublishChannel.txt&lt;/code&gt;），里面只需要存上发布渠道的名字，默认是 &lt;code&gt;App Store&lt;/code&gt;。在代码中只需要想友盟调用函数的时候，读取这个文件即可。只需要做这样简单的工作就结束了 iOS 代码部分的工作。&lt;/p&gt;
+
+&lt;p&gt;主要的功能基本上都是由自动化脚本完成。因为它要去标记分发渠道，处理打包工作：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;打包需要一个符合官方发布要求的 Icon，即 512x512 px，PNG 格式且名字必须是 &lt;code&gt;iTunesArtwork&lt;/code&gt; （不能包含后缀，无比保证在终端检查）&lt;/li&gt;
+&lt;li&gt;修改 PublishChannel.txt 的分发渠道&lt;/li&gt;
+&lt;li&gt;同时需要把 .app 的文件放在 &lt;code&gt;Payload&lt;/code&gt; 并和 &lt;code&gt;iTunesArtwork&lt;/code&gt; 一起打成 ipa 包（实际上就是一个 zip，改成了 ipa）&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;这样看起来其实工作也不复杂，只不过分发渠道多了就是有些浪费时间。同样还是采用了 Archive 的 Post-Action，这里面可以插入脚本以及外部的调用脚本（如果看不到下面的具体代码，请&lt;a href=&#34;https://gist.github.com/2650508&#34;&gt;点击这里&lt;/a&gt;：&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/2650508.js?file=package.sh&#34;&gt;&lt;/script&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

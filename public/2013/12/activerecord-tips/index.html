@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  	<meta property="og:title" content=" ActiveRecord 使用秘笈 &middot;  icyleaf" />
+  	<meta property="og:site_name" content="icyleaf" />
+  	<meta property="og:url" content="/localhost/2013/12/activerecord-tips" />
+
+    
+  	<meta property="og:type" content="article" />
+
+    <meta property="og:article:published_time" content="2013-12-03T12:34:56&#43;08:00" />
+
+    
+    <meta property="og:article:tag" content="Ruby" />
+    
+    <meta property="og:article:tag" content="ActiveRecord" />
+    
+    <meta property="og:article:tag" content="Rails" />
+    
+    
+
+  <title>
+     ActiveRecord 使用秘笈 &middot;  icyleaf
+  </title>
+
+    <meta name="description" content="热爱户外的码农、下厨初心者" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="localhost/localhostimages/favicon.ico">
+	  <link rel="apple-touch-icon" href="localhost/localhostimages/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="localhost/localhostcss/screen.css" />
+    <link rel="stylesheet" type="text/css" href="localhost/localhostcss/nav.css" />
+
+
+
+    
+        <link href="feed.xml" rel="alternate" type="application/rss+xml" title="icyleaf" />
+    
+    <meta name="generator" content="Hugo 0.17-DEV" />
+
+    <link rel="canonical" href="localhost/localhost/2013/12/activerecord-tips" />
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-2570916-5', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+</head>
+<body class="nav-closed">
+
+  <div class="nav">
+  <h3 class="nav-title">Menu</h3>
+  <a href="#" class="nav-close">
+    <span class="hidden">Close</span>
+  </a>
+  <ul>
+    
+
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="localhost/">Home</a>
+      </li>
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="localhost/categories/technology">Technology</a>
+      </li>
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="localhost/tags">Tags</a>
+      </li>
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="localhost/about">About</a>
+      </li>
+    
+  </ul>
+
+  
+    <a class="subscribe-button icon-feed" href="localhost/localhostfeed.xml">Subscribe</a>
+  
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+  <header class="main-header post-head no-cover">
+
+
+  <nav class="main-nav overlay clearfix">
+  
+    <a class="blog-logo" href="localhost/localhost"><img src="localhost/localhostimages/icyleaf-icon.png" alt="Blog Logo" /></a>
+  
+
+  
+    <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+</nav>
+  
+</header>
+
+<main class="content" role="main">
+  <article class="post post">
+    <header class="post-header">
+      <h1 class="post-title">ActiveRecord 使用秘笈</h1>
+      <small></small>
+
+      <section class="post-meta">
+      
+      
+        <time class="post-date" datetime="2013-12-03T12:34:56&#43;08:00">
+          Dec 3, 2013
+        </time>
+      
+       
+        <span class="post-tag small"><a href="localhost/localhosttags/ruby/">#Ruby</a></span>
+       
+        <span class="post-tag small"><a href="localhost/localhosttags/activerecord/">#ActiveRecord</a></span>
+       
+        <span class="post-tag small"><a href="localhost/localhosttags/rails/">#Rails</a></span>
+       
+      </section>
+    </header>
+
+    <section class="post-content">
+      
+
+<p>ActiveRecord 是 Rails 内置的 ORM 框架，大多数人学习 Ruby 都是从 rails 开始，接触的也是这个 ORM，因此就有了这个使用秘笈。</p>
+
+<h1 id="支持-rake-db-xxx-命令">支持 <code>rake db:xxx</code> 命令</h1>
+
+<p>在非 rails 项目怎么让 rake 支持 db:xxx 命令呢？把如下代码放到 <code>Rakefile</code> 中:</p>
+
+<pre><code>namespace :db do
+  require 'activerecord'
+  require 'yaml'
+
+  desc &quot;加载项目表数据到数据库&quot;
+  task :init =&gt; :dbenv do
+    file = &quot;db/schema.rb&quot;
+    load(file) # 参考 rails 文件结构
+  end
+
+  desc &quot;创建数据库初始化数据&quot;
+  task :seed =&gt; :dbenv do
+    seed_file = File.join(File.dirname(__FILE__), 'db', 'seeds.rb')
+    load(seed_file) if File.exist?(seed_file)
+  end
+
+  desc &quot;合并 db/migrate 目录下的数据库文件&quot;
+  task :migrate =&gt; :dbenv do
+    ActiveRecord::Migration.verbose = ENV[&quot;VERBOSE&quot;] ? ENV[&quot;VERBOSE&quot;] == &quot;true&quot; : true
+    ActiveRecord::Migrator.migrate(&quot;db/migrate/&quot;, ENV[&quot;VERSION&quot;] ? ENV[&quot;VERSION&quot;].to_i : nil)
+    Rake::Task[&quot;db:schema:dump&quot;].invoke if ActiveRecord::Base.schema_format == :ruby
+  end
+
+  desc '设定 STEP=n 回滚之前版本的数据库结构'
+  task :rollback =&gt; :dbenv do
+    step = ENV['STEP'] ? ENV['STEP'].to_i : 1
+    ActiveRecord::Migrator.rollback('db/migrate/', step)
+    Rake::Task[&quot;db:schema:dump&quot;].invoke if ActiveRecord::Base.schema_format == :ruby
+  end
+
+  task :dbenv do
+    dbname = ENV['db'] || 'development'
+  	$dbconfig = YAML::load('db/database.yml')
+    ActiveRecord::Base.establish_connection($dbconfig[dbname])
+  end
+
+  namespace :schema do
+    desc &quot;把数据库结构写入 db/schema.rb 文件&quot;
+    task :dump =&gt; :dbenv do
+      require 'active_record/schema_dumper'
+      File.open(ENV['SCHEMA'] || &quot;db/schema.rb&quot;, &quot;w&quot;) do |file|
+        ActiveRecord::SchemaDumper.dump(ActiveRecord::Base.connection, file)
+      end
+    end
+  end
+end
+</code></pre>
+
+<p>初始化数据库结构</p>
+
+<pre><code>$ rake db:init
+</code></pre>
+
+<h1 id="支持-sql-server">支持 SQL Server</h1>
+
+<p>只针对 *nix 系统：</p>
+
+<ol>
+<li>安装 freetds</li>
+</ol>
+
+<pre><code>* Mac OS: `brew install freetds`
+* CentOS: `yum install -y freetds`
+</code></pre>
+
+<ol>
+<li><code>gem install tiny_tds</code></li>
+<li><code>gem install activerecord-sqlserver-adapter</code></li>
+</ol>
+
+<p>引用如下：</p>
+
+<pre><code>require 'tiny_tds'
+require 'activerecord-sqlserver-adapter'
+require 'active_record'
+
+ActiveRecord::Base.establish_connection({
+  :adapter =&gt; 'sqlserver'
+ :host =&gt; '10.10.10.10',
+ :username =&gt; 'sa',
+  :password =&gt; 'p@ssword',
+  :database =&gt; 'development',
+  :timeout =&gt; 10,
+  :port =&gt; 1433,
+})
+
+class Users &lt; ActiveRecord::Base
+	self.table_name = 'User'
+	default_scope { lock('WITH (NOLOCK)') }
+end
+</code></pre>
+
+<h1 id="多数据库支持">多数据库支持</h1>
+
+<p>创建 <code>config/database.yml</code> 文件:</p>
+
+<pre><code>development:
+  adapter: mysql2
+  host: localhost
+  username: root
+  password:
+  database: development
+  timeout: 10
+  port: 3306
+test:
+  adapter: mysql2
+  host: 10.10.10.10
+  username: root
+  password: p@ssword
+  database: test
+  timeout: 10
+  port: 1433
+production:
+  adapter: mysql2
+  host: 33.33.33.33
+  username: root
+  password: p@ssword
+  database: production
+</code></pre>
+
+<p>创建 <code>lib/model.rb</code> 文件:</p>
+
+<pre><code>$dbconfig = YAML::load(File::open('config/database.yml'))
+
+class User &lt; ActiveRecord::Base
+  establish_connection $dbconfig['development']
+end
+
+class Post &lt; ActiveRecord::Base
+  establish_connection $dbconfig['test']
+end
+
+class Tag &lt; ActiveRecord::Base
+  establish_connection $dbconfig['production']
+end
+</code></pre>
+
+<h1 id="动态创建表名">动态创建表名</h1>
+
+<p>假若有个需求需要按照每月分表（当然也可以安装业务分表什么的），我们可以通过下面方式调用：</p>
+
+<pre><code># 插入 post，如果表不存在则创建后插入
+post = Post.date('201312').get_or_create_table.create(
+  title:'test',
+  content:'body'
+)
+
+# Model 实现代码
+class Post &lt; ActiveRecord::Base
+  @date = Time.now.strftime(&quot;%Y%02m&quot;)
+
+  def self.date(date)
+  	@date = date
+  end
+
+  def self.get_or_create_table(params={})
+    self.date(params[:date]) if params[:date]
+    self.create_table(params) if !self.exists?
+  end
+
+  def self.create_table(params={})
+    self.date(params[:date]) if params[:date]
+    table_name = self.table_name
+    ActiveRecord::Schema.define do
+      create_table table_name do |table|
+        table.column :title, :string
+        table.column :content, :text
+        table.column :created_at, :datetime
+        table.column :updated_at, :datetime
+      end
+    end
+
+    return self
+  end
+
+  def self.table_exists?
+    # 如果你设置了多数据库请取消下行注解并更改配置名（参考上个技巧）
+    # ActiveRecord::Base.establish_connection($dbconfig['development'])
+
+    ActiveRecord::Base.connection.tables.include?(self.table_name)
+  end
+
+  def table_name
+    &quot;#{@date_users}&quot;
+  end
+end
+</code></pre>
+
+    </section>
+
+  <footer class="post-footer">
+    
+    <figure class="author-image">
+        <a class="img" href="localhost/localhost" style="background-image: url(/localhostimages/icyleaf-icon.png)"><span class="hidden">icyleaf's Picture</span></a>
+    </figure>
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="localhost/localhost">icyleaf</a></h4>
+  
+  <p>热爱户外的码农、下厨初心者</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">Beijing, China</span>
+    <span class="author-link icon-link"><a href="http://icyleaf.com">http://icyleaf.com</a></span>
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" href="https://twitter.com/share?text=ActiveRecord%20%e4%bd%bf%e7%94%a8%e7%a7%98%e7%ac%88&nbsp;-&nbsp;icyleaf&amp;url=%2flocalhost%2f2013%2f12%2factiverecord-tips"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=%2flocalhost%2f2013%2f12%2factiverecord-tips"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-weibo"href="http://service.weibo.com/share/share.php?url=%2flocalhost%2f2013%2f12%2factiverecord-tips&amp;title=ActiveRecord%20%e4%bd%bf%e7%94%a8%e7%a7%98%e7%ac%88&nbsp;-&nbsp;icyleaf"
+      onclick="window.open(this.href, 'weibo-share','width=580,height=296');return false;">
+      <span class="hidden">新浪微博</span>
+  </a>
+  <a class="icon-douban" href="javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:'',r='https://www.douban.com/recommend/?url='+e(d.location.href)+'&title='+e(d.title)+'&sel='+e(s)+'&v=1',w=450,h=330,x=function(){if(!window.open(r,'douban','toolbar=0,resizable=1,scrollbars=yes,status=1,width='+w+',height='+h+',left='+(screen.width-w)/2+',top='+(screen.height-h)/2))location.href=r+'&r=1'};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()">
+      <span class="hidden">豆瓣</span>
+  </a>
+</section>
+
+
+
+    
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  var disqus_shortname = 'icyleaf';
+  var disqus_url = '\/localhost\/2013\/12\/activerecord-tips';
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+  </footer>
+</article>
+
+</main>
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">icyleaf</a> All rights reserved - 2007</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+  </div>
+  <script type="text/javascript" src="localhost/localhostjs/jquery.js"></script>
+  <script type="text/javascript" src="localhost/localhostjs/jquery.fitvids.js"></script>
+  <script type="text/javascript" src="localhost/localhostjs/index.js"></script>
+  
+</body>
+</html>
+

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  	<meta property="og:title" content=" 与SPAM战斗到底：CSS篇 &middot;  icyleaf" />
+  	<meta property="og:site_name" content="icyleaf" />
+  	<meta property="og:url" content="/localhost/2009/02/fighting-spam-with-css" />
+
+    
+  	<meta property="og:type" content="article" />
+
+    <meta property="og:article:published_time" content="2009-02-08T12:34:56&#43;08:00" />
+
+    
+    <meta property="og:article:tag" content="CSS" />
+    
+    
+
+  <title>
+     与SPAM战斗到底：CSS篇 &middot;  icyleaf
+  </title>
+
+    <meta name="description" content="热爱户外的码农、下厨初心者" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="localhost/localhostimages/favicon.ico">
+	  <link rel="apple-touch-icon" href="localhost/localhostimages/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="localhost/localhostcss/screen.css" />
+    <link rel="stylesheet" type="text/css" href="localhost/localhostcss/nav.css" />
+
+
+
+    
+        <link href="feed.xml" rel="alternate" type="application/rss+xml" title="icyleaf" />
+    
+    <meta name="generator" content="Hugo 0.17-DEV" />
+
+    <link rel="canonical" href="localhost/localhost/2009/02/fighting-spam-with-css" />
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-2570916-5', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+</head>
+<body class="nav-closed">
+
+  <div class="nav">
+  <h3 class="nav-title">Menu</h3>
+  <a href="#" class="nav-close">
+    <span class="hidden">Close</span>
+  </a>
+  <ul>
+    
+
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="localhost/">Home</a>
+      </li>
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="localhost/categories/technology">Technology</a>
+      </li>
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="localhost/tags">Tags</a>
+      </li>
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="localhost/about">About</a>
+      </li>
+    
+  </ul>
+
+  
+    <a class="subscribe-button icon-feed" href="localhost/localhostfeed.xml">Subscribe</a>
+  
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+  <header class="main-header post-head no-cover">
+
+
+  <nav class="main-nav overlay clearfix">
+  
+    <a class="blog-logo" href="localhost/localhost"><img src="localhost/localhostimages/icyleaf-icon.png" alt="Blog Logo" /></a>
+  
+
+  
+    <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+</nav>
+  
+</header>
+
+<main class="content" role="main">
+  <article class="post post">
+    <header class="post-header">
+      <h1 class="post-title">与SPAM战斗到底：CSS篇</h1>
+      <small></small>
+
+      <section class="post-meta">
+      
+      
+        <time class="post-date" datetime="2009-02-08T12:34:56&#43;08:00">
+          Feb 8, 2009
+        </time>
+      
+       
+        <span class="post-tag small"><a href="localhost/localhosttags/css/">#CSS</a></span>
+       
+      </section>
+    </header>
+
+    <section class="post-content">
+      <p>SPAM，现在还没有一个非常严格的定义。一般来说，凡是未经用户许可就强行发送到用户的邮箱中的任何电子邮件。现在应该已经广泛各种网络应用上面。对于网站来说，网站知名度小的时候或许还可以免于“侵犯”，可是一旦在搜索引擎收录的数量做出一些成绩，SPAM 就会主动找上门来，各种垃圾信息就会扑面而来，然而对SPAM 的战斗一起在进行，这是一场没有硝烟的战争，为了防范
+SPAM，大家各显其能，招招新颖，当然还有一些专门为 SPAM 创建防御服务的网站，比如说 WordPress 自带的 <a href="http://akismet.com/">Akismet</a>。对于各种防御方法，我想应该可以写成一个系列，这个系列的内容或许是从网络上搜集或许是自己突发奇想想出来的奇招（目前应该还不可能哈）。</p>
+
+<p>今天我带给大家的是方法另辟其境：<strong>CSS</strong>。总所周知，CSS 是一种层样式表，只是为了网站界面的展现做出重要贡献的角色。那么它怎么实现防御 SPAM 的呢？ok，接着下看。</p>
+
+<p><strong>原理</strong></p>
+
+<p>为了不上了就代码让大家感到迷惑，先讲一下原理：首先在创建表单的时候，添加一个对
+SPAM 校验的 input
+标签，然后再提交的时候进行对这个标签进行判断其值是否为空，因判断是否为
+SPAM（如果你不明白 SPAM 的实现原理请看<a href="http://www.codewall.cn/blog/?p=7">这里</a>）。（看官：不就是设置成
+hidden 类型吗，这谁都知道）错！我承认这是一个最常见的判断 SPAM
+的流程，但这里添加的 input 类型使用的是 text 类型，这是为了防止 SPAM
+在进行抓取页面进行对 input 类型判断是否有 hidden
+类型为设置的，那么怎么隐藏这个 input 标签呢？那么就可以利用到 CSS 的
+display 属性，哈哈，是不是明白了？好吧，看代码吧。</p>
+
+<p><strong>代码</strong></p>
+
+<p>HTML 代码：</p>
+
+<pre><code>Name:&lt;input name=&quot;name&quot; /&gt;&lt;br /&gt;
+Email:&lt;input name=&quot;email&quot; /&gt;&lt;br /&gt;     
+Comment:&lt;input name=&quot;comment&quot; /&gt;&lt;br /&gt;
+&lt;input type=&quot;hidden&quot; class=&quot;special&quot; /&gt;
+&lt;input type=&quot;submit&quot; value=&quot;Post it&quot; /&gt;
+</code></pre>
+
+<p>CSS 代码：</p>
+
+<pre><code>body {line-height:35px;font-family:Arial, Helvetica, sans-serif;color:#333;font-size:14px;}
+.special {display:none;}
+</code></pre>
+
+<p>上述代码中 class 为 special 的 input 标签即为判断 SPAM 的标志。使用 CSS
+对其隐藏，就在提交表单后进行对这个 input 进行判断是否为空即可。这样就简单避免 SPAM 对 input 的 hidden 判断的避免而轻松达到防御的目的。</p>
+
+<p><strong>声明</strong></p>
+
+<p>CSS 防御 SPAM 的实现方法来自<a href="http://www.modernblue.com/web-design-blog/fighting-spam-with-css/">Modernblue</a>
+网站发布的文章。本人只是做翻译工作，特此声明。</p>
+
+    </section>
+
+  <footer class="post-footer">
+    
+    <figure class="author-image">
+        <a class="img" href="localhost/localhost" style="background-image: url(/localhostimages/icyleaf-icon.png)"><span class="hidden">icyleaf's Picture</span></a>
+    </figure>
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="localhost/localhost">icyleaf</a></h4>
+  
+  <p>热爱户外的码农、下厨初心者</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">Beijing, China</span>
+    <span class="author-link icon-link"><a href="http://icyleaf.com">http://icyleaf.com</a></span>
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" href="https://twitter.com/share?text=%e4%b8%8eSPAM%e6%88%98%e6%96%97%e5%88%b0%e5%ba%95%ef%bc%9aCSS%e7%af%87&nbsp;-&nbsp;icyleaf&amp;url=%2flocalhost%2f2009%2f02%2ffighting-spam-with-css"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=%2flocalhost%2f2009%2f02%2ffighting-spam-with-css"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-weibo"href="http://service.weibo.com/share/share.php?url=%2flocalhost%2f2009%2f02%2ffighting-spam-with-css&amp;title=%e4%b8%8eSPAM%e6%88%98%e6%96%97%e5%88%b0%e5%ba%95%ef%bc%9aCSS%e7%af%87&nbsp;-&nbsp;icyleaf"
+      onclick="window.open(this.href, 'weibo-share','width=580,height=296');return false;">
+      <span class="hidden">新浪微博</span>
+  </a>
+  <a class="icon-douban" href="javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:'',r='https://www.douban.com/recommend/?url='+e(d.location.href)+'&title='+e(d.title)+'&sel='+e(s)+'&v=1',w=450,h=330,x=function(){if(!window.open(r,'douban','toolbar=0,resizable=1,scrollbars=yes,status=1,width='+w+',height='+h+',left='+(screen.width-w)/2+',top='+(screen.height-h)/2))location.href=r+'&r=1'};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()">
+      <span class="hidden">豆瓣</span>
+  </a>
+</section>
+
+
+
+    
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  var disqus_shortname = 'icyleaf';
+  var disqus_url = '\/localhost\/2009\/02\/fighting-spam-with-css';
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+  </footer>
+</article>
+
+</main>
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">icyleaf</a> All rights reserved - 2007</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+  </div>
+  <script type="text/javascript" src="localhost/localhostjs/jquery.js"></script>
+  <script type="text/javascript" src="localhost/localhostjs/jquery.fitvids.js"></script>
+  <script type="text/javascript" src="localhost/localhostjs/index.js"></script>
+  
+</body>
+</html>
+

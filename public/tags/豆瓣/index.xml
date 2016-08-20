@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>豆瓣 on icyleaf</title>
+    <link>localhost/tags/%E8%B1%86%E7%93%A3/</link>
+    <description>Recent content in 豆瓣 on icyleaf</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>All rights reserved - 2007</copyright>
+    <lastBuildDate>Mon, 02 May 2011 12:34:56 +0800</lastBuildDate>
+    <atom:link href="localhost/tags/%E8%B1%86%E7%93%A3/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>魔豆及其豆瓣 API 测试平台开源咯</title>
+      <link>/localhost/2011/05/modou-and-douban-api-console-is-open-source-now</link>
+      <pubDate>Mon, 02 May 2011 12:34:56 +0800</pubDate>
+      
+      <guid>/localhost/2011/05/modou-and-douban-api-console-is-open-source-now</guid>
+      <description>&lt;p&gt;这是作为 2011 年 5 月 1 日劳动节的福利发放，欢迎各位 Kohana 开发者及其爱好者围观领取，领取内容及其使用方式请前往本人 Github 的项目地址：&lt;a href=&#34;https://github.com/icyleaf/modou&#34;&gt;https://github.com/icyleaf/modou&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Douban API Package 发布！</title>
+      <link>/localhost/2010/01/douban-api-package</link>
+      <pubDate>Fri, 08 Jan 2010 12:34:56 +0800</pubDate>
+      
+      <guid>/localhost/2010/01/douban-api-package</guid>
+      <description>&lt;p&gt;Douban API Package 是一个使用 PHP 开发且基于 Kohana v3 开发的一个扩展（Module）。&lt;/p&gt;
+
+&lt;p&gt;它对&lt;a href=&#34;http://www.douban.com/&#34;&gt;豆瓣&lt;/a&gt; &lt;a href=&#34;http://www.douban.com/service/apidoc/&#34;&gt;API&lt;/a&gt; 进行重新封包。它使用起来非常方便，可以快速开发一个 web 应用。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;为什么要另外封包？&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;对，豆瓣官方提供了一种 PHP 的解决方案，可是需要庞大的支持库：GData（20M左右）以及可能无法修改的环境配置（租用的空间主机会遇到这样的问题）。虽说 Douban API Package 也是基于框架开发，不过 Kohana 是一个纯 PHP5 模式且体积小巧（仅有 478KB），优秀迅捷的框架。&lt;strong&gt;最重要的是&lt;/strong&gt;，Douban API Package 提供了目前官方所有功能的支持。并有线上网站：&lt;a href=&#34;http://modou.us/&#34;&gt;魔豆&lt;/a&gt; 和&lt;a href=&#34;http://modou.us/console&#34;&gt;豆瓣 API 控制台&lt;/a&gt;长期运营。&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;虽然它是基于 Kohana 框架开发，但是并没有使用太多的依赖，稍微熟悉可以轻松分离出来！&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;安装需求&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;PHP 5.2+ with curl module&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://github.com/kohana/kohana&#34;&gt;Kohana v3&lt;/a&gt; - 一款纯 PHP 5 框架，它的特点就是&lt;strong&gt;高安全性&lt;/strong&gt;，&lt;strong&gt;轻量级代码&lt;/strong&gt;，&lt;strong&gt;容易使用&lt;/strong&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;安装步骤&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;步骤 0: 部署 Kohana v3&lt;/p&gt;
+
+&lt;p&gt;下载并安装 Kohana v3 的过程，请大家参考此教程：&lt;a href=&#34;http://kohanaphp.cn/guide/tutorials.git&#34;&gt;使用 Git 部署 Kohana 系统&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;步骤 1: 下载本扩展!&lt;/p&gt;
+
+&lt;p&gt;你可以在部署完毕的 Kohana 系统的根目录执行下面操作：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ git submodule add git://github.com/icyleaf/douban.git modules/douban
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;完成！&lt;/p&gt;
+
+&lt;p&gt;或者你也可以从本&lt;a href=&#34;http://github.com/icyleaf/douban&#34;&gt;github 项目&lt;/a&gt; 下载压缩包放置在 modules 文件夹下面。&lt;/p&gt;
+
+&lt;p&gt;步骤 2: 在 &lt;code&gt;bootstrap.php&lt;/code&gt; 文件中启用该模块(默认情况下，存储在 &lt;code&gt;application&lt;/code&gt; 文件夹)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/** * Enable modules. Modules are referenced by a relative or absolute path. *
+/Kohana::modules(array(     
+	&#39;douban&#39;        =&amp;gt; MODPATH.&#39;douban&#39;,     // Douban API Module    //
+	&#39;database&#39;   =&amp;gt; MODPATH.&#39;database&#39;,   // Database access    //
+	&#39;image&#39;      =&amp;gt; MODPATH.&#39;image&#39;,      // Image manipulation    //
+	&#39;orm&#39;        =&amp;gt; MODPATH.&#39;orm&#39;,        // Object Relationship Mapping (not complete)    //
+	&#39;pagination&#39; =&amp;gt; MODPATH.&#39;pagination&#39;, // Paging of results    //
+	&#39;paypal&#39;     =&amp;gt; MODPATH.&#39;paypal&#39;,     // PayPal integration (not complete)    //
+	&#39;todoist&#39;    =&amp;gt; MODPATH.&#39;todoist&#39;,    // Todoist integration    //
+	&#39;unittest&#39;   =&amp;gt; MODPATH.&#39;unittest&#39;,   // Unit testing    // &#39;codebench&#39;  =&amp;gt; MODPATH.
+	&#39;codebench&#39;,  // Benchmarking tool    
+));
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;目录结构&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;douban
+   +--- classes         
+   			+--- controller               # 豆瓣样例         
+   					+--- douban                   # Douban API Package               
+   							+--- api               # Douban API                
+   							+--- core.php          # Douban Core            
+   							+--- oauth.php         # Douban OAuth                
+   							+--- request.php       # Douban Requset                 
+						   	+--- response.php      # Douban Response         
+					+--- douban.php               # Douban API Class  
+   +--- config         
+   			+--- douban.php               # 豆瓣 API 配置文件         
+   			+--- user_agents.php          # 奉送给大家一些手机 User agent 配置文件  
+   +--- media         
+   			+--- images                   # 奉送给大家豆瓣 API 用到的图像        
+   +--- vendor         
+   			+--- OAuth.php                # OAuth 官方推荐 PHP 库  
+   			+--- LICENSE  
+   +--- README.markdown
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;快速上手&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Douban API Package 提供一些演示用例，系统部署完毕后可以通过&lt;code&gt;http://host/demo_douban&lt;/code&gt; 访问。&lt;/p&gt;
+
+&lt;p&gt;文件路径：&lt;code&gt;classes/controller/douban_demo.php&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;源码库：&lt;a href=&#34;http://github.com/icyleaf/douban&#34;&gt;http://github.com/icyleaf/douban&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;祝你开发顺利！&lt;/p&gt;
+
+&lt;p&gt;如果任何疑问或者 Bugs 反馈，即可以在本项目中提交 Issue
+或者给我发邮件：icyleaf.cn囧gmail.com （请替换 &amp;ldquo;囧&amp;rdquo; 为 @）&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>豆瓣API测试控制台</title>
+      <link>/localhost/2009/07/douban-api-console</link>
+      <pubDate>Mon, 06 Jul 2009 12:34:56 +0800</pubDate>
+      
+      <guid>/localhost/2009/07/douban-api-console</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;项目已开源: &lt;a href=&#34;http://github.com/icyleaf/modou&#34;&gt;http://github.com/icyleaf/modou&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;豆瓣 API 测试控制台的创造灵感来源于 Facebook Developers Tools 中的&lt;a href=&#34;http://developers.facebook.com/tools.php&#34;&gt;Facebook API Console&lt;/a&gt;， 或许大家知道，魔豆是我的另外一个豆瓣 API 应用，由于是自己封装的 Douban
+API（官方提供的库类要求太多，安装繁琐，这不属于我喜爱简洁，轻便的风格），每次想查看某个
+API 接口返回的数据都要写一个 test 跑一下。麻烦不说，还容易出错，于是，使用自己封装的 Douban API，借鉴 Facebook API Console
+的界面和类似的功能显示，终于小有所成，其中为了实现此控制台，封包的库类经过两次大改，虽然改的很辛苦，但从中学到了很多开发经验。&lt;/p&gt;
+
+&lt;p&gt;测试用户必须先进行用户验证才能进行测试，这主要是为了：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;避免提交查询中出现错误，并让测试者使用到全部API方法&lt;/li&gt;
+&lt;li&gt;防止恶意用户利用它做二次api调用，由于测试控制台的传输很简单，提交参数即可查询。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;查询方法：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;进行用户的登录验证&lt;/li&gt;
+&lt;li&gt;选择返回的数据类型（支持官方提供的 XML 和 JSON格式）&lt;/li&gt;
+&lt;li&gt;选择需要查询的API方法（这里我做了分类）&lt;/li&gt;
+&lt;li&gt;如果查询的方法存在参数，会在方法下面显示。&lt;/li&gt;
+&lt;li&gt;设置完毕参数后，点击“调用此方法”，稍等片刻即可。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;返回的数据结果会在右侧显示出来，其中，右上部分是调用相关 API 的 URL 地址；右下部分是返回的数据结果。&lt;/p&gt;
+
+&lt;p&gt;如果，参数设置错误，或者其他问题，返回的结果会以 [CODE] Content
+的格式返回，其中 &lt;strong&gt;CODE&lt;/strong&gt;代码返回的状态码，&lt;strong&gt;Content&lt;/strong&gt; 是返回的信息。&lt;/p&gt;
+
+&lt;p&gt;通用参数解释：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;id  - 查询方法涉及到的 id 值（人，书影音，日记，广播，豆邮，同城等）&lt;/li&gt;
+&lt;li&gt;message - 广播发送的内容&lt;/li&gt;
+&lt;li&gt;title - 日记，豆邮的标题&lt;/li&gt;
+&lt;li&gt;content - 主题内容&lt;/li&gt;
+&lt;li&gt;city - 同城活动的城市代号（根据我判断，应该是中文的拼音，详细请看&lt;a href=&#34;http://www.douban.com/location/world/&#34;&gt;官方同城列表&lt;/a&gt;中各个城市的url）&lt;/li&gt;
+&lt;li&gt;query - 搜索的关键字&lt;/li&gt;
+&lt;li&gt;index - 返回多个元素时，起始元素的下标（相当于豆瓣 api 文档中的start-index）&lt;/li&gt;
+&lt;li&gt;max - 返回多个entry时，每页最多的结果数（相当于豆瓣 api 文档中的max-results）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;其中某些方法（涉及到自身的数据，比如我的信息，我的广播，我的同城）在进行查询的时候可以把
+id 留空或者设置为 ‘me’ （不带引号），这样调用结果显示的是自己的信息。&lt;/p&gt;
+
+&lt;p&gt;如果长时间(大于1分钟)处于“调用中”，可能是由于程序问题，请刷新后重试。&lt;/p&gt;
+
+&lt;p&gt;已知存在的问题：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;界面和方法列表在 Chrome 浏览器有不兼容的问题出现&lt;/li&gt;
+&lt;li&gt;返回数据结果头一行多出一个类似水平制表符的转义符似的&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;由于目前为止豆瓣 API 还没有封装完成，现只提供用户，广播，书影音，豆邮和日记的不完全功能测试查询。
+其余的 API 会尽快添加进去 :)&lt;/p&gt;
+
+&lt;p&gt;测试地址：&lt;a href=&#34;http://ews.im/douban_console&#34;&gt;http://ews.im/douban_console&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>魔豆：豆瓣网非官方移动版本</title>
+      <link>/localhost/2009/06/modou</link>
+      <pubDate>Mon, 22 Jun 2009 12:34:56 +0800</pubDate>
+      
+      <guid>/localhost/2009/06/modou</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;项目已开源: &lt;a href=&#34;http://github.com/icyleaf/modou&#34;&gt;http://github.com/icyleaf/modou&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://modou.us&#34; title=&#34;魔豆：豆瓣网非官方移动版本&#34;&gt;魔豆&lt;/a&gt;，一个&lt;a href=&#34;http://douban.com&#34;&gt;豆瓣网&lt;/a&gt;非官方移动版本，基于&lt;a href=&#34;http://www.douban.com/service/apidoc/&#34; title=&#34;豆瓣 API&#34;&gt;豆瓣
+API&lt;/a&gt;开发的专门为移动终端（手持设备）定制的豆瓣移动版本。魔豆专注于豆瓣网的&lt;strong&gt;广播&lt;/strong&gt;及&lt;strong&gt;同城活动&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;p&gt;魔豆的来历：豆瓣移动版 -&amp;gt; Douban mobile -&amp;gt; moDouban -&amp;gt; moDou -&amp;gt;魔豆&lt;/p&gt;
+
+&lt;p&gt;目前魔豆发布的功能：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;友邻广播：支持显示广播，回复发起人和重播（重复发布其他发起者的广播）&lt;/li&gt;
+&lt;li&gt;同城活动：查看自己参与（包含参加/感兴趣）的活动以及用户所在城市的同城活动（需提前在豆瓣设置）&lt;/li&gt;
+&lt;li&gt;查看用户相册以及同城活动相册（仅限于从友邻广播）&lt;/li&gt;
+&lt;li&gt;搜索用户/书影音/同城活动&lt;/li&gt;
+&lt;li&gt;查看用户/书影音/同城活动信息&lt;/li&gt;
+&lt;li&gt;显示和查阅豆邮&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;我，是一个重度豆瓣使用者，也许这和身在北京这所繁华的帝都有很大的关系。虽然豆瓣网直到现在为其定位在书影音这三大模块，但不可否认的，豆瓣小组，豆瓣广播，豆瓣同城甚至豆邮都起着重要的标志性作用。&lt;/p&gt;
+
+&lt;p&gt;或许和大家一样，一直期待着豆瓣网能够推出移动版本，可以用手机或其他移动设备查查书影音，看看友邻广播和未读豆邮，浏览下所在城市的同城活动，光想想都是这么的惬意，于是我们在等，一直在等，几乎使我望穿秋水的时候，还是杳无音讯。平时在有 WIFI 网络的情况下，使用 iTouch
+访问一下豆瓣网还是可以，如果离开了它，以为这必须使用较昂贵的 GPRS 网络，经过漫长的 loading 才能看到自己感兴趣或自己想看的一点点信息&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;于是，自己何不使用豆瓣API开发一个呢？紧接着通过查阅大量的文档和官方提供的演示代码，抛弃
+Zend Framework 和 Gdata，使用自己维护中文化的 &lt;a href=&#34;http://khnfans.cn&#34; title=&#34;Kohana 中文爱好者&#34;&gt;Kohana&lt;/a&gt;框架，一点一点的搭建起了基础库，通过一个星期多的时间，开始一边做页面的展现，另一边继续完善基础库，直到目前为止，大体的框架已经完成，下面需要考虑如何对细节做修改和完善。&lt;/p&gt;
+
+&lt;p&gt;另外，由于 PHP 没有低耦合的 HTTP requset class，自己使用 curl 函数一点点抠出来的一个 RESTFul requset class，在进行提交 POST，PUT，DELETE 方法还存在一些技术问题，所以魔豆目前还不支持对书影音，同城活动进行操作（包含，想读/听/看，感兴趣，我要参加等等），我会尽快完善。&lt;/p&gt;
+
+&lt;p&gt;开发环境： &lt;strong&gt;Windows XP + XAMPP + E-texteditor&lt;/strong&gt; (Office work) AND
+&lt;strong&gt;Ubuntu 9.04 + XAMPP + Aptana&lt;/strong&gt; (Laptop)&lt;/p&gt;
+
+&lt;p&gt;调试设备：iPod Touch + Blackberry 8310 + Nokia N-GAGE QD&lt;/p&gt;
+
+&lt;p&gt;由于设备有限，可能在其他设备上会出现设备误判或UI上的问题（大家可以在本日志下面留下误判设备型号），敬请谅解。后期会对不同设备进行专门的优化
+:)&lt;/p&gt;
+
+&lt;p&gt;网站：&lt;a href=&#34;http://modou.us&#34;&gt;http://modou.us&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;开发进度：&lt;a href=&#34;http://modou.us/timeline&#34;&gt;http://modou.us/timeline&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;相关截图：&lt;a href=&#34;http://www.getdropbox.com/gallery/45081/1/modou?h=b26d7e&#34;&gt;http://www.getdropbox.com/gallery/45081/1/modou?h=b26d7e&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;欢迎大家前来测试和使用，心情愉快。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;更新于 2009年06月22日：由于China Mobile的原因，黑莓手机默认浏览器无法判别，请黑莓用户使用 Opera Mini 或其他浏览器访问，原因请看&lt;a href=&#34;http://www.douban.com/group/topic/6946152/&#34;&gt;这里&lt;/a&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

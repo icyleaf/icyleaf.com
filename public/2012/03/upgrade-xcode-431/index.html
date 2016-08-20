@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  	<meta property="og:title" content=" 升级 xcode 4.3.1 &middot;  icyleaf" />
+  	<meta property="og:site_name" content="icyleaf" />
+  	<meta property="og:url" content="/localhost/2012/03/upgrade-xcode-431" />
+
+    
+  	<meta property="og:type" content="article" />
+
+    <meta property="og:article:published_time" content="2012-03-09T12:34:56&#43;08:00" />
+
+    
+    <meta property="og:article:tag" content="XCode" />
+    
+    
+
+  <title>
+     升级 xcode 4.3.1 &middot;  icyleaf
+  </title>
+
+    <meta name="description" content="热爱户外的码农、下厨初心者" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="localhost/localhostimages/favicon.ico">
+	  <link rel="apple-touch-icon" href="localhost/localhostimages/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="localhost/localhostcss/screen.css" />
+    <link rel="stylesheet" type="text/css" href="localhost/localhostcss/nav.css" />
+
+
+
+    
+        <link href="feed.xml" rel="alternate" type="application/rss+xml" title="icyleaf" />
+    
+    <meta name="generator" content="Hugo 0.17-DEV" />
+
+    <link rel="canonical" href="localhost/localhost/2012/03/upgrade-xcode-431" />
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-2570916-5', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+</head>
+<body class="nav-closed">
+
+  <div class="nav">
+  <h3 class="nav-title">Menu</h3>
+  <a href="#" class="nav-close">
+    <span class="hidden">Close</span>
+  </a>
+  <ul>
+    
+
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="localhost/">Home</a>
+      </li>
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="localhost/categories/technology">Technology</a>
+      </li>
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="localhost/tags">Tags</a>
+      </li>
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="localhost/about">About</a>
+      </li>
+    
+  </ul>
+
+  
+    <a class="subscribe-button icon-feed" href="localhost/localhostfeed.xml">Subscribe</a>
+  
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+  <header class="main-header post-head no-cover">
+
+
+  <nav class="main-nav overlay clearfix">
+  
+    <a class="blog-logo" href="localhost/localhost"><img src="localhost/localhostimages/icyleaf-icon.png" alt="Blog Logo" /></a>
+  
+
+  
+    <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+</nav>
+  
+</header>
+
+<main class="content" role="main">
+  <article class="post post">
+    <header class="post-header">
+      <h1 class="post-title">升级 xcode 4.3.1</h1>
+      <small></small>
+
+      <section class="post-meta">
+      
+      
+        <time class="post-date" datetime="2012-03-09T12:34:56&#43;08:00">
+          Mar 9, 2012
+        </time>
+      
+       
+        <span class="post-tag small"><a href="localhost/localhosttags/xcode/">#XCode</a></span>
+       
+      </section>
+    </header>
+
+    <section class="post-content">
+      <p>下载 XCode 目前有两种途径：</p>
+
+<p>​1. <a href="http://itunes.apple.com/us/app/xcode/id497799835?mt=12">Mac App Store</a></p>
+
+<p>​2. <a href="https://developer.apple.com/downloads/index.action">Apple Developer Download Page</a>
+(需要有开发者账号并登陆）</p>
+
+<p>对于前者好处在于免费下载但下载时间或许非常漫长；但后者如果条件都满足的话（apple developer id + <a href="http://t.cn/zOcn4KN">script</a> + vps + axel）那就可以非常快速的下载到页面上面的所有资源。</p>
+
+<p>XCode 4.3 之后的版本采用核心和模块分离，现在主程序只有 1.8G 左右，其余的包括 Command line tools + dashcode + graphics tools（同样可以使用上面的脚本）需要单独按需下载。但这还不是变化最大的，最大的地方在于之前版本都是存放在 <code>/Developer</code> 路径下面，4.3 之后的版本统一改放在了 <code>/Applications</code>下面，下载 dmg 打开后直接把 Xcode 拖入 <code>/Applications</code> 即可。</p>
+
+<p>安装完毕后首次启动，会有一个提示，这点需要非常注意，新版的会要求你把 <code>/Developer</code> 以及 <code>/Applications/Install Xcode</code> 一并移动至回收站，注意是整个目录完全移动。假如你的机器安装了其他的开发工具放置在了<code>/Developer</code> 了，这里就需要谨慎处理。</p>
+
+<p>初次之外，我参考 <a href="http://useyourloaf.com/blog/2012/2/17/updating-to-xcode-43.html">Use Your Loaf</a>的博文，假如你的环境还需要依赖 Command line tools for xcode，除了下载和安装的过程，还需要在终端作下处理。比如上面提到博文所说的 <code>agvtools</code> 管理 App 版本自动化的工具。在升级 4.3+ 版本可能就会出现下面的错误</p>
+
+<pre><code>$ agvtools
+Error: No developer directory found at /Developer.
+Run /usr/bin/xcode-select to update the developer directory path.
+</code></pre>
+
+<p>Use Your Loaf 博文提到需要使用 <code>xcode-select</code> 重新选择 Xcode 的安装路径，来保证终端工具可以正常运行，但是在 4.3.1 中我尝试还是失败。提示如下：</p>
+
+<pre><code>$ sudo /usr/bin/xcode-select -switch /Applications/Xcode.app
+$ agvtool
+Error: Can't run /Applications/Xcode.app/usr/bin/agvtool (no such file).
+</code></pre>
+
+<p>经常检查发现，实际上 Command line tools 安装后存放在 <code>/Applications/Xcode.app/Contents/Developer/usr</code> 路径下面，尝试更正操作:</p>
+
+<p>```
+$ sudo /usr/bin/xcode-select -switch /Applications/Xcode.app/Contents/Developer/</p>
+
+<p>搞定！</p>
+
+<p>&mdash;&mdash;&mdash;华丽丽的分割线&mdash;&mdash;&mdash;</p>
+
+<p><strong>Instruments 哪里去了？</strong></p>
+
+<p>哼哼，尝试在 Xcode 图标右键 &ldquo;Open Developer Tool&rdquo;，看到了吧，还有一些其他的工具 :)</p>
+
+    </section>
+
+  <footer class="post-footer">
+    
+    <figure class="author-image">
+        <a class="img" href="localhost/localhost" style="background-image: url(/localhostimages/icyleaf-icon.png)"><span class="hidden">icyleaf's Picture</span></a>
+    </figure>
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="localhost/localhost">icyleaf</a></h4>
+  
+  <p>热爱户外的码农、下厨初心者</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">Beijing, China</span>
+    <span class="author-link icon-link"><a href="http://icyleaf.com">http://icyleaf.com</a></span>
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" href="https://twitter.com/share?text=%e5%8d%87%e7%ba%a7%20xcode%204.3.1&nbsp;-&nbsp;icyleaf&amp;url=%2flocalhost%2f2012%2f03%2fupgrade-xcode-431"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=%2flocalhost%2f2012%2f03%2fupgrade-xcode-431"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-weibo"href="http://service.weibo.com/share/share.php?url=%2flocalhost%2f2012%2f03%2fupgrade-xcode-431&amp;title=%e5%8d%87%e7%ba%a7%20xcode%204.3.1&nbsp;-&nbsp;icyleaf"
+      onclick="window.open(this.href, 'weibo-share','width=580,height=296');return false;">
+      <span class="hidden">新浪微博</span>
+  </a>
+  <a class="icon-douban" href="javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:'',r='https://www.douban.com/recommend/?url='+e(d.location.href)+'&title='+e(d.title)+'&sel='+e(s)+'&v=1',w=450,h=330,x=function(){if(!window.open(r,'douban','toolbar=0,resizable=1,scrollbars=yes,status=1,width='+w+',height='+h+',left='+(screen.width-w)/2+',top='+(screen.height-h)/2))location.href=r+'&r=1'};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()">
+      <span class="hidden">豆瓣</span>
+  </a>
+</section>
+
+
+
+    
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  var disqus_shortname = 'icyleaf';
+  var disqus_url = '\/localhost\/2012\/03\/upgrade-xcode-431';
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+  </footer>
+</article>
+
+</main>
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">icyleaf</a> All rights reserved - 2007</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+  </div>
+  <script type="text/javascript" src="localhost/localhostjs/jquery.js"></script>
+  <script type="text/javascript" src="localhost/localhostjs/jquery.fitvids.js"></script>
+  <script type="text/javascript" src="localhost/localhostjs/index.js"></script>
+  
+</body>
+</html>
+

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  	<meta property="og:title" content=" 如何让 iOS 和 Android 支持自定义字体 &middot;  icyleaf" />
+  	<meta property="og:site_name" content="icyleaf" />
+  	<meta property="og:url" content="/localhost/2011/07/custom-fonts-both-in-ios-and-android" />
+
+    
+  	<meta property="og:type" content="article" />
+
+    <meta property="og:article:published_time" content="2011-07-06T12:34:56&#43;08:00" />
+
+    
+    <meta property="og:article:tag" content="Android" />
+    
+    <meta property="og:article:tag" content="iOS" />
+    
+    
+
+  <title>
+     如何让 iOS 和 Android 支持自定义字体 &middot;  icyleaf
+  </title>
+
+    <meta name="description" content="热爱户外的码农、下厨初心者" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="localhost/localhostimages/favicon.ico">
+	  <link rel="apple-touch-icon" href="localhost/localhostimages/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="localhost/localhostcss/screen.css" />
+    <link rel="stylesheet" type="text/css" href="localhost/localhostcss/nav.css" />
+
+
+
+    
+        <link href="feed.xml" rel="alternate" type="application/rss+xml" title="icyleaf" />
+    
+    <meta name="generator" content="Hugo 0.17-DEV" />
+
+    <link rel="canonical" href="localhost/localhost/2011/07/custom-fonts-both-in-ios-and-android" />
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-2570916-5', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+</head>
+<body class="nav-closed">
+
+  <div class="nav">
+  <h3 class="nav-title">Menu</h3>
+  <a href="#" class="nav-close">
+    <span class="hidden">Close</span>
+  </a>
+  <ul>
+    
+
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="localhost/">Home</a>
+      </li>
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="localhost/categories/technology">Technology</a>
+      </li>
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="localhost/tags">Tags</a>
+      </li>
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="localhost/about">About</a>
+      </li>
+    
+  </ul>
+
+  
+    <a class="subscribe-button icon-feed" href="localhost/localhostfeed.xml">Subscribe</a>
+  
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+  <header class="main-header post-head no-cover">
+
+
+  <nav class="main-nav overlay clearfix">
+  
+    <a class="blog-logo" href="localhost/localhost"><img src="localhost/localhostimages/icyleaf-icon.png" alt="Blog Logo" /></a>
+  
+
+  
+    <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+</nav>
+  
+</header>
+
+<main class="content" role="main">
+  <article class="post post">
+    <header class="post-header">
+      <h1 class="post-title">如何让 iOS 和 Android 支持自定义字体</h1>
+      <small></small>
+
+      <section class="post-meta">
+      
+      
+        <time class="post-date" datetime="2011-07-06T12:34:56&#43;08:00">
+          Jul 6, 2011
+        </time>
+      
+       
+        <span class="post-tag small"><a href="localhost/localhosttags/android/">#Android</a></span>
+       
+        <span class="post-tag small"><a href="localhost/localhosttags/ios/">#iOS</a></span>
+       
+      </section>
+    </header>
+
+    <section class="post-content">
+      
+
+<p>本篇教程的目前源于我们团队设计师一直询问，iOS(iPhone/iPad) 和 Android
+两个平台是否支持自定义字体的问题，恰巧前不久<a href="http://www.v2ex.com/t/15220">唐茶计划</a>出了一个关于在中文阅读新体验的电子书应用：<a href="http://itunes.apple.com/cn/app/id446752200?mt=8">失控</a>。里面提到中文的显示采用了香港字体设计室的全新中文黑体字：<a href="http://www.typeisbeautiful.com/2011/07/4276">信黑体</a>。于是我就在想看来
+iOS 是可以支持自定义字体的。通过搜索和研究整理如下，供自己备份和大家参考</p>
+
+<h1 id="ios">iOS</h1>
+
+<p>iOS 对字体以样式的支持是非常有限的(内嵌<a href="http://iosfonts.com/">默认字库列表</a>)，尤其说对于用习惯了 HTML + CSS，就觉得 iOS 对字体的扩展真是逊到渣了，当然高人们已经准备为大众造福，出现了轻巧的
+<a href="https://github.com/zynga/FontLabel">FontLable</a>，<a href="https://github.com/mattt/TTTAttributedLabel">TTTAttributedLabel</a> 开源库到怪兽级别 <a href="https://github.com/facebook/three20">Three20</a> 开源框架。但假如仅仅是想加载自定义字体来说，对于 iOS 4 版本还是比较简单的：</p>
+
+<ol>
+<li>添加自定义字体文件做资源文件添加到 XCode 项目之中</li>
+<li>在 info.plist 中新增一个名为 UIAppFonts 的 Key，类型是数组（array）</li>
+<li>把新增的字体的文件名（包括后缀）依次填入 UIAppFonts 数组（注意区分大小写）</li>
+<li>保存 info.plist（废话）。准备工作完毕，下面是编码部分</li>
+</ol>
+
+<pre><code>@implementation CustomFontLabel
+
+- (id)initWithCoder:(NSCoder *)decoder
+{
+    if (self = [super initWithCoder: decoder])
+    {
+        [self setFont: [UIFont fontWithName: @&quot;Custom Font Name&quot; size: self.font.pointSize]];
+        // 这里 Custom Font Name 并不是字体的文件名，而且系统注册显示的字体标准名称，比如
+        // 比如，微软雅黑，最好就用 Microsoft YaHei （不过这个会存在版权问题把 XD）
+        // 另外，注意区分大小写
+    }
+    return self;
+}
+
+@end
+</code></pre>
+
+<p>这里还有更完整的<a href="http://stackoverflow.com/questions/360751/can-i-embed-a-custom-font-in-an-iphone-application">关于 iOS 不同平台支持自定义字体</a>的问答。</p>
+
+<h1 id="android">Android</h1>
+
+<p>Android 默认支持  Droid Sans，Droid Sans Mono 和 Droid Serif 三种字体，其实对于中文的显示还是很不错的，有些类似于微软雅黑字体（<a href="http://www.cnbeta.com/articles/114854.htm">区别</a>）。假如只是对默认的字体进行更换，最简单的方法就是配置 layout 文件：</p>
+
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+              android:orientation=&quot;vertical&quot;
+              android:layout_width=&quot;fill_parent&quot;
+              android:layout_height=&quot;fill_parent&quot;
+        &gt;
+    &lt;TextView
+            android:layout_width=&quot;fill_parent&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:text=&quot;This is a 'sans' demo!&quot;
+            android:typeface=&quot;sans&quot;
+            /&gt;
+     &lt;TextView
+            android:layout_width=&quot;fill_parent&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:text=&quot;This is a 'serif' demo!&quot;
+            android:typeface=&quot;serif&quot;
+            android:textStyle=&quot;italic&quot;
+            /&gt;
+     &lt;TextView
+            android:layout_width=&quot;fill_parent&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:text=&quot;This is a 'monospace' demo!&quot;
+            android:typeface=&quot;monospace&quot;
+            android:textStyle=&quot;bold&quot;
+            /&gt;
+&lt;/LinearLayout&gt;
+</code></pre>
+
+<p>但是这样肯定不能满足大家对于字体排版高一级的要求，下面是支持自定义字体的步骤：</p>
+
+<p>首先，添加自定义字体文件放在项目的 <code>assets/fonts</code> 目录下面（目录可能需要自己创建）。</p>
+
+<p>其次，编辑 layout 文件（这里做一个示范）</p>
+
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+              android:orientation=&quot;vertical&quot;
+              android:layout_width=&quot;fill_parent&quot;
+              android:layout_height=&quot;fill_parent&quot;
+        &gt;
+    &lt;TextView android:id=&quot;@+id/textview&quot;
+            android:layout_width=&quot;fill_parent&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:text=&quot;This is a 'Microsoft YaHei' demo!&quot;
+            /&gt;
+    &lt;Button android:id=&quot;@+id/button&quot;
+            android:layout_width=&quot;fill_parent&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:text=&quot;This is a 'Microsoft YaHei' button!&quot;
+            /&gt;
+&lt;/LinearLayout&gt;
+</code></pre>
+
+<p>最后，在代码部分实现自定义字体（和 iOS 类似）</p>
+
+<pre><code>public void onCreate(Bundle savedInstanceState)
+{
+       super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+
+        TextView textView = null;
+        Button button = null;
+
+        setFont(textView, &quot;fonts/YaHei.ttf&quot;, R.id.text_view);
+        setFont(button, &quot;fonts/YaHei.ttf&quot;, R.id.button);
+}
+
+void setFont(TextView name, String path, int res)
+{
+    	name = (TextView) findViewById(res);
+        Typeface font = Typeface.createFromAsset(this.getAssets(), path);
+        name.setTypeface(font);
+}
+</code></pre>
+
+<p>扩展阅读 [<a href="http://mobile.tutsplus.com/tutorials/android/customize-android-fonts/">1</a>] [<a href="http://russenreaktor.wordpress.com/2010/04/29/solved-android-using-custom-fonts/">2</a>]</p>
+
+<p>话说，为什么 Android 到现在都没有更多的开源的库和框架呢？</p>
+
+    </section>
+
+  <footer class="post-footer">
+    
+    <figure class="author-image">
+        <a class="img" href="localhost/localhost" style="background-image: url(/localhostimages/icyleaf-icon.png)"><span class="hidden">icyleaf's Picture</span></a>
+    </figure>
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="localhost/localhost">icyleaf</a></h4>
+  
+  <p>热爱户外的码农、下厨初心者</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">Beijing, China</span>
+    <span class="author-link icon-link"><a href="http://icyleaf.com">http://icyleaf.com</a></span>
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" href="https://twitter.com/share?text=%e5%a6%82%e4%bd%95%e8%ae%a9%20iOS%20%e5%92%8c%20Android%20%e6%94%af%e6%8c%81%e8%87%aa%e5%ae%9a%e4%b9%89%e5%ad%97%e4%bd%93&nbsp;-&nbsp;icyleaf&amp;url=%2flocalhost%2f2011%2f07%2fcustom-fonts-both-in-ios-and-android"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=%2flocalhost%2f2011%2f07%2fcustom-fonts-both-in-ios-and-android"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-weibo"href="http://service.weibo.com/share/share.php?url=%2flocalhost%2f2011%2f07%2fcustom-fonts-both-in-ios-and-android&amp;title=%e5%a6%82%e4%bd%95%e8%ae%a9%20iOS%20%e5%92%8c%20Android%20%e6%94%af%e6%8c%81%e8%87%aa%e5%ae%9a%e4%b9%89%e5%ad%97%e4%bd%93&nbsp;-&nbsp;icyleaf"
+      onclick="window.open(this.href, 'weibo-share','width=580,height=296');return false;">
+      <span class="hidden">新浪微博</span>
+  </a>
+  <a class="icon-douban" href="javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:'',r='https://www.douban.com/recommend/?url='+e(d.location.href)+'&title='+e(d.title)+'&sel='+e(s)+'&v=1',w=450,h=330,x=function(){if(!window.open(r,'douban','toolbar=0,resizable=1,scrollbars=yes,status=1,width='+w+',height='+h+',left='+(screen.width-w)/2+',top='+(screen.height-h)/2))location.href=r+'&r=1'};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()">
+      <span class="hidden">豆瓣</span>
+  </a>
+</section>
+
+
+
+    
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  var disqus_shortname = 'icyleaf';
+  var disqus_url = '\/localhost\/2011\/07\/custom-fonts-both-in-ios-and-android';
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+  </footer>
+</article>
+
+</main>
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">icyleaf</a> All rights reserved - 2007</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+  </div>
+  <script type="text/javascript" src="localhost/localhostjs/jquery.js"></script>
+  <script type="text/javascript" src="localhost/localhostjs/jquery.fitvids.js"></script>
+  <script type="text/javascript" src="localhost/localhostjs/index.js"></script>
+  
+</body>
+</html>
+

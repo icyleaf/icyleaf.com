@@ -1,0 +1,611 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>年终总结 on icyleaf</title>
+    <link>localhost/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/</link>
+    <description>Recent content in 年终总结 on icyleaf</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>All rights reserved - 2007</copyright>
+    <lastBuildDate>Mon, 30 Dec 2013 12:34:56 +0800</lastBuildDate>
+    <atom:link href="localhost/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>2013 年终总结</title>
+      <link>/localhost/2013/12/2013-in-review</link>
+      <pubDate>Mon, 30 Dec 2013 12:34:56 +0800</pubDate>
+      
+      <guid>/localhost/2013/12/2013-in-review</guid>
+      <description>
+
+&lt;p&gt;人生能够走过几次 1314 新旧年的交替，都有些忘记过去的一年做了些什么事情，翻看日历和一些零碎的笔记在努力把之前的事情慢慢回忆起来。&lt;/p&gt;
+
+&lt;h2 id=&#34;工作&#34;&gt;工作&lt;/h2&gt;
+
+&lt;p&gt;工作算得上又失落也有少许沉淀。&lt;/p&gt;
+
+&lt;p&gt;首先结束了人生第二家干了大约三年半的公司。当职位慢慢爬升，周围的环境已不再是曾经那么单纯程序员思维，在&lt;a href=&#34;http://icyleaf.com/2013/01/2011-2012-in-review/&#34;&gt;去年年终总结&lt;/a&gt;也提到过爬升所带来的宝贵经验，但今年却尝到了不一样的教训：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;产品和技术是为了市场（目标用户）服务&lt;/li&gt;
+&lt;li&gt;团队不能够急剧扩张&lt;/li&gt;
+&lt;li&gt;这不仅仅是一个人的『战役』&lt;/li&gt;
+&lt;li&gt;提防小人的冷枪&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;其实前者还好，总有办法弥补，但面对最后一条，我选择了无奈的离开&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;2007 年 12 月来北京之后，几乎没有怎么休息过，人生总是在岗位上奋斗，本想着这次离职可以在出走玩玩，时节又逢夏末秋初，正好是看雪山的季节。事情往往事与愿违，离职三天后，我入职了第三家公司，一朋友急缺人员，我选择了去帮他救火&amp;hellip;&lt;/p&gt;
+
+&lt;h2 id=&#34;技术&#34;&gt;技术&lt;/h2&gt;
+
+&lt;p&gt;在做移动互联网的这两年中，个人大概分析了下市场情况，挣钱的永远是那么两类，游戏和广告。而国内大多数公司都是为了抢占一个端口而做的业务相关的应用。除了不差钱的和玩票性质的以外，大多应用都不知道在干些什么。&lt;/p&gt;
+
+&lt;p&gt;『无论是 PC 还是 Mobile，展现给用户的最终还是数据。』基于这条理论，我决定尝试挖掘数据和分析数据，试图在数据中得到一些答案。《&lt;a href=&#34;http://book.douban.com/subject/10945606/&#34;&gt;精益创业&lt;/a&gt;》却给了相反的实践方案。个人打算结合两者的优势积累一些资料。&lt;/p&gt;
+
+&lt;p&gt;因为数据的采集，建立数据仓库和分析，我并没有采用 Python，而是使用了 Ruby。或许语法糖太多了，可以让我更快的解决一些实际问题。&lt;/p&gt;
+
+&lt;p&gt;虽然在移动最热的时候，暂停了一下。我想重新再开始那里才是真正的战场。&lt;/p&gt;
+
+&lt;h2 id=&#34;生活&#34;&gt;生活&lt;/h2&gt;
+
+&lt;h3 id=&#34;户外&#34;&gt;户外&lt;/h3&gt;
+
+&lt;p&gt;攒了三年多的假，竟然有了 20 多天假期，一南一北各去了一个地方：&lt;/p&gt;
+
+&lt;h4 id=&#34;1-风云莫测的贡嘎转山&#34;&gt;1. 风云莫测的贡嘎转山&lt;/h4&gt;
+
+&lt;p&gt;五一假期左右请了几天假连成 11 天，花了 8 天贡嘎转山，其余天在成都市内转了转整理成册。&lt;/p&gt;
+
+&lt;p&gt;浏览照片：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.douban.com/photos/album/102784556/&#34;&gt;贡嘎转山&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.douban.com/photos/album/123285098/&#34;&gt;天府之乐&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;2-骑行呼伦贝尔之额尔古纳河右岸&#34;&gt;2. 骑行呼伦贝尔之额尔古纳河右岸&lt;/h4&gt;
+
+&lt;p&gt;2013 年的端午节，受 &lt;a href=&#34;http://www.douban.com/people/loddit/&#34;&gt;loddit&lt;/a&gt; 邀请组成了 4 人小队前往呼伦贝尔，踏上了第一次为期 4.5 天的骑行活动。我还特意做了一个&lt;a href=&#34;http://icyleaf.com/2013/05/riding-to-hulunbeier/&#34;&gt;路线征集计划书&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;浏览照片：&lt;a href=&#34;http://www.douban.com/photos/album/107796607/&#34;&gt;骑行呼伦贝尔&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;3-两次山西五台山朝圣-反穿-正穿&#34;&gt;3. 两次山西五台山朝圣（反穿/正穿）&lt;/h4&gt;
+
+&lt;p&gt;去年冬季反穿过一次五台山，大雪纷飞。一直都知道大五台是一个四季变化的地方，特别想体验一下不同季节的风景。在 9 月初再次踏上五塔山的土地。幸福的是认识了土豪妞。&lt;/p&gt;
+
+&lt;p&gt;第二次去五台山是还想和她一起去体验雪景，结果天气晴朗，没有一点飘雪。那个时候已经是 11 月，哪里有像凛冬将至的赶脚，摔！&lt;/p&gt;
+
+&lt;p&gt;浏览照片：&lt;a href=&#34;http://www.douban.com/photos/album/111742562/&#34;&gt;朝圣五台山&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;阅读&#34;&gt;阅读&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://chart.googleapis.com/chart?chs=370x200&amp;amp;cht=bvs&amp;amp;chxp=2,100&amp;amp;chxt=y,x,x&amp;amp;chxl=0:|0|1|2|3|4|5|6|7|8|9|10|1:|1|2|3|4|5|6|7|8|9|10|11|12|2:|month&amp;amp;chf=c,lg,90,76A4FB,0.5,ffffff,0|bg,s,EFEFEF&amp;amp;chd=t:0,60,10,0,0,0,30,40,40,40,0,20&amp;amp;chco=0000ff&amp;amp;chtt=2013+年共阅读+24+本书&#34; alt=&#34;2013豆瓣阅读图表&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;上半年总把玩着 iPad，积攒的实体书虽多，看完的较少，更别提存储量更大的电子书了；下半年开始有读书量得益于从日本 amazon 海淘了一个 kindle paperwhite，加上豆瓣阅读和多看的给力，也购买了不少在价格上更有优势的电子书。&lt;/p&gt;
+
+&lt;p&gt;推荐书籍：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;技术：《Tmux &amp;ndash; Productive Mouse-Free Development》&lt;/li&gt;
+&lt;li&gt;创业：《精益创业》&lt;/li&gt;
+&lt;li&gt;历史：《极简欧洲史》&lt;/li&gt;
+&lt;li&gt;小说：《三国演义》《冰与火之歌》《星际争霸系列》&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;电影&#34;&gt;电影&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://chart.googleapis.com/chart?chs=370x200&amp;amp;cht=bvs&amp;amp;chxp=2,100&amp;amp;chxt=y,x,x&amp;amp;chxl=0:|0|5|10|15|20|1:|1|2|3|4|5|6|7|8|9|10|11|12|2:|month&amp;amp;chf=c,lg,90,76A4FB,0.5,ffffff,0|bg,s,EFEFEF&amp;amp;chd=t:60,80,60,20,75,30,65,40,50,55,30,35&amp;amp;chco=0000ff&amp;amp;chtt=2013+年共观影+120+部&#34; alt=&#34;2013豆瓣观影图表&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;囧，居然看了那么多电影，我自己都有些惊讶&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;推荐电影：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;纪录片：《独立游戏大电影》《工业光魔 创造不可能》&lt;/li&gt;
+&lt;li&gt;动画长篇：《疯狂原始人》&lt;/li&gt;
+&lt;li&gt;美剧：《纸牌屋》《绝命毒师》&lt;/li&gt;
+&lt;li&gt;IMAX：《地心引力》&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;家庭&#34;&gt;家庭&lt;/h3&gt;
+
+&lt;p&gt;爷爷永远的辞世，永远缅怀。&lt;/p&gt;
+
+&lt;p&gt;老院子自爷爷过世之后开始没了灵气，就连每年硕果累累的枣树也聋了，没有结一个枣，又逢拆迁计划，于是从不崇拜买房主义的我在家给父母合资买了套房子，在家也忙活了十多天参与房子的装修，劳神劳力费钱，唉&amp;hellip;从此荷包又瘪了 :(&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;新的一年我想尝试写写日记，就像《和时间做朋友》里面提到的，我想对于时间和事情的归档更加的精确，未来还有更多的事情要去做！&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>2011-2012 两年总结</title>
+      <link>/localhost/2013/01/2011-2012-in-review</link>
+      <pubDate>Tue, 01 Jan 2013 12:34:56 +0800</pubDate>
+      
+      <guid>/localhost/2013/01/2011-2012-in-review</guid>
+      <description>
+
+&lt;p&gt;从 2011 年忙碌到 2012 年，这两年的时间经历的很多事物，让我感受颇多，而我惊讶的是 2011 的年终总结居然缺失了。这两年工作上专注了一个领域，也是当前最火热移动互联网。两年放在一起总结也算是比较完整的。&lt;/p&gt;
+
+&lt;p&gt;总结从已下几大方面分别详细描述：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;移动互联网&lt;/li&gt;
+&lt;li&gt;技术&lt;/li&gt;
+&lt;li&gt;户外&lt;/li&gt;
+&lt;li&gt;书影音&lt;/li&gt;
+&lt;li&gt;下厨&lt;/li&gt;
+&lt;li&gt;品酒&lt;/li&gt;
+&lt;li&gt;游戏&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;移动互联网&#34;&gt;移动互联网&lt;/h2&gt;
+
+&lt;p&gt;在 2010 年终总结也有说过，因为出身 Java，对于 Android 的兴趣以及入手 MBP，又禁不住和 iOS 做个比较，以至于今后踏上了移动互联网的风潮。正好公司和领导也希望组建这样一个团队。于是 @lnsoso 牵头，尽快组建了小团队开始了新的尝试。&lt;/p&gt;
+
+&lt;h3 id=&#34;团队&#34;&gt;团队&lt;/h3&gt;
+
+&lt;p&gt;新的团队专注于移动互联网的手机平台：Android 和 iOS。应用主要是“房产”这个相对比较垂直的领域。虽然经历了两年的时间，我们还是保持轻小的团队，核心人员加起来也不到 6 个人，更像是一个创业团队。经历了两年的时间，做了一些产品，其中有欢乐，有痛苦，有争执，甚至更激烈的争吵。但是这些都不会阻碍我们的前进，不仅让我们之间在工作中更好的合作，生活上也成为了至好的朋友。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;能够和这么出色的移动团队一起工作，我感动非常的荣幸！借此感谢 @&lt;a href=&#34;http://weibo.com/206424200&#34;&gt;lnsoso&lt;/a&gt;， @&lt;a href=&#34;http://weibo.com/54mifan&#34;&gt;&lt;em&gt;米饭&lt;/em&gt;&lt;/a&gt;， @&lt;a href=&#34;http://weibo.com/stcui&#34;&gt;SC崔圣&lt;/a&gt;， @&lt;a href=&#34;http://weibo.com/u/1611804343&#34;&gt;瑞宇&lt;/a&gt;， 小胖， @&lt;a href=&#34;http://weibo.com/designl&#34;&gt;Design_L&lt;/a&gt;， 英军，周奎，庆祥，刘伟和小雨。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;角色变化&#34;&gt;角色变化&lt;/h3&gt;
+
+&lt;p&gt;小团队虽然灵活度很高，但每个人也要担着多项的角色，对于每个人来说都是一种挑战，同样对于我也是。从产品构思，原型设计，前端、后段的代码编写都需要一个人来全程承担，对于程序员来说，相对还算好，缺陷是容易站在局限的角度考虑事情；对于一个项目，不仅仅产品要优秀，更重要的还是要运营的好。对于这个角色我感到有压力。虽然这个行业大家都是在摸着石头过河，本身作为程序员来说，“运营”是一个艰巨的任务。&lt;/p&gt;
+
+&lt;p&gt;最初作为程序员来说，总是觉得和产品，设计等非技术人员存在沟通障碍。尤其是上面想法传达下来的本质变化导致开发出来一个四不像的“怪物”，内心会有一种“产品应该这样才符合逻辑，这样，那样修改灵活的更高”的冲动。然后自己真正担当了“&lt;strong&gt;产品&lt;/strong&gt;”这个角色，需要涉及到：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;扩大自己的思考范围&lt;/li&gt;
+&lt;li&gt;如何和各阶人员沟通&lt;/li&gt;
+&lt;li&gt;和所有参与人员很好沟通并还原真实想法继续碰撞火花&lt;/li&gt;
+&lt;li&gt;更好的在技术上展现&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;而“运营”这个角色，体现了如何把自己的产品扩散出去。程序员很难从自身的“小宇宙”释放出来。这也是为什么程序员的转型只有两个：架构师和产品经理。&lt;/p&gt;
+
+&lt;p&gt;说实话我本身不是一个好运营，也当不了这个角色。接触这个角色能让我在产品和技术上继续更多的思考。&lt;/p&gt;
+
+&lt;p&gt;不过“技术”才是我的最爱，其他的角色只是为了更好的让我架构于技术。&lt;/p&gt;
+
+&lt;h3 id=&#34;产品&#34;&gt;产品&lt;/h3&gt;
+
+&lt;p&gt;房产类的应用其实非常的小众。买房，装修对于大多数人来说都是一次性消费。也很难会有冲动消费。唯一可以有苗头的就是租房业务。然后这个行业由于各种房产中介的介入导致行业的乌鸦瘴气，再加上用户的流动性非常的大，需求周期相对比较长。导致整个房产行业相对比较难做。因此团队初期没有任何创新的应用，大多于公司业务相关：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://3g.leju.com/1/2011/1103/1.html&#34;&gt;口袋房产&lt;/a&gt; - 专注租房和二手房用户，里面整合了我们很多贴心而且很酷的功能。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://3g.leju.com/1/2011/1103/2.html&#34;&gt;乐居计算器&lt;/a&gt; - 最给力的房产、家居计算器。汇率第一时间更新，还有贷款的还款提醒，妈妈再也不用担心我忘记还款了。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://3g.leju.com/1/2011/1206/6.html&#34;&gt;帝都空气质量&lt;/a&gt; - 去年 PM2.5 很火的时候，花了一个星期做的小应用，上线第一天就冲到了天气分类前三名，而且当时我在外地出差，路上构思了很好的宣传语，结果第二天被“网监局”勒令下线了。原因在于应用不能以大公司的名义发布。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://3g.leju.com/1/2012/0614/8.html&#34;&gt;口袋新房&lt;/a&gt; - 凭借我们强大的房产数据库，打造最新最热的新房资料及资讯。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;后续还有些公司的产品由其他部门策划和开发。导致策划的创新项目又无法开展。这点较为头疼。&lt;/p&gt;
+
+&lt;p&gt;除此之外其实自己还有一个比较不太惹眼的项目：移动产品通用管理后台系统。由于产品的数据需要不断的交互，加上各种需求和统计需要，实现了很多很棒的功能：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;各个产品的信息，用于版本更新和应用推荐&lt;/li&gt;
+&lt;li&gt;用户评论的自动采集，Feedback 的反馈和答复&lt;/li&gt;
+&lt;li&gt;产品的用户统计数据&lt;/li&gt;
+&lt;li&gt;统计任意 iOS 产品的发布情况，策略分析和排名情况&lt;/li&gt;
+&lt;li&gt;应用调用接口的权限系统和统计数据&lt;/li&gt;
+&lt;li&gt;健全的日志系统&lt;/li&gt;
+&lt;li&gt;加上 twitter boostrap 的出现，又很好的兼容了移动设备。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;根据产品的需求不断的改善优化一个产品的感觉真好。&lt;/p&gt;
+
+&lt;h2 id=&#34;技术&#34;&gt;技术&lt;/h2&gt;
+
+&lt;h3 id=&#34;php-java-obj-c&#34;&gt;PHP/Java/Obj-C&lt;/h3&gt;
+
+&lt;p&gt;工作原因这三个语言哪个都不能丢，需实时关注和研究：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;PHP: 继续保持关注 Kohana 这个框架。更好为服务器端开发，为前端服务。&lt;/li&gt;
+&lt;li&gt;Java/Android: 从效率和内存管理上，更好的架构整个框架。&lt;/li&gt;
+&lt;li&gt;Obj-C/iOS: 除了自身的知识学习，每次 iOS 升级都有新鲜感，ARC，Storyboard 等特性。推荐 CocoaPod 管理库类。迁移升级 &lt;a href=&#34;https://github.com/icyleaf/ShareKit&#34;&gt;ShareKit&lt;/a&gt; 目前已经能够完美支持国内主流分享服务。生产自己的应用。&lt;/li&gt;
+&lt;li&gt;Obj-C/Mac：破天荒的为了朋友写了第一个编码转换的 Mac App：&lt;a href=&#34;http://icyleaf.com/2012/10/easyconvert-gbk-to-utf8-convert-tool-for-mac&#34;&gt;EasyConvert&lt;/a&gt;，而且还破天荒的收到一个 pull request，感动&lt;/li&gt;
+&lt;li&gt;Javascript/jQuery：写过几个豆瓣扩展，全选邀请好友，批量喜欢友邻的喜欢的东西。唉，热心肠就是要多付出。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;除此之外还接触了 Python 和 Go。&lt;/p&gt;
+
+&lt;p&gt;Python 作为脚本语言在命令行下可以完美处理零碎的工作，加上 &lt;a href=&#34;https://github.com/openparty/openparty&#34;&gt;OpenParty&lt;/a&gt; 网站代码需要改进，而又学习了 Django 框架（好大好重- -！）。&lt;/p&gt;
+
+&lt;p&gt;Go 了解不多，个人感觉更像是 C 的变异超集，性能和编写上有了很大的改进，也能很好的调试，甚至是为服务器端服务。但是受于 C 的理念和局限性， Go 也不能脱离一些缺陷的设计。&lt;/p&gt;
+
+&lt;h2 id=&#34;户外&#34;&gt;户外&lt;/h2&gt;
+
+&lt;p&gt;从 09 年开始和几个朋友陆续做了几次外出。起初爬山仅仅是为了活动筋骨，减少职业病的发生，但后来却逐渐的爱上了这个爱好。工作突然繁忙中断了下来，但对于户外热爱不曾熄灭过。2011 年夏天重新走出户外。&lt;/p&gt;
+
+&lt;h3 id=&#34;爬山&#34;&gt;爬山&lt;/h3&gt;
+
+&lt;p&gt;2011：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;2011-06-04 参加了活动 去看看初夏的关沟&lt;/li&gt;
+&lt;li&gt;2011-06-12 参加了活动 《小北队》“箭扣长城-那无法抵挡的诱惑”&lt;/li&gt;
+&lt;li&gt;2011-07-17 参加了活动 去十三陵走八陵一库&lt;/li&gt;
+&lt;li&gt;2011-07-31 参加了活动 【逍遥游】7月31日 水泉沟-黄花城-香屯一日穿越&lt;/li&gt;
+&lt;li&gt;2011-08-06 参加了活动 三岔村野长城&lt;/li&gt;
+&lt;li&gt;2011-08-13 参加了活动 【逍遥游】8月13-14翡翠岛第二季优惠活动火爆召集中&lt;/li&gt;
+&lt;li&gt;2011-09-03 参加了活动 【华北小黄山】云蒙天仙瀑 冷甸豪宅任我行&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;2012：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;2012-01-02 参加了活动 元旦崇礼雪乡穿越&lt;/li&gt;
+&lt;li&gt;2012-03-03 参加了活动 北京最美乡村-香屯-大云峡谷穿越，感受山谷间纯净的美-徒步、观冰瀑，摄影，赏古长城，一日穿越活动！&lt;/li&gt;
+&lt;li&gt;2012-03-17 尼泊尔文化之旅&lt;/li&gt;
+&lt;li&gt;2012-07-07 参加了活动 7号8号海陀第二届帐篷节扎营 纯属自娱自乐 捡拾垃圾活动。&lt;/li&gt;
+&lt;li&gt;2012-08-04 参加了活动 【三丰队】明长城、东指壶——平谷第一高峰连穿&lt;/li&gt;
+&lt;li&gt;2012-08-11 组织了活动 【漫步人生，活在当下】东灵山重装穿越，露营&lt;/li&gt;
+&lt;li&gt;2012-11-11 参加了活动 【漫步人生，活在当下】风雪箭扣 - 反穿线路，西栅子 - 将军把关 - 天梯 - 飞鹰倒挂&lt;/li&gt;
+&lt;li&gt;2012-11-19 参加了活动 【四野户外】风雪大五台，周末五台连穿&lt;/li&gt;
+&lt;li&gt;2012-12-08 组织了活动 【漫步人生，活在当下】经典线路：香八拉-新人拉练&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;户外照片：&lt;a href=&#34;http://www.517huwai.com/photos/11573&#34;&gt;http://www.517huwai.com/photos/11573&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;骑行&#34;&gt;骑行&lt;/h3&gt;
+
+&lt;p&gt;怎么说呢，既然爬山了，怎么能少的了骑车呢，从小就爱骑车，每逢周末都要骑上车在小城里面四处的骑行。虽然没有怎么骑行远路。从心底还是比较热爱的。在 2012 年 05 月末结束了缠绕我两年多的纠结，入手了“美利达”山地车（淘宝购入，远远低于低于市场价。全新专卖店货色）&lt;/p&gt;
+
+&lt;p&gt;然后总是频频刷街于长安街，还是没有太远的骑行，到现在最长的路线也就 100 多公里而已。骑行之后才真正发现，骑行原来比爬山过程更加艰辛。尤其是丘陵地带（有感于南京）。&lt;/p&gt;
+
+&lt;p&gt;明年争取环青海湖 :)&lt;/p&gt;
+
+&lt;p&gt;部分骑行路线：&lt;a href=&#34;http://www.douban.com/photos/album/34304181/&#34;&gt;http://www.douban.com/photos/album/34304181/&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;旅行&#34;&gt;旅行&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;2011年十一期间的北疆之旅，历时 8 天，花费 8k 上下&lt;/li&gt;
+&lt;li&gt;2012年三月的尼泊尔文化之旅，历史 7 天，花费 5k 上下&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;两次单身旅行，让我深深的感受到，其实出国游没有那么难，而且更舒服，钱还不一定比国内游贵。&lt;/p&gt;
+
+&lt;h2 id=&#34;书影音&#34;&gt;书影音&lt;/h2&gt;
+
+&lt;p&gt;数据来源于自己书影音的记录。&lt;/p&gt;
+
+&lt;h3 id=&#34;读书&#34;&gt;读书&lt;/h3&gt;
+
+&lt;p&gt;看了下历年的统计，我 2010 年读过 82 本（有水分）。 11 年读过 20 本，12 年读过 14 本，这两年读的书明显下降了好多，旅游的书在多数，技术的书明显少了很多。而图书馆去的次数也非常少了。来年要继续努力，读书不能再减了！&lt;/p&gt;
+
+&lt;p&gt;好评图书：窥视印度，不去会死，简单法则，冰与火之歌，黑客与画家，禅与摩托车的维修艺术。&lt;/p&gt;
+
+&lt;h3 id=&#34;电影&#34;&gt;电影&lt;/h3&gt;
+
+&lt;p&gt;很遗憾，IMDB Top250，居然历时三年还是没有看完，目前已经看到了第 194 名（不是最新的排名数据）。看了那么多不同类型的电影，终于从脑容量的电影成功转型，认识了一些影人，导演。相比较最近几年的电影，我很庆幸也很遗憾有那么多老电影没看过。&lt;/p&gt;
+
+&lt;p&gt;好评电影：IMDB Top250 所以电影 XD&lt;/p&gt;
+
+&lt;h3 id=&#34;音乐&#34;&gt;音乐&lt;/h3&gt;
+
+&lt;p&gt;尝试听古典音乐，而且还听了耶鲁大学的公开课《Listen to music》，让我喜欢上了德彪西的《月光》和柴可夫斯基第一&amp;amp;第一钢琴协奏曲。钢琴和小提琴的配合是那么的颤动心灵。&lt;/p&gt;
+
+&lt;p&gt;其实自己听的音乐比较杂，和电影类似，除了重金属，等比较极度喧嚣的音乐外，能接受度比较高。&lt;/p&gt;
+
+&lt;h2 id=&#34;下厨&#34;&gt;下厨&lt;/h2&gt;
+
+&lt;p&gt;总觉得出了开封，我们家的小吃在任何地方要么吃不着，要么没有熟悉的味道。加上新搬的家附近没有一家良心餐馆，结果把自己的身体吃垮了。时隔 3 年依赖重新下厨开灶。本身擅长开封小吃类面点：羊肉炕馍，大肉火烧，锅贴，千层饼，鸡蛋饼，炒凉粉各种折腾。反正吃的自己不亦乐乎。&lt;/p&gt;
+
+&lt;p&gt;就在写这篇总结之前，花了一个小时给自己做了几张鸡蛋饼，一碗紫菜虾皮汤。&lt;/p&gt;
+
+&lt;p&gt;做饭本着一个原则：不能亏待自己的肚子，嗯！&lt;/p&gt;
+
+&lt;h2 id=&#34;品酒&#34;&gt;品酒&lt;/h2&gt;
+
+&lt;p&gt;在 2011 年体检查出来轻微脂肪肝，而原因有三，我可能涉及到两种：酒精性脂肪肝，肥胖性脂肪肝。为了健康，戒了大半年酒（也在于追求对象要求）。最终于 11 年光棍节之后还是单身开了酒戒。转念的体检发现脂肪肝木有了。由于同年也开始了户外，所以最终也没有判断出原因 &amp;gt;.&amp;lt;&lt;/p&gt;
+
+&lt;p&gt;啤酒：经 Tin 大师的推荐，喜欢上了比利时啤酒，尤其是智美和都威，前者是修道院啤酒，口感醇厚可嘉，分蓝/红/白帽，红、蓝智美都会随温度不同而明显呈现味道上的变化，至于白帽国内没见到有卖的；而后者劲儿相对比较大，入口略苦，入喉之后出现甘甜，是一种前期痛苦立马又享受想和下一口的冲动。&lt;/p&gt;
+
+&lt;p&gt;白酒：伏特加，托 &lt;a href=&#34;http://www.douban.com/people/CNBorn/&#34;&gt;CNBorn&lt;/a&gt; 的福，尝试了纯伏特加的感觉，类似于都威前期，酒性很烈，入喉之后犹如一泉山水滋润着喉咙。这次试喝的是 Absolut Vodka。我不知道是否是否和喝的品牌有差异。&lt;/p&gt;
+
+&lt;p&gt;红酒：北京桂花陈酒，经济实惠的最佳选择。入口初体验入桂花糖水一般甜蜜，又夹杂着一些酒心糖的特殊酒味。后劲较大，一不小心很容易醉。&lt;/p&gt;
+
+&lt;h2 id=&#34;游戏&#34;&gt;游戏&lt;/h2&gt;
+
+&lt;p&gt;从小就爱玩游戏，打电动，从最初的掌声游戏机（俄罗斯方块），GBC，GBA SP，PSP 到主机类游戏红白机，街机，世嘉，土星，PS，PS2，电脑游戏，网游。都一概不拉的接触过。但自从开始工作之后接触的游戏基本上降到了最低。&lt;/p&gt;
+
+&lt;p&gt;一个机缘巧合，听说烈火战车（Twisted Metal）将于 2012 年情人节发行 PS3 版本。为了这个重温这个游戏，我居然入手了一台 PS3，因此购入了一些比较耐玩的游戏：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;烈火战车&lt;/li&gt;
+&lt;li&gt;刺客信条：兄弟会、启示录&lt;/li&gt;
+&lt;li&gt;镜之边缘&lt;/li&gt;
+&lt;li&gt;暴雨&lt;/li&gt;
+&lt;li&gt;神秘海域3&lt;/li&gt;
+&lt;li&gt;蝙蝠侠：阿卡姆疯人院&lt;/li&gt;
+&lt;li&gt;战地3&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;游戏对于来说属于业余消遣，没事时候的解闷工具。沉迷？已经不太可能了。&lt;/p&gt;
+
+&lt;h2 id=&#34;单纯&#34;&gt;单纯&lt;/h2&gt;
+
+&lt;p&gt;原来出了程序员这个圈子，其他地方是那么的妖魔化，我喜欢纯粹的程序员生活。希望自己可以保持这份单纯，同时多一份戒心，防止不轨分子的侵袭。&lt;/p&gt;
+
+&lt;h2 id=&#34;两年结语&#34;&gt;两年结语&lt;/h2&gt;
+
+&lt;p&gt;很长时间没有写东西了，这一写有些控制不了自己的思想，最近两年思考的东西太多了，同时又少了倾诉。做的事情也逐渐多了，有时候觉得总会被世俗的东西侵袭，一些理想化，纯粹的东西开始动摇。有时候变得很难把握。感觉曾经的很多东西都在一件件的被磨灭或改变。&lt;/p&gt;
+
+&lt;h2 id=&#34;2013&#34;&gt;2013？&lt;/h2&gt;
+
+&lt;p&gt;说好的世界末日没有到来，日子还有继续生活下去。该奋斗的东西也不能丢，相信自己的信念，勇往直前吧！少年!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>2010年度总结</title>
+      <link>/localhost/2011/01/2010-year-in-review</link>
+      <pubDate>Wed, 05 Jan 2011 12:34:56 +0800</pubDate>
+      
+      <guid>/localhost/2011/01/2010-year-in-review</guid>
+      <description>
+
+&lt;p&gt;2011年已至，又到了一年一度的年终终结的时候了。上个星期还和 @&lt;a href=&#34;http://cnborn.net&#34;&gt;CNBorn&lt;/a&gt;同学聊了年终总结的事情，今天在看翻 Google Reader 发现订阅的很多人都写了总结，虽然晚了几步，还得赶紧跟上。提炼过往的一年内所经历的事情，所感受到的一些事物&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;整体来说 2010 年对我来说是憧憬的一年。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://icyleaf.com/2008/12/2008-year-in-review/&#34;&gt;2008&lt;/a&gt; 年是起步并定制计划的一年，&lt;a href=&#34;http://icyleaf.com/2010/01/2009-year-in-review/&#34;&gt;2009&lt;/a&gt; 年是 2008 年计划沉淀后发挥的一年，2010 年在事业，技术，思想得到了逐步提高，这次总结大致按照性质为工作，技术，生活等几类：&lt;/p&gt;
+
+&lt;h3 id=&#34;工作&#34;&gt;工作&lt;/h3&gt;
+
+&lt;p&gt;2010年可谓是 Twitter 年，作为一名从 2007 年就开始使用的轻度用户到现在随时关注的中度用户。之所谓不能说重度用户，现在已经逐渐减少了 Twitter 的牢骚，慢慢的沉淀浮躁的心，做一些自认为有意义的事情。其中最大的也是让我最满意的一件就是通过 Twitter 让我成功的从 Java 转到了 PHP 开发，感谢  @&lt;a href=&#34;http://twitter.com/lnsoso&#34;&gt;lnsoso&lt;/a&gt; 给我这个机会。对个人来说，比较遗憾的是在转入 PHP 这一行业之前，曾尝试以移动互联网开发者的身份“杀入”豆瓣，后因逢遇高人 @&lt;a href=&#34;http://www.douban.com/people/flycondor/&#34;&gt;flycondor&lt;/a&gt; 告知个人能力有待提高，未遂。&lt;/p&gt;
+
+&lt;p&gt;虽然没能进入豆瓣，但能转入互联网开发领域已经让人欣喜了，在&lt;a href=&#34;http://house.sina.com.cn&#34;&gt;新浪乐居&lt;/a&gt;的一年内，由于公司技术氛围很融洽，经常会在一起讨论一些技术，分享会。给个人有很好的成长空间和发挥能力。同时非常欣喜能遇上这么多好好的同事和领导 :)&lt;/p&gt;
+
+&lt;h3 id=&#34;技术&#34;&gt;技术&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;PHP/Kohana
+​1. 2009 年提到的 Douban API Package 以开源的形式正式发布到了&lt;a href=&#34;https://github.com/icyleaf/douban&#34;&gt;github&lt;/a&gt; 上面。
+​2. &lt;a href=&#34;https://github.com/icyleaf/alpaca&#34;&gt;alpaca&lt;/a&gt;社区系统在整个一年之中虽然没太多的功能增加，但其代码在不断的重构（最近在读&lt;a href=&#34;http://book.douban.com/subject/4262627/&#34;&gt;重构&lt;/a&gt;更加确定了重构的重要性）
+​3. 学习了一个轻量级的模版引擎框架 &lt;a href=&#34;http://www.twig-project.org/&#34;&gt;twig-php&lt;/a&gt;，虽然也是今年开始熟悉 Smarty 的，但是我更喜欢 twig，语义清晰，解析速度迅速，其实框架的灵感来自于 Django 自身的模版系统，而且易于扩展开发。 详情请看作者在最初的&lt;a href=&#34;http://fabien.potencier.org/article/34/templating-engines-in-php&#34;&gt;介绍&lt;/a&gt;。
+​4. gears 项目一个类似于 ROR 下面 Redmine 的项目需求管理系统，由于 PHP 上面没也太好的系统，自己着手开发并熟悉下复杂逻辑的开发，项目尚在开发中，没有源码发布 :(&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;JAVA/Android
+在 2010 年的后半年因好奇和对 Google 开源的个人憧憬心态开始对 Android 开发做了一些研究，开始东拼西凑的做了一些小的应用，后被公司看中正式着手一个公司项目的 App，历时近 3 个月，边学习边琢磨边专注 Android 界面设计，在 12 月中旬终于可以缓一口气，并可以拍拍胸脯说这个软件可以在同等行业内软件的用户体验是可以最棒的！当然功能也不差的 :) 不过该项目还没有最后的完成，等待发布吧！&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Objective-C/iOS
+接触 iOS 开发的时间在 Android 之后，正好在做完一两个 Android 应用的时候拥有的人生的第一台 MacBook Pro，破不急奈的安装了 Xcode 一展其 IDE 和 Interface Builder 的风采，体验完之后傻了，相对于 Android 的界面设计，我真想发泄一下摔些东西。同等的时间在 Android 下只能设计界面，而在 Xcode 里面设计界面只是几分钟的时候（参考&lt;a href=&#34;http://developer.apple.com/library/mac/#documentation/UserExperience/Conceptual/AppleHIGuidelines/XHIGIntro/XHIGIntro.html&#34;&gt;Apple HIG&lt;/a&gt;）其余的时间可尽情的编码。于是从头开始学 Objective-C 下一步尝试 iOS 开发。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;另外很高兴成功 &lt;a href=&#34;http://www.beijing-open-party.org/&#34;&gt;Beijng Open Party&lt;/a&gt; 活动的志愿者，希望在新的一年中可以努力为 OP 加油&amp;amp;奋斗！&lt;/p&gt;
+
+&lt;h3 id=&#34;数码设备&#34;&gt;数码设备&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Mac Book Pro
+本来是期待身边的朋友购买的，因某人坚持不下，自己集资购入该设备，为今后 iOS 开发打好前期准备。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;BlackBerry 8900
+再一次下定觉得购入了第二台 bb 设备，第一台 8310 走完了它自己人生光辉的一年，主要是被我蹂躏了不成样子了，作为 RIM 公司后期拥有绝对血统的 8900 和 9000，果断入手前者，同时对 @cooku 童鞋当时问她为什么不买 9000 自我推倒- -！&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;iPad
+啊哈，有一个推倒前期自我反对思想的奢侈品，作为一个较长期的苹果用户，其产品具有一定的“洗脑”作用。当然目前 iPad 使用频率最高的是 iBook、Twitter 和浏览器，偶尔玩玩游戏和体验一些有趣的 app。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Canon 50mm/1.8f
+第一个也可能是唯一个佳能的镜头，用的次数并不是很多 &amp;gt;.&amp;lt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;读书&#34;&gt;读书&lt;/h3&gt;
+
+&lt;p&gt;书里面水分很多，夹杂了一些曾经看到的漫画和小说，但也阅读了一些有信仰，有深刻含义的图书，比如 1984，动物庄园，切·格瓦拉传，刀锋，不去会死，苹果往事。&lt;/p&gt;
+
+&lt;p&gt;技术图书推荐：Rework(Olivda 合译本)，用户故事，重构，Pro Git，给大家看的设计书&lt;/p&gt;
+
+&lt;p&gt;![](&lt;a href=&#34;http://chart.apis.google.com/chart?chs=400x200&amp;amp;cht=bvs&amp;amp;chd=s:CEUEIKSEcIrQ&amp;amp;chxt=y,x,x&amp;amp;chxl=0:|0|5|10|15|20|25|30|1:|1|2|3|4|5|6|7|8|9|10|11|12|2:|month&amp;amp;chxp=2,100&amp;amp;chf=c,lg,90,76A4FB,0.5,ffffff,0|bg,s,EFEFEF&amp;amp;chco=0000ff&amp;amp;chtt=82%20books+you+added+in+year+2010|divided+by+month&#34;&gt;http://chart.apis.google.com/chart?chs=400x200&amp;amp;cht=bvs&amp;amp;chd=s:CEUEIKSEcIrQ&amp;amp;chxt=y,x,x&amp;amp;chxl=0:|0|5|10|15|20|25|30|1:|1|2|3|4|5|6|7|8|9|10|11|12|2:|month&amp;amp;chxp=2,100&amp;amp;chf=c,lg,90,76A4FB,0.5,ffffff,0|bg,s,EFEFEF&amp;amp;chco=0000ff&amp;amp;chtt=82%20books+you+added+in+year+2010|divided+by+month&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;电影&#34;&gt;电影&lt;/h3&gt;
+
+&lt;p&gt;这一年的电影可没少看，因总看恐怖片被 @CNBorn 无比鄙视，因此开始计划看完[IMDB Top 250][]([电驴下载][])，起初计划每天一部，逐渐到后来因各种工作或其他事情只能减少频率，啊，现在已经看满编号的第 100 部了（不包括下面已经看过的）！今年继续努力！&lt;/p&gt;
+
+&lt;h3 id=&#34;音乐&#34;&gt;音乐&lt;/h3&gt;
+
+&lt;p&gt;这方面还是比较随心所欲，没有太大的变动，只不过开始听古典（莫扎特），开始小听下电影的
+OST （曾一度在网上搜索关键词写成 OTA）&lt;/p&gt;
+
+&lt;h3 id=&#34;日志&#34;&gt;日志&lt;/h3&gt;
+
+&lt;p&gt;好吧，我承认我没有达到去年说的要求：“2010年的日志数量和2009年类似”，刚才统计了结果，发现
+2009 年度共计发布了 31 篇日志，而 2010 年加上 09 年的总结在内也仅仅只有 10 篇，数量下降了 1/3 左右，汗颜。今年开始经过会多发布技术相关的日志，早期一些分享软件或框架的内容会少一些，比较不能再这么水下去了&amp;hellip;&lt;/p&gt;
+
+&lt;h3 id=&#34;运动&#34;&gt;运动&lt;/h3&gt;
+
+&lt;p&gt;很遗憾，2010 年度并没也什么运动了&amp;hellip;需要恢复！我要减灰 Orz&amp;hellip;&lt;/p&gt;
+
+&lt;h3 id=&#34;言而总之&#34;&gt;言而总之&lt;/h3&gt;
+
+&lt;p&gt;2010 年读了许多书，也看了不少电影，在个人修养上面有很大的提高，早晨 6 点 50 起床是一个长期考验而且我坚持下来了，也算是摆脱了很大的“懒”的坏习惯。今年最大的开发实践准备尝试敏捷开发流程 + TDD以及重构相结合的开发模式双结合。&lt;/p&gt;
+
+&lt;p&gt;新的一年，加油！&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>2009年度总结</title>
+      <link>/localhost/2010/01/2009-year-in-review</link>
+      <pubDate>Fri, 01 Jan 2010 12:34:56 +0800</pubDate>
+      
+      <guid>/localhost/2010/01/2009-year-in-review</guid>
+      <description>&lt;p&gt;忙碌了一天下来，刚打开电脑看着 twitter 刷出来的消息发觉已经到了 2010 年。回顾去年的那篇&lt;a href=&#34;http://icyleaf.com/2008/12/30/2008-year-in-review/&#34;&gt;年度总结&lt;/a&gt;感受颇多，年度总结这玩意对于自己来说算是一次思维的整理和归档。就算度过了没有硬性计划的 2009 年总结还是多少要写一些。&lt;/p&gt;
+
+&lt;p&gt;回顾整个 2009 年做的事情，发现其中一些持续的事情是在完善 2008 年度的计划：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;通过维护一个 PHP5 的轻量级开源框架 Kohana 的中文化社区，开始深层次的了解和读懂一个框架的逻辑和模式；通过参加一年的 OpernParty 开源社区的活动，（不完全）吸收了很多新鲜养分。&lt;/li&gt;
+&lt;li&gt;成立 &lt;a href=&#34;http://kohana.cn&#34;&gt;Kohana 中文社区&lt;/a&gt;已经有一年多的时间也经历了很多：成功完成了对其&lt;a href=&#34;http://khnfans.cn/docs&#34;&gt;中文文档&lt;/a&gt;的翻译工作；不断向社区提交和共享代码。然而对于社区的运营也感受颇多，虽然过程是辛苦的，但是我很欣慰。同时还得感谢&lt;a href=&#34;http://iiiorz.net&#34;&gt;非正常非人类&lt;/a&gt;，e6nian，&lt;a href=&#34;http://codeigniter.org.cn&#34;&gt;Codeigniter中国&lt;/a&gt;老大 Hex，daqing 对 Kohana 和我的支持！&lt;/li&gt;
+&lt;li&gt;2009年读了一些各种各样的书，这些书都是我以前几乎没有涉及过的种类。其中一大部分（感谢 &lt;a href=&#34;http://cnborn.net&#34;&gt;CNBorn&lt;/a&gt;的推荐）得益于公司搬家，使得上下班几乎有两个小时的闲余时间，很多书籍都是在这段时间消灭的。以后还会继续读更多值得看的书，书再多还是不嫌多的。&lt;/li&gt;
+&lt;li&gt;2009年度入手了三个数码产品：iPod Touch ，Canon 450D 和 DELL 2209WA。正式成为 Apple 使用用户和摄影爱好者。&lt;/li&gt;
+&lt;li&gt;2008年的那些项目都难产掉了，2009年又有一些项目脚踏实地的进行着：&lt;a href=&#34;http://icyleaf.com/2009/06/22/modou/&#34; target=&#34;_self&#34;&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://icyleaf.com/2009/06/22/modou/&#34;&gt;魔豆&lt;/a&gt;：一个用于移动终端，手持设备的非官方版豆瓣网移动版本。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://icyleaf.com/2009/07/06/douban-api-console/&#34;&gt;豆瓣 API控制台&lt;/a&gt;：魔豆附属项目，开发豆瓣 API 的辅助工具，仅适用于Firefox。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://kohana.cn&#34;&gt;Aplaca&lt;/a&gt;：一个轻量级的基于 Kohana v3 开发的论坛系统（目前已上线，因为在开发中暂无发布）。&lt;/li&gt;
+&lt;li&gt;Douban API Package：这是一个重构版本，最近一直在测试和写测试用例，近期会以开源协议的形式发布。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+&lt;li&gt;新疆出差游：得益于 090705 事件造成那个地区封锁了网络，又因公司项目的事情前去出差，第一次坐灰机，第一次跑那么远的地方。详情请参见&lt;a href=&#34;http://icyleaf.com/2009/11/18/xinjiang-yaxin-diary-1/&#34;&gt;系列游记&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;随着寻找各种北京美食，加上工作的性质，对于运动少了许多，今年之中抽出了不少的周末参与到户外运动之中，即活动了筋骨，也提高了身体机能，还能认识很多驴友和漂亮的风景何乐而不为呢。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;总结完毕发现今年的日志数量急剧下降，或许以后的年度日志数量也会在这个数量左右徘徊，随着时间的推移，心智愈加成熟（自我感觉），心要慢慢的静下来（不能在浮躁了）深层次的学习一些技能，继续英语的学习和适当的户外运动，可能的话计划去某个地方游玩。再有就是不能把
+2009 年的最大的遗憾留在今年，继续加油！&lt;/p&gt;
+
+&lt;p&gt;UPDATE: 最大的遗憾在 2010 年初已经完美 :)&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>回顾 2008 年度及总结报告</title>
+      <link>/localhost/2008/12/2008-year-in-review</link>
+      <pubDate>Tue, 30 Dec 2008 12:34:56 +0800</pubDate>
+      
+      <guid>/localhost/2008/12/2008-year-in-review</guid>
+      <description>&lt;p&gt;2008 年是一个不平凡的一年，这一年发生了很多大事件：&lt;strong&gt;南方雪灾，西藏拉萨暴力事件，四川汶川大地震，北京奥运会，三鹿奶粉事件，0807（本人毕业）&lt;/strong&gt;&amp;hellip;就在去年的 12 月份，我踏入北京开始了北漂的生活，而且预先给自己制订了一个新的 08 计划：&lt;a href=&#34;http://icyleaf.com/2007/12/27/2008-a-new-i/&#34;&gt;2008，一个全新的我&lt;/a&gt;。下面针对 08 计划做一下总结：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;专心一致的提高自身的专业知识水平&lt;/strong&gt;
+这一年还算是不错吧，对于公司的工作每一项都认真的去完成，同时在工作中学到了很多的知识和经验，对于业余爱好来说，可能还是没有把握一个方向：PHP，中间总是会去岔题去研究其他方面的互联网开发的东西，还好没有偏离互联网开发这个方向。同时深深感谢 &lt;a href=&#34;http://wordpress.org/&#34;&gt;WordPress&lt;/a&gt;和  &lt;a href=&#34;http://twitter.com/&#34;&gt;Twitter&lt;/a&gt;，这两个让我了解了很多，学到了很多。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;提高自己的社交能力&lt;/strong&gt;
+幸好自己处在北京这么一个大城市，才得以让我参加各种各种的活动：美食，聚会，技术交流，闲谈，娱乐等，这里重点要感谢&lt;a href=&#34;http://www.douban.com&#34;&gt;豆瓣网&lt;/a&gt;，使它让我充实了每一个空闲的周末。同时从最初的 [V2EX聚会][]到回来大大小小的活动，我也很高兴认识了一群志同道合的朋友。当然还有一些在网上认识的朋友。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;提供英语的读写能力&lt;/strong&gt;
+很惭愧，一项未完成的项目，虽然经常的订阅一些国外的一些网站，翻译一些博文，但我发现这样对自己学习英语的提高并不是很大，很多都仅仅是能看懂，如何翻译的更好，如何自己写出来还是不是很如意，还有很惭愧的是，自己还承担了 &lt;a href=&#34;http://khnfans.cn/docs/&#34;&gt;Kohana 中文文档&lt;/a&gt;的翻译和维护工作。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;计划好了就要努力完成&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;虽然我都是在努力的去完成计划的工作，可惜自己给自己定的计划太多了以至于到现在不是未完成就是出于收尾的状态。自己做了很久的 Todo List 项目，到现在也没有完成&amp;hellip;这里要向 &lt;a href=&#34;http://blog.donews.com/CNBorn/&#34;&gt;CNBorn&lt;/a&gt; 同学学习，每天利用下班的时间来做自己的项目，当然同样也是一个 Todo List 服务：&lt;a href=&#34;http://www.checknerds.com/&#34;&gt;CheckNerds&lt;/a&gt;，目前正在刚刚完成 mobile 版本:) 可能会有人问，为什么你们做同样的项目，恩，是这样的，由于我们在认识之前我就已经开始在进行自己的项目，而且我们的想法还是有些差异，所以可能对针对的人群和开发的功能还不太一样。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;摆脱&amp;rdquo;懒&amp;rdquo;的恶习&lt;/strong&gt;
+同样很遗憾，还是没有摆脱&amp;hellip;我会在今后的日子继续努力，继续摆脱的！&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;对我来说，这一年发生了很多，让我也改变了许多，这一年也让我如愿以偿的拥有了自己的笔记本，更换了自己的手机，给喜欢摄影的我新添了一个老爷相机（本人只有在拥有什么了才会去深入研究，所以先买一个玩玩，等深入了，我会考虑单反&amp;hellip;），还在豆瓣组织了
+&lt;a href=&#34;../2008/11/04/one-shot-everyday/&#34;&gt;一日一摄&lt;/a&gt; 活动。最重要的是，让我认识了一群志同道合的朋友！&lt;/p&gt;
+
+&lt;p&gt;今年马上就要结束，新的一年又即将开始，结束今年并不代表可以忘记，他永远都是过去，过去的不足自己会努力改正，新的开始还需新的计划，我想等元旦的假期好好整理一下自己的思路，计划一下新的一年。&lt;/p&gt;
+
+&lt;p&gt;同时，祝福大家在 2009 年&lt;strong&gt;牛气冲天&lt;/strong&gt;！&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>2008，春节吉祥</title>
+      <link>/localhost/2008/01/2008-spring-hello</link>
+      <pubDate>Wed, 30 Jan 2008 12:34:56 +0800</pubDate>
+      
+      <guid>/localhost/2008/01/2008-spring-hello</guid>
+      <description>
+
+&lt;p&gt;春节马上就要到了，今年是奥运年，所以今年的春节是非常特别的。&lt;/p&gt;
+
+&lt;p&gt;在这个特别的日子，请您在这里留下您的祝福！&lt;/p&gt;
+
+&lt;p&gt;首先最先的是祭灶，不知道大家知不知道这个节日，腊月23日，也就是今天。我们家那边到了，就会买&lt;del&gt;灶糖&lt;/del&gt;（&lt;strong&gt;麻糖&lt;/strong&gt;）吃。那怎么会吃糖呢，其实在为了用糖塞住灶王爷的嘴，让他别说坏话，因为灶王爷要在腊月23日回天上向玉帝汇报这一家人的善行或恶行，玉帝根据灶王爷的汇报，再将这一家在新的一年中应该得到的吉凶祸福的命运交于灶王爷之手。因此，对一家人来说，灶王爷的汇报实在具有重大利害关系。更多请看百度知道。&lt;/p&gt;
+
+&lt;p&gt;可惜北京这边没有这个习俗，要么就是我还不知道- -&lt;/p&gt;
+
+&lt;p&gt;快过年了，不知道在异地的朋友买到回家的车票了么，我到现在还没有买到，家那边下了很大的雪，而且还要过郑州这个大的交通枢纽，所以车票是巨难买，另外我坐车只能保证1-2个小时不晕车，再长我还没有锻炼过=
+=，所以做汽车回家还是就此打住&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;整个假期只有短短7天假，挺緊的，回去要好好享受开封的小吃，吃到满足在说，老老实实和父母呆上1-2天，或许假期后又要1年不能见面了。&lt;/p&gt;
+
+&lt;p&gt;今天我感冒了，很难受，唉，不说了，说实话北京很冷，我们住的地方暖气时有时无的让人受不了，而且热水器坏了，希望今天能修好。&lt;/p&gt;
+
+&lt;h2 id=&#34;买笔记本的计划又要耽搁了-年前申办的招商银行的信用卡没有通过-原因是综合评定不足-搞不懂&#34;&gt;买笔记本的计划又要耽搁了，年前申办的招商银行的信用卡没有通过，原因是综合评定不足，搞不懂-&lt;/h2&gt;
+
+&lt;p&gt;总结：祝大家春节愉快！&lt;del&gt;我要回家！&lt;/del&gt;我要买本！&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Update&lt;/strong&gt;：&lt;/p&gt;
+
+&lt;p&gt;1.昨天晚上接到几个短信都问我吃麻糖了么，恩，我承认我有些忘记开封的东西了，上面的文章居然把麻糖叫成了灶糖。。。&lt;/p&gt;
+
+&lt;p&gt;2.娃哈哈，刚刚买到车票了，我可以回家了，而且还是卧铺，感谢青菜！！&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>2008，一个全新的我</title>
+      <link>/localhost/2007/12/2008-a-new-i</link>
+      <pubDate>Thu, 27 Dec 2007 12:34:56 +0800</pubDate>
+      
+      <guid>/localhost/2007/12/2008-a-new-i</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;http://photo15.yupoo.com/20071211/204417_288166203_m.jpg&#34; alt=&#34;2008&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;看着&lt;a href=&#34;http://roamlog.cn/&#34;&gt;漫步&lt;/a&gt;等人参与的&lt;a href=&#34;http://www.mifengtd.cn/articles/mifengtd-my-new-years-resolutions.html&#34;&gt;号召：使我的新年目标成功！&lt;/a&gt;活动让我情不自禁。希望有兴趣的朋友也可以参与进来！&lt;/p&gt;
+
+&lt;p&gt;其实我是一个有些冲动的人，什么事情都想要尝试，但又有些3分钟热度，也许是家族遗传的原因。我个人很少制定计划，向来喜欢随心所欲，为所欲为，不愿受人束缚，别人也是严格要求我，我却背道而驰。&lt;/p&gt;
+
+&lt;p&gt;2007年下半年的时候那个时候我还在Opera的博客上面终于下定决定制定了一个[075Q计划][]，其实应该是075K计划(想看要用[梯子][]哦)。不过最终还是没有完成那个计划&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;2008年即将到来，我将要以一个全新的我面对新的一年。以此我也要制定一些计划督促自己，改变自己！&lt;/p&gt;
+
+&lt;p&gt;在2007年的年末开始了我实习生的工作，至此我也即将走出校园，开始新的生活，面对社会，我目前还没有做好准备。&lt;/p&gt;
+
+&lt;p&gt;2008年势必会有更多的事情需要我自己来面对&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;虽然我还没有开始空想未来，但是还是借用右边图片上的一句话勉励自己：&lt;strong&gt;停止空想未来，开始创造未来！&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;2008，一个全新的我”是一个很大的项目，此工程下面有几个计划：&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Plan 1：专心一致的提高自身的专业知识水平&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;由于自己不时会3分钟热度，耐心不高等因素的原因，使得我学的东西一变再变。从最早的网站制作，黑客技术，软件编程，美工，又到现在回归B/S这方面的东西，整整花了我4年多的时间&amp;hellip;这段时间学的真的很杂，但学又仅仅是皮毛。为了能彻底改掉这个坏习惯，因此我要专心一致的研究我目前工作所用的东西，要彻底的提高自身的专业知识水平。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;2：提高自己的社交能力&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;呃，可以这样说，我是典型的程序员，天天闷在电脑前鼓捣。通过看我的博客也能了解到，除去自己懂的一些知识，无法和别人侃侃而谈，及其的不善于书面表达和社交沟通&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;“蜀道难，难于上青天”。我再不说真的就像那句词所说的了。&lt;/p&gt;
+
+&lt;p&gt;这个计划可谓是我08年最最重要也是最最困难的一个。这点我要向[漫步][]同学学习，认识了这么多的人&amp;hellip;羡慕，就这还居然也要提高沟通能力=。=&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Plan 3：提供英语的读写能力&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;英语啊，英语，你咋认识我我去不认识你呢？&lt;/p&gt;
+
+&lt;p&gt;在很小的时候，听过我的某哥哥英语总是学不好，总是挂掉，我当时心想英语是啥玩意，有这么难学么。上初中的时候知道了什么是英语，还好的是当时英语还不错，成绩都在90分以上，到了高中之后就开始堕落了，因为家里买电脑了。&lt;/p&gt;
+
+&lt;p&gt;自从有了电脑整个人已经迷上去了，当然最初的时候迷的是游戏&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;措施：&lt;/p&gt;
+
+&lt;p&gt;​1. 看美国大片- -！
+​2. 翻译一些好的文章，文字。
+​3. 尝试把自己用的东西全部替换成英语版本。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Plan 4 ：计划好了就要努力完成&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;其实自己有很多的想法，总想恩，这个不错，回来研究下，那个把它做成什么什么的。到了最后新的事物和想法又蹦了出来，之前的方法就这么搁浅了。&lt;/p&gt;
+
+&lt;p&gt;措施：&lt;/p&gt;
+
+&lt;p&gt;​1. 这个主要靠用纸记下来或者Google日历提醒自己。
+​2. 每个的想法如果实施一定要给自己一个时间的约束。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Plan 5： 摆脱&amp;rdquo;懒&amp;rdquo;的恶习&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;我自认为我是一个很懒的人，在TX的城市达人上面我申请的是懒达人。如果不懒的话，我本可以做很多的事情，也不会导致我制定的075Q计划失败，我能获得的更多，改变的更多！&lt;/p&gt;
+
+&lt;p&gt;措施：目前还没有具体的方案-。-&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

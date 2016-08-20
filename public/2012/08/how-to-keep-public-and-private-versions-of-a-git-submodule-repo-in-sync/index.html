@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  	<meta property="og:title" content=" 如何保持在 Git Submodule 代码的开放和私有共存 &middot;  icyleaf" />
+  	<meta property="og:site_name" content="icyleaf" />
+  	<meta property="og:url" content="/localhost/2012/08/how-to-keep-public-and-private-versions-of-a-git-submodule-repo-in-sync" />
+
+    
+  	<meta property="og:type" content="article" />
+
+    <meta property="og:article:published_time" content="2012-08-03T12:34:56&#43;08:00" />
+
+    
+    <meta property="og:article:tag" content="Git" />
+    
+    
+
+  <title>
+     如何保持在 Git Submodule 代码的开放和私有共存 &middot;  icyleaf
+  </title>
+
+    <meta name="description" content="热爱户外的码农、下厨初心者" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="localhost/localhostimages/favicon.ico">
+	  <link rel="apple-touch-icon" href="localhost/localhostimages/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="localhost/localhostcss/screen.css" />
+    <link rel="stylesheet" type="text/css" href="localhost/localhostcss/nav.css" />
+
+
+
+    
+        <link href="feed.xml" rel="alternate" type="application/rss+xml" title="icyleaf" />
+    
+    <meta name="generator" content="Hugo 0.17-DEV" />
+
+    <link rel="canonical" href="localhost/localhost/2012/08/how-to-keep-public-and-private-versions-of-a-git-submodule-repo-in-sync" />
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-2570916-5', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+</head>
+<body class="nav-closed">
+
+  <div class="nav">
+  <h3 class="nav-title">Menu</h3>
+  <a href="#" class="nav-close">
+    <span class="hidden">Close</span>
+  </a>
+  <ul>
+    
+
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="localhost/">Home</a>
+      </li>
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="localhost/categories/technology">Technology</a>
+      </li>
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="localhost/tags">Tags</a>
+      </li>
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="localhost/about">About</a>
+      </li>
+    
+  </ul>
+
+  
+    <a class="subscribe-button icon-feed" href="localhost/localhostfeed.xml">Subscribe</a>
+  
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+  <header class="main-header post-head no-cover">
+
+
+  <nav class="main-nav overlay clearfix">
+  
+    <a class="blog-logo" href="localhost/localhost"><img src="localhost/localhostimages/icyleaf-icon.png" alt="Blog Logo" /></a>
+  
+
+  
+    <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+</nav>
+  
+</header>
+
+<main class="content" role="main">
+  <article class="post post">
+    <header class="post-header">
+      <h1 class="post-title">如何保持在 Git Submodule 代码的开放和私有共存</h1>
+      <small></small>
+
+      <section class="post-meta">
+      
+      
+        <time class="post-date" datetime="2012-08-03T12:34:56&#43;08:00">
+          Aug 3, 2012
+        </time>
+      
+       
+        <span class="post-tag small"><a href="localhost/localhosttags/git/">#Git</a></span>
+       
+      </section>
+    </header>
+
+    <section class="post-content">
+      <p>假设我在 github 有一个开源的版本库 x 供大家使用，该库里面又包含了好些个 submodules，其中有一个 submodule 名为 a 是自己在 github 又创建的:</p>
+
+<pre><code>$ git submodule add http://github.com/icyleaf/a.git modules/a
+</code></pre>
+
+<p>现在问题是，由于代码需要更新，同时涉及到了 a 这个 submodule，但是它的添加 url 是 read-only，由于 x 这个库是供大家使用，因此 a 又不能设为 private：</p>
+
+<pre><code>$ git clone git@github.com:icyleaf/a.git modules/a
+</code></pre>
+
+<p>目前想到的方法是在 x 库以外 clone 下来 a，进行私有的写入和 push 到 github 上面，然后在 x 库的 a 里 git pull 下来获得最新的代码。</p>
+
+<p>如何解决这样的问题，能够当大家全部 clone 下来，而自己开发也能避免麻烦？在一篇文章上面找到了灵感，折腾了一番搞定了 !</p>
+
+<p>该文章有一节讲到，开发者如果经常需要更新 submodule ，即可更换 submodule 的 remote url：</p>
+
+<pre><code>$ cd commonlib
+$ git remote rm origin
+$ git remote add origin ssh://mark@git.mysociety.org/data/git/public/commonlib.git
+$ git remote -v origin ssh://mark@git.mysociety.org/data/git/public/commonlib.git
+
+However, you’ll find that two helpful config options will have been
+deleted when removing and adding back origin, so you’ll want to add
+these back.
+
+$ git config branch.master.remote origin
+$ git config branch.master.merge refs/heads/master
+</code></pre>
+
+<p>首先我也先对 a 进行 git remote -v，结果显示：</p>
+
+<pre><code>origin http://github.com/icyleaf/a.git (fetch)
+origin http://github.com/icyleaf/a.git (push)
+</code></pre>
+
+<p>发现和文章里面的显示的结果不一样，于是我就在想能不能在 remote
+上面做些手脚，首先看下 git remote 的 help，发现有一条是可以单独设置 remote
+push 的 url ，也就是更换上面 git remote -v 中 push 的 url，尝试：</p>
+
+<pre><code>$ git remote set-url --push origin git@github.com:icyleaf/a.git
+</code></pre>
+
+<p>再次执行 remote -v:</p>
+
+<pre><code>origin http://github.com/icyleaf/a.git (fetch)
+origin git@github.com:icyleaf/a.git (push)
+</code></pre>
+
+<p>执行成功！然后随意 commit 并 push orgin master，成功！</p>
+
+<p>搞定！</p>
+
+    </section>
+
+  <footer class="post-footer">
+    
+    <figure class="author-image">
+        <a class="img" href="localhost/localhost" style="background-image: url(/localhostimages/icyleaf-icon.png)"><span class="hidden">icyleaf's Picture</span></a>
+    </figure>
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="localhost/localhost">icyleaf</a></h4>
+  
+  <p>热爱户外的码农、下厨初心者</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">Beijing, China</span>
+    <span class="author-link icon-link"><a href="http://icyleaf.com">http://icyleaf.com</a></span>
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" href="https://twitter.com/share?text=%e5%a6%82%e4%bd%95%e4%bf%9d%e6%8c%81%e5%9c%a8%20Git%20Submodule%20%e4%bb%a3%e7%a0%81%e7%9a%84%e5%bc%80%e6%94%be%e5%92%8c%e7%a7%81%e6%9c%89%e5%85%b1%e5%ad%98&nbsp;-&nbsp;icyleaf&amp;url=%2flocalhost%2f2012%2f08%2fhow-to-keep-public-and-private-versions-of-a-git-submodule-repo-in-sync"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=%2flocalhost%2f2012%2f08%2fhow-to-keep-public-and-private-versions-of-a-git-submodule-repo-in-sync"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-weibo"href="http://service.weibo.com/share/share.php?url=%2flocalhost%2f2012%2f08%2fhow-to-keep-public-and-private-versions-of-a-git-submodule-repo-in-sync&amp;title=%e5%a6%82%e4%bd%95%e4%bf%9d%e6%8c%81%e5%9c%a8%20Git%20Submodule%20%e4%bb%a3%e7%a0%81%e7%9a%84%e5%bc%80%e6%94%be%e5%92%8c%e7%a7%81%e6%9c%89%e5%85%b1%e5%ad%98&nbsp;-&nbsp;icyleaf"
+      onclick="window.open(this.href, 'weibo-share','width=580,height=296');return false;">
+      <span class="hidden">新浪微博</span>
+  </a>
+  <a class="icon-douban" href="javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:'',r='https://www.douban.com/recommend/?url='+e(d.location.href)+'&title='+e(d.title)+'&sel='+e(s)+'&v=1',w=450,h=330,x=function(){if(!window.open(r,'douban','toolbar=0,resizable=1,scrollbars=yes,status=1,width='+w+',height='+h+',left='+(screen.width-w)/2+',top='+(screen.height-h)/2))location.href=r+'&r=1'};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()">
+      <span class="hidden">豆瓣</span>
+  </a>
+</section>
+
+
+
+    
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  var disqus_shortname = 'icyleaf';
+  var disqus_url = '\/localhost\/2012\/08\/how-to-keep-public-and-private-versions-of-a-git-submodule-repo-in-sync';
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+  </footer>
+</article>
+
+</main>
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">icyleaf</a> All rights reserved - 2007</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+  </div>
+  <script type="text/javascript" src="localhost/localhostjs/jquery.js"></script>
+  <script type="text/javascript" src="localhost/localhostjs/jquery.fitvids.js"></script>
+  <script type="text/javascript" src="localhost/localhostjs/index.js"></script>
+  
+</body>
+</html>
+
