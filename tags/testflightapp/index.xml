@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Testflightapp on icyleaf</title>
-    <link>localhost/tags/testflightapp/</link>
+    <link>http://icyleaf.com/tags/testflightapp/</link>
     <description>Recent content in Testflightapp on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
     <lastBuildDate>Fri, 06 Apr 2012 12:34:56 +0800</lastBuildDate>
-    <atom:link href="localhost/tags/testflightapp/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://icyleaf.com/tags/testflightapp/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>自动化脚本上传应用至 testflightapp</title>
-      <link>/localhost/2012/04/automating-script-to-testflight-from-xcode</link>
+      <link>http://icyleaf.com/2012/04/automating-script-to-testflight-from-xcode</link>
       <pubDate>Fri, 06 Apr 2012 12:34:56 +0800</pubDate>
       
-      <guid>/localhost/2012/04/automating-script-to-testflight-from-xcode</guid>
+      <guid>http://icyleaf.com/2012/04/automating-script-to-testflight-from-xcode</guid>
       <description>&lt;p&gt;Testflightapp 是团队开发测试中起了重要的角色，尤其是到目前为止一直是免费，最近还推出的 Live 功能不仅可以统计本身的一些数据还可以把现有的一些其他的账户的数据（比如， itunesconnect，Apple iAd，admob 等）导入进一步扩大聚合。&lt;/p&gt;
 
 &lt;p&gt;尤其是它真的重视开发着的核心需求，仅推出了唯一的一个公开 API，就是上传打包后的 ipa 文件，配合 Xcode 中 Archive 的 Post-action 可以轻松搞定自动化的操作。&lt;/p&gt;

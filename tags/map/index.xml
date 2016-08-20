@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Map on icyleaf</title>
-    <link>localhost/tags/map/</link>
+    <link>http://icyleaf.com/tags/map/</link>
     <description>Recent content in Map on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
     <lastBuildDate>Mon, 02 May 2011 12:34:56 +0800</lastBuildDate>
-    <atom:link href="localhost/tags/map/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://icyleaf.com/tags/map/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>如何在开发和发布环境使用 Android Map Key</title>
-      <link>/localhost/2011/05/how-to-using-android-map-key-both-in-development-and-production</link>
+      <link>http://icyleaf.com/2011/05/how-to-using-android-map-key-both-in-development-and-production</link>
       <pubDate>Mon, 02 May 2011 12:34:56 +0800</pubDate>
       
-      <guid>/localhost/2011/05/how-to-using-android-map-key-both-in-development-and-production</guid>
+      <guid>http://icyleaf.com/2011/05/how-to-using-android-map-key-both-in-development-and-production</guid>
       <description>&lt;p&gt;在项目中第一次使用并涉及 Google Map 的功能，而由于 Google 的限制，Google Map 模块出来需要单独下载模块之外，对于每一个应用还都必须具有一个 Google Map Key，这点和使用 Web 开发调用 Google Map API 是一致的。&lt;/p&gt;
 
 &lt;p&gt;对于 Android 采用的 Google Map Key 来说，是由一串 MD5 值（类似这样：94:1E:43:49:87:73:BB:E6:A6:88:D7:20:F1:8E:B5:98）生成的。那么这个 MD5 是哪来的呢？&lt;/p&gt;

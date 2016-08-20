@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Gitlab on icyleaf</title>
-    <link>localhost/tags/gitlab/</link>
+    <link>http://icyleaf.com/tags/gitlab/</link>
     <description>Recent content in Gitlab on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
     <lastBuildDate>Sun, 26 Jan 2014 12:34:56 +0800</lastBuildDate>
-    <atom:link href="localhost/tags/gitlab/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://icyleaf.com/tags/gitlab/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Puma 替换 Unicorn 跑 Gitlab</title>
-      <link>/localhost/2014/01/moving-unicorn-to-puma-on-gitlab</link>
+      <link>http://icyleaf.com/2014/01/moving-unicorn-to-puma-on-gitlab</link>
       <pubDate>Sun, 26 Jan 2014 12:34:56 +0800</pubDate>
       
-      <guid>/localhost/2014/01/moving-unicorn-to-puma-on-gitlab</guid>
+      <guid>http://icyleaf.com/2014/01/moving-unicorn-to-puma-on-gitlab</guid>
       <description>
 
 &lt;p&gt;前篇介绍到如何在《&lt;a href=&#34;http://icyleaf.com/2013/09/how-to-install-gitlab-on-centos/&#34;&gt;CentoOS 上面安装 Gitlab&lt;/a&gt;》一文，gitlab 默认使用的是 &lt;code&gt;unicorn&lt;/code&gt; 作为内部的 app server，再用 &lt;code&gt;nginx&lt;/code&gt; 做代理转发。之前是在公司内部搭建了一个平台，用着还算可以。有打算在 &lt;a href=&#34;https://www.linode.com/?r=66b0730eca572d3e45f083e29b1b3f8781b2a009&#34;&gt;Linode 购买的 VPS&lt;/a&gt; 上面，使用 &lt;code&gt;unicorn&lt;/code&gt; 跑服务的时候 &lt;code&gt;ruby&lt;/code&gt; 的进程居然占了 400-500M 左右，对于 Linode 刚刚免费升级之后才有 1G 内存的环境上，我还真有点放弃安装它的欲望。于是在想是否可以使用 &lt;code&gt;puma&lt;/code&gt; 替换掉原先的。&lt;/p&gt;

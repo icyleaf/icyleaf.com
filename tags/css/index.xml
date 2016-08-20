@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Css on icyleaf</title>
-    <link>localhost/tags/css/</link>
+    <link>http://icyleaf.com/tags/css/</link>
     <description>Recent content in Css on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
     <lastBuildDate>Sun, 08 Feb 2009 12:34:56 +0800</lastBuildDate>
-    <atom:link href="localhost/tags/css/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://icyleaf.com/tags/css/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>与SPAM战斗到底：CSS篇</title>
-      <link>/localhost/2009/02/fighting-spam-with-css</link>
+      <link>http://icyleaf.com/2009/02/fighting-spam-with-css</link>
       <pubDate>Sun, 08 Feb 2009 12:34:56 +0800</pubDate>
       
-      <guid>/localhost/2009/02/fighting-spam-with-css</guid>
+      <guid>http://icyleaf.com/2009/02/fighting-spam-with-css</guid>
       <description>&lt;p&gt;SPAM，现在还没有一个非常严格的定义。一般来说，凡是未经用户许可就强行发送到用户的邮箱中的任何电子邮件。现在应该已经广泛各种网络应用上面。对于网站来说，网站知名度小的时候或许还可以免于“侵犯”，可是一旦在搜索引擎收录的数量做出一些成绩，SPAM 就会主动找上门来，各种垃圾信息就会扑面而来，然而对SPAM 的战斗一起在进行，这是一场没有硝烟的战争，为了防范
 SPAM，大家各显其能，招招新颖，当然还有一些专门为 SPAM 创建防御服务的网站，比如说 WordPress 自带的 &lt;a href=&#34;http://akismet.com/&#34;&gt;Akismet&lt;/a&gt;。对于各种防御方法，我想应该可以写成一个系列，这个系列的内容或许是从网络上搜集或许是自己突发奇想想出来的奇招（目前应该还不可能哈）。&lt;/p&gt;
 
@@ -62,10 +62,10 @@ Comment:&amp;lt;input name=&amp;quot;comment&amp;quot; /&amp;gt;&amp;lt;br /&amp
     
     <item>
       <title>CSS中background-image的另类使用</title>
-      <link>/localhost/2008/05/css-background-image-in-the-use-of-alternative</link>
+      <link>http://icyleaf.com/2008/05/css-background-image-in-the-use-of-alternative</link>
       <pubDate>Sat, 10 May 2008 12:34:56 +0800</pubDate>
       
-      <guid>/localhost/2008/05/css-background-image-in-the-use-of-alternative</guid>
+      <guid>http://icyleaf.com/2008/05/css-background-image-in-the-use-of-alternative</guid>
       <description>&lt;p&gt;在CSS众多的样式当中，background可以说是扮演着重要的角色，它可以设置对象的背景样式。如颜色或者使用一张图片代替，今天我要多说两句的就是使用一张图片的参数：image。准确的来说应该是background-image。我们可以这样用它：&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;body{background-image: url(http://www.icyleaf.cn/logo.jpg);

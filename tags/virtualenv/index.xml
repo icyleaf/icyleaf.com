@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Virtualenv on icyleaf</title>
-    <link>localhost/tags/virtualenv/</link>
+    <link>http://icyleaf.com/tags/virtualenv/</link>
     <description>Recent content in Virtualenv on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
     <lastBuildDate>Wed, 16 Jan 2013 12:34:56 +0800</lastBuildDate>
-    <atom:link href="localhost/tags/virtualenv/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://icyleaf.com/tags/virtualenv/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>介绍 virtualenvwrapper</title>
-      <link>/localhost/2013/01/intro-virtualenvwrapper</link>
+      <link>http://icyleaf.com/2013/01/intro-virtualenvwrapper</link>
       <pubDate>Wed, 16 Jan 2013 12:34:56 +0800</pubDate>
       
-      <guid>/localhost/2013/01/intro-virtualenvwrapper</guid>
+      <guid>http://icyleaf.com/2013/01/intro-virtualenvwrapper</guid>
       <description>
 
 &lt;p&gt;上回说到 &lt;a href=&#34;http://icyleaf.com/2012/07/intro-virtualenv&#34;&gt;virtualenv&lt;/a&gt; 的基本使用，这会为了提高工作效率，再次介绍针对于它增强的一个扩展 &lt;a href=&#34;http://www.doughellmann.com/projects/virtualenvwrapper/&#34;&gt;virtualenvwrapper&lt;/a&gt;。&lt;/p&gt;
@@ -78,10 +78,10 @@ $ mkvirtualenv -r requirements.txt &amp;lt;env_name&amp;gt;
     
     <item>
       <title>初次接触 virtualenv</title>
-      <link>/localhost/2012/07/intro-virtualenv</link>
+      <link>http://icyleaf.com/2012/07/intro-virtualenv</link>
       <pubDate>Fri, 27 Jul 2012 12:34:56 +0800</pubDate>
       
-      <guid>/localhost/2012/07/intro-virtualenv</guid>
+      <guid>http://icyleaf.com/2012/07/intro-virtualenv</guid>
       <description>&lt;p&gt;python 的 virtualenv 功能看着类似于 Ruby 的 RVM，其实这两个东西我都没有用过，本身脚本语言用的最熟练的是 php，最近觉得 php 在处理一些多线程和终端繁琐的事情上有些局限性。决定熟悉下 python 并尝试用 django 做一个小应用。&lt;/p&gt;
 
 &lt;p&gt;由于本身 &lt;a href=&#34;http://github.com/openparty/openparty&#34;&gt;OpenParty&lt;/a&gt; 的代码也是基于 django 开发的，加上最近也开始使用了 virtualenv，这样正好解决了不同项目在使用不同的环境造成的一些困扰。&lt;/p&gt;

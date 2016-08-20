@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Dash on icyleaf</title>
-    <link>localhost/tags/dash/</link>
+    <link>http://icyleaf.com/tags/dash/</link>
     <description>Recent content in Dash on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
     <lastBuildDate>Wed, 06 Feb 2013 12:34:56 +0800</lastBuildDate>
-    <atom:link href="localhost/tags/dash/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://icyleaf.com/tags/dash/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Dash 你值得拥有的文档管理工具</title>
-      <link>/localhost/2013/02/dash</link>
+      <link>http://icyleaf.com/2013/02/dash</link>
       <pubDate>Wed, 06 Feb 2013 12:34:56 +0800</pubDate>
       
-      <guid>/localhost/2013/02/dash</guid>
+      <guid>http://icyleaf.com/2013/02/dash</guid>
       <description>
 
 &lt;p&gt;Dash 是 Mac OS 的一个文档管理工具，从它第一版发布用到现在，绝对是一个你值得拥有的文档管理工具，因为它还是免费的，你可以从 &lt;a href=&#34;https://itunes.apple.com/cn/app/dash-docs-snippets/id458034879?mt=12&#34;&gt;Mac App Store&lt;/a&gt; 购买。但是全功能需要应用内付费，否则有些“小骚扰”。&lt;/p&gt;

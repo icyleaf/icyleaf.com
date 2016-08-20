@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Git on icyleaf</title>
-    <link>localhost/tags/git/</link>
+    <link>http://icyleaf.com/tags/git/</link>
     <description>Recent content in Git on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
     <lastBuildDate>Sun, 26 Jan 2014 12:34:56 +0800</lastBuildDate>
-    <atom:link href="localhost/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://icyleaf.com/tags/git/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Puma 替换 Unicorn 跑 Gitlab</title>
-      <link>/localhost/2014/01/moving-unicorn-to-puma-on-gitlab</link>
+      <link>http://icyleaf.com/2014/01/moving-unicorn-to-puma-on-gitlab</link>
       <pubDate>Sun, 26 Jan 2014 12:34:56 +0800</pubDate>
       
-      <guid>/localhost/2014/01/moving-unicorn-to-puma-on-gitlab</guid>
+      <guid>http://icyleaf.com/2014/01/moving-unicorn-to-puma-on-gitlab</guid>
       <description>
 
 &lt;p&gt;前篇介绍到如何在《&lt;a href=&#34;http://icyleaf.com/2013/09/how-to-install-gitlab-on-centos/&#34;&gt;CentoOS 上面安装 Gitlab&lt;/a&gt;》一文，gitlab 默认使用的是 &lt;code&gt;unicorn&lt;/code&gt; 作为内部的 app server，再用 &lt;code&gt;nginx&lt;/code&gt; 做代理转发。之前是在公司内部搭建了一个平台，用着还算可以。有打算在 &lt;a href=&#34;https://www.linode.com/?r=66b0730eca572d3e45f083e29b1b3f8781b2a009&#34;&gt;Linode 购买的 VPS&lt;/a&gt; 上面，使用 &lt;code&gt;unicorn&lt;/code&gt; 跑服务的时候 &lt;code&gt;ruby&lt;/code&gt; 的进程居然占了 400-500M 左右，对于 Linode 刚刚免费升级之后才有 1G 内存的环境上，我还真有点放弃安装它的欲望。于是在想是否可以使用 &lt;code&gt;puma&lt;/code&gt; 替换掉原先的。&lt;/p&gt;
@@ -103,10 +103,10 @@ bundle install --without development test mysql --path vendor/bundle --no-deploy
     
     <item>
       <title>Git 和 Pager 的那点事</title>
-      <link>/localhost/2013/10/about-pager-on-git</link>
+      <link>http://icyleaf.com/2013/10/about-pager-on-git</link>
       <pubDate>Wed, 16 Oct 2013 12:34:56 +0800</pubDate>
       
-      <guid>/localhost/2013/10/about-pager-on-git</guid>
+      <guid>http://icyleaf.com/2013/10/about-pager-on-git</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;Git 几乎所有命令都提供分页器，即当命令输出超过一页时，自动在每页输出后暂停，可以按空格继续显示，按 q 退出。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -147,10 +147,10 @@ bundle install --without development test mysql --path vendor/bundle --no-deploy
     
     <item>
       <title>如何在 CentOS 上安装 Gitlab</title>
-      <link>/localhost/2013/09/how-to-install-gitlab-on-centos</link>
+      <link>http://icyleaf.com/2013/09/how-to-install-gitlab-on-centos</link>
       <pubDate>Tue, 17 Sep 2013 12:34:56 +0800</pubDate>
       
-      <guid>/localhost/2013/09/how-to-install-gitlab-on-centos</guid>
+      <guid>http://icyleaf.com/2013/09/how-to-install-gitlab-on-centos</guid>
       <description>
 
 &lt;p&gt;2013 年 08 月的 OpenParty &amp;ldquo;&lt;a href=&#34;http://www.beijing-open-party.org/event/25&#34;&gt;花事如期&lt;/a&gt;&amp;rdquo; 活动上，&lt;a href=&#34;https://github.com/vecio&#34;&gt;晓东&lt;/a&gt;在他的机器上演示了自建 Gitlab 的项目，看到 Gitlab 目前已经比较成熟，而不像早期寒碜的界面，这个时候看安装一下也是不错的事情，不过他们的项目文档只提供了 Ubuntu 系统的&lt;a href=&#34;https://github.com/gitlabhq/gitlabhq#installation&#34;&gt;安装文档&lt;/a&gt;，对于 CentOS 没有提到，非官方的文档有比较老久，凭着之前熟悉 Ubuntu 和学习 CentOS，那就开始安装吧：&lt;/p&gt;
@@ -483,10 +483,10 @@ $ sudo service gitlab restart
     
     <item>
       <title>如何保持在 Git Submodule 代码的开放和私有共存</title>
-      <link>/localhost/2012/08/how-to-keep-public-and-private-versions-of-a-git-submodule-repo-in-sync</link>
+      <link>http://icyleaf.com/2012/08/how-to-keep-public-and-private-versions-of-a-git-submodule-repo-in-sync</link>
       <pubDate>Fri, 03 Aug 2012 12:34:56 +0800</pubDate>
       
-      <guid>/localhost/2012/08/how-to-keep-public-and-private-versions-of-a-git-submodule-repo-in-sync</guid>
+      <guid>http://icyleaf.com/2012/08/how-to-keep-public-and-private-versions-of-a-git-submodule-repo-in-sync</guid>
       <description>&lt;p&gt;假设我在 github 有一个开源的版本库 x 供大家使用，该库里面又包含了好些个 submodules，其中有一个 submodule 名为 a 是自己在 github 又创建的:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;$ git submodule add http://github.com/icyleaf/a.git modules/a
@@ -543,10 +543,10 @@ origin git@github.com:icyleaf/a.git (push)
     
     <item>
       <title>使用 Git Hooks 实现自动项目部署</title>
-      <link>/localhost/2012/03/apps-auto-deploy-with-git</link>
+      <link>http://icyleaf.com/2012/03/apps-auto-deploy-with-git</link>
       <pubDate>Wed, 14 Mar 2012 12:34:56 +0800</pubDate>
       
-      <guid>/localhost/2012/03/apps-auto-deploy-with-git</guid>
+      <guid>http://icyleaf.com/2012/03/apps-auto-deploy-with-git</guid>
       <description>&lt;p&gt;最近在某服务器上面搭建 git 开发和部署环境，git 开发环境很简单，按照 ProGit 一书的相关知识就可以轻松搞定，实现了类似 Github 的使用 SSH + 私有 Clone 的方式。&lt;/p&gt;
 
 &lt;p&gt;关于部署，实际上是自动部署，起初的想法是使用 bash shell 制定一个定时任务去不断 git pull 产品代码，后来记得 Git 带有 Hooks，索性在ProGit 一书翻了翻：&lt;/p&gt;
@@ -599,10 +599,10 @@ post-receive（如果没有自行创建），代码请看：&lt;a href=&#34;http
     
     <item>
       <title>几本和 Git 相关的书</title>
-      <link>/localhost/2009/09/books-about-git</link>
+      <link>http://icyleaf.com/2009/09/books-about-git</link>
       <pubDate>Mon, 28 Sep 2009 12:34:56 +0800</pubDate>
       
-      <guid>/localhost/2009/09/books-about-git</guid>
+      <guid>http://icyleaf.com/2009/09/books-about-git</guid>
       <description>&lt;p&gt;切换到 Git开发已经有一段的时间了，之前一直在使用 svn，现在部分代码还在
 Google Code 托管。不过自换了 Git 之后发现 Git 更方便且效率更高，不过用来用去常用的就拿几个命令，很多时候都要去找一些参考资料和教程。从学习到现在一个接触了一个文档，三本书。文档就是官方的文档手册，这个就不再说了，安装完 git 也都会默认内置的，对于这三本书，依次为 &lt;a href=&#34;http://book.git-scm.com/&#34;&gt;Git Community Book&lt;/a&gt;，&lt;a href=&#34;http://progit.org/&#34;&gt;ProGit&lt;/a&gt;，&lt;a href=&#34;http://zh-cn.whygitisbetterthanx.com/&#34;&gt;Why Git is Better Than X&lt;/a&gt;（X 代表其他 SCM 软件，如
 svn，bzr等）。&lt;/p&gt;
@@ -619,10 +619,10 @@ svn，bzr等）。&lt;/p&gt;
     
     <item>
       <title>初学 git 入门</title>
-      <link>/localhost/2008/11/new-guy-to-git</link>
+      <link>http://icyleaf.com/2008/11/new-guy-to-git</link>
       <pubDate>Fri, 07 Nov 2008 12:34:56 +0800</pubDate>
       
-      <guid>/localhost/2008/11/new-guy-to-git</guid>
+      <guid>http://icyleaf.com/2008/11/new-guy-to-git</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;Git 是用于 Linux 内核开发的版本控制工具。与常用的版本控制工具 CVS, Subversion 等不同，它采用了分布式版本库的方式，不必服务器端软件支持，使源代码的发布和交流极其方便。Git 的速度很快，这对于诸如 Linux kernel 这样的大项目来说自然很重要。Git 最为出色的是它的合并跟踪（merge tracing）能力。&lt;/p&gt;
 &lt;/blockquote&gt;

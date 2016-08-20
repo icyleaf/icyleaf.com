@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Gem on icyleaf</title>
-    <link>localhost/tags/gem/</link>
+    <link>http://icyleaf.com/tags/gem/</link>
     <description>Recent content in Gem on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
     <lastBuildDate>Sat, 25 Jan 2014 12:34:56 +0800</lastBuildDate>
-    <atom:link href="localhost/tags/gem/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://icyleaf.com/tags/gem/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>初识 Ruby Gem Guard</title>
-      <link>/localhost/2014/01/intro-ruby-gem-guard</link>
+      <link>http://icyleaf.com/2014/01/intro-ruby-gem-guard</link>
       <pubDate>Sat, 25 Jan 2014 12:34:56 +0800</pubDate>
       
-      <guid>/localhost/2014/01/intro-ruby-gem-guard</guid>
+      <guid>http://icyleaf.com/2014/01/intro-ruby-gem-guard</guid>
       <description>
 
 &lt;p&gt;&lt;a href=&#34;http://guardgem.org&#34;&gt;Guard&lt;/a&gt; 是一个很好的 Web 辅助开发工具，因为看了 tutsplus 网站的介绍视频：&lt;a href=&#34;http://net.tutsplus.com/tutorials/tools-and-tips/guard-is-your-best-friend/&#34;&gt;Guard is your best firend&lt;/a&gt;。这里把视频的东西提取出来自我消化：&lt;/p&gt;

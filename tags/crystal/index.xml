@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Crystal on icyleaf</title>
-    <link>localhost/tags/crystal/</link>
+    <link>http://icyleaf.com/tags/crystal/</link>
     <description>Recent content in Crystal on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
     <lastBuildDate>Mon, 11 Jul 2016 20:41:26 +0800</lastBuildDate>
-    <atom:link href="localhost/tags/crystal/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://icyleaf.com/tags/crystal/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Gitlab API Wrapper for Crystal</title>
-      <link>/localhost/2016/07/gitlab-api-wrapper-for-crystal</link>
+      <link>http://icyleaf.com/2016/07/gitlab-api-wrapper-for-crystal</link>
       <pubDate>Mon, 11 Jul 2016 20:41:26 +0800</pubDate>
       
-      <guid>/localhost/2016/07/gitlab-api-wrapper-for-crystal</guid>
+      <guid>http://icyleaf.com/2016/07/gitlab-api-wrapper-for-crystal</guid>
       <description>
 
 &lt;h2 id=&#34;gitlab-cr&#34;&gt;Gitlab.cr&lt;/h2&gt;

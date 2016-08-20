@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Android on icyleaf</title>
-    <link>localhost/tags/android/</link>
+    <link>http://icyleaf.com/tags/android/</link>
     <description>Recent content in Android on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
     <lastBuildDate>Tue, 19 Jul 2016 20:12:07 +0800</lastBuildDate>
-    <atom:link href="localhost/tags/android/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://icyleaf.com/tags/android/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>深入浅出 Fastlane 一看你就懂</title>
-      <link>/localhost/2016/07/fastlane-in-action</link>
+      <link>http://icyleaf.com/2016/07/fastlane-in-action</link>
       <pubDate>Tue, 19 Jul 2016 20:12:07 +0800</pubDate>
       
-      <guid>/localhost/2016/07/fastlane-in-action</guid>
+      <guid>http://icyleaf.com/2016/07/fastlane-in-action</guid>
       <description>
 
 &lt;p&gt;这是《 &lt;a href=&#34;https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/&#34;&gt;Fastlane - iOS 和 Android 的自动化构建工具&lt;/a&gt;》系列的第二篇。&lt;/p&gt;
@@ -579,10 +579,10 @@ $ fastlane run notification message:&amp;quot;Hi macOS&amp;quot; title:&amp;quot
     
     <item>
       <title>Fastlane - iOS 和 Android 的自动化构建工具</title>
-      <link>/localhost/2016/07/intro-fastlane-automation-for-ios-and-android</link>
+      <link>http://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android</link>
       <pubDate>Mon, 11 Jul 2016 12:36:07 +0800</pubDate>
       
-      <guid>/localhost/2016/07/intro-fastlane-automation-for-ios-and-android</guid>
+      <guid>http://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android</guid>
       <description>
 
 &lt;h3 id=&#34;系列索引&#34;&gt;系列索引&lt;/h3&gt;
@@ -851,10 +851,10 @@ default_platform :ios
     
     <item>
       <title>“java.lang.NoClassDefFoundError” in Android</title>
-      <link>/localhost/2012/05/how-to-salvation-android-import-jar-exception-during-running</link>
+      <link>http://icyleaf.com/2012/05/how-to-salvation-android-import-jar-exception-during-running</link>
       <pubDate>Mon, 14 May 2012 12:34:56 +0800</pubDate>
       
-      <guid>/localhost/2012/05/how-to-salvation-android-import-jar-exception-during-running</guid>
+      <guid>http://icyleaf.com/2012/05/how-to-salvation-android-import-jar-exception-during-running</guid>
       <description>&lt;p&gt;最近 Eclipse 的 ADT 升级至了 18 版本，结果运行的时候发现导入的第三方 jar
 包总是报错&lt;/p&gt;
 
@@ -874,10 +874,10 @@ default_platform :ios
     
     <item>
       <title>让 Android 支持下拉刷新(Pull Refresh)</title>
-      <link>/localhost/2012/02/pull-refresh-for-android</link>
+      <link>http://icyleaf.com/2012/02/pull-refresh-for-android</link>
       <pubDate>Wed, 29 Feb 2012 12:34:56 +0800</pubDate>
       
-      <guid>/localhost/2012/02/pull-refresh-for-android</guid>
+      <guid>http://icyleaf.com/2012/02/pull-refresh-for-android</guid>
       <description>&lt;p&gt;曾几何时，自 Android 发布之后一直以来就被管以 Geek 的玩具，而不太注重界面设计和用户交互设计，这让 Android 开发者也顺其自然的接受了这个不好的头衔，但我一度认为这只是不思进取的行为，谁说 Android 就不能像 iPhone 的界面那样设计，我认为只有用心，没神马不能实现的。说回正题，第一次看到 Android 有这项功能的莫过于改版后的 Twitter，我认为它绝对是一个标榜性的 App（同时也包括已开源许久的 &lt;a href=&#34;http://code.google.com/p/foursquared/&#34;&gt;Foursquare&lt;/a&gt;）。于是全世界的开发者就开始寻思这个效果 Twitter
 是如何实现的，于是就有了&amp;hellip;&lt;/p&gt;
 
@@ -941,10 +941,10 @@ protected void onPostExecute(String[] result) {
     
     <item>
       <title>如何让 iOS 和 Android 支持自定义字体</title>
-      <link>/localhost/2011/07/custom-fonts-both-in-ios-and-android</link>
+      <link>http://icyleaf.com/2011/07/custom-fonts-both-in-ios-and-android</link>
       <pubDate>Wed, 06 Jul 2011 12:34:56 +0800</pubDate>
       
-      <guid>/localhost/2011/07/custom-fonts-both-in-ios-and-android</guid>
+      <guid>http://icyleaf.com/2011/07/custom-fonts-both-in-ios-and-android</guid>
       <description>
 
 &lt;p&gt;本篇教程的目前源于我们团队设计师一直询问，iOS(iPhone/iPad) 和 Android
@@ -1070,10 +1070,10 @@ void setFont(TextView name, String path, int res)
     
     <item>
       <title>如何在开发和发布环境使用 Android Map Key</title>
-      <link>/localhost/2011/05/how-to-using-android-map-key-both-in-development-and-production</link>
+      <link>http://icyleaf.com/2011/05/how-to-using-android-map-key-both-in-development-and-production</link>
       <pubDate>Mon, 02 May 2011 12:34:56 +0800</pubDate>
       
-      <guid>/localhost/2011/05/how-to-using-android-map-key-both-in-development-and-production</guid>
+      <guid>http://icyleaf.com/2011/05/how-to-using-android-map-key-both-in-development-and-production</guid>
       <description>&lt;p&gt;在项目中第一次使用并涉及 Google Map 的功能，而由于 Google 的限制，Google Map 模块出来需要单独下载模块之外，对于每一个应用还都必须具有一个 Google Map Key，这点和使用 Web 开发调用 Google Map API 是一致的。&lt;/p&gt;
 
 &lt;p&gt;对于 Android 采用的 Google Map Key 来说，是由一串 MD5 值（类似这样：94:1E:43:49:87:73:BB:E6:A6:88:D7:20:F1:8E:B5:98）生成的。那么这个 MD5 是哪来的呢？&lt;/p&gt;

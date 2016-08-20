@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Book on icyleaf</title>
-    <link>localhost/tags/book/</link>
+    <link>http://icyleaf.com/tags/book/</link>
     <description>Recent content in Book on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
     <lastBuildDate>Fri, 28 Sep 2007 12:34:56 +0800</lastBuildDate>
-    <atom:link href="localhost/tags/book/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://icyleaf.com/tags/book/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>推荐一本书</title>
-      <link>/localhost/2007/09/recommend-a-book-stan-lais-creative-learning</link>
+      <link>http://icyleaf.com/2007/09/recommend-a-book-stan-lais-creative-learning</link>
       <pubDate>Fri, 28 Sep 2007 12:34:56 +0800</pubDate>
       
-      <guid>/localhost/2007/09/recommend-a-book-stan-lais-creative-learning</guid>
+      <guid>http://icyleaf.com/2007/09/recommend-a-book-stan-lais-creative-learning</guid>
       <description>&lt;p&gt;&lt;img src=&#34;http://images.dangdang.com/images/9214908_b.jpg&#34; alt=&#34;创意&#34; /&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;

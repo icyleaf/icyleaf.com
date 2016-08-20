@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Rancher on icyleaf</title>
-    <link>localhost/tags/rancher/</link>
+    <link>http://icyleaf.com/tags/rancher/</link>
     <description>Recent content in Rancher on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
     <lastBuildDate>Fri, 05 Aug 2016 17:21:08 +0800</lastBuildDate>
-    <atom:link href="localhost/tags/rancher/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://icyleaf.com/tags/rancher/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>如何在 OS X 上安装 Rancher</title>
-      <link>/localhost/2016/08/how-to-install-rancher-on-osx</link>
+      <link>http://icyleaf.com/2016/08/how-to-install-rancher-on-osx</link>
       <pubDate>Fri, 05 Aug 2016 17:21:08 +0800</pubDate>
       
-      <guid>/localhost/2016/08/how-to-install-rancher-on-osx</guid>
+      <guid>http://icyleaf.com/2016/08/how-to-install-rancher-on-osx</guid>
       <description>
 
 &lt;p&gt;Rancher 是 Docker 编排解决方案的一种，好处在于可以做容器编排，网络，存储，负载均衡，还能够支持云服务器（比如 Amazon EC2/Azure/DigitalOcean）也能够兼容 Docker Swarm/Mesos/Kubernetes 等其他的解决方案。自它还没有发布 &lt;a href=&#34;http://rancher.com/announcing-rancher-1-0-ga/&#34;&gt;1.0&lt;/a&gt; 版本之前也有持续的关注。它自身还有个 &lt;a href=&#34;http://www.infoq.com/cn/news/2015/03/rancheros-docker-linux&#34;&gt;RancherOS&lt;/a&gt; 对于 CoreOS 也是一个不小的威胁。&lt;/p&gt;

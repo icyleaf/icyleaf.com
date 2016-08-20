@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Vagrant on icyleaf</title>
-    <link>localhost/tags/vagrant/</link>
+    <link>http://icyleaf.com/tags/vagrant/</link>
     <description>Recent content in Vagrant on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
     <lastBuildDate>Sat, 21 Dec 2013 12:34:56 +0800</lastBuildDate>
-    <atom:link href="localhost/tags/vagrant/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://icyleaf.com/tags/vagrant/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>学习 Ansible &#43; Vagrant</title>
-      <link>/localhost/2013/12/learning-ansible-and-vagrant</link>
+      <link>http://icyleaf.com/2013/12/learning-ansible-and-vagrant</link>
       <pubDate>Sat, 21 Dec 2013 12:34:56 +0800</pubDate>
       
-      <guid>/localhost/2013/12/learning-ansible-and-vagrant</guid>
+      <guid>http://icyleaf.com/2013/12/learning-ansible-and-vagrant</guid>
       <description>
 
 &lt;blockquote&gt;
