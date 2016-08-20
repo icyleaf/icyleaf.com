@@ -1,0 +1,20 @@
+language: go
+env:
+  global:
+  - GH_REF: github.com/icyleaf/icyleaf.com
+  - secure: Dslw/+KyFVkq+R13J+/Oy/xjHAABsdFW425MILqa+OLmcXo848iT1AEQnRB6cvfwY9e7/xYAvxVewOOecuo+d1C/aMPPWO9yMT0YUQU0sGeXT1h7dgbPwOZs17b1WjHUCxKQFguEBfLM3dhB/rDKbHUcLviGhdA60VrLjBJD7HDHG9Yd16TWjAyqEVQlpwnIG8mk64pctkMiDfchVl0tRJXGYZF2NwTc+d238Jd40x3OjyMHokoZUkmMGsZ9vZ0lElJcSjxD95Aru62CI29DEpSgCJwSP5TmKx2PtPXxY2wIAfZrMdSbKkUJKxTuurPcZD3/+2sRrrAOkvSWE8C8x19JE3DAGvnMiSiUUKiDOwA+Q1cMgdfLHKApVplQPJyxwo4BaHAQk9TDINtAHpsDMsNEHuyUXxnWb0GiDK0ODDmuB2nDMnpmt0EHtqxvksHri0UJBB0rJTW6CBTqLE3SXx0jwdEHWOPizPO/Dz3LJFt6Arb0JnIgrNuPHyUwp6xzRvh+du1sofm7LpTftxxYnCyENy0uDBWjKBtRvnIfj2lPIYC8j6us123oDCYO3he2ugyxhiU5h3tJU9sCgoUlziqKxNAFnofUbQZSN6HSVoiFonCtwNC3OMyirOa+yu0Y3ukgGPrK8yAE31RmspwSoUDsFKgZA5TubBUzTTRLq6g=
+before_script:
+  - go get -u -v github.com/spf13/hugo
+script:
+  - cd site
+  - hugo
+after_script:
+  - git config --global user.name "icyleaf"
+  - git config --global user.email "icyleaf.cn@gmail.com"
+  - git init
+  - git remote add origin "https://${GH_TOKEN}@${GH_REF}.git"
+  - git fetch origin
+  - git reset origin/gh-pages
+  - git add -A .
+  - git commit -m "Updating to ${COMMIT_HASH}"
+  - git push origin HEAD:gh-pages

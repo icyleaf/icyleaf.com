@@ -1,13 +1,21 @@
 version: '2'
-
 services:
-  blog:
-    build: .
-    ports:
-      - "8800:80"
+  data:
+    image: icyleafcn/hugo
+    command: ash /run.sh
     volumes:
-      - "./hexo/source:/DATA/source"
-      - "./hexo/themes:/DATA/themes"
-      - "./config/_config.yml:/DATA/_config.yml"
-      - "./public:/DATA/public"
-      - "./config/themes/next/_config.yml:/DATA/themes/next/_config.yml"
+      - ./system/data/run.sh:/run.sh
+      - ./site:/site
+    env_file:
+      - .env
+  web:
+    image: icyleafcn/caddy
+    volumes_from:
+      - data
+    volumes:
+      - ./system/web/Caddyfile:/etc/Caddyfile
+    environment:
+      - HOST=${HOST}
+      - HTTP_PORT=${HTTP_PORT}
+    ports:
+      - "${HTTP_PORT}:80"
