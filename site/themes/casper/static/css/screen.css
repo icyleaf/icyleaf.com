@@ -141,6 +141,9 @@ table { border-collapse: collapse; border-spacing: 0; }
 .icon-linkedin:before {
     content: "\e604";
 }
+.icon-pocket:before {
+    content: "\e61f";
+}
 .icon-douban:before {
     content: "\e607";
 }
