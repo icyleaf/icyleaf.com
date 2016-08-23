@@ -2,9 +2,13 @@ version: '2'
 services:
   data:
     image: icyleafcn/hugo
-    command: hugo server --bind=0.0.0.0
+    command: ash /run.sh
     volumes:
+      - ./system/data/run.sh:/run.sh
       - ./site:/site
+    envrioment:
+      - HOST=icyleaf.com
+      - HTTP_PORT=1313
   web:
     image: icyleafcn/caddy
     volumes_from:
@@ -12,6 +16,4 @@ services:
     volumes:
       - ./system/web/Caddyfile:/etc/Caddyfile
     ports:
-      - "2015:80"
-  proxy:
-    image: 
+      - "1313:80"
