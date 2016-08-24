@@ -1,12 +1,8 @@
 data:
   image: icyleafcn/hugo
-  command: ash /run.sh
+  command: ash -c "mkdir -p logs && hugo"
   volumes:
     - /data/sites/icyleaf.com/site:/site
-    - /data/sites/icyleaf.com/system/data/run.sh:/run.sh
-  environment:
-    - HUGO_HOST=https://icyleaf.com
-    - HUGO_PORT=80
   labels:
     - "io.rancher.container.network=true"
 web:
@@ -17,8 +13,8 @@ web:
   volumes:
     - /data/sites/icyleaf.com/system/web/Caddyfile:/etc/Caddyfile
   environment:
-    - VIRTUAL_HOST=icyleaf.com,www.icyleaf.com
-    - LETSENCRYPT_HOST=icyleaf.com,www.icyleaf.com
+    - VIRTUAL_HOST=icyleaf.com
+    - LETSENCRYPT_HOST=icyleaf.com
     - LETSENCRYPT_EMAIL=icyleaf.cn@gmail.com
   labels:
     - "io.rancher.container.network=true"
