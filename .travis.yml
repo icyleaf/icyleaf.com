@@ -31,4 +31,6 @@ after_script:
 - git push github HEAD:gh-pages
 - git fetch coding
 - git reset coding/coding-pages
+- git add -A .
+- git commit -m "Updated"
 - git push coding HEAD:coding-pages
