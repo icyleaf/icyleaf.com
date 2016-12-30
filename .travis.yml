@@ -10,7 +10,7 @@ env:
 install: go get -v github.com/spf13/hugo
 script:
 - cd site
-- hugo --baseURL=${HOST}
+- hugo
 after_script:
 - cd public
 - git config --global user.name "icyleaf"
