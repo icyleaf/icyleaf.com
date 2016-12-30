@@ -5,6 +5,7 @@ tags:
 categories:
   - Technology
 date: "2015-12-17T14:41:00+08:00"
+slug: "hexo-theme-next"
 ---
 ![Snapshot](https://camo.githubusercontent.com/2e2c5c6d351ebe899fcebed0f56a5b72b2660b06/687474703a2f2f696973736e616e2e636f6d2f6e657875732f6e6578742f6e6578742d736368656d65732e6a7067)
 

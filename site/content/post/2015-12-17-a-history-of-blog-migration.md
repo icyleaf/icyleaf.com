@@ -8,6 +8,7 @@ tags:
 categories:
   - Life
 date: "2015-12-17T15:01:56+08:00"
+slug: "a-history-of-my-blog"
 ---
 
 > 最新状态：自去年 12 月更新后没想到我又迁移了新的博客系统，文章做了最新的变化整理。
