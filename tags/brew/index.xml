@@ -2,20 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Brew on icyleaf</title>
-    <link>http://icyleaf.github.io/icyleaf.com/tags/brew/</link>
+    <link>http://icyleaf.com/tags/brew/index.xml</link>
     <description>Recent content in Brew on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
-    <lastBuildDate>Sat, 25 Jan 2014 12:34:56 +0800</lastBuildDate>
-    <atom:link href="http://icyleaf.github.io/icyleaf.com/tags/brew/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://icyleaf.com/tags/brew/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Homebrew 隐藏命令</title>
-      <link>http://icyleaf.github.io/icyleaf.com/2014/01/homebrew-hidden-commands</link>
+      <link>http://icyleaf.com/2014/01/homebrew-hidden-commands</link>
       <pubDate>Sat, 25 Jan 2014 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.github.io/icyleaf.com/2014/01/homebrew-hidden-commands</guid>
+      <guid>http://icyleaf.com/2014/01/homebrew-hidden-commands</guid>
       <description>
 
 &lt;p&gt;&lt;a href=&#34;http://brew.sh&#34;&gt;Homebrew&lt;/a&gt; 可谓是 Mac 开发者必备的工具之一，它承载在各种包管理的特性以及拥有一票热情高涨的社区提供强大支持。今天我就给大家解密一下 brew 内部的隐藏命令都有哪些。&lt;/p&gt;

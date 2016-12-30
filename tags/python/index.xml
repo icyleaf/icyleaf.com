@@ -2,20 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Python on icyleaf</title>
-    <link>http://icyleaf.github.io/icyleaf.com/tags/python/</link>
+    <link>http://icyleaf.com/tags/python/index.xml</link>
     <description>Recent content in Python on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
-    <lastBuildDate>Wed, 06 Feb 2013 12:34:56 +0800</lastBuildDate>
-    <atom:link href="http://icyleaf.github.io/icyleaf.com/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://icyleaf.com/tags/python/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Dash 你值得拥有的文档管理工具</title>
-      <link>http://icyleaf.github.io/icyleaf.com/2013/02/dash</link>
+      <link>http://icyleaf.com/2013/02/dash</link>
       <pubDate>Wed, 06 Feb 2013 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.github.io/icyleaf.com/2013/02/dash</guid>
+      <guid>http://icyleaf.com/2013/02/dash</guid>
       <description>
 
 &lt;p&gt;Dash 是 Mac OS 的一个文档管理工具，从它第一版发布用到现在，绝对是一个你值得拥有的文档管理工具，因为它还是免费的，你可以从 &lt;a href=&#34;https://itunes.apple.com/cn/app/dash-docs-snippets/id458034879?mt=12&#34;&gt;Mac App Store&lt;/a&gt; 购买。但是全功能需要应用内付费，否则有些“小骚扰”。&lt;/p&gt;
@@ -131,10 +130,10 @@
     
     <item>
       <title>介绍 virtualenvwrapper</title>
-      <link>http://icyleaf.github.io/icyleaf.com/2013/01/intro-virtualenvwrapper</link>
+      <link>http://icyleaf.com/2013/01/intro-virtualenvwrapper</link>
       <pubDate>Wed, 16 Jan 2013 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.github.io/icyleaf.com/2013/01/intro-virtualenvwrapper</guid>
+      <guid>http://icyleaf.com/2013/01/intro-virtualenvwrapper</guid>
       <description>
 
 &lt;p&gt;上回说到 &lt;a href=&#34;http://icyleaf.com/2012/07/intro-virtualenv&#34;&gt;virtualenv&lt;/a&gt; 的基本使用，这会为了提高工作效率，再次介绍针对于它增强的一个扩展 &lt;a href=&#34;http://www.doughellmann.com/projects/virtualenvwrapper/&#34;&gt;virtualenvwrapper&lt;/a&gt;。&lt;/p&gt;
@@ -197,10 +196,10 @@ $ mkvirtualenv -r requirements.txt &amp;lt;env_name&amp;gt;
     
     <item>
       <title>升级  OS X 10.8 和 Python 第三方库那点事</title>
-      <link>http://icyleaf.github.io/icyleaf.com/2012/08/upgrade-osx-10-8-with-python-library</link>
+      <link>http://icyleaf.com/2012/08/upgrade-osx-10-8-with-python-library</link>
       <pubDate>Fri, 24 Aug 2012 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.github.io/icyleaf.com/2012/08/upgrade-osx-10-8-with-python-library</guid>
+      <guid>http://icyleaf.com/2012/08/upgrade-osx-10-8-with-python-library</guid>
       <description>&lt;p&gt;今天把公司的机器升级到了 10.8 本来就觉得 OS X
 的平滑升级做的非常的好，除了一些被乔帮主鄙视的 JDK
 需要重新安装外，其他的一切都很平滑的迁移过来。中午的时候想用 django
@@ -270,10 +269,10 @@ packages&lt;/p&gt;
     
     <item>
       <title>利用 argparse 写的脚本命令：测试 URL 响应时间</title>
-      <link>http://icyleaf.github.io/icyleaf.com/2012/08/url-request-time-test-using-python-with-argparse</link>
+      <link>http://icyleaf.com/2012/08/url-request-time-test-using-python-with-argparse</link>
       <pubDate>Thu, 02 Aug 2012 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.github.io/icyleaf.com/2012/08/url-request-time-test-using-python-with-argparse</guid>
+      <guid>http://icyleaf.com/2012/08/url-request-time-test-using-python-with-argparse</guid>
       <description>&lt;p&gt;前几天看完《&lt;a href=&#34;http://woodpecker.org.cn/abyteofpython_cn/chinese/&#34;&gt;Python简明教程&lt;/a&gt;》，预想练手，想起同事的一个 ruby 代码，尝试改写成 python，顺便看看两个语言的简练程度。下面是原始的 ruby 代码：&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#!/usr/bin/env ruby
@@ -352,10 +351,10 @@ if __name__ == &#39;__main__&#39;:
     
     <item>
       <title>初次接触 virtualenv</title>
-      <link>http://icyleaf.github.io/icyleaf.com/2012/07/intro-virtualenv</link>
+      <link>http://icyleaf.com/2012/07/intro-virtualenv</link>
       <pubDate>Fri, 27 Jul 2012 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.github.io/icyleaf.com/2012/07/intro-virtualenv</guid>
+      <guid>http://icyleaf.com/2012/07/intro-virtualenv</guid>
       <description>&lt;p&gt;python 的 virtualenv 功能看着类似于 Ruby 的 RVM，其实这两个东西我都没有用过，本身脚本语言用的最熟练的是 php，最近觉得 php 在处理一些多线程和终端繁琐的事情上有些局限性。决定熟悉下 python 并尝试用 django 做一个小应用。&lt;/p&gt;
 
 &lt;p&gt;由于本身 &lt;a href=&#34;http://github.com/openparty/openparty&#34;&gt;OpenParty&lt;/a&gt; 的代码也是基于 django 开发的，加上最近也开始使用了 virtualenv，这样正好解决了不同项目在使用不同的环境造成的一些困扰。&lt;/p&gt;

@@ -2,20 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>App on icyleaf</title>
-    <link>http://icyleaf.github.io/icyleaf.com/tags/app/</link>
+    <link>http://icyleaf.com/tags/app/index.xml</link>
     <description>Recent content in App on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
-    <lastBuildDate>Mon, 22 Jul 2013 12:34:56 +0800</lastBuildDate>
-    <atom:link href="http://icyleaf.github.io/icyleaf.com/tags/app/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://icyleaf.com/tags/app/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>个人 Mac OS 常用应用清单【2013年版】</title>
-      <link>http://icyleaf.github.io/icyleaf.com/2013/07/my-mac-os-apps-list-2013</link>
+      <link>http://icyleaf.com/2013/07/my-mac-os-apps-list-2013</link>
       <pubDate>Mon, 22 Jul 2013 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.github.io/icyleaf.com/2013/07/my-mac-os-apps-list-2013</guid>
+      <guid>http://icyleaf.com/2013/07/my-mac-os-apps-list-2013</guid>
       <description>
 
 &lt;blockquote&gt;
@@ -133,10 +132,10 @@
     
     <item>
       <title>EasyConvert</title>
-      <link>http://icyleaf.github.io/icyleaf.com/2012/10/easyconvert-gbk-to-utf8-convert-tool-for-mac</link>
+      <link>http://icyleaf.com/2012/10/easyconvert-gbk-to-utf8-convert-tool-for-mac</link>
       <pubDate>Thu, 25 Oct 2012 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.github.io/icyleaf.com/2012/10/easyconvert-gbk-to-utf8-convert-tool-for-mac</guid>
+      <guid>http://icyleaf.com/2012/10/easyconvert-gbk-to-utf8-convert-tool-for-mac</guid>
       <description>&lt;p&gt;托设计朋友的要求，继续奉献出一个小工具: EasyConvert - 针对于文本文件的编码转换工具 - GBK to UTF8&lt;/p&gt;
 
 &lt;p&gt;首先这个应用是用于 OS X 系统的，其次其实它是一个很弱的工具，对于技术宅来说一行代码搞定：&lt;/p&gt;
@@ -158,10 +157,10 @@
     
     <item>
       <title>Colors</title>
-      <link>http://icyleaf.github.io/icyleaf.com/2012/03/colors-is-ios-development-utility-tool</link>
+      <link>http://icyleaf.com/2012/03/colors-is-ios-development-utility-tool</link>
       <pubDate>Fri, 02 Mar 2012 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.github.io/icyleaf.com/2012/03/colors-is-ios-development-utility-tool</guid>
+      <guid>http://icyleaf.com/2012/03/colors-is-ios-development-utility-tool</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;最新更新，发现更好的免费取色器 &lt;a href=&#34;https://itunes.apple.com/us/app/sip/id507257563?mt=12&#34;&gt;Sip&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -186,10 +185,10 @@ Web
     
     <item>
       <title>个人常用 OS X 软件集合</title>
-      <link>http://icyleaf.github.io/icyleaf.com/2011/03/im-using-osx-software-list</link>
+      <link>http://icyleaf.com/2011/03/im-using-osx-software-list</link>
       <pubDate>Tue, 29 Mar 2011 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.github.io/icyleaf.com/2011/03/im-using-osx-software-list</guid>
+      <guid>http://icyleaf.com/2011/03/im-using-osx-software-list</guid>
       <description>&lt;p&gt;用了 OS X 已经半年多了，整理下日常常用的软件。大多数都是开源或者免费软件，少数需要购买&lt;/p&gt;
 
 &lt;ul&gt;
@@ -236,10 +235,10 @@ Web
     
     <item>
       <title>Mockups：手绘界面设计软件</title>
-      <link>http://icyleaf.github.io/icyleaf.com/2009/02/mockups-best-ui-design-software</link>
+      <link>http://icyleaf.com/2009/02/mockups-best-ui-design-software</link>
       <pubDate>Wed, 18 Feb 2009 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.github.io/icyleaf.com/2009/02/mockups-best-ui-design-software</guid>
+      <guid>http://icyleaf.com/2009/02/mockups-best-ui-design-software</guid>
       <description>&lt;p&gt;忘记如何知道 Mockups
 这款软件了，不过也是今天搜索是无意中发现的一款很棒的界面设计软件，无论你在设计一个软件的外观或者是一个网站的界面甚至说更为细节的一个小的功能模块的展现都可以使用这个软件完成。&lt;/p&gt;
 

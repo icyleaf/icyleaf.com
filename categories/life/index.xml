@@ -2,20 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Life on icyleaf</title>
-    <link>http://icyleaf.github.io/icyleaf.com/categories/life/</link>
+    <link>http://icyleaf.com/categories/life/index.xml</link>
     <description>Recent content in Life on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
-    <lastBuildDate>Thu, 17 Dec 2015 15:01:56 +0800</lastBuildDate>
-    <atom:link href="http://icyleaf.github.io/icyleaf.com/categories/life/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://icyleaf.com/categories/life/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>博客迁徙记</title>
-      <link>http://icyleaf.github.io/icyleaf.com/2015/12/%E5%8D%9A%E5%AE%A2%E8%BF%81%E5%BE%99%E8%AE%B0</link>
+      <link>http://icyleaf.com/2015/12/%E5%8D%9A%E5%AE%A2%E8%BF%81%E5%BE%99%E8%AE%B0</link>
       <pubDate>Thu, 17 Dec 2015 15:01:56 +0800</pubDate>
       
-      <guid>http://icyleaf.github.io/icyleaf.com/2015/12/%E5%8D%9A%E5%AE%A2%E8%BF%81%E5%BE%99%E8%AE%B0</guid>
+      <guid>http://icyleaf.com/2015/12/%E5%8D%9A%E5%AE%A2%E8%BF%81%E5%BE%99%E8%AE%B0</guid>
       <description>
 
 &lt;blockquote&gt;
@@ -246,10 +245,10 @@
     
     <item>
       <title>2013 年终总结</title>
-      <link>http://icyleaf.github.io/icyleaf.com/2013/12/2013-in-review</link>
+      <link>http://icyleaf.com/2013/12/2013-in-review</link>
       <pubDate>Mon, 30 Dec 2013 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.github.io/icyleaf.com/2013/12/2013-in-review</guid>
+      <guid>http://icyleaf.com/2013/12/2013-in-review</guid>
       <description>
 
 &lt;p&gt;人生能够走过几次 1314 新旧年的交替，都有些忘记过去的一年做了些什么事情，翻看日历和一些零碎的笔记在努力把之前的事情慢慢回忆起来。&lt;/p&gt;
@@ -356,10 +355,10 @@
     
     <item>
       <title>2011-2012 两年总结</title>
-      <link>http://icyleaf.github.io/icyleaf.com/2013/01/2011-2012-in-review</link>
+      <link>http://icyleaf.com/2013/01/2011-2012-in-review</link>
       <pubDate>Tue, 01 Jan 2013 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.github.io/icyleaf.com/2013/01/2011-2012-in-review</guid>
+      <guid>http://icyleaf.com/2013/01/2011-2012-in-review</guid>
       <description>
 
 &lt;p&gt;从 2011 年忙碌到 2012 年，这两年的时间经历的很多事物，让我感受颇多，而我惊讶的是 2011 的年终总结居然缺失了。这两年工作上专注了一个领域，也是当前最火热移动互联网。两年放在一起总结也算是比较完整的。&lt;/p&gt;
@@ -581,10 +580,10 @@
     
     <item>
       <title>2010年度总结</title>
-      <link>http://icyleaf.github.io/icyleaf.com/2011/01/2010-year-in-review</link>
+      <link>http://icyleaf.com/2011/01/2010-year-in-review</link>
       <pubDate>Wed, 05 Jan 2011 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.github.io/icyleaf.com/2011/01/2010-year-in-review</guid>
+      <guid>http://icyleaf.com/2011/01/2010-year-in-review</guid>
       <description>
 
 &lt;p&gt;2011年已至，又到了一年一度的年终终结的时候了。上个星期还和 @&lt;a href=&#34;http://cnborn.net&#34;&gt;CNBorn&lt;/a&gt;同学聊了年终总结的事情，今天在看翻 Google Reader 发现订阅的很多人都写了总结，虽然晚了几步，还得赶紧跟上。提炼过往的一年内所经历的事情，所感受到的一些事物&amp;hellip;&lt;/p&gt;
@@ -669,10 +668,10 @@ OST （曾一度在网上搜索关键词写成 OTA）&lt;/p&gt;
     
     <item>
       <title>水果属性概述</title>
-      <link>http://icyleaf.github.io/icyleaf.com/2010/09/fruit-properties-overview</link>
+      <link>http://icyleaf.com/2010/09/fruit-properties-overview</link>
       <pubDate>Sat, 25 Sep 2010 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.github.io/icyleaf.com/2010/09/fruit-properties-overview</guid>
+      <guid>http://icyleaf.com/2010/09/fruit-properties-overview</guid>
       <description>&lt;p&gt;&lt;strong&gt;热性水果&lt;/strong&gt;：适合寒性体质&lt;/p&gt;
 
 &lt;p&gt;榴连、黑枣&lt;/p&gt;
@@ -699,10 +698,10 @@ OST （曾一度在网上搜索关键词写成 OTA）&lt;/p&gt;
     
     <item>
       <title>2009年度总结</title>
-      <link>http://icyleaf.github.io/icyleaf.com/2010/01/2009-year-in-review</link>
+      <link>http://icyleaf.com/2010/01/2009-year-in-review</link>
       <pubDate>Fri, 01 Jan 2010 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.github.io/icyleaf.com/2010/01/2009-year-in-review</guid>
+      <guid>http://icyleaf.com/2010/01/2009-year-in-review</guid>
       <description>&lt;p&gt;忙碌了一天下来，刚打开电脑看着 twitter 刷出来的消息发觉已经到了 2010 年。回顾去年的那篇&lt;a href=&#34;http://icyleaf.com/2008/12/30/2008-year-in-review/&#34;&gt;年度总结&lt;/a&gt;感受颇多，年度总结这玩意对于自己来说算是一次思维的整理和归档。就算度过了没有硬性计划的 2009 年总结还是多少要写一些。&lt;/p&gt;
 
 &lt;p&gt;回顾整个 2009 年做的事情，发现其中一些持续的事情是在完善 2008 年度的计划：&lt;/p&gt;
@@ -736,10 +735,10 @@ OST （曾一度在网上搜索关键词写成 OTA）&lt;/p&gt;
     
     <item>
       <title>新疆随笔之五</title>
-      <link>http://icyleaf.github.io/icyleaf.com/2009/11/xinjiang-diary-5</link>
+      <link>http://icyleaf.com/2009/11/xinjiang-diary-5</link>
       <pubDate>Thu, 26 Nov 2009 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.github.io/icyleaf.com/2009/11/xinjiang-diary-5</guid>
+      <guid>http://icyleaf.com/2009/11/xinjiang-diary-5</guid>
       <description>&lt;p&gt;11月02日以后，基本上工作就忙完了，于是 04 日我准备一次暴走扫街，活动地点是市中心，人民广场附近以及红山公园南邻的人民公园。去那边坐的还是前往二道桥大巴扎的公交车，嗯，看来是热点线路，怪不得人那么的多。在上面的随笔我应该说过乌市是一个很现代化的城市，整个乌市和其他大城市没什么太大的差别，也就有一个区域是维族居住生活区。所以来到了人民广场对于周围的环境一点都不陌生，到处高楼大厦，商场一座座，虽然天有点凉，但是人很是很多，一点也看不出来那天是星期三，我直接避开了繁华的路段，转走些小巷细路的。也没发现太多的东西，嗯，可能这附近还是太大众化了，而且还有王府井&amp;hellip;偶尔会有些卖囊的和大面积的买葡萄干之类的干活摊位。&lt;/p&gt;
 
 &lt;p&gt;其实那天的天气特别的糟糕，那个天气真想让我骂人，于是开始想是否买个 CPL 会好一些，接着开始询问附近是否有器材城，果不其然，闹市中必有所需，离我不远处正好有一个赛博电脑城，一进去就感觉整个市场就像菜市场一样混乱，但是并没有像海龙那样狗皮膏药的烦你。好不容易找到一家佳能店（奇怪，大多数的DSLR都是尼康的），问了一下，价格小贵，张口就是 180 元，不过一看都是肯高的，心里就有些没底，据说这东西假货居多，而且防伪已经换了不下 10 编了，有没有互联网，谁知道到底是真的假的，真的还好，如果是假的，我也总不能从北京再跑回去吧，琢磨了半天还是没买。不过回来之后听 CNBorn 说这样的鬼天气用 CPL 是没用的。呃，俺的相机至今也就一个配件：UV。主要保护镜头而已，嘿嘿。呃，跑题了&amp;hellip;&lt;/p&gt;
@@ -758,10 +757,10 @@ OST （曾一度在网上搜索关键词写成 OTA）&lt;/p&gt;
     
     <item>
       <title>新疆随笔之四</title>
-      <link>http://icyleaf.github.io/icyleaf.com/2009/11/xinjiang-yaxin-diary-4</link>
+      <link>http://icyleaf.com/2009/11/xinjiang-yaxin-diary-4</link>
       <pubDate>Tue, 24 Nov 2009 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.github.io/icyleaf.com/2009/11/xinjiang-yaxin-diary-4</guid>
+      <guid>http://icyleaf.com/2009/11/xinjiang-yaxin-diary-4</guid>
       <description>&lt;p&gt;就在清真寺旁边有一道短街有好几家当地的新疆维族饭馆，来回转了几圈，看看这家看看那家犹豫不定，不知道是吃手抓饭好呢，还是烤串，烤馕这些的好，突然看见有家是在外面放的一个大锅，一边架子放着带肉的羊骨头，锅里是翻滚的红红的汤，看着新鲜和卖家比划了几下，说要一碗尝尝（汉语也不是很熟练），然后进了里屋，哇，里面坐满了维族人，操着维语不知道在谈论些什么。然而他们的目光大多投向了手持相机的我，心里有些胆怯，找了一个小角落坐了下面重新打量四周，内部也是常见的清真的建筑风格，看来我来到店家还挺不错，而且价格也非常的便宜。不一会一份看着不咋地的饭端了上来，嗯，这应该是囊包肉，看来也不想其他非新疆城市做的那么好看，里面有南瓜，囊，和羊骨头肉，不过还不赖，汤浓肉劲，一会功夫一碗就被我消灭掉了。噢！差点忘记交代，本来想要一份酸奶的，可惜卖家告诉我这个只有早上才有的，但是我在其他地方吃过，味道和乌鲁木齐驻京办事处的差不多，只不过盛酸奶的容器和勺子并没那么精致。&lt;/p&gt;
 
 &lt;p&gt;最后给大家看一下这家位处国际市集大巴扎旁边饭馆的菜单价格：&lt;/p&gt;
@@ -793,10 +792,10 @@ OST （曾一度在网上搜索关键词写成 OTA）&lt;/p&gt;
     
     <item>
       <title>新疆随笔之三</title>
-      <link>http://icyleaf.github.io/icyleaf.com/2009/11/xinjiang-yaxin-diary-3</link>
+      <link>http://icyleaf.com/2009/11/xinjiang-yaxin-diary-3</link>
       <pubDate>Fri, 20 Nov 2009 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.github.io/icyleaf.com/2009/11/xinjiang-yaxin-diary-3</guid>
+      <guid>http://icyleaf.com/2009/11/xinjiang-yaxin-diary-3</guid>
       <description>&lt;p&gt;幸好我们的客户是中国移动，人家休息了我们也可以放松一下。 10 月 31
 日（星期六），我耐不住性子抓上相机勇敢的出门了。出门前还是到酒店的前台确认了一下外出是否有生命危险，呃，比较没经历过嘛&amp;hellip;买了一份带有
 公交路线的地图，前往了今天的第一站，乌市最有特色的维族区市集&amp;ndash;大巴扎。&lt;/p&gt;
@@ -862,16 +861,15 @@ o(∩_∩)o&amp;hellip;）：&lt;/p&gt;
 XD
 
 &lt;/div&gt;
-&lt;/p&gt;
-</description>
+&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>新疆随笔之二</title>
-      <link>http://icyleaf.github.io/icyleaf.com/2009/11/xinjiang-diary-2</link>
+      <link>http://icyleaf.com/2009/11/xinjiang-diary-2</link>
       <pubDate>Thu, 19 Nov 2009 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.github.io/icyleaf.com/2009/11/xinjiang-diary-2</guid>
+      <guid>http://icyleaf.com/2009/11/xinjiang-diary-2</guid>
       <description>&lt;p&gt;差不多  11 点钟，飞机就到达了乌市地窝堡机场，打听好同事的住处就赶了过去，坐在出租车上面发现副驾驶的右角居然有摄像头，对于初次到达乌市，第一印象和普通的省会城市差不多，环境也不是太好。幸好乌市并不是太大，出租车的费用也不很贵（起步 6 元，每公里 1.3元）。半个小时的时间就到达了同事所在的如家快捷酒店。附近有市政府所以也比较安全（也就可能不安全，为什么这么说呢。众所周知，自 July 5th 之后那边发生了一些事情，导致不少流血事件的发生，以及群众前往市政府游行，闹的同事晚上都不敢在外出，随时都能看到持棍的人见到不是同族的就会发生冲突）。另外一个重要原因是自 July 5th 之后，随着网上的曝光，整个疆内的网络，包括短信全部停运（最初是可以发短信不能打电话），现在是只能打电话，所以我们这边的项目也只有我前来现场开发。这也是为什么我会在那天之后消失在网上，甚至在 twitter 上面飞机起飞前说完“乌市见”后就没有音讯的原因&amp;hellip;说来安全是指，附近（还包括人群嚷嚷的街区）都有警察，武警，特警上街巡逻和士兵哨点把守，好家伙每队中起码有一个持长枪。&lt;/p&gt;
 
 &lt;p&gt;这边昼夜温差好大，刚去的那些天天气还都不错，白天有太阳和北京的天气差不多，不过到了晚上气温骤降，大概晚上 7 点和同事出去吃饭，我穿了带过去的所有衣服（一件Tee，一件线衣，一个带背心的小西服）都是浑身打颤，只有吃完一碗面之后才能抵御下外面的冷空气。除此之外，差不多还有
@@ -885,10 +883,10 @@ XD
     
     <item>
       <title>亚心随笔之一</title>
-      <link>http://icyleaf.github.io/icyleaf.com/2009/11/xinjiang-diary-1</link>
+      <link>http://icyleaf.com/2009/11/xinjiang-diary-1</link>
       <pubDate>Wed, 18 Nov 2009 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.github.io/icyleaf.com/2009/11/xinjiang-diary-1</guid>
+      <guid>http://icyleaf.com/2009/11/xinjiang-diary-1</guid>
       <description>&lt;p&gt;突遇一次机遇能有幸到新疆出差，由于时间紧急，没有来得及做准备工作就飞了过去，来了之后才明白我为什么才有机会出差走一遭&amp;hellip;一共在那边呆了有 11 天（10月27日-11月6日）的时间，除了工作外还抽出来了些时间在市里暴走，扫街。顺便品尝了不少的当地美食。最近刚刚可以闲的下来整理了一下照片，
 写下了下面的随笔记录：&lt;/p&gt;
 
@@ -904,10 +902,10 @@ XD
     
     <item>
       <title>话说相机二三事</title>
-      <link>http://icyleaf.github.io/icyleaf.com/2009/05/talk-about-camera</link>
+      <link>http://icyleaf.com/2009/05/talk-about-camera</link>
       <pubDate>Mon, 11 May 2009 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.github.io/icyleaf.com/2009/05/talk-about-camera</guid>
+      <guid>http://icyleaf.com/2009/05/talk-about-camera</guid>
       <description>&lt;p&gt;记忆中的童年，曾经在父母的衣柜底部发现了一部特老式的国产&lt;a href=&#34;http://www.camgle.com/thread-14101-1-1.html&#34;&gt;红梅HM-1相机&lt;/a&gt;（起初忘记什么牌子，只记得有一个梅字），外观有些像莱卡，但要厚许多，镜头是从内部有上往下翻出来，镜头的链接还属于褶皱型的类似塑料，不知道怎么形容，于是Google了一下，发现学名叫120遮叠式皮腔相机。不过因当时年少不懂，几经折磨的相机被我玩坏了&amp;hellip;而且是在没有胶卷的情况下，而后诚惶诚恐的把相机重新塞到父母的衣柜下面，从此封口不提此事，幸好后来也没有找我质问。后来才知道那相机是我父亲年轻时购买的机器，同时在家里的相册也发现了不是父亲外出拍摄的照片，当时都是黑白照，或许是父亲的基因遗传还是其他原因，从此对相机产生了浓厚的兴趣。或许对于高科技新鲜物品都是充满了美好的欲望：对于相机，对于电脑亦是&amp;hellip;&lt;/p&gt;
 
 &lt;p&gt;学生时代，尤其喜欢把玩胶卷相机，记得在我们上初中的时候当时特流行也最易用的“傻瓜相机”，只要学校组织外出活动，就会想办法去借到一个相机，带上1-2卷胶卷，享受拍照的乐趣，尤其在胶卷用完之后就会跑到一个黑黑的角落，甚至回家后放在被窝里面取出胶卷，生怕一点的曝光出现。后来因有了电脑而着迷，但只要有机会接触到相机就会特兴奋。（下面附图的傻瓜相机应该还是高级货，网上找的其他的都太模糊）&lt;/p&gt;
@@ -929,10 +927,10 @@ XD
     
     <item>
       <title>回顾 2008 年度及总结报告</title>
-      <link>http://icyleaf.github.io/icyleaf.com/2008/12/2008-year-in-review</link>
+      <link>http://icyleaf.com/2008/12/2008-year-in-review</link>
       <pubDate>Tue, 30 Dec 2008 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.github.io/icyleaf.com/2008/12/2008-year-in-review</guid>
+      <guid>http://icyleaf.com/2008/12/2008-year-in-review</guid>
       <description>&lt;p&gt;2008 年是一个不平凡的一年，这一年发生了很多大事件：&lt;strong&gt;南方雪灾，西藏拉萨暴力事件，四川汶川大地震，北京奥运会，三鹿奶粉事件，0807（本人毕业）&lt;/strong&gt;&amp;hellip;就在去年的 12 月份，我踏入北京开始了北漂的生活，而且预先给自己制订了一个新的 08 计划：&lt;a href=&#34;http://icyleaf.com/2007/12/27/2008-a-new-i/&#34;&gt;2008，一个全新的我&lt;/a&gt;。下面针对 08 计划做一下总结：&lt;/p&gt;
 
 &lt;ol&gt;
@@ -964,10 +962,10 @@ XD
     
     <item>
       <title>正式入黑莓系</title>
-      <link>http://icyleaf.github.io/icyleaf.com/2008/12/join-into-blackberry</link>
+      <link>http://icyleaf.com/2008/12/join-into-blackberry</link>
       <pubDate>Tue, 16 Dec 2008 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.github.io/icyleaf.com/2008/12/join-into-blackberry</guid>
+      <guid>http://icyleaf.com/2008/12/join-into-blackberry</guid>
       <description>&lt;p&gt;真的忘记了为什么要买黑莓手机，也许是自己手机太老已没有软件支持；也许是受 &lt;a href=&#34;http://www.ipoisson.net&#34;&gt;P阿姨&lt;/a&gt; 的不断诱惑；也许是因为黑莓的软件是 Java 编写的；更也许是 iPhone&amp;amp;G1 太贵了让我望尘却步&amp;hellip;不管怎么说，我于2008年12月14日正式入黑莓系，控应该还达不到 XD。&lt;/p&gt;
 
 &lt;p&gt;本来想要买 8820，主要是考虑到在北京可能 WIFI用到的比较多，不过后来听说黑莓对 WIFI 的支持不是很好，而且我也很热衷于 8310 red 版的外观&amp;hellip;后来想想还是先买一个 8310，如果用 WIFI 的话就在买一个 iTouch&amp;hellip;（iTouch 是受 &lt;a href=&#34;http://utombox.com&#34;&gt;Utom&lt;/a&gt; 同学的诱惑）&lt;/p&gt;
@@ -980,10 +978,10 @@ XD
     
     <item>
       <title>入手HP6520</title>
-      <link>http://icyleaf.github.io/icyleaf.com/2008/06/buyed-hp6520</link>
+      <link>http://icyleaf.com/2008/06/buyed-hp6520</link>
       <pubDate>Mon, 30 Jun 2008 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.github.io/icyleaf.com/2008/06/buyed-hp6520</guid>
+      <guid>http://icyleaf.com/2008/06/buyed-hp6520</guid>
       <description>&lt;p&gt;&lt;img src=&#34;http://photo1.bababian.com/upload9/20080630/CEB41D28C79FE8923DDBBEB6101E23C6_500.jpg&#34; alt=&#34;hp6520&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;前天在中关村入手的，哈哈

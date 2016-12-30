@@ -2,30 +2,29 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>豆瓣 on icyleaf</title>
-    <link>http://icyleaf.github.io/icyleaf.com/tags/%E8%B1%86%E7%93%A3/</link>
+    <link>http://icyleaf.com/tags/%E8%B1%86%E7%93%A3/index.xml</link>
     <description>Recent content in 豆瓣 on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
-    <lastBuildDate>Mon, 02 May 2011 12:34:56 +0800</lastBuildDate>
-    <atom:link href="http://icyleaf.github.io/icyleaf.com/tags/%E8%B1%86%E7%93%A3/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://icyleaf.com/tags/%E8%B1%86%E7%93%A3/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>魔豆及其豆瓣 API 测试平台开源咯</title>
-      <link>http://icyleaf.github.io/icyleaf.com/2011/05/modou-and-douban-api-console-is-open-source-now</link>
+      <link>http://icyleaf.com/2011/05/modou-and-douban-api-console-is-open-source-now</link>
       <pubDate>Mon, 02 May 2011 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.github.io/icyleaf.com/2011/05/modou-and-douban-api-console-is-open-source-now</guid>
+      <guid>http://icyleaf.com/2011/05/modou-and-douban-api-console-is-open-source-now</guid>
       <description>&lt;p&gt;这是作为 2011 年 5 月 1 日劳动节的福利发放，欢迎各位 Kohana 开发者及其爱好者围观领取，领取内容及其使用方式请前往本人 Github 的项目地址：&lt;a href=&#34;https://github.com/icyleaf/modou&#34;&gt;https://github.com/icyleaf/modou&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Douban API Package 发布！</title>
-      <link>http://icyleaf.github.io/icyleaf.com/2010/01/douban-api-package</link>
+      <link>http://icyleaf.com/2010/01/douban-api-package</link>
       <pubDate>Fri, 08 Jan 2010 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.github.io/icyleaf.com/2010/01/douban-api-package</guid>
+      <guid>http://icyleaf.com/2010/01/douban-api-package</guid>
       <description>&lt;p&gt;Douban API Package 是一个使用 PHP 开发且基于 Kohana v3 开发的一个扩展（Module）。&lt;/p&gt;
 
 &lt;p&gt;它对&lt;a href=&#34;http://www.douban.com/&#34;&gt;豆瓣&lt;/a&gt; &lt;a href=&#34;http://www.douban.com/service/apidoc/&#34;&gt;API&lt;/a&gt; 进行重新封包。它使用起来非常方便，可以快速开发一个 web 应用。&lt;/p&gt;
@@ -116,10 +115,10 @@
     
     <item>
       <title>豆瓣API测试控制台</title>
-      <link>http://icyleaf.github.io/icyleaf.com/2009/07/douban-api-console</link>
+      <link>http://icyleaf.com/2009/07/douban-api-console</link>
       <pubDate>Mon, 06 Jul 2009 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.github.io/icyleaf.com/2009/07/douban-api-console</guid>
+      <guid>http://icyleaf.com/2009/07/douban-api-console</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;项目已开源: &lt;a href=&#34;http://github.com/icyleaf/modou&#34;&gt;http://github.com/icyleaf/modou&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -185,10 +184,10 @@ id 留空或者设置为 ‘me’ （不带引号），这样调用结果显示�
     
     <item>
       <title>魔豆：豆瓣网非官方移动版本</title>
-      <link>http://icyleaf.github.io/icyleaf.com/2009/06/modou</link>
+      <link>http://icyleaf.com/2009/06/modou</link>
       <pubDate>Mon, 22 Jun 2009 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.github.io/icyleaf.com/2009/06/modou</guid>
+      <guid>http://icyleaf.com/2009/06/modou</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;项目已开源: &lt;a href=&#34;http://github.com/icyleaf/modou&#34;&gt;http://github.com/icyleaf/modou&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;

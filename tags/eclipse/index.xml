@@ -2,20 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Eclipse on icyleaf</title>
-    <link>http://icyleaf.github.io/icyleaf.com/tags/eclipse/</link>
+    <link>http://icyleaf.com/tags/eclipse/index.xml</link>
     <description>Recent content in Eclipse on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
-    <lastBuildDate>Mon, 14 May 2012 12:34:56 +0800</lastBuildDate>
-    <atom:link href="http://icyleaf.github.io/icyleaf.com/tags/eclipse/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://icyleaf.com/tags/eclipse/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>“java.lang.NoClassDefFoundError” in Android</title>
-      <link>http://icyleaf.github.io/icyleaf.com/2012/05/how-to-salvation-android-import-jar-exception-during-running</link>
+      <link>http://icyleaf.com/2012/05/how-to-salvation-android-import-jar-exception-during-running</link>
       <pubDate>Mon, 14 May 2012 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.github.io/icyleaf.com/2012/05/how-to-salvation-android-import-jar-exception-during-running</guid>
+      <guid>http://icyleaf.com/2012/05/how-to-salvation-android-import-jar-exception-during-running</guid>
       <description>&lt;p&gt;最近 Eclipse 的 ADT 升级至了 18 版本，结果运行的时候发现导入的第三方 jar
 包总是报错&lt;/p&gt;
 

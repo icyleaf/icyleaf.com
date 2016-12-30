@@ -2,20 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Mockup on icyleaf</title>
-    <link>http://icyleaf.github.io/icyleaf.com/tags/mockup/</link>
+    <link>http://icyleaf.com/tags/mockup/index.xml</link>
     <description>Recent content in Mockup on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
-    <lastBuildDate>Wed, 18 Feb 2009 12:34:56 +0800</lastBuildDate>
-    <atom:link href="http://icyleaf.github.io/icyleaf.com/tags/mockup/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://icyleaf.com/tags/mockup/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Mockups：手绘界面设计软件</title>
-      <link>http://icyleaf.github.io/icyleaf.com/2009/02/mockups-best-ui-design-software</link>
+      <link>http://icyleaf.com/2009/02/mockups-best-ui-design-software</link>
       <pubDate>Wed, 18 Feb 2009 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.github.io/icyleaf.com/2009/02/mockups-best-ui-design-software</guid>
+      <guid>http://icyleaf.com/2009/02/mockups-best-ui-design-software</guid>
       <description>&lt;p&gt;忘记如何知道 Mockups
 这款软件了，不过也是今天搜索是无意中发现的一款很棒的界面设计软件，无论你在设计一个软件的外观或者是一个网站的界面甚至说更为细节的一个小的功能模块的展现都可以使用这个软件完成。&lt;/p&gt;
 

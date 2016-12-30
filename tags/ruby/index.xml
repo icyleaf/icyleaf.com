@@ -2,20 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Ruby on icyleaf</title>
-    <link>http://icyleaf.github.io/icyleaf.com/tags/ruby/</link>
+    <link>http://icyleaf.com/tags/ruby/index.xml</link>
     <description>Recent content in Ruby on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
-    <lastBuildDate>Tue, 19 Jul 2016 20:12:07 +0800</lastBuildDate>
-    <atom:link href="http://icyleaf.github.io/icyleaf.com/tags/ruby/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://icyleaf.com/tags/ruby/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>深入浅出 Fastlane 一看你就懂</title>
-      <link>http://icyleaf.github.io/icyleaf.com/2016/07/fastlane-in-action</link>
+      <link>http://icyleaf.com/2016/07/fastlane-in-action</link>
       <pubDate>Tue, 19 Jul 2016 20:12:07 +0800</pubDate>
       
-      <guid>http://icyleaf.github.io/icyleaf.com/2016/07/fastlane-in-action</guid>
+      <guid>http://icyleaf.com/2016/07/fastlane-in-action</guid>
       <description>
 
 &lt;p&gt;这是《 &lt;a href=&#34;https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/&#34;&gt;Fastlane - iOS 和 Android 的自动化构建工具&lt;/a&gt;》系列的第二篇。&lt;/p&gt;
@@ -579,10 +578,10 @@ $ fastlane run notification message:&amp;quot;Hi macOS&amp;quot; title:&amp;quot
     
     <item>
       <title>Gitlab API Wrapper for Crystal</title>
-      <link>http://icyleaf.github.io/icyleaf.com/2016/07/gitlab-api-wrapper-for-crystal</link>
+      <link>http://icyleaf.com/2016/07/gitlab-api-wrapper-for-crystal</link>
       <pubDate>Mon, 11 Jul 2016 20:41:26 +0800</pubDate>
       
-      <guid>http://icyleaf.github.io/icyleaf.com/2016/07/gitlab-api-wrapper-for-crystal</guid>
+      <guid>http://icyleaf.com/2016/07/gitlab-api-wrapper-for-crystal</guid>
       <description>
 
 &lt;h2 id=&#34;gitlab-cr&#34;&gt;Gitlab.cr&lt;/h2&gt;
@@ -705,10 +704,10 @@ Listening on http://0.0.0.0:8080
     
     <item>
       <title>Fastlane - iOS 和 Android 的自动化构建工具</title>
-      <link>http://icyleaf.github.io/icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android</link>
+      <link>http://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android</link>
       <pubDate>Mon, 11 Jul 2016 12:36:07 +0800</pubDate>
       
-      <guid>http://icyleaf.github.io/icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android</guid>
+      <guid>http://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android</guid>
       <description>
 
 &lt;h3 id=&#34;系列索引&#34;&gt;系列索引&lt;/h3&gt;
@@ -977,10 +976,10 @@ default_platform :ios
     
     <item>
       <title>Puma 替换 Unicorn 跑 Gitlab</title>
-      <link>http://icyleaf.github.io/icyleaf.com/2014/01/moving-unicorn-to-puma-on-gitlab</link>
+      <link>http://icyleaf.com/2014/01/moving-unicorn-to-puma-on-gitlab</link>
       <pubDate>Sun, 26 Jan 2014 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.github.io/icyleaf.com/2014/01/moving-unicorn-to-puma-on-gitlab</guid>
+      <guid>http://icyleaf.com/2014/01/moving-unicorn-to-puma-on-gitlab</guid>
       <description>
 
 &lt;p&gt;前篇介绍到如何在《&lt;a href=&#34;http://icyleaf.com/2013/09/how-to-install-gitlab-on-centos/&#34;&gt;CentoOS 上面安装 Gitlab&lt;/a&gt;》一文，gitlab 默认使用的是 &lt;code&gt;unicorn&lt;/code&gt; 作为内部的 app server，再用 &lt;code&gt;nginx&lt;/code&gt; 做代理转发。之前是在公司内部搭建了一个平台，用着还算可以。有打算在 &lt;a href=&#34;https://www.linode.com/?r=66b0730eca572d3e45f083e29b1b3f8781b2a009&#34;&gt;Linode 购买的 VPS&lt;/a&gt; 上面，使用 &lt;code&gt;unicorn&lt;/code&gt; 跑服务的时候 &lt;code&gt;ruby&lt;/code&gt; 的进程居然占了 400-500M 左右，对于 Linode 刚刚免费升级之后才有 1G 内存的环境上，我还真有点放弃安装它的欲望。于是在想是否可以使用 &lt;code&gt;puma&lt;/code&gt; 替换掉原先的。&lt;/p&gt;
@@ -1068,10 +1067,10 @@ bundle install --without development test mysql --path vendor/bundle --no-deploy
     
     <item>
       <title>初识 Ruby Gem Guard</title>
-      <link>http://icyleaf.github.io/icyleaf.com/2014/01/intro-ruby-gem-guard</link>
+      <link>http://icyleaf.com/2014/01/intro-ruby-gem-guard</link>
       <pubDate>Sat, 25 Jan 2014 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.github.io/icyleaf.com/2014/01/intro-ruby-gem-guard</guid>
+      <guid>http://icyleaf.com/2014/01/intro-ruby-gem-guard</guid>
       <description>
 
 &lt;p&gt;&lt;a href=&#34;http://guardgem.org&#34;&gt;Guard&lt;/a&gt; 是一个很好的 Web 辅助开发工具，因为看了 tutsplus 网站的介绍视频：&lt;a href=&#34;http://net.tutsplus.com/tutorials/tools-and-tips/guard-is-your-best-friend/&#34;&gt;Guard is your best firend&lt;/a&gt;。这里把视频的东西提取出来自我消化：&lt;/p&gt;
@@ -1115,10 +1114,10 @@ bundle install --without development test mysql --path vendor/bundle --no-deploy
     
     <item>
       <title>学习 Ansible &#43; Vagrant</title>
-      <link>http://icyleaf.github.io/icyleaf.com/2013/12/learning-ansible-and-vagrant</link>
+      <link>http://icyleaf.com/2013/12/learning-ansible-and-vagrant</link>
       <pubDate>Sat, 21 Dec 2013 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.github.io/icyleaf.com/2013/12/learning-ansible-and-vagrant</guid>
+      <guid>http://icyleaf.com/2013/12/learning-ansible-and-vagrant</guid>
       <description>
 
 &lt;blockquote&gt;
@@ -1240,10 +1239,10 @@ webserver | success &amp;gt;&amp;gt; {
     
     <item>
       <title>ActiveRecord 使用秘笈</title>
-      <link>http://icyleaf.github.io/icyleaf.com/2013/12/activerecord-tips</link>
+      <link>http://icyleaf.com/2013/12/activerecord-tips</link>
       <pubDate>Tue, 03 Dec 2013 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.github.io/icyleaf.com/2013/12/activerecord-tips</guid>
+      <guid>http://icyleaf.com/2013/12/activerecord-tips</guid>
       <description>
 
 &lt;p&gt;ActiveRecord 是 Rails 内置的 ORM 框架，大多数人学习 Ruby 都是从 rails 开始，接触的也是这个 ORM，因此就有了这个使用秘笈。&lt;/p&gt;
@@ -1444,10 +1443,10 @@ end
     
     <item>
       <title>利用 argparse 写的脚本命令：测试 URL 响应时间</title>
-      <link>http://icyleaf.github.io/icyleaf.com/2012/08/url-request-time-test-using-python-with-argparse</link>
+      <link>http://icyleaf.com/2012/08/url-request-time-test-using-python-with-argparse</link>
       <pubDate>Thu, 02 Aug 2012 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.github.io/icyleaf.com/2012/08/url-request-time-test-using-python-with-argparse</guid>
+      <guid>http://icyleaf.com/2012/08/url-request-time-test-using-python-with-argparse</guid>
       <description>&lt;p&gt;前几天看完《&lt;a href=&#34;http://woodpecker.org.cn/abyteofpython_cn/chinese/&#34;&gt;Python简明教程&lt;/a&gt;》，预想练手，想起同事的一个 ruby 代码，尝试改写成 python，顺便看看两个语言的简练程度。下面是原始的 ruby 代码：&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#!/usr/bin/env ruby

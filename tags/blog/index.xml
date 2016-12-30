@@ -2,20 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blog on icyleaf</title>
-    <link>http://icyleaf.github.io/icyleaf.com/tags/blog/</link>
+    <link>http://icyleaf.com/tags/blog/index.xml</link>
     <description>Recent content in Blog on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
-    <lastBuildDate>Thu, 17 Dec 2015 15:01:56 +0800</lastBuildDate>
-    <atom:link href="http://icyleaf.github.io/icyleaf.com/tags/blog/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://icyleaf.com/tags/blog/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>博客迁徙记</title>
-      <link>http://icyleaf.github.io/icyleaf.com/2015/12/%E5%8D%9A%E5%AE%A2%E8%BF%81%E5%BE%99%E8%AE%B0</link>
+      <link>http://icyleaf.com/2015/12/%E5%8D%9A%E5%AE%A2%E8%BF%81%E5%BE%99%E8%AE%B0</link>
       <pubDate>Thu, 17 Dec 2015 15:01:56 +0800</pubDate>
       
-      <guid>http://icyleaf.github.io/icyleaf.com/2015/12/%E5%8D%9A%E5%AE%A2%E8%BF%81%E5%BE%99%E8%AE%B0</guid>
+      <guid>http://icyleaf.com/2015/12/%E5%8D%9A%E5%AE%A2%E8%BF%81%E5%BE%99%E8%AE%B0</guid>
       <description>
 
 &lt;blockquote&gt;

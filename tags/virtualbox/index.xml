@@ -2,20 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Virtualbox on icyleaf</title>
-    <link>http://icyleaf.github.io/icyleaf.com/tags/virtualbox/</link>
+    <link>http://icyleaf.com/tags/virtualbox/index.xml</link>
     <description>Recent content in Virtualbox on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
-    <lastBuildDate>Thu, 13 Mar 2008 12:34:56 +0800</lastBuildDate>
-    <atom:link href="http://icyleaf.github.io/icyleaf.com/tags/virtualbox/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://icyleaf.com/tags/virtualbox/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>如何使用VirtualBox安装Linux系统</title>
-      <link>http://icyleaf.github.io/icyleaf.com/2008/03/how-to-use-linux-systems-installed-virtualbox</link>
+      <link>http://icyleaf.com/2008/03/how-to-use-linux-systems-installed-virtualbox</link>
       <pubDate>Thu, 13 Mar 2008 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.github.io/icyleaf.com/2008/03/how-to-use-linux-systems-installed-virtualbox</guid>
+      <guid>http://icyleaf.com/2008/03/how-to-use-linux-systems-installed-virtualbox</guid>
       <description>&lt;p&gt;&lt;a href=&#34;http://www.icyleaf.cn/2008/03/12/virtualbox-free-cross-platform-open-source-virtual-machine/&#34;&gt;VirtualBox&lt;/a&gt;也已经介绍过了，昨天是实实在在的用VirtualBox体验了一下 &lt;a href=&#34;http://www.linuxmint.com/&#34;&gt;Linux Mint&lt;/a&gt; 系统。这篇日志我就大概的说下如何用VirtualBox安装和汉化Linux Mint系统，大家先看一个经过简单设置有的效果图：&lt;/p&gt;
 
 &lt;p&gt;这个背景是系统自带的一个，呵呵(\^___\^)，在介绍 &lt;a href=&#34;http://www.icyleaf.cn/2008/03/12/virtualbox-free-cross-platform-open-source-virtual-machine/&#34;&gt;VirtualBox&lt;/a&gt;

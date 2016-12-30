@@ -2,20 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Universal on icyleaf</title>
-    <link>http://icyleaf.github.io/icyleaf.com/tags/universal/</link>
+    <link>http://icyleaf.com/tags/universal/index.xml</link>
     <description>Recent content in Universal on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
-    <lastBuildDate>Tue, 19 Feb 2013 12:34:56 +0800</lastBuildDate>
-    <atom:link href="http://icyleaf.github.io/icyleaf.com/tags/universal/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://icyleaf.com/tags/universal/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>针对 Universal 应用上线 App Store 的提示</title>
-      <link>http://icyleaf.github.io/icyleaf.com/2013/02/app-store-review-tips-about-universal-app</link>
+      <link>http://icyleaf.com/2013/02/app-store-review-tips-about-universal-app</link>
       <pubDate>Tue, 19 Feb 2013 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.github.io/icyleaf.com/2013/02/app-store-review-tips-about-universal-app</guid>
+      <guid>http://icyleaf.com/2013/02/app-store-review-tips-about-universal-app</guid>
       <description>
 
 &lt;h2 id=&#34;官方禁止新版本支持的设备小余旧版本&#34;&gt;官方禁止新版本支持的设备小余旧版本&lt;/h2&gt;

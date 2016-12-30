@@ -2,20 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Fastlane on icyleaf</title>
-    <link>http://icyleaf.github.io/icyleaf.com/tags/fastlane/</link>
+    <link>http://icyleaf.com/tags/fastlane/index.xml</link>
     <description>Recent content in Fastlane on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
-    <lastBuildDate>Tue, 19 Jul 2016 20:12:07 +0800</lastBuildDate>
-    <atom:link href="http://icyleaf.github.io/icyleaf.com/tags/fastlane/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://icyleaf.com/tags/fastlane/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>深入浅出 Fastlane 一看你就懂</title>
-      <link>http://icyleaf.github.io/icyleaf.com/2016/07/fastlane-in-action</link>
+      <link>http://icyleaf.com/2016/07/fastlane-in-action</link>
       <pubDate>Tue, 19 Jul 2016 20:12:07 +0800</pubDate>
       
-      <guid>http://icyleaf.github.io/icyleaf.com/2016/07/fastlane-in-action</guid>
+      <guid>http://icyleaf.com/2016/07/fastlane-in-action</guid>
       <description>
 
 &lt;p&gt;这是《 &lt;a href=&#34;https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/&#34;&gt;Fastlane - iOS 和 Android 的自动化构建工具&lt;/a&gt;》系列的第二篇。&lt;/p&gt;
@@ -579,10 +578,10 @@ $ fastlane run notification message:&amp;quot;Hi macOS&amp;quot; title:&amp;quot
     
     <item>
       <title>Fastlane - iOS 和 Android 的自动化构建工具</title>
-      <link>http://icyleaf.github.io/icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android</link>
+      <link>http://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android</link>
       <pubDate>Mon, 11 Jul 2016 12:36:07 +0800</pubDate>
       
-      <guid>http://icyleaf.github.io/icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android</guid>
+      <guid>http://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android</guid>
       <description>
 
 &lt;h3 id=&#34;系列索引&#34;&gt;系列索引&lt;/h3&gt;
