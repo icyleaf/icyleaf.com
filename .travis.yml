@@ -10,11 +10,6 @@ env:
 install: go get -v github.com/spf13/hugo
 before_install:
 - openssl aes-256-cbc -K $encrypted_55105ab05f10_key -iv $encrypted_55105ab05f10_iv -in id_rsa.enc -out id_rsa -d
-- chmod 600 ~/.ssh/id_rsa
-- sudo cp .travis/ssh_config /etc/ssh/ssh_config
-- sudo chmod 755 /etc/ssh/ssh_config
-- eval "$(ssh-agent -s)"
-- ssh-add ~/.ssh/id_rsa
 - git config --global user.name "icyleaf"
 - git config --global user.email "icyleaf.cn@gmail.com"
 script:
