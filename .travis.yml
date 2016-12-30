@@ -15,7 +15,6 @@ before_install:
 - cp .travis/ssh_config ~/.ssh/config
 - git config --global user.name "icyleaf"
 - git config --global user.email "icyleaf.cn@gmail.com"
-- echo -e "Host git.coding.net\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 install: go get -v github.com/spf13/hugo
 script:
 - cd site
