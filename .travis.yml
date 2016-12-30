@@ -20,11 +20,11 @@ after_script:
 - git fetch github
 - git reset github/gh-pages
 - git add -A .
-- git commit -m "Updating to ${COMMIT_HASH}"
+- git commit -m "Updated"
 - git push github HEAD:gh-pages
-- git remote add coding "https://${CD_REF}@${CD_REF}.git"
+- git remote add coding "https://${GH_TOKEN}@${CD_REF}.git"
 - git fetch coding
 - git reset coding/coding-pages
 - git add -A .
-- git commit -m "Updating to ${COMMIT_HASH}"
+- git commit -m "Updated"
 - git push coding HEAD:coding-pages
