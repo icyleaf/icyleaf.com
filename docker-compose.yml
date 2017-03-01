@@ -4,15 +4,18 @@ services:
     image: icyleafcn/hugo
     command: ash /run.sh
     volumes:
+      - .:/site
       - ./system/data/run.sh:/run.sh
-      - ./site:/site
+    environment:
+      - HUGO_VERSION="0.19"
     env_file:
       - .env
   web:
-    image: icyleafcn/caddy
+    build: .
+      arguments:
+        - CADDY_FEATURES="git caddy"
+    image: icyleafcn/caddy:dev
     volumes_from:
       - data
-    volumes:
-      - ./system/web/Caddyfile:/etc/Caddyfile
     ports:
       - "${HTTP_PORT}:80"

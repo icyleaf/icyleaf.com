@@ -1,9 +1,0 @@
-0.0.0.0:80
-
-root /site/public
-
-log /site/logs/access.log
-errors {
-  log /site/logs/errors.log
-  404 404.html
-}
