@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://icyleaf.com/2016/12/docker-with-centos</loc>
+    <lastmod>2016-12-30T17:52:30+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://icyleaf.com/project</loc>
     <lastmod>2016-08-10T11:19:27+08:00</lastmod>
   </url>
@@ -27,12 +32,12 @@
   </url>
   
   <url>
-    <loc>http://icyleaf.com/2015/12/%E5%8D%9A%E5%AE%A2%E8%BF%81%E5%BE%99%E8%AE%B0</loc>
+    <loc>http://icyleaf.com/2015/12/a-history-of-my-blog</loc>
     <lastmod>2015-12-17T15:01:56+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://icyleaf.com/2015/12/hexo-%E4%B8%BB%E9%A2%98%E6%8E%A8%E8%8D%90-next</loc>
+    <loc>http://icyleaf.com/2015/12/hexo-theme-next</loc>
     <lastmod>2015-12-17T14:41:00+08:00</lastmod>
   </url>
   
@@ -545,7 +550,7 @@
   
   <url>
     <loc>http://icyleaf.com/tags/centos/</loc>
-    <lastmod>2013-09-17T12:34:56+08:00</lastmod>
+    <lastmod>2016-12-30T17:52:30+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -605,7 +610,7 @@
   
   <url>
     <loc>http://icyleaf.com/tags/docker/</loc>
-    <lastmod>2016-08-05T17:21:08+08:00</lastmod>
+    <lastmod>2016-12-30T17:52:30+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -773,7 +778,7 @@
   
   <url>
     <loc>http://icyleaf.com/post/</loc>
-    <lastmod>2016-08-05T17:21:08+08:00</lastmod>
+    <lastmod>2016-12-30T17:52:30+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -844,7 +849,7 @@
   
   <url>
     <loc>http://icyleaf.com/categories/technology/</loc>
-    <lastmod>2016-08-05T17:21:08+08:00</lastmod>
+    <lastmod>2016-12-30T17:52:30+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -910,7 +915,7 @@
   
   <url>
     <loc>http://icyleaf.com/</loc>
-    <lastmod>2016-08-10T11:19:27+08:00</lastmod>
+    <lastmod>2016-12-30T17:52:30+08:00</lastmod>
     <priority>0</priority>
   </url>
   
