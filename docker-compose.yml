@@ -7,13 +7,13 @@ services:
       - .:/site
       - ./system/data/run.sh:/run.sh
     environment:
-      - HUGO_VERSION="0.19"
-    env_file:
-      - .env
+      - HUGO_VERSION=0.19
+      - HOST=localhost
+      - HTTP_PORT=2015
+    ports:
+      - "1313:${HTTP_PORT}"
   web:
     build: .
     image: icyleafcn/caddy:dev
-    volumes_from:
-      - data
     ports:
       - "${HTTP_PORT}:80"
