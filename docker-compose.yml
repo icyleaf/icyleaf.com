@@ -12,8 +12,6 @@ services:
       - .env
   web:
     build: .
-      arguments:
-        - CADDY_FEATURES="git caddy"
     image: icyleafcn/caddy:dev
     volumes_from:
       - data
