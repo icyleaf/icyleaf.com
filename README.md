@@ -7,10 +7,10 @@
 
 ### 工具
 
+- [Vultr][vultr-link]: 高性价比且实时计算费用的 SSD VPS（本博客正在使用）
 - [Docker][docker-link]: 高性能、低开销并能够保存数据隔离的 OS 虚拟化解决方案
 - [Alpine Linux][alpine-link]: 开源且超轻量级（Docker 镜像仅 5MB）还具备完整包管理工具的 Linux 发行版
 - [Let's Encrypt][let-encrypt-link]: 免费且好用的 HTTPS 证书
-- [Vultr][vultr-link]: 高性价比且实时计算费用的 SSD VPS（本博客正在使用）
 
 ### Docker 镜像
 
@@ -24,8 +24,8 @@
 ### 部署
 
 ```bash
-$ git clone https://github.com/icyleaf/icyleaf.com.git && cd icyleaf.com
-$ [sudo] docker-compose -f docker-compose.yml up -d
+$ git clone https://github.com/icyleaf/icyleaf.com.git blog && cd blog
+$ [sudo] docker-compose up -d
 ```
 
 ### 结构
@@ -33,28 +33,26 @@ $ [sudo] docker-compose -f docker-compose.yml up -d
 ```
 .
 ├── README.md
-├── docker-compose.yml    # 本地调试使用
-├── production.yml        # 产品环境使用
-├── site                  # 类标准 Hugo 项目目录
-│   ├── archetypes
-│   │   ├── default.md
-│   │   └── page.md
-│   ├── config.yaml
-│   ├── content           # 文章内容
-│   │   ├── page
-│   │   └── post
-│   ├── data
-│   ├── layouts
-│   ├── logs              # Docker 生成的 http 日志
-│   ├── public            # 生成的静态文件目录
-│   ├── static
-│   │   └── images
-│   └── themes            # 主题
-│       └── casper
-└── system                # Docker 容器所需的资源
-    ├── data
+├── Dockerfile
+├── docker-compose.yml
+├── archetypes
+│   ├── default.md
+│   └── page.md
+├── config.yaml
+├── content             # 文章内容
+│   ├── page
+│   └── post
+├── layouts
+├── logs                # Docker 生成的 http 日志
+├── public              # 生成的静态文件目录
+├── static
+│   └── images
+└── themes              # hugo 主题
+│   └── casper
+└── system              # Docker 容器所需的资源
+    ├── site
     │   └── run.sh
-    └── web
+    └── etc
         └── Caddyfile
 ```
 
