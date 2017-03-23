@@ -21,19 +21,14 @@ share: true
 **办理所需资料**
 
 - [ ] 身份证
-
 - [ ] 北京居住卡或居住证或工作居住证（非北京户口需要）
-
 - [ ] 购车发票
-
 - [ ] 强险保单
-
 - [ ] 合格证
 
 备注：
 
 1. 以上资料均需要原件及复印件一份
-
 2. 办理临时牌照不需要指标确认书。
 
 **办理过程**
@@ -139,6 +134,14 @@ http://www.bjgaj.gov.cn/web/detail_getZwgkInfo_279416.html
 北京市公安局公安交通管理局 - 申请机动车临时行驶车号牌
 
 http://www.bjjtgl.gov.cn/jgj/jdcgl/120149/index.html
+
+北京身份证北京买车上外地牌实施中
+
+http://m.newsmth.net/article/Yaohao/34585
+
+汽车实用手册(16) 临时牌照实用手册
+
+http://www.autohome.com.cn/use/201403/742174.html
 
 百度经验 - 机动车办理北京市内临时牌照流程
 
