@@ -4,8 +4,7 @@ go:
 env:
   global:
   - GH_REF: github.com/icyleaf/icyleaf.com
-  - CD_REF: git@git.coding.net:icyleaf/icyleaf.com.git
-  - HOST: http://icyleaf.com/
+  - HOST: icyleaf.com
   - secure: tKP6BugdXq6zCsXE2ATkPtktgy5y1NpmFgtDceM0entSP5tv8Fur1NDOfmGIDUv+NVcOygWJqct3fU5YiozP/IUp9x7uNL8ExaJbWiKtpVokbQiNj2lQMEnigTp4y6oQiqZC7+lOnBJX+3wd0YDe0tk0n0M10/zkc3LRj4LNw6d35c1/Za0rBmxQM7cI900StryVxAXaxsHGxMaKV2TxggrcOEhIztpTfLz14EpDtXNwY/5zNz01QUkuOOMH5pDeSpz+Jg6XhMJWWLLKvVrv0E/2I8wG1eEtRAWYntvzU5lTzbJOftXXnQAkCYfNtoN4IgCP29dVRT7PC9vwAColyGceadx7Znjte8zYAc30O8bz9cXWwXCG+EYqF7mcWmh3d9TcYPLDU/jp8bBNzWWJ3yhmEMtAO0GJaUHICBwuuvFr8yT5f2`7u/dCjgfwCtp7Ylvzpn+4EBwXA3rwstzvvkyahaX2RlYIuqIaLX4un2FbouBQCR5BXXlzus6WmxO3kZZ5+PIJfmIWPJCiI5BpW6sR1lv591cYJKtHs7QDSh+cdGD7Mj2LNuE3ZDFNMV0MC+d+gFRY6VqMPz01DYxIShXi+hoPoG0Wo3oM49gL6t1io8jg7/K5ZGOazSfgJz2XYQurmRFcQf7iEU8SZpOurRLmGQpi8o2TNvU+3OpK8rgY=
 before_install:
 - openssl aes-256-cbc -K $encrypted_55105ab05f10_key -iv $encrypted_55105ab05f10_iv -in .travis/id_rsa.enc -out ~/.ssh/id_rsa -d
@@ -23,14 +22,9 @@ after_script:
 - cd public
 - git init
 - git remote add github "https://${GH_TOKEN}@${GH_REF}.git"
-- git remote add coding "${CD_REF}"
+- echo "${HOST}" > CNAME
 - git add -A .
 - git commit -m "Updated"
 - git fetch github
 - git reset github/gh-pages
 - git push github HEAD:gh-pages
-- git fetch coding
-- git reset coding/coding-pages
-- git add -A .
-- git commit -m "Updated"
-- git push coding HEAD:coding-pages
