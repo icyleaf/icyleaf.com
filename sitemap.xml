@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://icyleaf.com/2017/03/how-to-get-temporary-car-license-in-beijing</loc>
+    <lastmod>2017-03-23T00:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://icyleaf.com/2016/12/docker-with-centos</loc>
     <lastmod>2016-12-30T17:52:30+08:00</lastmod>
   </url>
@@ -718,7 +723,7 @@
   
   <url>
     <loc>http://icyleaf.com/categories/life/</loc>
-    <lastmod>2015-12-17T15:01:56+08:00</lastmod>
+    <lastmod>2017-03-23T00:00:00+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -778,7 +783,7 @@
   
   <url>
     <loc>http://icyleaf.com/post/</loc>
-    <lastmod>2016-12-30T17:52:30+08:00</lastmod>
+    <lastmod>2017-03-23T00:00:00+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -915,7 +920,13 @@
   
   <url>
     <loc>http://icyleaf.com/</loc>
-    <lastmod>2016-12-30T17:52:30+08:00</lastmod>
+    <lastmod>2017-03-23T00:00:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://icyleaf.com/tags/%E4%B8%B4%E7%89%8C/</loc>
+    <lastmod>2017-03-23T00:00:00+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -927,7 +938,7 @@
   
   <url>
     <loc>http://icyleaf.com/tags/%E5%8C%97%E4%BA%AC/</loc>
-    <lastmod>2008-05-26T12:34:56+08:00</lastmod>
+    <lastmod>2017-03-23T00:00:00+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -982,6 +993,12 @@
   <url>
     <loc>http://icyleaf.com/tags/%E6%A0%A1%E5%86%85/</loc>
     <lastmod>2008-10-10T12:34:56+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://icyleaf.com/tags/%E6%B1%BD%E8%BD%A6/</loc>
+    <lastmod>2017-03-23T00:00:00+08:00</lastmod>
     <priority>0</priority>
   </url>
   
