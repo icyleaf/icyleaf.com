@@ -1,20 +1,16 @@
 language: go
-go:
-- 1.7
 env:
   global:
   - GH_REF: github.com/icyleaf/icyleaf.com
   - HOST: icyleaf.com
   - secure: tKP6BugdXq6zCsXE2ATkPtktgy5y1NpmFgtDceM0entSP5tv8Fur1NDOfmGIDUv+NVcOygWJqct3fU5YiozP/IUp9x7uNL8ExaJbWiKtpVokbQiNj2lQMEnigTp4y6oQiqZC7+lOnBJX+3wd0YDe0tk0n0M10/zkc3LRj4LNw6d35c1/Za0rBmxQM7cI900StryVxAXaxsHGxMaKV2TxggrcOEhIztpTfLz14EpDtXNwY/5zNz01QUkuOOMH5pDeSpz+Jg6XhMJWWLLKvVrv0E/2I8wG1eEtRAWYntvzU5lTzbJOftXXnQAkCYfNtoN4IgCP29dVRT7PC9vwAColyGceadx7Znjte8zYAc30O8bz9cXWwXCG+EYqF7mcWmh3d9TcYPLDU/jp8bBNzWWJ3yhmEMtAO0GJaUHICBwuuvFr8yT5f2`7u/dCjgfwCtp7Ylvzpn+4EBwXA3rwstzvvkyahaX2RlYIuqIaLX4un2FbouBQCR5BXXlzus6WmxO3kZZ5+PIJfmIWPJCiI5BpW6sR1lv591cYJKtHs7QDSh+cdGD7Mj2LNuE3ZDFNMV0MC+d+gFRY6VqMPz01DYxIShXi+hoPoG0Wo3oM49gL6t1io8jg7/K5ZGOazSfgJz2XYQurmRFcQf7iEU8SZpOurRLmGQpi8o2TNvU+3OpK8rgY=
-before_install:
-- git config --global user.name "icyleaf"
-- git config --global user.email "icyleaf.cn@gmail.com"
 install: go get -v github.com/spf13/hugo
 script:
-- hugo
-after_script:
+- hugo --verbose
 - cd public
 - git init
+- git config --global user.name "icyleaf"
+- git config --global user.email "icyleaf.cn@gmail.com"
 - git remote add github "https://${GH_TOKEN}@${GH_REF}.git"
 - echo "${HOST}" > CNAME
 - git add -A .
