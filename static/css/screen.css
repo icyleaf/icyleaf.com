@@ -1208,7 +1208,7 @@ body:not(.post-template) .post-title {
 .post-head.main-header {
     height: 65vh;
     min-height: 180px;
-    background: #FFF;
+    background-color: #FFF;
 }
 
 .no-cover.post-head.main-header {
