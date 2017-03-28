@@ -13,12 +13,12 @@ script:
 - hugo --verbose
 - cd public
 - git init
-- git config --global user.name "icyleaf"
+- git config --global user.name "travis"
 - git config --global user.email "icyleaf.cn@gmail.com"
 - git remote add github "https://${GH_TOKEN}@${GH_REF}.git"
+- git reset github/gh-pages
 - echo "${HOST}" > CNAME
 - git add -A
-- git commit -m "Updated"
+- git commit -m "Deploy from travis-ci.org"
 - git fetch github
-- git reset github/gh-pages
 - git push github HEAD:gh-pages
