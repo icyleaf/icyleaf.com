@@ -1,10 +1,10 @@
 
 @font-face {font-family: "iconfont";
-  src: url('iconfont.eot?t=1471849143'); /* IE9*/
-  src: url('iconfont.eot?t=1471849143#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('iconfont.woff?t=1471849143') format('woff'), /* chrome, firefox */
-  url('iconfont.ttf?t=1471849143') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-  url('iconfont.svg?t=1471849143#iconfont') format('svg'); /* iOS 4.1- */
+  src: url('iconfont.eot?t=1471676864'); /* IE9*/
+  src: url('iconfont.eot?t=1471676864#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont.woff?t=1471676864') format('woff'), /* chrome, firefox */
+  url('iconfont.ttf?t=1471676864') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('iconfont.svg?t=1471676864#iconfont') format('svg'); /* iOS 4.1- */
 }
 
 .iconfont {
@@ -38,7 +38,6 @@
 .icon-stats:before { content: "\e614"; }
 .icon-linkedin2:before { content: "\e615"; }
 .icon-douban:before { content: "\e616"; }
-.icon-getpocket:before { content: "\e61f"; }
 .icon-iconfontfisocialgithub:before { content: "\e617"; }
 .icon-rss2:before { content: "\e618"; }
 .icon-externallink:before { content: "\e619"; }

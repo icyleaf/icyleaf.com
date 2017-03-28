@@ -141,9 +141,6 @@ table { border-collapse: collapse; border-spacing: 0; }
 .icon-linkedin:before {
     content: "\e604";
 }
-.icon-pocket:before {
-    content: "\e61f";
-}
 .icon-douban:before {
     content: "\e607";
 }
@@ -1211,7 +1208,7 @@ body:not(.post-template) .post-title {
 .post-head.main-header {
     height: 65vh;
     min-height: 180px;
-    background: #FFF;
+    background-color: #FFF;
 }
 
 .no-cover.post-head.main-header {
