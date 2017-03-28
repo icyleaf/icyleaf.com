@@ -16,9 +16,9 @@ script:
 - git config --global user.name "travis"
 - git config --global user.email "icyleaf.cn@gmail.com"
 - git remote add github "https://${GH_TOKEN}@${GH_REF}.git"
+- git fetch github
 - git reset github/gh-pages
 - echo "${HOST}" > CNAME
 - git add -A
 - git commit -m "Deploy from travis-ci.org"
-- git fetch github
 - git push github HEAD:gh-pages
