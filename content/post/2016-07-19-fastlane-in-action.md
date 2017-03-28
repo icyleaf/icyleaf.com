@@ -22,7 +22,7 @@ date: "2016-07-19T20:12:07+08:00"
 
 1. [Fastlane - iOS 和 Android 的自动化构建工具](https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/)
 2. [深入浅出 Fastlane 一看你就懂](https://icyleaf.com/2016/07/fastlane-in-action/)
-
+3. [你虐我千百遍，我待你如初恋，直到我遇到 match](https://icyleaf.com/2017/03/match-in-action/)
 
 ## 命令行工具
 
@@ -461,6 +461,3 @@ DELIVER_USER<br \>PRODUCE_USERNAME | deliver<br />produce | iTunesConnect 账户
 DELIVER_PASSWORD | deliver | iTunesConnect 账户密码
 MATCH_PASSWORD | match | 证书加/解密密码 |
 FASTLANE_XCODE_LIST_TIMEOUT | fastlane_core | 获取 iOS Scheme 的超时时间 | 默认 10s
-
-
-
