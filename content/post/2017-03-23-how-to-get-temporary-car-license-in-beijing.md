@@ -9,7 +9,6 @@ tags:
 - "北京"
 - "汽车"
 image: "/uploads/2017/03/23/e7817f7d7315096.jpg"
-index: false
 comments: true
 share: true
 
