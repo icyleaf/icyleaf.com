@@ -1,5 +1,7 @@
 # icyleaf.com
 
+[![Build Status](https://travis-ci.org/icyleaf/icyleaf.com.svg?branch=master)](https://travis-ci.org/icyleaf/icyleaf.com)
+
 个人[折腾多年][blog-history-link]的博客网站，虽然更新频率日渐枯竭，在各方面其实一直还在折腾着。趁着 [Let's Encrypt][let-encrypt-link] 福利，
 顺便实验 [Alpine Linux][alpine-link] 的兼容性，这就成就了当前 Docker 化的结果。
 
