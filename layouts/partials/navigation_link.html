@@ -15,9 +15,9 @@
   </ul>
 
   {{ if .Site.Params.RSSLink }}
-    <a class="subscribe-button icon-feed" href="{{ .Site.BaseURL }}{{ .Site.Params.RSSLink }}">Subscribe</a>
+    <a class="subscribe-button icon-feed" href="{{ .Site.Params.RSSLink }}">Subscribe</a>
   {{ else }}
-    <a class="subscribe-button icon-feed" href="{{ .Site.BaseURL }}{{ .RSSLink }}">Subscribe</a>
+    <a class="subscribe-button icon-feed" href="{{ .RSSLink | relURL }}">Subscribe</a>
   {{end}}
 </div>
 <span class="nav-cover"></span>
