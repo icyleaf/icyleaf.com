@@ -20,5 +20,5 @@ script:
 - git reset github/gh-pages
 - echo "${HOST}" > CNAME
 - git add -A
-- git commit -am 'Deploy from travis-ci.org'
+- git commit --allow-empty -m 'Deploy from travis-ci.org'
 - git push github HEAD:gh-pages
