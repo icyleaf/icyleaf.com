@@ -16,11 +16,10 @@ menu: ''
 draft: true
 
 ---
-![Screen Shot 2017-04-26 at 11.25.12.png](quiver-image-url/15552A3F4999492221470DC5A98BA89E.png)
 
 自从开始研究 Crystal 这门语言（之前也有[介绍](http://icyleaf.com/2016/07/gitlab-api-wrapper-for-crystal/)过），基本上每隔一段时间都会看看它的近况，去年 sidekiq 的作者用该语言重新实现了 sidekiq 项目而且给出了特别竟然的[对比数据](http://www.mikeperham.com/2016/05/25/sidekiq-for-crystal/)。
 
-![IMAGE](quiver-image-url/978A0E326A3AB1B17EF31F92F6B5EC0E.jpg =445x200)
+![IMAGE](/uploads/2017/04/26/sidekiq-benchmarks.png)
 
 相对比 Gitlab 采用 go 语言重新 gitlab_ci_runner 而学习一门新的语言达到高效率低内存的方法之外 Crystal 就像是新的希望。使用 Crystal 重新的 sidekiq 的代码也非常的简单但已经实现了核心功能和 Web UI。
 
