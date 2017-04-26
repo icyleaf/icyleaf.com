@@ -20,6 +20,7 @@ params:
   bio: 热爱户外的码农、下厨初心者
   # Global theme settings
   logo: images/icyleaf-icon.png
+  hjsStyle: tomorrow-night
   googleAnalyticsUserID: UA-2570916-5
   socials:
     - name: github
@@ -49,18 +50,18 @@ taxonomies:
 menu:
   main:
     - name: Home
-      weight: -120
+      weight: 120
       identifier: blog
       url: /
     - name: Technology
-      weight: -110
+      weight: 110
       identifier: technology
       url: /categories/technology
     - name: Tags
-      weight: -100
+      weight: 100
       identifier: tags
       url: /tags
     - name: About
-      weight: -90
+      weight: 90
       identifier: about
       url: /about
