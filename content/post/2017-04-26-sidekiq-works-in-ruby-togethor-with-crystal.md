@@ -9,11 +9,8 @@ tags:
 - Crystal
 - Sidekiq
 image: "/uploads/2017/04/26/sidekiq-web-ui.png"
-index: ''
 comments: true
 share: true
-menu: ''
-draft: true
 
 ---
 
