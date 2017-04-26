@@ -50,6 +50,8 @@
 
 </main>
 
-{{ partial "suggestions.html" . }}
+{{if not .Params.hideSuggestions }}
+  {{ partial "suggestions.html" . }}
+{{ end }}
 
 {{ partial "footer.html" . }}

@@ -72,6 +72,9 @@ canonifyurls = true
   # See https://github.com/isagalaev/highlight.js/tree/master/src/styles for available styles
   # A preview of above styles can be viewed at https://highlightjs.org/static/demo/
   hjsStyle = "default"
+
+  # Hide suggestions in single post
+  hideSuggestions: false
 ```
 
 Example : [config.toml](https://github.com/vjeantet/vjeantet.fr/blob/master/config.toml)
