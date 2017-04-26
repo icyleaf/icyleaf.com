@@ -1,6 +1,5 @@
 # CASPER theme for hugo
 
-
 Casper is a single-column theme for [Hugo](http://gohugo.io/).
 Ported from [Casper theme for Ghost ](https://github.com/TryGhost/Casper)
 
@@ -127,13 +126,13 @@ Example of a menu definition in main config file.
 ``` toml
 [[menu.main]]
   name = "My Blog"
-  weight = -120
+  weight = 120
   identifier = "blog"
   url = "/"
 
 [[menu.main]]
   name = "About me"
-  weight = -110
+  weight = 110
   identifier = "about"
   url = "/about"
 
@@ -158,14 +157,8 @@ menu = ""           # set "main" to add this content to the main menu
 Contents here
 ```
 
-## Create new content based with default metadata from this theme
-You can easyly create a new content with all metadatas used by this theme, using this command
-```
-hugo new -t casper post/my-post.md
-```
-
 # Contact me
 
 :beetle: open an issue in github
 
-:bird: [https://twitter.com/vjeantet](https://twitter.com/vjeantet)
+:bird: [https://twitter.com/icyleaf](https://twitter.com/icyleaf)
