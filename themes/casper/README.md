@@ -1,11 +1,11 @@
 # CASPER theme for hugo
-    
+
 
 Casper is a single-column theme for [Hugo](http://gohugo.io/).
 Ported from [Casper theme for Ghost ](https://github.com/TryGhost/Casper)
 
-blog demo : http://vjeantet.fr
-blog source : https://github.com/vjeantet/vjeantet.fr
+blog demo : http://icyleaf.com
+blog source : https://github.com/icyleaf/icyleaf.com
 
 ![Hugo Casper Theme screenshot](https://raw.githubusercontent.com/vjeantet/hugo-theme-casper/master/images/screen.png)
 
@@ -19,6 +19,7 @@ blog source : https://github.com/vjeantet/vjeantet.fr
 * Tagging
 * Pagination
 * Menu
+* Syntax Highlighting
 
 # Theme usage and asumptions
 * All blog posts are in the ```post``` folder (```content/post```)
@@ -59,7 +60,7 @@ canonifyurls = true
   logo = "images/logo.png"
   googleAnalyticsUserID = "UA-79101-12"
   # Optional RSS-Link, if not provided it defaults to the standard index.xml
-  RSSLink = "http://feeds.feedburner.com/..." 
+  RSSLink = "http://feeds.feedburner.com/..."
   githubName = "vjeantet"
   twitterName = "vjeantet"
   # facebookName = ""
@@ -67,6 +68,10 @@ canonifyurls = true
   # set true if you are not proud of using Hugo (true will hide the footer note "Proudly published with HUGO.....")
   hideHUGOSupport = false
 
+  # Setting a value will load highlight.js and enable syntax highlighting using the style selected.
+  # See https://github.com/isagalaev/highlight.js/tree/master/src/styles for available styles
+  # A preview of above styles can be viewed at https://highlightjs.org/static/demo/
+  hjsStyle = "default"
 ```
 
 Example : [config.toml](https://github.com/vjeantet/vjeantet.fr/blob/master/config.toml)
@@ -128,7 +133,7 @@ Example of a menu definition in main config file.
   weight = -110
   identifier = "about"
   url = "/about"
-  
+
 ```
 
 ## Metadata on each content file, example
@@ -151,7 +156,7 @@ Contents here
 ```
 
 ## Create new content based with default metadata from this theme
-You can easyly create a new content with all metadatas used by this theme, using this command 
+You can easyly create a new content with all metadatas used by this theme, using this command
 ```
 hugo new -t casper post/my-post.md
 ```
