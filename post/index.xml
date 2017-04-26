@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
-    <lastBuildDate>Tue, 28 Mar 2017 20:12:07 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 26 Apr 2017 16:00:49 +0000</lastBuildDate>
     
 	<atom:link href="http://icyleaf.com/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>打通 Sidekiq 的任督二脉 Ruby 和 Crystal</title>
+      <link>http://icyleaf.com/2017/04/sidekiq-works-in-ruby-togethor-with-crystal/</link>
+      <pubDate>Wed, 26 Apr 2017 16:00:49 +0000</pubDate>
+      
+      <guid>http://icyleaf.com/2017/04/sidekiq-works-in-ruby-togethor-with-crystal/</guid>
+      <description>自从开始研究 Crystal 这门语言（之前也有介绍过），基本上每隔一段时间都会看看它的近况，去年 sidekiq 的作者用该语言重新实现了 sidekiq 项目而且给出了特别竟然的对比数</description>
+    </item>
     
     <item>
       <title>你虐我千百遍，我待你如初恋，直到我遇到 match</title>
