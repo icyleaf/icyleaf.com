@@ -33,11 +33,11 @@
     </section>
 
   <footer class="post-footer">
-    {{if .Site.Params.logo}}
+    {{ if .Site.Params.logo }}
     <figure class="author-image">
-        <a class="img" href="{{ .Site.BaseURL }}" style="background-image: url({{ .Site.BaseURL }}{{.Site.Params.logo}})"><span class="hidden">{{.Site.Params.author}}'s Picture</span></a>
+        <a class="img" href="{{ .Site.BaseURL }}" style="background-image: url({{ .Site.Params.logo | relURL }})"><span class="hidden">{{.Site.Params.author}}'s Picture</span></a>
     </figure>
-    {{end}}
+    {{ end }}
 
     {{ partial "author.html" . }}
 
@@ -50,7 +50,7 @@
 
 </main>
 
-{{if not .Params.hideSuggestions }}
+{{ if and (eq .Section "post") (not .Params.hideSuggestions)  }}
   {{ partial "suggestions.html" . }}
 {{ end }}
 
