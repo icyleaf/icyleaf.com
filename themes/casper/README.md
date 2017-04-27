@@ -54,7 +54,7 @@ paginate = 5
 DisqusShortname = "YOUR_SHORT_NAME_HERE"
 Copyright = "All rights reserved - 2015"
 canonifyurls = true
-hasCJKLanguage: true
+hasCJKLanguage = true
 
 [params]
   description = "this is my description"
@@ -97,7 +97,7 @@ hasCJKLanguage: true
   hjsStyle = "tomorrow-night"
 
   # Hide suggestions in single post
-  hideSuggestions: false
+  hideSuggestions = false
 ```
 
 Example : [config.toml](https://github.com/vjeantet/vjeantet.fr/blob/master/config.toml)
