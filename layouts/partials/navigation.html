@@ -1,6 +1,6 @@
 <nav class="main-nav overlay clearfix">
   {{ if .Site.Params.logo }}
-    <a class="blog-logo" href="{{ .Site.BaseURL }}"><img src="{{ .Site.BaseURL }}{{ .Site.Params.logo }}" alt="Blog Logo" /></a>
+    <a class="blog-logo" href="{{ .Site.BaseURL }}"><img src="{{ .Site.Params.logo | relURL }}" alt="Blog Logo" /></a>
   {{ end }}
 
   {{ if .Site.Menus.main }}

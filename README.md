@@ -1,12 +1,13 @@
 # CASPER theme for hugo
 
 Casper is a single-column theme for [Hugo](http://gohugo.io/).
-Ported from [Casper theme for Ghost ](https://github.com/TryGhost/Casper)
+Ported from [Hugo Theme Casper](https://github.com/vjeantet/hugo-theme-casper)
 
-blog demo : http://icyleaf.com
-blog source : https://github.com/icyleaf/icyleaf.com
+- blog demo : http://icyleaf.com
+- blog source : https://github.com/icyleaf/icyleaf.com
 
-![Hugo Casper Theme screenshot](https://raw.githubusercontent.com/vjeantet/hugo-theme-casper/master/images/screen.png)
+![Hugo Casper Theme screenshot1](images/screen.png)
+![Hugo Casper Theme screenshot2](images/tn.png)
 
 ## Features
 
@@ -15,6 +16,7 @@ blog source : https://github.com/icyleaf/icyleaf.com
 * Share buttons on Facebook, Twitter, Google (can disable share by content)
 * Big cover image (optional)
 * Custom cover by content (optional)
+* Mobile friendly
 * Tagging
 * Pagination
 * Menu
@@ -28,49 +30,66 @@ blog source : https://github.com/icyleaf/icyleaf.com
 
 ## Installing this theme
 
-    mkdir themes
-    cd themes
-    git clone https://github.com/vjeantet/hugo-theme-casper casper
+```
+$ mkdir themes
+$ cd themes
+$ git clone https://github.com/icyleaf/hugo-theme-casper casper
+```
 
 ## Build your website with this theme
 
-    hugo server -t casper
+```
+$ hugo server -t casper
+```
 
 # Configuration
 
 **config.toml**
 
-``` toml
+```toml
 BaseUrl= "http://example.com/"
-LanguageCode= "fr-FR"
+LanguageCode= "en"
 Title= "My blog is awesome"
 paginate = 5
 DisqusShortname = "YOUR_SHORT_NAME_HERE"
 Copyright = "All rights reserved - 2015"
 canonifyurls = true
+hasCJKLanguage: true
 
 [params]
   description = "this is my description"
   cover = "images/cover.jpg"
-  author = "Valère JEANTET"
-  authorlocation = "Paris, France"
-  authorwebsite = "http://vjeantet.fr"
+  author = "icyleaf"
+  authorlocation = "Beijing. China"
+  authorwebsite = "http://icyleaf.com"
   bio= "my bio"
   logo = "images/logo.png"
-  googleAnalyticsUserID = "UA-79101-12"
+  googleAnalyticsUserID = "UA-2570916-5"
   # Optional RSS-Link, if not provided it defaults to the standard index.xml
   RSSLink = "http://feeds.feedburner.com/..."
-  githubName = "vjeantet"
-  twitterName = "vjeantet"
-  # facebookName = ""
-  # linkedinName = ""
+
+  # set socials account and link
+  socials:
+  - name: github
+    link: https://github.com/icyleaf
+  - name: twitter
+    link: https://twitter.com/icyleaf
+  - name: facebook
+    link: https://www.facebook.com/icyleaf
+  - name: linkedin
+    link: https://www.linkedin.com/in/icyleaf
+  - name: instagram
+    link: https://www.instagram.com/icyleaf/
+  - name: douban
+    link: https://www.douban.com/people/icyleaf
+
   # set true if you are not proud of using Hugo (true will hide the footer note "Proudly published with HUGO.....")
   hideHUGOSupport = false
 
   # Setting a value will load highlight.js and enable syntax highlighting using the style selected.
   # See https://github.com/isagalaev/highlight.js/tree/master/src/styles for available styles
   # A preview of above styles can be viewed at https://highlightjs.org/static/demo/
-  hjsStyle = "default"
+  hjsStyle = "tomorrow-night"
 
   # Hide suggestions in single post
   hideSuggestions: false
@@ -156,6 +175,10 @@ menu = ""           # set "main" to add this content to the main menu
 
 Contents here
 ```
+
+# Mobile Friendly
+
+![mobile friendly](images/mobile-friendly.png)
 
 # Contact me
 
