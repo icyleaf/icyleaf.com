@@ -69,19 +69,24 @@ hasCJKLanguage: true
   RSSLink = "http://feeds.feedburner.com/..."
 
   # set socials account and link
-  socials:
-  - name: github
-    link: https://github.com/icyleaf
-  - name: twitter
-    link: https://twitter.com/icyleaf
-  - name: facebook
-    link: https://www.facebook.com/icyleaf
-  - name: linkedin
-    link: https://www.linkedin.com/in/icyleaf
-  - name: instagram
-    link: https://www.instagram.com/icyleaf/
-  - name: douban
-    link: https://www.douban.com/people/icyleaf
+  [[socials]]
+    name = "github"
+    link = "https://github.com/icyleaf"
+  [[socials]]
+    name = "twitter"
+    link = "https://twitter.com/icyleaf"
+  [[socials]]
+    name = "facebook"
+    link = "https://www.facebook.com/icyleaf"
+  [[socials]]
+    name = "linkedin"
+    link = "https://www.linkedin.com/in/icyleaf"
+  [[socials]]
+    name = "instagram"
+    link = "https://www.instagram.com/icyleaf"
+  [[socials]]
+    name = "douban"
+    link = "https://www.douban.com/people/icyleaf"
 
   # set true if you are not proud of using Hugo (true will hide the footer note "Proudly published with HUGO.....")
   hideHUGOSupport = false
