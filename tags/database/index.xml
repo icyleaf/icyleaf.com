@@ -2,23 +2,196 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Database on icyleaf</title>
-    <link>http://icyleaf.com/tags/database/</link>
+    <link>http://icyleaf.com/tags/database/index.xml</link>
     <description>Recent content in Database on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
-    <lastBuildDate>Sat, 21 Jun 2008 12:34:56 +0800</lastBuildDate>
-    
-	<atom:link href="http://icyleaf.com/tags/database/index.xml" rel="self" type="application/rss+xml" />
-    
+    <atom:link href="http://icyleaf.com/tags/database/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>标签(Tag)的数据库设计</title>
-      <link>http://icyleaf.com/2008/06/tags-database-schemas/</link>
+      <link>http://icyleaf.com/2008/06/tags-database-schemas</link>
       <pubDate>Sat, 21 Jun 2008 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2008/06/tags-database-schemas/</guid>
-      <description>原文来自：Then each went to his own home 原文作者：Philipp Keller 译者注：本文在涉及到专业术语或者译者表达不明白的地方均会保留原英文。 最近，在del.</description>
+      <guid>http://icyleaf.com/2008/06/tags-database-schemas</guid>
+      <description>
+
+&lt;p&gt;原文来自：&lt;a href=&#34;http://www.pui.ch/phred/archives/2005/04/tags-database-schemas.html&#34;&gt;Then each went to his own home&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;原文作者：&lt;a href=&#34;http://www.pui.ch/phred/about&#34;&gt;Philipp Keller&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;译者注：本文在涉及到专业术语或者译者表达不明白的地方均会保留原英文。&lt;/p&gt;
+
+&lt;p&gt;最近，在&lt;a href=&#34;http://lists.del.icio.us/pipermail/discuss/2005-April/002827.html&#34;&gt;del.icio.us mailinglist&lt;/a&gt;（译者按：应该是美味书签的讨论版块。以下del.icio.us翻译为&lt;strong&gt;美味书签&lt;/strong&gt;）上面发了一个问题：“有人知道美味书签的数据库设计吗？”。之后我得到了一些回复，所以我想把这部分东西的知识分享给大家。&lt;/p&gt;
+
+&lt;h2 id=&#34;疑问&#34;&gt;疑问&lt;/h2&gt;
+
+&lt;p&gt;当你要为一个书签添加你认为需要的一个或多个标签时（或日志或其他）其数据库是如何设计的？然后，执行查询时取消这些书签中标签的合集（&lt;a href=&#34;http://en.wikipedia.org/wiki/Union_%28set_theory%29&#34;&gt;union&lt;/a&gt;）或交集（&lt;a href=&#34;http://en.wikipedia.org/wiki/Intersection_%28set_theory%29&#34;&gt;intersection&lt;/a&gt;）。也能从搜索结果中减少一些标签。&lt;/p&gt;
+
+&lt;p&gt;大致有三种不同的解决方案：（&lt;strong&gt;注意&lt;/strong&gt;：如果你开发了一个网站使得任何人都可以添加标签，而且是一个较大规模的网站则请务必看下其作者写的另外一篇文章：&lt;a href=&#34;http://www.pui.ch/phred/archives/2005/06/tagsystems-performance-tests.html&#34;&gt;标签系统的性能测试&lt;/a&gt;）&lt;/p&gt;
+
+&lt;h2 id=&#34;mysqlicious-方法-solution&#34;&gt;“MySQLicious” 方法(solution)&lt;/h2&gt;
+
+&lt;p&gt;在这个方法中仅架构了一个表，它是去规范化（&lt;a href=&#34;http://en.wikipedia.org/wiki/Denormalization&#34;&gt;denormalized&lt;/a&gt;）表。&lt;/p&gt;
+
+&lt;p&gt;这个类型被叫做“MySQLicious
+方法(solution)”，因为MySQLicious使用这种结构可以把美味书签的数据导入到一个表中。&lt;/p&gt;
+
+&lt;p&gt;译者注：MySQLicious是一个把del.icio.us书签镜像到MySQL数据库中的工具。&lt;/p&gt;
+
+&lt;h3 id=&#34;交集-and&#34;&gt;交集(AND)&lt;/h3&gt;
+
+&lt;p&gt;查询方式： “search+webservice+semweb”:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;SELECT *FROM `delicious`WHERE tags LIKE &amp;quot;%search%&amp;quot;AND tags LIKE &amp;quot;%webservice%&amp;quot;AND tags LIKE &amp;quot;%semweb%&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;合集-or&#34;&gt;合集(OR)&lt;/h3&gt;
+
+&lt;p&gt;查询方式： “search|webservice|semweb”:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;SELECT *FROM `delicious`WHERE tags LIKE &amp;quot;%search%&amp;quot;OR tags LIKE &amp;quot;%webservice%&amp;quot;OR tags LIKE &amp;quot;%semweb%&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;减少-exclusion&#34;&gt;减少(Exclusion)&lt;/h3&gt;
+
+&lt;p&gt;查询方式： “search+webservice-semweb”&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;SELECT *FROM `delicious`WHERE tags LIKE &amp;quot;%search%&amp;quot;AND tags LIKE &amp;quot;%webservice%&amp;quot;AND tags NOT LIKE &amp;quot;%semweb%&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;结论&#34;&gt;结论&lt;/h3&gt;
+
+&lt;p&gt;优点：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;只用一个表。&lt;/li&gt;
+&lt;li&gt;查询方式简单易懂。&lt;/li&gt;
+&lt;li&gt;一次就能获得全文搜索结果，可能速度快一些。&lt;/li&gt;
+&lt;li&gt;我猜测查询在基于&lt;a href=&#34;http://www.pui.ch/phred/archives/2005/04/tags-database-schemas.html#comment-57&#34;&gt;良好&lt;/a&gt;的&lt;a href=&#34;http://www.pui.ch/phred/archives/2005/04/tags-database-schemas.html#comment-62&#34;&gt;参数&lt;/a&gt;下是相当的快（&lt;a href=&#34;http://www.petercooper.co.uk/archives/000648.html&#34;&gt;Peter Cooper&lt;/a&gt;的博客也提到：去规范化！去规范化！去规范化！)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.pui.ch/phred/archives/2005/05/tags-with-mysql-fulltext.html&#34;&gt;在我随后的日志交待使用MySQL fulltext出来有关标签的事情&lt;/a&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;缺点：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;每个书签的标签数量是有限的。通常情况下是在数据库中使用一个256字节的域（VCHAIR），否则，假设你用 &lt;strong&gt;Text&lt;/strong&gt; 或类似的域，则速度将会慢下来。&lt;/li&gt;
+&lt;li&gt;如果你注意了（就像&lt;a href=&#34;http://www.pui.ch/phred/archives/2005/04/tags-database-schemas.html#comment-63&#34;&gt;Patrice&lt;/a&gt;那样）你会发现当你以 “websearch” 使用 &lt;strong&gt;Like “%search”&lt;/strong&gt;  搜索标签时它也能搜索到，当你修改并使用 &lt;strong&gt;Like “%search%”&lt;/strong&gt; 时你最终必须使用一个混乱的解决方法：在标签头添加一个空格，这样才能使其工作。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;scuttle-方法-solution&#34;&gt;“Scuttle” 方法(solution)&lt;/h2&gt;
+
+&lt;p&gt;分离（Scuttle）字段，并归类到两个表中。右图表“scCategories”是一个标签表，通过一个外来的ID链接书签表。&lt;/p&gt;
+
+&lt;h3 id=&#34;交集-and-1&#34;&gt;交集(AND)&lt;/h3&gt;
+
+&lt;p&gt;查询方式：“bookmark+webservice+semweb”:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;SELECT b.*FROM scBookmarks b, scCategories cWHERE c.bId = b.bIdAND (c.category IN (&#39;bookmark&#39;, &#39;webservice&#39;, &#39;semweb&#39;))GROUP BY b.bIdHAVING COUNT( b.bId )=3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;首先，当搜索的标签为“bookmark”，“webservice“或“semweb”（例如：&lt;strong&gt;&lt;code&gt;c.category IN (&#39;bookmark&#39;, &#39;webservice&#39;, &#39;semweb&#39;)&lt;/code&gt;&lt;/strong&gt; ）时所有名为&amp;rdquo;bookmark&amp;rdquo;的标签都会被搜索，然后所有包含这三个标签的书签将筛选出来 (&lt;strong&gt;&lt;code&gt;HAVING COUNT(b.bId)=3&lt;/code&gt;&lt;/strong&gt;)。&lt;/p&gt;
+
+&lt;h3 id=&#34;合集-or-1&#34;&gt;合集(OR)&lt;/h3&gt;
+
+&lt;p&gt;查询方式：“bookmark|webservice|semweb”:&lt;/p&gt;
+
+&lt;p&gt;Just leave out the &lt;code&gt;HAVING&lt;/code&gt; clause and you have union:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;SELECT b.*FROM scBookmarks b, scCategories cWHERE c.bId = b.bIdAND (c.category IN (&#39;bookmark&#39;, &#39;webservice&#39;, &#39;semweb&#39;))GROUP BY b.bId
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;减少-exclusion-1&#34;&gt;减少(Exclusion)&lt;/h3&gt;
+
+&lt;p&gt;查询方式：“bookmark+webservice-semweb”，意味着：&lt;code&gt;bookmark AND webservice AND NOT semweb&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;SELECT b. *FROM scBookmarks b, scCategories cWHERE b.bId = c.bIdAND (c.category IN (&#39;bookmark&#39;, &#39;webservice&#39;))AND b.bId NOTIN (SELECT b.bId FROM scBookmarks b, scCategories c WHERE b.bId = c.bId AND c.category = &#39;semweb&#39;)GROUP BY b.bIdHAVING COUNT( b.bId ) =2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;省略掉 &lt;strong&gt;&lt;code&gt;HAVING COUNT&lt;/code&gt;&lt;/strong&gt; 会导致搜索方式变为“bookmark|webservice-semweb”.&lt;/p&gt;
+
+&lt;p&gt;信息来源：&lt;a href=&#34;http://www.metafilter.com/user/26222&#34;&gt;Rhomboid&lt;/a&gt;写的&lt;a href=&#34;http://ask.metafilter.com/mefi/34897#544185&#34;&gt;helping me out with this query&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;结论-1&#34;&gt;结论&lt;/h3&gt;
+
+&lt;p&gt;我猜测这个解决方案主要有利点是使得他更正常化，比第一个解决方案比较而言，好处在于可以为每一个书签添加无限数量的标签。&lt;/p&gt;
+
+&lt;h2 id=&#34;toxi-方法-solution&#34;&gt;“Toxi” 方法(solution)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://toxi.co.uk/&#34;&gt;Toxi&lt;/a&gt; 提出了一个三个表的结构，通过表”tagmap“的书签和标签的n-to-m关联。每一个标签都可以在不同的书签一期使用，反之亦然。这种数据库结构也被用在&lt;a href=&#34;http://wordpress.org/&#34;&gt;Wordpress&lt;/a&gt;之中。&lt;/p&gt;
+
+&lt;h3 id=&#34;交集-and-2&#34;&gt;交集(AND)&lt;/h3&gt;
+
+&lt;p&gt;查询方式：“bookmark+webservice+semweb”&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;SELECT b.*FROM tagmap bt, bookmark b, tag tWHERE bt.tag_id = t.tag_idAND (t.name IN (&#39;bookmark&#39;, &#39;webservice&#39;, &#39;semweb&#39;))AND b.id = bt.bookmark_idGROUP BY b.idHAVING COUNT( b.id )=3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;合集-or-2&#34;&gt;合集(OR)&lt;/h3&gt;
+
+&lt;p&gt;查询方式：“bookmark|webservice|semweb”&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;SELECT b.*FROM tagmap bt, bookmark b, tag tWHERE bt.tag_id = t.tag_idAND (t.name IN (&#39;bookmark&#39;, &#39;webservice&#39;, &#39;semweb&#39;))AND b.id = bt.bookmark_idGROUP BY b.id
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;减少-exclusion-2&#34;&gt;减少(Exclusion)&lt;/h3&gt;
+
+&lt;p&gt;查询方式：“bookmark+webservice-semweb”，意味：bookmark AND webservice AND NOT semweb.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;SELECT b. *FROM bookmark b, tagmap bt, tag tWHERE b.id = bt.bookmark_idAND bt.tag_id = t.tag_idAND (t.name IN (&#39;Programming&#39;, &#39;Algorithms&#39;))AND b.id NOT IN (SELECT b.id FROM bookmark b, tagmap bt, tag t WHERE b.id = bt.bookmark_id AND bt.tag_id = t.tag_id AND t.name = &#39;Python&#39;)GROUP BY b.idHAVING COUNT( b.id ) =2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;省略掉 &lt;strong&gt;&lt;code&gt;HAVING COUNT&lt;/code&gt;&lt;/strong&gt; 会导致搜索方式变为“bookmark|webservice-semweb”.&lt;/p&gt;
+
+&lt;p&gt;信息来源：&lt;a href=&#34;http://www.metafilter.com/user/26222&#34;&gt;Rhomboid&lt;/a&gt;写的&lt;a href=&#34;http://ask.metafilter.com/mefi/34897#544185&#34;&gt;helping me out with this query&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;结论-2&#34;&gt;结论&lt;/h3&gt;
+
+&lt;p&gt;优点：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;可以为每个标签节省额外的信息（描述，分类等）&lt;/li&gt;
+&lt;li&gt;这是一个最正常化的解决方案（即，第三范式：&lt;a href=&#34;http://en.wikipedia.org/wiki/3NF&#34;&gt;3NF&lt;/a&gt;）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;缺点：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;当修改或删除书签后，需要删除中间表的相应数据（When altering or deleting bookmarks you can end up with tag-orphans）。&lt;/p&gt;
+
+&lt;p&gt;如果你想要更复杂的查询，比如”&lt;strong&gt;(bookmarks OR bookmark) AND (webservice or WS) AND NOT (semweb or semanticweb)&lt;/strong&gt;“这样的查询语句，我建议参见以下查询/计算过程：&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+&lt;li&gt;为每一个标签出现在你的”“tag-query”时执行一个查询（Run a query for each tag appearing in your
+“tag-query”）：&lt;strong&gt;&lt;code&gt;SELECT b.id FROM tagmap bt, bookmark b, tag t WHERE bt.tag_id = t.tag_id AND b.id = bt.bookmark_id AND t.name = &amp;quot;semweb&amp;quot;&lt;/code&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;把每一个编号集从结果中导到一个数值里面（使用你喜欢的编码语言），这样可以缓存你想要的数组。&lt;/li&gt;
+&lt;li&gt;使用合集或交集或其他方式限制数组。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;通过这种方式，你也可以查询&lt;code&gt;&amp;quot;(del.icio.us|delicious)+(semweb|semantic_web)-search&amp;quot;，这种类型的查询（即，括号内）利用去规范化的&lt;/code&gt;“MySQLicious solution”&lt;code&gt;不能这样做。&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;这是最灵活的数据结构和我猜想它的效果相当好（即，使用一些缓存技术）。&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;2006年5月更新&lt;/strong&gt;：这篇文章获得了大家的注视。我真的不是为此而准备的！看来大家不断的提到了他，甚至一些网站转载我的文章，我认为，这些不同方式的理论的知识应该归功于：&lt;a href=&#34;http://nanovivid.com/projects/mysqlicious/&#34;&gt;MySQLicious&lt;/a&gt;,
+&lt;a href=&#34;http://sourceforge.net/projects/scuttle/&#34;&gt;scuttle&lt;/a&gt;, &lt;a href=&#34;http://toxi.co.uk/&#34;&gt;Toxi&lt;/a&gt;以及所有参与并贡献的评论者（请务必阅读！）&lt;/p&gt;
+
+&lt;p&gt;p.s. 感谢&lt;a href=&#34;http://toxi.co.uk/&#34;&gt;Toxi&lt;/a&gt;发给我关于三个表结构的疑问，Benjamin
+Reitzammer为我指点的&lt;a href=&#34;http://laughingmeme.org/archives/002918.html&#34;&gt;文章&lt;/a&gt;（一个很好的标签查询参考）和powerlinux提供的&lt;a href=&#34;http://sourceforge.net/projects/scuttle/&#34;&gt;scuttle&lt;/a&gt;指引。&lt;/p&gt;
+
+&lt;h2 id=&#34;扩展阅读&#34;&gt;扩展阅读&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://lists.tagschema.com/mailman/listinfo/tagdb&#34;&gt;Taglist: a mailing list dedicated to schemas with tagging&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://tagschema.com/blogs/tagschema/&#34;&gt;Tagschema: A blog dedicated to tagging schemas&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.bigbold.com/snippets/tags/tagging&#34;&gt;Tag-related Queries on Snippets&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.getluky.net/freetag/&#34;&gt;Freetag&lt;/a&gt; is a php “library” with which you can add tags to whatever object you like. It actually uses the “toxi schema”.&lt;/li&gt;
+&lt;li&gt;Hammy &lt;a href=&#34;http://hellojoseph.com/tags-howto.php&#34;&gt;gives an insight&lt;/a&gt; how he did his tagging system with “less DB and more code” (that is: regular expressions), interesting!&lt;/li&gt;
+&lt;li&gt;Brad Choate &lt;a href=&#34;http://bradchoate.com/weblog/2004/10/06/delicious&#34;&gt;has got some ideas&lt;/a&gt; which tag queries should be possible&lt;/li&gt;
+&lt;li&gt;Feedmaker has written &lt;a href=&#34;http://blog.feedmarker.com/2005/04/26/tagging-in-mysql/&#34;&gt;a sort of reply to this article&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
     </item>
     
   </channel>

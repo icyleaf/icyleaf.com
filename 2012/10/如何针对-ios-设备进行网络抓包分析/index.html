@@ -7,7 +7,7 @@
 
   	<meta property="og:title" content=" 如何针对 iOS 设备进行网络抓包分析 &middot;  icyleaf" />
   	<meta property="og:site_name" content="icyleaf" />
-  	<meta property="og:url" content="http://icyleaf.com/2012/10/%E5%A6%82%E4%BD%95%E9%92%88%E5%AF%B9-ios-%E8%AE%BE%E5%A4%87%E8%BF%9B%E8%A1%8C%E7%BD%91%E7%BB%9C%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90/" />
+  	<meta property="og:url" content="http://icyleaf.com/2012/10/%E5%A6%82%E4%BD%95%E9%92%88%E5%AF%B9-ios-%E8%AE%BE%E5%A4%87%E8%BF%9B%E8%A1%8C%E7%BD%91%E7%BB%9C%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90" />
 
     
   	<meta property="og:type" content="article" />
@@ -47,9 +47,9 @@
     
         <link href="feed.xml" rel="alternate" type="application/rss+xml" title="icyleaf" />
     
-    <meta name="generator" content="Hugo 0.21-DEV" />
+    <meta name="generator" content="Hugo 0.19" />
 
-    <link rel="canonical" href="http://icyleaf.com/2012/10/%E5%A6%82%E4%BD%95%E9%92%88%E5%AF%B9-ios-%E8%AE%BE%E5%A4%87%E8%BF%9B%E8%A1%8C%E7%BD%91%E7%BB%9C%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90/" />
+    <link rel="canonical" href="http://icyleaf.com/2012/10/%E5%A6%82%E4%BD%95%E9%92%88%E5%AF%B9-ios-%E8%AE%BE%E5%A4%87%E8%BF%9B%E8%A1%8C%E7%BD%91%E7%BB%9C%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90" />
 
     
     <script>
@@ -193,15 +193,15 @@ $ tcpdump -n -t -i rvi0 -q tcp
     
 <section class="share">
   <h4>Share this post</h4>
-  <a class="icon-twitter" href="https://twitter.com/share?text=%e5%a6%82%e4%bd%95%e9%92%88%e5%af%b9%20iOS%20%e8%ae%be%e5%a4%87%e8%bf%9b%e8%a1%8c%e7%bd%91%e7%bb%9c%e6%8a%93%e5%8c%85%e5%88%86%e6%9e%90&nbsp;-&nbsp;icyleaf&amp;url=http%3a%2f%2ficyleaf.com%2f2012%2f10%2f%25E5%25A6%2582%25E4%25BD%2595%25E9%2592%2588%25E5%25AF%25B9-ios-%25E8%25AE%25BE%25E5%25A4%2587%25E8%25BF%259B%25E8%25A1%258C%25E7%25BD%2591%25E7%25BB%259C%25E6%258A%2593%25E5%258C%2585%25E5%2588%2586%25E6%259E%2590%2f"
+  <a class="icon-twitter" href="https://twitter.com/share?text=%e5%a6%82%e4%bd%95%e9%92%88%e5%af%b9%20iOS%20%e8%ae%be%e5%a4%87%e8%bf%9b%e8%a1%8c%e7%bd%91%e7%bb%9c%e6%8a%93%e5%8c%85%e5%88%86%e6%9e%90&nbsp;-&nbsp;icyleaf&amp;url=http%3a%2f%2ficyleaf.com%2f2012%2f10%2f%25E5%25A6%2582%25E4%25BD%2595%25E9%2592%2588%25E5%25AF%25B9-ios-%25E8%25AE%25BE%25E5%25A4%2587%25E8%25BF%259B%25E8%25A1%258C%25E7%25BD%2591%25E7%25BB%259C%25E6%258A%2593%25E5%258C%2585%25E5%2588%2586%25E6%259E%2590"
       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
       <span class="hidden">Twitter</span>
   </a>
-  <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ficyleaf.com%2f2012%2f10%2f%25E5%25A6%2582%25E4%25BD%2595%25E9%2592%2588%25E5%25AF%25B9-ios-%25E8%25AE%25BE%25E5%25A4%2587%25E8%25BF%259B%25E8%25A1%258C%25E7%25BD%2591%25E7%25BB%259C%25E6%258A%2593%25E5%258C%2585%25E5%2588%2586%25E6%259E%2590%2f"
+  <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ficyleaf.com%2f2012%2f10%2f%25E5%25A6%2582%25E4%25BD%2595%25E9%2592%2588%25E5%25AF%25B9-ios-%25E8%25AE%25BE%25E5%25A4%2587%25E8%25BF%259B%25E8%25A1%258C%25E7%25BD%2591%25E7%25BB%259C%25E6%258A%2593%25E5%258C%2585%25E5%2588%2586%25E6%259E%2590"
       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
       <span class="hidden">Facebook</span>
   </a>
-  <a class="icon-weibo"href="http://service.weibo.com/share/share.php?url=http%3a%2f%2ficyleaf.com%2f2012%2f10%2f%25E5%25A6%2582%25E4%25BD%2595%25E9%2592%2588%25E5%25AF%25B9-ios-%25E8%25AE%25BE%25E5%25A4%2587%25E8%25BF%259B%25E8%25A1%258C%25E7%25BD%2591%25E7%25BB%259C%25E6%258A%2593%25E5%258C%2585%25E5%2588%2586%25E6%259E%2590%2f&amp;title=%e5%a6%82%e4%bd%95%e9%92%88%e5%af%b9%20iOS%20%e8%ae%be%e5%a4%87%e8%bf%9b%e8%a1%8c%e7%bd%91%e7%bb%9c%e6%8a%93%e5%8c%85%e5%88%86%e6%9e%90&nbsp;-&nbsp;icyleaf"
+  <a class="icon-weibo"href="http://service.weibo.com/share/share.php?url=http%3a%2f%2ficyleaf.com%2f2012%2f10%2f%25E5%25A6%2582%25E4%25BD%2595%25E9%2592%2588%25E5%25AF%25B9-ios-%25E8%25AE%25BE%25E5%25A4%2587%25E8%25BF%259B%25E8%25A1%258C%25E7%25BD%2591%25E7%25BB%259C%25E6%258A%2593%25E5%258C%2585%25E5%2588%2586%25E6%259E%2590&amp;title=%e5%a6%82%e4%bd%95%e9%92%88%e5%af%b9%20iOS%20%e8%ae%be%e5%a4%87%e8%bf%9b%e8%a1%8c%e7%bd%91%e7%bb%9c%e6%8a%93%e5%8c%85%e5%88%86%e6%9e%90&nbsp;-&nbsp;icyleaf"
       onclick="window.open(this.href, 'weibo-share','width=580,height=296');return false;">
       <span class="hidden">新浪微博</span>
   </a>
@@ -217,7 +217,7 @@ $ tcpdump -n -t -i rvi0 -q tcp
 <div id="disqus_thread"></div>
 <script type="text/javascript">
   var disqus_shortname = 'icyleaf';
-  var disqus_url = 'http:\/\/icyleaf.com\/2012\/10\/%E5%A6%82%E4%BD%95%E9%92%88%E5%AF%B9-ios-%E8%AE%BE%E5%A4%87%E8%BF%9B%E8%A1%8C%E7%BD%91%E7%BB%9C%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90\/';
+  var disqus_url = 'http:\/\/icyleaf.com\/2012\/10\/%E5%A6%82%E4%BD%95%E9%92%88%E5%AF%B9-ios-%E8%AE%BE%E5%A4%87%E8%BF%9B%E8%A1%8C%E7%BD%91%E7%BB%9C%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90';
   (function() {
     var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
     dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
@@ -237,7 +237,7 @@ $ tcpdump -n -t -i rvi0 -q tcp
 
   <aside class="read-next">
   
-      <a class="read-next-story" style="no-cover" href="http://icyleaf.com/2012/10/how-to-preview-app-detail-buit-in-app-using-app-store-data/">
+      <a class="read-next-story" style="no-cover" href="http://icyleaf.com/2012/10/how-to-preview-app-detail-buit-in-app-using-app-store-data">
           <section class="post">
               <h2>在 iOS 应用调用 App Store 显示指定应用的详情</h2>
               
@@ -245,7 +245,7 @@ $ tcpdump -n -t -i rvi0 -q tcp
       </a>
   
   
-      <a class="read-next-story prev" style="no-cover" href="http://icyleaf.com/2012/09/across-the-desert-tips/">
+      <a class="read-next-story prev" style="no-cover" href="http://icyleaf.com/2012/09/across-the-desert-tips">
           <section class="post">
               <h2>沙漠穿越要点</h2>
           </section>

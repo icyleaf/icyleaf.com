@@ -2,626 +2,2721 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Technology on icyleaf</title>
-    <link>http://icyleaf.com/categories/technology/</link>
+    <link>http://icyleaf.com/categories/technology/index.xml</link>
     <description>Recent content in Technology on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
-    <lastBuildDate>Wed, 26 Apr 2017 16:00:49 +0000</lastBuildDate>
+    <atom:link href="http://icyleaf.com/categories/technology/index.xml" rel="self" type="application/rss+xml" />
     
-	<atom:link href="http://icyleaf.com/categories/technology/index.xml" rel="self" type="application/rss+xml" />
-    
+    <item>
+      <title>Fast Crystal</title>
+      <link>http://icyleaf.com/2017/05/fast-crystal</link>
+      <pubDate>Wed, 10 May 2017 11:57:58 +0000</pubDate>
+      
+      <guid>http://icyleaf.com/2017/05/fast-crystal</guid>
+      <description>&lt;p&gt;起初是自己写了一个小测试来看看 crystal 下连接字符串几种实现方式的性能情况，结果还真能区分出来&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ crystal build --release code/string/concatenation.cr -o bin/string/concatenation
+$ ./bin/string/concatenation
+
+Crystal 0.22.0 (2017-04-22) LLVM 4.0.0
+
+ String#+  32.98M ( 30.32ns) (±11.62%)       fastest
+String#{}   9.51M (105.16ns) (± 6.12%)  3.47× slower
+ String#%    5.0M (200.03ns) (± 4.81%)  6.60× slower
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;于是就仿照 &lt;a href=&#34;https://github.com/JuanitoFatas/fast-ruby&#34;&gt;fast-ruby&lt;/a&gt; 在周末花了时间 fork 了 crystal 版本，其实结果挺让人吃惊的，因为是编译性语言在大多数情况下一些小的语法糖在编译器优化阶段会做一致性处理最终的结果其实是一样的，但也有一些例外。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/icyleaf/fast-crystal&#34;&gt;https://github.com/icyleaf/fast-crystal&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>打通 Sidekiq 的任督二脉 Ruby 和 Crystal</title>
-      <link>http://icyleaf.com/2017/04/sidekiq-works-in-ruby-togethor-with-crystal/</link>
+      <link>http://icyleaf.com/2017/04/sidekiq-works-in-ruby-togethor-with-crystal</link>
       <pubDate>Wed, 26 Apr 2017 16:00:49 +0000</pubDate>
       
-      <guid>http://icyleaf.com/2017/04/sidekiq-works-in-ruby-togethor-with-crystal/</guid>
-      <description>自从开始研究 Crystal 这门语言（之前也有介绍过），基本上每隔一段时间都会看看它的近况，去年 sidekiq 的作者用该语言重新实现了 sidekiq 项目而且给出了特别竟然的对比数</description>
+      <guid>http://icyleaf.com/2017/04/sidekiq-works-in-ruby-togethor-with-crystal</guid>
+      <description>
+
+&lt;p&gt;自从开始研究 Crystal 这门语言（之前也有&lt;a href=&#34;http://icyleaf.com/2016/07/gitlab-api-wrapper-for-crystal/&#34;&gt;介绍&lt;/a&gt;过），基本上每隔一段时间都会看看它的近况，去年 sidekiq 的作者用该语言重新实现了 sidekiq 项目而且给出了特别竟然的&lt;a href=&#34;http://www.mikeperham.com/2016/05/25/sidekiq-for-crystal/&#34;&gt;对比数据&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://icyleaf.com/uploads/2017/04/26/sidekiq-benchmarks.png&#34; alt=&#34;IMAGE&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;相对比 Gitlab 采用 go 语言重新 gitlab_ci_runner 而学习一门新的语言达到高效率低内存的方法之外 Crystal 就像是新的希望。使用 Crystal 重新的 sidekiq 的代码也非常的简单但已经实现了核心功能和 Web UI。&lt;/p&gt;
+
+&lt;p&gt;本篇就给大家介绍下如果在 Ruby on Rails 的框架下调度和执行 Crystal 写的 Workers。测试环境是在 macOS 下，其他版本信息如下：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Ruby 2.0+
+
+&lt;ul&gt;
+&lt;li&gt;Rails 5.0&lt;/li&gt;
+&lt;li&gt;Sidekiq 5.0&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Crystal 0.22.0+
+
+&lt;ul&gt;
+&lt;li&gt;Sidekiq.cr 0.7.0&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;配置-rails-环境&#34;&gt;配置 Rails 环境&lt;/h2&gt;
+
+&lt;p&gt;如何配置 Ruby、Rails、Bundler、Redis 就不在赘述，只讲核心，首先新建一个最基础的 rails 项目，不用额外的第三方辅助工具，数据库用 sqlite 减少外部依赖：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ rails new ruby_on_rails -B -T -S -C -M  -d sqlite3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;进入项目 &lt;code&gt;ruby_on_rails&lt;/code&gt; 编辑 &lt;code&gt;Gemfile&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# 修改源地址
+source &#39;https://gems.ruby-china.org&#39;
+
+# 新增 sidekiq 的支持
+gem &#39;redis-rails&#39;
+gem &#39;sidekiq&#39;
+
+# 其余的不用修改
+# Bundle edge Rails instead: gem &#39;rails&#39;, github: &#39;rails/rails&#39;
+gem &#39;rails&#39;, &#39;~&amp;gt; 5.0.2&#39;
+# Use sqlite3 as the database for Active Record
+gem &#39;sqlite3&#39;
+# Use Puma as the app server
+gem &#39;puma&#39;, &#39;~&amp;gt; 3.0&#39;
+
+gem &#39;redis-rails&#39;
+gem &#39;sidekiq&#39;
+
+group :development, :test do
+  # Call &#39;byebug&#39; anywhere in the code to stop execution and get a debugger console
+  gem &#39;byebug&#39;, platform: :mri
+end
+
+group :development do
+  # Access an IRB console on exception pages or by using &amp;lt;%= console %&amp;gt; anywhere in the code.
+  gem &#39;web-console&#39;, &#39;&amp;gt;= 3.3.0&#39;
+  gem &#39;listen&#39;, &#39;~&amp;gt; 3.0.5&#39;
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem &#39;spring&#39;
+  gem &#39;spring-watcher-listen&#39;, &#39;~&amp;gt; 2.0.0&#39;
+end
+
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem &#39;tzinfo-data&#39;, platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;配置好之后执行 &lt;code&gt;bundle insall&lt;/code&gt; 安装好 Gem 的依赖，再创建文件 &lt;code&gt;config/initializers/sidekiq.rb&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;redis_config = { url: &#39;redis://localhost:6379/8&#39; }
+
+Sidekiq.configure_server do |config|
+  config.redis = redis_config
+end
+
+Sidekiq.configure_client do |config|
+  config.redis = redis_config
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Sidekiq 的配置就完事了。&lt;/p&gt;
+
+&lt;h2 id=&#34;配置-crystal-环境&#34;&gt;配置 Crystal 环境&lt;/h2&gt;
+
+&lt;p&gt;Crystal 是基于 LLVM 开发，除了 Windows 以外其他绝大数系统基本上都支持（最新支持的 ARM 架构，可在树莓派上安装），&lt;a href=&#34;https://crystal-lang.org/docs/installation/&#34;&gt;安装步骤&lt;/a&gt;同样不再赘述。&lt;/p&gt;
+
+&lt;p&gt;安装好之后首先创建一个新项目：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ crystal init app crystal
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;进入项目 &lt;code&gt;crystal&lt;/code&gt; 编辑 &lt;code&gt;Shard.yml&lt;/code&gt; 这是一个类似于 Gemfile 的功能，但实现的去中心化，在文件末尾新增如下依赖：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;dependencies:
+  sidekiq:
+    github: mperham/sidekiq.cr
+    branch: master
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;执行 &lt;code&gt;shards update&lt;/code&gt; 或 &lt;code&gt;crystal deps&lt;/code&gt; 安装依赖即可。&lt;/p&gt;
+
+&lt;h2 id=&#34;编写-workers&#34;&gt;编写 Workers&lt;/h2&gt;
+
+&lt;p&gt;Worker 的功能很简单，就是做一个类似 Redis ping 的功能，Worker 在日志输出 PONG。&lt;/p&gt;
+
+&lt;h3 id=&#34;ruby-版本&#34;&gt;Ruby 版本&lt;/h3&gt;
+
+&lt;p&gt;安装 sidekiq 后会在 rails 内置命令可生成基础模板，切换到 &lt;code&gt;ruby_on_rails&lt;/code&gt; 目录：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ rails g sidekiq:worker ping1
+      create  app/workers/ping1_worker.rb
+$ rails g sidekiq:worker ping2
+      create  app/workers/ping2_worker.rb
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;worker 的内容也很简单，我在日志输出增加了 &lt;code&gt;[Ruby]&lt;/code&gt; 作为 Ruby 版本的标识便于后面的辨识&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# app/workers/ping1_worker.rb
+class Ping1Worker
+  include Sidekiq::Worker
+
+  def perform(*args)
+    logger.info &amp;quot;[Ruby] PONG !&amp;quot;
+  end
+end
+
+# app/workers/ping2_worker.rb
+class Ping2Worker
+  include Sidekiq::Worker
+
+  def perform(*args)
+    logger.info &amp;quot;[Ruby] PONG PONG !!&amp;quot;
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;crystal-版本&#34;&gt;Crystal 版本&lt;/h3&gt;
+
+&lt;p&gt;切换到 &lt;code&gt;crystal&lt;/code&gt; 目录下和 Ruby 不同的是它的源码是存放在 src 目录下面，我们稍微调整下结构：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;.
+├── LICENSE
+├── README.md
+├── lib
+├── shard.lock
+├── shard.yml
+├── spec
+└── src
+    ├── crystal_server.cr
+    └── workers
+        ├── ping1_worker.cr
+        └── ping2_worker.cr
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;worker 的内容如下，并设置 queue 为 &lt;code&gt;crystal&lt;/code&gt; 用于指派使用:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-crystal&#34;&gt;# src/workers/ping1_worker.cr
+class Ping1Worker
+  include Sidekiq::Worker
+  sidekiq_options do |job|
+    job.queue = &amp;quot;crystal&amp;quot;
+  end
+
+  def perform()
+    logger.info &amp;quot;[Crystal] PONG !&amp;quot;
+  end
+end
+
+# src/workers/ping2_worker.cr
+class Ping2Worker
+  include Sidekiq::Worker
+  sidekiq_options do |job|
+    job.queue = &amp;quot;crystal&amp;quot;
+  end
+
+  def perform()
+    logger.info &amp;quot;[Crystal] PONG PONG !!&amp;quot;
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;通过代码可以看出 Ruby 和 Crystal 的代码基本上是完全一样的。&lt;/p&gt;
+
+&lt;h2 id=&#34;任督二脉&#34;&gt;任督二脉&lt;/h2&gt;
+
+&lt;p&gt;对于使用 Sidekiq 的童鞋都知道，如果我想执行一个队列任务，只需要调用下 Worker 本身的 &lt;code&gt;perform_*&lt;/code&gt; 方法，这样的话根本无法调用一个不同语言版本的 Worker 否则 sidekiq 会报类似如下错误：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;2017-04-26T06:19:14.187Z 50690 TID-ox4qa1k8o WARN: {&amp;quot;context&amp;quot;:&amp;quot;Job raised exception&amp;quot;,&amp;quot;job&amp;quot;:{&amp;quot;class&amp;quot;:&amp;quot;Crystal::Ping1Worker&amp;quot;,&amp;quot;args&amp;quot;:[],&amp;quot;retry&amp;quot;:true,&amp;quot;queue&amp;quot;:&amp;quot;default&amp;quot;,&amp;quot;jid&amp;quot;:&amp;quot;42ce106d79
+01a274f3db2d54&amp;quot;,&amp;quot;created_at&amp;quot;:1493187554.181674,&amp;quot;enqueued_at&amp;quot;:1493187554.1820428},&amp;quot;jobstr&amp;quot;:&amp;quot;{\&amp;quot;class\&amp;quot;:\&amp;quot;Crystal::Ping1Worker\&amp;quot;,\&amp;quot;args\&amp;quot;:[],\&amp;quot;retry\&amp;quot;:true,\&amp;quot;queue\&amp;quot;:\&amp;quot;default\&amp;quot;,\&amp;quot;jid
+\&amp;quot;:\&amp;quot;42ce106d7901a274f3db2d54\&amp;quot;,\&amp;quot;created_at\&amp;quot;:1493187554.181674,\&amp;quot;enqueued_at\&amp;quot;:1493187554.1820428}&amp;quot;}
+2017-04-26T06:19:14.187Z 50690 TID-ox4qa1k8o WARN: NameError: uninitialized constant Crystal
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;打通任督二脉的关键在于两个版本都提供一个 low-level 的 API 可用于定制化调用：&lt;/p&gt;
+
+&lt;h3 id=&#34;ruby-版本-1&#34;&gt;Ruby 版本&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;job_id = Sidekiq::Client.push(
+  &#39;queue&#39; =&amp;gt; &#39;&#39;,  # 指派特定的队列名，默认是 default
+  &#39;class&#39; =&amp;gt; &#39;&#39;,  # Worker 的类名，可以是实例化类型或字符串类型
+  &#39;args&#39; =&amp;gt;[]     # Worker 接收的参数，以数组形式传递
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;crystal-版本-1&#34;&gt;Crystal 版本&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-crystal&#34;&gt;job = Sidekiq::Job.new
+job.queue = &amp;quot;default&amp;quot;   # 指派特定的队列名，默认是 default
+job.klass = &amp;quot;&amp;quot;          # Worker 的类名，可以是实例化类型或字符串类型
+job.args = [].to_json   # Worker 接收的参数，以数组形式传递
+
+client = Sidekiq::Client.new
+job_id = client.push(job)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;打通任督二脉&#34;&gt;打通任督二脉&lt;/h2&gt;
+
+&lt;p&gt;准备工作就绪，打通任督二脉的关键就只差一个了！那就是对于 redis 数据共享，细心的童鞋可能留意了上面只配置了 Ruby 版本的 redis 连接，但对于 Crystal 我故意留白没有说明。因为这个是最关键的一步，对于当前 sidekiq.cr 版本来说。&lt;/p&gt;
+
+&lt;p&gt;sidekiq.cr 对于作者来说是一次试水并没有话特别大的精力，Crystal 本身还处在开发阶段在未到达 1.0 之前会有各种 Break Changes。而且作者是非常照顾 Heroku 的开发者，默认仅支持该服务平台 Redis-to-Go 服务，因此想设置 Redis 连接信息必须通过系统的环境变量：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;REDISTOGO_URL=redis://localhost:6379/8
+REDIS_PROVIDER=$REDISTOGO_URL
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上面的配置是不可省略的，因为我个人不懂 Heroku 给作者乱提了 PL 还被作者狠批了一顿 :(&lt;/p&gt;
+
+&lt;p&gt;回到话题本身，我们来继续写上 &lt;code&gt;src/crystal_server.cr&lt;/code&gt; 关键的代码：&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;注意：redis 连接信息无比保证和 rails 配置的是一致的！&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-crystal&#34;&gt;require &amp;quot;sidekiq&amp;quot;
+require &amp;quot;sidekiq/cli&amp;quot;
+require &amp;quot;./workers/*&amp;quot;
+
+ENV[&amp;quot;LOCAL_REDIS&amp;quot;] = &amp;quot;redis://localhost:6379/8&amp;quot;
+ENV[&amp;quot;REDIS_PROVIDER&amp;quot;] = &amp;quot;LOCAL_REDIS&amp;quot;
+
+cli = Sidekiq::CLI.new
+server = cli.configure do |config|
+  # 支持中间件，默认留空即可
+end
+
+cli.run(server)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;代码需要编译执行，因为不编译是无法给 sidekiq cli 传递它接受的参数（当然也有方法，我放在末尾范例源码中自己寻找）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ crystal build src/crystal_server.cr -o crystal_server
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;通过上面命令把源码编译成可执行文件到项目根目录的 &lt;code&gt;crystal_server&lt;/code&gt; 文件。&lt;/p&gt;
+
+&lt;p&gt;打开终端一：启动 ruby 的 sidekiq server&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ cd ruby_on_rails
+$ sidekiq -q default
+2017-04-26T06:47:19.299Z 76282 TID-owewdljsc INFO: Booting Sidekiq 4.2.10 with redis options {:url=&amp;gt;&amp;quot;redis://localhost:6379/8&amp;quot;}
+
+
+         m,
+         `$b
+    .ss,  $$:         .,d$
+    `$$P,d$P&#39;    .,md$P&amp;quot;&#39;
+     ,$$$$$bmmd$$$P^&#39;
+   .d$$$$$$$$$$P&#39;
+   $$^&#39; `&amp;quot;^$$$&#39;       ____  _     _      _    _
+   $:     ,$$:       / ___|(_) __| | ___| | _(_) __ _
+   `b     :$$        \___ \| |/ _` |/ _ \ |/ / |/ _` |
+          $$:         ___) | | (_| |  __/   &amp;lt;| | (_| |
+          $$         |____/|_|\__,_|\___|_|\_\_|\__, |
+        .d$$                                       |_|
+
+2017-04-26T06:47:19.433Z 76282 TID-owewdljsc INFO: Running in ruby 2.4.0p0 (2016-12-24 revision 57164) [x86_64-darwin16]
+2017-04-26T06:47:19.433Z 76282 TID-owewdljsc INFO: See LICENSE and the LGPL-3.0 for licensing details.
+2017-04-26T06:47:19.433Z 76282 TID-owewdljsc INFO: Upgrade to Sidekiq Pro for more features and support: http://sidekiq.org
+2017-04-26T06:47:19.442Z 76282 TID-owewdljsc INFO: Starting processing, hit Ctrl-C to stop
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;打开终端二：启动 crystal 的 sidekiq server&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ cd crystal
+$ ./crystal_server -q crystal
+
+         m,
+         `$b
+    .ss,  $$:         .,d$
+    `$$P,d$P&#39;    .,md$P&amp;quot;&#39;
+     ,$$$$$bmmd$$$P^&#39;
+   .d$$$$$$$$$$P&#39;
+   $$^&#39; `&amp;quot;^$$$&#39;       ____  _     _      _    _
+   $:     ,$$:       / ___|(_) __| | ___| | _(_) __ _
+   `b     :$$        \___ \| |/ _` |/ _ \ |/ / |/ _` |
+          $$:         ___) | | (_| |  __/   &amp;lt;| | (_| |
+          $$         |____/|_|\__,_|\___|_|\_\_|\__, |
+        .d$$                                       |_|
+
+2017-04-26T06:48:42.755Z 83552 TID-21ybwjk  INFO: Sidekiq v0.7.0 in Crystal 0.22.0
+2017-04-26T06:48:42.755Z 83552 TID-21ybwjk  INFO: Licensed for use under the terms of the GNU LGPL-3.0 license.
+2017-04-26T06:48:42.755Z 83552 TID-21ybwjk  INFO: Upgrade to Sidekiq Enterprise for more features and support: http://sidekiq.org
+2017-04-26T06:48:42.755Z 83552 TID-21ybwjk  INFO: Starting processing with 25 workers
+2017-04-26T06:48:42.756Z 83552 TID-21ybwjk  INFO: Press Ctrl-C to stop
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;验证功力效果&#34;&gt;验证功力效果&lt;/h2&gt;
+
+&lt;p&gt;两边的 sidekiq server 都已经跑起来了，我们先从 rails 启动 console 验证，注意留意两个 sidekiq 终端日志的输出：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ rails console
+Loading development environment (Rails 5.0.2)
+
+# 调用 rails 本身的 ping1 和 ping2 worker
+2.4.0 :001 &amp;gt; Sidekiq::Client.push(&#39;class&#39; =&amp;gt; &#39;Ping1Worker&#39;, &#39;args&#39; =&amp;gt;[])
+ =&amp;gt; &amp;quot;961500753aa127b73ac50851&amp;quot;
+2.4.0 :002 &amp;gt; Sidekiq::Client.push(&#39;class&#39; =&amp;gt; &#39;Ping2Worker&#39;, &#39;args&#39; =&amp;gt;[])
+ =&amp;gt; &amp;quot;be366d2e5f44adf367853d82&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;对应 rails 的 sidekiq server 会同时输出：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;2017-04-26T06:53:01.722Z 76282 TID-owex58ag8 Ping1Worker JID-961500753aa127b73ac50851 INFO: start
+2017-04-26T06:53:01.722Z 76282 TID-owex58ag8 Ping1Worker JID-961500753aa127b73ac50851 INFO: [Ruby] PONG !
+2017-04-26T06:53:01.722Z 76282 TID-owex58ag8 Ping1Worker JID-961500753aa127b73ac50851 INFO: done: 0.0 sec
+2017-04-26T06:53:52.681Z 76282 TID-owex58bs0 Ping2Worker JID-be366d2e5f44adf367853d82 INFO: start
+2017-04-26T06:53:52.681Z 76282 TID-owex58bs0 Ping2Worker JID-be366d2e5f44adf367853d82 INFO: [Ruby] PONG PONG !!
+2017-04-26T06:53:52.681Z 76282 TID-owex58bs0 Ping2Worker JID-be366d2e5f44adf367853d82 INFO: done: 0.0 sec
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;自身一脉本来就是通的没什么好稀奇的，验证另外一脉：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ rails console
+Loading development environment (Rails 5.0.2)
+
+# 调用 crystal 的 ping1 和 ping2 worker
+2.4.0 :001 &amp;gt; Sidekiq::Client.push(&#39;class&#39; =&amp;gt; &#39;Ping1Worker&#39;, &#39;args&#39; =&amp;gt;[], &#39;queue&#39; =&amp;gt; &#39;crystal&#39;)
+ =&amp;gt; &amp;quot;324cf5e07b5e2999b0a45565&amp;quot;
+2.4.0 :002 &amp;gt; Sidekiq::Client.push(&#39;class&#39; =&amp;gt; &#39;Ping2Worker&#39;, &#39;args&#39; =&amp;gt;[], &#39;queue&#39; =&amp;gt; &#39;crystal&#39;)
+ =&amp;gt; &amp;quot;06c60bb9d52d9a31d48d2fdc&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;看看 crystal 的 sidekiq server 的日志：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;2017-04-26T06:57:11.846Z 21253 TID-1z8q4cg  JID=324cf5e07b5e2999b0a45565 INFO: Start
+2017-04-26T06:57:11.846Z 21253 TID-1z8q4cg  JID=324cf5e07b5e2999b0a45565 INFO: [Crystal] PONG !
+2017-04-26T06:57:11.846Z 21253 TID-1z8q4cg  JID=324cf5e07b5e2999b0a45565 INFO: Done: 0.000046 sec
+2017-04-26T06:57:20.785Z 21253 TID-1z8q3y8  JID=06c60bb9d52d9a31d48d2fdc INFO: Start
+2017-04-26T06:57:20.785Z 21253 TID-1z8q3y8  JID=06c60bb9d52d9a31d48d2fdc INFO: [Crystal] PONG PONG !!
+2017-04-26T06:57:20.785Z 21253 TID-1z8q3y8  JID=06c60bb9d52d9a31d48d2fdc INFO: Done: 0.000049 sec
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;验证通过！打通了！&lt;/p&gt;
+
+&lt;p&gt;Crystal 这边向 Ruby 调用也可行，但只有通过如下代码，有个别时候自身调用也没有日志输出，不过在 Web UI 却发现已处理的数字已正常更新，该问题我再调查下。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-crystal&#34;&gt;require &amp;quot;sidekiq&amp;quot;
+
+ENV[&amp;quot;LOCAL_REDIS&amp;quot;] = &amp;quot;redis://localhost:6379/8&amp;quot;
+ENV[&amp;quot;REDIS_PROVIDER&amp;quot;] = &amp;quot;LOCAL_REDIS&amp;quot;
+
+workers = %w(Ping1Worker Ping2Worker)
+workers.each do |wk_class|
+  job = Sidekiq::Job.new
+  job.queue = &amp;quot;default&amp;quot;
+  job.klass = wk_class
+
+  Sidekiq::Client.default_context = Sidekiq::Client::Context.new
+
+  client = Sidekiq::Client.new
+  job_id = client.push(job)
+  puts &amp;quot;[#{wk_class}] job id: #{job_id}&amp;quot;
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;2017-04-26T07:20:58.754Z 62256 TID-oukzi7jck Ping1Worker JID-1fee81b35052cba1f6525de5 INFO: start
+2017-04-26T07:20:58.754Z 62256 TID-oukzi7jck Ping1Worker JID-1fee81b35052cba1f6525de5 INFO: [Ruby] PONG !
+2017-04-26T07:20:58.755Z 62256 TID-oukzi7jck Ping1Worker JID-1fee81b35052cba1f6525de5 INFO: done: 0.0 sec
+2017-04-26T07:20:58.756Z 62256 TID-oul02vzfw Ping2Worker JID-0bb7eef097447784fb48d943 INFO: start
+2017-04-26T07:20:58.756Z 62256 TID-oul02vzfw Ping2Worker JID-0bb7eef097447784fb48d943 INFO: [Ruby] PONG PONG !!
+2017-04-26T07:20:58.756Z 62256 TID-oul02vzfw Ping2Worker JID-0bb7eef097447784fb48d943 INFO: done: 0.0 sec
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;结语&#34;&gt;结语&lt;/h2&gt;
+
+&lt;p&gt;本篇只是通过一个最简单的例子让大家知道互通的方法，实际使用中对于数据交互等还有更多需要考虑的地方，这里就暂时不做展开。非常期待 Crystal 今年立的 &lt;a href=&#34;https://crystal-lang.org/2016/12/29/crystal-new-year-resolutions-for-2017-1-0.html&#34;&gt;1.0 的目标&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;对于 Crystal 语言本身的评价，大家也可看下 RubyChina 站长的心得&lt;a href=&#34;https://ruby-china.org/topics/32771&#34;&gt;Crystal 说我最近关注 Crystal 的感受&lt;/a&gt;，编译语言有编译语言的坑，入坑需谨慎。&lt;/p&gt;
+
+&lt;p&gt;本文演示的代码已经整理并放到了 &lt;a href=&#34;https://github.com/icyleaf/sidekiq-with-ruby-and-crystal&#34;&gt;Github&lt;/a&gt;，对于不明白的地方可配合代码更好服用。&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>Docker 摸爬滚打对抗 CentOS 6</title>
-      <link>http://icyleaf.com/2016/12/docker-with-centos/</link>
+      <link>http://icyleaf.com/2016/12/docker-with-centos</link>
       <pubDate>Fri, 30 Dec 2016 17:52:30 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2016/12/docker-with-centos/</guid>
-      <description>前不久终于把我们移动团队内部服务器从 CentOS 5.x 升级到了 6.8。本来是拜托让升级至 7.0 版本起码能用上 docker 1.12 版本还是靠谱的事情。 事情往往难以预料的被告知其</description>
+      <guid>http://icyleaf.com/2016/12/docker-with-centos</guid>
+      <description>
+
+&lt;p&gt;前不久终于把我们移动团队内部服务器从 CentOS 5.x 升级到了 6.8。本来是拜托让升级至 7.0 版本起码能用上 docker 1.12 版本还是靠谱的事情。
+事情往往难以预料的被告知其他团队在安装 7.0 之后造成内部服务器群的网卡失灵的诡异故障只能作罢，想想起码还有个早期 docker 版本可安装也就先这么着吧。&lt;/p&gt;
+
+&lt;p&gt;这个是在 &lt;a href=&#34;http://icyleaf.com/2013/09/how-to-install-gitlab-on-centos/&#34;&gt;如何在CentOS 上安装Gitlab&lt;/a&gt; 之后有一个无奈的使用指南，
+因为运维也有他的考虑方面，参见知乎讨论：&lt;a href=&#34;https://www.zhihu.com/question/29191794&#34;&gt;如何说服运维选择 Debian/Ubuntu 而不是 CentOS&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;安装-docker&#34;&gt;安装 Docker&lt;/h2&gt;
+
+&lt;h3 id=&#34;1-7-1&#34;&gt;1.7.1&lt;/h3&gt;
+
+&lt;p&gt;Docker 最后一个支持 CentOS 6 的版本是 1.7.1 还必须安装 epel 源之后就&lt;a href=&#34;https://github.com/docker/docker/issues/14365&#34;&gt;被大家欢天喜地的抛弃了 6 的支持&lt;/a&gt;。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo rpm -ivh http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+sudo yum -y remove docker
+sudo yum install libselinux-python docker-io
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;由于 yum 内 docker 已经被其他使用，不用安装错误了。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;1-7-1-以上版本&#34;&gt;1.7.1 以上版本&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;请果断放弃这种想法&lt;/strong&gt;，虽然你可能在网上搜索有个别的文章说把内核升级到 3.10 后可以安装 docker 1.9 版本，经过我个人反复测试根本不可行！&lt;/p&gt;
+
+&lt;p&gt;当然如果你还是坚持想尝试，请参考如下链接：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.pangxie.space/docker/364&#34;&gt;http://www.pangxie.space/docker/364&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.cnblogs.com/dongdongwq/p/5381752.html&#34;&gt;http://www.cnblogs.com/dongdongwq/p/5381752.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://0evin.com/2016/06/17/%5B%E5%8E%9F%E5%88%9B%5DCentOS6.5%E5%AE%89%E8%A3%85Docker1.11.X%E7%89%88%E6%9C%AC/&#34;&gt;http://0evin.com/2016/06/17/%5B%E5%8E%9F%E5%88%9B%5DCentOS6.5%E5%AE%89%E8%A3%85Docker1.11.X%E7%89%88%E6%9C%AC/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;配置-docker&#34;&gt;配置 Docker&lt;/h2&gt;
+
+&lt;p&gt;安装成功后先不要配置开机自启动和启动服务，docker 的官方镜像在国内众所周知的慢的一塌糊涂，如果你是在国内服务器使用请参考如下配置。&lt;/p&gt;
+
+&lt;p&gt;我这里把我个人私藏已久的好用的镜像告诉大家，大家可不要以为我用的是阿里云或者 DaoCloud 这类有很多限制的玩意：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;中国科技大学镜像：&lt;a href=&#34;https://docker.mirrors.ustc.edu.cn&#34;&gt;https://docker.mirrors.ustc.edu.cn&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;网易蜂巢镜像：&lt;a href=&#34;http://hub-mirror.c.163.com&#34;&gt;http://hub-mirror.c.163.com&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;同样需要注意的是 1.7.1 版本的 docker 配置文件是在 &lt;code&gt;/etc/sysconfig/docker&lt;/code&gt; 而不是网上和官方说的 &lt;code&gt;/etc/default/docker&lt;/code&gt; 打开此文件在 other_args 配置对于的源即可。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# /etc/sysconfig/docker
+#
+# Other arguments to pass to the docker daemon process
+# These will be parsed by the sysv initscript and appended
+# to the arguments list passed to docker -d
+
+#other_args=
+#other_args=&amp;quot;--registry-mirror=http://hub-mirror.c.163.com&amp;quot;
+other_args=&amp;quot;--registry-mirror=https://docker.mirrors.ustc.edu.cn&amp;quot;
+
+DOCKER_CERT_PATH=/etc/docker
+
+# Resolves: rhbz#1176302 (docker issue #407)
+DOCKER_NOWARN_KERNEL_VERSION=1
+
+# Location used for temporary files, such as those created by
+# # docker load and build operations. Default is /var/lib/docker/tmp
+# # Can be overriden by setting the following environment variable.
+# # DOCKER_TMPDIR=/var/tmp
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;后面就没什么好说的了，启动服务和设置开机自启动就完事了&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo chkconfig docker on
+sudo service docker start
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;验证下启动的服务是否已经配置了国内镜像源&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ps aux | grep &amp;quot;docker -d&amp;quot;
+
+root     16992  0.1  0.1 1239860 32276 ?       Sl   Dec29   2:02 /usr/bin/docker -d --registry-mirror=https://docker.mirrors.ustc.edu.cn
+root     26873  0.0  0.0 103332   876 pts/2    S+   18:16   0:00 grep docker -d
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;疑难杂症&#34;&gt;疑难杂症&lt;/h2&gt;
+
+&lt;h4 id=&#34;1-使用国内镜像源-pull-镜像偶尔会失败-反复几次就可以解决&#34;&gt;1. 使用国内镜像源 pull 镜像偶尔会失败，反复几次就可以解决&lt;/h4&gt;
+
+&lt;p&gt;频次不高原因未知，因此还未重视&lt;/p&gt;
+
+&lt;h4 id=&#34;2-docker-web-管理工具&#34;&gt;2. Docker Web 管理工具&lt;/h4&gt;
+
+&lt;p&gt;我个人主要 rancher（可参考前篇文章：&lt;a href=&#34;http://icyleaf.com/2016/08/how-to-install-rancher-on-osx/&#34;&gt;如何在 OS X 上安装 Rancher
+&lt;/a&gt;），但 rancher 官方要求 docker 最低版本是 1.9+，尤其是当前最新的版本直接是 1.12+（支持了 swarm），无奈之下找了个轻量级的能用但是有些信息可能展示不全的解决方案 &lt;a href=&#34;https://github.com/portainer/portainer&#34;&gt;portainer&lt;/a&gt;。&lt;/p&gt;
+
+&lt;h4 id=&#34;3-宿主机-cst-时间会造成-docker-实例时间不准&#34;&gt;3. 宿主机 CST 时间会造成 docker 实例时间不准&lt;/h4&gt;
+
+&lt;p&gt;这个真没办法，只能在 Dockerfile 或者进实例里面进行修改时区，这个我就不过多赘述了。&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>如何在 OS X 上安装 Rancher</title>
-      <link>http://icyleaf.com/2016/08/how-to-install-rancher-on-osx/</link>
+      <link>http://icyleaf.com/2016/08/how-to-install-rancher-on-osx</link>
       <pubDate>Fri, 05 Aug 2016 17:21:08 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2016/08/how-to-install-rancher-on-osx/</guid>
-      <description>Rancher 是 Docker 编排解决方案的一种，好处在于可以做容器编排，网络，存储，负载均衡，还能够支持云服务器（比如 Amazon EC2/Azure/DigitalOcea</description>
+      <guid>http://icyleaf.com/2016/08/how-to-install-rancher-on-osx</guid>
+      <description>
+
+&lt;p&gt;Rancher 是 Docker 编排解决方案的一种，好处在于可以做容器编排，网络，存储，负载均衡，还能够支持云服务器（比如 Amazon EC2/Azure/DigitalOcean）也能够兼容 Docker Swarm/Mesos/Kubernetes 等其他的解决方案。自它还没有发布 &lt;a href=&#34;http://rancher.com/announcing-rancher-1-0-ga/&#34;&gt;1.0&lt;/a&gt; 版本之前也有持续的关注。它自身还有个 &lt;a href=&#34;http://www.infoq.com/cn/news/2015/03/rancheros-docker-linux&#34;&gt;RancherOS&lt;/a&gt; 对于 CoreOS 也是一个不小的威胁。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://docs.rancher.com/img/rancher/rancher_overview_2.png&#34; alt=&#34;rancher-intro&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;由于它提供非常优化的后台管理界面，同时也提供 REST API，日常开发使用中异常的方便。如果非要说出一点不好的，那可能就是它对内存有点小要求：&lt;strong&gt;最小 1GB 内存&lt;/strong&gt;，因此如果想放在自己 VPS 上的童鞋需要评估下了。&lt;/p&gt;
+
+&lt;h2 id=&#34;mac-安装&#34;&gt;Mac 安装&lt;/h2&gt;
+
+&lt;p&gt;这块也趁着 &lt;a href=&#34;https://docs.docker.com/docker-for-mac/&#34;&gt;Docker for Mac&lt;/a&gt; 的好处，终于摆脱的 &lt;code&gt;docker-machine&lt;/code&gt; 的折磨，不用在依赖 VirtualBox，也不在每次装载 machine 的变量和查找虚拟机的 IP。映射的端口端口都通过 &lt;code&gt;localhost&lt;/code&gt; 访问。&lt;/p&gt;
+
+&lt;p&gt;Rancher 通过 Docker 来安装本来说是非常简单的，它分为服务端和客户端。本教程以 &lt;a href=&#34;http://docs.rancher.com/rancher/latest/en/installing-rancher/installing-server/&#34;&gt;Single Node&lt;/a&gt; 来讲解，不考虑 &lt;a href=&#34;http://docs.rancher.com/rancher/latest/en/installing-rancher/installing-server/multi-nodes/&#34;&gt;Multi Node&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;这块网上一直没有太好的解决方案，我看很多国外给出的&lt;a href=&#34;https://gist.github.com/axnux/09dc375d71398cbbee44ebd23ba35a08&#34;&gt;解决方案&lt;/a&gt;也比较麻烦，主要是由于 Docker for mac 使用的是 xhyve 作为轻量化的虚拟化方案，而 rancher 安装 server 端没有任何问题，在添加主机的时候需要通过 HTTP 来连接 server 端而失败。下面我来带大家用最简单的方案来拆解。无需任何第三方的辅助。&lt;/p&gt;
+
+&lt;h3 id=&#34;服务端&#34;&gt;服务端&lt;/h3&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;如果网速连接 docker hub 过慢可考虑使用代理设置或者国内的镜像服务，我这里分享一个 &lt;code&gt;https://docker.mirrors.ustc.edu.cn&lt;/code&gt;，可在 Docker -&amp;gt; Preferences&amp;hellip; -&amp;gt; Advanced -&amp;gt; Registry Mirror 添加。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ docker run -d --name rancher-server --restart=always -p 8080:8080 rancher/server
+$ docker logs -f rancher-server
+
+time=&amp;quot;2016-08-05T16:48:52Z&amp;quot; level=info msg=&amp;quot;Creating schema machine, roles [service]&amp;quot; id=1ds17
+time=&amp;quot;2016-08-05T16:48:53Z&amp;quot; level=info msg=&amp;quot;Creating schema machine, roles [project member owner]&amp;quot; id=1ds18
+time=&amp;quot;2016-08-05T16:48:53Z&amp;quot; level=info msg=&amp;quot;Creating schema machine, roles [admin user readAdmin]&amp;quot; id=1ds19
+time=&amp;quot;2016-08-05T16:48:53Z&amp;quot; level=info msg=&amp;quot;Creating schema machine, roles [readonly]&amp;quot; id=1ds20
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;看到如上类似的日志说明服务已经初始化完毕，通过浏览器访问 &lt;code&gt;http://localhost:8080&lt;/code&gt; 就可以看到后台管理界面。&lt;/p&gt;
+
+&lt;h3 id=&#34;客户端&#34;&gt;客户端&lt;/h3&gt;
+
+&lt;p&gt;先不着急继续页面操作，回到终端上执行如下命令获取 rancher-server 容器的 IP 地址备用&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ docker inspect --format &#39;{{ .NetworkSettings.IPAddress }}&#39; rancher-server
+172.17.0.2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;接着上面的步骤，在打开页面能看到 Add Host 按钮并点击对于弹出 “Host Registration URL” 选择 “Something else:” 在后面的输入框填入上面的 IP 和端口号 &lt;code&gt;http://172.17.0.2:8080&lt;/code&gt; 并保存。&lt;/p&gt;
+
+&lt;p&gt;之后就是给你一个客户端（部署主机）的选项，由于我们只添加本机作为部署主机使用，因此这里选择 Custom，其他不用任何设置，直接滑倒最底部找到一个执行 docker 命令的区域：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://ww2.sinaimg.cn/large/006tNbRwjw1f6jdkffiqhj31ee150k0c.jpg&#34; alt=&#34;add rancher host&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ docker run -d --privileged -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/rancher:/var/lib/rancher rancher/agent:v1.0.2 http://172.17.0.2:8080/v1/scripts/676576FFEC2212A68391:1470416400000:tfqxfdglHL6Qw8dpLVtbOesYY4
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;你会发现执行可能会报错：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;docker: Error response from daemon: Mounts denied:
+The path /var/lib/rancher
+is not shared from OS X and is not known to Docker.
+You can configure shared paths from Docker -&amp;gt; Preferences... -&amp;gt; File Sharing.
+See https://docs.docker.com/docker-for-mac/osxfs/#namespaces for more info.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;目前有可能是一个 Docker 的 Bug，因为 &lt;code&gt;/var/lib/rancher&lt;/code&gt; 是挂载到已经默认添加 &lt;code&gt;/private&lt;/code&gt; 文件共享，但是它还是报错，如果你在 Docker 设置的 File Sharing 添加的话它也不会让你添加，因此我们需要做一点小修改：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ docker run -d --privileged -v /var/run/docker.sock:/var/run/docker.sock -v ${HOME}/docker/rancher/var/lib/rancher:/var/lib/rancher rancher/agent:v1.0.2 http://172.17.0.2:8080/v1/scripts/676576FFEC2212A68391:1470416400000:tfqxfdglHL6Qw8dpLVtbOesYY4
+5cf22a10cf28b4182b6e205fa631146e86d67c3c9d86901ff8cf7ab087319a29
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;最后点击页面的 Close 后会跳转到 Host 的列表，你就能惊喜的发现添加成功了！&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://ww2.sinaimg.cn/large/006tNbRwjw1f6jdidcojkj315y0m4dik.jpg&#34; alt=&#34;rancher host&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;结尾&#34;&gt;结尾&lt;/h2&gt;
+
+&lt;p&gt;本篇只先解决这一个问题，更多使用的资料请看&lt;a href=&#34;http://rancher.hidocker.io/&#34;&gt;Rancher 实战红宝书&lt;/a&gt;。&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>深入浅出 Fastlane 一看你就懂</title>
-      <link>http://icyleaf.com/2016/07/fastlane-in-action/</link>
+      <link>http://icyleaf.com/2016/07/fastlane-in-action</link>
       <pubDate>Tue, 19 Jul 2016 20:12:07 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2016/07/fastlane-in-action/</guid>
-      <description>这是《 Fastlane - iOS 和 Android 的自动化构建工具》系列的第二篇。 本篇我想着重介绍 fastlane 本身的基本使用，这里使用 fastlane v1.98.0 作为演示版本。 系列索引 Fastlane - iOS 和 Android 的自动化构建工</description>
+      <guid>http://icyleaf.com/2016/07/fastlane-in-action</guid>
+      <description>
+
+&lt;p&gt;这是《 &lt;a href=&#34;https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/&#34;&gt;Fastlane - iOS 和 Android 的自动化构建工具&lt;/a&gt;》系列的第二篇。&lt;/p&gt;
+
+&lt;p&gt;本篇我想着重介绍 &lt;code&gt;fastlane&lt;/code&gt; 本身的基本使用，这里使用 fastlane v1.98.0 作为演示版本。&lt;/p&gt;
+
+&lt;h3 id=&#34;系列索引&#34;&gt;系列索引&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/&#34;&gt;Fastlane - iOS 和 Android 的自动化构建工具&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://icyleaf.com/2016/07/fastlane-in-action/&#34;&gt;深入浅出 Fastlane 一看你就懂&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://icyleaf.com/2017/03/match-in-action/&#34;&gt;你虐我千百遍，我待你如初恋，直到我遇到 match&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;命令行工具&#34;&gt;命令行工具&lt;/h2&gt;
+
+&lt;p&gt;安装之后默认会安装一个命令行工具 &lt;code&gt;fastlane&lt;/code&gt;，利用它可以初始化、执行任务、查看任务定义、查看可用的动作和动作的详细定义，甚至可以用它来创建自定义的动作、插件以及一些辅助功能。想了解的话可以先看看它的帮助：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ fastlane --help
+
+  fastlane
+
+  CLI for &#39;fastlane&#39; - The easiest way to automate building and releasing your iOS and Android apps
+
+        Run using `fastlane [platform] [lane_name]`
+        To pass values to the lanes use `fastlane [platform] [lane_name] key:value key2:value2`
+
+  Commands:
+    action                  Shows more information for a specific command
+    actions                 Lists all available fastlane actions
+    add_plugin              Add a new plugin to your fastlane setup
+    disable_crash_reporting Deprecated: fastlane doesn&#39;t use a crash reporter any more
+    docs                    Generate a markdown based documentation based on the Fastfile
+    enable_auto_complete    Enable tab auto completion
+    enable_crash_reporting  Deprecated: fastlane doesn&#39;t use a crash reporter any more
+    help                    Display global or [command] help documentation
+    init                    Helps you with your initial fastlane setup
+    install_plugins         Install all plugins for this project
+    lanes                   Lists all available lanes and shows their description
+    list                    Lists all available lanes without description
+    new_action              Create a new custom action for fastlane.
+    new_plugin              Create a new plugin that can be used with fastlane
+    run                     Run a fastlane one-off action without a full lane
+    search_plugins          Search for plugins, search query is optional
+    trigger                 Run a sepcific lane. Pass the lane name and optionally the platform first.
+    update_plugins          Update all plugin dependencies
+
+  Global Options:
+    --verbose
+    -h, --help           Display help documentation
+    -v, --version        Display version information
+
+  Author:
+    Felix Krause &amp;lt;fastlane@krausefx.com&amp;gt;
+
+  Website:
+    https://fastlane.tools
+
+  GitHub:
+    https://github.com/fastlane/fastlane
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;我会随着下面每个概念的解释和展开来配合上面的命令一起讲解。&lt;/p&gt;
+
+&lt;h2 id=&#34;生命周期&#34;&gt;生命周期&lt;/h2&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;执行顺序&lt;/th&gt;
+&lt;th&gt;方法名&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;before_all&lt;/td&gt;
+&lt;td&gt;在执行 lane 之前只执行一次&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;before_each&lt;/td&gt;
+&lt;td&gt;每次执行 lane 之前都会执行一次&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;lane&lt;/td&gt;
+&lt;td&gt;自定义的任务&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;after_each&lt;/td&gt;
+&lt;td&gt;每次执行 lane 之后都会执行一次&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;after_all&lt;/td&gt;
+&lt;td&gt;在执行 lane 成功结束之后执行一次&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;6&lt;/td&gt;
+&lt;td&gt;error&lt;/td&gt;
+&lt;td&gt;在执行上述情况任意环境报错都会中止并执行一次&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;以上的部分大家在上一篇已经见识过了，有些还没接触到，不用着急都会一一说明。&lt;/p&gt;
+
+&lt;h2 id=&#34;任务-lane&#34;&gt;任务（lane）&lt;/h2&gt;
+
+&lt;p&gt;正常情况下你可能只会是用到一种任务方法 &lt;code&gt;lane&lt;/code&gt; 但其实它会包含很多中高级用法。在文章的末尾会详细描述。&lt;/p&gt;
+
+&lt;h3 id=&#34;任务定义&#34;&gt;任务定义&lt;/h3&gt;
+
+&lt;p&gt;定义任务的方法类似于 rake 的 task，但使用上缺比前者要好用很多，见下表：&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;定义&lt;/th&gt;
+&lt;th&gt;是否必须&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;th&gt;备注&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;desc&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;false&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;方法描述&lt;/td&gt;
+&lt;td&gt;可多次使用打到换行的目的&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;name&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;true&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;方法名&lt;/td&gt;
+&lt;td&gt;符号化的方法名&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;options&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;false&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;方法参数&lt;/td&gt;
+&lt;td&gt;返回 Hash 类型&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;task&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;true&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;方法主体&lt;/td&gt;
+&lt;td&gt;参考 ruby 的方法代码且支持 ruby 代码&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;desc &#39;定义一个 build 方法&#39;
+desc &#39;参数 adhoc 判断是否为内测版本, 默认为 false&#39;
+desc &#39;fastlane build&#39;
+desc &#39;fastlane build adhoc:true&#39;
+lane :build do |options|
+  # task to do something
+  adhoc = options[:adhoc] || false
+  puts &amp;quot;adhoc: #{adhoc}&amp;quot;
+
+  gym(type: adhoc ? &#39;adhoc&#39; : &#39;appstore&#39;)
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;任务执行&#34;&gt;任务执行&lt;/h3&gt;
+
+&lt;p&gt;一般情况下它需要配合定义好的 lane 才能使用，刚刚我们定义的一个 build 方法，我们这里就试着执行一下吧。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 默认执行
+$ fastlane build
+# 传递参数
+$ fastlane build adhoc:true
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;任务互调&#34;&gt;任务互调&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;lane&lt;/code&gt; 其实可以理解为 &lt;code&gt;def&lt;/code&gt; 的别名，因此多个 lane 的话实际上是可以相互调用的，这个其实特别实用，这样其实我就可以把 cocoapods 的执行放到单独的 lane 里面而不是 &lt;code&gt;before_all&lt;/code&gt;，这样执行非构建的任务就不会执行不相关的任务或动作，因此 fastlane 而产生了一个私有任务用内部使用 &lt;code&gt;private_lane&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;
+default_platform :ios
+
+platform :ios do
+  desc &#39;构建前的准备工作&#39;
+  desc &#39;这是一个私有任务，仅供 Fastfile 内部 lane 调用使用&#39;
+  lane :prepare do
+    cocoapods
+    match
+  end
+
+  desc &#39;通用的构建任务&#39;
+  desc &#39;fastlane build&#39;
+  desc &#39;fastlane build type:adhoc&#39;
+  lane :build do |options|
+    # 调用上面 prepare 私有任务
+    prepare
+
+    case options[:type]
+    when &#39;adhoc&#39;
+      # 调用 下面 adhoc 任务
+      adhoc
+    else
+      # 调用下面 appstore 任务
+      appstore
+    end
+  end
+
+  desc &#39;构建 adhoc 任务&#39;
+  desc &#39;fastlane adhoc&#39;
+  lane :adhoc do
+    gym(type: &#39;adhoc&#39;)
+  end
+
+  desc &#39;构建 appstore 任务&#39;
+  desc &#39;fastlane appstore&#39;
+  lane :appstore do
+    gym(type: &#39;appstore&#39;)
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上面的任务中，&lt;code&gt;build&lt;/code&gt;/&lt;code&gt;adhoc&lt;/code&gt;/&lt;code&gt;appstore&lt;/code&gt; 都可以执行，只有 &lt;code&gt;prepare&lt;/code&gt; 是无法通过命令行外部执行，如果执行会直接报错：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ fastlane prepare
+[19:17:42]: You can&#39;t call the private lane &#39;prepare&#39; directly
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;任务返回值&#34;&gt;任务返回值&lt;/h3&gt;
+
+&lt;p&gt;和 ruby 的方法一致，每个 lane 最后一行会默认作为返回值（无需 &lt;a href=&#34;http://learnrubythehardway.org/book/ex21.html&#34;&gt;return&lt;/a&gt;）。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;
+lane :sum do |options|
+  options[:a] + optiona[:b]
+end
+
+lane :calculate do
+  value = sum(a: 3, b: 5)
+  puts value #=&amp;gt; 8
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;引入外部任务文件&#34;&gt;引入外部任务文件&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;Fastfile&lt;/code&gt; 除了自身以外还能够引入外部其他的 &lt;code&gt;Fastfile&lt;/code&gt; 并调用任务，只需要导入外部文件并使用特殊的方法标识即可：&lt;/p&gt;
+
+&lt;h4 id=&#34;1-import-导入本地文件&#34;&gt;1. import - 导入本地文件&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# 导入 lanes 目录的 AndroidFastfile
+import &amp;quot;lanes/AndroidFastfile&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;2-import-from-git-导入-git-仓库文件&#34;&gt;2. import_from_git - 导入 git 仓库文件&lt;/h4&gt;
+
+&lt;p&gt;可以直接引入 git 仓库的 Fastfile 文件是一个非常赞的功能，通过使用发现其实现原理是先把 git 仓库克隆下来后在引入相对于的文件，因此建议国内在没有网络加速（翻墙）的情况下尽量不用引入比较大的 git 仓库，否则使用会需要漫长的等待&amp;hellip;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# 导入 mozilla/firefox-ios 项目下 fastlane 下面 Fastfile 文件
+import_from_git(url: &#39;https://github.com/mozilla/firefox-ios&#39;)
+# 或者
+import_from_git(url: &#39;git@github.com:mozilla/firefox-ios.git&#39;,
+               path: &#39;fastlane/Fastfile&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;假若外部引入的 &lt;code&gt;Fastfile&lt;/code&gt; 有个方法是 &lt;strong&gt;build&lt;/strong&gt;，在命令行工具直接执行即可，如果外部和内部都有相同的任务名，执行会直接报错：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ fastlane ios build
+
+[!] Lane &#39;gradle&#39; was defined multiple times!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;如果发生这样的事情且你希望在主体 &lt;code&gt;Fastfile&lt;/code&gt; 也调用的话需要使用特殊的方法定义：&lt;code&gt;override_lane&lt;/code&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;注意：此方法只会覆盖外部的相同方法名的代码执行，目前暂时无法使用类似 ruby 的 &lt;code&gt;super&lt;/code&gt; 继承原由方法！&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;override_lane :build do
+  ...
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;任务查看&#34;&gt;任务查看&lt;/h3&gt;
+
+&lt;p&gt;只需执行下面这行命令就可以看到非私有任务的可用列表信息&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ fastlane lanes
+
+--------- ios---------
+----- fastlane ios build
+通用的构建任务
+fastlane build
+fastlane build type:adhoc
+
+----- fastlane ios adhoc
+构建 adhoc 任务
+
+----- fastlane ios appstore
+构建 appstore 任务
+
+Execute using `fastlane [lane_name]`
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;扩展-action&#34;&gt;扩展（Action）&lt;/h2&gt;
+
+&lt;p&gt;扩展是 fastlane 的杀手锏，重在集成了众多非常优秀好用的方法供 lane 内部使用，截至 fastlane v&lt;code&gt;1.98.0&lt;/code&gt; 版本以包含 175 个扩展，这个数量还在陆续增加中。扩展初期是由发起人一个人完成，后续的大部分都是社区共享，如果你发现没有你想要的扩展，可以先去 &lt;a href=&#34;https://github.com/fastlane/fastlane/issues?q=is%3Aopen+is%3Aissue+label%3Aaction&#34;&gt;issues&lt;/a&gt; 搜索下没有要么自己动手提交要么只有等待了.&lt;/p&gt;
+
+&lt;h3 id=&#34;扩展列表&#34;&gt;扩展列表&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ fastlane actions
++--------------------+-------------------------------------------------------------+------------------+
+|                                   Available fastlane actions                                        |
++--------------------+-------------------------------------------------------------+------------------+
+| Action             | Description                                                 | Author           |
++--------------------+-------------------------------------------------------------+------------------+
+| adb                | Run ADB Actions                                             | hjanuschka       |
+| adb_devices        | Get an Array of Connected android device serials            | hjanuschka       |
+| add_git_tag        | This will add an annotated git tag to the current branch    | Multiple         |
+...
++--------------------+-------------------------------------------------------------+------------------+
+  Total of 175 actions
+
+Get more information for one specific action using `fastlane action [name]`
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;扩展使用帮助&#34;&gt;扩展使用帮助&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 查看 adb 扩展的使用帮助
+$ fastlane action adb
+Loading documentation for adb:
+
++---------------------------------+
+|               adb               |
++---------------------------------+
+| Run ADB Actions                 |
+|                                 |
+| see adb --help for more details |
+|                                 |
+| Created by hjanuschka           |
++---------------------------------+
+
++----------+----------------------------------------------------------------------+-------------------+---------+
+|                                                  adb Options                                                  |
++----------+----------------------------------------------------------------------+-------------------+---------+
+| Key      | Description                                                          | Env Var           | Default |
++----------+----------------------------------------------------------------------+-------------------+---------+
+| serial   | Android serial, which device should be used for this command         | FL_ANDROID_SERIAL |         |
+| command  | All commands you want to pass to the adb command, e.g. `kill-server` | FL_ADB_COMMAND    |         |
+| adb_path | The path to your `adb` binary                                        | FL_ADB_PATH       | adb     |
++----------+----------------------------------------------------------------------+-------------------+---------+
+
++-------------------------------+
+|       adb Return Value        |
++-------------------------------+
+| The output of the adb command |
++-------------------------------+
+
+More information can be found on https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Actions.md
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;创建自定义扩展&#34;&gt;创建自定义扩展&lt;/h3&gt;
+
+&lt;p&gt;通过内置的命令创建你需要的扩展，扩展名必须是全部小写且只能使用下划线分割词组，生成好的扩展文件会在 &lt;code&gt;fastlane/actions&lt;/code&gt; 目录找到:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ fastlane new_action
+Must be lower case, and use a &#39;_&#39; between words. Do not use &#39;.&#39;
+examples: &#39;testflight&#39;, &#39;upload_to_s3&#39;
+Name of your action: hello
+[15:33:15]: Created new action file &#39;./fastlane/actions/hello.rb&#39;. Edit it to implement your custom action.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这块会占比较大的篇幅，尽情期待后续的展开。&lt;/p&gt;
+
+&lt;h3 id=&#34;引入外部扩展&#34;&gt;引入外部扩展&lt;/h3&gt;
+
+&lt;p&gt;这块其实也有两种方法可以引入，文件引入是官方教程提供的方法，第二种是我个人尝试出来的，第三种是最近版本才官方支持的。&lt;/p&gt;
+
+&lt;h4 id=&#34;1-本地文件引入&#34;&gt;1. 本地文件引入&lt;/h4&gt;
+
+&lt;p&gt;自定义的扩展其实也算是本地文件引入的一种形式，当然位于其他路径的通过指定方法也能做到&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# 引入项目根目录 script/share_actions 路径
+actions_path &#39;../script/share_actions&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;2-rubygem-引入&#34;&gt;2. rubygem 引入&lt;/h4&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;不再建议使用本方法，请看第三种插件引入。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;我在团队内部创建了一个自定义的扩展，仅限于团队内部使用而无法贡献社区，我只能采取封装成 ruby gem 包，通过 ruby 的 &lt;code&gt;require&lt;/code&gt; 方式引入，最终可以完美支持，目前已在项目中使用大半年之久。最重要的是我是开源的：&lt;a href=&#34;https://github.com/icyleaf/fastlane-qyer&#34;&gt;fastlane-qyer&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# 首先安装需要的 rubygem: gem install fastlane-qyer
+require &#39;fastlane-qyer&#39;
+
+lane :upload do
+  qyer(api_key: &#39;[token]&#39;)
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;注意，使用 rubygem 引入的无法在 fastlane actions 中显示出来，也无法使用 fastlane action [name] 查看使用帮助。我猜想一是官方没有这样提供思路，二是就算你引入了 gem 也不是特别好判断里面的文件结构。&lt;/p&gt;
+
+&lt;h4 id=&#34;3-插件引入&#34;&gt;3. 插件引入&lt;/h4&gt;
+
+&lt;p&gt;我注意到 &lt;a href=&#34;https://github.com/fastlane/fastlane/releases/tag/1.93.0&#34;&gt;1.93.0&lt;/a&gt; 增加了插件机制，很好的解决第二种出现的一些问题。大概看了一下主要是采用 &lt;code&gt;Gemfile&lt;/code&gt; 的方式使用 &lt;code&gt;Pluginfile&lt;/code&gt; 维护了引入第三方插件列表。实现原理还是属于第二种方法。&lt;/p&gt;
+
+&lt;p&gt;通过 &lt;code&gt;fastlane search_plugins&lt;/code&gt; 查看当前支持的插件，并使用 &lt;code&gt;fastlane add_plugins [name]&lt;/code&gt; 引入。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ fastlane search_plugins
+[16:04:33]: Listing all available fastlane plugins
+
++--------------------------+---------------------------------------------------+-----------+
+|                                Available fastlane plugins                                |
++--------------------------+---------------------------------------------------+-----------+
+| Name                     | Description                                       | Downloads |
++--------------------------+---------------------------------------------------+-----------+
+| ruby                     | Useful fastlane actions for Ruby projects         | 782       |
+| versioning               | Allows to work set/get app version directly       | 758       |
+|                          | to/from Info.plist                                |           |
+| branding                 | Add some branding to your fastlane output         | 716       |
+| instrumented_tests       | New action to run instrumented tests for android. | 590       |
+|                          | This basically creates and boots an emulator      |           |
+|                          | before running an gradle commands so that you can |           |
+|                          | run instrumented tests against that emulator.     |           |
+|                          | After the gradle command is executed, the avd     |           |
+|                          | gets shut down and deleted. This is really        |           |
+|                          | helpful on CI services, keeping them clean and    |           |
+|                          | always having a fresh avd for testing.            |           |
+| xamarin_build            | Build xamarin android\ios projects                | 582       |
+| appicon                  | Generate required icon sizes and iconset from a   | 509       |
+|                          | master application icon.                          |           |
+...
+| download_file            | This action downloads a file from an HTTP/HTTPS   | 171       |
+|                          | url (e.g. ZIP file) and puts it in a destination  |           |
+|                          | path                                              |           |
++--------------------------+---------------------------------------------------+-----------+
+
+# 添加 sentry 插件
+$ fastlane add_plugin sentry
+[16:16:23]: Plugin &#39;fastlane-plugin-sentry&#39; was added to &#39;./fastlane/Pluginfile&#39;
+[16:16:23]: It looks like fastlane plugins are not yet set up for this project.
+[16:16:23]: fastlane will create a new Gemfile at path &#39;Gemfile&#39;
+[16:16:23]: This change is neccessary for fastlane plugins to work
+Should fastlane modify the Gemfile at path &#39;Gemfile&#39; for you? (y/n)
+y
+[16:16:29]: Successfully modified &#39;Gemfile&#39;
+[16:16:29]: Make sure to commit your Gemfile, Gemfile.lock and Pluginfile to version control
+Installing plugin dependencies...
+Successfully installed plugins
+
+$ cat fastlane/Pluginfile
+# Autogenerated by fastlane
+#
+# Ensure this file is checked in to source control!
+
+gem &#39;fastlane-plugin-sentry&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;更详细的继续期待后续报道，我要挖坑无数。&lt;/p&gt;
+
+&lt;h3 id=&#34;扩展的命令行调用&#34;&gt;扩展的命令行调用&lt;/h3&gt;
+
+&lt;p&gt;社区的力量果然是很强大的，陆续添加了那么多功能，早期用户表示不开心！嗯，由于社区的呼声和贡献目前可以通过命令调用扩展：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 使用 notification 扩展发送一个通知消息
+$ fastlane run notification message:&amp;quot;Hi macOS&amp;quot; title:&amp;quot;Fastlane Notification&amp;quot;
+[15:58:05]: --------------------------
+[15:58:05]: --- Step: notification ---
+[15:58:05]: --------------------------
+[15:58:05]: Result: true
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;辅助功能&#34;&gt;辅助功能&lt;/h2&gt;
+
+&lt;h3 id=&#34;自动更新&#34;&gt;自动更新&lt;/h3&gt;
+
+&lt;p&gt;fastlane 提供一个方法 &lt;code&gt;update_fastlane&lt;/code&gt; 用于对于自身的版本检查和更新，这个第一篇文章我也有提到过。它其实一个是一个扩展，使用 &lt;code&gt;fastlane action update_fastlane&lt;/code&gt; 能够看到使用帮助。它有一个参数是可以指定检查特定的 fastlane 工具并进行更新，但其实它是使用 rubygems 进行对 gem 的更新，因此这块其实可以传入任何需要检查并更新的 gem：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;update_fastlane(tools:&#39;fastlane,gym,match,cocoapods,rest-client&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;环境变量&#34;&gt;环境变量&lt;/h3&gt;
+
+&lt;p&gt;从 fastlane 的设计体系上在各个地方都加入了环境变量的支持，每个扩展的参数、以及扩展需要共享给其他扩展和任务读取的数据都是通过环境变量获取，如下是我收集的比较常用的列表：&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;环境变量&lt;/th&gt;
+&lt;th&gt;来源&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;th&gt;备注&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;FASTLANE_USER&lt;/td&gt;
+&lt;td&gt;credentials_manager&lt;/td&gt;
+&lt;td&gt;Apple 开发者账户名&lt;/td&gt;
+&lt;td&gt;验证通过后会保存 Keychain&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;FASTLANE_PASSWORD&lt;/td&gt;
+&lt;td&gt;credentials_manager&lt;/td&gt;
+&lt;td&gt;Apple 开发者账户密码&lt;/td&gt;
+&lt;td&gt;验证通过后会保存 Keychain&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;FASTLANE_TEAM_ID&lt;br /&gt;CERT_TEAM_ID&lt;/td&gt;
+&lt;td&gt;produce&lt;br /&gt;sigh&lt;/td&gt;
+&lt;td&gt;Apple 团队 ID&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;DELIVER_USER&lt;br \&gt;PRODUCE_USERNAME&lt;/td&gt;
+&lt;td&gt;deliver&lt;br /&gt;produce&lt;/td&gt;
+&lt;td&gt;iTunesConnect 账户名&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;DELIVER_PASSWORD&lt;/td&gt;
+&lt;td&gt;deliver&lt;/td&gt;
+&lt;td&gt;iTunesConnect 账户密码&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;MATCH_PASSWORD&lt;/td&gt;
+&lt;td&gt;match&lt;/td&gt;
+&lt;td&gt;证书加/解密密码&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;FASTLANE_XCODE_LIST_TIMEOUT&lt;/td&gt;
+&lt;td&gt;fastlane_core&lt;/td&gt;
+&lt;td&gt;获取 iOS Scheme 的超时时间&lt;/td&gt;
+&lt;td&gt;默认 10s&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</description>
     </item>
     
     <item>
       <title>Gitlab API Wrapper for Crystal</title>
-      <link>http://icyleaf.com/2016/07/gitlab-api-wrapper-for-crystal/</link>
+      <link>http://icyleaf.com/2016/07/gitlab-api-wrapper-for-crystal</link>
       <pubDate>Mon, 11 Jul 2016 20:41:26 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2016/07/gitlab-api-wrapper-for-crystal/</guid>
-      <description>Gitlab.cr gitlab.cr 是我最近课下练习的新语言 Crystal 写的 gitlab 包，方法和功能和 gitlab ruby 版本基本类似。 目前已经完成了大部分 API 的封装，在一边熟悉 crystal 的同时一边补充，其中肯定有一</description>
+      <guid>http://icyleaf.com/2016/07/gitlab-api-wrapper-for-crystal</guid>
+      <description>
+
+&lt;h2 id=&#34;gitlab-cr&#34;&gt;Gitlab.cr&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/icyleaf/gitlab.cr&#34;&gt;gitlab.cr&lt;/a&gt; 是我最近课下练习的新语言 &lt;a href=&#34;http://crystal-lang.org/&#34;&gt;Crystal&lt;/a&gt; 写的 gitlab 包，方法和功能和 &lt;a href=&#34;https://github.com/NARKOZ/gitlab&#34;&gt;gitlab ruby 版本&lt;/a&gt;基本类似。&lt;/p&gt;
+
+&lt;p&gt;目前已经完成了大部分 API 的封装，在一边熟悉 crystal 的同时一边补充，其中肯定有一些性能问题和坑，毕竟没有任何依赖都是自己实现的。比较坑爹的是官方手册太简单，也没有实时跟进，能够好好翻阅的其实也就是官方的 API 文档和源码。不过 crystal 还算比较人性化的一面，默认集成了类似 rspce 的单元测试（简化版）和依赖库管理 shards（类似 bundler）和生成文档的工具。通过 &lt;a href=&#34;https://travis-ci.org/``&#34;&gt;travis-ci&lt;/a&gt; 会自动生成每次 git push 的变化。&lt;/p&gt;
+
+&lt;p&gt;API 文档：&lt;a href=&#34;http://icyleaf.github.io/gitlab.cr/&#34;&gt;http://icyleaf.github.io/gitlab.cr/&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;为什么学习-crystal&#34;&gt;为什么学习 Crystal？&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://cloud.githubusercontent.com/assets/209371/13291809/022e2360-daf8-11e5-8be7-d02c1c8b38fb.png&#34; alt=&#34;crystal logo&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Ruby 的缺点众所周知的一个点就是慢，虽说用它的人都不在乎主要是用的爽，so what！这一致命的坑其实默默的被承受着，很多的 Ruby 开发者也在一直寻觅着新的更高性能的语言。比如 Gitlab 的 Build Runner 使用 Go 实现了。Rails 的核心开发者基于多年对 Ruby 的怨念而开发的 Elixir，还有 Firefox 主导的 Rust 也吸引了不少目光。有那么多选择为什么偏偏选了这么一个没有听说过的语言？&lt;/p&gt;
+
+&lt;h2 id=&#34;语言优势&#34;&gt;语言优势&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;类似 Ruby 风格语法（但舍弃了一些动态特性）&lt;/li&gt;
+&lt;li&gt;一切都是对象（和 Ruby 一样）&lt;/li&gt;
+&lt;li&gt;自动类型推荐和静态类型检查&lt;/li&gt;
+&lt;li&gt;支持方法重载&lt;/li&gt;
+&lt;li&gt;易用的 C 语言库的绑定机制&lt;/li&gt;
+&lt;li&gt;基于 LLVM（目前不支持 Windows）&lt;/li&gt;
+&lt;li&gt;编译性语言，可以打包二进制包&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;仅仅是这些可能大家觉得没什么，其实对我来说也不够冲击力，最重要的关键是在我从订阅的 Ruby Weekly 周刊看到 sidekiq 的作者用 crystal 重新实现了核心部分发的&lt;a href=&#34;http://www.mikeperham.com/2016/05/25/sidekiq-for-crystal/&#34;&gt;博文分享&lt;/a&gt;，提到的一点：&lt;strong&gt;至少是比 ruby 2.3 大部分代码要快 3-5 倍，减少至少 3 倍的内存占用&lt;/strong&gt;。怀着怀疑的态度我大概的研究了这个语言，确实看到了新希望。&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;库&lt;/th&gt;
+&lt;th&gt;语言&lt;/th&gt;
+&lt;th&gt;并发量&lt;/th&gt;
+&lt;th&gt;平均响应时间&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/sdogruyol/fast-http-server&#34;&gt;fast-http-server&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;Crystal&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;18348.47rpm&lt;/td&gt;
+&lt;td&gt;8.67ms&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/indexzero/http-server&#34;&gt;http-server&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;Node.js&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;2105.55rpm&lt;/td&gt;
+&lt;td&gt;47.92ms&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;https://docs.python.org/2/library/simplehttpserver.html&#34;&gt;SimpleHTTPServer&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;Python&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;785.14rpm&lt;/td&gt;
+&lt;td&gt;1.91ms&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;还有一份一直再更新维护的语言之间的&lt;a href=&#34;https://github.com/kostya/benchmarks&#34;&gt;评测&lt;/a&gt;仅供参考，看着里面的数据还是蛮吸引人的。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;评测数据来源: &lt;a href=&#34;http://www.akitaonrails.com/2016/05/31/flirting-with-crystal-a-rubyist-perspective&#34;&gt;Flirting with Crystal, a Rubyist Perspective&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;语言友好&#34;&gt;语言友好&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# File: server.cr
+require &amp;quot;http/server&amp;quot;
+
+server = HTTP::Server.new(8080) do |context|
+  context.response.content_type = &amp;quot;text/plain&amp;quot;
+  context.response.print &amp;quot;Hello world! The time is #{Time.now}&amp;quot;
+end
+
+puts &amp;quot;Listening on http://0.0.0.0:8080&amp;quot;
+server.listen
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;看着是不是是不是和 Ruby 差不多。通过命令编译成二进制在运行试试：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ crystal build --release server.cr
+$ ./server
+Listening on http://0.0.0.0:8080
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;macOS 用户可以通过 brew 进行安装 &lt;code&gt;brew install crystal-lang&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;语言限制&#34;&gt;语言限制&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;没有了强大的黑魔法，尤其是针对 &lt;code&gt;eval&lt;/code&gt; 和 &lt;code&gt;send&lt;/code&gt; 两个的缺失。提供了 macro 的方式可以实现部分动态定义方法的机制。&lt;/li&gt;
+&lt;li&gt;require 引入必须放置在头部（crystal 0.7.7 以上版本的限制）&lt;/li&gt;
+&lt;li&gt;有待优化的 gc 机制（目前采用的是 &lt;a href=&#34;https://zh.wikipedia.org/wiki/%E8%B2%9D%E5%A7%86%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8&#34;&gt;Hans Boehm GC&lt;/a&gt;）&lt;/li&gt;
+&lt;li&gt;还在开发中的语言，API 变化很快&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;最后想说的话&#34;&gt;最后想说的话&lt;/h2&gt;
+
+&lt;p&gt;总体来说是一个让人眼前一亮的语言，很是期待后续的进化。我相信 sidekiq 作者的那篇博文也让无数开发者看到了新大陆。目前项目也在&lt;a href=&#34;https://salt.bountysource.com/teams/crystal-lang&#34;&gt;捐献&lt;/a&gt;中，如果你对它感兴趣不妨慷慨的动动自己的钱包，Ruby 的创始人 matz 直接捐献了 $500。&lt;/p&gt;
+
+&lt;h2 id=&#34;相关资源&#34;&gt;相关资源&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;作者 Twitter: &lt;a href=&#34;https://twitter.com/asterite&#34;&gt;https://twitter.com/asterite&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Awesome Crystal: &lt;a href=&#34;http://awesome-crystal.com/&#34;&gt;http://awesome-crystal.com/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Sidekiq for Crystal: &lt;a href=&#34;http://www.mikeperham.com/2016/05/25/sidekiq-for-crystal/&#34;&gt;http://www.mikeperham.com/2016/05/25/sidekiq-for-crystal/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Test Driving Sidekiq and Crystal: &lt;a href=&#34;http://www.mikeperham.com/2016/06/14/test-driving-sidekiq-and-crystal/&#34;&gt;http://www.mikeperham.com/2016/06/14/test-driving-sidekiq-and-crystal/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Flirting with Crystal, a Rubyist Perspective: &lt;a href=&#34;http://www.akitaonrails.com/2016/05/31/flirting-with-crystal-a-rubyist-perspective&#34;&gt;http://www.akitaonrails.com/2016/05/31/flirting-with-crystal-a-rubyist-perspective&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
     </item>
     
     <item>
       <title>Fastlane - iOS 和 Android 的自动化构建工具</title>
-      <link>http://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/</link>
+      <link>http://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android</link>
       <pubDate>Mon, 11 Jul 2016 12:36:07 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/</guid>
-      <description>系列索引 Fastlane - iOS 和 Android 的自动化构建工具 深入浅出 Fastlane 一看你就懂 你虐我千百遍，我待你如初恋，直到我遇到 match 前言 这篇文章整理了很久，发现在一篇文章里无法一</description>
+      <guid>http://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android</guid>
+      <description>
+
+&lt;h3 id=&#34;系列索引&#34;&gt;系列索引&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/&#34;&gt;Fastlane - iOS 和 Android 的自动化构建工具&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://icyleaf.com/2016/07/fastlane-in-action/&#34;&gt;深入浅出 Fastlane 一看你就懂&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://icyleaf.com/2017/03/match-in-action/&#34;&gt;你虐我千百遍，我待你如初恋，直到我遇到 match&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+
+&lt;p&gt;这篇文章整理了很久，发现在一篇文章里无法一一讲述和全面的覆盖，初步打算是把这个做成一个系列，想到哪里就写到哪里，如果恰好有读者爱戴并有一些建议反馈，我也会根据大家的需要调整内容的方向和深度。论美剧的编剧的重要性(笑)。&lt;/p&gt;
+
+&lt;h2 id=&#34;初次邂逅&#34;&gt;初次邂逅&lt;/h2&gt;
+
+&lt;p&gt;初时 fastlane 的时候是去年的 11 月份，看到大就感觉遇到了神器一般的惊喜。它一个针对于 iOS 和 Android（后来才支持的）全方位自动化流程的工具，请看下图&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://fastlane.tools/assets/img/intro-fastlane-tree.png&#34; alt=&#34;fastlane-flow&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;流程图中每个环节都是独立的工具，每个工具只干一件事情，分工非常的明确。以下是我在团队项目中用到的：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/fastlane/fastlane/tree/master/scan&#34;&gt;scan&lt;/a&gt; 自动化测试工具，很好的封装了 Unit Test&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/fastlane/fastlane/tree/master/sigh&#34;&gt;sigh&lt;/a&gt; 针对于 iOS 项目开发证书和 Provision file 的下载工具&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/fastlane/fastlane/tree/master/match&#34;&gt;match&lt;/a&gt; 同步团队每个人的证书和 Provision file 的超赞工具，规范&lt;a href=&#34;https://codesigning.guide/&#34;&gt;代码签名&lt;/a&gt;（虽然里面有些设定比较损）&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/fastlane/fastlane/tree/master/gym&#34;&gt;gym&lt;/a&gt; 针对于 iOS 打包和签名的自动化工具，完爆 &lt;code&gt;xctool&lt;/code&gt;，而 &lt;code&gt;shenzhen&lt;/code&gt; 也放弃维护&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/icyleaf/fastlane-qyer&#34;&gt;qyer&lt;/a&gt; 团队定制的工具，用于检测包和上传到自己的内部分发平台&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/fastlane/fastlane&#34;&gt;fastlane&lt;/a&gt; 简单理解就是控制整体流程和实现的框架容器&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;利用目前支持的工具可以做所有包含自动化和可持续化构建的每个环节，比如单元测试、截图、分发渠道、上传元数据和 ipa 包提交审核等等。看到这这些是不是很兴奋？
+反正我看到之后就像黑夜看到了光明，果断抛弃自己维护的脚本。&lt;/p&gt;
+
+&lt;h2 id=&#34;基本构成&#34;&gt;基本构成&lt;/h2&gt;
+
+&lt;p&gt;Fastlane 提供的流程的众多工具都是可以独立存在和使用（提供 cli 命令），也可以统一由 fastlane 来控制。它在使用中提出了两个概念：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;action&lt;/code&gt;: Fastlane 的插件，截至当前内置 165 个至多，不过每个动作的颗粒度大小不一。&lt;a href=&#34;https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Actions.md&#34;&gt;查看详情&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;lane&lt;/code&gt;: Fastlane 的任务（或者可以理解为命令），一个可以包含多个 lanes，通过 &lt;code&gt;fastlane&lt;/code&gt; cli 传入制定的 lane 来执行。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;光说不干假把式，看法宝：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;lane :adhoc do
+  # build version 自动加一
+  increment_build_number
+  # 执行 pod install
+  cocoapods
+  # 调用 facebook 的 xctool 进行单元测试
+  xctool
+  # 对模拟器运行的 App 进行截图
+  snapshot
+  # 安装团队证书和 profiles
+  match
+  # 上传 App 元数据和签名的 ipa 到 iTunes Conneects
+  deliver
+  # 把截图套进一个设备外壳
+  frameit
+  # 允许自定义的脚本文件
+  sh &amp;quot;./customScript.sh&amp;quot;
+  # 发消息到 slack
+  slack
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;
+
+&lt;p&gt;工具的起源本身是专门针对 iOS 项目，因此目前依赖于 macOS 10.9 以上系统，Ruby 是一个众所周知的轮子发明者，很多知名的工具都是它开发的，fastlane 也不例外。以下是依赖环境：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;macOS 10.9+&lt;/li&gt;
+&lt;li&gt;Ruby 2.0+ (推荐 rvm 或 rbenv 安装)&lt;/li&gt;
+&lt;li&gt;Xcode + command line tools&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;以上依赖配置好之后就可以通过 rubygem 进行安装：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ [sudo] gem install fastlane
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;fastlane 默认会把核心工具都会进行安装，需要大家耐心等待一会&amp;hellip;&lt;/p&gt;
+
+&lt;h2 id=&#34;初始化&#34;&gt;初始化&lt;/h2&gt;
+
+&lt;p&gt;有两种方法可以初始化，一种是通过命令，一种是自己创建指定的（至少包含一个）约束文件 &lt;code&gt;Fastfile&lt;/code&gt;。首先我先介绍大家使用命令初始化:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 切换只你开发的 iOS 项目根目录
+$ cd to/your/ios/project
+$ fastlane init
+[11:46:34]: Detected iOS/Mac project in current directory...
+[11:46:34]: This setup will help you get up and running in no time.
+[11:46:34]: fastlane will check what tools you&#39;re already using and set up
+[11:46:34]: the tool automatically for you. Have fun!
+[11:46:34]: Created new folder &#39;./fastlane&#39;.
+...
+Your Apple ID (e.g. fastlane@krausefx.com): xxx@gmail.com
+[11:46:59]: Verifying if app is available on the Apple Developer Portal and iTunes Connect...
+[11:46:59]: Starting login with user &#39;xxx@gmail.com&#39;
+Multiple teams found on the Developer Portal, please enter the number of the team you want to use:
+1) XXXXXXXXXX &amp;quot;XXXXXXXXXX&amp;quot; (In-House)
+2) YYYYYYYYYY &amp;quot;YYYYYYYYYY&amp;quot; (Company/Organization)
++----------------+----------------------------------------------------------------------------+
+|                                       Detected Values                                       |
++----------------+----------------------------------------------------------------------------+
+| Apple ID       | xxx@gmail.com                                                              |
+| App Name       | Hello Fastlane                                                             |
+| App Identifier | com.icyleaf.demo.HelloFastlane                                             |
+| Workspace      | /Users/icyleaf/Development/iOS/HelloFastlane.xcworkspace                   |
++----------------+----------------------------------------------------------------------------+
+
+[11:48:36]: This app identifier doesn&#39;t exist on iTunes Connect yet, it will be created for you
+Please confirm the above values (y/n) n
+App Identifier (com.krausefx.app): com.icyleaf.demo.HelloFastlane
+[11:50:04]: Created new file &#39;./fastlane/Appfile&#39;. Edit it to manage your preferred app metadata information.
+Optional: The scheme name of your app (If you don&#39;t need one, just hit Enter): AppDemo
+[11:50:40]: &#39;snapshot&#39; not enabled.
+[11:50:40]: &#39;cocoapods&#39; enabled.
+[11:50:40]: &#39;carthage&#39; not enabled.
+[11:50:40]: Created new file &#39;./fastlane/Fastfile&#39;. Edit it to manage your own deployment lanes.
+[11:50:40]: fastlane will send the number of errors for each action to
+[11:50:40]: https://github.com/fastlane/enhancer to detect integration issues
+[11:50:40]: No sensitive/private information will be uploaded
+[11:50:40]: Successfully finished setting up fastlane
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这部分会进行联网，并提示输入你的 Apple ID 来验证你的应用是否存在（没有也会帮你自动创建）并获取相应的关键信息，通过一系列的流程下来把获取的信息会创建一个 &lt;code&gt;fastlane&lt;/code&gt; 目录
+并并写入相应的文件（如果某些信息没有填写会忽略某些文件的生成）：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Fastfile&lt;/code&gt;: 核心文件，主要用于 cli 调用和处理具体的流程，&lt;a href=&#34;https://github.com/fastlane/fastlane/tree/master/fastlane/docs#fastfile&#34;&gt;了解详情&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Appfile&lt;/code&gt;: 从 Apple Developer Portal 获取和项目相关的信息，&lt;a href=&#34;https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Appfile.md&#34;&gt;了解详情&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Deliverfile&lt;/code&gt;: 从 iTunes Connect 获取和项目相关的信息，&lt;a href=&#34;https://github.com/fastlane/fastlane/blob/master/deliver/Deliverfile.md&#34;&gt;了解详情&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;抛开其他的几个文件先不说，大家先把注意力放到刚创建好的 &lt;code&gt;Fastfile&lt;/code&gt; 文件上面（可能有变化，仅作参考），如果大家对 Ruby 有了解的话，它定义的 DSL 语言非常类似 &lt;a href=&#34;https://github.com/ruby/rake&#34;&gt;rake&lt;/a&gt;，但流程上有参考的 &lt;a href=&#34;https://github.com/rspec/rspec&#34;&gt;rspec&lt;/a&gt;，一旦不满足需求还可以使用 Ruby 代码来实现。单凭 DSL 语言来说就算对于 Ruby 没有基础的也能很快掌握，大多都是比较简单易懂的语法。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# Customise this file, documentation can be found here:
+# https://github.com/fastlane/fastlane/tree/master/fastlane/docs
+# All available actions: https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Actions.md
+# can also be listed using the `fastlane actions` command
+
+# Change the syntax highlighting to Ruby
+# All lines starting with a # are ignored when running `fastlane`
+
+# If you want to automatically update fastlane if a new version is available:
+# update_fastlane
+
+# This is the minimum version number required.
+# Update this, if you use features of a newer version
+fastlane_version &amp;quot;1.95.0&amp;quot;
+
+default_platform :ios
+
+platform :ios do
+  # 执行所有命令前都会先执行这里
+  before_all do
+    # ENV[&amp;quot;SLACK_URL&amp;quot;] = &amp;quot;https://hooks.slack.com/services/...&amp;quot;
+    cocoapods
+  end
+
+  desc &amp;quot;Runs all the tests&amp;quot;
+  lane :test do
+    scan
+  end
+
+  desc &amp;quot;Submit a new Beta Build to Apple TestFlight&amp;quot;
+  desc &amp;quot;This will also make sure the profile is up to date&amp;quot;
+  lane :beta do
+    # match(type: &amp;quot;appstore&amp;quot;) # more information: https://codesigning.guide
+    gym(scheme: &amp;quot;AppDemo&amp;quot;) # Build your app - more options available
+    pilot
+
+    # sh &amp;quot;your_script.sh&amp;quot;
+    # You can also use other beta testing services here (run `fastlane actions`)
+  end
+
+  desc &amp;quot;Deploy a new version to the App Store&amp;quot;
+  lane :appstore do
+    # match(type: &amp;quot;appstore&amp;quot;)
+    # snapshot
+    gym(scheme: &amp;quot;AppDemo&amp;quot;) # Build your app - more options available
+    deliver(force: true)
+    # frameit
+  end
+
+  # 你可以定义属于自己的 lane（任务）
+  lane :hello do
+    puts &amp;quot;hello world&amp;quot;
+  end
+
+  # 仅当上述流程全部执行成功后才会走这里。其实应该定义为 after_success
+  after_all do |lane|
+    # slack(
+    #   message: &amp;quot;Successfully deployed new App Update.&amp;quot;
+    # )
+  end
+
+  # 如果流程发生异常会走这里并终止
+  error do |lane, exception|
+    # slack(
+    #   message: exception.message,
+    #   success: false
+    # )
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;通过上面的注解，我想大家对它已经有了初步的了解，那么定义完之后该如何执行呢？回到刚才的终端（关闭了？那再切换到刚才的 iOS 项目的根目录）：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ fastlane ios hello
+[11:56:24]: -------------------------------------------------
+[11:56:24]: --- Step: Verifying required fastlane version ---
+[11:56:24]: -------------------------------------------------
+[11:56:24]: fastlane version valid
+[11:56:24]: ------------------------------
+[11:56:24]: --- Step: default_platform ---
+[11:56:24]: ------------------------------
+[11:56:24]: Driving the lane &#39;ios hello&#39; 🚀
+[11:56:24]: -----------------------
+[11:56:24]: --- Step: cocoapods ---
+[11:56:24]: -----------------------
+[11:56:24]: $ pod install
+...
+[11:56:28]: hello world
+
++------+-------------------------------------+-------------+
+|                     fastlane summary                     |
++------+-------------------------------------+-------------+
+| Step | Action                              | Time (in s) |
++------+-------------------------------------+-------------+
+| 1    | Verifying required fastlane version | 0           |
+| 2    | default_platform                    | 0           |
+| 3    | cocoapods                           | 4           |
++------+-------------------------------------+-------------+
+
+[11:56:28]: fastlane.tools finished successfully 🎉
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;哒哒！一个简单的任务执行完毕！&lt;/p&gt;
+
+&lt;p&gt;如果大家注意观察上面的文件可能注意到一些小细节：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# 自动更新 fastlane 工具，需要 rubygems &amp;gt;= 2.1.0
+update_fastlane
+
+# 最低兼容版本，由于 fastlane 还是逐步健壮的阶段更新速度还是蛮快的，
+# 为了防止新特性在旧版本的不支持会强制设置一个最低兼容版本
+# 不过工具特别贴心的会在每次执行之后会检查是否有新版本，如果有会在最后末尾追加新版本提醒
+fastlane_version &amp;quot;1.95.0&amp;quot;
+
+# 默认使用平台是 ios，也就是说文件可以定义多个平台，
+# 通过上述执行的命令也能看出来是执行的 ios 平台下面的 hello 任务。
+# 这个的作用是可以在执行 fastlane 的时候省略 ios，不信你执行 fastlane hello 试试。
+default_platform :ios
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;android-的支持&#34;&gt;Android 的支持&lt;/h2&gt;
+
+&lt;p&gt;这个的支持我觉得关键是社区的呼声太大，加上贡献者的热情（我提交过许多 issues 和个别 PL，响应非常的迅速）很快就加上了其支持，
+但具体的特性不是特别多，主要是对于 &lt;code&gt;gradle&lt;/code&gt; 的封装，我先不做展开介绍，大家可以先看看&lt;a href=&#34;https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Android.md&#34;&gt;官方文档&lt;/a&gt;，如果后续有特别不明白的地方我在做具体的讲解。&lt;/p&gt;
+
+&lt;p&gt;今天就先写到这里后续我会继续整理更多的使用指南和实战范例共大家参考，最后给大家附赠官方给大家的一些&lt;a href=&#34;https://github.com/fastlane/examples&#34;&gt;范例&lt;/a&gt;。&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>Hexo 主题推荐 NexT</title>
-      <link>http://icyleaf.com/2015/12/hexo-theme-next/</link>
+      <link>http://icyleaf.com/2015/12/hexo-theme-next</link>
       <pubDate>Thu, 17 Dec 2015 14:41:00 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2015/12/hexo-theme-next/</guid>
-      <description>这是我见过配备最完善的 hexo 主题，支持丰富的配置，和 hexo 一样完善的文档。兼容国内外的扩展服务，最重要的主题作者还是国人。 文档：http://the</description>
+      <guid>http://icyleaf.com/2015/12/hexo-theme-next</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://camo.githubusercontent.com/2e2c5c6d351ebe899fcebed0f56a5b72b2660b06/687474703a2f2f696973736e616e2e636f6d2f6e657875732f6e6578742f6e6578742d736368656d65732e6a7067&#34; alt=&#34;Snapshot&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这是我见过配备最完善的 hexo 主题，支持丰富的配置，和 hexo 一样完善的文档。兼容国内外的扩展服务，最重要的主题作者还是国人。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;文档：&lt;a href=&#34;http://theme-next.iissnan.com/&#34;&gt;http://theme-next.iissnan.com/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;源码：&lt;a href=&#34;https://github.com/iissnan/hexo-theme-next&#34;&gt;https://github.com/iissnan/hexo-theme-next&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
     </item>
     
     <item>
       <title>极速化 CocoaPods</title>
-      <link>http://icyleaf.com/2015/01/speed-up-cocoapods/</link>
+      <link>http://icyleaf.com/2015/01/speed-up-cocoapods</link>
       <pubDate>Tue, 20 Jan 2015 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2015/01/speed-up-cocoapods/</guid>
-      <description>Cocopods 本身是一个优秀的 iOS 开发的包管理工具，涵盖了 7k+ 的开源组件，包管理库是托管在 Github。 众所周知的原因它的速度日渐缓慢，有时会频繁报如下错误</description>
+      <guid>http://icyleaf.com/2015/01/speed-up-cocoapods</guid>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;http://cocoapods.org/&#34;&gt;Cocopods&lt;/a&gt; 本身是一个优秀的 iOS 开发的包管理工具，涵盖了 7k+ 的开源组件，包管理库是托管在 Github。
+众所周知的原因它的速度日渐缓慢，有时会频繁报如下错误：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ pod install
+
+Cloning into &#39;/path/to/ios/project/Pods/xxx&#39;
+
+error: RPC failed; result=52, HTTP code = 0
+
+fatal: The remote end hung up unexpectedly
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;本文主要为解决该问题而诞生的，以下的加速方案不局限于目前已流传的优化方案，而是在此基础上&lt;strong&gt;彻底的加速&lt;/strong&gt;！&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;使用淘宝 Ruby Gems 源（Cocoapods 使用 ruby 开发）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pod install&lt;/code&gt; 时不设置包的更新：&lt;a href=&#34;http://phatblat.com/blog/2014/07/30/pod-install/&#34;&gt;参考文章&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;使用国内 git 服务器镜像 Cocoapods Spec: &lt;a href=&#34;http://blog.devtang.com/blog/2014/05/25/use-cocoapod-to-manage-ios-lib-dependency/&#34;&gt;参考文章&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;如果你对 Cocoapods 有更深层次的理解，请参见：&lt;a href=&#34;http://www.objc.io/issue-6/cocoapods-under-the-hood.html&#34;&gt;objc.io: Cocoapods under the hood&lt;/a&gt; &lt;a href=&#34;http://objccn.io/issue-6-4/&#34;&gt;中文版本&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;今天早晨看到微博众多 iOS 开发者赞同转发《&lt;a href=&#34;http://weibo.com/p/1001603800875490492754&#34;&gt;CocoaPods最佳实践探讨&lt;/a&gt;》一文，
+针对 &lt;code&gt;Pods&lt;/code&gt; 建议纳入版本控制也是无奈之举。之前公司项目中也是这样施行很长一段时间，不排除更新可能会造成很多无用信息&amp;rdquo;刷屏&amp;rdquo;，
+偶尔还会因为版本冲突造成一些混乱状况需要处理。个人还是更倾向于精简原则，遵循&lt;a href=&#34;http://guides.cocoapods.org/using/using-cocoapods.html#should-i-ignore-the-pods-directory-in-source-control&#34;&gt;官方的建议&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;大家都是技术人员，其实这些小问题难道因为 github 倒下就没有解决方案了吗？！看我如何撕破这层纸老虎：&lt;/p&gt;
+
+&lt;h3 id=&#34;技术概述&#34;&gt;技术概述&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Cocopods v0.34.0+&lt;/li&gt;
+&lt;li&gt;Gitlab: 自建私有 git 服务器&lt;/li&gt;
+&lt;li&gt;gitlab-mirrors: 专用于 github 镜像至 gitlab 并保持定期更新&lt;/li&gt;
+&lt;li&gt;rake: ruby 的代码构建工具（不懂 ruby 的可以把它理解为命令聚合工具）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;技术剖析&#34;&gt;技术剖析&lt;/h3&gt;
+
+&lt;p&gt;Cocoapods 自身支持&lt;a href=&#34;http://guides.cocoapods.org/making/private-cocoapods.html&#34;&gt;私有仓库&lt;/a&gt;，
+恰好的是就在前不久发布的 &lt;a href=&#34;https://github.com/CocoaPods/CocoaPods/blob/master/CHANGELOG.md#0340&#34;&gt;0.34.0&lt;/a&gt; 版本支持 &lt;code&gt;Podfile&lt;/code&gt;
+添加多个的包源仓库，举个例子：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;source &#39;https://github.com/artsy/Specs.git&#39;
+source &#39;https://github.com/CocoaPods/Specs.git&#39;
+
+pod &#39;AFNetworking&#39;
+pod &#39;Mantle&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这个特性其实是为了扩充官方 Spec 的同时可以更好的让开发者管理私有的公共组件，那我同样是从这里下手：&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;前提是自己以及搭建好 gitlab 服务器：&lt;a href=&#34;https://about.gitlab.com/downloads/&#34;&gt;官方教程 （Ubuntu）&lt;/a&gt; | &lt;a href=&#34;http://icyleaf.com/2013/09/how-to-install-gitlab-on-centos/&#34;&gt;本人教程 （CentOS）&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&#34;自力更生&#34;&gt;自力更生&lt;/h4&gt;
+
+&lt;p&gt;首先我们需要创建一个自己的 Spec 仓库，目录结构如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;.
+├── CocoaPods-version.yml
+├── Specs/
+├── README.md
+├── Rakefile
+└── Gemfile
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;配置不做详细描述，这里比官方多了两个文件 &lt;code&gt;Rakefile&lt;/code&gt; 和 &lt;code&gt;Gemfile&lt;/code&gt; 都是 rake 所需的文件，这个后面会讲到。
+再者就是配置 &lt;a href=&#34;https://github.com/samrocketman/gitlab-mirrors#three-easy-steps&#34;&gt;gitlab-mirrors&lt;/a&gt;，教程很详细不再重复。&lt;/p&gt;
+
+&lt;h4 id=&#34;偷梁换柱&#34;&gt;偷梁换柱&lt;/h4&gt;
+
+&lt;p&gt;利用私有 Spec 仓库特性，可以把官方 &lt;code&gt;Spec&lt;/code&gt; 目录下面的包按需或全部镜像过来，再次基础上&lt;strong&gt;把里面涉及 github 的地址替换成 gitlab 的地址&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;你没有看错，这是核心步骤，如果这步没有做那么和国内镜像的地址没有任何差别。核心代码如下：&lt;/p&gt;
+
+&lt;h5 id=&#34;rakefile&#34;&gt;Rakefile&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;require &#39;uri&#39;
+require &#39;fileutils&#39;
+require &#39;multi_json&#39;
+require &#39;net/ssh&#39;
+
+desc &#39;镜像一个 github 包至 gitlab 仓库&#39;
+task :clone, [:name] do |t, p|
+  name = p[:name]
+  current_path = Dir.pwd
+
+  specs = Dir[File.join(File.expand_path(&#39;~&#39;), &#39;.cocoapods/repos/master/Specs/*&#39;)]
+
+  repo = specs.select { |s| File.basename(s) == name }.first
+
+  if repo
+    puts &amp;quot; * found repo, copy it here&amp;quot;
+    repo_store_path = File.join(current_path, &#39;Specs&#39;)
+    FileUtils.cp_r repo, repo_store_path
+
+    puts &amp;quot; * updating repo url&amp;quot;
+    Dir[&amp;quot;#{repo_store_path}/#{name}/*&amp;quot;].each do |f|
+      pod_file = File.join(f, &amp;quot;#{name}.podspec.json&amp;quot;)
+      json = File.read(pod_file)
+      data = MultiJson.load json
+
+      if data[&#39;source&#39;][&#39;git&#39;]
+        puts &amp;quot; -&amp;gt; #{data[&#39;version&#39;]}: git&amp;quot;
+        orginal_repo_url = data[&#39;source&#39;][&#39;git&#39;]
+        coverted_repo_name =  URI.parse(orginal_repo_url).path[1..-1].gsub(&#39;/&#39;, &#39;-&#39;).downcase
+        data[&#39;source&#39;][&#39;git&#39;] = &amp;quot;http://gitlab.dev/mirrors/#{coverted_repo_name}&amp;quot;
+
+        File.write(pod_file, JSON.pretty_generate(data))
+      else data[&#39;source&#39;][&#39;http&#39;]
+        puts &amp;quot; -&amp;gt; #{data[&#39;version&#39;]}: http url, do you want speed up?&amp;quot;
+      else data[&#39;source&#39;][&#39;svn&#39;]
+        puts &amp;quot; -&amp;gt; #{data[&#39;version&#39;]}: svn repo, do you want speed up?&amp;quot;
+      end
+    end
+  else
+    puts &amp;quot;Not find spec named: #{name}&amp;quot;
+  end
+end
+
+desc &#39;gitlab 服务器镜像 Cocoapod Spec&#39;
+task :mirror, [:repo] do |t, p|
+  host        = &#39;172..0.1&#39;
+  user        = &#39;icyleaf&#39;
+  options     = {:keys =&amp;gt; &#39;~/.ssh/keys/id_rsa.pub&#39;}
+
+  puts &amp;quot;Connect gitlab server and mirror&amp;quot;
+  Net::SSH.start(host, user, options) do |ssh|
+    gitmirror_path = &#39;/home/gitmirror/gitlab-mirrors&#39;
+    cmd = &amp;quot;sudo -u gitmirror -H rake \&amp;quot;add[#{p[:repo]}]\&amp;quot;&amp;quot;
+    stdout = ssh.exec!(&amp;quot;echo &#39;cd #{gitmirror_path} &amp;amp;&amp;amp; #{cmd}&#39;&amp;quot;)
+    puts stdout
+    ssh.loop
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;gemfile&#34;&gt;Gemfile&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;source &amp;quot;https://ruby.taobao.org&amp;quot;
+
+gem &#39;rest_client&#39;
+gem &#39;multi_json&#39;
+gem &#39;rake&#39;
+gem &#39;net-ssh&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;rake&lt;/code&gt; 里面有两个 task：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;mirror: 镜像 iOS 开源组件&lt;/li&gt;
+&lt;li&gt;clone: 负责把官方 spec 指定包（开源组件的版本控制）替换 gitlab 地址并加入到私有包仓库&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;总结&#34;&gt;总结&lt;/h3&gt;
+
+&lt;p&gt;通过工具总有办法可以改进和提升开发者的效率和解决各种的问题，希望本文可以给大家带来更多的灵感！&lt;/p&gt;
+
+&lt;h3 id=&#34;答疑解惑&#34;&gt;答疑解惑&lt;/h3&gt;
+
+&lt;h5 id=&#34;f-这套理论靠谱吗&#34;&gt;F: 这套理论靠谱吗？&lt;/h5&gt;
+
+&lt;p&gt;A: 目前我们团队已经采用并运行了很长一段时间，没有任何风险。最大的优势在于兼容官方的仓库，
+就算无法链接自己的私有服务器，使用官方和国内镜像的都可以瞬间切换。&lt;/p&gt;
+
+&lt;h5 id=&#34;f-如果没有服务器可以实现吗&#34;&gt;F: 如果没有服务器可以实现吗？&lt;/h5&gt;
+
+&lt;p&gt;A: 醒醒吧孩子，就连单纯的镜像官方 Cocoapods Spec 还需要一个服务器执行定期同步脚本呢。&lt;/p&gt;
+
+&lt;h5 id=&#34;f-国内-git-托管服务器能够支持吗&#34;&gt;F: 国内 git 托管服务器能够支持吗？&lt;/h5&gt;
+
+&lt;p&gt;A: 据我所知国内大部分 git 托管服务器的解决方案都是基于 gitlab 二次开发的，理论上可行，
+上面提到的 gitlab-mirror 本身依赖于 gitlab 的 api 在镜像的同时自动新建仓库。如果有成功的欢迎反馈。&lt;/p&gt;
+
+&lt;h5 id=&#34;f-我从你代码发现服务器同样调用了一个-rake-脚本-你没有开源&#34;&gt;F: 我从你代码发现服务器同样调用了一个 rake 脚本，你没有开源！&lt;/h5&gt;
+
+&lt;p&gt;A: 眼睛真够敏锐的，个人对 gitlab-mirror 再做镜像时做了一个约束，新建一个 &lt;code&gt;Rakefile&lt;/code&gt; 文件放到你的 gitlab-mirror 项目根目录即可：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;require &#39;uri&#39;
+
+desc &amp;quot;Adding repo to gitmirror&amp;quot;
+task :add, [:repo] do |t, p|
+  repo = p[:repo]
+
+  begin
+    name = URI.parse(repo).path[1..-1].gsub(&#39;/&#39;, &#39;-&#39;).gsub(&#39;.git&#39;, &#39;&#39;)
+    if name
+      `./add_mirror.sh -f --git --project-name #{name} --mirror #{repo}`
+    end
+  rescue Error =&amp;gt; e
+    puts &#39;not url&#39;
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;f-我还有问题&#34;&gt;F: 我还有问题！&lt;/h5&gt;
+
+&lt;p&gt;A: 麻烦请留言，谢谢！&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>Puma 替换 Unicorn 跑 Gitlab</title>
-      <link>http://icyleaf.com/2014/01/moving-unicorn-to-puma-on-gitlab/</link>
+      <link>http://icyleaf.com/2014/01/moving-unicorn-to-puma-on-gitlab</link>
       <pubDate>Sun, 26 Jan 2014 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2014/01/moving-unicorn-to-puma-on-gitlab/</guid>
-      <description>前篇介绍到如何在《CentoOS 上面安装 Gitlab》一文，gitlab 默认使用的是 unicorn 作为内部的 app server，再用 nginx 做代理转发。之前是在公</description>
+      <guid>http://icyleaf.com/2014/01/moving-unicorn-to-puma-on-gitlab</guid>
+      <description>
+
+&lt;p&gt;前篇介绍到如何在《&lt;a href=&#34;http://icyleaf.com/2013/09/how-to-install-gitlab-on-centos/&#34;&gt;CentoOS 上面安装 Gitlab&lt;/a&gt;》一文，gitlab 默认使用的是 &lt;code&gt;unicorn&lt;/code&gt; 作为内部的 app server，再用 &lt;code&gt;nginx&lt;/code&gt; 做代理转发。之前是在公司内部搭建了一个平台，用着还算可以。有打算在 &lt;a href=&#34;https://www.linode.com/?r=66b0730eca572d3e45f083e29b1b3f8781b2a009&#34;&gt;Linode 购买的 VPS&lt;/a&gt; 上面，使用 &lt;code&gt;unicorn&lt;/code&gt; 跑服务的时候 &lt;code&gt;ruby&lt;/code&gt; 的进程居然占了 400-500M 左右，对于 Linode 刚刚免费升级之后才有 1G 内存的环境上，我还真有点放弃安装它的欲望。于是在想是否可以使用 &lt;code&gt;puma&lt;/code&gt; 替换掉原先的。&lt;/p&gt;
+
+&lt;h2 id=&#34;puma&#34;&gt;puma&lt;/h2&gt;
+
+&lt;p&gt;简单介绍下 &lt;a href=&#34;http://puma.io/&#34;&gt;&lt;code&gt;puma&lt;/code&gt;&lt;/a&gt;，它是一个由 ruby 编写的转为 &lt;a href=&#34;http://rack.github.io/&#34;&gt;&lt;code&gt;rack&lt;/code&gt;&lt;/a&gt; 设计的 app server，在性能和资源占有上却有极大的优势（下表数据来自官方）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;PUMA - 78 Mb
+RAINBOWS! (1X16) - 120 Mb
+UNICORN - 1076 Mb
+RAINBOWS! (16X32) - 1138 Mb
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;而且集成也非常的简单，若使用 rails 或者 sinatra（及 padrino）都已经支持，直接 &lt;code&gt;gem install puma&lt;/code&gt;，然后跑默认的 &lt;code&gt;rails/padrino server&lt;/code&gt; 会自动加载。&lt;/p&gt;
+
+&lt;h2 id=&#34;教程&#34;&gt;教程&lt;/h2&gt;
+
+&lt;p&gt;Okay，经过一番查找，官方在收集的 &lt;a href=&#34;https://gitlab.com/gitlab-org/gitlab-recipes/tree/master&#34;&gt;repices&lt;/a&gt; 里面有关于 &lt;code&gt;puma&lt;/code&gt; 的一些配置。他们也是收集的非官方资料，里面的资料只有借鉴意义，真正拿来用的时候各种问题，所以才有了本篇文字。&lt;/p&gt;
+
+&lt;p&gt;首先是关闭启动的 &lt;code&gt;gitlab&lt;/code&gt; 服务&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ (sudo) service gitlab stop
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;关闭之后，添加 puma gem，打开 &lt;code&gt;Gemfile&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;group :unicorn do
+  gem &#39;unicorn&#39;, &#39;~&amp;gt; 4.6.3&#39;
+	gem &#39;unicorn-worker-killer&#39;
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;找到上面的这段 group 替换成：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gem &#39;puma&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;再者修改 &lt;code&gt;config.ru&lt;/code&gt;，把下面这段代码做下替换，删除 unicorn 的代码，加载 puma：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;unless defined?(PhusionPassenger)
+  require &#39;unicorn&#39;
+  # Unicorn self-process killer
+  require &#39;unicorn/worker_killer&#39;
+  # Max memory size (RSS) per worker
+  use Unicorn::WorkerKiller::Oom, (200 * (1 &amp;lt;&amp;lt; 20)), (250 * (1 &amp;lt;&amp;lt; 20))
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;更新成&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;unless defined?(PhusionPassenger)
+  require &#39;puma&#39;
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;替换完毕更新 &lt;code&gt;gem&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# mysql 数据库
+bundle install --without development test postgres --path vendor/bundle --no-deployment
+# postgres 数据库
+bundle install --without development test mysql --path vendor/bundle --no-deployment 	
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;最后还有两处需要修改，添加 &lt;code&gt;config/puma.rb&lt;/code&gt;（替代 &lt;code&gt;config/unicorn.rb&lt;/code&gt;） 以及替换 &lt;code&gt;/etc/init.d/gitlab&lt;/code&gt; 服务脚本代码。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;config/puma.rb&lt;/code&gt;的代码在&lt;a href=&#34;https://gitlab.com/gitlab-org/gitlab-recipes/blob/master/app-server/puma/puma.rb&#34;&gt;这里可以下载&lt;/a&gt;，无需做任何的修改。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;/etc/init.d/gitlab&lt;/code&gt; 服务脚本：&lt;a href=&#34;https://gitlab.com/gitlab-org/gitlab-recipes/tree/master/init/sysvinit/centos&#34;&gt;CentOS&lt;/a&gt; | &lt;a href=&#34;https://gitlab.com/gitlab-org/gitlab-recipes/tree/master/init/sysvinit/debian&#34;&gt;Debian(Ubuntu)&lt;/a&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;服务脚本需要设置下执行权限： chmod +x /etc/init.d/gitlab&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;最后开启服务应该就完美了&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ (sudo) service gitlab start
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;我想用-apache-怎么办&#34;&gt;我想用 Apache 怎么办？&lt;/h2&gt;
+
+&lt;p&gt;嗯，我没尝试过，官方有提供收集的资料，&lt;a href=&#34;https://gitlab.com/gitlab-org/gitlab-recipes/tree/master/web-server&#34;&gt;自己查看下吧&lt;/a&gt;，记得要活学活用，直接套肯定会出问题的。&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>Homebrew 隐藏命令</title>
-      <link>http://icyleaf.com/2014/01/homebrew-hidden-commands/</link>
+      <link>http://icyleaf.com/2014/01/homebrew-hidden-commands</link>
       <pubDate>Sat, 25 Jan 2014 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2014/01/homebrew-hidden-commands/</guid>
-      <description>Homebrew 可谓是 Mac 开发者必备的工具之一，它承载在各种包管理的特性以及拥有一票热情高涨的社区提供强大支持。今天我就给大家解密一下 brew 内部的隐藏命令都有哪</description>
+      <guid>http://icyleaf.com/2014/01/homebrew-hidden-commands</guid>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;http://brew.sh&#34;&gt;Homebrew&lt;/a&gt; 可谓是 Mac 开发者必备的工具之一，它承载在各种包管理的特性以及拥有一票热情高涨的社区提供强大支持。今天我就给大家解密一下 brew 内部的隐藏命令都有哪些。&lt;/p&gt;
+
+&lt;h2 id=&#34;服务管理&#34;&gt;服务管理&lt;/h2&gt;
+
+&lt;p&gt;当我们安装了众多需要挂载的服务，需要重启或停止的时候，都特别希望 Mac 可以有个统一的命令可以管理服务的状态，比如 &lt;code&gt;services&lt;/code&gt; 命令甚至说 &lt;code&gt;/etc/init.d/&lt;/code&gt; 也可以啊！&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ brew services command [formula]
+
+usage: [sudo] brew services [--help] &amp;lt;command&amp;gt; [&amp;lt;formula&amp;gt;]
+Small wrapper around `launchctl` for supported formulae, commands available:
+
+	cleanup Get rid of stale services and unused plists
+	list    List all services managed by `brew services`
+	restart Gracefully restart selected service
+	start   Start selected service
+	stop    Stop selected service
+
+Options, sudo and paths:
+
+sudo   When run as root, operates on /Library/LaunchDaemons (run at boot!)
+Run at boot:  /Library/LaunchDaemons
+Run at login: /Users/icyleaf/Library/LaunchAgents
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这个是我要讲的第一个隐藏命令！太坑爹了，那么实用的命令居然没有包含在 &lt;code&gt;brew --help&lt;/code&gt; 帮助里面！我们再也不用发愁记住 &lt;code&gt;launchctl load/unload &amp;lt;path&amp;gt;&lt;/code&gt; 的坑爹命令了！&lt;/p&gt;
+
+&lt;p&gt;重启 Nigix 就那么简单：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ brew services restart nginx
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;停止 Postgresql 服务&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ brew services stop mysql
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;查看系统通过 brew 安装的服务：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ brew services list
+postgresql started        - /Users/icyleaf/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
+nginx      started        - /Users/icyleaf/Library/LaunchAgents/homebrew.mxcl.nginx.plist
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;清除已卸载无用的启动配置文件：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ brew services cleanup
+Removing unused plist /Users/icyleaf/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+Removing unused plist /Users/icyleaf/Library/LaunchAgents/homebrew.mxcl.redis.plist
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;安装扩展&#34;&gt;安装扩展&lt;/h2&gt;
+
+&lt;p&gt;这个相信很多人都已经用到过了，安装他人扩展的 brew 服务。由于 brew 和包含的包源都是通过 github 来管理，人为的维护管理，除了自己的源还允许别人的源添加进来。类似与 &lt;code&gt;Ubuntu&lt;/code&gt; 的 &lt;code&gt;ppa&lt;/code&gt;。好处在于只有我安装规定的方式把包丢到 github 上面就可以用了！&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ brew tap &amp;lt;gihhub_user/repo&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这个命令并没有包含任何的帮助说明，其实它只接受上面的这个参数。&lt;/p&gt;
+
+&lt;p&gt;举例说明一下，Mac OS 比较歧视 PHP ，所以每次系统更新都会把常用的开发包（Ruby、Python 等）也顺带着更新到最新版本。（吐槽：Java 都已经被抛弃不再默认安装了），而 &lt;code&gt;brew&lt;/code&gt; 居然也不包含 &lt;code&gt;PHP&lt;/code&gt; 的包，那怎么办呢？&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ brew tap josegonzalez/php
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;命令完成之后，执行（当前最新是 php 5.5 版本，请根据需要替换）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ brew install php55
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;当我们没有传递任何参数，默认显示已经通过 &lt;code&gt;tap&lt;/code&gt; 安装了哪些扩展，为什么我说是通过 &lt;code&gt;tap&lt;/code&gt; 呢，因为 &lt;code&gt;brew&lt;/code&gt; 其实除了这些自身也用了一些其他扩展，通过下面命令显示：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ brew ls-taps
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;web-化显示可用包和已安装工具&#34;&gt;Web 化显示可用包和已安装工具&lt;/h2&gt;
+
+&lt;p&gt;对于习惯命令行的人这个用途不大，就顺带一提而已，这个命令依赖 &lt;code&gt;sinatra&lt;/code&gt;，大家通过 &lt;code&gt;gem&lt;/code&gt; 安装即可。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ brew server
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;如果你用 &lt;code&gt;puma&lt;/code&gt; 可能报一个 &lt;strong&gt;[BUG] Segmentation fault&lt;/strong&gt; 错误，那是因为你通过 rvm 或 renv 安装了跟高级的版本，而系统却用的 1.8.7 造成了版本差，请切换为系统依赖后再重试（你可能需要重新安装 sinata）：&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;$ rvm use system
+$ /usr/bin/gem install sinatra
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;彩蛋&#34;&gt;彩蛋&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;$ brew beer
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;更多隐藏命令&#34;&gt;更多隐藏命令&lt;/h2&gt;
+
+&lt;p&gt;一次性没太多精力完解读所有隐藏命令，这个艰巨的任务就交给大家了：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ brew commands
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;其实这些命令可以在&lt;a href=&#34;https://github.com/Homebrew/homebrew/tree/master/Library/Contributions/cmd&#34;&gt;官方源代码&lt;/a&gt;看到。&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>初识 Ruby Gem Guard</title>
-      <link>http://icyleaf.com/2014/01/intro-ruby-gem-guard/</link>
+      <link>http://icyleaf.com/2014/01/intro-ruby-gem-guard</link>
       <pubDate>Sat, 25 Jan 2014 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2014/01/intro-ruby-gem-guard/</guid>
-      <description>Guard 是一个很好的 Web 辅助开发工具，因为看了 tutsplus 网站的介绍视频：Guard is your best firend。这里把视频的东西提取出来自我消化： $ gem install guard 它实际的工作</description>
+      <guid>http://icyleaf.com/2014/01/intro-ruby-gem-guard</guid>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;http://guardgem.org&#34;&gt;Guard&lt;/a&gt; 是一个很好的 Web 辅助开发工具，因为看了 tutsplus 网站的介绍视频：&lt;a href=&#34;http://net.tutsplus.com/tutorials/tools-and-tips/guard-is-your-best-friend/&#34;&gt;Guard is your best firend&lt;/a&gt;。这里把视频的东西提取出来自我消化：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ gem install guard
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;它实际的工作就像名字那样，实时守卫这某些文件并做出对应的操作，本质上相当于一个有这个思想的禁卫兵，通过指派命令（安装扩展 gem）而负责守卫和执行，比如视频中提到的：&lt;/p&gt;
+
+&lt;p&gt;上面是概念的理解，实际上的流程是，设定一系列的规则，让他监控文件内容（修改时间）的动态，一旦发生变化则根据不同的命令执行不同的操作。&lt;/p&gt;
+
+&lt;p&gt;具体基本操作不再多少，官方 &lt;a href=&#34;https://github.com/guard/guard&#34;&gt;README&lt;/a&gt; 写的非常详细，或者通过上面视频也能熟悉。&lt;/p&gt;
+
+&lt;h2 id=&#34;guard-sass&#34;&gt;guard-sass&lt;/h2&gt;
+
+&lt;p&gt;监听 &lt;a href=&#34;http://sass-lang.com/&#34;&gt;sass&lt;/a&gt; 文件并转换成 css 文件&lt;/p&gt;
+
+&lt;h2 id=&#34;guard-coffeescript&#34;&gt;guard-coffeescript&lt;/h2&gt;
+
+&lt;p&gt;监听 &lt;a href=&#34;http://coffeescript.org/&#34;&gt;coffeescript&lt;/a&gt; 文件并转换成 js 文件&lt;/p&gt;
+
+&lt;h2 id=&#34;guard-rspec&#34;&gt;guard-rspec&lt;/h2&gt;
+
+&lt;p&gt;自动跑 &lt;a href=&#34;https://github.com/rspec/rspec-core&#34;&gt;rspec&lt;/a&gt; test&lt;/p&gt;
+
+&lt;h2 id=&#34;guard-livereload&#34;&gt;guard-livereload&lt;/h2&gt;
+
+&lt;p&gt;配合浏览器的辅助工具，做到无需手动刷新页面即可看到 html/css/js 的修改变化，浏览器需要安装配套插件。&lt;/p&gt;
+
+&lt;h2 id=&#34;guard-zeus&#34;&gt;guard-zeus&lt;/h2&gt;
+
+&lt;p&gt;自动接管 &lt;a href=&#34;https://github.com/burke/zeus&#34;&gt;zeus&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;guard-puma&#34;&gt;guard-puma&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://puma.io&#34;&gt;puma&lt;/a&gt; 是目前比较新的一个 web 服务器，这个扩展可以监听配置变化从而自动重启服务器。&lt;/p&gt;
+
+&lt;p&gt;官方列举的所有扩展：&lt;a href=&#34;https://github.com/guard/guard/wiki/List-of-available-Guards&#34;&gt;List of available Guards&lt;/a&gt;&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>Linux 101 系列：ssh OpenSSH 客户端工具</title>
-      <link>http://icyleaf.com/2014/01/linux-101-ssh/</link>
+      <link>http://icyleaf.com/2014/01/linux-101-ssh</link>
       <pubDate>Wed, 22 Jan 2014 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2014/01/linux-101-ssh/</guid>
-      <description>使用 *nix 服务器肯定会用到 ssh，它是一个链接到远程服务器终端的工具。 基本常识 基本组成部分 $ man ssh ssh [-1246AaCfgKkMNnqsTtVvXxYy] [-b bind_address] [-c cipher_spec] [-D [bind_address:]port] [-e escape_char] [-F configfile] [-I pkcs11] [-i identity_file] [-L [bind_address:]port:host:hostport] [-l login_name] [-m mac_spec] [-O ctl_cmd]</description>
+      <guid>http://icyleaf.com/2014/01/linux-101-ssh</guid>
+      <description>
+
+&lt;blockquote&gt;
+&lt;p&gt;使用 *nix 服务器肯定会用到 ssh，它是一个链接到远程服务器终端的工具。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;基本常识&#34;&gt;基本常识&lt;/h2&gt;
+
+&lt;h3 id=&#34;基本组成部分&#34;&gt;基本组成部分&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;$ man ssh
+ssh [-1246AaCfgKkMNnqsTtVvXxYy] [-b bind_address] [-c cipher_spec]
+     [-D [bind_address:]port] [-e escape_char] [-F configfile] [-I pkcs11]
+     [-i identity_file] [-L [bind_address:]port:host:hostport]
+     [-l login_name] [-m mac_spec] [-O ctl_cmd] [-o option] [-p port]
+     [-R [bind_address:]port:host:hostport] [-S ctl_path] [-W host:port]
+     [-w local_tun[:remote_tun]] [user@]hostname [command]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;有没有被帮助手册的参数吓到，那我们精简一下：&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;ssh [user@]hostname [-p port]&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;登录到远程服务器和登录本地电脑系统没什么大的区别，都需要用户名，密码，除此之外我们还需要知道远程服务器的地址（IP 地址或域名均可）及允许的端口（默认 22 端口）。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ssh root@10.10.10.10 -p 22
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;有些时候大家发现一些教程没有提到用户，实际上 ssh 很聪明，默认会使用当前系统的用户名：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;(icyleaf) $ ssh 10.10.10.10
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这个就等同于&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ssh icyleaf@10.10.10.10
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;有些服务器可能为了安全期间修改了默认的端口，比如 2020：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ssh icyleaf@10.10.10.10 -p 2020
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;高级参数&#34;&gt;高级参数&lt;/h3&gt;
+
+&lt;h4 id=&#34;socket-代理&#34;&gt;Socket 代理&lt;/h4&gt;
+
+&lt;p&gt;呐，你可能因为 GFW 的威力，尝试使用 ssh 的 socket 代理，实际上就是用到的 &lt;code&gt;-D&lt;/code&gt; 参数：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;-D [bind_address:]port
+   Specifies a local ``dynamic application-level port forwarding.
+   This works by allocating a socket to listen to port on the local
+   side, optionally bound to the specified bind_address.  Whenever a
+   connection is made to this port, the connection is forwarded over
+   the secure channel, and the application protocol is then used to
+   determine where to connect to from the remote machine.  Currently
+   the SOCKS4 and SOCKS5 protocols are supported, and ssh will act
+   as a SOCKS server.  Only root can forward privileged ports.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;我们来简单画下它的工作流程：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;|----client----|                    |-----server----|
+|              |                    |               |
+|   local port&amp;lt;|  &amp;lt;incoming         |               |
+|    ssh port&amp;lt;&amp;gt;|  &amp;lt;--------------&amp;gt;  |&amp;lt;&amp;gt; ssh port    |
+                                    |    forwarding&amp;gt;|  &amp;gt;outgoing connection
+
+                                     &amp;lt;&amp;lt;&amp;lt;------------local network-----------
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;它首先需要登录到远程服务器，并把本地的请求全部转发到服务器指定的端口上，然后通过由服务器再去请求。例如我们设置 8624 端口：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ssh -D8624 icyleaf@10.10.10.10 -p 22
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这样保持这个连接，我们在设置浏览器或系统的 socket4/5 代理就能达到翻墙的目的。当前这个最大的前提是你的服务器在不手 GFW 的控制下（任意海外未被 GFW 服务器）&lt;/p&gt;
+
+&lt;h4 id=&#34;跳板代理&#34;&gt;跳板代理&lt;/h4&gt;
+
+&lt;p&gt;或许曾经你在看某本黑客杂志或电影出现过这样的片段，黑客使用肉鸡跳板不断的增加难度避开警察的追踪，实际上我们通过 ssh 也能非常简单又很酷的实现。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;-L [bind_address:]port:host:hostport
+   Specifies that the given port on the local (client) host is to be
+   forwarded to the given host and port on the remote side.  This
+   works by allocating a socket to listen to port on the local side,
+   optionally bound to the specified bind_address.  Whenever a con-
+   nection is made to this port, the connection is forwarded over
+   the secure channel, and a connection is made to host port
+   hostport from the remote machine.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;同样给出工作流程：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;|----client----|                    |-----server----|                 |-----host-----|
+|              |                    |               |                 |              |
+|   local port&amp;lt;|  &amp;lt;incoming         |               |                 |              |
+|    ssh port&amp;lt;&amp;gt;|  &amp;lt;--------------&amp;gt;  |&amp;lt;&amp;gt; ssh port    |                 |              |
+                                    |    forwarding&amp;gt;|  -------------&amp;gt; |&amp;gt;host port    |
+
+                                     &amp;lt;&amp;lt;&amp;lt;------------local network-------------------&amp;gt;&amp;gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;实际上我只需要操作 &lt;code&gt;-L [bind_address:]port:host:hostport&lt;/code&gt; 即可。这里假设我们想登录的目标服务器 target(10.10.10.10)，而我们希望在肉鸡 chicken(20.20.20.20) 上做成跳板：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ssh -L2020:20.20.20.20:22 10.10.10.10
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;简化配置&#34;&gt;简化配置&lt;/h3&gt;
+
+&lt;p&gt;反复的输入这些繁琐的参数，甚是苦恼，能不能通过一种起个别名就能把上面的参数全部自动设置好呢？！没问题！&lt;/p&gt;
+
+&lt;p&gt;创建 &lt;code&gt;~/.ssh/config&lt;/code&gt; 文件：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Host linode
+HostName 10.10.10.10
+Port 22
+User icyleaf
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这个就是基本组成部分。如果你想配置更多，下面是完整的参数：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;AddressFamily
+BatchMode
+BindAddress
+ChallengeResponseAuthentication
+CheckHostIP
+Cipher
+Ciphers
+ClearAllForwardings
+Compression
+CompressionLevel
+ConnectionAttempts
+ConnectTimeout
+ControlMaster
+ControlPath
+ControlPersist
+DynamicForward
+EscapeChar
+ExitOnForwardFailure
+ForwardAgent
+ForwardX11
+ForwardX11Timeout
+ForwardX11Trusted
+GatewayPorts
+GlobalKnownHostsFile
+GSSAPIAuthentication
+GSSAPIDelegateCredentials
+HashKnownHosts
+Host
+HostbasedAuthentication
+HostKeyAlgorithms
+HostKeyAlias
+HostName
+IdentityFile
+IdentitiesOnly
+IPQoS
+KbdInteractiveAuthentication
+KbdInteractiveDevices
+KexAlgorithms
+LocalCommand
+LocalForward
+LogLevel
+MACs
+NoHostAuthenticationForLocalhost
+NumberOfPasswordPrompts
+PasswordAuthentication
+PermitLocalCommand
+PKCS11Provider
+Port
+PreferredAuthentications
+Protocol
+ProxyCommand
+PubkeyAuthentication
+RekeyLimit
+RemoteForward
+RequestTTY
+RhostsRSAAuthentication
+RSAAuthentication
+SendEnv
+ServerAliveInterval
+ServerAliveCountMax
+StrictHostKeyChecking
+TCPKeepAlive
+Tunnel
+TunnelDevice
+UsePrivilegedPort
+User
+UserKnownHostsFile
+VerifyHostKeyDNS
+VisualHostKey
+XAuthLocation
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;配置文件&#34;&gt;配置文件&lt;/h3&gt;
+
+&lt;p&gt;刚才讲到的 &lt;code&gt;~/.ssh/config&lt;/code&gt; 是配置 ssh 服务器的文件，其实除了这些还有好多，比如大家可能会经常见到的：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~/.ssh/config
+  This is the per-user configuration file.  The file format and
+  configuration options are described in ssh_config(5).  Because of
+  the potential for abuse, this file must have strict permissions:
+  read/write for the user, and not accessible by others.
+
+~/.ssh/authorized_keys
+  Lists the public keys (DSA/ECDSA/RSA) that can be used for log-
+  ging in as this user.  The format of this file is described in
+  the sshd(8) manual page.  This file is not highly sensitive, but
+  the recommended permissions are read/write for the user, and not
+  accessible by others.
+
+~/.ssh/identity
+~/.ssh/id_dsa
+~/.ssh/id_ecdsa
+~/.ssh/id_rsa
+  Contains the private key for authentication.  These files contain
+  sensitive data and should be readable by the user but not acces-
+  sible by others (read/write/execute).  ssh will simply ignore a
+  private key file if it is accessible by others.  It is possible
+  to specify a passphrase when generating the key which will be
+  used to encrypt the sensitive part of this file using 3DES.
+
+~/.ssh/identity.pub
+~/.ssh/id_dsa.pub
+~/.ssh/id_ecdsa.pub
+~/.ssh/id_rsa.pub
+  Contains the public key for authentication.  These files are not
+  sensitive and can (but need not) be readable by anyone.
+
+~/.ssh/known_hosts
+  Contains a list of host keys for all hosts the user has logged
+  into that are not already in the systemwide list of known host
+  keys.  See sshd(8) for further details of the format of this
+  file.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;更多文件：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~/.rhosts
+  This file is used for host-based authentication (see above).  On
+  some machines this file may need to be world-readable if the
+  user&#39;s home directory is on an NFS partition, because sshd(8)
+  reads it as root.  Additionally, this file must be owned by the
+  user, and must not have write permissions for anyone else.  The
+  recommended permission for most machines is read/write for the
+  user, and not accessible by others.
+
+~/.shosts
+  This file is used in exactly the same way as .rhosts, but allows
+  host-based authentication without permitting login with
+  rlogin/rsh.
+
+~/.ssh/
+  This directory is the default location for all user-specific con-
+  figuration and authentication information.  There is no general
+  requirement to keep the entire contents of this directory secret,
+  but the recommended permissions are read/write/execute for the
+  user, and not accessible by others.
+
+~/.ssh/environment
+  Contains additional definitions for environment variables; see
+  ENVIRONMENT, above.
+
+~/.ssh/rc
+  Commands in this file are executed by ssh when the user logs in,
+  just before the user&#39;s shell (or command) is started.  See the
+  sshd(8) manual page for more information.
+
+/etc/hosts.equiv
+  This file is for host-based authentication (see above).  It
+  should only be writable by root.
+
+/etc/shosts.equiv
+  This file is used in exactly the same way as hosts.equiv, but
+  allows host-based authentication without permitting login with
+  rlogin/rsh.
+
+/etc/ssh/ssh_config
+  Systemwide configuration file.  The file format and configuration
+  options are described in ssh_config(5).
+
+/etc/ssh/ssh_host_key
+/etc/ssh/ssh_host_dsa_key
+/etc/ssh/ssh_host_ecdsa_key
+/etc/ssh/ssh_host_rsa_key
+  These files contain the private parts of the host keys and are
+  used for host-based authentication.  If protocol version 1 is
+  used, ssh must be setuid root, since the host key is readable
+  only by root.  For protocol version 2, ssh uses ssh-keysign(8) to
+  access the host keys, eliminating the requirement that ssh be
+  setuid root when host-based authentication is used.  By default
+  ssh is not setuid root.
+
+/etc/ssh/ssh_known_hosts
+  Systemwide list of known host keys.  This file should be prepared
+  by the system administrator to contain the public host keys of
+  all machines in the organization.  It should be world-readable.
+  See sshd(8) for further details of the format of this file.
+
+/etc/ssh/sshrc
+  Commands in this file are executed by ssh when the user logs in,
+  just before the user&#39;s shell (or command) is started.  See the
+  sshd(8) manual page for more information.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;资料参考：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;[Linux] man ssh&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.openfsg.com/index.php/Advanced_SSH_usage&#34;&gt;Advanced SSH usage&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
     </item>
     
     <item>
       <title>学习 Ansible &#43; Vagrant</title>
-      <link>http://icyleaf.com/2013/12/learning-ansible-and-vagrant/</link>
+      <link>http://icyleaf.com/2013/12/learning-ansible-and-vagrant</link>
       <pubDate>Sat, 21 Dec 2013 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2013/12/learning-ansible-and-vagrant/</guid>
-      <description>Ansible is a radically simple IT orchestration engine that makes your applications and systems easier to deploy. Avoid writing scripts or custom code to deploy and update your applications— automate in a language that approaches plain English, using SSH, with no agents to install on remote systems. 简单来说 Ansible 是一个极简化</description>
+      <guid>http://icyleaf.com/2013/12/learning-ansible-and-vagrant</guid>
+      <description>
+
+&lt;blockquote&gt;
+&lt;p&gt;Ansible is a radically simple IT orchestration engine that makes your applications and systems easier to deploy. Avoid writing scripts or custom code to deploy and update your applications— automate in a language that approaches plain English, using SSH, with no agents to install on remote systems.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;简单来说 &lt;a href=&#34;https://github.com/ansible/ansible&#34;&gt;Ansible&lt;/a&gt; 是一个极简化的应用和系统部署工具，类似 &lt;a href=&#34;https://github.com/puppetlabs/puppet&#34;&gt;Puppet&lt;/a&gt;、&lt;a href=&#34;https://github.com/opscode/chef&#34;&gt;Chef&lt;/a&gt;、&lt;a href=&#34;https://github.com/saltstack/salt&#34;&gt;SaltStack&lt;/a&gt;。由于默认使用 &lt;code&gt;ssh&lt;/code&gt; 管理服务器（集群），配置文件采用 yaml 而不是某一种特定语言制定。方便至极。&lt;/p&gt;
+
+&lt;p&gt;很多人说 salt 也很用的，为什么不考虑呢，我个人觉得，ansible 的配置文件编写起来比较方便，不需要使用 &lt;a href=&#34;http://jinja.pocoo.org/&#34;&gt;jinja2&lt;/a&gt; 模板引擎适合非 &lt;code&gt;python&lt;/code&gt; 用户管理。而且我也较同意 &amp;ldquo;&lt;a href=&#34;http://missingm.co/2013/06/ansible-and-salt-a-detailed-comparison/&#34;&gt;Ansible and Salt: A detailed comparison&lt;/a&gt;&amp;rdquo; 文章的评测。&lt;/p&gt;
+
+&lt;p&gt;由于个人之前没用过任何其他工具，至于你想知道上面哪些之间有什么区别的话，参见此文：&lt;a href=&#34;http://www.infoworld.com/d/data-center/review-puppet-vs-chef-vs-ansible-vs-salt-231308?page=0,0&#34;&gt;Review: Puppet vs. Chef vs. Ansible vs. Salt&lt;/a&gt; 或 &amp;ldquo;&lt;a href=&#34;http://ttyn.me/2013/02/19/ansible_intro.html&#34;&gt;开始使用配置和发布管理&lt;/a&gt;&amp;rdquo; 一文中也有提到其特性。&lt;/p&gt;
+
+&lt;h1 id=&#34;安装&#34;&gt;安装&lt;/h1&gt;
+
+&lt;p&gt;大家移步 LinuxToy 的 &lt;a href=&#34;https://linuxtoy.org/archives/hands-on-with-ansible.html&#34;&gt;Ansible 快速上手&lt;/a&gt; 一文，以及 &lt;a href=&#34;http://gogojimmy.net/2013/05/26/vagrant-tutorial/&#34;&gt;使用Vagrant練習環境佈署&lt;/a&gt; 作为学习铺垫，我就不再多写。这里我想重点介绍下 Ansible + Vagrant 配合使用技巧。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;其实上面 &amp;ldquo;使用Vagrant練習環境佈署&amp;rdquo; 提到的配置文件是 Vagrantfile config version = 1 时候的，当前 vagrant 版本是 1.4.1， Vagrantfile config version = 2，因此配置的部分已经有所变动。大家需要做下更新。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;如果你使用的是 Vagrant 1.4.0+，工具已经完全集成了上述的 DevOps 工具（甚至 Docker，另外一神器，后续看看能否给个介绍）。默认配置文件只包含了 Puppet 和 Chef，大家需要看&lt;a href=&#34;http://docs.vagrantup.com/v2/provisioning/index.html&#34;&gt;官方文档&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;如果你是 Mac OS 用户，可以通过 &lt;code&gt;brew&lt;/code&gt; 和 &lt;code&gt;brew-cask&lt;/code&gt; 命令安装：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ brew update
+$ brew install ansible
+$ brew cask install vagrant
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;创建-vagrant-实例&#34;&gt;创建 Vagrant 实例&lt;/h1&gt;
+
+&lt;p&gt;首先创建学习目录(&lt;code&gt;~/src/learn_ansible&lt;/code&gt;)和一个实例，采用 CentOS 6.5 x64 系统：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ vagrant init centos65 https://github.com/2creatives/vagrant-centos/releases/download/v6.5.1/centos65-x86_64-20131205.box
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;下载完毕之后，编辑 &lt;code&gt;Vagrantfile&lt;/code&gt; 添加如下内容：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;config.vm.network :private_network, ip: &amp;quot;33.33.33.10&amp;quot;
+config.vm.provision :ansible do |ansible|
+
+ansible.inventory_path = &amp;quot;ansbile/hosts&amp;quot;
+	ansible.playbook = &amp;quot;ansbile/playbook.yml&amp;quot;
+
+	# 默认使用 sudo 权限
+	ansible.sudo = true
+	# 开启调试信息模式
+	ansible.verbose = &#39;vvv&#39;
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;并在学习目录创建 &lt;code&gt;ansible&lt;/code&gt; 目录以及下面两个文件，结构如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ tree
+.
+├── Vagrantfile
+└── ansible
+    ├── hosts
+    └── playbook.yml
+1 directory, 3 files
+
+`hosts` 文件内容，ip 地址和上面 `Vagrantfile` 设置的一致：
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;[webserver]
+33.33.33.10&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+`playbook.yml` 文件内容：
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&#34;ansbile-的配置文件-这里指定只作用于-webserver-服务器&#34;&gt;ansbile 的配置文件，这里指定只作用于 webserver 服务器&lt;/h1&gt;
+
+&lt;h1 id=&#34;使用-vagrant-的-sudu-权限执行任务&#34;&gt;使用 vagrant 的 sudu 权限执行任务&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;hosts: webserver
+user: vagrant
+sudo: yes
+tasks:&lt;/p&gt;
+
+&lt;h1 id=&#34;任务只有一个-就是安装-nginx&#34;&gt;任务只有一个，就是安装 nginx&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;name: Install Nginx
+yum: name=nginx state=present
+```&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;连接-部署&#34;&gt;连接 &amp;amp; 部署&lt;/h1&gt;
+
+&lt;p&gt;使用 Vagrant 的好处在于，它集成了这些工具，并通过 &lt;code&gt;vagrant provision&lt;/code&gt; 这个命令就能连接服务器并部署。这里我想让大家学习到如何通过传统 ssh 链接 vagrant 虚拟机的方法：&lt;/p&gt;
+
+&lt;p&gt;从上面的配置文件我们得知，服务器的 ip 是 &lt;code&gt;33.33.33.10&lt;/code&gt; 而且默认登录到虚拟机上的用户是 vagrant（密码也是用户名），链接端口是 22。我们先拷贝 ssh public key 到服务器上：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ssh-copy-id vagrant@33.33.33.10
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;完成之后，我们就可以通过下面命令测试是否配置成功：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ansible -u vagrant -i ansible/hosts all -m ping
+
+webserver | success &amp;gt;&amp;gt; {
+    &amp;quot;changed&amp;quot;: false,
+    &amp;quot;ping&amp;quot;: &amp;quot;pong&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;返回 &lt;code&gt;ping: pong&lt;/code&gt; 即为连接成功并可以进行部署。若你之前执行了 &lt;code&gt;vagrant provision&lt;/code&gt; 就会自动执行 &lt;code&gt;playbook.yml&lt;/code&gt; 的内容。&lt;/p&gt;
+
+&lt;p&gt;今天初探就到此结束，希望通过本篇文字大家对它有个大概的了解。&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>ActiveRecord 使用秘笈</title>
-      <link>http://icyleaf.com/2013/12/activerecord-tips/</link>
+      <link>http://icyleaf.com/2013/12/activerecord-tips</link>
       <pubDate>Tue, 03 Dec 2013 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2013/12/activerecord-tips/</guid>
-      <description>ActiveRecord 是 Rails 内置的 ORM 框架，大多数人学习 Ruby 都是从 rails 开始，接触的也是这个 ORM，因此就有了这个使用秘笈。 支持 rake db:xxx 命令 在非 rails 项目怎么让 rake 支持 db:xxx 命令呢？把</description>
-    </item>
-    
-    <item>
-      <title>Git 和 Pager 的那点事</title>
-      <link>http://icyleaf.com/2013/10/about-pager-on-git/</link>
-      <pubDate>Wed, 16 Oct 2013 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2013/10/about-pager-on-git/</guid>
-      <description>Git 几乎所有命令都提供分页器，即当命令输出超过一页时，自动在每页输出后暂停，可以按空格继续显示，按 q 退出。 默认 git 的 pager = less -FRSX，这个可以通</description>
-    </item>
-    
-    <item>
-      <title>如何在 CentOS 上安装 Gitlab</title>
-      <link>http://icyleaf.com/2013/09/how-to-install-gitlab-on-centos/</link>
-      <pubDate>Tue, 17 Sep 2013 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2013/09/how-to-install-gitlab-on-centos/</guid>
-      <description>2013 年 08 月的 OpenParty &amp;ldquo;花事如期&amp;rdquo; 活动上，晓东在他的机器上演示了自建 Gitlab 的项目，看到 Gitlab 目前已经比较成熟，而不像早期寒碜的界面，这</description>
-    </item>
-    
-    <item>
-      <title>配置 CentOS 的网络联网设置</title>
-      <link>http://icyleaf.com/2013/09/network-configuration-in-centos/</link>
-      <pubDate>Thu, 05 Sep 2013 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2013/09/network-configuration-in-centos/</guid>
-      <description>安装完毕 CentOS 6 Server 开始配置网络设置，网上有很多的教程，用的方法要么不全，要么操作方式比较早期，花点时间整理了下方法： DHCP 设定 CentOS 默认使用了 dhcp 但是可恨</description>
-    </item>
-    
-    <item>
-      <title>Linux 101 系列：chmod 文件权限工具</title>
-      <link>http://icyleaf.com/2013/08/linux-101-chmod/</link>
-      <pubDate>Wed, 28 Aug 2013 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2013/08/linux-101-chmod/</guid>
-      <description>chmod 是用来管理文件访问权限的命令，大家是使用 *nix 系统的时候经常跟它打交道。 基本常识 用户和用户组 参数|英文|说明 &amp;ndash;|&amp;ndash;|&amp;ndash; u|Use|当前用户 g|Grou</description>
-    </item>
-    
-    <item>
-      <title>个人 Mac OS 常用应用清单【2013年版】</title>
-      <link>http://icyleaf.com/2013/07/my-mac-os-apps-list-2013/</link>
-      <pubDate>Mon, 22 Jul 2013 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2013/07/my-mac-os-apps-list-2013/</guid>
-      <description>特别提醒：没有标注【收费】的应用均为免费应用。【增强付费】代表可以免费使用，但是需要付费开启扩展功能。 最近有些朋友从 Windows 转到了 Mac 上面，发现之前</description>
-    </item>
-    
-    <item>
-      <title>针对 Universal 应用上线 App Store 的提示</title>
-      <link>http://icyleaf.com/2013/02/app-store-review-tips-about-universal-app/</link>
-      <pubDate>Tue, 19 Feb 2013 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2013/02/app-store-review-tips-about-universal-app/</guid>
-      <description>官方禁止新版本支持的设备小余旧版本 乐居计算器是我们的第一款 Universal 应用，这次做了重要变化，但仅限于 iPhone 的修改，本想改本次上线仅支持 iPhone 来赶 deadli</description>
-    </item>
-    
-    <item>
-      <title>Dash 你值得拥有的文档管理工具</title>
-      <link>http://icyleaf.com/2013/02/dash/</link>
-      <pubDate>Wed, 06 Feb 2013 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2013/02/dash/</guid>
-      <description>Dash 是 Mac OS 的一个文档管理工具，从它第一版发布用到现在，绝对是一个你值得拥有的文档管理工具，因为它还是免费的，你可以从 Mac App Store 购买。但是全功能需要</description>
-    </item>
-    
-    <item>
-      <title>介绍 virtualenvwrapper</title>
-      <link>http://icyleaf.com/2013/01/intro-virtualenvwrapper/</link>
-      <pubDate>Wed, 16 Jan 2013 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2013/01/intro-virtualenvwrapper/</guid>
-      <description>上回说到 virtualenv 的基本使用，这会为了提高工作效率，再次介绍针对于它增强的一个扩展 virtualenvwrapper。 安装配置 $ pip install virtualenvwrapper 安装好之后需要</description>
-    </item>
-    
-    <item>
-      <title>修复 OS X 打开方式的重复项</title>
-      <link>http://icyleaf.com/2012/11/%E4%BF%AE%E5%A4%8D-os-x-%E6%89%93%E5%BC%80%E6%96%B9%E5%BC%8F%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9/</link>
-      <pubDate>Tue, 06 Nov 2012 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2012/11/%E4%BF%AE%E5%A4%8D-os-x-%E6%89%93%E5%BC%80%E6%96%B9%E5%BC%8F%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9/</guid>
-      <description>$ /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain system-domainuser  </description>
-    </item>
-    
-    <item>
-      <title>EasyConvert</title>
-      <link>http://icyleaf.com/2012/10/easyconvert-gbk-to-utf8-convert-tool-for-mac/</link>
-      <pubDate>Thu, 25 Oct 2012 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2012/10/easyconvert-gbk-to-utf8-convert-tool-for-mac/</guid>
-      <description>托设计朋友的要求，继续奉献出一个小工具: EasyConvert - 针对于文本文件的编码转换工具 - GBK to UTF8 首先这个应用是用于 OS X 系统的，其次其实它是一个很弱的工具，对</description>
-    </item>
-    
-    <item>
-      <title>在 iOS 应用调用 App Store 显示指定应用的详情</title>
-      <link>http://icyleaf.com/2012/10/how-to-preview-app-detail-buit-in-app-using-app-store-data/</link>
-      <pubDate>Thu, 25 Oct 2012 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2012/10/how-to-preview-app-detail-buit-in-app-using-app-store-data/</guid>
-      <description>可能很多手机应用都使用了“应用推荐”的功能，实现方式各式各样，对于 iOS 来说最致命的缺点就是，如果用户喜欢给推荐的应用，当用户点击该应用的时候，</description>
-    </item>
-    
-    <item>
-      <title>如何针对 iOS 设备进行网络抓包分析</title>
-      <link>http://icyleaf.com/2012/10/%E5%A6%82%E4%BD%95%E9%92%88%E5%AF%B9-ios-%E8%AE%BE%E5%A4%87%E8%BF%9B%E8%A1%8C%E7%BD%91%E7%BB%9C%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90/</link>
-      <pubDate>Mon, 15 Oct 2012 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2012/10/%E5%A6%82%E4%BD%95%E9%92%88%E5%AF%B9-ios-%E8%AE%BE%E5%A4%87%E8%BF%9B%E8%A1%8C%E7%BD%91%E7%BB%9C%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90/</guid>
-      <description>Charles 目前是 OS X 上面最好的抓包分析软件，相比 WireShark 功能更加强大，并支持代理功能。 iPad HTTP Debugging with Charles - 教大家如何使用它进行代理抓包 Testing / Tethering Data Driven Mobile Apps with Charles and OSX - 教大</description>
-    </item>
-    
-    <item>
-      <title>升级  OS X 10.8 和 Python 第三方库那点事</title>
-      <link>http://icyleaf.com/2012/08/upgrade-osx-10-8-with-python-library/</link>
-      <pubDate>Fri, 24 Aug 2012 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2012/08/upgrade-osx-10-8-with-python-library/</guid>
-      <description>今天把公司的机器升级到了 10.8 本来就觉得 OS X 的平滑升级做的非常的好，除了一些被乔帮主鄙视的 JDK 需要重新安装外，其他的一切都很平滑的迁移过来。中午的</description>
-    </item>
-    
-    <item>
-      <title>如何保持在 Git Submodule 代码的开放和私有共存</title>
-      <link>http://icyleaf.com/2012/08/how-to-keep-public-and-private-versions-of-a-git-submodule-repo-in-sync/</link>
-      <pubDate>Fri, 03 Aug 2012 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2012/08/how-to-keep-public-and-private-versions-of-a-git-submodule-repo-in-sync/</guid>
-      <description>假设我在 github 有一个开源的版本库 x 供大家使用，该库里面又包含了好些个 submodules，其中有一个 submodule 名为 a 是自己在 github 又创建的: $ git submodule add http://github.com/icyleaf/a.git modules/a 现在</description>
-    </item>
-    
-    <item>
-      <title>利用 argparse 写的脚本命令：测试 URL 响应时间</title>
-      <link>http://icyleaf.com/2012/08/url-request-time-test-using-python-with-argparse/</link>
-      <pubDate>Thu, 02 Aug 2012 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2012/08/url-request-time-test-using-python-with-argparse/</guid>
-      <description>前几天看完《Python简明教程》，预想练手，想起同事的一个 ruby 代码，尝试改写成 python，顺便看看两个语言的简练程度。下面是原始的 ruby 代码：</description>
-    </item>
-    
-    <item>
-      <title>Dropbox和Apache关于权限的问题</title>
-      <link>http://icyleaf.com/2012/07/how-to-fix-dropbox-with-apache-about-acces-permission/</link>
-      <pubDate>Mon, 30 Jul 2012 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2012/07/how-to-fix-dropbox-with-apache-about-acces-permission/</guid>
-      <description>自从上次 SSD 硬盘不小心挂了之后，就算是返厂检修，一旦是算坏只能更换新的无法提供维修服务。这次我对待一些数据就更加小心了。尤其是代码，其实这次代</description>
-    </item>
-    
-    <item>
-      <title>Sublime Text 2 &#43; GoSublime &#43; ZSH 的配置</title>
-      <link>http://icyleaf.com/2012/07/sublime-text-2-and-gosublime-with-zsh/</link>
-      <pubDate>Mon, 30 Jul 2012 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2012/07/sublime-text-2-and-gosublime-with-zsh/</guid>
-      <description>Sublime Text 2（下面简称 Subl） 通过 PCIP（Package Control: Install Package）安装各式各样的插件，其中还包括 Google 刚刚发布 1.0+ 的 golang 语言也有相应的插件 G</description>
-    </item>
-    
-    <item>
-      <title>初次接触 virtualenv</title>
-      <link>http://icyleaf.com/2012/07/intro-virtualenv/</link>
-      <pubDate>Fri, 27 Jul 2012 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2012/07/intro-virtualenv/</guid>
-      <description>python 的 virtualenv 功能看着类似于 Ruby 的 RVM，其实这两个东西我都没有用过，本身脚本语言用的最熟练的是 php，最近觉得 php 在处理一些多线程和终端繁琐的事情上有</description>
-    </item>
-    
-    <item>
-      <title>“java.lang.NoClassDefFoundError” in Android</title>
-      <link>http://icyleaf.com/2012/05/how-to-salvation-android-import-jar-exception-during-running/</link>
-      <pubDate>Mon, 14 May 2012 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2012/05/how-to-salvation-android-import-jar-exception-during-running/</guid>
-      <description>最近 Eclipse 的 ADT 升级至了 18 版本，结果运行的时候发现导入的第三方 jar 包总是报错 java.lang.NoClassDefFoundError 可气的是 Eclipse 不会给工程同时在编译的时候也不会报错。 后来发现此版本，第三方</description>
-    </item>
-    
-    <item>
-      <title>友盟 iOS 发布渠道自动化脚本</title>
-      <link>http://icyleaf.com/2012/05/ios-publish-channel-packger-for-umeng/</link>
-      <pubDate>Thu, 10 May 2012 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2012/05/ios-publish-channel-packger-for-umeng/</guid>
-      <description>现在公司的大多数手机项目的统计服务都是用的友盟，而自使用之初到现在都有一个渠道管理的功能，这个最后打包的时候实际上可能会产生一点点的麻烦，最</description>
-    </item>
-    
-    <item>
-      <title>获取公网 IP</title>
-      <link>http://icyleaf.com/2012/05/fetch-public-ip/</link>
-      <pubDate>Wed, 09 May 2012 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2012/05/fetch-public-ip/</guid>
-      <description>$ curl -s http://checkip.dyndns.org | grep -Eo &#39;([0-9]{1,3}\\.){3}[0-9]{1,3}&#39;  </description>
-    </item>
-    
-    <item>
-      <title>QuickLook 感悟</title>
-      <link>http://icyleaf.com/2012/04/thinking-in-quicklook/</link>
-      <pubDate>Mon, 30 Apr 2012 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2012/04/thinking-in-quicklook/</guid>
-      <description>前段时间对 OS X 系统的 QuickLook 非常感兴趣，能够随着开发者的定制，针对不同的文件呈现符合用户需求的预览功能，然后认为它属于是万能的。随后可以琢磨利用它</description>
-    </item>
-    
-    <item>
-      <title>自动化脚本上传应用至 testflightapp</title>
-      <link>http://icyleaf.com/2012/04/automating-script-to-testflight-from-xcode/</link>
-      <pubDate>Fri, 06 Apr 2012 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2012/04/automating-script-to-testflight-from-xcode/</guid>
-      <description>Testflightapp 是团队开发测试中起了重要的角色，尤其是到目前为止一直是免费，最近还推出的 Live 功能不仅可以统计本身的一些数据还可以把现有的一些其他的账户的数据</description>
-    </item>
-    
-    <item>
-      <title>使用 Git Hooks 实现自动项目部署</title>
-      <link>http://icyleaf.com/2012/03/apps-auto-deploy-with-git/</link>
-      <pubDate>Wed, 14 Mar 2012 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2012/03/apps-auto-deploy-with-git/</guid>
-      <description>最近在某服务器上面搭建 git 开发和部署环境，git 开发环境很简单，按照 ProGit 一书的相关知识就可以轻松搞定，实现了类似 Github 的使用 SSH + 私有 Clone 的方式。 关于部</description>
-    </item>
-    
-    <item>
-      <title>pngcrush 的一些用法</title>
-      <link>http://icyleaf.com/2012/03/pngcrush-usage-with-ios-apps/</link>
-      <pubDate>Fri, 09 Mar 2012 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2012/03/pngcrush-usage-with-ios-apps/</guid>
-      <description>pngcrush 顾名思义，看起名字本身就优化 png 的工具，为什么会提到它呢，因为目前所有 iOS app 自身的 png 文件都是经过它优化的，对于优化有的 png，系统本身默认是无</description>
-    </item>
-    
-    <item>
-      <title>升级 xcode 4.3.1</title>
-      <link>http://icyleaf.com/2012/03/upgrade-xcode-431/</link>
-      <pubDate>Fri, 09 Mar 2012 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2012/03/upgrade-xcode-431/</guid>
-      <description>下载 XCode 目前有两种途径： ​1. Mac App Store ​2. Apple Developer Download Page (需要有开发者账号并登陆） 对于前者好处在于免费下载但下载时间或许非常漫长；但后者如果条件都满</description>
-    </item>
-    
-    <item>
-      <title>Colors</title>
-      <link>http://icyleaf.com/2012/03/colors-is-ios-development-utility-tool/</link>
-      <pubDate>Fri, 02 Mar 2012 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2012/03/colors-is-ios-development-utility-tool/</guid>
-      <description>最新更新，发现更好的免费取色器 Sip Colors 是一个简单的颜色取色器，简单的有可能你都没有听说过它，虽然它对于平面设计师以及 Web 设计师不太看中，但它可是程</description>
-    </item>
-    
-    <item>
-      <title>让 Android 支持下拉刷新(Pull Refresh)</title>
-      <link>http://icyleaf.com/2012/02/pull-refresh-for-android/</link>
-      <pubDate>Wed, 29 Feb 2012 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2012/02/pull-refresh-for-android/</guid>
-      <description>曾几何时，自 Android 发布之后一直以来就被管以 Geek 的玩具，而不太注重界面设计和用户交互设计，这让 Android 开发者也顺其自然的接受了这个不好的头衔，但我一度认为</description>
-    </item>
-    
-    <item>
-      <title>如何让 iOS 和 Android 支持自定义字体</title>
-      <link>http://icyleaf.com/2011/07/custom-fonts-both-in-ios-and-android/</link>
-      <pubDate>Wed, 06 Jul 2011 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2011/07/custom-fonts-both-in-ios-and-android/</guid>
-      <description>本篇教程的目前源于我们团队设计师一直询问，iOS(iPhone/iPad) 和 Android 两个平台是否支持自定义字体的问题，恰巧前不久唐茶计划出了一个关</description>
-    </item>
-    
-    <item>
-      <title>Chrome 扩展</title>
-      <link>http://icyleaf.com/2011/06/chrome-extension-url-to-qr-code/</link>
-      <pubDate>Thu, 16 Jun 2011 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2011/06/chrome-extension-url-to-qr-code/</guid>
-      <description>URL to QR-Code 是一个 Chrome 扩展,适用于 Chrome 浏览页面的同时希望把在手机设备(当然手机得支持 QR-Code的扫描)也能访问.我总结可以适用于以下情景: 这个网页</description>
-    </item>
-    
-    <item>
-      <title>为 ShareKit 增加国内相关微博/SNS 服务</title>
-      <link>http://icyleaf.com/2011/05/append-related-services-into-sharekit-from-china/</link>
-      <pubDate>Mon, 02 May 2011 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2011/05/append-related-services-into-sharekit-from-china/</guid>
-      <description>在 iDev 圈内，众所周知 ShareKit是一个家喻户晓的分享框架，很多人都在问哪有支持国内相关微博/SNS服务（比如，新浪微博，腾讯微博，豆瓣，开</description>
-    </item>
-    
-    <item>
-      <title>如何在开发和发布环境使用 Android Map Key</title>
-      <link>http://icyleaf.com/2011/05/how-to-using-android-map-key-both-in-development-and-production/</link>
-      <pubDate>Mon, 02 May 2011 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2011/05/how-to-using-android-map-key-both-in-development-and-production/</guid>
-      <description>在项目中第一次使用并涉及 Google Map 的功能，而由于 Google 的限制，Google Map 模块出来需要单独下载模块之外，对于每一个应用还都必须具有一个 Google Map Key，这</description>
-    </item>
-    
-    <item>
-      <title>魔豆及其豆瓣 API 测试平台开源咯</title>
-      <link>http://icyleaf.com/2011/05/modou-and-douban-api-console-is-open-source-now/</link>
-      <pubDate>Mon, 02 May 2011 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2011/05/modou-and-douban-api-console-is-open-source-now/</guid>
-      <description>这是作为 2011 年 5 月 1 日劳动节的福利发放，欢迎各位 Kohana 开发者及其爱好者围观领取，领取内容及其使用方式请前往本人 Github 的项目地址：https://git</description>
-    </item>
-    
-    <item>
-      <title>个人常用 OS X 软件集合</title>
-      <link>http://icyleaf.com/2011/03/im-using-osx-software-list/</link>
-      <pubDate>Tue, 29 Mar 2011 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2011/03/im-using-osx-software-list/</guid>
-      <description>用了 OS X 已经半年多了，整理下日常常用的软件。大多数都是开源或者免费软件，少数需要购买 AppCleaner：卸载软件必备，适合用于第三方安装和</description>
-    </item>
-    
-    <item>
-      <title>OSX</title>
-      <link>http://icyleaf.com/2010/12/switer-between-finder-and-terminal-in-osx/</link>
-      <pubDate>Wed, 08 Dec 2010 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2010/12/switer-between-finder-and-terminal-in-osx/</guid>
-      <description>在 Finder 打开 Terminal 并切换到当前目录 安装一个开源的 Finder 辅助工具：cdto。功能只有一个就是实现在 Finder 打开 Terminal 并切换到当前 Finder 目录。找到你系统的版本的 app （支持当</description>
-    </item>
-    
-    <item>
-      <title>Ubuntu 解决 public key is not available 问题</title>
-      <link>http://icyleaf.com/2010/11/apt-get-gpg-error-public-key-not-available/</link>
-      <pubDate>Wed, 03 Nov 2010 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2010/11/apt-get-gpg-error-public-key-not-available/</guid>
-      <description>自 Ubuntu 10.04 升级至 10.10 之后，系统就有些不注意的小毛病，包括系统的各个软件的配置文件可能有改动，加上常年累计尝试并添加很多 ppa 的源，自定义的软件源在升级</description>
-    </item>
-    
-    <item>
-      <title>Nginx&#43;FastCGI 环境搭建 Kohana</title>
-      <link>http://icyleaf.com/2010/05/nginx-with-fastcgi-build-kohana/</link>
-      <pubDate>Mon, 31 May 2010 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2010/05/nginx-with-fastcgi-build-kohana/</guid>
-      <description>Kohana 默认仅对 Apache 环境提供的部署支持，其实对于 Nginx+FastCGI 也是很容易支持的。本文搭建环境是 Ubuntu 10.4 并采用 apt-get 方式安装，喜爱编译的朋友可以自行解决 :) 1. 安装 MySQL $ sudo apt-get install</description>
-    </item>
-    
-    <item>
-      <title>如何获取 Element 的 XPath [PHP/Javascript]</title>
-      <link>http://icyleaf.com/2010/04/how-to-get-xpath-of-an-element-for-php-and-javascript/</link>
-      <pubDate>Fri, 02 Apr 2010 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2010/04/how-to-get-xpath-of-an-element-for-php-and-javascript/</guid>
-      <description>这两天研究 HTML 的 DOM 需要寻找某个 Element 元素的完整 XPath 路径，由于使用的是 PHP Simple HTML DOM Parser 开源库，这个库类的使用方法几乎兼容 Javascript 的 DOM 语法并附带 DOM 选择器。虽然功能强</description>
-    </item>
-    
-    <item>
-      <title>Douban API Package 发布！</title>
-      <link>http://icyleaf.com/2010/01/douban-api-package/</link>
-      <pubDate>Fri, 08 Jan 2010 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2010/01/douban-api-package/</guid>
-      <description>Douban API Package 是一个使用 PHP 开发且基于 Kohana v3 开发的一个扩展（Module）。 它对豆瓣 API 进行重新封包。它使用起来非常方便，可以快速开发一个 web 应用。 为什么要</description>
-    </item>
-    
-    <item>
-      <title>几本和 Git 相关的书</title>
-      <link>http://icyleaf.com/2009/09/books-about-git/</link>
-      <pubDate>Mon, 28 Sep 2009 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2009/09/books-about-git/</guid>
-      <description>切换到 Git开发已经有一段的时间了，之前一直在使用 svn，现在部分代码还在 Google Code 托管。不过自换了 Git 之后发现 Git 更方便且效率更高，不过用来用去常用</description>
-    </item>
-    
-    <item>
-      <title>Kohana 官方 2.3，2.4，3.0 的最终裁决！</title>
-      <link>http://icyleaf.com/2009/07/official-2-3-2-4-3-0-decisions/</link>
-      <pubDate>Fri, 24 Jul 2009 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2009/07/official-2-3-2-4-3-0-decisions/</guid>
-      <description>更新：Kohana 官方已经做出最终裁决！ 两天前我(Shadowhand)曾经说过关于 2.4 和 3.0 版本的问题和它们之间的关系已经做出的解答。之后的今</description>
-    </item>
-    
-    <item>
-      <title>豆瓣API测试控制台</title>
-      <link>http://icyleaf.com/2009/07/douban-api-console/</link>
-      <pubDate>Mon, 06 Jul 2009 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2009/07/douban-api-console/</guid>
-      <description>项目已开源: http://github.com/icyleaf/modou 豆瓣 API 测试控制台的创造灵感来源于 Facebook Developers Tools 中的Facebook API Console， 或许大家知道，魔豆是我的另外一个豆瓣 API 应用，由于是</description>
-    </item>
-    
-    <item>
-      <title>魔豆：豆瓣网非官方移动版本</title>
-      <link>http://icyleaf.com/2009/06/modou/</link>
-      <pubDate>Mon, 22 Jun 2009 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2009/06/modou/</guid>
-      <description>项目已开源: http://github.com/icyleaf/modou 魔豆，一个豆瓣网非官方移动版本，基于豆瓣 API开发的专门为移动终端（手持设备）定制的豆瓣移动版本。魔豆专注于豆瓣网的广播及同城</description>
-    </item>
-    
-    <item>
-      <title>Modules Library 和 DBManager Module</title>
-      <link>http://icyleaf.com/2009/03/modules-helper-and-dbmanager-module/</link>
-      <pubDate>Thu, 05 Mar 2009 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2009/03/modules-helper-and-dbmanager-module/</guid>
-      <description>Hi, Don&amp;rsquo;t understand Chinese? ok, No problem. Here to view Modules Library and DBManager Module 或许大家可能有了解到，本人目前一直在对 Kohana这个纯 PHP5 框架进行文档翻译和维护，同时也建立一个站点：Koha</description>
-    </item>
-    
-    <item>
-      <title>Mockups：手绘界面设计软件</title>
-      <link>http://icyleaf.com/2009/02/mockups-best-ui-design-software/</link>
-      <pubDate>Wed, 18 Feb 2009 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2009/02/mockups-best-ui-design-software/</guid>
-      <description>忘记如何知道 Mockups 这款软件了，不过也是今天搜索是无意中发现的一款很棒的界面设计软件，无论你在设计一个软件的外观或者是一个网站的界面甚至说更为细节</description>
-    </item>
-    
-    <item>
-      <title>与SPAM战斗到底：CSS篇</title>
-      <link>http://icyleaf.com/2009/02/fighting-spam-with-css/</link>
-      <pubDate>Sun, 08 Feb 2009 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2009/02/fighting-spam-with-css/</guid>
-      <description>SPAM，现在还没有一个非常严格的定义。一般来说，凡是未经用户许可就强行发送到用户的邮箱中的任何电子邮件。现在应该已经广泛各种网络应用上面。</description>
-    </item>
-    
-    <item>
-      <title>初学 git 入门</title>
-      <link>http://icyleaf.com/2008/11/new-guy-to-git/</link>
-      <pubDate>Fri, 07 Nov 2008 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2008/11/new-guy-to-git/</guid>
-      <description>Git 是用于 Linux 内核开发的版本控制工具。与常用的版本控制工具 CVS, Subversion 等不同，它采用了分布式版本库的方式，不必服务器端软件支持，使源代码的发布和交流极其</description>
-    </item>
-    
-    <item>
-      <title>校内网，海内网，开心网用户隐私查看器</title>
-      <link>http://icyleaf.com/2008/10/the-school-network-network-happy-at-home-and-network-user-privacy-viewer/</link>
-      <pubDate>Fri, 10 Oct 2008 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2008/10/the-school-network-network-happy-at-home-and-network-user-privacy-viewer/</guid>
-      <description>更新：目前校内网已经修补了此漏洞，所以大家可以放弃了，除非你想抓住那 1% 的机会 你想查看他或她的私隐信息吗？如果你说的他或她是校内网，海内网，开</description>
-    </item>
-    
-    <item>
-      <title>标签(Tag)的数据库设计</title>
-      <link>http://icyleaf.com/2008/06/tags-database-schemas/</link>
-      <pubDate>Sat, 21 Jun 2008 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2008/06/tags-database-schemas/</guid>
-      <description>原文来自：Then each went to his own home 原文作者：Philipp Keller 译者注：本文在涉及到专业术语或者译者表达不明白的地方均会保留原英文。 最近，在del.</description>
-    </item>
-    
-    <item>
-      <title>如何制定免费短信提醒新邮件</title>
-      <link>http://icyleaf.com/2008/06/how-to-prepare-for-free-sms-alerts-for-new-mail/</link>
-      <pubDate>Mon, 16 Jun 2008 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2008/06/how-to-prepare-for-free-sms-alerts-for-new-mail/</guid>
-      <description>邮箱每个人都有，而且大部分应该还不只一个而已，分类使用，工作用一个，生活用一个，申请会员/社区再用一个&amp;hellip;.不过多少个一般都会有</description>
-    </item>
-    
-    <item>
-      <title>CSS中background-image的另类使用</title>
-      <link>http://icyleaf.com/2008/05/css-background-image-in-the-use-of-alternative/</link>
-      <pubDate>Sat, 10 May 2008 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2008/05/css-background-image-in-the-use-of-alternative/</guid>
-      <description>在CSS众多的样式当中，background可以说是扮演着重要的角色，它可以设置对象的背景样式。如颜色或者使用一张图片代替，今天我要多说两句</description>
-    </item>
-    
-    <item>
-      <title>如何使用VirtualBox安装Linux系统</title>
-      <link>http://icyleaf.com/2008/03/how-to-use-linux-systems-installed-virtualbox/</link>
-      <pubDate>Thu, 13 Mar 2008 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2008/03/how-to-use-linux-systems-installed-virtualbox/</guid>
-      <description>VirtualBox也已经介绍过了，昨天是实实在在的用VirtualBox体验了一下 Linux Mint 系统。这篇日志我就大概的说下如何用VirtualBo</description>
-    </item>
-    
-    <item>
-      <title>初学教程：正则表达式</title>
-      <link>http://icyleaf.com/2007/12/beginner-guide-a-regular-expression/</link>
-      <pubDate>Mon, 10 Dec 2007 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2007/12/beginner-guide-a-regular-expression/</guid>
-      <description>正则表达式（英文全称regular expression）描述了一种字符串匹配的模式，可以用来检查一个串是否含有某种子串、将匹配的子串做替换或</description>
-    </item>
-    
-    <item>
-      <title>推荐一本书</title>
-      <link>http://icyleaf.com/2007/09/recommend-a-book-stan-lais-creative-learning/</link>
-      <pubDate>Fri, 28 Sep 2007 12:34:56 +0800</pubDate>
-      
-      <guid>http://icyleaf.com/2007/09/recommend-a-book-stan-lais-creative-learning/</guid>
-      <description>书名：赖声川的创意学 作者：赖声川 出版社：中信出版社 ISBN：7508607457 纸张：胶版纸 出版日期：2006-9-1 定价：36元 内容提要：</description>
+      <guid>http://icyleaf.com/2013/12/activerecord-tips</guid>
+      <description>
+
+&lt;p&gt;ActiveRecord 是 Rails 内置的 ORM 框架，大多数人学习 Ruby 都是从 rails 开始，接触的也是这个 ORM，因此就有了这个使用秘笈。&lt;/p&gt;
+
+&lt;h1 id=&#34;支持-rake-db-xxx-命令&#34;&gt;支持 &lt;code&gt;rake db:xxx&lt;/code&gt; 命令&lt;/h1&gt;
+
+&lt;p&gt;在非 rails 项目怎么让 rake 支持 db:xxx 命令呢？把如下代码放到 &lt;code&gt;Rakefile&lt;/code&gt; 中:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;namespace :db do
+  require &#39;activerecord&#39;
+  require &#39;yaml&#39;
+
+  desc &amp;quot;加载项目表数据到数据库&amp;quot;
+  task :init =&amp;gt; :dbenv do
+    file = &amp;quot;db/schema.rb&amp;quot;
+    load(file) # 参考 rails 文件结构
+  end
+
+  desc &amp;quot;创建数据库初始化数据&amp;quot;
+  task :seed =&amp;gt; :dbenv do
+    seed_file = File.join(File.dirname(__FILE__), &#39;db&#39;, &#39;seeds.rb&#39;)
+    load(seed_file) if File.exist?(seed_file)
+  end
+
+  desc &amp;quot;合并 db/migrate 目录下的数据库文件&amp;quot;
+  task :migrate =&amp;gt; :dbenv do
+    ActiveRecord::Migration.verbose = ENV[&amp;quot;VERBOSE&amp;quot;] ? ENV[&amp;quot;VERBOSE&amp;quot;] == &amp;quot;true&amp;quot; : true
+    ActiveRecord::Migrator.migrate(&amp;quot;db/migrate/&amp;quot;, ENV[&amp;quot;VERSION&amp;quot;] ? ENV[&amp;quot;VERSION&amp;quot;].to_i : nil)
+    Rake::Task[&amp;quot;db:schema:dump&amp;quot;].invoke if ActiveRecord::Base.schema_format == :ruby
+  end
+
+  desc &#39;设定 STEP=n 回滚之前版本的数据库结构&#39;
+  task :rollback =&amp;gt; :dbenv do
+    step = ENV[&#39;STEP&#39;] ? ENV[&#39;STEP&#39;].to_i : 1
+    ActiveRecord::Migrator.rollback(&#39;db/migrate/&#39;, step)
+    Rake::Task[&amp;quot;db:schema:dump&amp;quot;].invoke if ActiveRecord::Base.schema_format == :ruby
+  end
+
+  task :dbenv do
+    dbname = ENV[&#39;db&#39;] || &#39;development&#39;
+  	$dbconfig = YAML::load(&#39;db/database.yml&#39;)
+    ActiveRecord::Base.establish_connection($dbconfig[dbname])
+  end
+
+  namespace :schema do
+    desc &amp;quot;把数据库结构写入 db/schema.rb 文件&amp;quot;
+    task :dump =&amp;gt; :dbenv do
+      require &#39;active_record/schema_dumper&#39;
+      File.open(ENV[&#39;SCHEMA&#39;] || &amp;quot;db/schema.rb&amp;quot;, &amp;quot;w&amp;quot;) do |file|
+        ActiveRecord::SchemaDumper.dump(ActiveRecord::Base.connection, file)
+      end
+    end
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;初始化数据库结构&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ rake db:init
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;支持-sql-server&#34;&gt;支持 SQL Server&lt;/h1&gt;
+
+&lt;p&gt;只针对 *nix 系统：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;安装 freetds&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;pre&gt;&lt;code&gt;* Mac OS: `brew install freetds`
+* CentOS: `yum install -y freetds`
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;gem install tiny_tds&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;gem install activerecord-sqlserver-adapter&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;引用如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;require &#39;tiny_tds&#39;
+require &#39;activerecord-sqlserver-adapter&#39;
+require &#39;active_record&#39;
+
+ActiveRecord::Base.establish_connection({
+  :adapter =&amp;gt; &#39;sqlserver&#39;
+ :host =&amp;gt; &#39;10.10.10.10&#39;,
+ :username =&amp;gt; &#39;sa&#39;,
+  :password =&amp;gt; &#39;p@ssword&#39;,
+  :database =&amp;gt; &#39;development&#39;,
+  :timeout =&amp;gt; 10,
+  :port =&amp;gt; 1433,
+})
+
+class Users &amp;lt; ActiveRecord::Base
+	self.table_name = &#39;User&#39;
+	default_scope { lock(&#39;WITH (NOLOCK)&#39;) }
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;多数据库支持&#34;&gt;多数据库支持&lt;/h1&gt;
+
+&lt;p&gt;创建 &lt;code&gt;config/database.yml&lt;/code&gt; 文件:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;development:
+  adapter: mysql2
+  host: localhost
+  username: root
+  password:
+  database: development
+  timeout: 10
+  port: 3306
+test:
+  adapter: mysql2
+  host: 10.10.10.10
+  username: root
+  password: p@ssword
+  database: test
+  timeout: 10
+  port: 1433
+production:
+  adapter: mysql2
+  host: 33.33.33.33
+  username: root
+  password: p@ssword
+  database: production
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;创建 &lt;code&gt;lib/model.rb&lt;/code&gt; 文件:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$dbconfig = YAML::load(File::open(&#39;config/database.yml&#39;))
+
+class User &amp;lt; ActiveRecord::Base
+  establish_connection $dbconfig[&#39;development&#39;]
+end
+
+class Post &amp;lt; ActiveRecord::Base
+  establish_connection $dbconfig[&#39;test&#39;]
+end
+
+class Tag &amp;lt; ActiveRecord::Base
+  establish_connection $dbconfig[&#39;production&#39;]
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;动态创建表名&#34;&gt;动态创建表名&lt;/h1&gt;
+
+&lt;p&gt;假若有个需求需要按照每月分表（当然也可以安装业务分表什么的），我们可以通过下面方式调用：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# 插入 post，如果表不存在则创建后插入
+post = Post.date(&#39;201312&#39;).get_or_create_table.create(
+  title:&#39;test&#39;,
+  content:&#39;body&#39;
+)
+
+# Model 实现代码
+class Post &amp;lt; ActiveRecord::Base
+  @date = Time.now.strftime(&amp;quot;%Y%02m&amp;quot;)
+
+  def self.date(date)
+  	@date = date
+  end
+
+  def self.get_or_create_table(params={})
+    self.date(params[:date]) if params[:date]
+    self.create_table(params) if !self.exists?
+  end
+
+  def self.create_table(params={})
+    self.date(params[:date]) if params[:date]
+    table_name = self.table_name
+    ActiveRecord::Schema.define do
+      create_table table_name do |table|
+        table.column :title, :string
+        table.column :content, :text
+        table.column :created_at, :datetime
+        table.column :updated_at, :datetime
+      end
+    end
+
+    return self
+  end
+
+  def self.table_exists?
+    # 如果你设置了多数据库请取消下行注解并更改配置名（参考上个技巧）
+    # ActiveRecord::Base.establish_connection($dbconfig[&#39;development&#39;])
+
+    ActiveRecord::Base.connection.tables.include?(self.table_name)
+  end
+
+  def table_name
+    &amp;quot;#{@date_users}&amp;quot;
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+</description>
     </item>
     
   </channel>

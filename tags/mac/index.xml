@@ -2,122 +2,724 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Mac on icyleaf</title>
-    <link>http://icyleaf.com/tags/mac/</link>
+    <link>http://icyleaf.com/tags/mac/index.xml</link>
     <description>Recent content in Mac on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
-    <lastBuildDate>Fri, 05 Aug 2016 17:21:08 +0800</lastBuildDate>
-    
-	<atom:link href="http://icyleaf.com/tags/mac/index.xml" rel="self" type="application/rss+xml" />
-    
+    <atom:link href="http://icyleaf.com/tags/mac/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>如何在 OS X 上安装 Rancher</title>
-      <link>http://icyleaf.com/2016/08/how-to-install-rancher-on-osx/</link>
+      <link>http://icyleaf.com/2016/08/how-to-install-rancher-on-osx</link>
       <pubDate>Fri, 05 Aug 2016 17:21:08 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2016/08/how-to-install-rancher-on-osx/</guid>
-      <description>Rancher 是 Docker 编排解决方案的一种，好处在于可以做容器编排，网络，存储，负载均衡，还能够支持云服务器（比如 Amazon EC2/Azure/DigitalOcea</description>
+      <guid>http://icyleaf.com/2016/08/how-to-install-rancher-on-osx</guid>
+      <description>
+
+&lt;p&gt;Rancher 是 Docker 编排解决方案的一种，好处在于可以做容器编排，网络，存储，负载均衡，还能够支持云服务器（比如 Amazon EC2/Azure/DigitalOcean）也能够兼容 Docker Swarm/Mesos/Kubernetes 等其他的解决方案。自它还没有发布 &lt;a href=&#34;http://rancher.com/announcing-rancher-1-0-ga/&#34;&gt;1.0&lt;/a&gt; 版本之前也有持续的关注。它自身还有个 &lt;a href=&#34;http://www.infoq.com/cn/news/2015/03/rancheros-docker-linux&#34;&gt;RancherOS&lt;/a&gt; 对于 CoreOS 也是一个不小的威胁。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://docs.rancher.com/img/rancher/rancher_overview_2.png&#34; alt=&#34;rancher-intro&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;由于它提供非常优化的后台管理界面，同时也提供 REST API，日常开发使用中异常的方便。如果非要说出一点不好的，那可能就是它对内存有点小要求：&lt;strong&gt;最小 1GB 内存&lt;/strong&gt;，因此如果想放在自己 VPS 上的童鞋需要评估下了。&lt;/p&gt;
+
+&lt;h2 id=&#34;mac-安装&#34;&gt;Mac 安装&lt;/h2&gt;
+
+&lt;p&gt;这块也趁着 &lt;a href=&#34;https://docs.docker.com/docker-for-mac/&#34;&gt;Docker for Mac&lt;/a&gt; 的好处，终于摆脱的 &lt;code&gt;docker-machine&lt;/code&gt; 的折磨，不用在依赖 VirtualBox，也不在每次装载 machine 的变量和查找虚拟机的 IP。映射的端口端口都通过 &lt;code&gt;localhost&lt;/code&gt; 访问。&lt;/p&gt;
+
+&lt;p&gt;Rancher 通过 Docker 来安装本来说是非常简单的，它分为服务端和客户端。本教程以 &lt;a href=&#34;http://docs.rancher.com/rancher/latest/en/installing-rancher/installing-server/&#34;&gt;Single Node&lt;/a&gt; 来讲解，不考虑 &lt;a href=&#34;http://docs.rancher.com/rancher/latest/en/installing-rancher/installing-server/multi-nodes/&#34;&gt;Multi Node&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;这块网上一直没有太好的解决方案，我看很多国外给出的&lt;a href=&#34;https://gist.github.com/axnux/09dc375d71398cbbee44ebd23ba35a08&#34;&gt;解决方案&lt;/a&gt;也比较麻烦，主要是由于 Docker for mac 使用的是 xhyve 作为轻量化的虚拟化方案，而 rancher 安装 server 端没有任何问题，在添加主机的时候需要通过 HTTP 来连接 server 端而失败。下面我来带大家用最简单的方案来拆解。无需任何第三方的辅助。&lt;/p&gt;
+
+&lt;h3 id=&#34;服务端&#34;&gt;服务端&lt;/h3&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;如果网速连接 docker hub 过慢可考虑使用代理设置或者国内的镜像服务，我这里分享一个 &lt;code&gt;https://docker.mirrors.ustc.edu.cn&lt;/code&gt;，可在 Docker -&amp;gt; Preferences&amp;hellip; -&amp;gt; Advanced -&amp;gt; Registry Mirror 添加。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ docker run -d --name rancher-server --restart=always -p 8080:8080 rancher/server
+$ docker logs -f rancher-server
+
+time=&amp;quot;2016-08-05T16:48:52Z&amp;quot; level=info msg=&amp;quot;Creating schema machine, roles [service]&amp;quot; id=1ds17
+time=&amp;quot;2016-08-05T16:48:53Z&amp;quot; level=info msg=&amp;quot;Creating schema machine, roles [project member owner]&amp;quot; id=1ds18
+time=&amp;quot;2016-08-05T16:48:53Z&amp;quot; level=info msg=&amp;quot;Creating schema machine, roles [admin user readAdmin]&amp;quot; id=1ds19
+time=&amp;quot;2016-08-05T16:48:53Z&amp;quot; level=info msg=&amp;quot;Creating schema machine, roles [readonly]&amp;quot; id=1ds20
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;看到如上类似的日志说明服务已经初始化完毕，通过浏览器访问 &lt;code&gt;http://localhost:8080&lt;/code&gt; 就可以看到后台管理界面。&lt;/p&gt;
+
+&lt;h3 id=&#34;客户端&#34;&gt;客户端&lt;/h3&gt;
+
+&lt;p&gt;先不着急继续页面操作，回到终端上执行如下命令获取 rancher-server 容器的 IP 地址备用&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ docker inspect --format &#39;{{ .NetworkSettings.IPAddress }}&#39; rancher-server
+172.17.0.2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;接着上面的步骤，在打开页面能看到 Add Host 按钮并点击对于弹出 “Host Registration URL” 选择 “Something else:” 在后面的输入框填入上面的 IP 和端口号 &lt;code&gt;http://172.17.0.2:8080&lt;/code&gt; 并保存。&lt;/p&gt;
+
+&lt;p&gt;之后就是给你一个客户端（部署主机）的选项，由于我们只添加本机作为部署主机使用，因此这里选择 Custom，其他不用任何设置，直接滑倒最底部找到一个执行 docker 命令的区域：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://ww2.sinaimg.cn/large/006tNbRwjw1f6jdkffiqhj31ee150k0c.jpg&#34; alt=&#34;add rancher host&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ docker run -d --privileged -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/rancher:/var/lib/rancher rancher/agent:v1.0.2 http://172.17.0.2:8080/v1/scripts/676576FFEC2212A68391:1470416400000:tfqxfdglHL6Qw8dpLVtbOesYY4
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;你会发现执行可能会报错：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;docker: Error response from daemon: Mounts denied:
+The path /var/lib/rancher
+is not shared from OS X and is not known to Docker.
+You can configure shared paths from Docker -&amp;gt; Preferences... -&amp;gt; File Sharing.
+See https://docs.docker.com/docker-for-mac/osxfs/#namespaces for more info.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;目前有可能是一个 Docker 的 Bug，因为 &lt;code&gt;/var/lib/rancher&lt;/code&gt; 是挂载到已经默认添加 &lt;code&gt;/private&lt;/code&gt; 文件共享，但是它还是报错，如果你在 Docker 设置的 File Sharing 添加的话它也不会让你添加，因此我们需要做一点小修改：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ docker run -d --privileged -v /var/run/docker.sock:/var/run/docker.sock -v ${HOME}/docker/rancher/var/lib/rancher:/var/lib/rancher rancher/agent:v1.0.2 http://172.17.0.2:8080/v1/scripts/676576FFEC2212A68391:1470416400000:tfqxfdglHL6Qw8dpLVtbOesYY4
+5cf22a10cf28b4182b6e205fa631146e86d67c3c9d86901ff8cf7ab087319a29
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;最后点击页面的 Close 后会跳转到 Host 的列表，你就能惊喜的发现添加成功了！&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://ww2.sinaimg.cn/large/006tNbRwjw1f6jdidcojkj315y0m4dik.jpg&#34; alt=&#34;rancher host&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;结尾&#34;&gt;结尾&lt;/h2&gt;
+
+&lt;p&gt;本篇只先解决这一个问题，更多使用的资料请看&lt;a href=&#34;http://rancher.hidocker.io/&#34;&gt;Rancher 实战红宝书&lt;/a&gt;。&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>Homebrew 隐藏命令</title>
-      <link>http://icyleaf.com/2014/01/homebrew-hidden-commands/</link>
+      <link>http://icyleaf.com/2014/01/homebrew-hidden-commands</link>
       <pubDate>Sat, 25 Jan 2014 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2014/01/homebrew-hidden-commands/</guid>
-      <description>Homebrew 可谓是 Mac 开发者必备的工具之一，它承载在各种包管理的特性以及拥有一票热情高涨的社区提供强大支持。今天我就给大家解密一下 brew 内部的隐藏命令都有哪</description>
+      <guid>http://icyleaf.com/2014/01/homebrew-hidden-commands</guid>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;http://brew.sh&#34;&gt;Homebrew&lt;/a&gt; 可谓是 Mac 开发者必备的工具之一，它承载在各种包管理的特性以及拥有一票热情高涨的社区提供强大支持。今天我就给大家解密一下 brew 内部的隐藏命令都有哪些。&lt;/p&gt;
+
+&lt;h2 id=&#34;服务管理&#34;&gt;服务管理&lt;/h2&gt;
+
+&lt;p&gt;当我们安装了众多需要挂载的服务，需要重启或停止的时候，都特别希望 Mac 可以有个统一的命令可以管理服务的状态，比如 &lt;code&gt;services&lt;/code&gt; 命令甚至说 &lt;code&gt;/etc/init.d/&lt;/code&gt; 也可以啊！&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ brew services command [formula]
+
+usage: [sudo] brew services [--help] &amp;lt;command&amp;gt; [&amp;lt;formula&amp;gt;]
+Small wrapper around `launchctl` for supported formulae, commands available:
+
+	cleanup Get rid of stale services and unused plists
+	list    List all services managed by `brew services`
+	restart Gracefully restart selected service
+	start   Start selected service
+	stop    Stop selected service
+
+Options, sudo and paths:
+
+sudo   When run as root, operates on /Library/LaunchDaemons (run at boot!)
+Run at boot:  /Library/LaunchDaemons
+Run at login: /Users/icyleaf/Library/LaunchAgents
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这个是我要讲的第一个隐藏命令！太坑爹了，那么实用的命令居然没有包含在 &lt;code&gt;brew --help&lt;/code&gt; 帮助里面！我们再也不用发愁记住 &lt;code&gt;launchctl load/unload &amp;lt;path&amp;gt;&lt;/code&gt; 的坑爹命令了！&lt;/p&gt;
+
+&lt;p&gt;重启 Nigix 就那么简单：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ brew services restart nginx
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;停止 Postgresql 服务&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ brew services stop mysql
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;查看系统通过 brew 安装的服务：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ brew services list
+postgresql started        - /Users/icyleaf/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
+nginx      started        - /Users/icyleaf/Library/LaunchAgents/homebrew.mxcl.nginx.plist
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;清除已卸载无用的启动配置文件：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ brew services cleanup
+Removing unused plist /Users/icyleaf/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+Removing unused plist /Users/icyleaf/Library/LaunchAgents/homebrew.mxcl.redis.plist
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;安装扩展&#34;&gt;安装扩展&lt;/h2&gt;
+
+&lt;p&gt;这个相信很多人都已经用到过了，安装他人扩展的 brew 服务。由于 brew 和包含的包源都是通过 github 来管理，人为的维护管理，除了自己的源还允许别人的源添加进来。类似与 &lt;code&gt;Ubuntu&lt;/code&gt; 的 &lt;code&gt;ppa&lt;/code&gt;。好处在于只有我安装规定的方式把包丢到 github 上面就可以用了！&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ brew tap &amp;lt;gihhub_user/repo&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这个命令并没有包含任何的帮助说明，其实它只接受上面的这个参数。&lt;/p&gt;
+
+&lt;p&gt;举例说明一下，Mac OS 比较歧视 PHP ，所以每次系统更新都会把常用的开发包（Ruby、Python 等）也顺带着更新到最新版本。（吐槽：Java 都已经被抛弃不再默认安装了），而 &lt;code&gt;brew&lt;/code&gt; 居然也不包含 &lt;code&gt;PHP&lt;/code&gt; 的包，那怎么办呢？&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ brew tap josegonzalez/php
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;命令完成之后，执行（当前最新是 php 5.5 版本，请根据需要替换）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ brew install php55
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;当我们没有传递任何参数，默认显示已经通过 &lt;code&gt;tap&lt;/code&gt; 安装了哪些扩展，为什么我说是通过 &lt;code&gt;tap&lt;/code&gt; 呢，因为 &lt;code&gt;brew&lt;/code&gt; 其实除了这些自身也用了一些其他扩展，通过下面命令显示：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ brew ls-taps
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;web-化显示可用包和已安装工具&#34;&gt;Web 化显示可用包和已安装工具&lt;/h2&gt;
+
+&lt;p&gt;对于习惯命令行的人这个用途不大，就顺带一提而已，这个命令依赖 &lt;code&gt;sinatra&lt;/code&gt;，大家通过 &lt;code&gt;gem&lt;/code&gt; 安装即可。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ brew server
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;如果你用 &lt;code&gt;puma&lt;/code&gt; 可能报一个 &lt;strong&gt;[BUG] Segmentation fault&lt;/strong&gt; 错误，那是因为你通过 rvm 或 renv 安装了跟高级的版本，而系统却用的 1.8.7 造成了版本差，请切换为系统依赖后再重试（你可能需要重新安装 sinata）：&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;$ rvm use system
+$ /usr/bin/gem install sinatra
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;彩蛋&#34;&gt;彩蛋&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;$ brew beer
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;更多隐藏命令&#34;&gt;更多隐藏命令&lt;/h2&gt;
+
+&lt;p&gt;一次性没太多精力完解读所有隐藏命令，这个艰巨的任务就交给大家了：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ brew commands
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;其实这些命令可以在&lt;a href=&#34;https://github.com/Homebrew/homebrew/tree/master/Library/Contributions/cmd&#34;&gt;官方源代码&lt;/a&gt;看到。&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>个人 Mac OS 常用应用清单【2013年版】</title>
-      <link>http://icyleaf.com/2013/07/my-mac-os-apps-list-2013/</link>
+      <link>http://icyleaf.com/2013/07/my-mac-os-apps-list-2013</link>
       <pubDate>Mon, 22 Jul 2013 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2013/07/my-mac-os-apps-list-2013/</guid>
-      <description>特别提醒：没有标注【收费】的应用均为免费应用。【增强付费】代表可以免费使用，但是需要付费开启扩展功能。 最近有些朋友从 Windows 转到了 Mac 上面，发现之前</description>
+      <guid>http://icyleaf.com/2013/07/my-mac-os-apps-list-2013</guid>
+      <description>
+
+&lt;blockquote&gt;
+&lt;p&gt;特别提醒：没有标注【收费】的应用均为免费应用。【增强付费】代表可以免费使用，但是需要付费开启扩展功能。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;最近有些朋友从 Windows 转到了 Mac 上面，发现之前写的清单有些老久了，重新更新一番，然后简单分个类整理：&lt;/p&gt;
+
+&lt;h3 id=&#34;app&#34;&gt;App&lt;/h3&gt;
+
+&lt;h4 id=&#34;系统辅助&#34;&gt;系统辅助&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Alfred 2：必备神器，基于 spotlight 开发的检索应用，可开发各种插件。【增强付费】&lt;/li&gt;
+&lt;li&gt;AppCleaner：卸载软件必备，可监听应用删除事件干净清除，适合用于第三方安装和 App Store&lt;/li&gt;
+&lt;li&gt;百度输入法：目前除了&lt;strong&gt;鼠须管&lt;/strong&gt;之外的最好选择。尤其是最近刚刚发布的新版&lt;/li&gt;
+&lt;li&gt;OmniDiskSweeper：磁盘空间使用率情况&lt;/li&gt;
+&lt;li&gt;Clean my mac：系统垃圾收集清理利器【付费】&lt;/li&gt;
+&lt;li&gt;The Unarchiver: 最智能且免费的解压缩软件&lt;/li&gt;
+&lt;li&gt;VirtualBox：开源的虚拟机，越来越好用了&lt;/li&gt;
+&lt;li&gt;Mactracker：收集了历代 Mac 产品的数据信息&lt;/li&gt;
+&lt;li&gt;Memory Clean：内存回收时使用，效果还可以&lt;/li&gt;
+&lt;li&gt;CheatSheet：可以显示任何一个应用的热键（hotkey）的辅助工具&lt;/li&gt;
+&lt;li&gt;iTools：iOS 设备管理工具&lt;/li&gt;
+&lt;li&gt;Tuxera NTFS：可写 NTFS 磁盘分区的工具【收费】&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;应用开发&#34;&gt;应用开发&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;iTerm 2：代替默认 Terminal 的应用，支持多 session 和扩展&lt;/li&gt;
+&lt;li&gt;Kaleidoscope：Mac 下最佳对比工具，没有之一，唯一的缺点就是太贵了【付费】&lt;/li&gt;
+&lt;li&gt;MesaSQLite：SQLite 数据库管理软件&lt;/li&gt;
+&lt;li&gt;Sublime text：传说中代替 textmate 的代码编辑器，可使用开发版免费试用【付费】&lt;/li&gt;
+&lt;li&gt;Sequel pro：Mysql 数据库管理软件&lt;/li&gt;
+&lt;li&gt;TotalFinder：躺着也中枪的 Finder 增强型工具，10.8 以下强烈推荐（10.9 系统实现），虽然收费但是可以全功能无限期使用【收费】&lt;/li&gt;
+&lt;li&gt;Xcode：Mac OSX/iOS 开发唯一指定 IDE&lt;/li&gt;
+&lt;li&gt;Mou：Markdown 编辑器&lt;/li&gt;
+&lt;li&gt;Cornerstone：比较好用的 svn 客户端，偶尔使用，大多数用 &lt;code&gt;git-svn&lt;/code&gt; 转换【收费】&lt;/li&gt;
+&lt;li&gt;Dash：整合了当前最全的各种语言，框架，第三方包的文档查询和 code snippets 工具【增强付费】&lt;/li&gt;
+&lt;li&gt;MongoHub：Mongodb 客户端，大数据时总会崩溃。暂无其他应用替代&lt;/li&gt;
+&lt;li&gt;Producteev：多平台的项目事项管理工具，虽然是 Todo list 但比较专业&lt;/li&gt;
+&lt;li&gt;Wunderlist：To-Do list 工具【增强付费】&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;图像-设计&#34;&gt;图像&amp;amp;设计&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Sip：取色工具，限免时购入【付费】&lt;/li&gt;
+&lt;li&gt;Skala Preview：iOS 快速设计稿预览工具&lt;/li&gt;
+&lt;li&gt;Sparkbox：图片资源管理工具【付费】&lt;/li&gt;
+&lt;li&gt;Lightroom 4：传说中数码照片处理工具【付费】&lt;/li&gt;
+&lt;li&gt;Fireworks：虽然已经被 Adobe 毙掉了，但是它是我唯一会使用的图片处理工具【付费】&lt;/li&gt;
+&lt;li&gt;Live Interior 3D Pro：快速户型设计工具【付费】&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;数据备份&#34;&gt;数据备份&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Dropbox：多平台文件云同步软件，我的文档，照片（内置自动同步）和代码都在这里&lt;/li&gt;
+&lt;li&gt;云诺：国内的多平台文件云同步软件，一些大体积的文件丢这里保存&lt;/li&gt;
+&lt;li&gt;Pocket：Read it later 前身，收集的文章都在这里看&lt;/li&gt;
+&lt;li&gt;Evernote：笔记整理同步必备&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;日常使用&#34;&gt;日常使用&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Chrome：可以使用 Google 账户同步书签，扩展，密码等&lt;/li&gt;
+&lt;li&gt;Fantastical：增强系统日立和提醒事项的快速工具&lt;/li&gt;
+&lt;li&gt;LibreOffice：Office 套件&lt;/li&gt;
+&lt;li&gt;doo：文档辅助检索归档工具&lt;/li&gt;
+&lt;li&gt;Skim：PDF 阅读器&lt;/li&gt;
+&lt;li&gt;Synergy：多平台的多设备通用一套鼠标键盘的工具&lt;/li&gt;
+&lt;li&gt;阿里旺旺：淘宝剁手党必备&lt;/li&gt;
+&lt;li&gt;QQ：不解释&lt;/li&gt;
+&lt;li&gt;备忘录（Notes）：系统自带的记笔记的工具（通过 iCloud 云同步数据到手机）&lt;/li&gt;
+&lt;li&gt;提醒事项（Reminder）：系统自带的 To-Do List 工具（通过 iCloud 云同步数据到手机）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;音乐视频&#34;&gt;音乐视频&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;dRadio：豆瓣 FM app，支持歌词和热键。淘汰了之前的 DoubanFM&lt;/li&gt;
+&lt;li&gt;iTunes：音乐，Podcast 的利器，就是太吃内存&lt;/li&gt;
+&lt;li&gt;Music Converter：音乐格式转换工具&lt;/li&gt;
+&lt;li&gt;SmartConverter：电影格式转换工具，支持手持设备的大小转换&lt;/li&gt;
+&lt;li&gt;MPlayerX：视频播放器利器，备选可以用 VLC&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;娱乐&#34;&gt;娱乐&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Simple Comic：看漫画软件&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;command&#34;&gt;Command&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;zsh：配合 &lt;code&gt;oh-my-zsh&lt;/code&gt; 使用的最好的 shell&lt;/li&gt;
+&lt;li&gt;git：SCM 管理工具&lt;/li&gt;
+&lt;li&gt;tig：&lt;code&gt;git log&lt;/code&gt; 增强辅助工具&lt;/li&gt;
+&lt;li&gt;axel：多线程下载工具&lt;/li&gt;
+&lt;li&gt;youtube-dl：youtube 视频下载器（需翻墙先）&lt;/li&gt;
+&lt;li&gt;autojump：记录用户每次 cd 的路径，根据缩写快速跳转&lt;/li&gt;
+&lt;li&gt;tmux：终端分屏利器，建议看下这本书：《》&lt;/li&gt;
+&lt;li&gt;nginx：服务器&lt;/li&gt;
+&lt;li&gt;mysql：数据库&lt;/li&gt;
+&lt;li&gt;kdiff3：内容对比工具，一般 &lt;code&gt;git merge-tools&lt;/code&gt; 时使用&lt;/li&gt;
+&lt;li&gt;android-sdk：Mac OX 在开发 Android 利器&lt;/li&gt;
+&lt;li&gt;brew： Mac OS 下最佳包管理工具，以上所述命令行应用都可以通过它来安装&lt;/li&gt;
+&lt;/ul&gt;
+</description>
     </item>
     
     <item>
       <title>Dash 你值得拥有的文档管理工具</title>
-      <link>http://icyleaf.com/2013/02/dash/</link>
+      <link>http://icyleaf.com/2013/02/dash</link>
       <pubDate>Wed, 06 Feb 2013 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2013/02/dash/</guid>
-      <description>Dash 是 Mac OS 的一个文档管理工具，从它第一版发布用到现在，绝对是一个你值得拥有的文档管理工具，因为它还是免费的，你可以从 Mac App Store 购买。但是全功能需要</description>
+      <guid>http://icyleaf.com/2013/02/dash</guid>
+      <description>
+
+&lt;p&gt;Dash 是 Mac OS 的一个文档管理工具，从它第一版发布用到现在，绝对是一个你值得拥有的文档管理工具，因为它还是免费的，你可以从 &lt;a href=&#34;https://itunes.apple.com/cn/app/dash-docs-snippets/id458034879?mt=12&#34;&gt;Mac App Store&lt;/a&gt; 购买。但是全功能需要应用内付费，否则有些“小骚扰”。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;建议购买 Full Version，目前是半价，人民币 30 元&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://a1.mzstatic.com/us/r1000/106/Purple/v4/14/50/16/14501624-f6fd-4dae-a2bf-187a5a6417de/icon.175x175-75.png&#34; alt=&#34;Dash&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;特性&#34;&gt;特性&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;支持任何一个你想管理的文档（iOS/Mac/PHP/Python/Java/jQuery/Backbone.js 等等）&lt;/li&gt;
+&lt;li&gt;支持自定义生成你想要的文档（AppleDoc/JavaDoc/RDoc/Doxygen/pydoctor/Sphinx/Scaladoc）&lt;/li&gt;
+&lt;li&gt;自动升级文档版本&lt;/li&gt;
+&lt;li&gt;快捷键搜索文档及 API&lt;/li&gt;
+&lt;li&gt;管理和搜索 Code Snippets&lt;/li&gt;
+&lt;li&gt;无缝插入众多第三方应用（Alfred，XCode，Terminal，Eclipse，甚至任意的 App）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://a116.phobos.apple.com/us/r1000/079/Purple/v4/ec/c8/d0/ecc8d047-84b0-9202-068b-91082f489f68/mzl.mztawrpk.800x500-75.jpg&#34; alt=&#34;Dash Feature&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;功能介绍&#34;&gt;功能介绍&lt;/h2&gt;
+
+&lt;p&gt;这块已经有人介绍了，我就不多说了：&lt;a href=&#34;http://scriptfans.iteye.com/blog/1543219&#34;&gt;Dash：程序员的的好帮手&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;生成自己的文档&#34;&gt;生成自己的文档&lt;/h2&gt;
+
+&lt;p&gt;Dash 本身只支持 docsets 格式的文档，也就是由 &lt;a href=&#34;http://gentlebytes.com/appledoc/&#34;&gt;appledoc&lt;/a&gt; 生成的。默认是让 XCode 的 Organizer 管理文档，但是针对这个庞然大物，只是做文档的管理和快速搜索有消受不起。因此 Dash 才诞生出来的。&lt;/p&gt;
+
+&lt;p&gt;其实本篇日志主要是讲这块的内容，从上面的特性上面我也说到 Dash 支持生成任何的文档，因为它支持的文档类型涵盖了目前绝大多数的文档格式，针对这块官方已经写了&lt;a href=&#34;http://kapeli.com/docsets&#34;&gt;如何转换的说明&lt;/a&gt;，这里简单说明下：&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;语言&lt;/th&gt;
+&lt;th&gt;转换工具&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Objective-C 文档&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://gentlebytes.com/appledoc-docs-examples-basic/&#34;&gt;appledoc&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Python, Sphinx, pydoctor&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://pypi.python.org/pypi/doc2dash/&#34;&gt;doc2dash&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Javadoc&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://kapeli.com/JavaDocset.zip&#34;&gt;java.docset&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;RDoc&lt;/td&gt;
+&lt;td&gt;使用 Dash 自身的 &amp;ldquo;Ruby Installed Gems&amp;rdquo;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Scaladoc&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://bitbucket.org/inkytonik/mkscaladocset&#34;&gt;mkscaldocset&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Doxygen(源码)&lt;/td&gt;
+&lt;td&gt;修改参数生成&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;docsetutil&lt;/td&gt;
+&lt;td&gt;需要创建指定目录结构&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;SQLite&lt;/td&gt;
+&lt;td&gt;官方支持数据库索引，需要创建指定目录结构&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&#34;生成-flask-文档&#34;&gt;生成 Flask 文档&lt;/h3&gt;
+
+&lt;p&gt;因为最近在学习 Flask，过年回家家里没有网络，因为我需要可以查询它的文档，虽然官方提供了 html 和 pdf 格式，但是没有办法快速搜索 API，没法发挥 Dash 的优势嘛，对吧！&lt;/p&gt;
+
+&lt;p&gt;Flask 官方提供的 html 文档是 Sphinx 格式的，首先把&lt;a href=&#34;http://flask.pocoo.org/docs/flask-docs.zip&#34;&gt;文档&lt;/a&gt;下载到本地，并安装好 doc2dash，另外备好一个 &lt;a href=&#34;https://bitbucket-assetroot.s3.amazonaws.com/c/photos/2011/Sep/30/flask-logo-2523728525-3_avatar.png&#34;&gt;flask icon&lt;/a&gt;。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ pip install doc2dash
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;因为 Dash 可以让每个文档都有自己的 Icon，否则默认只是 docset 的 Icon，下载完毕之后，执行代码：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ doc2dash --name Flask --icon flask-logo.png --add-to-dash /path/to/flask-docs
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;其中 &lt;code&gt;--add-to-dash&lt;/code&gt; 是生成完毕后自动添加到 Dash，默认生成好的 docset 文件在当前目录。&lt;/p&gt;
+
+&lt;p&gt;好了，Dash 已经可以索引到所有的 Flask API 了，真是太 TMD 的酷了！&lt;/p&gt;
+
+&lt;h2 id=&#34;维护你的文档&#34;&gt;维护你的文档&lt;/h2&gt;
+
+&lt;p&gt;如果你希望把自己生成的文档分享出来，并提供后期的维护升级，你可以提供一个 feed 保持文档的自动更新，这里有&lt;a href=&#34;http://kapeli.com/feeds/NodeJS.xml&#34;&gt;一个关于 NodeJS 的例子&lt;/a&gt;。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;你可以提供多个 url 多备份提供文档下载&lt;/li&gt;
+&lt;li&gt;支持 tgz 格式的打包&lt;/li&gt;
+&lt;/ul&gt;
+</description>
     </item>
     
     <item>
       <title>修复 OS X 打开方式的重复项</title>
-      <link>http://icyleaf.com/2012/11/%E4%BF%AE%E5%A4%8D-os-x-%E6%89%93%E5%BC%80%E6%96%B9%E5%BC%8F%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9/</link>
+      <link>http://icyleaf.com/2012/11/%E4%BF%AE%E5%A4%8D-os-x-%E6%89%93%E5%BC%80%E6%96%B9%E5%BC%8F%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9</link>
       <pubDate>Tue, 06 Nov 2012 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2012/11/%E4%BF%AE%E5%A4%8D-os-x-%E6%89%93%E5%BC%80%E6%96%B9%E5%BC%8F%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9/</guid>
-      <description>$ /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain system-domainuser  </description>
+      <guid>http://icyleaf.com/2012/11/%E4%BF%AE%E5%A4%8D-os-x-%E6%89%93%E5%BC%80%E6%96%B9%E5%BC%8F%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9</guid>
+      <description>&lt;pre&gt;&lt;code&gt;$ /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain system-domainuser
+&lt;/code&gt;&lt;/pre&gt;
+</description>
     </item>
     
     <item>
       <title>EasyConvert</title>
-      <link>http://icyleaf.com/2012/10/easyconvert-gbk-to-utf8-convert-tool-for-mac/</link>
+      <link>http://icyleaf.com/2012/10/easyconvert-gbk-to-utf8-convert-tool-for-mac</link>
       <pubDate>Thu, 25 Oct 2012 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2012/10/easyconvert-gbk-to-utf8-convert-tool-for-mac/</guid>
-      <description>托设计朋友的要求，继续奉献出一个小工具: EasyConvert - 针对于文本文件的编码转换工具 - GBK to UTF8 首先这个应用是用于 OS X 系统的，其次其实它是一个很弱的工具，对</description>
+      <guid>http://icyleaf.com/2012/10/easyconvert-gbk-to-utf8-convert-tool-for-mac</guid>
+      <description>&lt;p&gt;托设计朋友的要求，继续奉献出一个小工具: EasyConvert - 针对于文本文件的编码转换工具 - GBK to UTF8&lt;/p&gt;
+
+&lt;p&gt;首先这个应用是用于 OS X 系统的，其次其实它是一个很弱的工具，对于技术宅来说一行代码搞定：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;iconv -f GBK -t UTF-8 source.txt \&amp;gt; output.txt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;但对于非技术的人来说，跟他们说 terminal 就费了牛鼻子劲了，索性上工具。&lt;/p&gt;
+
+&lt;p&gt;代码是开放的：&lt;a href=&#34;https://github.com/icyleaf/EasyConvert&#34;&gt;https://github.com/icyleaf/EasyConvert&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;应用下载：&lt;a href=&#34;https://github.com/downloads/icyleaf/EasyConvert/EasyConvert_v0.1.3.zip&#34;&gt;EasyConvert_v0.1.3.zip&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;使用方法很简单，把要转换的 gbk 文件拖到应用窗口里面，应用会自动保存到同目录下。&lt;/p&gt;
+
+&lt;p&gt;BTW，应用 Icon 及涉及的图片资源均来自网络，&lt;a href=&#34;https://github.com/icyleaf/EasyConvert/blob/master/EasyConvert/Readme&#34;&gt;声明在此&lt;/a&gt;。&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>如何针对 iOS 设备进行网络抓包分析</title>
-      <link>http://icyleaf.com/2012/10/%E5%A6%82%E4%BD%95%E9%92%88%E5%AF%B9-ios-%E8%AE%BE%E5%A4%87%E8%BF%9B%E8%A1%8C%E7%BD%91%E7%BB%9C%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90/</link>
+      <link>http://icyleaf.com/2012/10/%E5%A6%82%E4%BD%95%E9%92%88%E5%AF%B9-ios-%E8%AE%BE%E5%A4%87%E8%BF%9B%E8%A1%8C%E7%BD%91%E7%BB%9C%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90</link>
       <pubDate>Mon, 15 Oct 2012 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2012/10/%E5%A6%82%E4%BD%95%E9%92%88%E5%AF%B9-ios-%E8%AE%BE%E5%A4%87%E8%BF%9B%E8%A1%8C%E7%BD%91%E7%BB%9C%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90/</guid>
-      <description>Charles 目前是 OS X 上面最好的抓包分析软件，相比 WireShark 功能更加强大，并支持代理功能。 iPad HTTP Debugging with Charles - 教大家如何使用它进行代理抓包 Testing / Tethering Data Driven Mobile Apps with Charles and OSX - 教大</description>
+      <guid>http://icyleaf.com/2012/10/%E5%A6%82%E4%BD%95%E9%92%88%E5%AF%B9-ios-%E8%AE%BE%E5%A4%87%E8%BF%9B%E8%A1%8C%E7%BD%91%E7%BB%9C%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90</guid>
+      <description>&lt;p&gt;Charles 目前是 OS X 上面最好的抓包分析软件，相比 WireShark 功能更加强大，并支持代理功能。&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.ravelrumba.com/blog/ipad-http-debugging/&#34;&gt;iPad HTTP Debugging with Charles&lt;/a&gt; - 教大家如何使用它进行代理抓包&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.skinkers.com/2012/06/12/testing-tethering-data-driven-mobile-apps-with-charles-and-osx-ipad-iphone-http-debugging/&#34;&gt;Testing / Tethering Data Driven Mobile Apps with Charles and OSX&lt;/a&gt; - 教大家如何进行 request remap，适合不改动代码的情况下修改域名切换环境&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;不过 Charles 的确定就是共享软件，未注册版本可以使用全功能但是限制是只能允许使用 30 分钟，那么&amp;hellip;习惯用 Terminal 的还有一个方法：&lt;a href=&#34;http://useyourloaf.com/blog/2012/02/07/remote-packet-capture-for-ios-devices.html&#34;&gt;Remote Packet Capture for iOS Devices&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ rvictl -s &amp;lt;UDID&amp;gt;
+$ rvictl -l
+$ tcpdump -n -t -i rvi0 -q tcp
+&lt;/code&gt;&lt;/pre&gt;
+</description>
     </item>
     
     <item>
       <title>升级  OS X 10.8 和 Python 第三方库那点事</title>
-      <link>http://icyleaf.com/2012/08/upgrade-osx-10-8-with-python-library/</link>
+      <link>http://icyleaf.com/2012/08/upgrade-osx-10-8-with-python-library</link>
       <pubDate>Fri, 24 Aug 2012 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2012/08/upgrade-osx-10-8-with-python-library/</guid>
-      <description>今天把公司的机器升级到了 10.8 本来就觉得 OS X 的平滑升级做的非常的好，除了一些被乔帮主鄙视的 JDK 需要重新安装外，其他的一切都很平滑的迁移过来。中午的</description>
+      <guid>http://icyleaf.com/2012/08/upgrade-osx-10-8-with-python-library</guid>
+      <description>&lt;p&gt;今天把公司的机器升级到了 10.8 本来就觉得 OS X
+的平滑升级做的非常的好，除了一些被乔帮主鄙视的 JDK
+需要重新安装外，其他的一切都很平滑的迁移过来。中午的时候想用 django
+练手做个晓项目，熟练的在终端创建新项目，结果爆出如下错误：&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;pkg_resources.DistributionNotFound: distribute==0.6.27&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;顺是看了下 &lt;code&gt;/Library/Python/2.7/site-packages&lt;/code&gt;
+竟然发现里面没有任何的库，心里想估计是升级的适合系统清理掉了，那只能重新安装下了，于是又输入：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo pip install django
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;再次报错：&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;pkg_resources.DistributionNotFound: pip==1.1&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;外头想想也对，python 的库都被清掉了，那只能使用 easy_install 了啊（犯2啊！）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo easy_install pip
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;继续报错 = =!&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;pkg_resources.DistributionNotFound: distribute==0.6.27&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Ocz，肿么又报错了&amp;hellip;迅速脑中确认几件事情：&lt;/p&gt;
+
+&lt;p&gt;​1. Python 是否是调用的系统默认的 - √&lt;/p&gt;
+
+&lt;p&gt;​2. 确认 easy_install 是否存在 - √ （不仅存在，连没有了的 pip 和
+virtualenv 还存在软链接）&lt;/p&gt;
+
+&lt;p&gt;​3. distribute 是啥 - ˚∆˚ （Python 新手成长中）&lt;/p&gt;
+
+&lt;p&gt;于是网上查询发现也有不少遇到升级 10.8 发现 pip
+不见了，但是他们提供的解决方案是：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo easy_install -U pip
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;但是在我本地执行还是报 &lt;code&gt;distribute&lt;/code&gt;
+不存在，看了需要重新安装它了吧，既然不能通过包管理软件执行，那只有官方下载源码安装了：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ curl -O http://python-distribute.org/		$ distribute_setup.py &amp;amp;&amp;amp; python
+$ distribute_setup.py
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;安装成功之后就有可以从本篇开头的操作继续重装下去了 T_T&lt;/p&gt;
+
+&lt;p&gt;补习知识：&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;distribute 0.6.28&lt;/p&gt;
+
+&lt;p&gt;Easily download, build, install, upgrade, and uninstall Python
+packages&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
     </item>
     
     <item>
       <title>pngcrush 的一些用法</title>
-      <link>http://icyleaf.com/2012/03/pngcrush-usage-with-ios-apps/</link>
+      <link>http://icyleaf.com/2012/03/pngcrush-usage-with-ios-apps</link>
       <pubDate>Fri, 09 Mar 2012 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2012/03/pngcrush-usage-with-ios-apps/</guid>
-      <description>pngcrush 顾名思义，看起名字本身就优化 png 的工具，为什么会提到它呢，因为目前所有 iOS app 自身的 png 文件都是经过它优化的，对于优化有的 png，系统本身默认是无</description>
+      <guid>http://icyleaf.com/2012/03/pngcrush-usage-with-ios-apps</guid>
+      <description>
+
+&lt;p&gt;pngcrush 顾名思义，看起名字本身就优化 png 的工具，为什么会提到它呢，因为目前所有 iOS app 自身的 png 文件都是经过它优化的，对于优化有的 png，系统本身默认是无法识别的（包括看图工具，作图工具）。但这个工具不仅仅可以优化还可以还原。假如你希望可以学习优秀 iOS App 的一些 png 资源设计，通过这个工具延伸的一些辅助工具，可以快速预览和恢复未优化的图片。&lt;/p&gt;
+
+&lt;h1 id=&#34;pngcrush&#34;&gt;pngcrush&lt;/h1&gt;
+
+&lt;p&gt;本身就是一个开源的工具，托管在 &lt;a href=&#34;http://pmt.sourceforge.net/pngcrush/index.html&#34;&gt;SourceForge&lt;/a&gt;，可以在任何平台运行，对于安装 Xcode 的童鞋，此工具默认放在：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# XCode 4.3+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/pngcrush
+
+# XCode 4.2.x 以下版本
+/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/
+
+# 还原 ipa 目录下所以 png 文件到 reverted 目录下面
+pngcrush -dir reverted -revert-iphone-optimizations -q ipa/*.png
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这里还有一些其他版本的&lt;a href=&#34;http://stackoverflow.com/questions/7138700/pngcrush-uncrush-on-linux&#34;&gt;类似工具&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;quicklook&#34;&gt;Quicklook&lt;/h1&gt;
+
+&lt;p&gt;OSX 有个系统的快速预览功能，简单的解释（针对于图片来说）：可以显示图片的内容，同时选中文件，按&lt;strong&gt;空格&lt;/strong&gt;对于系统可以识别的即可快速查看文件的内容。&lt;/p&gt;
+
+&lt;p&gt;但由于 iOS app 的 png 文件是优化后的，既然系统无法识别，那就更别提 Quicklook 了，于是利用 pngcrush 就有了新的产物：PngUncrush.qlgenerator。有了它就可以用 Quicklook 显示和查看 png 图片了。&lt;/p&gt;
+
+&lt;p&gt;目前利用这个工具做成的工具很多，包括用 shell 安装的，pkg 文件，实际上原理都是把这个文件丢到系统 &lt;code&gt;/Library/QuickLook/&lt;/code&gt; 或者 &lt;code&gt;~/Library/QuickLook/&lt;/code&gt; 下面即可。&lt;/p&gt;
+
+&lt;p&gt;我觉得比较好用的是 &lt;a href=&#34;http://castelliweb.com/blog/2010/05/24/quicklook-plugins-for-mac/&#34;&gt;Quicklook Plugins for Mac&lt;/a&gt;，这是一个 pkg 安装文件，不仅包括了对于 png 文件的快速预览，同时对于 ipa 文件的图表也会更换为更为直观的 App 图标，方便大家的浏览和识别。&lt;/p&gt;
+
+&lt;h1 id=&#34;atpeek&#34;&gt;atPeek&lt;/h1&gt;
+
+&lt;p&gt;我就知道你不会满足上面半自动的工具，我想 &lt;a href=&#34;http://www.atpurpose.com/atPeek/&#34;&gt;atPeek&lt;/a&gt;(奇怪为什么会被墙掉) 也是你在本博文中最满意的工具。正式介绍下，这个工具自打开的一瞬间，就会加载 &lt;code&gt;Music/iTunes/Mobile Applications&lt;/code&gt; 目录下面的所有 ipa 文件。点击你需要查看的 ipa 文件，不仅可以查看该 ipa 的基本 App，最让大家爽的是，ipa 的所有资源文件以文件资源管理器的方式呈现出来。嗯，没错！我可以看到你们双眼发光了！&lt;/p&gt;
+
+&lt;p&gt;但是，这是一个付费应用，你可以进行的操作就是浏览 ipa 和应用自带的预览功能，任何的放大以及导出 png 资源，都是需要付费的，价格为 $4.99。&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>Colors</title>
-      <link>http://icyleaf.com/2012/03/colors-is-ios-development-utility-tool/</link>
+      <link>http://icyleaf.com/2012/03/colors-is-ios-development-utility-tool</link>
       <pubDate>Fri, 02 Mar 2012 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2012/03/colors-is-ios-development-utility-tool/</guid>
-      <description>最新更新，发现更好的免费取色器 Sip Colors 是一个简单的颜色取色器，简单的有可能你都没有听说过它，虽然它对于平面设计师以及 Web 设计师不太看中，但它可是程</description>
+      <guid>http://icyleaf.com/2012/03/colors-is-ios-development-utility-tool</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;最新更新，发现更好的免费取色器 &lt;a href=&#34;https://itunes.apple.com/us/app/sip/id507257563?mt=12&#34;&gt;Sip&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://mattpatenaude.com/&#34;&gt;Colors&lt;/a&gt; 是一个简单的颜色取色器，简单的有可能你都没有听说过它，虽然它对于平面设计师以及
+Web
+设计师不太看中，但它可是程序员中的一个实用利器，为什么这样说呢，看下面截图，除了基本的颜色取值外，还包括了 Mac 和 iOS（iPhone/iPad）对于类的取值。&lt;/p&gt;
+
+&lt;p&gt;等等，你说的不对，我下载了发现并没有 UIColor 的值，坑爹这不是，哈哈，非也，这个应用的最大好处在于可以自定义输出值。默认程序并没有 UIColor 这值。其实添加也很简单，在设置里（Command+逗号），添加一个名为 UIColor 的选项，其中只需要设置 GRB 的输出值和 Alpha 一样即可（Short Decimal over 1），输出格式使用 UIColor 的 RGBA 格式：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[UIColor colorWithRed:%r green:%g blue:%b alpha:%a]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;后来发现这个应用是开源项目，且最后更新时间为 2009 年，难怪没有 UIColor
+的输出值，有兴趣的朋友可以 Fork ：&lt;a href=&#34;https://github.com/13bold/Colors&#34;&gt;https://github.com/13bold/Colors&lt;/a&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;我 fork 了作者的分支，添加了对 UIColor 的支持：&lt;a href=&#34;http://github.com/icyleaf/Colors&#34;&gt;http://github.com/icyleaf/Colors&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
     </item>
     
     <item>
       <title>个人常用 OS X 软件集合</title>
-      <link>http://icyleaf.com/2011/03/im-using-osx-software-list/</link>
+      <link>http://icyleaf.com/2011/03/im-using-osx-software-list</link>
       <pubDate>Tue, 29 Mar 2011 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2011/03/im-using-osx-software-list/</guid>
-      <description>用了 OS X 已经半年多了，整理下日常常用的软件。大多数都是开源或者免费软件，少数需要购买 AppCleaner：卸载软件必备，适合用于第三方安装和</description>
+      <guid>http://icyleaf.com/2011/03/im-using-osx-software-list</guid>
+      <description>&lt;p&gt;用了 OS X 已经半年多了，整理下日常常用的软件。大多数都是开源或者免费软件，少数需要购买&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;AppCleaner：卸载软件必备，适合用于第三方安装和 App Store&lt;/li&gt;
+&lt;li&gt;aliwangwang：淘宝用户必备&lt;/li&gt;
+&lt;li&gt;DiffMerge：文件、文件夹对比的工具，貌似对中文支持有问题（没有细研究）&lt;/li&gt;
+&lt;li&gt;Dropbox：改 hosts 还能继续用的多平台文件云同步软件&lt;/li&gt;
+&lt;li&gt;DoubanFM：豆瓣电台&lt;/li&gt;
+&lt;li&gt;Cdto：可以快速从 Finder 切换当前路径到 terminal 里&lt;/li&gt;
+&lt;li&gt;Evernote：笔记整理同步必备&lt;/li&gt;
+&lt;li&gt;Facetime：大家都知道，免费版， HD 是收费版&lt;/li&gt;
+&lt;li&gt;Firefox：就是一火狐&lt;/li&gt;
+&lt;li&gt;FIT：免费开源的 OSX 输入法&lt;/li&gt;
+&lt;li&gt;fraise：文本编辑器，个人比较喜欢，比 TextWrangler 好用&lt;/li&gt;
+&lt;li&gt;git：SCM 软件&lt;/li&gt;
+&lt;li&gt;brew：terminal 下的软件包管理器&lt;/li&gt;
+&lt;li&gt;Chrome：浏览网页的神器&lt;/li&gt;
+&lt;li&gt;Growl：消息半透明窗提醒，Ubuntu 都模仿&lt;/li&gt;
+&lt;li&gt;iOS Simulator Cropper：可以截 iOS 模拟器截图&lt;/li&gt;
+&lt;li&gt;iTerm：Cocoa 重写的 Terminal，支持 Linux 下快捷键切换 Tab&lt;/li&gt;
+&lt;li&gt;MesaSQLite：SQLite 数据库管理软件&lt;/li&gt;
+&lt;li&gt;MPlayerX：视频播放器&lt;/li&gt;
+&lt;li&gt;mysql workbench：Mysql 建模软件&lt;/li&gt;
+&lt;li&gt;OmniDiskSweeper：磁盘空间使用率情况&lt;/li&gt;
+&lt;li&gt;PHPStorm：Jetbrain 的新一神器，PHP IDE（收费）&lt;/li&gt;
+&lt;li&gt;PlistEditPro：plist 编辑器&lt;/li&gt;
+&lt;li&gt;PowerWord：金山词霸（最新版是 08 年，汗颜）&lt;/li&gt;
+&lt;li&gt;Reeder：Google Reader for OSX&lt;/li&gt;
+&lt;li&gt;Sequel pro：Mysql 数据库管理软件&lt;/li&gt;
+&lt;li&gt;SIMBL&lt;/li&gt;
+&lt;li&gt;Simple Comic：漫画软件&lt;/li&gt;
+&lt;li&gt;Skitch：处理截图的好工具&lt;/li&gt;
+&lt;li&gt;Sparrow：Gmail 客户端&lt;/li&gt;
+&lt;li&gt;TextWrangler：又一文本编辑器&lt;/li&gt;
+&lt;li&gt;The Unarchiver: 最智能且免费的解压缩软件&lt;/li&gt;
+&lt;li&gt;TotalFinder：Finder 增强型工具，强烈推荐（收费）&lt;/li&gt;
+&lt;li&gt;VirtualBox：开源虚拟机&lt;/li&gt;
+&lt;li&gt;Xcode 4：Apple 开发必备&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;睡觉前的粗略整理，待续&amp;hellip;&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>OSX</title>
-      <link>http://icyleaf.com/2010/12/switer-between-finder-and-terminal-in-osx/</link>
+      <link>http://icyleaf.com/2010/12/switer-between-finder-and-terminal-in-osx</link>
       <pubDate>Wed, 08 Dec 2010 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2010/12/switer-between-finder-and-terminal-in-osx/</guid>
-      <description>在 Finder 打开 Terminal 并切换到当前目录 安装一个开源的 Finder 辅助工具：cdto。功能只有一个就是实现在 Finder 打开 Terminal 并切换到当前 Finder 目录。找到你系统的版本的 app （支持当</description>
+      <guid>http://icyleaf.com/2010/12/switer-between-finder-and-terminal-in-osx</guid>
+      <description>&lt;p&gt;&lt;strong&gt;在 Finder 打开 Terminal 并切换到当前目录&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;安装一个开源的 Finder 辅助工具：&lt;a href=&#34;http://code.google.com/p/cdto/&#34;&gt;cdto&lt;/a&gt;。功能只有一个就是实现在 Finder
+打开 Terminal 并切换到当前 Finder 目录。找到你系统的版本的 app （支持当前
+OS X 10.4 以上版本，应该都是雪豹了 吧）拷贝到 Applications 下并把它拖到
+Finder 的工具栏上即可。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;从 Terminal 中用 Finder 打开当前路径的目录&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ open .
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;PS，如果是 Ubuntu 系统的话请安装 nautilus，然后在 Terminal 里面输入&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ nautilus .
+&lt;/code&gt;&lt;/pre&gt;
+</description>
     </item>
     
   </channel>
