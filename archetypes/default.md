@@ -11,5 +11,6 @@ menu: ""
 index: false
 draft: false
 comments: true
+isCJKLanguage: true
 share: true
 ---

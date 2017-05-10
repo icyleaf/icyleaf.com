@@ -5,4 +5,5 @@ image: images/cover.jpg
 menu: ""
 index: false
 comments: false
+isCJKLanguage: true
 ---
