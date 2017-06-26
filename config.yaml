@@ -13,7 +13,7 @@ params:
   author: icyleaf
   cover: images/cover.jpg
   index: true
-  RSSLink: feed.xml
+  RSSLink: index.xml
   # footer in post
   authorlocation: Beijing, China
   authorwebsite: http://icyleaf.com
