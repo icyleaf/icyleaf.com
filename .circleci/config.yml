@@ -2,9 +2,8 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/golang:1.9
+      - image: felicianotech/docker-hugo:0.22.1
     environment:
-      PUBLIC_PATH: "public"
       GIT_USER: "icyleaf"
       GIT_EMAIL: "icyleaf.cn@gmail.com"
       GIT_REPO: "git@github.com:icyleaf/icyleaf.com.git"
@@ -15,20 +14,14 @@ jobs:
     steps:
       - checkout
       - run:
-          name: "Install govendor"
-          command: go get github.com/kardianos/govendor
-      - run:
-          name: "Install hugo"
-          command: govendor get github.com/spf13/hugo
-      - run:
           name: "Generating site"
-          command: hugo --verbose
+          command: HUGO_ENV=production hugo --verbose
       - deploy:
           name: "Upload to gh-page"
           command: |
             git config --global user.name "$GIT_USER"
             git config --global user.email "$GIT_EMAIL"
-            cd "${PUBLIC_PATH}/public"
+            cd public
             git init
             git remote add origin $GIT_REPO
             git fetch origin
