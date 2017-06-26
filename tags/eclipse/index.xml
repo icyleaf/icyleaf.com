@@ -2,34 +2,23 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Eclipse on icyleaf</title>
-    <link>http://icyleaf.com/tags/eclipse/index.xml</link>
+    <link>http://icyleaf.com/tags/eclipse/</link>
     <description>Recent content in Eclipse on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
-    <atom:link href="http://icyleaf.com/tags/eclipse/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 14 May 2012 12:34:56 +0800</lastBuildDate>
+    
+	<atom:link href="http://icyleaf.com/tags/eclipse/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>“java.lang.NoClassDefFoundError” in Android</title>
-      <link>http://icyleaf.com/2012/05/how-to-salvation-android-import-jar-exception-during-running</link>
+      <link>http://icyleaf.com/2012/05/how-to-salvation-android-import-jar-exception-during-running/</link>
       <pubDate>Mon, 14 May 2012 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2012/05/how-to-salvation-android-import-jar-exception-during-running</guid>
-      <description>&lt;p&gt;最近 Eclipse 的 ADT 升级至了 18 版本，结果运行的时候发现导入的第三方 jar
-包总是报错&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;java.lang.NoClassDefFoundError&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;可气的是 Eclipse 不会给工程同时在编译的时候也不会报错。&lt;/p&gt;
-
-&lt;p&gt;后来发现此版本，第三方的 &lt;code&gt;jar&lt;/code&gt; 包必须放在项目的 &lt;code&gt;libs&lt;/code&gt;
-目录下面，而且仅能放在 &lt;code&gt;libs&lt;/code&gt; 根目录下面，即不能在 &lt;code&gt;libs&lt;/code&gt;
-下面在建立子目录存放，也不能改名 &lt;code&gt;lib&lt;/code&gt; 目录&amp;hellip;.&lt;/p&gt;
-
-&lt;p&gt;更无奈的是， Eclipse 的 User Library 也是出现同样的问题，目前无解 &amp;gt;.&amp;lt;&lt;/p&gt;
-</description>
+      <guid>http://icyleaf.com/2012/05/how-to-salvation-android-import-jar-exception-during-running/</guid>
+      <description>最近 Eclipse 的 ADT 升级至了 18 版本，结果运行的时候发现导入的第三方 jar 包总是报错 java.lang.NoClassDefFoundError 可气的是 Eclipse 不会给工程同时在编译的时候也不会报错。 后来发现此版本，第三方</description>
     </item>
     
   </channel>

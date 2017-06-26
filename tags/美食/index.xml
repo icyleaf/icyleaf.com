@@ -2,29 +2,23 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>美食 on icyleaf</title>
-    <link>http://icyleaf.com/tags/%E7%BE%8E%E9%A3%9F/index.xml</link>
+    <link>http://icyleaf.com/tags/%E7%BE%8E%E9%A3%9F/</link>
     <description>Recent content in 美食 on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
-    <atom:link href="http://icyleaf.com/tags/%E7%BE%8E%E9%A3%9F/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 05 Sep 2012 12:34:56 +0800</lastBuildDate>
+    
+	<atom:link href="http://icyleaf.com/tags/%E7%BE%8E%E9%A3%9F/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>户外简易版煲仔饭</title>
-      <link>http://icyleaf.com/2012/09/claypot-rice-on-the-outdoor</link>
+      <link>http://icyleaf.com/2012/09/claypot-rice-on-the-outdoor/</link>
       <pubDate>Wed, 05 Sep 2012 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2012/09/claypot-rice-on-the-outdoor</guid>
-      <description>&lt;p&gt;几周前和同事及其朋友几位组织灵山重装扎营，结果当天下雨加上另辟蹊径的路被封，只好改重装徒步&amp;hellip;虽然遗憾但是吃到了好吃的煲仔饭，掌勺的是来自广东的黑仔。记录制作步骤如下：&lt;/p&gt;
-
-&lt;p&gt;​1. 生米和水的比例是 1:1.5&lt;/p&gt;
-
-&lt;p&gt;​2.上火（不是电饭煲）开煮米饭至粘米的时候（水分已经被米粒吸收），加入切好的腊肠和腊肉，小火继续蒸（闷）&lt;/p&gt;
-
-&lt;p&gt;​3.几分钟后腊味飘逸出来后，加入少量的酱油（最好不用可以代替的老抽或生抽，颜色和味道都太重），搅拌似的酱油包含每个米粒。&lt;/p&gt;
-
-&lt;p&gt;​4.继续闷一会直到米饭完全吸收水分成饱和状出锅（如果喜欢吃锅巴的可以适当多闷一会）&lt;/p&gt;
-</description>
+      <guid>http://icyleaf.com/2012/09/claypot-rice-on-the-outdoor/</guid>
+      <description>几周前和同事及其朋友几位组织灵山重装扎营，结果当天下雨加上另辟蹊径的路被封，只好改重装徒步&amp;hellip;虽然遗憾但是吃到了好吃的煲仔饭，掌</description>
     </item>
     
   </channel>
