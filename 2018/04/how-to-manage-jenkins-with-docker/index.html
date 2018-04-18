@@ -5,22 +5,24 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-  	<meta property="og:title" content=" Fast Crystal &middot;  icyleaf" />
+  	<meta property="og:title" content=" 如何使用 Docker 管理 Jenkins &middot;  icyleaf" />
   	<meta property="og:site_name" content="icyleaf" />
-  	<meta property="og:url" content="http://icyleaf.com/2017/05/fast-crystal/" />
+  	<meta property="og:url" content="http://icyleaf.com/2018/04/how-to-manage-jenkins-with-docker/" />
 
     
   	<meta property="og:type" content="article" />
 
-    <meta property="og:article:published_time" content="2017-05-10T11:57:58Z" />
+    <meta property="og:article:published_time" content="2018-04-18T14:44:32&#43;08:00" />
 
     
-    <meta property="og:article:tag" content="Crystal" />
+    <meta property="og:article:tag" content="Docker" />
+    
+    <meta property="og:article:tag" content="Jenkins" />
     
     
 
   <title>
-     Fast Crystal &middot;  icyleaf
+     如何使用 Docker 管理 Jenkins &middot;  icyleaf
   </title>
 
     <meta name="description" content="热爱户外的码农、下厨初心者" />
@@ -45,7 +47,7 @@
     
     <meta name="generator" content="Hugo 0.34" />
 
-    <link rel="canonical" href="http://icyleaf.com/2017/05/fast-crystal/" />
+    <link rel="canonical" href="http://icyleaf.com/2018/04/how-to-manage-jenkins-with-docker/" />
 
     
     <script>
@@ -127,38 +129,104 @@
 <main class="content" role="main">
   <article class="post post">
     <header class="post-header">
-      <h1 class="post-title">Fast Crystal</h1>
+      <h1 class="post-title">如何使用 Docker 管理 Jenkins</h1>
       <small></small>
 
       <section class="post-meta">
       
       
-        <time class="post-date" datetime="2017-05-10T11:57:58Z">
-          May 10, 2017
+        <time class="post-date" datetime="2018-04-18T14:44:32&#43;08:00">
+          Apr 18, 2018
         </time>
       
        
-        <span class="post-tag small"><a href="http://icyleaf.com/tags/crystal/">#Crystal</a></span>
+        <span class="post-tag small"><a href="http://icyleaf.com/tags/docker/">#Docker</a></span>
+       
+        <span class="post-tag small"><a href="http://icyleaf.com/tags/jenkins/">#Jenkins</a></span>
        
       </section>
     </header>
 
     <section class="post-content">
-      <p>起初是自己写了一个小测试来看看 crystal 下连接字符串几种实现方式的性能情况，结果还真能区分出来</p>
+      
 
-<pre><code>$ crystal build --release code/string/concatenation.cr -o bin/string/concatenation
-$ ./bin/string/concatenation
+<p>官方的 <a href="https://hub.docker.com/_/jenkins">jenkins</a> 镜像已经不再维护管理而是由 Jenkins Community 进行更新，鉴于 Jenkins 的更新频率特别快社区版本会提供两个版本：</p>
 
-Crystal 0.22.0 (2017-04-22) LLVM 4.0.0
+<ul>
+<li><code>lts</code> 长期稳定版本，但还是会有新版提醒</li>
+<li><code>latest</code> 每周更新版本</li>
+</ul>
 
- String#+  32.98M ( 30.32ns) (±11.62%)       fastest
-String#{}   9.51M (105.16ns) (± 6.12%)  3.47× slower
- String#%    5.0M (200.03ns) (± 4.81%)  6.60× slower
+<p>都是基于 alpine 系统封装因此镜像的体积会大大减小很多。如果你是内网使用可以不用在意更新问题长期使用一个版本也没太大问题。</p>
+
+<h2 id="安装">安装</h2>
+
+<p>创建镜像时需要注意几个地方：</p>
+
+<ol>
+<li>关联本地 volumes</li>
+<li>设置时区（默认是 UTC 时间）</li>
+<li>映射 50000 端口（这个是 master 和 slave 的通讯端口）和 8000 端口（Web）</li>
+</ol>
+
+<pre><code>docker run -d --restart=always
+    -p 8000:8080 -p 50000:50000
+    -v /var/lib/docker/jenkins:/var/jenkins_home
+    -e JAVA_OPTS=-Duser.timezone=Asia/Shanghai
+    jenkins/jenkins:lts
 </code></pre>
 
-<p>于是就仿照 <a href="https://github.com/JuanitoFatas/fast-ruby">fast-ruby</a> 在周末花了时间 fork 了 crystal 版本，其实结果挺让人吃惊的，因为是编译性语言在大多数情况下一些小的语法糖在编译器优化阶段会做一致性处理最终的结果其实是一样的，但也有一些例外。</p>
+<p>对于进行设置 JAVA 的参数可以参考：<a href="https://github.com/jenkinsci/docker/issues/45">https://github.com/jenkinsci/docker/issues/45</a></p>
 
-<p><a href="https://github.com/icyleaf/fast-crystal">https://github.com/icyleaf/fast-crystal</a></p>
+<h2 id="配置-jenkins-的插件源">配置 Jenkins 的插件源</h2>
+
+<p>使用过它的人都知道管理和安装插件是一个奇慢无比的事情，虽然提供了代理服务器但我这还有一个更好的方案。</p>
+
+<p>我在翻阅国内镜像源网站的时候发现清华大学开源软件镜像站其实提供了国内 Jenkins 插件的镜像源但一直很低调的没有公布，通过进入<code>管理插件 -&gt; 高级</code>页面拉到最底部有个升级站点的自定义框，填入</p>
+
+<pre><code>https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.json
+</code></pre>
+
+<p>安装插件的时候系统默认会测试网络就是 ping 下 Google 的网站，它会提示失败但不用担心它会继续尝试下载和安装插件。</p>
+
+<h2 id="升级">升级</h2>
+
+<p>此方法适用于所有的容器的升级步骤。</p>
+
+<p>首先需要找到容器的名字，这里我想会有不少人会问为什么你在创建一个容器的时候不指定一个名字，
+那是因为后面还需要创建一个新版本的容器而名字不能一样，因此我现在创建都让 docker 随机分配。</p>
+
+<pre><code>$ docker ps
+CONTAINER ID  ...   NAMES
+8f48718fdd07  ...   naughty_pasteur
+</code></pre>
+
+<p>拿到之后先停止运行后，创建一个数据备份容器再进行拉取最新版本</p>
+
+<pre><code>$ docker stop naughty_pasteur
+$ docker docker create --volumes-from naughty_pasteur --name jenkins-data jenkins/jenkins:lts
+</code></pre>
+
+<p>拉取最新版本后恢复数据：</p>
+
+<pre><code>$ docker pull jenkins/jenkins:lts
+$ docker run -d --restart=always
+    --volumes-from jenkins-data
+    -p 8000:8080 -p 50000:50000
+    -v /var/lib/docker/jenkins:/var/jenkins_home
+    -e JAVA_OPTS=-Duser.timezone=Asia/Shanghai
+    jenkins/jenkins:lts
+</code></pre>
+
+<p>确保通过 web 访问和 build 正常后删除老的和数据备份的容器</p>
+
+<pre><code>$ docker rm naughty_pasteur
+$ docker rm jenkins-data
+</code></pre>
+
+<h2 id="官方文档">官方文档</h2>
+
+<p><a href="https://github.com/jenkinsci/docker/blob/master/README.md">https://github.com/jenkinsci/docker/blob/master/README.md</a></p>
 
     </section>
 
@@ -191,15 +259,15 @@ String#{}   9.51M (105.16ns) (± 6.12%)  3.47× slower
     
 <section class="share">
   <h4>Share this post</h4>
-  <a class="icon-twitter" href="https://twitter.com/share?text=Fast%20Crystal&nbsp;-&nbsp;icyleaf&amp;url=http%3a%2f%2ficyleaf.com%2f2017%2f05%2ffast-crystal%2f"
+  <a class="icon-twitter" href="https://twitter.com/share?text=%e5%a6%82%e4%bd%95%e4%bd%bf%e7%94%a8%20Docker%20%e7%ae%a1%e7%90%86%20Jenkins&nbsp;-&nbsp;icyleaf&amp;url=http%3a%2f%2ficyleaf.com%2f2018%2f04%2fhow-to-manage-jenkins-with-docker%2f"
       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
       <span class="hidden">Twitter</span>
   </a>
-  <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ficyleaf.com%2f2017%2f05%2ffast-crystal%2f"
+  <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ficyleaf.com%2f2018%2f04%2fhow-to-manage-jenkins-with-docker%2f"
       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
       <span class="hidden">Facebook</span>
   </a>
-  <a class="icon-weibo"href="http://service.weibo.com/share/share.php?url=http%3a%2f%2ficyleaf.com%2f2017%2f05%2ffast-crystal%2f&amp;title=Fast%20Crystal&nbsp;-&nbsp;icyleaf"
+  <a class="icon-weibo"href="http://service.weibo.com/share/share.php?url=http%3a%2f%2ficyleaf.com%2f2018%2f04%2fhow-to-manage-jenkins-with-docker%2f&amp;title=%e5%a6%82%e4%bd%95%e4%bd%bf%e7%94%a8%20Docker%20%e7%ae%a1%e7%90%86%20Jenkins&nbsp;-&nbsp;icyleaf"
       onclick="window.open(this.href, 'weibo-share','width=580,height=296');return false;">
       <span class="hidden">新浪微博</span>
   </a>
@@ -215,7 +283,7 @@ String#{}   9.51M (105.16ns) (± 6.12%)  3.47× slower
 <div id="disqus_thread"></div>
 <script type="text/javascript">
   var disqus_shortname = 'icyleaf';
-  var disqus_url = 'http:\/\/icyleaf.com\/2017\/05\/fast-crystal\/';
+  var disqus_url = 'http:\/\/icyleaf.com\/2018\/04\/how-to-manage-jenkins-with-docker\/';
   (function() {
     var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
     dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
@@ -235,17 +303,10 @@ String#{}   9.51M (105.16ns) (± 6.12%)  3.47× slower
 
   <aside class="read-next">
   
-      <a class="read-next-story" style="background-image: url(/images/cover.jpg)" href="http://icyleaf.com/2018/04/how-to-manage-jenkins-with-docker/">
-          <section class="post">
-              <h2>如何使用 Docker 管理 Jenkins</h2>
-              
-          </section>
-      </a>
   
-  
-      <a class="read-next-story prev" style="background-image: url(/uploads/2017/04/26/sidekiq-web-ui.png)" href="http://icyleaf.com/2017/04/sidekiq-works-in-ruby-togethor-with-crystal/">
+      <a class="read-next-story prev" style="background-image: url(/images/cover.jpg)" href="http://icyleaf.com/2017/05/fast-crystal/">
           <section class="post">
-              <h2>打通 Sidekiq 的任督二脉 Ruby 和 Crystal</h2>
+              <h2>Fast Crystal</h2>
           </section>
       </a>
   
