@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
-    <lastBuildDate>Fri, 27 Apr 2018 18:00:07 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 27 Apr 2018 18:12:23 +0800</lastBuildDate>
     
 	<atom:link href="http://icyleaf.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>ḫpr - 最好用的 git 仓库镜像同步工具</title>
+      <link>http://icyleaf.com/2018/04/intro-hpr/</link>
+      <pubDate>Fri, 27 Apr 2018 18:12:23 +0800</pubDate>
+      
+      <guid>http://icyleaf.com/2018/04/intro-hpr/</guid>
+      <description>ḫpr 是一个把任意 git 仓库的镜像到 gitlab 服务的同步工具，还支持定期同步的功能。 特性: 支持 Web API 接口，可用于远程控制不仅限于终端使用 支持终端命令控制，</description>
+    </item>
     
     <item>
       <title>一招解决苹果账户因忘记安全问题绑定手机号</title>
