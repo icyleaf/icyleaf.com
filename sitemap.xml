@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://icyleaf.com/2018/04/how-to-bind-mobile-number-to-apple-developer-account/</loc>
+    <lastmod>2018-04-27T18:00:07+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://icyleaf.com/2018/04/how-to-manage-jenkins-with-docker/</loc>
     <lastmod>2018-04-18T14:44:32+08:00</lastmod>
   </url>
@@ -546,6 +551,12 @@
   </url>
   
   <url>
+    <loc>http://icyleaf.com/tags/apple/</loc>
+    <lastmod>2018-04-27T18:00:07+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://icyleaf.com/tags/blog/</loc>
     <lastmod>2015-12-17T15:01:56+08:00</lastmod>
     <priority>0</priority>
@@ -719,6 +730,12 @@
   </url>
   
   <url>
+    <loc>http://icyleaf.com/tags/icloud/</loc>
+    <lastmod>2018-04-27T18:00:07+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://icyleaf.com/tags/ios/</loc>
     <lastmod>2017-03-28T20:12:07+08:00</lastmod>
     <priority>0</priority>
@@ -816,7 +833,7 @@
   
   <url>
     <loc>http://icyleaf.com/post/</loc>
-    <lastmod>2018-04-18T14:44:32+08:00</lastmod>
+    <lastmod>2018-04-27T18:00:07+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -894,7 +911,7 @@
   
   <url>
     <loc>http://icyleaf.com/categories/technology/</loc>
-    <lastmod>2018-04-18T14:44:32+08:00</lastmod>
+    <lastmod>2018-04-27T18:00:07+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -960,7 +977,7 @@
   
   <url>
     <loc>http://icyleaf.com/</loc>
-    <lastmod>2018-04-18T14:44:32+08:00</lastmod>
+    <lastmod>2018-04-27T18:00:07+08:00</lastmod>
     <priority>0</priority>
   </url>
   
