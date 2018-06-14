@@ -224,6 +224,17 @@ $ docker run -d --restart=always
 $ docker rm jenkins-data
 </code></pre>
 
+<h2 id="疑惑解答">疑惑解答</h2>
+
+<h3 id="1-我忘记设置时区但我进实例修改了时区在-jenkins-里不生效">1. 我忘记设置时区但我进实例修改了时区在 Jenkins 里不生效</h3>
+
+<p>在 Jenkins 的系统设置页面找到脚本命令行运行：</p>
+
+<pre><code>System.setProperty('org.apache.commons.jelly.tags.fmt.timeZone', 'Asia/Shanghai')
+</code></pre>
+
+<p>执行后即时生效无需重启，方法来自<a href="https://wiki.jenkins.io/display/JENKINS/Change+time+zone">官方文档</a></p>
+
 <h2 id="官方文档">官方文档</h2>
 
 <p><a href="https://github.com/jenkinsci/docker/blob/master/README.md">https://github.com/jenkinsci/docker/blob/master/README.md</a></p>
