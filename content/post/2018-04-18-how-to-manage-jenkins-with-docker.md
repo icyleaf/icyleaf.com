@@ -90,6 +90,18 @@ $ docker rm naughty_pasteur
 $ docker rm jenkins-data
 ```
 
+## 疑惑解答
+
+### 1. 我忘记设置时区但我进实例修改了时区在 Jenkins 里不生效
+
+在 Jenkins 的系统设置页面找到脚本命令行运行：
+
+```
+System.setProperty('org.apache.commons.jelly.tags.fmt.timeZone', 'Asia/Shanghai')
+```
+
+执行后即时生效无需重启，方法来自[官方文档](https://wiki.jenkins.io/display/JENKINS/Change+time+zone)
+
 ## 官方文档
 
 https://github.com/jenkinsci/docker/blob/master/README.md
