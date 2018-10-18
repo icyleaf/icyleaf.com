@@ -12,6 +12,12 @@ tags:
 title: Docker 摸爬滚打对抗 CentOS 6
 ---
 
+> 2018年10月18日更新：
+
+国庆期间恰巧服务器硬盘故障且运维并没有做 raid 备份，给更换了一台新内部服务器，索性升级到了 CentOS 7，因此针对 CentOS 6 安装 Docker 的答疑不再更新。
+
+## 前言
+
 前不久终于把我们移动团队内部服务器从 CentOS 5.x 升级到了 6.8。本来是拜托让升级至 7.0 版本起码能用上 docker 1.12 版本还是靠谱的事情。
 事情往往难以预料的被告知其他团队在安装 7.0 之后造成内部服务器群的网卡失灵的诡异故障只能作罢，想想起码还有个早期 docker 版本可安装也就先这么着吧。
 
@@ -95,13 +101,27 @@ root     26873  0.0  0.0 103332   876 pts/2    S+   18:16   0:00 grep docker -d
 
 #### 1. 使用国内镜像源 pull 镜像偶尔会失败，反复几次就可以解决
 
-频次不高原因未知，因此还未重视
+频次不高原因未知，因此还未重视。
 
 #### 2. Docker Web 管理工具
 
-我个人主要 rancher（可参考前篇文章：[如何在 OS X 上安装 Rancher
-](http://icyleaf.com/2016/08/how-to-install-rancher-on-osx/)），但 rancher 官方要求 docker 最低版本是 1.9+，尤其是当前最新的版本直接是 1.12+（支持了 swarm），无奈之下找了个轻量级的能用但是有些信息可能展示不全的解决方案 [portainer](https://github.com/portainer/portainer)。
+> 2018年10月更新：
 
-#### 3. 宿主机 CST 时间会造成 docker 实例时间不准
+推荐使用 [portainer](https://github.com/portainer/portainer) ，兼容 1.7 的部分功能可能会发生部分功能和参数无法显示但不影响使用。之前我有推荐 rancher（可参考前篇文章：[如何在 OS X 上安装 Rancher
+](http://icyleaf.com/2016/08/how-to-install-rancher-on-osx/)），但 rancher 官方要求 docker 最低版本是 1.9+。
+
+#### 3. Docker 进程挂了重启后无法恢复之前的 containers
+
+错误的输出没有实例复现，大概会包含如下关键词 `mount`, `/var/lib/docker/devicemapper/mnt/d640aea67108b04c6a5ba14645966b092db1f807f3e3f41dca7a1470f76b68fb` 这种一般是因为意外终止进程造成上次的 volume 没有正常 unmount，只需手动操作下即可：
+
+```bash
+unmount /var/lib/docker/devicemapper/mnt/d640aea67108b04c6a5ba14645966b092db1f807f3e3f41dca7a1470f76b68fb
+```
+
+> `d640aea67108b04c6a5ba14645966b092db1f807f3e3f41dca7a1470f76b68fb` 是根据不同 container 生成的，请根据实际情况复制和执行。
+
+这个真没办法，只能在 Dockerfile 或者进实例里面进行修改时区，这个我就不过多赘述了。
+
+#### 4. 宿主机 CST 时间会造成 docker 实例时间不准
 
 这个真没办法，只能在 Dockerfile 或者进实例里面进行修改时区，这个我就不过多赘述了。
