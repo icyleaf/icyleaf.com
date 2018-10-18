@@ -112,7 +112,13 @@ root     26873  0.0  0.0 103332   876 pts/2    S+   18:16   0:00 grep docker -d
 
 #### 3. Docker 进程挂了重启后无法恢复之前的 containers
 
-错误的输出没有实例复现，大概会包含如下关键词 `mount`, `/var/lib/docker/devicemapper/mnt/d640aea67108b04c6a5ba14645966b092db1f807f3e3f41dca7a1470f76b68fb` 这种一般是因为意外终止进程造成上次的 volume 没有正常 unmount，只需手动操作下即可：
+```bash
+$ docker start c39206003c7a
+Error: Cannot start container c39206003c7a: Error getting container c39206003c7ae8992a554a9ac2ea130327fc4af1b2c389656c34baf9a56c84b5 from driver devicemapper: Error mounting '/dev/mapper/docker-253:0-267081-c39206003c7ae8992a554a9ac2ea130327fc4af1b2c389656c34baf9a56c84b5' on '/var/lib/docker/devicemapper/mnt/c39206003c7ae8992a554a9ac2ea130327fc4af1b2c389656c34baf9a56c84b5': device or resource busy
+2014/05/08 19:14:57 Error: failed to start one or more containers
+```
+
+这种一般是因为意外终止进程造成上次的 volume 没有正常 unmount，只需手动操作下即可：
 
 ```bash
 unmount /var/lib/docker/devicemapper/mnt/d640aea67108b04c6a5ba14645966b092db1f807f3e3f41dca7a1470f76b68fb
@@ -122,6 +128,25 @@ unmount /var/lib/docker/devicemapper/mnt/d640aea67108b04c6a5ba14645966b092db1f80
 
 这个真没办法，只能在 Dockerfile 或者进实例里面进行修改时区，这个我就不过多赘述了。
 
-#### 4. 宿主机 CST 时间会造成 docker 实例时间不准
+#### 4. 升级运行的 container 版本
+
+```bash
+$ docker stop xxxx
+$ docker create --volumes-from <container_name_of_original_server> \ --name xxx-data image/name:<tag_of_previous_rancher_server>
+$ docker pull image/name:latest
+$ docker run -d --volumes-from xxx-data --restart=unless-stopped \ -p 8080:8080 image/namel.:latest
+```
+
+#### 5. 非 root 用户执行 docker
+
+创建 docker 用户组并重启 docker 服务，之后把你想要的用户加到 docker 用户组即可。
+
+```bash
+$ groupadd docker
+$ service docker restart
+$ usermod -a -G docker icyleaf
+```
+
+#### 6. 宿主机 CST 时间会造成 docker 实例时间不准
 
 这个真没办法，只能在 Dockerfile 或者进实例里面进行修改时区，这个我就不过多赘述了。
