@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: felicianotech/docker-hugo:0.34
+      - image: felicianotech/docker-hugo:0.47.1
     environment:
       GIT_USER: "icyleaf"
       GIT_EMAIL: "icyleaf.cn@gmail.com"
