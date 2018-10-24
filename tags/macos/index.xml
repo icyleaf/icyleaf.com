@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Macos on icyleaf</title>
+    <link>http://icyleaf.com/tags/macos/</link>
+    <description>Recent content in Macos on icyleaf</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>All rights reserved - 2007</copyright>
+    <lastBuildDate>Tue, 19 Jul 2016 20:12:07 +0800</lastBuildDate>
+    
+	<atom:link href="http://icyleaf.com/tags/macos/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>如何解决 macOS 编译丢失 C Header 文件</title>
+      <link>http://icyleaf.com/2016/07/apply-for-a-motorcycle-license/</link>
+      <pubDate>Tue, 19 Jul 2016 20:12:07 +0800</pubDate>
+      
+      <guid>http://icyleaf.com/2016/07/apply-for-a-motorcycle-license/</guid>
+      <description>今天在 macOS 10.14 通过 brew 安装 libgit2 之后调用时提示提示 fatal error: &#39;time.h&#39; file not found，本以为是 brew 的问题自己去编译问题依然。 确认了 Xcode Command Line Tools 并且再次确认了 xcode-select -s /Applications/Xcode.app 之后</description>
+    </item>
+    
+  </channel>
+</rss>

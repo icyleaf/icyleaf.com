@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  	<meta property="og:title" content=" 如何解决 macOS 编译丢失 C Header 文件 &middot;  icyleaf" />
+  	<meta property="og:site_name" content="icyleaf" />
+  	<meta property="og:url" content="http://icyleaf.com/2016/07/apply-for-a-motorcycle-license/" />
+
+    
+  	<meta property="og:type" content="article" />
+
+    <meta property="og:article:published_time" content="2016-07-19T20:12:07&#43;08:00" />
+
+    
+    <meta property="og:article:tag" content="macOS" />
+    
+    
+
+  <title>
+     如何解决 macOS 编译丢失 C Header 文件 &middot;  icyleaf
+  </title>
+
+    <meta name="description" content="热爱户外的码农、下厨初心者" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="http://icyleaf.com/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="http://icyleaf.com/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="http://icyleaf.com/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="http://icyleaf.com/css/nav.css" />
+
+    
+        <link rel="stylesheet" href="http://icyleaf.com/css/highlight/tomorrow-night.css">
+        <script src="http://icyleaf.com/js/highlight.pack.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+        <link href="index.xml" rel="alternate" type="application/rss+xml" title="icyleaf" />
+    
+    <meta name="generator" content="Hugo 0.47.1" />
+
+    <link rel="canonical" href="http://icyleaf.com/2016/07/apply-for-a-motorcycle-license/" />
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-2570916-5', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+</head>
+<body class="nav-closed">
+
+  <div class="nav">
+  <h3 class="nav-title">Menu</h3>
+  <a href="#" class="nav-close">
+    <span class="hidden">Close</span>
+  </a>
+  <ul>
+    
+
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="http://icyleaf.com/">Home</a>
+      </li>
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="http://icyleaf.com/categories/technology">Technology</a>
+      </li>
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="http://icyleaf.com/tags">Tags</a>
+      </li>
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="http://icyleaf.com/about">About</a>
+      </li>
+    
+  </ul>
+
+  
+    <a class="subscribe-button icon-feed" href="http://icyleaf.com/index.xml">Subscribe</a>
+  
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+  
+<header class="main-header post-head" style="background-image: url(http://icyleaf.com/images/cover.jpg)">
+
+
+
+
+  <nav class="main-nav overlay clearfix">
+  
+    <a class="blog-logo" href="http://icyleaf.com/"><img src="http://icyleaf.com/images/icyleaf-icon.png" alt="Blog Logo" /></a>
+  
+
+  
+    <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+</nav>
+
+  
+</header>
+
+<main class="content" role="main">
+  <article class="post post">
+    <header class="post-header">
+      <h1 class="post-title">如何解决 macOS 编译丢失 C Header 文件</h1>
+      <small></small>
+
+      <section class="post-meta">
+      
+      
+        <time class="post-date" datetime="2016-07-19T20:12:07&#43;08:00">
+          Jul 19, 2016
+        </time>
+      
+       
+        <span class="post-tag small"><a href="http://icyleaf.com/tags/macos/">#macOS</a></span>
+       
+      </section>
+    </header>
+
+    <section class="post-content">
+      <p>今天在 macOS 10.14 通过 brew 安装 libgit2 之后调用时提示提示 <code>fatal error: 'time.h' file not found</code>，本以为是 brew 的问题自己去编译问题依然。
+确认了 Xcode Command Line Tools 并且再次确认了 <code>xcode-select -s /Applications/Xcode.app</code> 之后还是这样，就连重启大法也不用之后，
+在 Google 上检索换了好些关键词也没找到问题出在哪，索性把关键词继续模糊放大扩大范围，看到了 github 一个不知道是啥的项目看到有 <code>'stdio.h.h' file not found</code>
+类似的 issue 终于找到了解决答案：</p>
+
+<blockquote>
+<p>关键原因是在于找不到 /usr/include 目录，然而安装 command-line tools 也不会自动帮你解决，而是需要在安装后再手动安装 /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg 才行。</p>
+</blockquote>
+
+<p>跟随这个解决方案也附带了解释：</p>
+
+<blockquote>
+<p>From the latest Xcode 10 Beta 2 release notes.</p>
+
+<p>The Command Line Tools package installs the macOS system headers inside the macOS SDK. Software that compiles with the installed tools will search for macOS headers at the standard include path: /Applications/Xcodebeta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.1 4.sdk/usr/include For legacy software that looks for the macOS headers in the base system under /usr/include, please install the package file located at: /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg</p>
+</blockquote>
+
+    </section>
+
+  <footer class="post-footer">
+    
+    <figure class="author-image">
+        <a class="img" href="http://icyleaf.com/" style="background-image: url(/images/icyleaf-icon.png)"><span class="hidden">icyleaf's Picture</span></a>
+    </figure>
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="http://icyleaf.com/">icyleaf</a></h4>
+  
+  <p>热爱户外的码农、下厨初心者</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">Beijing, China</span>
+    <span class="author-link icon-link"><a href="http://icyleaf.com">http://icyleaf.com</a></span>
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" href="https://twitter.com/share?text=%e5%a6%82%e4%bd%95%e8%a7%a3%e5%86%b3%20macOS%20%e7%bc%96%e8%af%91%e4%b8%a2%e5%a4%b1%20C%20Header%20%e6%96%87%e4%bb%b6&nbsp;-&nbsp;icyleaf&amp;url=http%3a%2f%2ficyleaf.com%2f2016%2f07%2fapply-for-a-motorcycle-license%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ficyleaf.com%2f2016%2f07%2fapply-for-a-motorcycle-license%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-weibo"href="http://service.weibo.com/share/share.php?url=http%3a%2f%2ficyleaf.com%2f2016%2f07%2fapply-for-a-motorcycle-license%2f&amp;title=%e5%a6%82%e4%bd%95%e8%a7%a3%e5%86%b3%20macOS%20%e7%bc%96%e8%af%91%e4%b8%a2%e5%a4%b1%20C%20Header%20%e6%96%87%e4%bb%b6&nbsp;-&nbsp;icyleaf"
+      onclick="window.open(this.href, 'weibo-share','width=580,height=296');return false;">
+      <span class="hidden">新浪微博</span>
+  </a>
+  <a class="icon-douban" href="javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:'',r='https://www.douban.com/recommend/?url='+e(d.location.href)+'&title='+e(d.title)+'&sel='+e(s)+'&v=1',w=450,h=330,x=function(){if(!window.open(r,'douban','toolbar=0,resizable=1,scrollbars=yes,status=1,width='+w+',height='+h+',left='+(screen.width-w)/2+',top='+(screen.height-h)/2))location.href=r+'&r=1'};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()">
+      <span class="hidden">豆瓣</span>
+  </a>
+</section>
+
+
+
+    
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  var disqus_shortname = 'icyleaf';
+  var disqus_url = 'http:\/\/icyleaf.com\/2016\/07\/apply-for-a-motorcycle-license\/';
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+  </footer>
+</article>
+
+</main>
+
+
+  <aside class="read-next">
+  
+      <a class="read-next-story" style="background-image: url(http://docs.rancher.com/img/rancher/rancher_overview_2.png)" href="http://icyleaf.com/2016/08/how-to-install-rancher-on-osx/">
+          <section class="post">
+              <h2>如何在 OS X 上安装 Rancher</h2>
+              
+          </section>
+      </a>
+  
+  
+      <a class="read-next-story prev" style="no-cover" href="http://icyleaf.com/2016/07/fastlane-in-action/">
+          <section class="post">
+              <h2>深入浅出 Fastlane 一看你就懂</h2>
+          </section>
+      </a>
+  
+</aside>
+
+
+
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">icyleaf</a> All rights reserved - 2007</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+  </div>
+  <script type="text/javascript" src="http://icyleaf.com/js/jquery.js"></script>
+  <script type="text/javascript" src="http://icyleaf.com/js/jquery.fitvids.js"></script>
+  <script type="text/javascript" src="http://icyleaf.com/js/index.js"></script>
+  
+</body>
+</html>
+

@@ -58,6 +58,11 @@
   </url>
   
   <url>
+    <loc>http://icyleaf.com/2016/07/apply-for-a-motorcycle-license/</loc>
+    <lastmod>2016-07-19T20:12:07+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://icyleaf.com/2016/07/fastlane-in-action/</loc>
     <lastmod>2016-07-19T20:12:07+08:00</lastmod>
   </url>
@@ -790,6 +795,12 @@
   <url>
     <loc>http://icyleaf.com/tags/mac/</loc>
     <lastmod>2016-08-05T17:21:08+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://icyleaf.com/tags/macos/</loc>
+    <lastmod>2016-07-19T20:12:07+08:00</lastmod>
     <priority>0</priority>
   </url>
   
