@@ -1,0 +1,43 @@
+---
+label: page
+hide_body: false
+is_partial: false
+fields:
+- name: title
+  default: About
+  label: Title
+  type: text
+  hidden: false
+- name: image
+  default: images/about.jpg
+  label: Image
+  type: file
+  hidden: false
+- name: type
+  default: page
+  label: Type
+  type: text
+  hidden: false
+- name: comments
+  default: false
+  label: Comments
+  type: boolean
+  hidden: false
+- name: date
+  default: 2016-08-10 11:19:27 +0800
+  label: Date
+  type: datetime
+  hidden: false
+- name: index
+  default: false
+  label: Index
+  type: boolean
+  hidden: false
+- name: menu
+  default: ''
+  label: Menu
+  type: text
+  hidden: true
+pages:
+- content/page/project.md
+- content/page/about.md
