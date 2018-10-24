@@ -2,107 +2,23 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Javascript on icyleaf</title>
-    <link>http://icyleaf.com/tags/javascript/index.xml</link>
+    <link>http://icyleaf.com/tags/javascript/</link>
     <description>Recent content in Javascript on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
-    <atom:link href="http://icyleaf.com/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 02 Apr 2010 12:34:56 +0800</lastBuildDate>
+    
+	<atom:link href="http://icyleaf.com/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>如何获取 Element 的 XPath [PHP/Javascript]</title>
-      <link>http://icyleaf.com/2010/04/how-to-get-xpath-of-an-element-for-php-and-javascript</link>
+      <link>http://icyleaf.com/2010/04/how-to-get-xpath-of-an-element-for-php-and-javascript/</link>
       <pubDate>Fri, 02 Apr 2010 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2010/04/how-to-get-xpath-of-an-element-for-php-and-javascript</guid>
-      <description>&lt;p&gt;这两天研究 HTML 的 DOM 需要寻找某个 Element 元素的完整 XPath 路径，由于使用的是 &lt;a href=&#34;http://simplehtmldom.sourceforge.net/manual.htm&#34;&gt;PHP Simple HTML DOM Parser&lt;/a&gt; 开源库，这个库类的使用方法几乎兼容 Javascript 的 DOM 语法并附带 DOM 选择器。虽然功能强大但是并不能直接获取 Element 的 XPath。这个怎么办呢，依稀记得 Firebug 有一个功能，选择某个元素在它的控制台可以显示 XPath。嗯，着手实践一下发现不仅可以显示而且还可以复制 XPath。&lt;/p&gt;
-
-&lt;p&gt;于是想，如果可以找到 Javascript 版的相关代码就一定可以改成 PHP 版本的，结果在 Google 搜索找到了&amp;hellip;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;var elt = document.getElementById(&#39;table&#39;);
-var xpath = getElementXPath(elt);alert(xpath);
-
-// Get full XPath of an element
-function getElementXPath(elt){  
-	var path = &amp;quot;&amp;quot;;   
-	for (; elt &amp;amp;&amp;amp; elt.nodeType == 1; elt = elt.parentNode)   
-	{        
-		idx = getElementIdx(elt);        
-		xname = elt.tagName;     
-		if (idx &amp;gt; 1) xname += &amp;quot;[&amp;quot; + idx + &amp;quot;]&amp;quot;;       
-		path = &amp;quot;/&amp;quot; + xname + path;   
-	}
-	return path;    
-}
-
-// Get Idx of an element
-function getElementIdx(elt){    
-	var count = 1;    
-	for (var sib = elt.previousSibling; sib ; sib = sib.previousSibling)    
-	{        
-		if(sib.nodeType == 1 &amp;amp;&amp;amp; sib.tagName == elt.tagName)  count++    
-	}        
-	return count;
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;PHP 改进版：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;// Use it before import PHP Simple HTML DOM Parser
-$html = file_get_html(&#39;http://www.google.com/&#39;);
-
-// find a sample element by id
-$elt1 = $html-&amp;gt;find(&#39;#footer&#39;, 0);
-
-// find a sample element by tag name
-$elt2= $html-&amp;gt;find(&#39;div&#39;, 10);
-
-// it will return if found it: [@id=&amp;quot;footer&amp;quot;]
-$xpath = getElementXPath($elt1);
-
-// it will return if found it: html/body/div[10]
-$xpath = getElementXPath($elt2);
-
-function getElementXPath($elt){    
-	$path = &#39;&#39;;  
-	$first = TRUE;   
-	for(; ($elt AND $elt-&amp;gt;nodetype == 1); $elt = $elt-&amp;gt;parent())
-	{        
-		$xname = $elt-&amp;gt;tag;      
-		$idx = getElementIdx($elt);           
-		if ($first AND isset($elt-&amp;gt;attr[&#39;id&#39;]))      
-		{            
-			$path = &#39;//*[@id=&amp;quot;&#39; . $elt-&amp;gt;attr[&#39;id&#39;] . &#39;&amp;quot;]&#39;;           
-			break;      
-		}             
-
-		if ($idx &amp;gt; 1)       
-		{            
-			%xname .= &#39;[&#39; . $idx . &#39;]&#39;;      
-		}             
-
-		$path = &#39;/&#39;.$xname.$path;             
-		$first = FALSE;  
-	}     
-
-	return $path;
-}
-
-function getElementIdx($elt){    
-	$count = 1;    
-	for($sib = $elt-&amp;gt;prev_sibling(); $sib ; $sib = $sib-&amp;gt;prev_sibling())    
-	{        
-		if($sib-&amp;gt;nodetype == 1 &amp;amp;&amp;amp; $sib-&amp;gt;tag == $elt-&amp;gt;tag)        
-		{         
-			$count++;        
-		}    
-	}        
-	return $count;
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;大家同样可以把上面的代码直接 crack 到 PHP Simple HTML DOM Parser 库中。&lt;/p&gt;
-</description>
+      <guid>http://icyleaf.com/2010/04/how-to-get-xpath-of-an-element-for-php-and-javascript/</guid>
+      <description>这两天研究 HTML 的 DOM 需要寻找某个 Element 元素的完整 XPath 路径，由于使用的是 PHP Simple HTML DOM Parser 开源库，这个库类的使用方法几乎兼容 Javascript 的 DOM 语法并附带 DOM 选择器。虽然功能强</description>
     </item>
     
   </channel>
