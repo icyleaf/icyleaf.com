@@ -11,10 +11,8 @@ index: false
 comments: true
 isCJKLanguage: true
 share: true
-menu:
-  '': {}
-
 ---
+
 今天在 macOS 10.14 通过 brew 安装 libgit2 之后调用时提示提示 `fatal error: 'time.h' file not found`，本以为是 brew 的问题自己去编译问题依然。
 确认了 Xcode Command Line Tools 并且再次确认了 `xcode-select -s /Applications/Xcode.app` 之后还是这样，就连重启大法也不用之后，
 在 Google 上检索换了好些关键词也没找到问题出在哪，索性把关键词继续模糊放大扩大范围，看到了 github 一个不知道是啥的项目看到有 `'stdio.h.h' file not found`
