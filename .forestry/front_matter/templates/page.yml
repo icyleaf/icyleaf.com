@@ -24,7 +24,7 @@ fields:
   type: boolean
   hidden: false
 - name: date
-  default: 2016-08-10 11:19:27 +0800
+  default: 2016-08-10 03:19:27 +0000
   label: Date
   type: datetime
   hidden: false
@@ -39,5 +39,5 @@ fields:
   type: text
   hidden: true
 pages:
-- content/page/project.md
 - content/page/about.md
+- content/page/project.md

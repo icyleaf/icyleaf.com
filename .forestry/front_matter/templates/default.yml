@@ -9,7 +9,7 @@ fields:
   type: text
   hidden: false
 - name: date
-  default: 2016-07-19 20:12:07 +0800
+  default: 2016-07-19 12:12:07 +0000
   label: Date
   type: datetime
   hidden: false
