@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
-    <lastBuildDate>Tue, 03 Dec 2013 12:34:56 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 30 Jan 2019 18:30:12 +0800</lastBuildDate>
     
 	<atom:link href="http://icyleaf.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>4k</title>
+      <link>http://icyleaf.com/tags/4k/</link>
+      <pubDate>Wed, 30 Jan 2019 18:30:12 +0800</pubDate>
+      
+      <guid>http://icyleaf.com/tags/4k/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Activerecord</title>
@@ -283,6 +292,15 @@
     </item>
     
     <item>
+      <title>Hackintosh</title>
+      <link>http://icyleaf.com/tags/hackintosh/</link>
+      <pubDate>Wed, 30 Jan 2019 18:30:12 +0800</pubDate>
+      
+      <guid>http://icyleaf.com/tags/hackintosh/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Hexo</title>
       <link>http://icyleaf.com/tags/hexo/</link>
       <pubDate>Thu, 17 Dec 2015 15:01:56 +0800</pubDate>
@@ -432,6 +450,15 @@
       <pubDate>Fri, 05 Aug 2016 17:21:08 +0800</pubDate>
       
       <guid>http://icyleaf.com/tags/osx/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Pc</title>
+      <link>http://icyleaf.com/tags/pc/</link>
+      <pubDate>Wed, 30 Jan 2019 18:30:12 +0800</pubDate>
+      
+      <guid>http://icyleaf.com/tags/pc/</guid>
       <description></description>
     </item>
     
@@ -810,6 +837,15 @@
       <pubDate>Wed, 05 Sep 2012 12:34:56 +0800</pubDate>
       
       <guid>http://icyleaf.com/tags/%E7%BE%8E%E9%A3%9F/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>视频剪辑</title>
+      <link>http://icyleaf.com/tags/%E8%A7%86%E9%A2%91%E5%89%AA%E8%BE%91/</link>
+      <pubDate>Wed, 30 Jan 2019 18:30:12 +0800</pubDate>
+      
+      <guid>http://icyleaf.com/tags/%E8%A7%86%E9%A2%91%E5%89%AA%E8%BE%91/</guid>
       <description></description>
     </item>
     

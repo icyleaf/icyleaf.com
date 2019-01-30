@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
-    <lastBuildDate>Tue, 27 Nov 2018 10:43:07 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 30 Jan 2019 18:30:12 +0800</lastBuildDate>
     
 	<atom:link href="http://icyleaf.com/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>我攒了一台 4K 视频剪辑黑苹果</title>
+      <link>http://icyleaf.com/2019/01/itx-coffee-lake-hackintosh-build-for-4k-video-editing/</link>
+      <pubDate>Wed, 30 Jan 2019 18:30:12 +0800</pubDate>
+      
+      <guid>http://icyleaf.com/2019/01/itx-coffee-lake-hackintosh-build-for-4k-video-editing/</guid>
+      <description>装机清单 CPU：Intel i7 9700k 主板：华擎 Z390 Phantom Gaming itx/ac 散热器：九州风神 船长 240 EX White RGB 内存：海盗船 Vengeance LPX DDR4 3000 16G x 1 SSD：三星 970 EVO 250G 机箱：追风者 215P ITX 侧透</description>
+    </item>
     
     <item>
       <title>升级 HP MicroServer Gen8 iLO 秘笈</title>
