@@ -2,86 +2,808 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Git on icyleaf</title>
-    <link>http://icyleaf.com/tags/git/</link>
+    <link>http://icyleaf.com/tags/git/index.xml</link>
     <description>Recent content in Git on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
-    <lastBuildDate>Fri, 27 Apr 2018 18:12:23 +0800</lastBuildDate>
-    
-	<atom:link href="http://icyleaf.com/tags/git/index.xml" rel="self" type="application/rss+xml" />
-    
+    <atom:link href="http://icyleaf.com/tags/git/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>ḫpr - 最好用的 git 仓库镜像同步工具</title>
-      <link>http://icyleaf.com/2018/04/intro-hpr/</link>
+      <link>http://icyleaf.com/2018/04/intro-hpr</link>
       <pubDate>Fri, 27 Apr 2018 18:12:23 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2018/04/intro-hpr/</guid>
-      <description>ḫpr 是一个把任意 git 仓库的镜像到 gitlab 服务的同步工具，还支持定期同步的功能。 特性: 支持 Web API 接口，可用于远程控制不仅限于终端使用 支持终端命令控制，</description>
+      <guid>http://icyleaf.com/2018/04/intro-hpr</guid>
+      <description>
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/icyleaf/hpr/raw/master/docs/_media/icon.png&#34; alt=&#34;icon&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://icyleaf.github.io/hpr/&#34;&gt;ḫpr&lt;/a&gt; 是一个把任意 git 仓库的镜像到 gitlab 服务的同步工具，还支持定期同步的功能。&lt;/p&gt;
+
+&lt;p&gt;特性:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;支持 Web API 接口，可用于远程控制不仅限于终端使用&lt;/li&gt;
+&lt;li&gt;支持终端命令控制，方便临时使用&lt;/li&gt;
+&lt;li&gt;定时更新镜像的仓库，时间可调，告别不靠谱的 crontab&lt;/li&gt;
+&lt;li&gt;几乎支持所有的 git 托管的仓库&lt;/li&gt;
+&lt;li&gt;使用可独立部署的 Gitlab 作为镜像平台&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;本工具可以用到的地方:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;任意 git 仓库源码的定期同步&lt;/li&gt;
+&lt;li&gt;Cocoapods 的境内加速和同步&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;契子&#34;&gt;契子&lt;/h2&gt;
+
+&lt;p&gt;如果关注我博客的用户或者曾经看到过另外一篇文章&lt;a href=&#34;http://icyleaf.com/2015/01/speed-up-cocoapods/&#34;&gt;极速化 CocoaPods&lt;/a&gt;的话且实践的用户会明白为什么会有它的产生。
+在我发布那篇文章的时候那套体系已经在我们公司的服务器上运行且截至目前已经持续运行了 3 年多！&lt;/p&gt;
+
+&lt;p&gt;那个方案并不完美，除了调用必须通过脚本的蹩脚的方案外出问题最多的主要是 gitlab-mirrors
+只能使用 crontab 做定时任务这样会因多个镜像在同步未完成的情况下重复开启新的同步任务，一个任务不明显一旦积攒多了起来还会慢慢的蚕食内存因此又不得不 ssh 到服务器
+开始杀进程相当于重置。&lt;/p&gt;
+
+&lt;p&gt;当时想重新做一个的想法其实 2017 年就产生了用 ruby 写了个头当时项目命名为 nightwing 但 ruby 的问题在部署上面有比较麻烦需要各种依赖环境，
+当时也考虑过 Go 但由于在断断续续学习没有持续，这个时候就开始将注意力转移到了类 Ruby 语法的 Crystal 语言，通过业余时间慢慢的了解和确定其性能后虽然和
+ Go 来比打包还没有那么高的集成度但完成核心功能已经完全足够，也就开始了封装 &lt;a href=&#34;https://github.com/icyleaf/gitlab.cr&#34;&gt;gitlab&lt;/a&gt;、
+&lt;a href=&#34;https://github.com/icyleaf/halite&#34;&gt;halite&lt;/a&gt; 网络库直到最近基本完成了核心功能。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;ḫpr&lt;/code&gt; 就这样诞生了。项目名和 Logo 出处来源于&lt;a href=&#34;https://zh.wikipedia.org/wiki/%E8%81%96%E7%94%B2%E8%9F%B2&#34;&gt;圣甲虫&lt;/a&gt;。&lt;/p&gt;
+
+&lt;h2 id=&#34;快速上手&#34;&gt;快速上手&lt;/h2&gt;
+
+&lt;p&gt;鉴于 Docker 的便利性，目前教程只提供此种方法进行安装部署，首先克隆本项目：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ git clone https://github.com/icyleaf/hpr.git
+$ cd hpr
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;复制 &lt;a href=&#34;config/hpr.json.example&#34;&gt;config/hpr.json.example&lt;/a&gt; 并改名 &lt;code&gt;config/config.json&lt;/code&gt; 后可修改&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
+  &amp;quot;schedule_in&amp;quot;: &amp;quot;1.day&amp;quot;,
+  &amp;quot;basic_auth&amp;quot;: {
+    &amp;quot;enable&amp;quot;: false,
+    &amp;quot;user&amp;quot;: &amp;quot;hpr&amp;quot;,
+    &amp;quot;password&amp;quot;: &amp;quot;p@ssw0rd&amp;quot;
+  },
+  &amp;quot;gitlab&amp;quot;: {
+    &amp;quot;ssh_port&amp;quot;: 22,
+    &amp;quot;endpoint&amp;quot;: &amp;quot;http://gitlab.example.com/api/v3&amp;quot;,
+    &amp;quot;private_token&amp;quot;: &amp;quot;abc&amp;quot;,
+
+    &amp;quot;group_name&amp;quot;: &amp;quot;mirrors&amp;quot;,
+
+    &amp;quot;project_public&amp;quot;: false,
+    &amp;quot;project_issue&amp;quot;: false,
+    &amp;quot;project_wiki&amp;quot;: false,
+    &amp;quot;project_merge_request&amp;quot;: false,
+    &amp;quot;project_snippet&amp;quot;: false
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;核心需要修改的参数有如下四项：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;endpoint&lt;/code&gt;: Gitlab API 的地址，&lt;strong&gt;无需修改后面部分&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;private_token&lt;/code&gt;: 在个人设置的 Account 页面获得&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;group_name&lt;/code&gt;: 项目镜像的项目都会归属到这个组内，&lt;strong&gt;务必确保你的账户拥有创建组的权限&lt;/strong&gt; (如果是管理员请忽略加粗字样)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ssh_port&lt;/code&gt;: 如果 SSH 不是 22 端口的话需要根据你的实际情况修改&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;配置文件修改保存后还需要在 &lt;code&gt;docker-compose.yml&lt;/code&gt; 文件中配置下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;version: &#39;2&#39;
+
+services:
+  hpr:
+    image: icyleafcn/hpr
+    ports:
+      - 8848:8848
+    volumes:
+      - ./config:/app/config
+      - ./repositories:/app/repositories
+    environment:
+      REDIS_URL: tcp://redis:6379
+      REDIS_PROVIDER: REDIS_URL
+
+      HPR_SSH_HOST: git.example.com
+      HPR_SSH_PORT: 22
+    depends_on:
+      - redis
+  redis:
+    image: redis:alpine
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;其中 &lt;code&gt;HPR_SSH_HOST&lt;/code&gt; 和 &lt;code&gt;HPR_SSH_PORT&lt;/code&gt; 变量用于设置 Docker 实例中的 SSH 配置。如果 SSH 端口是 22 的可忽略设置这俩参数。&lt;/p&gt;
+
+&lt;p&gt;编辑完成后运行下面命令快完成了！&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ docker-compose up
+...
+hpr_1      | Generating public/private rsa key pair ...
+hpr_1      |
+hpr_1      | GENERATED SSH PUBLIC KEY:
+hpr_1      | ##################################################################
+hpr_1      | ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDq8O3HbLn9x8Uy8RUotlpOnxdakrmCyDpZrGBeLARmEbd6BOIBQ+UWm8NUKthQ7UOavmlsq4j8lY4kyFW2eFX2qWcbvI+s2gI+05MXax+mAukSszaNSnpAoTyJCRipilSkqiOV99V8JIJhrHPtTO0o/Ui
+9WiyyWsUM4M9lEKHpZ486lDGk3IM2XQW+pxAoMKb0TYzqCsrduHUtjzy0M0BqgMPe9EtVQqCbnTMzDLXmRONoTYyTV51NQ12mMwEQcDaLQ28e5gqouQJKS81JaoRpQWa7pHsOCki6Fk9TB+EQFrGz5nOrmYYM+O1MKnFkzmVHv7Fh50Sz7d2nYzzOKAkR hpr@docker
+hpr_1      | ##################################################################
+hpr_1      |
+hpr_1      | Configuring ssh config ...
+hpr_1      | Starting hpr server ...
+hpr_1      |   _
+hpr_1      |  | |__  _ __  _ __
+hpr_1      |  | &#39;_ \| &#39;_ \| &#39;__|
+hpr_1      |  | | | | |_) | |
+hpr_1      |  |_| |_| .__/|_|
+hpr_1      |        |_|
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;最后从执行命令的输出找到生成的 SSH PUBLIC KEY（两个井号中间的部分，以 &lt;code&gt;ssh-rsa&lt;/code&gt; 开头，&lt;code&gt;hpr@docker&lt;/code&gt; 结尾），
+复制添加到 gitlab 的账户 SSH Keys 页面中。&lt;/p&gt;
+
+&lt;h2 id=&#34;更多资源&#34;&gt;更多资源&lt;/h2&gt;
+
+&lt;p&gt;再多的内容我已经整理到文档中，欢迎移步浏览：&lt;a href=&#34;https://icyleaf.github.io/hpr/&#34;&gt;https://icyleaf.github.io/hpr/&lt;/a&gt;&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>Puma 替换 Unicorn 跑 Gitlab</title>
-      <link>http://icyleaf.com/2014/01/moving-unicorn-to-puma-on-gitlab/</link>
+      <link>http://icyleaf.com/2014/01/moving-unicorn-to-puma-on-gitlab</link>
       <pubDate>Sun, 26 Jan 2014 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2014/01/moving-unicorn-to-puma-on-gitlab/</guid>
-      <description>前篇介绍到如何在《CentoOS 上面安装 Gitlab》一文，gitlab 默认使用的是 unicorn 作为内部的 app server，再用 nginx 做代理转发。之前是在公</description>
+      <guid>http://icyleaf.com/2014/01/moving-unicorn-to-puma-on-gitlab</guid>
+      <description>
+
+&lt;p&gt;前篇介绍到如何在《&lt;a href=&#34;http://icyleaf.com/2013/09/how-to-install-gitlab-on-centos/&#34;&gt;CentoOS 上面安装 Gitlab&lt;/a&gt;》一文，gitlab 默认使用的是 &lt;code&gt;unicorn&lt;/code&gt; 作为内部的 app server，再用 &lt;code&gt;nginx&lt;/code&gt; 做代理转发。之前是在公司内部搭建了一个平台，用着还算可以。有打算在 &lt;a href=&#34;https://www.linode.com/?r=66b0730eca572d3e45f083e29b1b3f8781b2a009&#34;&gt;Linode 购买的 VPS&lt;/a&gt; 上面，使用 &lt;code&gt;unicorn&lt;/code&gt; 跑服务的时候 &lt;code&gt;ruby&lt;/code&gt; 的进程居然占了 400-500M 左右，对于 Linode 刚刚免费升级之后才有 1G 内存的环境上，我还真有点放弃安装它的欲望。于是在想是否可以使用 &lt;code&gt;puma&lt;/code&gt; 替换掉原先的。&lt;/p&gt;
+
+&lt;h2 id=&#34;puma&#34;&gt;puma&lt;/h2&gt;
+
+&lt;p&gt;简单介绍下 &lt;a href=&#34;http://puma.io/&#34;&gt;&lt;code&gt;puma&lt;/code&gt;&lt;/a&gt;，它是一个由 ruby 编写的转为 &lt;a href=&#34;http://rack.github.io/&#34;&gt;&lt;code&gt;rack&lt;/code&gt;&lt;/a&gt; 设计的 app server，在性能和资源占有上却有极大的优势（下表数据来自官方）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;PUMA - 78 Mb
+RAINBOWS! (1X16) - 120 Mb
+UNICORN - 1076 Mb
+RAINBOWS! (16X32) - 1138 Mb
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;而且集成也非常的简单，若使用 rails 或者 sinatra（及 padrino）都已经支持，直接 &lt;code&gt;gem install puma&lt;/code&gt;，然后跑默认的 &lt;code&gt;rails/padrino server&lt;/code&gt; 会自动加载。&lt;/p&gt;
+
+&lt;h2 id=&#34;教程&#34;&gt;教程&lt;/h2&gt;
+
+&lt;p&gt;Okay，经过一番查找，官方在收集的 &lt;a href=&#34;https://gitlab.com/gitlab-org/gitlab-recipes/tree/master&#34;&gt;repices&lt;/a&gt; 里面有关于 &lt;code&gt;puma&lt;/code&gt; 的一些配置。他们也是收集的非官方资料，里面的资料只有借鉴意义，真正拿来用的时候各种问题，所以才有了本篇文字。&lt;/p&gt;
+
+&lt;p&gt;首先是关闭启动的 &lt;code&gt;gitlab&lt;/code&gt; 服务&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ (sudo) service gitlab stop
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;关闭之后，添加 puma gem，打开 &lt;code&gt;Gemfile&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;group :unicorn do
+  gem &#39;unicorn&#39;, &#39;~&amp;gt; 4.6.3&#39;
+	gem &#39;unicorn-worker-killer&#39;
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;找到上面的这段 group 替换成：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gem &#39;puma&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;再者修改 &lt;code&gt;config.ru&lt;/code&gt;，把下面这段代码做下替换，删除 unicorn 的代码，加载 puma：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;unless defined?(PhusionPassenger)
+  require &#39;unicorn&#39;
+  # Unicorn self-process killer
+  require &#39;unicorn/worker_killer&#39;
+  # Max memory size (RSS) per worker
+  use Unicorn::WorkerKiller::Oom, (200 * (1 &amp;lt;&amp;lt; 20)), (250 * (1 &amp;lt;&amp;lt; 20))
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;更新成&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;unless defined?(PhusionPassenger)
+  require &#39;puma&#39;
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;替换完毕更新 &lt;code&gt;gem&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# mysql 数据库
+bundle install --without development test postgres --path vendor/bundle --no-deployment
+# postgres 数据库
+bundle install --without development test mysql --path vendor/bundle --no-deployment 	
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;最后还有两处需要修改，添加 &lt;code&gt;config/puma.rb&lt;/code&gt;（替代 &lt;code&gt;config/unicorn.rb&lt;/code&gt;） 以及替换 &lt;code&gt;/etc/init.d/gitlab&lt;/code&gt; 服务脚本代码。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;config/puma.rb&lt;/code&gt;的代码在&lt;a href=&#34;https://gitlab.com/gitlab-org/gitlab-recipes/blob/master/app-server/puma/puma.rb&#34;&gt;这里可以下载&lt;/a&gt;，无需做任何的修改。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;/etc/init.d/gitlab&lt;/code&gt; 服务脚本：&lt;a href=&#34;https://gitlab.com/gitlab-org/gitlab-recipes/tree/master/init/sysvinit/centos&#34;&gt;CentOS&lt;/a&gt; | &lt;a href=&#34;https://gitlab.com/gitlab-org/gitlab-recipes/tree/master/init/sysvinit/debian&#34;&gt;Debian(Ubuntu)&lt;/a&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;服务脚本需要设置下执行权限： chmod +x /etc/init.d/gitlab&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;最后开启服务应该就完美了&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ (sudo) service gitlab start
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;我想用-apache-怎么办&#34;&gt;我想用 Apache 怎么办？&lt;/h2&gt;
+
+&lt;p&gt;嗯，我没尝试过，官方有提供收集的资料，&lt;a href=&#34;https://gitlab.com/gitlab-org/gitlab-recipes/tree/master/web-server&#34;&gt;自己查看下吧&lt;/a&gt;，记得要活学活用，直接套肯定会出问题的。&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>Git 和 Pager 的那点事</title>
-      <link>http://icyleaf.com/2013/10/about-pager-on-git/</link>
+      <link>http://icyleaf.com/2013/10/about-pager-on-git</link>
       <pubDate>Wed, 16 Oct 2013 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2013/10/about-pager-on-git/</guid>
-      <description>Git 几乎所有命令都提供分页器，即当命令输出超过一页时，自动在每页输出后暂停，可以按空格继续显示，按 q 退出。 默认 git 的 pager = less -FRSX，这个可以通</description>
+      <guid>http://icyleaf.com/2013/10/about-pager-on-git</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;Git 几乎所有命令都提供分页器，即当命令输出超过一页时，自动在每页输出后暂停，可以按空格继续显示，按 q 退出。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;默认 git 的 &lt;code&gt;pager = less -FRSX&lt;/code&gt;，这个可以通过两种方式更改：&lt;/p&gt;
+
+&lt;p&gt;命令：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ git config --global core.pager &amp;quot;less -FRSX&amp;quot;
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;配置文件：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ vim ~/.gitconfig
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;了不起了通过设置自动匹配的色彩来增强可读性&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ git config --global color.ui on 	
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;随着 &lt;a href=&#34;http://jonas.nitro.dk/tig&#34;&gt;tig&lt;/a&gt; 的出现，给 git 的增加了一个强大武装武器。（不明观众看这里先对它有个感官概念：&lt;a href=&#34;http://gitready.com/advanced/2009/07/31/tig-the-ncurses-front-end-to-git.html&#34;&gt;tig, the ncurses front-end to Git&lt;/a&gt;）&lt;/p&gt;
+
+&lt;p&gt;可能大家不知道 tig 本身就可以也是一个 pager，因此我们可以在 git config 默认替换之：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ git config --global core.pager tig
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;自从这样配置之后，让我幸福了好几年。直到&amp;hellip;今天发现一个怪异的问题，使用任何需要显示 tig pager 的地方设置的配色是以代码形式显示，而不是解析成了终端显示的颜色。最近忍不住升级到了 10.9 并更新了一些命令，因此也没搞清楚到底是哪里出了问题。只能先把 git 自带的 color 渲染给关闭才解决了这个问题&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ git config --global color.ui off
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;我的个人 &lt;code&gt;.gitconfig&lt;/code&gt; 等配置文件：&lt;a href=&#34;https://gist.github.com/icyleaf/868866&#34;&gt;https://gist.github.com/icyleaf/868866&lt;/a&gt;&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>如何在 CentOS 上安装 Gitlab</title>
-      <link>http://icyleaf.com/2013/09/how-to-install-gitlab-on-centos/</link>
+      <link>http://icyleaf.com/2013/09/how-to-install-gitlab-on-centos</link>
       <pubDate>Tue, 17 Sep 2013 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2013/09/how-to-install-gitlab-on-centos/</guid>
-      <description>2013 年 08 月的 OpenParty &amp;ldquo;花事如期&amp;rdquo; 活动上，晓东在他的机器上演示了自建 Gitlab 的项目，看到 Gitlab 目前已经比较成熟，而不像早期寒碜的界面，这</description>
+      <guid>http://icyleaf.com/2013/09/how-to-install-gitlab-on-centos</guid>
+      <description>
+
+&lt;p&gt;2013 年 08 月的 OpenParty &amp;ldquo;&lt;a href=&#34;http://www.beijing-open-party.org/event/25&#34;&gt;花事如期&lt;/a&gt;&amp;rdquo; 活动上，&lt;a href=&#34;https://github.com/vecio&#34;&gt;晓东&lt;/a&gt;在他的机器上演示了自建 Gitlab 的项目，看到 Gitlab 目前已经比较成熟，而不像早期寒碜的界面，这个时候看安装一下也是不错的事情，不过他们的项目文档只提供了 Ubuntu 系统的&lt;a href=&#34;https://github.com/gitlabhq/gitlabhq#installation&#34;&gt;安装文档&lt;/a&gt;，对于 CentOS 没有提到，非官方的文档有比较老久，凭着之前熟悉 Ubuntu 和学习 CentOS，那就开始安装吧：&lt;/p&gt;
+
+&lt;p&gt;以下教程在 &lt;code&gt;CentOS 6 x86_64&lt;/code&gt; 版本下操作。&lt;/p&gt;
+
+&lt;h2 id=&#34;首先安装-epel-和编译依赖库&#34;&gt;首先安装 EPEL 和编译依赖库&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;$ rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;如果你是非 64 位，去上面的网址找到适合你发行版的最新版本的 epel rpm&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;$ yum -y update
+$ yum -y install gcc gcc-c++ make autoconf libyaml-devel gdbm-devel ncurses-devel openssl-devel zlib-devel readline-devel curl-devel expat-devel gettext-devel  tk-devel libxml2-devel libffi-devel libxslt-devel libicu-devel sendmail patch libyaml* pcre-devel sqlite-devel vim
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;安装-python-2-7&#34;&gt;安装 Python 2.7+&lt;/h2&gt;
+
+&lt;p&gt;Gitlab 要求 Python 2.5.5+ 以及 Ruby 1.9+&lt;/p&gt;
+
+&lt;p&gt;系统 Python 默认是 2.6.x，如果你想把 Python 升级到目前比较流行的 2.7.x 就参照下面步骤，否则直接跳过。（Gitlab 目前不支持 Python 3.0）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ mkdir /tmp/gitlab &amp;amp;&amp;amp; cd /tmp/gitlab
+$ curl --progress http://python.org/ftp/python/2.7.5/Python-2.7.5.tgz | tar xvf
+$ cd Python-2.7.5
+$ ./configure --prefix=/usr/local
+$ make &amp;amp;&amp;amp; make altinstall
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;安装好之后，需要做两件事情，替换默认 python 的版本至最新版本，&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo ln -s /usr/local/bin/python2.7 /usr/local/bin/python
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;因为系统默认 &lt;code&gt;PATH&lt;/code&gt; 的寻址路径是 &lt;code&gt;/usr/local/bin&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;最后看下 Python 版本是否是刚刚安装的版本：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ python --version
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;由于 &lt;code&gt;yum&lt;/code&gt; 是 python 的一个 module，所以这块修改可能会引起无法调用 yum 脚本，所以需要修改这个文件 &lt;code&gt;/usr/bin/yum&lt;/code&gt; 的第一行为 &lt;code&gt;!#/usr/bin/python2.6&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;安装-ruby-2-0&#34;&gt;安装 Ruby 2.0&lt;/h2&gt;
+
+&lt;p&gt;Ruby 1.9 和 2.0 的特性差别不大，索性升级至最新 2.0 版本即可&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cd /tmp/gitlab
+$ curl --progress http://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p247.tar.gz | tar xz
+$ cd ruby-2.0.0-p247
+$ ./configure
+$ make
+$ make install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ruby 2.0 已经内置 gem (v2.0.3)，只需要安装 bundler&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ gem install bundler
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;若在执行 &lt;code&gt;sudo ruby&lt;/code&gt; 或 &lt;code&gt;sudo gem&lt;/code&gt; 找不到命令，因为编译的路径配置到了 &lt;code&gt;/usr/local/bin&lt;/code&gt;，我们只需要做下软链接到 root 用户可以找到的 &lt;code&gt;$PATH&lt;/code&gt; 路径：&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ln -s /usr/local/bin/ruby /usr/bin/ruby
+$ ln -s /usr/local/bin/gem /usr/bin/gem
+$ ln -s /usr/local/bin/bundle /usr/bin/bundle
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;安装-git-和-gitolite&#34;&gt;安装 Git 和 Gitolite&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;$ yum -y install git-all gitolite
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;安装-nginx&#34;&gt;安装 Nginx&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;$ yum -y install nginx
+$ service nginx start
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;nginx 需要从 EPEL 中安装，默认系统没有 nginx 包。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;安装-mysql-和-redis&#34;&gt;安装 Mysql 和 Redis&lt;/h2&gt;
+
+&lt;p&gt;Gitlab 要求强制安装 redis 处理一些数据，另外支持 MySQL 和 PostgreSQL，这里主要以 MySQL 为例&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ yum -y install mysql mysql-devel mysql-server redis
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;配置 Mysql 和 gitlab 需要的用户和数据库&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ service mysqld start
+$ mysql -u root
+$ mysql&amp;gt; CREATE USER &#39;gitlab&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;gitlab&#39;;
+$ mysql&amp;gt; CREATE DATABASE IF NOT EXISTS `gitlabhq_production` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`;
+$ mysql&amp;gt; GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER ON `gitlabhq_production`.* TO &#39;gitlab&#39;@&#39;localhost&#39;;
+$ mysql&amp;gt; \q
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Redis 使用默认配置即可，直接启动&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ service redis start
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;添加-gitlab-用户&#34;&gt;添加 Gitlab 用户&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;$ useradd -c &#39;GitLab&#39; git
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;CentOS 的命令没有办法直接禁止用户的访问的参数，需要用下面命令：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ passwd -l git 	
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;安装-gitlab-shell&#34;&gt;安装 Gitlab-shell&lt;/h2&gt;
+
+&lt;p&gt;使用 root 账户切换到 git 账户下操作，可以比官方教程省去一些麻烦的输入&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ su git &amp;amp;&amp;amp; cd /home/git
+$ git clone https://github.com/gitlabhq/gitlab-shell.git
+$ cd gitlab-shell
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;通过 &lt;code&gt;git tag&lt;/code&gt; 查看最新版本并切换之&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ git checkout v1.7.1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;编辑配置文件修改你要设定的域名（domain），比如 &lt;code&gt;http://gitlab.dev/&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ vim config.yml
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;完成之后执行安装脚本&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ./bin/install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;安装-gitlab&#34;&gt;安装 Gitlab&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cd /home/git
+$ git clone https://github.com/gitlabhq/gitlabhq.git gitlab
+$ cd /home/git/gitlab
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;通过 &lt;code&gt;git tag&lt;/code&gt; 查看最新版本并切换之&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ git checkout 6.0.1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这里需要配置的东西多一些，这里参考&lt;a href=&#34;https://github.com/gitlabhq/gitlabhq/blob/master/doc/install/installation.md#configure-it&#34;&gt;官方的文档&lt;/a&gt;，也可以安装我下面的步骤来：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cd /home/git/gitlab
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;复制配置文件，修改 host 相关的配置项，主要是 domain 要和上面的 &lt;code&gt;http://gitlab.dev&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cp config.yml{.example,}
+$ vim config/gitlab.yml
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;确认 gitlab 以下目录的权限是否正确&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ mkdir tmp/pids/
+$ mkdir tmp/sockets/
+$ chown -R git log/
+$ chown -R git tmp/
+$ chmod -R u+rwX log/
+$ chmod -R u+rwX tmp/
+$ chmod -R u+rwX tmp/pids/
+$ chmod -R u+rwX tmp/sockets/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;创建 satellites 目录，这个目录是保存各个用户的仓库&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ mkdir /home/git/gitlab-satellites
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;创建 uploads 目录（为什么 gitlab 不在项目中创建呢= =！）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ mkdir public/uploads
+$ chmod -R u+rwX  public/uploads
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;复制 unicorn 配置文件&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cp config/unicorn.rb{.example,}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;设置 ruby web 容器的参数，比如 2GB RAM 服务器可以设置 3 个 worker。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;如果系统其他服务占用了 unicorn 的端口，记得改名。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;$ vim config/unicorn.rb
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;设置一些 git 全局参数&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ git config --global user.name &amp;quot;GitLab&amp;quot;
+$ git config --global user.email &amp;quot;gitlab@localhost&amp;quot;
+$ git config --global core.autocrlf input
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;配置 gitlab 数据库设置&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cp config/database.yml{.mysql,}
+$ vim config/database.yml
+$ chmod o-rwx config/database.yml
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;安装必需的 Ruby Gems&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cd /home/git/gitlab
+$ [sudo] gem install charlock_holmes --version &#39;0.6.9.4&#39;
+$ bundle install --deployment --without development test postgres aws
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;初始化数据库数据（执行输入 &lt;code&gt;Yes&lt;/code&gt; 继续创建）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ bundle exec rake gitlab:setup RAILS_ENV=production
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;设置 init 脚本&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo cp lib/support/init.d/gitlab /etc/init.d/gitlab
+$ sudo chmod +x /etc/init.d/gitlab
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;检查-gitlab-状态&#34;&gt;检查 Gitlab 状态&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;$ bundle exec rake gitlab:env:info RAILS_ENV=production
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;启动 gitlab 服务&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo service gitlab start
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;再起检查，保证所有项目都是绿色&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ bundle exec rake gitlab:check RAILS_ENV=production
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;配置-nginx&#34;&gt;配置 nginx&lt;/h2&gt;
+
+&lt;p&gt;根据 nginx 的安装路径适当修改下面的路径即可，我们先把 gitlab 提供的配置文件拷贝过去&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo mkdir -p /etc/nginx/conf/sites/
+$ sudo cp lib/support/nginx/gitlab /etc/nginx/conf/sites/gitlab.conf
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;根据 nginx 版本和不同发行版的不同，配置结构可能不同根据你的实际情况加载 &lt;code&gt;gitlab.conf&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;修改 &lt;code&gt;gitlab.conf&lt;/code&gt; 的 &lt;code&gt;YOUR_SERVER_FQDN&lt;/code&gt; 为上面设置的 domain。
+最后修改 &lt;code&gt;nginx.conf&lt;/code&gt; 或者 &lt;code&gt;default.conf&lt;/code&gt; 加载 &lt;code&gt;/etc/nginx/conf/site&lt;/code&gt; 下所有 conf 文件&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;http {
+
+	include /etc/nginx/conf/site/*.conf;
+
+	server {
+		…
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;保存后，重启各个服务&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo service nginx reload
+$ sudo service gitlab restart
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;开始-gitlab-之旅&#34;&gt;开始 Gitlab 之旅&lt;/h2&gt;
+
+&lt;p&gt;配置好 hosts 即可访问 &lt;code&gt;gitlab.dev&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ echo &amp;quot;127.0.0.1 gitlab.dev&amp;quot; &amp;gt;&amp;gt; /etc/hosts
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;默认的用户名密码：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;admin@local.host
+5iveL!fe
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;各种坑&#34;&gt;各种坑&lt;/h2&gt;
+
+&lt;h3 id=&#34;1-错误日志报权限错误&#34;&gt;1. 错误日志报权限错误&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;2013/11/07 00:42:21 [crit] 15875#0: *2 stat() &amp;quot;/home/git/gitlab/public/favicon.ico.html&amp;quot; failed (13: Permission denied), client: 33.33.33.1, server: gitlab.web.lo, request: &amp;quot;GET /favicon.ico HTTP/1.1&amp;quot;, host: &amp;quot;gitlab.web.lo&amp;quot;
+2013/11/07 00:42:21 [crit] 15875#0: *2 connect() to unix:/home/git/gitlab/tmp/sockets/gitlab.socket failed (13: Permission denied) while connecting to upstream, client: 33.33.33.1, server: gitlab.web.lo, request: &amp;quot;GET /favicon.ico HTTP/1.1&amp;quot;, upstream: &amp;quot;http://unix:/home/git/gitlab/tmp/sockets/gitlab.socket:/favicon.ico&amp;quot;, host: &amp;quot;gitlab.web.lo&amp;quot;
+2013/11/07 00:42:31 [crit] 15875#0: *2 stat() &amp;quot;/home/git/gitlab/public/&amp;quot; failed (13: Permission denied), client: 33.33.33.1, server: gitlab.web.lo, request: &amp;quot;GET / HTTP/1.1&amp;quot;, host: &amp;quot;gitlab.web.lo&amp;quot;
+2013/11/07 00:42:31 [crit] 15875#0: *2 stat() &amp;quot;/home/git/gitlab/public//index.html&amp;quot; failed (13: Permission denied), client: 33.33.33.1, server: gitlab.web.lo, request: &amp;quot;GET / HTTP/1.1&amp;quot;, host: &amp;quot;gitlab.web.lo&amp;quot;
+2013/11/07 00:42:31 [crit] 15875#0: *2 stat() &amp;quot;/home/git/gitlab/public/.html&amp;quot; failed (13: Permission denied), client: 33.33.33.1, server: gitlab.web.lo, request: &amp;quot;GET / HTTP/1.1&amp;quot;, host: &amp;quot;gitlab.web.lo&amp;quot;
+2013/11/07 00:42:31 [crit] 15875#0: *2 connect() to unix:/home/git/gitlab/tmp/sockets/gitlab.socket failed (13: Permission denied) while connecting to upstream, client: 33.33.33.1, server: gitlab.web.lo, request: &amp;quot;GET / HTTP/1.1&amp;quot;, upstream: &amp;quot;http://unix:/home/git/gitlab/tmp/sockets/gitlab.socket:/&amp;quot;, host: &amp;quot;gitlab.web.lo&amp;quot;
+2013/11/07 00:42:31 [crit] 15875#0: *2 stat() &amp;quot;/home/git/gitlab/public/favicon.ico&amp;quot; failed (13: Permission denied), client: 33.33.33.1, server: gitlab.web.lo, request: &amp;quot;GET /favicon.ico HTTP/1.1&amp;quot;, host: &amp;quot;gitlab.web.lo&amp;quot;
+2013/11/07 00:42:31 [crit] 15875#0: *2 stat() &amp;quot;/home/git/gitlab/public/favicon.ico/index.html&amp;quot; failed (13: Permission denied), client: 33.33.33.1, server: gitlab.web.lo, request: &amp;quot;GET /favicon.ico HTTP/1.1&amp;quot;, host: &amp;quot;gitlab.web.lo&amp;quot;
+2013/11/07 00:42:31 [crit] 15875#0: *2 stat() &amp;quot;/home/git/gitlab/public/favicon.ico.html&amp;quot; failed (13: Permission denied), client: 33.33.33.1, server: gitlab.web.lo, request: &amp;quot;GET /favicon.ico HTTP/1.1&amp;quot;, host: &amp;quot;gitlab.web.lo&amp;quot;
+2013/11/07 00:42:31 [crit] 15875#0: *2 connect() to unix:/home/git/gitlab/tmp/sockets/gitlab.socket failed (13: Permission denied) while connecting to upstream, client: 33.33.33.1, server: gitlab.web.lo, request: &amp;quot;GET /favicon.ico HTTP/1.1&amp;quot;, upstream: &amp;quot;http://unix:/home/git/gitlab/tmp/sockets/gitlab.socket:/favicon.ico&amp;quot;, host: &amp;quot;gitlab.web.lo&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;解决方案:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ (sudo) chmod o+x /home/git
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;2-8080-端口被占用&#34;&gt;2. 8080 端口被占用&lt;/h3&gt;
+
+&lt;p&gt;这样主要是因为 nginx 的配置是做 unicorn 的代理转发，实际上 gitlab 是由 unicorn 容器驱动，而在配置里默认绑定的是 &lt;code&gt;8080&lt;/code&gt; 端口&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ vim /home/git/gitlab/config/unicorn.rb
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;找到 &lt;code&gt;listen &amp;quot;127.0.0.1:8080&amp;quot;, :tcp_nopush =&amp;gt; true&lt;/code&gt; 修改成其他未占用的端口号即可。&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>如何保持在 Git Submodule 代码的开放和私有共存</title>
-      <link>http://icyleaf.com/2012/08/how-to-keep-public-and-private-versions-of-a-git-submodule-repo-in-sync/</link>
+      <link>http://icyleaf.com/2012/08/how-to-keep-public-and-private-versions-of-a-git-submodule-repo-in-sync</link>
       <pubDate>Fri, 03 Aug 2012 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2012/08/how-to-keep-public-and-private-versions-of-a-git-submodule-repo-in-sync/</guid>
-      <description>假设我在 github 有一个开源的版本库 x 供大家使用，该库里面又包含了好些个 submodules，其中有一个 submodule 名为 a 是自己在 github 又创建的: $ git submodule add http://github.com/icyleaf/a.git modules/a 现在</description>
+      <guid>http://icyleaf.com/2012/08/how-to-keep-public-and-private-versions-of-a-git-submodule-repo-in-sync</guid>
+      <description>&lt;p&gt;假设我在 github 有一个开源的版本库 x 供大家使用，该库里面又包含了好些个 submodules，其中有一个 submodule 名为 a 是自己在 github 又创建的:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ git submodule add http://github.com/icyleaf/a.git modules/a
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;现在问题是，由于代码需要更新，同时涉及到了 a 这个 submodule，但是它的添加 url 是 read-only，由于 x 这个库是供大家使用，因此 a 又不能设为 private：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ git clone git@github.com:icyleaf/a.git modules/a
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;目前想到的方法是在 x 库以外 clone 下来 a，进行私有的写入和 push 到 github 上面，然后在 x 库的 a 里 git pull 下来获得最新的代码。&lt;/p&gt;
+
+&lt;p&gt;如何解决这样的问题，能够当大家全部 clone 下来，而自己开发也能避免麻烦？在一篇文章上面找到了灵感，折腾了一番搞定了 !&lt;/p&gt;
+
+&lt;p&gt;该文章有一节讲到，开发者如果经常需要更新 submodule ，即可更换 submodule 的 remote url：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cd commonlib
+$ git remote rm origin
+$ git remote add origin ssh://mark@git.mysociety.org/data/git/public/commonlib.git
+$ git remote -v origin ssh://mark@git.mysociety.org/data/git/public/commonlib.git
+
+However, you’ll find that two helpful config options will have been
+deleted when removing and adding back origin, so you’ll want to add
+these back.
+
+$ git config branch.master.remote origin
+$ git config branch.master.merge refs/heads/master
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;首先我也先对 a 进行 git remote -v，结果显示：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;origin http://github.com/icyleaf/a.git (fetch)
+origin http://github.com/icyleaf/a.git (push)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;发现和文章里面的显示的结果不一样，于是我就在想能不能在 remote
+上面做些手脚，首先看下 git remote 的 help，发现有一条是可以单独设置 remote
+push 的 url ，也就是更换上面 git remote -v 中 push 的 url，尝试：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ git remote set-url --push origin git@github.com:icyleaf/a.git
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;再次执行 remote -v:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;origin http://github.com/icyleaf/a.git (fetch)
+origin git@github.com:icyleaf/a.git (push)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;执行成功！然后随意 commit 并 push orgin master，成功！&lt;/p&gt;
+
+&lt;p&gt;搞定！&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>使用 Git Hooks 实现自动项目部署</title>
-      <link>http://icyleaf.com/2012/03/apps-auto-deploy-with-git/</link>
+      <link>http://icyleaf.com/2012/03/apps-auto-deploy-with-git</link>
       <pubDate>Wed, 14 Mar 2012 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2012/03/apps-auto-deploy-with-git/</guid>
-      <description>最近在某服务器上面搭建 git 开发和部署环境，git 开发环境很简单，按照 ProGit 一书的相关知识就可以轻松搞定，实现了类似 Github 的使用 SSH + 私有 Clone 的方式。 关于部</description>
+      <guid>http://icyleaf.com/2012/03/apps-auto-deploy-with-git</guid>
+      <description>&lt;p&gt;最近在某服务器上面搭建 git 开发和部署环境，git 开发环境很简单，按照 ProGit 一书的相关知识就可以轻松搞定，实现了类似 Github 的使用 SSH + 私有 Clone 的方式。&lt;/p&gt;
+
+&lt;p&gt;关于部署，实际上是自动部署，起初的想法是使用 bash shell 制定一个定时任务去不断 git pull 产品代码，后来记得 Git 带有 Hooks，索性在ProGit 一书翻了翻：&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Git 本身可以调用自定义的挂钩脚本，其中有两组：客户端和服务器端。客户端挂钩用于客户端的操作，如提交和合并。服务器端挂钩用于 Git 服务器端的操作，如接收被推送的提交。详情请查看 &lt;a href=&#34;http://progit.org/book/zh/ch7-3.html&#34;&gt;ProGit 相关章节&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;如果这样就简单了，利用服务器端调用想要的挂钩（Hook），即可实现自动部署的方案，为了保证不被肆意部署，特加了一个对需要部署 commit 的判断，利用读取 commit subject 并匹配想要的字符串才去部署，这样我认为是一个比较安装的部署方案。&lt;/p&gt;
+
+&lt;p&gt;Git的挂钩（Hook）主要包含：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;applypatch-msg&lt;/li&gt;
+&lt;li&gt;post-update&lt;/li&gt;
+&lt;li&gt;pre-rebase&lt;/li&gt;
+&lt;li&gt;commit-msg&lt;/li&gt;
+&lt;li&gt;pre-applypatch&lt;/li&gt;
+&lt;li&gt;update&lt;/li&gt;
+&lt;li&gt;post-commit&lt;/li&gt;
+&lt;li&gt;pre-commit&lt;/li&gt;
+&lt;li&gt;post-receive&lt;/li&gt;
+&lt;li&gt;prepare-commit-msg&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;这里我们只需要使用 post-receive 这个 Hook：在接收 post(push)
+请求之后执行。其他大部分我也没有大多研究，不过看名字不算难理解，我觉得其中大部分包含 commit 的属于客户端。&lt;/p&gt;
+
+&lt;p&gt;好了，部署开始：&lt;/p&gt;
+
+&lt;p&gt;​1. 在服务器 git 仓库（注意是 bare 仓库，不是代码仓库）的 Hooks，编辑
+post-receive（如果没有自行创建），代码请看：&lt;a href=&#34;http://gist.github.com/566767&#34;&gt;http://gist.github.com/566767&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;这里会先判断脚本所在目录是否是 bare git 仓库，然后获取最新 commit 的 subject，并匹配是否包含 [deploy] 字样，如果包含，则继续检查产品代码仓库路径是否存在，如果存在则执行 git pull 操作。&lt;/p&gt;
+
+&lt;p&gt;​2. 对刚才编辑的 post-receive 执行下面命令以保证脚本可执行：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ chmod +x post-receive
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;​3. 完成！&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;对于自定义脚本，其实不仅限于 bash shell，你可以使用你熟悉的语言，然后把你的脚本路径在 hooks 脚本中加载即可。&lt;/p&gt;
+
+&lt;p&gt;脚本还会继续更新，下面需要增加关于测试部分的相关判断和部署。 bash shell 还需要进一步学习，上面脚本是我第一次写，如有不妥之处，请指教，感谢！&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>几本和 Git 相关的书</title>
-      <link>http://icyleaf.com/2009/09/books-about-git/</link>
+      <link>http://icyleaf.com/2009/09/books-about-git</link>
       <pubDate>Mon, 28 Sep 2009 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2009/09/books-about-git/</guid>
-      <description>切换到 Git开发已经有一段的时间了，之前一直在使用 svn，现在部分代码还在 Google Code 托管。不过自换了 Git 之后发现 Git 更方便且效率更高，不过用来用去常用</description>
+      <guid>http://icyleaf.com/2009/09/books-about-git</guid>
+      <description>&lt;p&gt;切换到 Git开发已经有一段的时间了，之前一直在使用 svn，现在部分代码还在
+Google Code 托管。不过自换了 Git 之后发现 Git 更方便且效率更高，不过用来用去常用的就拿几个命令，很多时候都要去找一些参考资料和教程。从学习到现在一个接触了一个文档，三本书。文档就是官方的文档手册，这个就不再说了，安装完 git 也都会默认内置的，对于这三本书，依次为 &lt;a href=&#34;http://book.git-scm.com/&#34;&gt;Git Community Book&lt;/a&gt;，&lt;a href=&#34;http://progit.org/&#34;&gt;ProGit&lt;/a&gt;，&lt;a href=&#34;http://zh-cn.whygitisbetterthanx.com/&#34;&gt;Why Git is Better Than X&lt;/a&gt;（X 代表其他 SCM 软件，如
+svn，bzr等）。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Why Git is Better Than X 已经有国内友人翻译完毕，一一介绍了 Git 与其他 SCM 软件有什么优势和特色&lt;/li&gt;
+&lt;li&gt;ProGit 不久前开启了&lt;a href=&#34;http://progit.org/2009/08/19/translate-this.html&#34;&gt;翻译计划&lt;/a&gt;，中文目前还在&lt;a href=&#34;http://groups.google.com/group/progit-zh&#34;&gt;翻译过程&lt;/a&gt;中，这本书很适合作为入门使用和工具书，欢迎前来 &lt;a href=&#34;http://github.com/progit/progit&#34;&gt;Fork&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Git Community Book 就是一个由社区维护的手册，内容很全讲解的很详细，就是还没有中文&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;可喜的是，这些书籍都是可以在线观看或下载的，当然如果能进一份力量，请去购买正版，或有一腔热血为 Git 贡献，就请加入到翻译之中。&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>初学 git 入门</title>
-      <link>http://icyleaf.com/2008/11/new-guy-to-git/</link>
+      <link>http://icyleaf.com/2008/11/new-guy-to-git</link>
       <pubDate>Fri, 07 Nov 2008 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2008/11/new-guy-to-git/</guid>
-      <description>Git 是用于 Linux 内核开发的版本控制工具。与常用的版本控制工具 CVS, Subversion 等不同，它采用了分布式版本库的方式，不必服务器端软件支持，使源代码的发布和交流极其</description>
+      <guid>http://icyleaf.com/2008/11/new-guy-to-git</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;Git 是用于 Linux 内核开发的版本控制工具。与常用的版本控制工具 CVS, Subversion 等不同，它采用了分布式版本库的方式，不必服务器端软件支持，使源代码的发布和交流极其方便。Git 的速度很快，这对于诸如 Linux kernel 这样的大项目来说自然很重要。Git 最为出色的是它的合并跟踪（merge tracing）能力。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;当前大多数人用的还应该是 SVN 服务，不过上次见到 &lt;a href=&#34;http://blog.donews.com/CNBorn&#34;&gt;CNBorn&lt;/a&gt; 同学使用 &lt;del&gt;git&lt;/del&gt;（Bazzer） 做版本控制，其实知道它很早不过没有过多的了解，在我稍微了解之后发现 git 比 svn 更具潜力，可惜对于 PHP 的用户来说还没有多少人开始用 git 甚至我在 PHPChina 的论坛看到有人问 git 的问题，居然有人回答 git 是什么&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;同样 git 支持多平台且对于 Windows 的用户也有 GUI 的管理界面。通过几天的了解是使用稍微掌握了一点入门的东西（以下都是命令行的东西，如果你想学习使用 GUI 的操作请看&lt;a href=&#34;http://gitcasts.com/posts/git-on-windows&#34;&gt;此讲解视频&lt;/a&gt;）；&lt;/p&gt;
+
+&lt;p&gt;首先是下载并安装 &lt;a href=&#34;http://git-scm.com/download&#34;&gt;git&lt;/a&gt;。接着设置用户标识：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ git config --global user.name yourname
+$ git config --global user.email example@mail.com
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;然后创建一个目录作为版本库：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ mkdir examplecd examplegit init
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;把本地文件同步到远程 git host 服务网站上面&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# 添加文件
+$ git add filename
+
+# 提交说明并提交
+$ git commit -m &#39;first commit&#39;
+
+# 添加到远程地址，这个地址不固定，以 git hosts 提供地址为准
+$ git remote add origin git@example.com:username/example.git
+
+# 提交 origin 到 master
+$ git push origin master
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;另外，如果使用网上的 git host 服务，还涉及到设置 ssh public key 的问题，各个平台有些细微的差别，大家看 github 网站的&lt;a href=&#34;http://github.com/guides/providing-your-ssh-key&#34;&gt;相关帮助&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;如果你想系统的学习 git， 不妨通读下 &lt;a href=&#34;http://roclinux.cn/?p=914&#34;&gt;《看日记学git》系列文章&lt;/a&gt;&lt;/p&gt;
+</description>
     </item>
     
   </channel>

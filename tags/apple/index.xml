@@ -2,23 +2,93 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Apple on icyleaf</title>
-    <link>http://icyleaf.com/tags/apple/</link>
+    <link>http://icyleaf.com/tags/apple/index.xml</link>
     <description>Recent content in Apple on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
-    <lastBuildDate>Fri, 27 Apr 2018 18:00:07 +0800</lastBuildDate>
-    
-	<atom:link href="http://icyleaf.com/tags/apple/index.xml" rel="self" type="application/rss+xml" />
-    
+    <atom:link href="http://icyleaf.com/tags/apple/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>一招解决苹果账户因忘记安全问题绑定手机号</title>
-      <link>http://icyleaf.com/2018/04/how-to-bind-mobile-number-to-apple-developer-account/</link>
+      <link>http://icyleaf.com/2018/04/how-to-bind-mobile-number-to-apple-developer-account</link>
       <pubDate>Fri, 27 Apr 2018 18:00:07 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2018/04/how-to-bind-mobile-number-to-apple-developer-account/</guid>
-      <description>前言 2018 年 4 月初的某天，苹果针对于开发者账户抛出了一个看似只有在中国实施的政策：账户需绑定手机号。 但如果你记得账户登录密码却忘记了安全问题的答</description>
+      <guid>http://icyleaf.com/2018/04/how-to-bind-mobile-number-to-apple-developer-account</guid>
+      <description>
+
+&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+
+&lt;p&gt;2018 年 4 月初的某天，苹果针对于开发者账户抛出了一个看似只有在中国实施的政策：账户需绑定手机号。
+但如果你记得账户登录密码却忘记了安全问题的答案，那你就不能绑定手机号和后续操作。我是亲身经历这个事件且过程都发在了 twitter
+上面，期间也有很多朋友帮忙跟进和给出不少建议。我希望国内的用户通过搜索引擎找到这里来解决问题。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;如果你只想看到最有效的解决方案请拉到文章的尾部的&lt;strong&gt;一招解决&lt;/strong&gt;，中间提到的一些解决方案可能在你那边也会适用。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;亲身经历&#34;&gt;亲身经历&lt;/h2&gt;
+
+&lt;p&gt;对于绑定手机号来说，乍一看这算啥我不绑定你能咋滴！然而我们都太 naive，直到某一天我要对一个快过期的账户续费的时候发现了一个巨大的坑。
+也就是说如果你没有绑定手机号你讲不能下述操作：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;不能接受最新苹果的协议更新 （这算事？）&lt;/li&gt;
+&lt;li&gt;不能对已上架的 App 新建版本&lt;/li&gt;
+&lt;li&gt;不能新建新 App&lt;/li&gt;
+&lt;li&gt;不能对账户进行续费（你没看错，我通过技术手段获取了续费链接打开还是要你绑定手机号！）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;老老实实的去绑定手机号，首先它会跳转到 appleid.apple.com 网站提示登录，如往常一样输入用户名密码点击登录，映入眼帘不是登录成功后
+的界面而是让你输入安全问题的答案。由于公司涉及的多个账户最初并不是我来申请的，赶紧联系前同事求助得到的答案是我当时瞎填的，我&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;第一时间打苹果客服 &lt;code&gt;400-009-5555&lt;/code&gt; 接通后说明问题希望能够重设安全问题，这个时候苹果一如既往的保持高安全性的答复如果你忘记了安全问题
+的答案那这个帐号基本上就废了。但如果你这个是开发者账户的话可以通过两种方式尝试解决：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;用手机登录该账户后尝试开启两步验证，如果没有提示安全问题开启后就可以重置，若有提示那此路不通。&lt;/li&gt;
+&lt;li&gt;求助苹果开发者客服 &lt;code&gt;400-670-1855&lt;/code&gt;，看看他们那边怎么处理。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;推友 &lt;a href=&#34;https://twitter.com/frankxzx624&#34;&gt;@frankxzx&lt;/a&gt; 给我建议说如果开发者账户如果绑定了紧急邮箱也可以重设，但不适用于我的情况有类似需求的可以尝试。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;找了台测试机尝试方案一结果还是显示安全问题，只能寄希望于苹果开发者客服。通过几天的跟进我认为这个电话非常的坑爹，因为接通会进入等待列表，
+语音还特别提示“你的电话非常重要，请耐心等待”，但通常情况下你需要 1 ~ 2 个小时才能接通，建议打这个电话的时候用一个蓝牙耳机会能让你先忙
+于其他的事情。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;推友 &lt;a href=&#34;https://twitter.com/Lonely__Ma&#34;&gt;@Lonely&lt;/a&gt; 给我建议是每天早上 9 点拨打秒接通，但那个时间点我一般在路上没有尝试。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;一个星期的时间我总共打通过两次，第一次给的服务还不错说情况比较复杂他的权限不能够解决，但可以给我的几个账户进行安全升级并向上级反馈并耐心
+等待答复又不能保证什么时候会答复，给了我一个案例编号说你可以再次拨打客服电话报上案例编号就可以查到进度。&lt;/p&gt;
+
+&lt;p&gt;第二次拨打是 4 天后花了 1 个半小时接通，一个说中文比较费劲的技术人员告诉我你不是账户的持有人找你们的老板来打这个电话才行（哪个老板可以每天花
+1 - 2 小时等待时间给你打电话还不一定能接通），跟他说了你们电话太难打了我花了快 2 小时才打通啊，这又不是随随便便就能接通的。然后有说你可以
+给我们(&lt;code&gt;chinadev@asia.apple.com&lt;/code&gt;)发邮件我们会尽快回复的，但邮件必须是通过有问题的 apple id 账户的邮箱发出才行。&lt;/p&gt;
+
+&lt;p&gt;感谢后挂了我就登录 apple id 的邮箱系统依次发了邮件希望能够尽快处理，因为一个账户还有 3 天就续费过期了。在看到 Apple 自动恢复的邮件显示
+“我们会在一天内给你答复”&lt;/p&gt;
+
+&lt;p&gt;第一天过去了没有收到答复，第二天过去了还没有收到答复&amp;hellip;第三天开发者账户已经过期依然没有收到答复&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;就在我绝望之际，我看到了曙光。&lt;/p&gt;
+
+&lt;h2 id=&#34;一招解决&#34;&gt;一招解决&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;截至 2018 年 4 月 27 日该方法有效。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;推友 &lt;a href=&#34;https://twitter.com/shanegood&#34;&gt;@shanegood&lt;/a&gt; 和 &lt;a href=&#34;https://twitter.com/lipeiqiang&#34;&gt;@lipeiqiang&lt;/a&gt; 在第一时间提醒我通过 macOS 登录
+iCloud 更新联系方式的方式可以添加绑定手机号。在本机新建了多个用户对于不同的账户依次登录 iCloud 确实可以绑定手机号！但重设安全问题是无解的。&lt;/p&gt;
+
+&lt;p&gt;对于绑定的手机号必须是没有绑定过其他 Apple Id 账户的才行，于是我通过阿里小号 App 和我另外一个大王卡小号绑定了公司的开发者帐号。蛋疼！&lt;/p&gt;
+
+&lt;p&gt;感谢在这个事件中给予帮助的推友也希望本文能够帮助你解决问题。完整的时间线都在我的 twitter 上面记录，欢迎 &lt;a href=&#34;https://twitter.com/icyleaf&#34;&gt;follow&lt;/a&gt;。&lt;/p&gt;
+</description>
     </item>
     
   </channel>
