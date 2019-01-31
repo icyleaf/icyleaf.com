@@ -2,77 +2,23 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Hiking on icyleaf</title>
-    <link>http://icyleaf.com/tags/hiking/index.xml</link>
+    <link>http://icyleaf.com/tags/hiking/</link>
     <description>Recent content in Hiking on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
-    <atom:link href="http://icyleaf.com/tags/hiking/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 30 Nov 2012 12:34:56 +0800</lastBuildDate>
+    
+	<atom:link href="http://icyleaf.com/tags/hiking/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>打绳结</title>
-      <link>http://icyleaf.com/2012/11/how-to-bends-and-hitches</link>
+      <link>http://icyleaf.com/2012/11/how-to-bends-and-hitches/</link>
       <pubDate>Fri, 30 Nov 2012 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2012/11/how-to-bends-and-hitches</guid>
-      <description>
-
-&lt;p&gt;收集磨房微博上面
-&lt;a href=&#34;http://huati.weibo.com/k/%E4%B8%BB%E9%A1%B5%E5%90%9B%E6%95%99%E4%BD%A0%E6%89%93%E7%BB%B3%E7%BB%93?from=510&amp;amp;order=time&#34;&gt;#主页君教你打绳结#&lt;/a&gt;
-步骤：&lt;/p&gt;
-
-&lt;h1 id=&#34;alpine-butterfly-bend-阿尔卑斯蝴蝶结&#34;&gt;Alpine Butterfly Bend（阿尔卑斯蝴蝶结）&lt;/h1&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;这个绳结强度大可靠性高，登山的时候很实用，平时绑鞋带什么的就别这样弄了&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://ww2.sinaimg.cn/bmiddle/6c76e8c5jw1dyvsxbmdbjg.gif&#34; alt=&#34;Alpine Butterfly
-Bend&#34; /&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;lineman-s-loop-中间结或工程蝴蝶结&#34;&gt;lineman&amp;rsquo;s loop (中间结或工程蝴蝶结)&lt;/h1&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;这种结经常用在登山时绑在中间的人身上；此时只要作个大绳圈套在中间人的身上即可。只要两头的人不想松开，中间的人就跑不掉啦.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://ww2.sinaimg.cn/bmiddle/6c76e8c5jw1dz1crmzgl5g.gif&#34; alt=&#34;lineman&#39;s
-loop&#34; /&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;blake-s-hitch-抓结或移动结&#34;&gt;blake&amp;rsquo;s hitch (抓结或移动结)&lt;/h1&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;用于行进，上升过程中的保护，此结不受力时可滑动，受力时在主绳上卡住不动。晚归不想在门外过夜，被迫从楼顶爬回自家阳台的汉子必备&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://ww4.sinaimg.cn/bmiddle/6c76e8c5jw1dz2oxc2g6ag.gif&#34; alt=&#34;blake&#39;s
-hitch&#34; /&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;双渔人结&#34;&gt;双渔人结&lt;/h1&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;它是连接两根绳子的常用结法，这个结比较容易打，但是很难拆开，大家练习的时候注意不要打的太紧了。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://ww2.sinaimg.cn/bmiddle/6c76e8c5jw1dz3mi2ddkzg.gif&#34; alt=&#34;双渔人结&#34; /&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;双绳八字结&#34;&gt;双绳八字结&lt;/h1&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;今儿个教大家的是另外一种实用的连接两根绳子的结法。大家打的时候要把两端的绳子留长一点，才不容易滑脱&lt;del&gt;这种结法的优势在于：即使拉力很大，用过之后绳结都能够轻松解开。试过解不开绳子的同学就知道这个结的好了&lt;/del&gt;（实际使用时不要用两根大小型号差异太大的绳子）&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://ww4.sinaimg.cn/bmiddle/6c76e8c5jw1dz52enzvd7g.gif&#34; alt=&#34;双绳八字结&#34; /&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;bowline-bend-单套结&#34;&gt;bowline bend (单套结)&lt;/h1&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;绳结中间留出来的那个圈可用于绳与绳、绳与环之间的临时连接，常用于户外宿营或者是户外运动中进行固定的临时安全带。非要用听起来那么高级的结来绑鞋带的人你就绑吧&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://ww1.sinaimg.cn/bmiddle/6c76e8c5gw1dz68igt76pg.gif&#34; alt=&#34;bowline
-bend&#34; /&gt;&lt;/p&gt;
-</description>
+      <guid>http://icyleaf.com/2012/11/how-to-bends-and-hitches/</guid>
+      <description>收集磨房微博上面 #主页君教你打绳结# 步骤： Alpine Butterfly Bend（阿尔卑斯蝴蝶结） 这个绳结强度大可靠性高，登山的时候很实用，平时绑鞋带什么的就别这样弄</description>
     </item>
     
   </channel>
