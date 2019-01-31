@@ -1,6 +1,6 @@
 ---
 title: 攒了一台 4K 视频剪辑黑苹果
-date: 2019-01-30 18:30:12 +0800
+date: 2019-01-30 10:30:12 +0000
 slug: itx-coffee-lake-hackintosh-build-for-4k-video-editing
 categories:
 - Technology
@@ -20,19 +20,19 @@ share: true
 
 > 台式机借鉴国外 $1000k 攒机思路在不考虑显示器预算为 6000 元人民币。
 
-名称 | 品牌型号 | 价格
----|---|---
-CPU | Intel i7 9700k | 2550
-主板 | 华擎 Z390 Phantom Gaming itx/ac | 1399
-散热器 | 九州风神 船长 240 EX White RGB | 453
-内存 | 海盗船 Vengeance LPX DDR4 3000 16G x 1 | 719
-SSD | 三星 970 EVO 250G | 489
-机箱 | 追风者 215P ITX 侧透 RGB | 489
-电源 | 讯景 XTR550 | 354
-显卡 | RX560\~580 | 预算超了暂时没有采购
-无线网卡/蓝牙 | 博通 BCM943602CS | 临近春节没有买到
-显示器 | LG 27UL600 4k HDR400 IPS | 单独预算
-**总价** | | 6000
+| 名称 | 品牌型号 | 价格 |
+| --- | --- | --- |
+| CPU | Intel i7 9700k | 2550 |
+| 主板 | 华擎 Z390 Phantom Gaming itx/ac | 1399 |
+| 散热器 | 九州风神 船长 240 EX White RGB | 453 |
+| 内存 | 海盗船 Vengeance LPX DDR4 3000 16G x 1 | 719 |
+| SSD | 三星 970 EVO 250G | 489 |
+| 机箱 | 追风者 215P ITX 侧透 RGB | 489 |
+| 电源 | 讯景 XTR550 | 354 |
+| 显卡 | RX560\~580 | 预算超了暂时没有采购 |
+| 无线网卡/蓝牙 | 博通 BCM943602CS | 临近春节没有买到 |
+| 显示器 | LG 27UL600 4k HDR400 IPS | 单独预算 |
+| 总价 |  | 6000 |
 
 ### 为什么要台式机？
 
@@ -106,7 +106,7 @@ SSD | 三星 970 EVO 250G | 489
 
 ### 为什么选择 AMD RX 500 系列独立显卡？
 
-AMX RX 500 系列和更好的 R9 系列全系 macOS 免驱的，AMD 和 Apple 已经达成长期合作伙伴。免驱动是安装黑苹果抉择的最重要的原因，其次选择 RX 500 系列价格实惠，尤其考虑 RX 560。虽然部分 NVIDIA 显卡有 Web Driver 驱动但据说性能大大折扣。这里我能说句 AMD YES 吗...
+AMX RX 500 系列和更好的 R9 系列全系 macOS 免驱的，AMD 和 Apple 已经达成长期合作伙伴。免驱动是安装黑苹果抉择的最重要的原因，其次选择 RX 500 系列价格实惠，尤其考虑 RX 560。虽然部分 NVIDIA 显卡有 Web Driver 驱动但据说性能大大折扣，这里推荐黑果小兵整理的 [macOS 10.14 Majave 硬件支持列表](https://blog.daliansky.net/Mojave-Hardware-Support-List.html)。
 
 视频剪辑其实并不太吃显卡，主要还是 CPU，CPU 不足的晴朗下才会选择显卡。国外众多兼容黑苹果的配置中大多没有用更好的显卡。
 
