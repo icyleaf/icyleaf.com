@@ -2,23 +2,130 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Flask on icyleaf</title>
-    <link>http://icyleaf.com/tags/flask/</link>
+    <link>http://icyleaf.com/tags/flask/index.xml</link>
     <description>Recent content in Flask on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
-    <lastBuildDate>Wed, 06 Feb 2013 12:34:56 +0800</lastBuildDate>
-    
-	<atom:link href="http://icyleaf.com/tags/flask/index.xml" rel="self" type="application/rss+xml" />
-    
+    <atom:link href="http://icyleaf.com/tags/flask/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Dash 你值得拥有的文档管理工具</title>
-      <link>http://icyleaf.com/2013/02/dash/</link>
+      <link>http://icyleaf.com/2013/02/dash</link>
       <pubDate>Wed, 06 Feb 2013 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2013/02/dash/</guid>
-      <description>Dash 是 Mac OS 的一个文档管理工具，从它第一版发布用到现在，绝对是一个你值得拥有的文档管理工具，因为它还是免费的，你可以从 Mac App Store 购买。但是全功能需要</description>
+      <guid>http://icyleaf.com/2013/02/dash</guid>
+      <description>
+
+&lt;p&gt;Dash 是 Mac OS 的一个文档管理工具，从它第一版发布用到现在，绝对是一个你值得拥有的文档管理工具，因为它还是免费的，你可以从 &lt;a href=&#34;https://itunes.apple.com/cn/app/dash-docs-snippets/id458034879?mt=12&#34;&gt;Mac App Store&lt;/a&gt; 购买。但是全功能需要应用内付费，否则有些“小骚扰”。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;建议购买 Full Version，目前是半价，人民币 30 元&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://a1.mzstatic.com/us/r1000/106/Purple/v4/14/50/16/14501624-f6fd-4dae-a2bf-187a5a6417de/icon.175x175-75.png&#34; alt=&#34;Dash&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;特性&#34;&gt;特性&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;支持任何一个你想管理的文档（iOS/Mac/PHP/Python/Java/jQuery/Backbone.js 等等）&lt;/li&gt;
+&lt;li&gt;支持自定义生成你想要的文档（AppleDoc/JavaDoc/RDoc/Doxygen/pydoctor/Sphinx/Scaladoc）&lt;/li&gt;
+&lt;li&gt;自动升级文档版本&lt;/li&gt;
+&lt;li&gt;快捷键搜索文档及 API&lt;/li&gt;
+&lt;li&gt;管理和搜索 Code Snippets&lt;/li&gt;
+&lt;li&gt;无缝插入众多第三方应用（Alfred，XCode，Terminal，Eclipse，甚至任意的 App）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://a116.phobos.apple.com/us/r1000/079/Purple/v4/ec/c8/d0/ecc8d047-84b0-9202-068b-91082f489f68/mzl.mztawrpk.800x500-75.jpg&#34; alt=&#34;Dash Feature&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;功能介绍&#34;&gt;功能介绍&lt;/h2&gt;
+
+&lt;p&gt;这块已经有人介绍了，我就不多说了：&lt;a href=&#34;http://scriptfans.iteye.com/blog/1543219&#34;&gt;Dash：程序员的的好帮手&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;生成自己的文档&#34;&gt;生成自己的文档&lt;/h2&gt;
+
+&lt;p&gt;Dash 本身只支持 docsets 格式的文档，也就是由 &lt;a href=&#34;http://gentlebytes.com/appledoc/&#34;&gt;appledoc&lt;/a&gt; 生成的。默认是让 XCode 的 Organizer 管理文档，但是针对这个庞然大物，只是做文档的管理和快速搜索有消受不起。因此 Dash 才诞生出来的。&lt;/p&gt;
+
+&lt;p&gt;其实本篇日志主要是讲这块的内容，从上面的特性上面我也说到 Dash 支持生成任何的文档，因为它支持的文档类型涵盖了目前绝大多数的文档格式，针对这块官方已经写了&lt;a href=&#34;http://kapeli.com/docsets&#34;&gt;如何转换的说明&lt;/a&gt;，这里简单说明下：&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;语言&lt;/th&gt;
+&lt;th&gt;转换工具&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Objective-C 文档&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://gentlebytes.com/appledoc-docs-examples-basic/&#34;&gt;appledoc&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Python, Sphinx, pydoctor&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://pypi.python.org/pypi/doc2dash/&#34;&gt;doc2dash&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Javadoc&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://kapeli.com/JavaDocset.zip&#34;&gt;java.docset&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;RDoc&lt;/td&gt;
+&lt;td&gt;使用 Dash 自身的 &amp;ldquo;Ruby Installed Gems&amp;rdquo;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Scaladoc&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://bitbucket.org/inkytonik/mkscaladocset&#34;&gt;mkscaldocset&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Doxygen(源码)&lt;/td&gt;
+&lt;td&gt;修改参数生成&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;docsetutil&lt;/td&gt;
+&lt;td&gt;需要创建指定目录结构&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;SQLite&lt;/td&gt;
+&lt;td&gt;官方支持数据库索引，需要创建指定目录结构&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&#34;生成-flask-文档&#34;&gt;生成 Flask 文档&lt;/h3&gt;
+
+&lt;p&gt;因为最近在学习 Flask，过年回家家里没有网络，因为我需要可以查询它的文档，虽然官方提供了 html 和 pdf 格式，但是没有办法快速搜索 API，没法发挥 Dash 的优势嘛，对吧！&lt;/p&gt;
+
+&lt;p&gt;Flask 官方提供的 html 文档是 Sphinx 格式的，首先把&lt;a href=&#34;http://flask.pocoo.org/docs/flask-docs.zip&#34;&gt;文档&lt;/a&gt;下载到本地，并安装好 doc2dash，另外备好一个 &lt;a href=&#34;https://bitbucket-assetroot.s3.amazonaws.com/c/photos/2011/Sep/30/flask-logo-2523728525-3_avatar.png&#34;&gt;flask icon&lt;/a&gt;。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ pip install doc2dash
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;因为 Dash 可以让每个文档都有自己的 Icon，否则默认只是 docset 的 Icon，下载完毕之后，执行代码：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ doc2dash --name Flask --icon flask-logo.png --add-to-dash /path/to/flask-docs
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;其中 &lt;code&gt;--add-to-dash&lt;/code&gt; 是生成完毕后自动添加到 Dash，默认生成好的 docset 文件在当前目录。&lt;/p&gt;
+
+&lt;p&gt;好了，Dash 已经可以索引到所有的 Flask API 了，真是太 TMD 的酷了！&lt;/p&gt;
+
+&lt;h2 id=&#34;维护你的文档&#34;&gt;维护你的文档&lt;/h2&gt;
+
+&lt;p&gt;如果你希望把自己生成的文档分享出来，并提供后期的维护升级，你可以提供一个 feed 保持文档的自动更新，这里有&lt;a href=&#34;http://kapeli.com/feeds/NodeJS.xml&#34;&gt;一个关于 NodeJS 的例子&lt;/a&gt;。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;你可以提供多个 url 多备份提供文档下载&lt;/li&gt;
+&lt;li&gt;支持 tgz 格式的打包&lt;/li&gt;
+&lt;/ul&gt;
+</description>
     </item>
     
   </channel>
