@@ -5,8 +5,9 @@ slug: itx-coffee-lake-hackintosh-build-for-4k-video-editing
 categories:
 - Technology
 tags:
-- PC
+- 硬件
 - Hackintosh
+- PC
 - 4K
 - 视频剪辑
 image: images/4k-hackintosh-hardwares.jpg
@@ -16,23 +17,28 @@ isCJKLanguage: true
 share: true
 
 ---
+
+> 2019-02-18 更新：
+>
+> 修改无线网卡的最终选择和价格，更新博通网卡部分的内容。
+
 ## 装机清单
 
 > 台式机借鉴国外 $1000k 攒机思路在不考虑显示器预算为 6000 元人民币。
 
 名称 | 品牌型号 | 价格
 ---|---|---
-CPU | Intel i7 9700k | 2550
-主板 | 华擎 Z390 Phantom Gaming itx/ac | 1399
-散热器 | 九州风神 船长 240 EX White RGB | 453
-内存 | 海盗船 Vengeance LPX DDR4 3000 16G x 1 | 719
-SSD | 三星 970 EVO 250G | 489
-机箱 | 追风者 215P ITX 侧透 RGB | 489
-电源 | 讯景 XTR550 | 354
+CPU | [Intel i7 9700k](https://ark.intel.com/products/186604/Intel-Core-i7-9700K-Processor-12M-Cache-up-to-4-90-GHz) | 2550
+主板 | [华擎 Z390 Phantom Gaming itx/ac](https://www.asrock.com/mb/Intel/Z390%20Phantom%20Gaming-ITXac/index.cn.asp)，[超频利器](https://www.chiphell.com/thread-1936969-1-1.html) | 1399
+散热器 | [九州风神 船长 240 EX White RGB](http://www.gamerstorm.com/product/CPULIQUIDCOOLER/2017-08/1286_6878.shtml) | 453
+内存 | [海盗船 Vengeance LPX DDR4 3000 16G](https://www.corsair.com/eu/en/Memory-Size/vengeance-lpx-black/p/CMK16GX4M1B3000C15) x 1 | 719
+SSD | [三星 970 EVO 250G](https://www.samsung.com/us/computing/memory-storage/solid-state-drives/ssd-970-evo-nvme-m-2-250gb-mz-v7e250bw/) | 489
+机箱 | [追风者 215P ITX 侧透 RGB](http://www.phanteks.com/Enthoo-Evolv-ITX-TemperedGlass.html) | 489
+电源 | [讯景 XTR550](http://www.xfx.com.cn/power_supplies/xtr-550w/) | 354
+无线网卡/蓝牙 | [博通 BCM94360CS2](https://s.taobao.com/search?q=BCM94360CS2&type=p&tmhkh5=&spm=a21wu.241046-tw.a2227oh.d100&from=sea_1_searchbutton&catId=100) | 95 元
 显卡 | RX560\~580 | 预算超了暂时没有采购
-无线网卡/蓝牙 | 博通 BCM943602CS | 临近春节没有买到
-显示器 | LG 27UL600 4k HDR400 IPS | 单独预算
-**总价** | | 6000
+显示器 | [LG 27UL600 4k HDR400 IPS](https://www.lg.com/cn/monitors/lg-27UL600) | 单独预算
+**总价** | | 6095
 
 ### 为什么要台式机？
 
@@ -80,7 +86,7 @@ SSD | 三星 970 EVO 250G | 489
 
 > 购买水冷散热器和 9700k 把独立显卡（RX560）的预算花了。
 
-攒机的时候没有考虑散热器的预算本以为如果买 Intel 盒装的版本会带一个小风扇或者随便买个 100 左右的散热器，真正研究配置的时候发现没有自带风扇，可能便宜的风冷 9700k 会压不住，超频就不要想。高塔的风冷（比如大霜塔）会有会挡内存槽和显卡的风险（据说大镰刀有错位设计）毕竟 itx 只有俩内存和一个 PCI-E，权衡下来踩这个坑不如考虑水冷的划算。
+攒机的时候没有考虑散热器的预算本以为如果买 Intel 盒装的版本会带一个小风扇或者随便买个 100 左右的散热器，真正研究配置的时候发现没有自带风扇，可能便宜的风冷 9700k 会压不住，超频就不要想。高塔的风冷（比如大霜塔）会有会挡内存槽和显卡的风险（据说大镰刀有错位设计）毕竟 itx 只有俩内存和一个 PCIe，权衡下来踩这个坑不如考虑水冷的划算。
 
 起初看海盗船 H100i v2 用的人挺多，瞅了眼价格直接自我劝退，更何况早期有漏液情况就没敢买，在 pcpartpicker 上筛选水冷散热器排名第二代就是[九州风神船长 240 White](http://www.gamerstorm.com/product/CPULIQUIDCOOLER/2017-08/1286_6878.shtml)，尽管也有很多漏液问题但基本上是 2017 年到 2018 年初，后续就再也没有看到漏液爆出（海盗船的现在也没有了）加上价格合适和京东客服再三确认质量保证（质保三年）和漏液全赔之后还是入了一个最便宜的船长 240 特别定制白色 RGB 的版本，结果买回来发现白色的水排和全黑的机箱搭配起来也很不和谐在侧透机箱一览无遗，谁让这个特别版（和国外同步，国内官网没有描述）价格比正常 240 便宜一百块呢。
 
@@ -126,22 +132,25 @@ AMX RX 500 系列和更好的 R9 系列全系 macOS 免驱的，AMD 和 Apple �
 
 > 蓝牙模块不仅仅是日常连接鼠标，键盘、耳机音箱，它作为 macOS 系统的核心功能是实现 Handoff 和 AirDrop 功能。
 
-| 模块 | 天线 | 网卡 | 蓝牙 | 插口 | 价格 | 备注 |
-| --- | --- | --- | --- | --- | --- | --- |
-| BCM94360CD | 4 | 2.4G 450M+/5G 1300M=1750M | 4.0 | PCI-E | 268 | 顶配，请勿购买三天线版本，三天线版本蓝牙和无线共用一根影响使用 |
-| BCM94360CS2 | 2 | 2.4G 300M+/5G 867M=1167M | 4.0 | PCI-E | 60-90 | 性价比最好，价格低廉差价的入手 |
-| BCM94352Z | 2 | 2.4G 300M/5.0G 867M=1167M | 4.0 | M.2 | 130 |  |
-| BCM943602CS | 4 | 2.4G 450M+/5G 1300M=1750M | 4.1 | M.2 | 178 | 94360CD 变种 |
-| BCM94360CSAX | 4 | 2.4G 216M+/5G 1300M=1750M | 4.1 | M.2 |  | 94360CD 变种，据说驱动不完美 |
-| BCM943602CDP | 4 | 2.4G 450M+ | 4.1 |  |  | 94360CD 升级版，3T3R |
-| BCM94360HMB | 3 | 2.4G 450M+ |  |  |  | 华硕主板拆件 |
-| BCM943602BAED | 3 | 2.4G 450M+ | 4.1 |  |  | DELL DW1830 拆件，3T3R |
+接口 | 模块 | 天线 | 无线 | 蓝牙 | 备注 |
+| --- | --- | --- | --- | --- | --- |
+| PCIe/x1 | BCM94360CD | 4 | 2.4G 450M+/5G 1300M=1750M | 4.0 | iMac (2013) 使用，请勿购买三天线版本，三天线版本（3T3R）蓝牙和无线共用一根影响使用 |
+| PCIe/x1 | BCM94331CD | | | | tonymacx86 列表之一，国内没找到 |
+| M.2 | BCM943602CS | 3T3R | 2.4G 450M+/5G 1300M=1750M | 4.0 | MacBook Pro (2015) 使用，蓝牙需要接 USB |
+| M.2/NGFF 2230, key E | BCM94360CS2 | 2T2R | 2.4G 300M+/5G 867M=1167M | 4.0 | MacBook Air (2013) 使用，价格低廉，性价比最好 |
+| M.2/NGFF 2230, key E | BCM94352Z/AzureWave AW-CE162NF/DW1560 | 2T2R | 2.4G 300M/5.0G 867M=1167M | 4.0 |  |
+| M.2 | BCM943602BAED/DELL DW1830 | 3T3R | 2.4G 450M+ | 4.1 | |
+| M.2 | BCM94350ZAE/DW1820A | | | | tonymacx86 列表之一，国内没找到|
+| Half mini | BCM94360HMB/AzureWave AW-CB160H | 3T3R | | | tonymacx86 列表之一，国内没找到 |
+| Half mini | BCM94352 HMB/AzureWave AW-CE123H | | | | tonymacx86 列表之一，国内没找到 |
 
-更多型号列表请看 [osxlatitude 的整理](https://osxlatitude.com/forums/topic/2120-inventory-of-supportedunsupported-wireless-cards-1-snow-leopard-el-capitan/)（持续更新）
+更多博通模块请看 [wikidevi](https://wikidevi.com/wiki/User:Omega/Broadcom_modules_(Apple))，其他兼容的列表请看 [osxlatitude 的整理](https://osxlatitude.com/forums/topic/2120-inventory-of-supportedunsupported-wireless-cards-1-snow-leopard-el-capitan/)
 
-首先排除 PCI-E 接口华擎 Z390 itx 版只有一个 PCI-E 接口这个是为以后独立显卡准备的，虽然我很想入 BCM94360CD 四天线。 因此只能考虑 M.2 接口，上面的模块虽然也可以直接插 M.2 接口（底子还是 PCI-E 嘛）但板子仅支持 2260/2280，支持 2260 的口我已经插了 SSD（因为主板提供散热马甲），因此我只能考虑 2280。淘宝上能找到的支持 2280 转接卡的模块基本上只有 BCM94360CS2 和 BCM943602CS，考虑到后者是较新的 5G 可以达到 1300M，这俩价格也差不多基本上会考虑后者。 为什么说是考虑呢，因为当前刚好赶上春节卖家已经长期离线了！
+首先排除 PCIe 接口华擎 Z390 itx 版只有一个接口这个是为独立显卡准备的，虽然我很想入 BCM94360CD 四天线。 因此只能考虑 M.2 接口，上面的模块虽然也可以直接插 M.2 接口（底子还是 PCIe 嘛）但板子仅支持 2260/2280，支持 2260 的口我已经插了 SSD（因为主板提供散热马甲），~~因此我只能考虑 2280。淘宝上能找到的支持 2280 转接卡的模块基本上只有 BCM94360CS2 和 BCM943602CS，考虑到后者是较新的 5G 可以达到 1300M，这俩价格也差不多基本上会考虑后者~~。受春节的影响没有入手，期间在浏览的时候发现华擎 Z370 可以拆卸原本的 Intel 的无线模块用来安装博通网卡/蓝牙模块，联系了 up 主没有得到解答只能从他视频扣细节，Intel 网卡型号不一样但确定插槽是 M.2 Key E，考虑到主板自带两个天线口放弃了三天线的 BCM943602CS，买了最物美价廉的 BCM94360CS2，带上转接卡高度 2230 机箱可以兼容。
 
-如果你不需要蓝牙的话也可以考虑 USB 无线网卡，USB 类型的目前暂无网卡和蓝牙二合一可用的硬件，虽然市面上已经出了一些。
+**特别提醒**：主板自带 M.2 Key E 插口的无线模块需要支持非 CNVi 网卡才能使用，如果有白名单请参考上面删除线内的方法。
+
+如果你不需要蓝牙的话也可以考虑 USB 无线网卡，USB 类型的目前暂无网卡和蓝牙二合一可用的硬件，虽然市面上已经出了一些。个人在春节期间不忍寂寞从 7x24 小时发货的京东买了 Comfast CF-913AC V2 USB 网卡安装[驱动](http://en.comfast.com.cn/index.php?m=content&c=index&a=show&catid=30&id=223)装的黑苹果。
 
 ### 为什么选择 LG 27UL600 显示器？
 
