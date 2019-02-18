@@ -1,6 +1,6 @@
 ---
 title: 攒了一台 4K 视频剪辑黑苹果
-date: 2019-01-30 18:30:12 +0800
+date: 2019-01-30 10:30:12 +0000
 slug: itx-coffee-lake-hackintosh-build-for-4k-video-editing
 categories:
 - Technology
@@ -112,7 +112,7 @@ SSD | [三星 970 EVO 250G](https://www.samsung.com/us/computing/memory-storage/
 
 ### 为什么选择 AMD RX 500 系列独立显卡？
 
-AMX RX 500 系列和更好的 R9 系列全系 macOS 免驱的，AMD 和 Apple 已经达成长期合作伙伴。免驱动是安装黑苹果抉择的最重要的原因，其次选择 RX 500 系列价格实惠，尤其考虑 RX 560。虽然部分 NVIDIA 显卡有 Web Driver 驱动但据说性能大大折扣。这里我能说句 AMD YES 吗...
+AMX RX 500 系列和更好的 R9 系列全系 macOS 免驱的，AMD 和 Apple 已经达成长期合作伙伴。免驱动是安装黑苹果抉择的最重要的原因，其次选择 RX 500 系列价格实惠，尤其考虑 RX 560。虽然部分 NVIDIA 显卡有 Web Driver 驱动但据说性能大大折扣，这里推荐黑果小兵整理的 [macOS 10.14 Majave 硬件支持列表](https://blog.daliansky.net/Mojave-Hardware-Support-List.html)。
 
 视频剪辑其实并不太吃显卡，主要还是 CPU，CPU 不足的晴朗下才会选择显卡。国外众多兼容黑苹果的配置中大多没有用更好的显卡。
 
@@ -130,7 +130,16 @@ AMX RX 500 系列和更好的 R9 系列全系 macOS 免驱的，AMD 和 Apple �
 
 首先博通是 Apple 的合作厂家，所有 Mac 主机的无线模块都是他家提供的，可以做到真正免驱同时以下提到的同时还支持蓝牙模块。
 
-> 蓝牙模块不仅仅是日常连接鼠标，键盘、耳机音箱，它作为 macOS 系统的核心功能是实现 Handoff 和 AirDrop 功能。
+蓝牙模块不仅仅是日常连接鼠标，键盘、耳机音箱，它作为 macOS 系统的核心功能是实现 Handoff 和 AirDrop 功能。
+
+苹果钦点模块：
+
+- BCM94360CS2 (2013年 MacBook Air)
+- BCM94360CS (2013年 MacBook Pro)
+- BCM94360CD (2013年 iMac)
+- BCM943602CS (2015年 MacBook Pro)
+
+理论上上面 4 个模块是真正免驱的（但也不排除需要加驱动）。
 
 接口 | 模块 | 天线 | 无线 | 蓝牙 | 备注 |
 | --- | --- | --- | --- | --- | --- |
@@ -148,7 +157,7 @@ AMX RX 500 系列和更好的 R9 系列全系 macOS 免驱的，AMD 和 Apple �
 
 首先排除 PCIe 接口华擎 Z390 itx 版只有一个接口这个是为独立显卡准备的，虽然我很想入 BCM94360CD 四天线。 因此只能考虑 M.2 接口，上面的模块虽然也可以直接插 M.2 接口（底子还是 PCIe 嘛）但板子仅支持 2260/2280，支持 2260 的口我已经插了 SSD（因为主板提供散热马甲），~~因此我只能考虑 2280。淘宝上能找到的支持 2280 转接卡的模块基本上只有 BCM94360CS2 和 BCM943602CS，考虑到后者是较新的 5G 可以达到 1300M，这俩价格也差不多基本上会考虑后者~~。受春节的影响没有入手，期间在浏览的时候发现华擎 Z370 可以拆卸原本的 Intel 的无线模块用来安装博通网卡/蓝牙模块，联系了 up 主没有得到解答只能从他视频扣细节，Intel 网卡型号不一样但确定插槽是 M.2 Key E，考虑到主板自带两个天线口放弃了三天线的 BCM943602CS，买了最物美价廉的 BCM94360CS2，带上转接卡高度 2230 机箱可以兼容。
 
-**特别提醒**：主板自带 M.2 Key E 插口的无线模块需要支持非 CNVi 网卡才能使用，如果有白名单请参考上面删除线内的方法。
+**特别提醒**：主板自带 M.2 Key E 插口的无线模块需要[支持非 CNVi 网卡才能使用](https://bbs.nga.cn/read.php?tid=16399773&page=1)，如果有白名单请参考上面删除线内的方法。
 
 如果你不需要蓝牙的话也可以考虑 USB 无线网卡，USB 类型的目前暂无网卡和蓝牙二合一可用的硬件，虽然市面上已经出了一些。个人在春节期间不忍寂寞从 7x24 小时发货的京东买了 Comfast CF-913AC V2 USB 网卡安装[驱动](http://en.comfast.com.cn/index.php?m=content&c=index&a=show&catid=30&id=223)装的黑苹果。
 
