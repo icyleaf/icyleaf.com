@@ -2,428 +2,59 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Kohana on icyleaf</title>
-    <link>http://icyleaf.com/tags/kohana/index.xml</link>
+    <link>http://icyleaf.com/tags/kohana/</link>
     <description>Recent content in Kohana on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
-    <atom:link href="http://icyleaf.com/tags/kohana/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 02 May 2011 12:34:56 +0800</lastBuildDate>
+    
+	<atom:link href="http://icyleaf.com/tags/kohana/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>魔豆及其豆瓣 API 测试平台开源咯</title>
-      <link>http://icyleaf.com/2011/05/modou-and-douban-api-console-is-open-source-now</link>
+      <link>http://icyleaf.com/2011/05/modou-and-douban-api-console-is-open-source-now/</link>
       <pubDate>Mon, 02 May 2011 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2011/05/modou-and-douban-api-console-is-open-source-now</guid>
-      <description>&lt;p&gt;这是作为 2011 年 5 月 1 日劳动节的福利发放，欢迎各位 Kohana 开发者及其爱好者围观领取，领取内容及其使用方式请前往本人 Github 的项目地址：&lt;a href=&#34;https://github.com/icyleaf/modou&#34;&gt;https://github.com/icyleaf/modou&lt;/a&gt;&lt;/p&gt;
-</description>
+      <guid>http://icyleaf.com/2011/05/modou-and-douban-api-console-is-open-source-now/</guid>
+      <description>这是作为 2011 年 5 月 1 日劳动节的福利发放，欢迎各位 Kohana 开发者及其爱好者围观领取，领取内容及其使用方式请前往本人 Github 的项目地址：https://git</description>
     </item>
     
     <item>
       <title>Nginx&#43;FastCGI 环境搭建 Kohana</title>
-      <link>http://icyleaf.com/2010/05/nginx-with-fastcgi-build-kohana</link>
+      <link>http://icyleaf.com/2010/05/nginx-with-fastcgi-build-kohana/</link>
       <pubDate>Mon, 31 May 2010 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2010/05/nginx-with-fastcgi-build-kohana</guid>
-      <description>
-
-&lt;p&gt;Kohana 默认仅对 Apache 环境提供的部署支持，其实对于 Nginx+FastCGI
-也是很容易支持的。本文搭建环境是 Ubuntu 10.4 并采用 apt-get
-方式安装，喜爱编译的朋友可以自行解决 :)&lt;/p&gt;
-
-&lt;h3 id=&#34;1-安装-mysql&#34;&gt;1. 安装 MySQL&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sudo apt-get install mysql-server mysql-client
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;安装过程在会提示设置 root 账户的密码，如果是本机测试开发可以留空后稍候设置。&lt;/p&gt;
-
-&lt;h3 id=&#34;2-安装-nginx&#34;&gt;2. 安装 Nginx&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 安装 Nginx
-$ sudo apt-get install nginx
-
-# 启动 Nginx
-$ sudo /etc/init.d/nginx start
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;完成上面两步之后，打开浏览器，输入 localhost 或 127.0.0.1 如果看到 &lt;strong&gt;Welcome to Nginx!&lt;/strong&gt; 字样就说明安装成功了，是不是很简单 :)&lt;/p&gt;
-
-&lt;p&gt;注意，如果你的机器上面如果安装了其他 web 容器（比如 Apache，Lighttd等），启动
-ngnix 的时候肯定会报错，因为这些 web 容器启动均占用的 80
-端口，更改的方法如下：&lt;/p&gt;
-
-&lt;p&gt;编辑 &lt;code&gt;/etc/nginx/sites-available/default&lt;/code&gt; 文件，修改 server 段中的 listen
-为 localhost:8080，其中 8080 是更改的监听端口：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;server {    
-listen   localhost:8080;
-server_name  localhost;
-# [...]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;保存后重启 Nginx：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sudo /etc/init.d/nginx restart
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;3-安装-php5&#34;&gt;3. 安装 PHP5&lt;/h3&gt;
-
-&lt;p&gt;PHP 在 Nginx 下是通过 FastCGI 模式运行的，使用 Debain 的包管理可以安装
-PHP5 和一些必须的（比如，php5-mysql）和可选的扩展（比如，Kohana 要求的
-php5-curl，php5-gd，php5-mcrypt），下面前 5
-个是必须的，其他可以依据个人需求添加或减少：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sudo apt-get install php5-cgi php5-mysql php5-curl php5-gd php5-mcrypt php5-idn php-pear php5-imagick php5-imap php5-memcache php5-mhash php5-ming php5-pspell php5-recode php5-snmp php5-tidy php5-xmlrpc php5-xsl
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;安装完毕后，需要编辑 php 的配置：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 编辑 /etc/php5/cgi/php.ini 文件
-# 修改 cgi.fix_pathinfo 的值为 1（如果此项被注解掉了，请删除前面的 # 符号）	cgi.fix_pathinfo = 1
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;至此 PHP5 已经安装完毕，但是还没有结束，因为我们还没有让它支持 FastCGI
-嗯，由于 Debain 包并没有提供单独的 FastCGI 守护程序，因此我们可以使用其他的方式实现，通常使用的是 lighttpd 项目提供的 spawn-fcgi（本文也用的这个，但是它总会出现小毛病，导致 Nginx 服务 Down 掉，稍候也会给出一点解决方案）或者是 &lt;a href=&#34;http://php-fpm.org/&#34;&gt;PHP-FPM&lt;/a&gt;（专门为 PHP 提供 FastCGI 进程管理的软件）&lt;/p&gt;
-
-&lt;p&gt;好吧，让我们在安装 lighttpd：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sudo apt-get install lighttpd
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;安装完毕后会你发现一些错误信息：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;Starting web server: lighttpd
-2010-05-31 10:44:51: (network.c.300) can not bind to port: 80 Address already in use failed!
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;还是上面提到的重复占用端口的问题，不过由于我们只是使用它的 spawn-fcgi 因此我们可以不让它当作服务启动：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sudo update-rc.d -f lighttpd remove
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;好了，让我们开启 FastCGI 守护进程：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ /usr/bin/spawn-fcgi -a 127.0.0.1 -p 9000 -u www-data -g www-data -f /usr/bin/php5-cgi -P /var/run/fastcgi-php.pid
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;其中 -a 代表 ip 地址， -p 是进程的端口， -u 是用户， -g 是用户组，-f 是 &lt;code&gt;php5-cgi&lt;/code&gt; 的执行路径，-P 是进程的 pid，可以适当的在后面在加一个 -C 参数，这个数创建的进程数，本机开发的话一般设置在 3 - 5 左右即可（也可以使用 ab 测试以设置适当的进程数，这样可以防止 Nginx 的无辜 Down 掉）&lt;/p&gt;
-
-&lt;p&gt;提示：spawn-fcgi 必须在运行的状况下才能使得 Nginx 支持 PHP
-运行，因此可以把上面的启动代码追加到 /etc/rc.local 文件的尾部保存（在 exit
-命令之前）。&lt;/p&gt;
-
-&lt;h3 id=&#34;4-配置-nginx&#34;&gt;4. 配置 Nginx&lt;/h3&gt;
-
-&lt;p&gt;Nginx 的配置相对比较简单，语法很像 PHP 代码，如果不了解的可以参考这个：&lt;a href=&#34;http://wiki.nginx.org/NginxFullExample&#34;&gt;范例1&lt;/a&gt;和&lt;a href=&#34;http://wiki.nginx.org/NginxFullExample2&#34;&gt;范例2&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;编辑 &lt;strong&gt;/etc/nginx/nginx.conf&lt;/strong&gt; 文件并作如下修改：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;[...]
-worker_processes  5;
-[...]    
-keepalive_timeout   2;
-[...]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;定义虚拟主机的配置项存放在 &lt;code&gt;/etc/nginx/conf.d/&lt;/code&gt; 目录下面，每个虚拟主机配置一个文件并以 .conf 为文件后缀即可，默认是 default，也就是上面修改 Nginx 默认监听端口的文件，这里还要进一步对它配（点击右侧展开）：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;[...]
-server {        
-listen   80;        
-server_name  _;        
-access_log  /var/log/nginx/localhost.access.log;        
-location / {                
-root   /var/www/nginx-default;                
-index  index.php index.html index.htm;        
-}        
-
-location /doc {                
-root   /usr/share;                
-autoindex on;                
-allow 127.0.0.1;                
-deny all;        
-}        l
-
-ocation /images {                
-root   /usr/share;                
-autoindex on;        
-}        
-
-# error_page  404  /404.html;        
-# redirect server error pages to the static page /50x.html        
-# error_page   500 502 503 504  /50x.html;        
-location = /50x.html {                
-root   /var/www/nginx-default;        
-}        
-
-# proxy the PHP scripts to Apache listening on 127.0.0.1:80       
-#location ~ \.php$ {                
-#proxy_pass   http://127.0.0.1;        
-#}        
-
-# pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000        
-location ~ \.php$ {                
-fastcgi_pass   127.0.0.1:9000;               
-fastcgi_index  index.php;                
-fastcgi_param  SCRIPT_FILENAME  /var/www/nginx-default$fastcgi_script_name;                
-include        fastcgi_params;        
-}        
-
-# deny access to .htaccess files, if Apache&#39;s document root        # concurs with nginx&#39;s one        
-# location ~ /\.ht {                
-deny  all;        
-}
-}
-
-[...]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;说明下里面的个别参数：&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;server_name&lt;/strong&gt; 是虚拟主机的服务器入口名称，可以是 IP 也可以是域名。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;location&lt;/strong&gt; 段，我在 index 追加了 index.php， root 路径是 &lt;code&gt;/var/www/nginx-default&lt;/code&gt; 说明该虚拟主机的根目录在这里。&lt;/p&gt;
-
-&lt;p&gt;最重要的是关于 PHP 部分的 location 段：&lt;strong&gt;~ \.php\$ {}&lt;/strong&gt;，Nginx 默认没有开启，我们要确保它开启并在 fastcgi_param 一行更改了参数（因为浏览器调用的默认 PHP 解析器无法找到 PHP 脚本）：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;fastcgi_param SCRIPT_FILENAME /var/www/nginx-default$fastcgi_script_name;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;最后确保在 include 和 fastcgi_params 之间隔出几个空格（BUG）&lt;/p&gt;
-
-&lt;p&gt;重启 Nginx，然后编辑一个 info.php 文件：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;// 创建 /var/www/nginx-default/info.php 文件
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;保存后在浏览器访问（比如：&lt;a href=&#34;http://localhost/info.php&#34;&gt;http://localhost/info.php&lt;/a&gt; 或
-&lt;a href=&#34;http://localhost:8080/info.php)，如看到&#34;&gt;http://localhost:8080/info.php)，如看到&lt;/a&gt; phpinfo
-的参数页面说明配置安装成功 :)&lt;/p&gt;
-
-&lt;h3 id=&#34;5-安装-配置-kohana&#34;&gt;5. 安装&amp;amp;配置 Kohana&lt;/h3&gt;
-
-&lt;p&gt;Kohana 采用的 v3 版本，&lt;a href=&#34;http://v3.kohana.cn/guide/tutorials.git&#34;&gt;安装步骤&lt;/a&gt;（本文把 kohana 存放在 &lt;code&gt;/home/icyleaf/php/kohana&lt;/code&gt; 目录）&lt;/p&gt;
-
-&lt;p&gt;添加 Nginx 虚拟主机配置文件：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;# 创建 /etc/nginx/conf.d/kohana.conf 文件
-server {   
-listen   kohana.local:8080;  
-server_name  kohana.local;   
-access_log  /var/log/nginx/kohana.access.log;
-
-# define server root path    
-set $root_path /home/icyleaf/php/kohana;  
-
-location / {     
-root   $root_path;       index  index.php index.html index.htm;
-if (!-e $request_filename) {         
-rewrite ^/(.*)$ /index.php?kohana_uri=/$1 last;      
-}    
-}
-
-# pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000  
-location ~ \.php$ {      
-root   $root_path;       
-fastcgi_pass   127.0.0.1:9000;       
-fastcgi_index  index.php;        
-fastcgi_param  SCRIPT_FILENAME  $root_path$fastcgi_script_name;      include fastcgi_params;  
-}
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;配置中首先定义了一个变量 \$root_path 指定 Kohana 的源码的路径，对于
-Kohana 的 URL rewrite url 重点是 location 段的：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;if (!-e $request_filename) {    
-rewrite ^/(.*)$ /index.php?kohana_uri=/$1 last;
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;编辑完成后重载 Nginx 配置：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ sudo /etc/init.d/nginx reload
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;至此教程结束，额外说明的是 Kohana 默认的 .htaccess 对 Nginx 无效可有可无
-:)&lt;/p&gt;
-</description>
+      <guid>http://icyleaf.com/2010/05/nginx-with-fastcgi-build-kohana/</guid>
+      <description>Kohana 默认仅对 Apache 环境提供的部署支持，其实对于 Nginx+FastCGI 也是很容易支持的。本文搭建环境是 Ubuntu 10.4 并采用 apt-get 方式安装，喜爱编译的朋友可以自行解决 :) 1. 安装 MySQL $ sudo apt-get install</description>
     </item>
     
     <item>
       <title>Kohana 官方 2.3，2.4，3.0 的最终裁决！</title>
-      <link>http://icyleaf.com/2009/07/official-2-3-2-4-3-0-decisions</link>
+      <link>http://icyleaf.com/2009/07/official-2-3-2-4-3-0-decisions/</link>
       <pubDate>Fri, 24 Jul 2009 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2009/07/official-2-3-2-4-3-0-decisions</guid>
-      <description>&lt;blockquote&gt;
-&lt;p&gt;更新：Kohana 官方已经做出&lt;a href=&#34;http://forum.khnfans.cn/topic/view/167/1.html&#34;&gt;最终裁决&lt;/a&gt;！&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;两天前我(Shadowhand)曾经&lt;a href=&#34;http://forum.kohanaphp.com/comments.php?DiscussionID=2835&amp;amp;page=6#Item_12&#34;&gt;说过&lt;/a&gt;关于 2.4 和 3.0 版本的问题和它们之间的关系已经做出的解答。之后的今天和其他开发者见面（with more of the devs），这似乎是错误的。所以长话短说，我们现在有两个选择：&lt;/p&gt;
-
-&lt;p&gt;​1. 我们在一个月内分别发布 2.4 和 3.0。 2.4 将会经可能的兼容 2.3.x 版本但是其中 Database 和 i18n 是全新的不同于 2.3 的系统。 3.0 也将不同于 2.4 的 Database，但是 i18n 系统还是和 2.4 一致。&lt;/p&gt;
-
-&lt;p&gt;​2. 完全抛弃 2.4 而专攻 3.0 版本，它将会有一个全新的类似 2.4 版本的 Database 特性，但是语法和更多的特性稍有些不同。 3.0 在发布的同时，新的网站和用户手册也会同步完成。&lt;/p&gt;
-
-&lt;p&gt;2.4 和 3.0 版本大约将会在同一天发布（2009年的8月下旬或9月上旬）。两个版本都不会去兼容
-2.3.4 版本。虽然升级至 2.4 版本将会少于升级至 3.0 的兼容工作。（请记住，我们从来没有建议和要求用户升级到哪个核心版本）&lt;/p&gt;
-
-&lt;p&gt;我本可以行使 &lt;a href=&#34;http://lmgtfy.com/?q=bdfl&#34;&gt;BDFL&lt;/a&gt;（Benevolent Dictator For Life，代表少数开源软件开发者的领头人）权利做个强制决定，但是我觉得还是听一听社区的声音。你们认为哪个是 Kohana 在未来长期（至少 6 个月以上）开发基础的最好选择呢?&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;更新&lt;/strong&gt;： 选择第二项，将会抛弃 2.3.x 版本公开发布的版本修复&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;原文：&lt;a href=&#34;http://forum.kohanaphp.com/comments.php?DiscussionID=3043&amp;amp;page=1&#34;&gt;Official 2.3, 2.4, 3.0 Decisions - We need your feedback!&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&amp;mdash;&amp;mdash;&amp;mdash;我是华丽的分割线&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;&lt;/p&gt;
-
-&lt;p&gt;KO3 RC1 目前已经发布，详情请看&lt;a href=&#34;http://forum.khnfans.cn/topic/view/168.html&#34;&gt;这里&lt;/a&gt;，希望大家喜欢 Kohana，关注
-Kohana，使用 Kohana
-的朋友留下你的看法，这对Kohana自身和社区用户都是有益的！&lt;/p&gt;
-
-&lt;p&gt;&amp;mdash;&amp;mdash;&amp;ndash;关于 E-TextEditor  的分割线&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&lt;/p&gt;
-
-&lt;p&gt;今天前去 Textmate clone 的软件 Intype论坛瞅了一眼，惊奇的发现同样是
-Textmate clone 的 E-TextEditor 居然在今年3月份宣布开源，而5月份就在
-Github 放出了源码！而且声称会开发 Linux 版本并且弘扬 Linux 的精神，Linux
-版本统统免费！详情请看 &lt;a href=&#34;http://intype.info/forums/discussion/827/eeditor-going-open-source-open-company/#Item_0&#34;&gt;Intype 论坛&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;而且已经有Linux用户编译运行了 E-TextEditor 详情请看：&lt;a href=&#34;http://fixnum.org/blog/2009/e_on_fedora&#34;&gt;Building the E text
-editor on Fedora 10&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;不知道身为 Textmate clone 的 Intype
-会做何打算，它们目前正在全力开发新的版本（貌似内核和界面全部重新），拭目以待！&lt;/p&gt;
-</description>
+      <guid>http://icyleaf.com/2009/07/official-2-3-2-4-3-0-decisions/</guid>
+      <description>更新：Kohana 官方已经做出最终裁决！ 两天前我(Shadowhand)曾经说过关于 2.4 和 3.0 版本的问题和它们之间的关系已经做出的解答。之后的今</description>
     </item>
     
     <item>
       <title>魔豆：豆瓣网非官方移动版本</title>
-      <link>http://icyleaf.com/2009/06/modou</link>
+      <link>http://icyleaf.com/2009/06/modou/</link>
       <pubDate>Mon, 22 Jun 2009 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2009/06/modou</guid>
-      <description>&lt;blockquote&gt;
-&lt;p&gt;项目已开源: &lt;a href=&#34;http://github.com/icyleaf/modou&#34;&gt;http://github.com/icyleaf/modou&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://modou.us&#34; title=&#34;魔豆：豆瓣网非官方移动版本&#34;&gt;魔豆&lt;/a&gt;，一个&lt;a href=&#34;http://douban.com&#34;&gt;豆瓣网&lt;/a&gt;非官方移动版本，基于&lt;a href=&#34;http://www.douban.com/service/apidoc/&#34; title=&#34;豆瓣 API&#34;&gt;豆瓣
-API&lt;/a&gt;开发的专门为移动终端（手持设备）定制的豆瓣移动版本。魔豆专注于豆瓣网的&lt;strong&gt;广播&lt;/strong&gt;及&lt;strong&gt;同城活动&lt;/strong&gt;。&lt;/p&gt;
-
-&lt;p&gt;魔豆的来历：豆瓣移动版 -&amp;gt; Douban mobile -&amp;gt; moDouban -&amp;gt; moDou -&amp;gt;魔豆&lt;/p&gt;
-
-&lt;p&gt;目前魔豆发布的功能：&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;友邻广播：支持显示广播，回复发起人和重播（重复发布其他发起者的广播）&lt;/li&gt;
-&lt;li&gt;同城活动：查看自己参与（包含参加/感兴趣）的活动以及用户所在城市的同城活动（需提前在豆瓣设置）&lt;/li&gt;
-&lt;li&gt;查看用户相册以及同城活动相册（仅限于从友邻广播）&lt;/li&gt;
-&lt;li&gt;搜索用户/书影音/同城活动&lt;/li&gt;
-&lt;li&gt;查看用户/书影音/同城活动信息&lt;/li&gt;
-&lt;li&gt;显示和查阅豆邮&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;我，是一个重度豆瓣使用者，也许这和身在北京这所繁华的帝都有很大的关系。虽然豆瓣网直到现在为其定位在书影音这三大模块，但不可否认的，豆瓣小组，豆瓣广播，豆瓣同城甚至豆邮都起着重要的标志性作用。&lt;/p&gt;
-
-&lt;p&gt;或许和大家一样，一直期待着豆瓣网能够推出移动版本，可以用手机或其他移动设备查查书影音，看看友邻广播和未读豆邮，浏览下所在城市的同城活动，光想想都是这么的惬意，于是我们在等，一直在等，几乎使我望穿秋水的时候，还是杳无音讯。平时在有 WIFI 网络的情况下，使用 iTouch
-访问一下豆瓣网还是可以，如果离开了它，以为这必须使用较昂贵的 GPRS 网络，经过漫长的 loading 才能看到自己感兴趣或自己想看的一点点信息&amp;hellip;&lt;/p&gt;
-
-&lt;p&gt;于是，自己何不使用豆瓣API开发一个呢？紧接着通过查阅大量的文档和官方提供的演示代码，抛弃
-Zend Framework 和 Gdata，使用自己维护中文化的 &lt;a href=&#34;http://khnfans.cn&#34; title=&#34;Kohana 中文爱好者&#34;&gt;Kohana&lt;/a&gt;框架，一点一点的搭建起了基础库，通过一个星期多的时间，开始一边做页面的展现，另一边继续完善基础库，直到目前为止，大体的框架已经完成，下面需要考虑如何对细节做修改和完善。&lt;/p&gt;
-
-&lt;p&gt;另外，由于 PHP 没有低耦合的 HTTP requset class，自己使用 curl 函数一点点抠出来的一个 RESTFul requset class，在进行提交 POST，PUT，DELETE 方法还存在一些技术问题，所以魔豆目前还不支持对书影音，同城活动进行操作（包含，想读/听/看，感兴趣，我要参加等等），我会尽快完善。&lt;/p&gt;
-
-&lt;p&gt;开发环境： &lt;strong&gt;Windows XP + XAMPP + E-texteditor&lt;/strong&gt; (Office work) AND
-&lt;strong&gt;Ubuntu 9.04 + XAMPP + Aptana&lt;/strong&gt; (Laptop)&lt;/p&gt;
-
-&lt;p&gt;调试设备：iPod Touch + Blackberry 8310 + Nokia N-GAGE QD&lt;/p&gt;
-
-&lt;p&gt;由于设备有限，可能在其他设备上会出现设备误判或UI上的问题（大家可以在本日志下面留下误判设备型号），敬请谅解。后期会对不同设备进行专门的优化
-:)&lt;/p&gt;
-
-&lt;p&gt;网站：&lt;a href=&#34;http://modou.us&#34;&gt;http://modou.us&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;开发进度：&lt;a href=&#34;http://modou.us/timeline&#34;&gt;http://modou.us/timeline&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;相关截图：&lt;a href=&#34;http://www.getdropbox.com/gallery/45081/1/modou?h=b26d7e&#34;&gt;http://www.getdropbox.com/gallery/45081/1/modou?h=b26d7e&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;欢迎大家前来测试和使用，心情愉快。&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;更新于 2009年06月22日：由于China Mobile的原因，黑莓手机默认浏览器无法判别，请黑莓用户使用 Opera Mini 或其他浏览器访问，原因请看&lt;a href=&#34;http://www.douban.com/group/topic/6946152/&#34;&gt;这里&lt;/a&gt;。&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
+      <guid>http://icyleaf.com/2009/06/modou/</guid>
+      <description>项目已开源: http://github.com/icyleaf/modou 魔豆，一个豆瓣网非官方移动版本，基于豆瓣 API开发的专门为移动终端（手持设备）定制的豆瓣移动版本。魔豆专注于豆瓣网的广播及同城</description>
     </item>
     
     <item>
       <title>Modules Library 和 DBManager Module</title>
-      <link>http://icyleaf.com/2009/03/modules-helper-and-dbmanager-module</link>
+      <link>http://icyleaf.com/2009/03/modules-helper-and-dbmanager-module/</link>
       <pubDate>Thu, 05 Mar 2009 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2009/03/modules-helper-and-dbmanager-module</guid>
-      <description>&lt;blockquote&gt;
-&lt;p&gt;Hi, Don&amp;rsquo;t understand Chinese? ok, No problem. Here to view &lt;a href=&#34;http://forum.kohanaphp.com/comments.php?DiscussionID=2117&amp;amp;page=1&#34;&gt;Modules Library&lt;/a&gt; and &lt;a href=&#34;http://forum.kohanaphp.com/comments.php?DiscussionID=2156&amp;amp;page=1&#34;&gt;DBManager Module&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;或许大家可能有了解到，本人目前一直在对 &lt;a href=&#34;http://kohanaphp.com&#34;&gt;Kohana&lt;/a&gt;这个纯 PHP5
-框架进行文档翻译和维护，同时也建立一个站点：&lt;a href=&#34;http://khnfans.cn/&#34; title=&#34;Kohana爱好者&#34;&gt;Kohana爱好者&lt;/a&gt;。
-站点提供中文化的文档，包含中文语言包的中文镜像下载支持以及中文化论坛。Kohana 
-凭借着基于 CodeIgniter
-框架+PHP5，赢得了一群使用者，我也希望无论是国外的还是国内的使用者都能共享自己的力量。&lt;/p&gt;
-
-&lt;p&gt;恩&amp;hellip;以上算是给自己打个广告。Modules Library 和 DBManager Module 均是为
-Kohana 框架编写的，以后会根据自己和大家的寻求做适当的更新。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Modules Library&lt;/strong&gt;，中文译为 扩展管理库，是一个方便管理 Kohana
-系统自身扩展配置的库类，通过它使用代码就可以轻松实现获取当前所有 Modules
-信息，已激活的 Moduels， 未激活的 Modules，最重要的是还可以添加
-Modules，激活和关闭 Module。&lt;/p&gt;
-
-&lt;p&gt;范例代码：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;// Instance Module library
-$module = Module::instance();
-
-// list all modules of application in application/config/config.php
-echo Kohana::debug($module-&amp;gt;list_all());
-
-// list active modules of application in application/config/config.php
-echo Kohana::debug($module-&amp;gt;list_active());
-
-// list inactive modules of application in application/config/config.ph	p
-echo Kohana::debug($module-&amp;gt;list_inactive());
-
-// active &#39;auth&#39; module
-$module-&amp;gt;active(&#39;auth&#39;);
-
-// inactive &#39;auth&#39; module
-$module-&amp;gt;inactive(&#39;auth&#39;);
-
-// add &#39;sample_module&#39; module with description.
-$module-&amp;gt;add(&#39;sample_module&#39;, &#39;Just a sample module&#39;);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;strong&gt;DBManager Module&lt;/strong&gt;灵感来自 WordPress 插件 WP_DBManager，就连名字都很类似，其实对于其功能也是按照它实现。哈哈～～&lt;/p&gt;
-
-&lt;p&gt;目前对于此扩展实现的功能如下：&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;获得当前 Mysql 版本以及 Kohana 连接数据库等信息&lt;/li&gt;
-&lt;li&gt;获取当前所有表数据&lt;/li&gt;
-&lt;li&gt;备份数据库（支持Gzip压缩和自动备份）&lt;/li&gt;
-&lt;li&gt;优化数据库（支持自动优化）&lt;/li&gt;
-&lt;li&gt;修复数据库&lt;/li&gt;
-&lt;li&gt;获得，下载，删除数据库备份文件&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;此扩展支持配置和 i18n，以及对目前来说一个简易的演示页面。&lt;/p&gt;
-
-&lt;p&gt;目前还没有对实现自动备份后进行 Email 通知的功能，以及以后会对多种数据库支持。和限制最大化数据库备份文件。至于是否可以在进行数据库表数据的操作（比如查询，删除表，修改表等）是否还需要支持？&lt;/p&gt;
-
-&lt;p&gt;以后对自己发布的 Kohana 相关的代码都会托管在 Google Code 上面，地址：&lt;a href=&#34;http://code.google.com/p/kohana-fans-cn/&#34;&gt;http://code.google.com/p/kohana-fans-cn/&lt;/a&gt;&lt;/p&gt;
-</description>
+      <guid>http://icyleaf.com/2009/03/modules-helper-and-dbmanager-module/</guid>
+      <description>Hi, Don&amp;rsquo;t understand Chinese? ok, No problem. Here to view Modules Library and DBManager Module 或许大家可能有了解到，本人目前一直在对 Kohana这个纯 PHP5 框架进行文档翻译和维护，同时也建立一个站点：Koha</description>
     </item>
     
   </channel>

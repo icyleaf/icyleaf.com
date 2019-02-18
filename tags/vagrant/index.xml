@@ -2,136 +2,23 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Vagrant on icyleaf</title>
-    <link>http://icyleaf.com/tags/vagrant/index.xml</link>
+    <link>http://icyleaf.com/tags/vagrant/</link>
     <description>Recent content in Vagrant on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
-    <atom:link href="http://icyleaf.com/tags/vagrant/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 21 Dec 2013 12:34:56 +0800</lastBuildDate>
+    
+	<atom:link href="http://icyleaf.com/tags/vagrant/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>学习 Ansible &#43; Vagrant</title>
-      <link>http://icyleaf.com/2013/12/learning-ansible-and-vagrant</link>
+      <link>http://icyleaf.com/2013/12/learning-ansible-and-vagrant/</link>
       <pubDate>Sat, 21 Dec 2013 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2013/12/learning-ansible-and-vagrant</guid>
-      <description>
-
-&lt;blockquote&gt;
-&lt;p&gt;Ansible is a radically simple IT orchestration engine that makes your applications and systems easier to deploy. Avoid writing scripts or custom code to deploy and update your applications— automate in a language that approaches plain English, using SSH, with no agents to install on remote systems.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;简单来说 &lt;a href=&#34;https://github.com/ansible/ansible&#34;&gt;Ansible&lt;/a&gt; 是一个极简化的应用和系统部署工具，类似 &lt;a href=&#34;https://github.com/puppetlabs/puppet&#34;&gt;Puppet&lt;/a&gt;、&lt;a href=&#34;https://github.com/opscode/chef&#34;&gt;Chef&lt;/a&gt;、&lt;a href=&#34;https://github.com/saltstack/salt&#34;&gt;SaltStack&lt;/a&gt;。由于默认使用 &lt;code&gt;ssh&lt;/code&gt; 管理服务器（集群），配置文件采用 yaml 而不是某一种特定语言制定。方便至极。&lt;/p&gt;
-
-&lt;p&gt;很多人说 salt 也很用的，为什么不考虑呢，我个人觉得，ansible 的配置文件编写起来比较方便，不需要使用 &lt;a href=&#34;http://jinja.pocoo.org/&#34;&gt;jinja2&lt;/a&gt; 模板引擎适合非 &lt;code&gt;python&lt;/code&gt; 用户管理。而且我也较同意 &amp;ldquo;&lt;a href=&#34;http://missingm.co/2013/06/ansible-and-salt-a-detailed-comparison/&#34;&gt;Ansible and Salt: A detailed comparison&lt;/a&gt;&amp;rdquo; 文章的评测。&lt;/p&gt;
-
-&lt;p&gt;由于个人之前没用过任何其他工具，至于你想知道上面哪些之间有什么区别的话，参见此文：&lt;a href=&#34;http://www.infoworld.com/d/data-center/review-puppet-vs-chef-vs-ansible-vs-salt-231308?page=0,0&#34;&gt;Review: Puppet vs. Chef vs. Ansible vs. Salt&lt;/a&gt; 或 &amp;ldquo;&lt;a href=&#34;http://ttyn.me/2013/02/19/ansible_intro.html&#34;&gt;开始使用配置和发布管理&lt;/a&gt;&amp;rdquo; 一文中也有提到其特性。&lt;/p&gt;
-
-&lt;h1 id=&#34;安装&#34;&gt;安装&lt;/h1&gt;
-
-&lt;p&gt;大家移步 LinuxToy 的 &lt;a href=&#34;https://linuxtoy.org/archives/hands-on-with-ansible.html&#34;&gt;Ansible 快速上手&lt;/a&gt; 一文，以及 &lt;a href=&#34;http://gogojimmy.net/2013/05/26/vagrant-tutorial/&#34;&gt;使用Vagrant練習環境佈署&lt;/a&gt; 作为学习铺垫，我就不再多写。这里我想重点介绍下 Ansible + Vagrant 配合使用技巧。&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;其实上面 &amp;ldquo;使用Vagrant練習環境佈署&amp;rdquo; 提到的配置文件是 Vagrantfile config version = 1 时候的，当前 vagrant 版本是 1.4.1， Vagrantfile config version = 2，因此配置的部分已经有所变动。大家需要做下更新。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;如果你使用的是 Vagrant 1.4.0+，工具已经完全集成了上述的 DevOps 工具（甚至 Docker，另外一神器，后续看看能否给个介绍）。默认配置文件只包含了 Puppet 和 Chef，大家需要看&lt;a href=&#34;http://docs.vagrantup.com/v2/provisioning/index.html&#34;&gt;官方文档&lt;/a&gt;。&lt;/p&gt;
-
-&lt;p&gt;如果你是 Mac OS 用户，可以通过 &lt;code&gt;brew&lt;/code&gt; 和 &lt;code&gt;brew-cask&lt;/code&gt; 命令安装：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ brew update
-$ brew install ansible
-$ brew cask install vagrant
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h1 id=&#34;创建-vagrant-实例&#34;&gt;创建 Vagrant 实例&lt;/h1&gt;
-
-&lt;p&gt;首先创建学习目录(&lt;code&gt;~/src/learn_ansible&lt;/code&gt;)和一个实例，采用 CentOS 6.5 x64 系统：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ vagrant init centos65 https://github.com/2creatives/vagrant-centos/releases/download/v6.5.1/centos65-x86_64-20131205.box
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;下载完毕之后，编辑 &lt;code&gt;Vagrantfile&lt;/code&gt; 添加如下内容：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;config.vm.network :private_network, ip: &amp;quot;33.33.33.10&amp;quot;
-config.vm.provision :ansible do |ansible|
-
-ansible.inventory_path = &amp;quot;ansbile/hosts&amp;quot;
-	ansible.playbook = &amp;quot;ansbile/playbook.yml&amp;quot;
-
-	# 默认使用 sudo 权限
-	ansible.sudo = true
-	# 开启调试信息模式
-	ansible.verbose = &#39;vvv&#39;
-end
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;并在学习目录创建 &lt;code&gt;ansible&lt;/code&gt; 目录以及下面两个文件，结构如下：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ tree
-.
-├── Vagrantfile
-└── ansible
-    ├── hosts
-    └── playbook.yml
-1 directory, 3 files
-
-`hosts` 文件内容，ip 地址和上面 `Vagrantfile` 设置的一致：
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;[webserver]
-33.33.33.10&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;
-`playbook.yml` 文件内容：
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;hr /&gt;
-
-&lt;h1 id=&#34;ansbile-的配置文件-这里指定只作用于-webserver-服务器&#34;&gt;ansbile 的配置文件，这里指定只作用于 webserver 服务器&lt;/h1&gt;
-
-&lt;h1 id=&#34;使用-vagrant-的-sudu-权限执行任务&#34;&gt;使用 vagrant 的 sudu 权限执行任务&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;hosts: webserver
-user: vagrant
-sudo: yes
-tasks:&lt;/p&gt;
-
-&lt;h1 id=&#34;任务只有一个-就是安装-nginx&#34;&gt;任务只有一个，就是安装 nginx&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;name: Install Nginx
-yum: name=nginx state=present
-```&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;连接-部署&#34;&gt;连接 &amp;amp; 部署&lt;/h1&gt;
-
-&lt;p&gt;使用 Vagrant 的好处在于，它集成了这些工具，并通过 &lt;code&gt;vagrant provision&lt;/code&gt; 这个命令就能连接服务器并部署。这里我想让大家学习到如何通过传统 ssh 链接 vagrant 虚拟机的方法：&lt;/p&gt;
-
-&lt;p&gt;从上面的配置文件我们得知，服务器的 ip 是 &lt;code&gt;33.33.33.10&lt;/code&gt; 而且默认登录到虚拟机上的用户是 vagrant（密码也是用户名），链接端口是 22。我们先拷贝 ssh public key 到服务器上：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ ssh-copy-id vagrant@33.33.33.10
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;完成之后，我们就可以通过下面命令测试是否配置成功：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ ansible -u vagrant -i ansible/hosts all -m ping
-
-webserver | success &amp;gt;&amp;gt; {
-    &amp;quot;changed&amp;quot;: false,
-    &amp;quot;ping&amp;quot;: &amp;quot;pong&amp;quot;
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;返回 &lt;code&gt;ping: pong&lt;/code&gt; 即为连接成功并可以进行部署。若你之前执行了 &lt;code&gt;vagrant provision&lt;/code&gt; 就会自动执行 &lt;code&gt;playbook.yml&lt;/code&gt; 的内容。&lt;/p&gt;
-
-&lt;p&gt;今天初探就到此结束，希望通过本篇文字大家对它有个大概的了解。&lt;/p&gt;
-</description>
+      <guid>http://icyleaf.com/2013/12/learning-ansible-and-vagrant/</guid>
+      <description>Ansible is a radically simple IT orchestration engine that makes your applications and systems easier to deploy. Avoid writing scripts or custom code to deploy and update your applications— automate in a language that approaches plain English, using SSH, with no agents to install on remote systems. 简单来说 Ansible 是一个极简化</description>
     </item>
     
   </channel>
