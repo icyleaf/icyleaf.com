@@ -164,6 +164,10 @@
 
 <p>春节前购入一台式机挖坑要写黑苹果安装教程，本来计划是 3 月初整理完毕期间赶上辞职彻底放飞自我，加上无法忍受编辑视频的龟毛速度购入一块 rx580 矿卡使用一周后良好，立马开始填坑。</p>
 
+<blockquote>
+<p>封图是博通网卡模块替换原由的分解图。</p>
+</blockquote>
+
 <h2 id="硬件清单">硬件清单</h2>
 
 <p>参见 <a href="http://icyleaf.com/2019/01/itx-coffee-lake-hackintosh-build-for-4k-video-editing/">攒了一台 4K 视频剪辑黑苹果</a>。更新了后续更换的硬件和说明。</p>
@@ -178,7 +182,7 @@
 <li><code>AML</code> - <em><strong>A</strong>CPI <strong>M</strong>achine <strong>L</strong>anguage</em> 缩写，它是 ACPI 描述语言，用来编辑 ACPI 各种表的代码。</li>
 <li><code>Kext(s)</code> - <em><strong>K</strong>ernel <strong>Ext</strong>ension</em> 缩写，你可以简单的理解为它是 macOS 的驱动文件（内核扩展）。</li>
 <li><code>Clover</code> - 我们使用的启动引导器。Mac 主机使用了自定义固件来启动 macOS。 PC 硬件本身无法做到而 Clover 可以帮我们实现。同时它还提供 kext 注入，ACPI 重命名，kext 补丁和一些其他功能。更多请看黑果小兵的<a href="http://blog.daliansky.net/clover-user-manual.html">使用教程</a>。</li>
-<li><code>config.plist</code> - 这个文件用来告诉 Clover 该怎么去做。它是一个 XML 格式的属性列表文件（有点类似 HTML）其中最核心的部分是配置黑苹果才能正常运行。</li>
+<li><code>config.plist</code> - 这个文件用来告诉 Clover 该怎么去做。它是一个 XML 格式的属性列表文件（有点类似 HTML）其中最核心的部分是配置黑苹果才能正常运行。你可以使用文本编辑器或者 Clover Configuration App 编辑。</li>
 </ul>
 
 <blockquote>
@@ -301,7 +305,7 @@
 <li>勾选 &ldquo;仅安装 UEFI 开机版本（Clover for UEFI booting only）&rdquo;</li>
 <li>勾选 &ldquo;安装 Clover 到 EFI 系统区（Install Clover in the ESP）&rdquo;</li>
 <li>勾选 &ldquo;UEFI drivers&rdquo; 下面的 &ldquo;ApfsDriverLoader-64.efi&rdquo;, &ldquo;AptioMemoryFix-64.efi&rdquo;, &ldquo;EmuVariableUefi-64&rdquo;, &ldquo;FSInject-64.efi&rdquo;</li>
-<li>勾选 &ldquo;安装 RC scripts 到目标磁盘&rdquo;</li>
+<li>勾选 &ldquo;安装 RC scripts 到目标磁盘&rdquo;（启动 U 盘不用勾选，安装成后再次安装 Clover 到硬盘时需要勾选）</li>
 <li>其他的选项都不勾选</li>
 </ul></li>
 <li>清理 EFI 目录
@@ -384,21 +388,33 @@
 
 <h4 id="核显插-hdmi-显示器黑屏无反应">核显插 HDMI 显示器黑屏无反应</h4>
 
-<p>如何黑屏看这里：<a href="http://blog.daliansky.net/CoffeeLake-UHD-630-black-screen-direct-bright-screen-and-correct-adjustment-of-brightness-adjustment.html">http://blog.daliansky.net/CoffeeLake-UHD-630-black-screen-direct-bright-screen-and-correct-adjustment-of-brightness-adjustment.html</a></p>
+<p>由于我直接使用的 DP 接口没有遇到该问题，请参考如下链接：</p>
 
-<p><a href="https://www.tonymacx86.com/threads/guide-general-framebuffer-patching-guide-hdmi-black-screen-problem.269149/">https://www.tonymacx86.com/threads/guide-general-framebuffer-patching-guide-hdmi-black-screen-problem.269149/</a></p>
+<ul>
+<li><a href="http://blog.daliansky.net/CoffeeLake-UHD-630-black-screen-direct-bright-screen-and-correct-adjustment-of-brightness-adjustment.html">http://blog.daliansky.net/CoffeeLake-UHD-630-black-screen-direct-bright-screen-and-correct-adjustment-of-brightness-adjustment.html</a></li>
+<li><a href="https://www.tonymacx86.com/threads/guide-general-framebuffer-patching-guide-hdmi-black-screen-problem.269149/">https://www.tonymacx86.com/threads/guide-general-framebuffer-patching-guide-hdmi-black-screen-problem.269149/</a></li>
+</ul>
 
 <h4 id="关于本机-cpu-信息显示-unknown">关于本机 CPU 信息显示 Unknown</h4>
 
-<p>macOS 没有支持 9 代 CPU 这里会显示 Unknown 不影响正常使用，假若你特别想要修改的话请看这里：<a href="https://www.idownloadblog.com/2017/01/13/how-to-modify-about-this-mac-hackintosh/">https://www.idownloadblog.com/2017/01/13/how-to-modify-about-this-mac-hackintosh/</a></p>
+<p>macOS 没有支持 9 代 CPU 这里会显示 Unknown 属于正常情况不影响使用，假若你特别想要修改的话请看这里：<a href="https://www.idownloadblog.com/2017/01/13/how-to-modify-about-this-mac-hackintosh/">https://www.idownloadblog.com/2017/01/13/how-to-modify-about-this-mac-hackintosh/</a></p>
 
 <h4 id="显示器的声音无法识别和输出">显示器的声音无法识别和输出</h4>
 
-<p>删除 VoodooHDA.kext 即可，默认 AppleALC.kext 即可驱动。</p>
+<p>如果你安装了 VoodooHDA.kext 请删除，默认 AppleALC.kext 即可驱动，另外需要注意的是机箱前置和后置声音输出无法同时使用。</p>
 
 <h4 id="机箱-usb-无法识别">机箱 USB 无法识别</h4>
 
-<p>macOS 10.11 之后由于 Apple USB 驱动重写后造成默认 USB 端口映射会出现不正常需要 DSDT 来打补丁，具体的可参考相关教程。我直接采用的现成的 DSDT 文件可把 <a href="https://github.com/icyleaf/EFI-ASRock-Z390-Phantom-Gaming-ITX/raw/master/EFI/CLOVER/ACPI/patched/SSDT-UIAC-ALL.aml">SSDT-UIAC-ALL.aml</a> 文件放到 EFI/CLOVER/ACPI/patches 下面接口。</p>
+<p>macOS 10.11 之后由于 Apple USB 驱动重写后造成默认 USB 端口映射会出现不正常需要 DSDT 来打补丁，具体的可参考相关教程。我直接采用的现成的 DSDT 文件可把 <a href="https://github.com/icyleaf/EFI-ASRock-Z390-Phantom-Gaming-ITX/raw/master/EFI/CLOVER/ACPI/patched/SSDT-UIAC-ALL.aml">SSDT-UIAC-ALL.aml</a> 文件放到 EFI/CLOVER/ACPI/patches 下面接口，或者使用 hackintool 工具和<a href="https://github.com/bydavy/EFI-ASRock-Z390-Phantom-Gaming-data">模板文件</a>自己尝试定制。</p>
+
+<h4 id="使用博通-bcm94360cs2-无法使用蓝牙">使用博通 BCM94360CS2 无法使用蓝牙</h4>
+
+<p>原因可能有两个原因：</p>
+
+<ol>
+<li>上面提到的 <code>BrcmFirmwareRepo.kext</code> 和 <code>BrcmPatchRAM2.kext</code> 这两个驱动需要使用 <a href="http://cvad-mac.narod.ru/index/0-4">Kext Utility</a> 或 <a href="https://www.tonymacx86.com/resources/kextbeast-2-0-2.399/">KextBeast</a> 安装到系统驱动目录。(推荐使用前者更简单，后者可能需要注册 tonymacx86 才可以下载)</li>
+<li>第一步已经完成还不能用的话，那就是 USB 的 DSDT 映射文件出问题了，使用上面<strong>机箱 USB 无法识别</strong>提到的文件即可解决。</li>
+</ol>
 
 <h4 id="无法登录-app-store-或登录后无法下载-app">无法登录 App Store 或登录后无法下载 App</h4>
 
