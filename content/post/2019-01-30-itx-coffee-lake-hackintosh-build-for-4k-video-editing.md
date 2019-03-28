@@ -18,6 +18,10 @@ share: true
 
 ---
 
+> 2019-03-28 更新：
+>
+> 购入独立显卡 rx580，更新相关内容，尾部加上黑苹果安装教程。
+>
 > 2019-02-18 更新：
 >
 > 修改无线网卡的最终选择和价格，更新博通网卡部分的内容。
@@ -26,19 +30,19 @@ share: true
 
 > 台式机借鉴国外 $1000k 攒机思路在不考虑显示器预算为 6000 元人民币。
 
-名称 | 品牌型号 | 价格
----|---|---
-CPU | [Intel i7 9700k](https://ark.intel.com/products/186604/Intel-Core-i7-9700K-Processor-12M-Cache-up-to-4-90-GHz) | 2550
-主板 | [华擎 Z390 Phantom Gaming itx/ac](https://www.asrock.com/mb/Intel/Z390%20Phantom%20Gaming-ITXac/index.cn.asp)，[超频利器](https://www.chiphell.com/thread-1936969-1-1.html) | 1399
-散热器 | [九州风神 船长 240 EX White RGB](http://www.gamerstorm.com/product/CPULIQUIDCOOLER/2017-08/1286_6878.shtml) | 453
-内存 | [海盗船 Vengeance LPX DDR4 3000 16G](https://www.corsair.com/eu/en/Memory-Size/vengeance-lpx-black/p/CMK16GX4M1B3000C15) x 1 | 719
-SSD | [三星 970 EVO 250G](https://www.samsung.com/us/computing/memory-storage/solid-state-drives/ssd-970-evo-nvme-m-2-250gb-mz-v7e250bw/) | 489
-机箱 | [追风者 215P ITX 侧透 RGB](http://www.phanteks.com/Enthoo-Evolv-ITX-TemperedGlass.html) | 489
-电源 | [讯景 XTR550](http://www.xfx.com.cn/power_supplies/xtr-550w/) | 354
-无线网卡/蓝牙 | [博通 BCM94360CS2](https://s.taobao.com/search?q=BCM94360CS2&type=p&tmhkh5=&spm=a21wu.241046-tw.a2227oh.d100&from=sea_1_searchbutton&catId=100) | 95 元
-显卡 | RX560\~580 | 预算超了暂时没有采购
+名称 | 品牌型号 | 价格 | 备注
+---|---|---|---
+CPU | [Intel i7 9700k](https://ark.intel.com/products/186604/Intel-Core-i7-9700K-Processor-12M-Cache-up-to-4-90-GHz) | 2550 |
+主板 | [华擎 Z390 Phantom Gaming itx/ac](https://www.asrock.com/mb/Intel/Z390%20Phantom%20Gaming-ITXac/index.cn.asp) | 1399 |
+散热器 | [九州风神 船长 240 EX White RGB](http://www.gamerstorm.com/product/CPULIQUIDCOOLER/2017-08/1286_6878.shtml) | 453 |
+内存 | [海盗船 Vengeance LPX DDR4 3000 16G](https://www.corsair.com/eu/en/Memory-Size/vengeance-lpx-black/p/CMK16GX4M1B3000C15) x 1 | 719 |
+SSD | [三星 970 EVO 250G](https://www.samsung.com/us/computing/memory-storage/solid-state-drives/ssd-970-evo-nvme-m-2-250gb-mz-v7e250bw/) | 489 |
+机箱 | [追风者 215P ITX 侧透 RGB](http://www.phanteks.com/Enthoo-Evolv-ITX-TemperedGlass.html) | 489 | 支持大风冷和全尺寸显卡
+电源 | [讯景 XTR550](http://www.xfx.com.cn/power_supplies/xtr-550w/) | 354 |
+无线网卡/蓝牙 | [博通 BCM94360CS2](https://s.taobao.com/search?q=BCM94360CS2&type=p&tmhkh5=&spm=a21wu.241046-tw.a2227oh.d100&from=sea_1_searchbutton&catId=100) | 95 元 | 需转接卡
+显卡 | [蓝宝石 RX580 8G 1411MHz Nitro+ 超白金](http://www.sapphiretech.com/zh-cn/consumer/nitro-rx-580-8g-g5-oc_c) | 750 | 闲鱼二手矿卡
 显示器 | [LG 27UL600 4k HDR400 IPS](https://www.lg.com/cn/monitors/lg-27UL600) | 单独预算
-**总价** | | 6095
+**总价** | | 6825
 
 ### 为什么要台式机？
 
@@ -112,9 +116,13 @@ SSD | [三星 970 EVO 250G](https://www.samsung.com/us/computing/memory-storage/
 
 ### 为什么选择 AMD RX 500 系列独立显卡？
 
-AMX RX 500 系列和更好的 R9 系列全系 macOS 免驱的，AMD 和 Apple 已经达成长期合作伙伴。免驱动是安装黑苹果抉择的最重要的原因，其次选择 RX 500 系列价格实惠，尤其考虑 RX 560。虽然部分 NVIDIA 显卡有 Web Driver 驱动但据说性能大大折扣，这里推荐黑果小兵整理的 [macOS 10.14 Majave 硬件支持列表](https://blog.daliansky.net/Mojave-Hardware-Support-List.html)。
+~~视频剪辑其实并不太吃显卡，主要还是 CPU，CPU 不足的晴朗下才会选择显卡。国外众多兼容黑苹果的配置中大多没用更好的显卡。~~自我打脸，视频编辑软件其实是 CPU 和显卡都会用到的，再强的 CPU 也拯救不了。
 
-视频剪辑其实并不太吃显卡，主要还是 CPU，CPU 不足的晴朗下才会选择显卡。国外众多兼容黑苹果的配置中大多没有用更好的显卡。
+AMX RX 500 系列和更好的 R9 系列全系 macOS 免驱的，AMD 和 Apple 已经达成长期合作伙伴。免驱动是安装黑苹果抉择的最重要的原因，其次选择 RX 500 系列价格实惠，~~尤其考虑 RX 560~~，在没有独立显卡的日子里日常使用其实是够用的，
+涉及图片处理和视频编辑的话必须要上独立显卡，无论是看 [2018](https://bartechtv.com/the-best-graphics-cards-for-hackintosh-in-2018/) 或 [2019](https://bartechtv.com/the-best-hackintosh-graphics-cards-for-2019/) 最佳显卡
+列表 rx560 都是垫底的，我的预算其实是还是 rx560 的预算（800 左右）而全新的 rx580 价格实在感人，我也盯了很久的矿卡感觉可以尝试下，于是在闲鱼花了 750 包邮买了一块 2017 年份的 rx580。特别注意如果你确实想从闲鱼买请不要相信卖家所说的网吧淘汰，全新，用钱急出等关键词。因为这类的 99% 其实都是矿卡，如果卖家坦白说这就是矿卡可以问问质保、退货政策。
+
+虽然部分 NVIDIA 显卡有 Web Driver 驱动但据说性能大大折扣，这里推荐黑果小兵整理的 [macOS 10.14 Majave 硬件支持列表](https://blog.daliansky.net/Mojave-Hardware-Support-List.html)。
 
 ### 为什么选择这么少容量的 SSD？
 
@@ -173,4 +181,7 @@ AMX RX 500 系列和更好的 R9 系列全系 macOS 免驱的，AMD 和 Apple �
 
 ### 为什么没有黑苹果安装教程？
 
-等我装好了测试没问题就写，还是说你愿意看到一个没有实践过的版本？
+~~等我装好了测试没问题就写，还是说你愿意看到一个没有实践过的版本？~~
+
+好啦好啦，不用催更了，教程链接：http://icyleaf.com/2019/03/asrock-z390-gaming-itx-install-hackintosh-tutorial/
+

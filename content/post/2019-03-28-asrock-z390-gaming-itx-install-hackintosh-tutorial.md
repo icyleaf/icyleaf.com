@@ -18,11 +18,11 @@ share: true
 
 ---
 
-春节前购入一[台式机](http://icyleaf.com/2019/01/itx-coffee-lake-hackintosh-build-for-4k-video-editing/)挖坑要写黑苹果安装教程，
+春节前购入一台式机挖坑要写黑苹果安装教程，本来计划是 3 月初整理完毕期间赶上辞职彻底放飞自我，加上无法忍受编辑视频的龟毛速度购入一块 rx580 矿卡使用一周后良好，立马开始填坑。
 
 ## 硬件清单
 
-参加 [攒了一台 4K 视频剪辑黑苹果](http://icyleaf.com/2019/01/itx-coffee-lake-hackintosh-build-for-4k-video-editing/)。
+参见 [攒了一台 4K 视频剪辑黑苹果](http://icyleaf.com/2019/01/itx-coffee-lake-hackintosh-build-for-4k-video-editing/)。更新了后续更换的硬件和说明。
 
 ## 名词解释
 
