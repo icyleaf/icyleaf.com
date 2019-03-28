@@ -20,6 +20,8 @@ share: true
 
 春节前购入一台式机挖坑要写黑苹果安装教程，本来计划是 3 月初整理完毕期间赶上辞职彻底放飞自我，加上无法忍受编辑视频的龟毛速度购入一块 rx580 矿卡使用一周后良好，立马开始填坑。
 
+> 封图是博通网卡模块替换原由的分解图。
+
 ## 硬件清单
 
 参见 [攒了一台 4K 视频剪辑黑苹果](http://icyleaf.com/2019/01/itx-coffee-lake-hackintosh-build-for-4k-video-editing/)。更新了后续更换的硬件和说明。
@@ -33,7 +35,7 @@ share: true
 - `AML` - _**A**CPI **M**achine **L**anguage_ 缩写，它是 ACPI 描述语言，用来编辑 ACPI 各种表的代码。
 - `Kext(s)` - _**K**ernel **Ext**ension_ 缩写，你可以简单的理解为它是 macOS 的驱动文件（内核扩展）。
 - `Clover` - 我们使用的启动引导器。Mac 主机使用了自定义固件来启动 macOS。 PC 硬件本身无法做到而 Clover 可以帮我们实现。同时它还提供 kext 注入，ACPI 重命名，kext 补丁和一些其他功能。更多请看黑果小兵的[使用教程](http://blog.daliansky.net/clover-user-manual.html)。
-- `config.plist` - 这个文件用来告诉 Clover 该怎么去做。它是一个 XML 格式的属性列表文件（有点类似 HTML）其中最核心的部分是配置黑苹果才能正常运行。
+- `config.plist` - 这个文件用来告诉 Clover 该怎么去做。它是一个 XML 格式的属性列表文件（有点类似 HTML）其中最核心的部分是配置黑苹果才能正常运行。你可以使用文本编辑器或者 Clover Configuration App 编辑。
 
 > 多说一句，有时候大家再说到 BIOS 实际上是指 UEFI，只不过为了兼容性主板会在 UEFI 中兼容 BIOS。
 
@@ -114,7 +116,7 @@ sudo "/Applications/Install macOS Mojave.app/Contents/Resources/createinstallmed
   - 勾选 "仅安装 UEFI 开机版本（Clover for UEFI booting only）"
   - 勾选 "安装 Clover 到 EFI 系统区（Install Clover in the ESP）"
   - 勾选 "UEFI drivers" 下面的 "ApfsDriverLoader-64.efi", "AptioMemoryFix-64.efi", "EmuVariableUefi-64", "FSInject-64.efi"
-  - 勾选 "安装 RC scripts 到目标磁盘"
+  - 勾选 "安装 RC scripts 到目标磁盘"（启动 U 盘不用勾选，安装成后再次安装 Clover 到硬盘时需要勾选）
   - 其他的选项都不勾选
 1. 清理 EFI 目录
   - 使用 [Clover Configurator](https://mackie100projects.altervista.org/download-clover-configurator/) 挂载 EFI 分区
@@ -186,21 +188,29 @@ tonymacx86 的 [pupin](https://www.tonymacx86.com/threads/asrock-z390-phantom-ga
 
 #### 核显插 HDMI 显示器黑屏无反应
 
-如何黑屏看这里：http://blog.daliansky.net/CoffeeLake-UHD-630-black-screen-direct-bright-screen-and-correct-adjustment-of-brightness-adjustment.html
+由于我直接使用的 DP 接口没有遇到该问题，请参考如下链接：
 
-https://www.tonymacx86.com/threads/guide-general-framebuffer-patching-guide-hdmi-black-screen-problem.269149/
+- http://blog.daliansky.net/CoffeeLake-UHD-630-black-screen-direct-bright-screen-and-correct-adjustment-of-brightness-adjustment.html
+- https://www.tonymacx86.com/threads/guide-general-framebuffer-patching-guide-hdmi-black-screen-problem.269149/
 
 #### 关于本机 CPU 信息显示 Unknown
 
-macOS 没有支持 9 代 CPU 这里会显示 Unknown 不影响正常使用，假若你特别想要修改的话请看这里：https://www.idownloadblog.com/2017/01/13/how-to-modify-about-this-mac-hackintosh/
+macOS 没有支持 9 代 CPU 这里会显示 Unknown 属于正常情况不影响使用，假若你特别想要修改的话请看这里：https://www.idownloadblog.com/2017/01/13/how-to-modify-about-this-mac-hackintosh/
 
 #### 显示器的声音无法识别和输出
 
-删除 VoodooHDA.kext 即可，默认 AppleALC.kext 即可驱动。
+如果你安装了 VoodooHDA.kext 请删除，默认 AppleALC.kext 即可驱动，另外需要注意的是机箱前置和后置声音输出无法同时使用。
 
 #### 机箱 USB 无法识别
 
-macOS 10.11 之后由于 Apple USB 驱动重写后造成默认 USB 端口映射会出现不正常需要 DSDT 来打补丁，具体的可参考相关教程。我直接采用的现成的 DSDT 文件可把 [SSDT-UIAC-ALL.aml](https://github.com/icyleaf/EFI-ASRock-Z390-Phantom-Gaming-ITX/raw/master/EFI/CLOVER/ACPI/patched/SSDT-UIAC-ALL.aml) 文件放到 EFI/CLOVER/ACPI/patches 下面接口。
+macOS 10.11 之后由于 Apple USB 驱动重写后造成默认 USB 端口映射会出现不正常需要 DSDT 来打补丁，具体的可参考相关教程。我直接采用的现成的 DSDT 文件可把 [SSDT-UIAC-ALL.aml](https://github.com/icyleaf/EFI-ASRock-Z390-Phantom-Gaming-ITX/raw/master/EFI/CLOVER/ACPI/patched/SSDT-UIAC-ALL.aml) 文件放到 EFI/CLOVER/ACPI/patches 下面接口，或者使用 hackintool 工具和[模板文件](https://github.com/bydavy/EFI-ASRock-Z390-Phantom-Gaming-data)自己尝试定制。
+
+#### 使用博通 BCM94360CS2 无法使用蓝牙
+
+原因可能有两个原因：
+
+1. 上面提到的 `BrcmFirmwareRepo.kext` 和 `BrcmPatchRAM2.kext` 这两个驱动需要使用 [Kext Utility](http://cvad-mac.narod.ru/index/0-4) 或 [KextBeast](https://www.tonymacx86.com/resources/kextbeast-2-0-2.399/) 安装到系统驱动目录。(推荐使用前者更简单，后者可能需要注册 tonymacx86 才可以下载)
+1. 第一步已经完成还不能用的话，那就是 USB 的 DSDT 映射文件出问题了，使用上面**机箱 USB 无法识别**提到的文件即可解决。
 
 #### 无法登录 App Store 或登录后无法下载 App
 
