@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
-    <lastBuildDate>Wed, 30 Jan 2019 10:30:07 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 28 Mar 2019 17:12:07 +0800</lastBuildDate>
     
 	<atom:link href="http://icyleaf.com/tags/pc/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>华擎 Z390 Gaming ITX 黑苹果安装教程</title>
+      <link>http://icyleaf.com/2019/03/asrock-z390-gaming-itx-install-hackintosh-tutorial/</link>
+      <pubDate>Thu, 28 Mar 2019 17:12:07 +0800</pubDate>
+      
+      <guid>http://icyleaf.com/2019/03/asrock-z390-gaming-itx-install-hackintosh-tutorial/</guid>
+      <description>春节前购入一台式机挖坑要写黑苹果安装教程， 硬件清单 参加 攒了一台 4K 视频剪辑黑苹果。 名词解释 BIOS - Basic Input/Output System 缩写，它是主板上标准的固件接口，负责在开机</description>
+    </item>
     
     <item>
       <title>攒了一台 4K 视频剪辑黑苹果</title>

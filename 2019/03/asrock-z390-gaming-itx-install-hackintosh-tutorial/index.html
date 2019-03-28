@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  	<meta property="og:title" content=" 华擎 Z390 Gaming ITX 黑苹果安装教程 &middot;  icyleaf" />
+  	<meta property="og:site_name" content="icyleaf" />
+  	<meta property="og:url" content="http://icyleaf.com/2019/03/asrock-z390-gaming-itx-install-hackintosh-tutorial/" />
+
+    
+  	<meta property="og:type" content="article" />
+
+    <meta property="og:article:published_time" content="2019-03-28T17:12:07&#43;08:00" />
+
+    
+    <meta property="og:article:tag" content="硬件" />
+    
+    <meta property="og:article:tag" content="Hackintosh" />
+    
+    <meta property="og:article:tag" content="PC" />
+    
+    <meta property="og:article:tag" content="4K" />
+    
+    <meta property="og:article:tag" content="视频剪辑" />
+    
+    
+
+  <title>
+     华擎 Z390 Gaming ITX 黑苹果安装教程 &middot;  icyleaf
+  </title>
+
+    <meta name="description" content="热爱户外的码农、下厨初心者" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="http://icyleaf.com/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="http://icyleaf.com/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="http://icyleaf.com/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="http://icyleaf.com/css/nav.css" />
+
+    
+        <link rel="stylesheet" href="http://icyleaf.com/css/highlight/tomorrow-night.css">
+        <script src="http://icyleaf.com/js/highlight.pack.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+        <link href="index.xml" rel="alternate" type="application/rss+xml" title="icyleaf" />
+    
+    <meta name="generator" content="Hugo 0.47.1" />
+
+    <link rel="canonical" href="http://icyleaf.com/2019/03/asrock-z390-gaming-itx-install-hackintosh-tutorial/" />
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-2570916-5', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+</head>
+<body class="nav-closed">
+
+  <div class="nav">
+  <h3 class="nav-title">Menu</h3>
+  <a href="#" class="nav-close">
+    <span class="hidden">Close</span>
+  </a>
+  <ul>
+    
+
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="http://icyleaf.com/">Home</a>
+      </li>
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="http://icyleaf.com/categories/technology">Technology</a>
+      </li>
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="http://icyleaf.com/tags">Tags</a>
+      </li>
+    
+      
+      <li class="nav-opened" role="presentation">
+      	<a href="http://icyleaf.com/about">About</a>
+      </li>
+    
+  </ul>
+
+  
+    <a class="subscribe-button icon-feed" href="http://icyleaf.com/index.xml">Subscribe</a>
+  
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+  
+<header class="main-header post-head" style="background-image: url(http://icyleaf.com/images/cover.jpg)">
+
+
+
+
+  <nav class="main-nav overlay clearfix">
+  
+    <a class="blog-logo" href="http://icyleaf.com/"><img src="http://icyleaf.com/images/icyleaf-icon.png" alt="Blog Logo" /></a>
+  
+
+  
+    <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+</nav>
+
+  
+</header>
+
+<main class="content" role="main">
+  <article class="post post">
+    <header class="post-header">
+      <h1 class="post-title">华擎 Z390 Gaming ITX 黑苹果安装教程</h1>
+      <small></small>
+
+      <section class="post-meta">
+      
+      
+        <time class="post-date" datetime="2019-03-28T17:12:07&#43;08:00">
+          Mar 28, 2019
+        </time>
+      
+       
+        <span class="post-tag small"><a href="http://icyleaf.com/tags/%E7%A1%AC%E4%BB%B6/">#硬件</a></span>
+       
+        <span class="post-tag small"><a href="http://icyleaf.com/tags/hackintosh/">#Hackintosh</a></span>
+       
+        <span class="post-tag small"><a href="http://icyleaf.com/tags/pc/">#PC</a></span>
+       
+        <span class="post-tag small"><a href="http://icyleaf.com/tags/4k/">#4K</a></span>
+       
+        <span class="post-tag small"><a href="http://icyleaf.com/tags/%E8%A7%86%E9%A2%91%E5%89%AA%E8%BE%91/">#视频剪辑</a></span>
+       
+      </section>
+    </header>
+
+    <section class="post-content">
+      
+
+<p>春节前购入一<a href="http://icyleaf.com/2019/01/itx-coffee-lake-hackintosh-build-for-4k-video-editing/">台式机</a>挖坑要写黑苹果安装教程，</p>
+
+<h2 id="硬件清单">硬件清单</h2>
+
+<p>参加 <a href="http://icyleaf.com/2019/01/itx-coffee-lake-hackintosh-build-for-4k-video-editing/">攒了一台 4K 视频剪辑黑苹果</a>。</p>
+
+<h2 id="名词解释">名词解释</h2>
+
+<ul>
+<li><code>BIOS</code> - <em><strong>B</strong>asic <strong>I</strong>nput/<strong>O</strong>utput <strong>S</strong>ystem</em> 缩写，它是主板上标准的固件接口，负责在开机时做硬件启动和检测等工作，并且担任操作系统控制硬件时的中介角色。</li>
+<li><code>(U)EFI</code> - <em>(<strong>U</strong>nified) <strong>E</strong>xtensible <strong>F</strong>irmware <strong>I</strong>nterface</em> 缩写，它是代替 BIOS 的升级方案，(U)EFI 是模块化，支持图形化界面和鼠标操作。UEFI 是基于 Intel EFI 1.1 发展而来的归属国际组织管理，本质上还是 EFI。<a href="https://www.zhihu.com/question/21672895">BIOS 和 UEFI 的区别</a>，它会以一个名为 EFI 独立分区存在里面是其配置数据。</li>
+<li><code>ACPI</code> - <em><strong>A</strong>dvanced <strong>C</strong>onfiguration and <strong>P</strong>ower <strong>I</strong>nterface</em> 缩写。它是 BIOS 中&rdquo;电源管理”和“配置管理”的接口，它由很多表组成，包括 RSDP, SDTH, RSDT, FADT, FACS, DSDT, SSDT, MADT, SBST, XSDT, ECDT, SLIT, SRAT 等。</li>
+<li><code>DSDT</code> - <em>The <strong>D</strong>ifferentiated <strong>S</strong>ystem <strong>D</strong>escription <strong>T</strong>able</em> 缩写，它是主板 BIOS 中 ACPI 的一个表，包含了所有除基本系统以外所有不同设备的信息，也就是每台计算机设备的基本系统是相同的，而不相同的设备用 DSDT 来描述。macOS 不完整支持 ACPI 规范，仅支持它的子集 DSDT。因此这个在黑苹果配置中会经常提到。</li>
+<li><code>AML</code> - <em><strong>A</strong>CPI <strong>M</strong>achine <strong>L</strong>anguage</em> 缩写，它是 ACPI 描述语言，用来编辑 ACPI 各种表的代码。</li>
+<li><code>Kext(s)</code> - <em><strong>K</strong>ernel <strong>Ext</strong>ension</em> 缩写，你可以简单的理解为它是 macOS 的驱动文件（内核扩展）。</li>
+<li><code>Clover</code> - 我们使用的启动引导器。Mac 主机使用了自定义固件来启动 macOS。 PC 硬件本身无法做到而 Clover 可以帮我们实现。同时它还提供 kext 注入，ACPI 重命名，kext 补丁和一些其他功能。更多请看黑果小兵的<a href="http://blog.daliansky.net/clover-user-manual.html">使用教程</a>。</li>
+<li><code>config.plist</code> - 这个文件用来告诉 Clover 该怎么去做。它是一个 XML 格式的属性列表文件（有点类似 HTML）其中最核心的部分是配置黑苹果才能正常运行。</li>
+</ul>
+
+<blockquote>
+<p>多说一句，有时候大家再说到 BIOS 实际上是指 UEFI，只不过为了兼容性主板会在 UEFI 中兼容 BIOS。</p>
+</blockquote>
+
+<h2 id="安装环境">安装环境</h2>
+
+<p>本教程提到的版本信息，Clover 配置和 Kexts 均公开到个人 Github 仓库：<a href="https://github.com/icyleaf/EFI-ASRock-Z390-Phantom-Gaming-ITX">EFI-ASRock-Z390-Phantom-Gaming-ITX</a> 。上面提到环境信息不再编辑更新，后续的以仓库为准。</p>
+
+<ul>
+<li>macOS 版本：Mojave 10.14.3</li>
+<li>BIOS 版本: 0.5.0</li>
+<li>Clover 版本：v2.4k r4910</li>
+<li>Clover Configuration 版本：v5.4.1.1</li>
+<li>Kext Utility 版本：v2.6.6</li>
+<li>hackintool 版本: v2.1.5</li>
+</ul>
+
+<h3 id="安装成果">安装成果</h3>
+
+<h4 id="完美">完美</h4>
+
+<ul class="task-list">
+<li><label><input type="checkbox" checked disabled class="task-list-item"> 显卡（DisplayPort 接显示器）
+
+<ul class="task-list">
+<li><label><input type="checkbox" checked disabled class="task-list-item"> Intel UHD630 核显</label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> AMD RX580</label></li>
+</ul></label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> 声卡(Realtek ALC1220)
+
+<ul class="task-list">
+<li><label><input type="checkbox" checked disabled class="task-list-item"> 主板后置</label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> 机箱前置</label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> DisplayPort 声音输出</label></li>
+</ul></label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> 睡眠/唤醒</label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> 有线网卡</label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> 无线 WiFi</label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> 蓝牙
+
+<ul class="task-list">
+<li><label><input type="checkbox" checked disabled class="task-list-item"> 耳机</label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> Trackpad 2</label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> Airdrop</label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> Handoff</label></li>
+</ul></label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> 所有 USB 插口</label></li>
+</ul>
+
+<h4 id="无法使用">无法使用</h4>
+
+<ul>
+<li>雷电 3 口</li>
+</ul>
+
+<h2 id="安装前的准备工作">安装前的准备工作</h2>
+
+<h3 id="配置驱动-kexts">配置驱动（Kexts）</h3>
+
+<ul>
+<li>启动必备
+
+<ul>
+<li>FakeSMC.kext</li>
+<li>Lilu.kext</li>
+<li>WhateverGreen.kext</li>
+</ul></li>
+<li>显卡
+
+<ul>
+<li>NoVPAJpeg.kext（独立显卡需要，解决无法预览和打开 JPG 图片）</li>
+</ul></li>
+<li>声卡
+
+<ul>
+<li>AppleALC.kext</li>
+</ul></li>
+<li>有线网卡
+
+<ul>
+<li>IntelMausiEthernet.kext</li>
+</ul></li>
+<li>无线网卡
+
+<ul>
+<li>AirportBrcmFixup.kext</li>
+</ul></li>
+<li>蓝牙(配合 Kext Utility/KextBeast 安装到系统)
+
+<ul>
+<li>BrcmFirmwareRepo.kext</li>
+<li>BrcmPatchRAM2.kext</li>
+</ul></li>
+</ul>
+
+<h3 id="黑苹果安装启动盘">黑苹果安装启动盘</h3>
+
+<blockquote>
+<p>如果你的 OS 是 macOS 请参考如下步骤，否则请去黑果小兵博客下载 macOS 镜像并自行烧录。</p>
+</blockquote>
+
+<p>准备一个 8G 以上容量的 U 盘使用系统自带磁盘工具 App 格式化为 GUID 分区图 MacOS 扩展（日志式）分区并重命名 USB，接着把从 App Store 下载 macOS Majave 10.14 安装 App，使用其安装包命令创建启动安装盘：</p>
+
+<pre><code>sudo &quot;/Applications/Install macOS Mojave.app/Contents/Resources/createinstallmedia&quot; --volume /Volumes/USB
+</code></pre>
+
+<p>这一步会花费 30-40 分钟的时间期间可能也没用任何状态更新，请耐心等待，等到完成后启动盘就制作完成了。</p>
+
+<h3 id="安装-clover-到启动-u-盘">安装 Clover 到启动 U 盘</h3>
+
+<p>上一步获得了启动 U 盘，在保证没有推出（Eject）和拔出 U 盘的情况下还需要讲 Clover 安装到上面。</p>
+
+<ol>
+<li>安装 <a href="https://github.com/Dids/clover-builder/releases">Clover</a>（建议使用上面我采用的版本）点击下一步至看到 “Change Install Location&rdquo; 选择启动 U 盘</li>
+<li>点击左下角的 &ldquo;Customize&rdquo; 开始定制特定的驱动：
+
+<ul>
+<li>勾选 &ldquo;仅安装 UEFI 开机版本（Clover for UEFI booting only）&rdquo;</li>
+<li>勾选 &ldquo;安装 Clover 到 EFI 系统区（Install Clover in the ESP）&rdquo;</li>
+<li>勾选 &ldquo;UEFI drivers&rdquo; 下面的 &ldquo;ApfsDriverLoader-64.efi&rdquo;, &ldquo;AptioMemoryFix-64.efi&rdquo;, &ldquo;EmuVariableUefi-64&rdquo;, &ldquo;FSInject-64.efi&rdquo;</li>
+<li>勾选 &ldquo;安装 RC scripts 到目标磁盘&rdquo;</li>
+<li>其他的选项都不勾选</li>
+</ul></li>
+<li>清理 EFI 目录
+
+<ul>
+<li>使用 <a href="https://mackie100projects.altervista.org/download-clover-configurator/">Clover Configurator</a> 挂载 EFI 分区</li>
+<li>打开 EFI 分区删除 &ldquo;EFI/CLOVER&rdquo; 下面的 &ldquo;driver64&rdquo; 目录（使用 UEFI 启动不需要）</li>
+<li>把下载的必备驱动全部复制到 &ldquo;EFI/CLOVER/kexts/Ohter&rdquo; 目录下面（该目录存在其他的 kexts 的话就全部删除掉）</li>
+<li>删除 &ldquo;EFI/CLOVER/kexts/10.x.x&rdquo; 目录</li>
+</ul></li>
+<li>如果使用 USB3 安装，你可能需要 <a href="https://www.tonymacx86.com/attachments/aaron-usb-config-zip.378128/">aaron-usb-config.aml</a> 补丁来激活主板上的 USB3 端口</li>
+</ol>
+
+<h3 id="bios">BIOS</h3>
+
+<p>开机 F2 进入 BIOS 再按 F6 切换高级模式，至少需要做如下修改具体情况还需要看硬件情况：</p>
+
+<ul>
+<li>高级（Advanced） &gt; 芯片配置（Chipset Configuration） &gt; VT-d -&gt; Disabled</li>
+<li>高级（Advanced） &gt; USB 配置（USB Configuration） &gt; XHCI Hand-off -&gt; Enabled</li>
+</ul>
+
+<h3 id="安装黑苹果">安装黑苹果</h3>
+
+<p>以<a href="https://www.tonymacx86.com/threads/guide-asrock-z390-phantom-gaming-itx-ac-i9-9900k-rx-580.268992/">ASRock Z390 Phantom Gaming-ITX/ac, i9-9900K, RX 580</a>为基础进行安装。</p>
+
+<p>插入 U 盘到机箱后部主板的插口开机 F12 选择启动 U 盘（如果没有认出来试试其他插口），接着你会看到 Clover 的启动引导界面选择 U 盘启动，之后就是标准的 macOS 安装步骤（格式化硬盘分区为 GUID 分区图 MacOS 扩展（日志式）等等），我就不再多说，其中安装过程中会需要重启，重启进去 Clover 引导界面时选择硬盘启动，而不是启动 U 盘。</p>
+
+<p>黑苹果安装好再次安装 Clover 这次是安装到硬盘上面（步骤和勾选选项同上）。</p>
+
+<h3 id="clover-配置">Clover 配置</h3>
+
+<p>根据我的 <a href="https://github.com/icyleaf/EFI-ASRock-Z390-Phantom-Gaming-ITX/blob/master/EFI/CLOVER/config.plist">config.plist</a> 进行参考配置：</p>
+
+<ol>
+<li>使用 Clover Configurator 挂载硬盘的 EFI 分区</li>
+<li>复制启动 U 盘的 driver64UEFI 和 kexts 目录到硬盘对应位置</li>
+<li>使用 Clover Configurator 打开 &ldquo;EFI/CLOVER/config.plist&rdquo;
+
+<ul>
+<li>在 SMBIOS 选项界面生成 Serial Number 和 SMUUID（点击 Generate New）</li>
+<li>点击右侧 &ldquo;Check Coverage&rdquo; 会打开一个浏览器输入验证码（可能需要翻墙）确保 Serial Number 是<strong>无效的</strong>，这样才能伪装这台机器是台新机器。如果是有效的话就再次重新生成即可。</li>
+</ul></li>
+<li>Intel Coffee Lake 架构<a href="https://hackintosh.gitbook.io/-r-hackintosh-vanilla-desktop-guide/config.plist-per-hardware/coffee-lake">通用配置</a></li>
+</ol>
+
+<h3 id="疑难杂症">疑难杂症</h3>
+
+<h4 id="u-盘无法引导">U 盘无法引导</h4>
+
+<p>使用 USB 3.0 的 U 盘需要打补丁才能使用，tonymacx86 的 <a href="https://www.tonymacx86.com/threads/guide-asrock-z390-phantom-gaming-itx-ac-i9-9900k-rx-580.268992/">ammulder</a> 提供了补丁下载 aaron-usb-config.zip（首帖的末尾） 解压缩后把里面的文件复制到放到 <code>EFI/CLOVER/ACPI/patched/</code> 目录下面。</p>
+
+<h4 id="引导卡在-apfs-module-init-引导使用-verbose-模式提示该问题">引导卡在 <code>apfs_module_init</code> （引导使用 verbose 模式提示该问题）</h4>
+
+<p>这个问题是说华擎 BIOS 升级至 1.3 版后 Device(RTC) 没有初始化变量使得 OSX DSDT 解析异常造成的。如果这种方式对你也不管用的话只能降级 BIOS 到 1.2 版本。</p>
+
+<p>tonymacx86 的 <a href="https://www.tonymacx86.com/threads/asrock-z390-phantom-gaming-itx-ac.265245/#post-1854444">pupin</a> 给出了解决方案，需要在 config.plist 的 ACPI\DSDT\Patches 数组下面添加：</p>
+
+<pre><code class="language-xml">&lt;dict&gt;
+  &lt;key&gt;Comment&lt;/key&gt;
+  &lt;string&gt;Fix AsRock Z390 BIOS DSDT Device(RTC) bug. If BIOS &gt; 1.2&lt;/string&gt;
+  &lt;key&gt;Disabled&lt;/key&gt;
+  &lt;false/&gt;
+  &lt;key&gt;Find&lt;/key&gt;
+  &lt;data&gt;
+  oAqTU1RBUwE=
+  &lt;/data&gt;
+  &lt;key&gt;Replace&lt;/key&gt;
+  &lt;data&gt;
+  oAqRCv8L//8=
+  &lt;/data&gt;
+&lt;/dict&gt;
+</code></pre>
+
+<p>或者使用 Clover Configuration 在 DSDT 的 Patches 单独打一个补丁，Comment 为 <code>Fix AsRock Z390 BIOS DSDT Device(RTC) bug. If BIOS &gt; 1.2</code>，Find 为 <code>A00A9353 54415301</code>，Replace 为 <code>A00A910A FF0BFFFF</code>、</p>
+
+<h4 id="核显-uhd-630-花屏">核显（UHD 630）花屏</h4>
+
+<p>这是闪屏的解决方案，待测试：安装好之后能驱动 4K@60Hz 但是闪屏，其实还是显卡驱动的问题，爬帖发现改机型就可以，于是我试了iMac 18,1、iMac 17,3、iMac 17,1等机型仍然闪屏，期间重启了很多次，甚是烦恼。继续爬帖看到某位网友说将SMBIOS里面的信息全部删掉只保留 ProductName 即可，试了下果然起作用了，再也不闪了。后来才得知原理就是 Clover 会根据机型自己推算剩下的值，所以能正常驱动。</p>
+
+<h4 id="核显插-hdmi-显示器黑屏无反应">核显插 HDMI 显示器黑屏无反应</h4>
+
+<p>如何黑屏看这里：<a href="http://blog.daliansky.net/CoffeeLake-UHD-630-black-screen-direct-bright-screen-and-correct-adjustment-of-brightness-adjustment.html">http://blog.daliansky.net/CoffeeLake-UHD-630-black-screen-direct-bright-screen-and-correct-adjustment-of-brightness-adjustment.html</a></p>
+
+<p><a href="https://www.tonymacx86.com/threads/guide-general-framebuffer-patching-guide-hdmi-black-screen-problem.269149/">https://www.tonymacx86.com/threads/guide-general-framebuffer-patching-guide-hdmi-black-screen-problem.269149/</a></p>
+
+<h4 id="关于本机-cpu-信息显示-unknown">关于本机 CPU 信息显示 Unknown</h4>
+
+<p>macOS 没有支持 9 代 CPU 这里会显示 Unknown 不影响正常使用，假若你特别想要修改的话请看这里：<a href="https://www.idownloadblog.com/2017/01/13/how-to-modify-about-this-mac-hackintosh/">https://www.idownloadblog.com/2017/01/13/how-to-modify-about-this-mac-hackintosh/</a></p>
+
+<h4 id="显示器的声音无法识别和输出">显示器的声音无法识别和输出</h4>
+
+<p>删除 VoodooHDA.kext 即可，默认 AppleALC.kext 即可驱动。</p>
+
+<h4 id="机箱-usb-无法识别">机箱 USB 无法识别</h4>
+
+<p>macOS 10.11 之后由于 Apple USB 驱动重写后造成默认 USB 端口映射会出现不正常需要 DSDT 来打补丁，具体的可参考相关教程。我直接采用的现成的 DSDT 文件可把 <a href="https://github.com/icyleaf/EFI-ASRock-Z390-Phantom-Gaming-ITX/raw/master/EFI/CLOVER/ACPI/patched/SSDT-UIAC-ALL.aml">SSDT-UIAC-ALL.aml</a> 文件放到 EFI/CLOVER/ACPI/patches 下面接口。</p>
+
+<h4 id="无法登录-app-store-或登录后无法下载-app">无法登录 App Store 或登录后无法下载 App</h4>
+
+<p>请尝试如下操作：</p>
+
+<ol>
+<li>清除 <code>$TMPDIR../C/com.apple.appstore</code> 目录下的所有临时文件</li>
+<li>config.plist 保留三个 SMBIOS 后重启，重新登录 iCloud 账户</li>
+<li>进系统设置移除现有网络所有配置并重启后重新添加</li>
+</ol>
+
+<h4 id="其他疑难杂症">其他疑难杂症</h4>
+
+<p>这里有个其他博主分享的总结<a href="https://www.bugprogrammer.me/2018/11/05/Z390+9900K_Hackintosh.html">Hackintosh for ASRock Z390 Phantom Gaming-ITX/ac+i9-9900K相关问题解决方案</a> 可以看看有没有你遇到的，倘若都没有发现也可以给我<a href="https://github.com/icyleaf/EFI-ASRock-Z390-Phantom-Gaming-ITX/issues/new">提 Issue</a> 我会尝试帮助你。</p>
+
+<h3 id="参考资料">参考资料</h3>
+
+<ul>
+<li><a href="https://www.kancloud.cn/chandler/mac_os/480611">Mac OS 之程序员</a></li>
+<li><a href="http://blog.daliansky.net/clover-user-manual.html">clover使用教程</a></li>
+<li><a href="https://hackintosh.gitbook.io/-r-hackintosh-vanilla-desktop-guide">Hackintosh Vanilla</a></li>
+<li><a href="https://macpc.hidemess.com/?thread-145.htm">ASRock華擎Z370M-ITX/AC集成顯卡10.14EFI分享</a></li>
+<li><a href="https://catty-house.blogspot.com/2018/10/hackintosh.html">安装黑苹果教程</a></li>
+<li><a href="https://www.tonymacx86.com/threads/guide-asrock-z390-phantom-gaming-itx-ac-i9-9900k-rx-580.268992">[Guide] ASRock Z390 Phantom Gaming-ITX/ac, i9-9900K, RX 580</a></li>
+<li><a href="https://www.tonymacx86.com/threads/success-asrock-z390-phantom-gaming-6-i7-9700k-amd-vega-56.270501/">[Success] ASRock Z390 Phantom Gaming 6 - i7 9700K - AMD Vega 56</a></li>
+<li><a href="https://www.tonymacx86.com/threads/asrock-z390-phantom-gaming-itx-ac.265245/#post-1854444">ASRock Z390 Phantom Gaming-ITX/ac</a></li>
+<li><a href="https://www.hackintosh-forum.de/forum/thread/40613-1st-hackintosh-beginner-asrock-z390-phantom-gaming-itx-ac/">ASROCK Z390 PHANTOM GAMING-ITX/AC</a></li>
+</ul>
+
+    </section>
+
+  <footer class="post-footer">
+    
+    <figure class="author-image">
+        <a class="img" href="http://icyleaf.com/" style="background-image: url(/images/icyleaf-icon.png)"><span class="hidden">icyleaf's Picture</span></a>
+    </figure>
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="http://icyleaf.com/">icyleaf</a></h4>
+  
+  <p>热爱户外的码农、下厨初心者</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">Beijing, China</span>
+    <span class="author-link icon-link"><a href="http://icyleaf.com">http://icyleaf.com</a></span>
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" href="https://twitter.com/share?text=%e5%8d%8e%e6%93%8e%20Z390%20Gaming%20ITX%20%e9%bb%91%e8%8b%b9%e6%9e%9c%e5%ae%89%e8%a3%85%e6%95%99%e7%a8%8b&nbsp;-&nbsp;icyleaf&amp;url=http%3a%2f%2ficyleaf.com%2f2019%2f03%2fasrock-z390-gaming-itx-install-hackintosh-tutorial%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ficyleaf.com%2f2019%2f03%2fasrock-z390-gaming-itx-install-hackintosh-tutorial%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-weibo"href="http://service.weibo.com/share/share.php?url=http%3a%2f%2ficyleaf.com%2f2019%2f03%2fasrock-z390-gaming-itx-install-hackintosh-tutorial%2f&amp;title=%e5%8d%8e%e6%93%8e%20Z390%20Gaming%20ITX%20%e9%bb%91%e8%8b%b9%e6%9e%9c%e5%ae%89%e8%a3%85%e6%95%99%e7%a8%8b&nbsp;-&nbsp;icyleaf"
+      onclick="window.open(this.href, 'weibo-share','width=580,height=296');return false;">
+      <span class="hidden">新浪微博</span>
+  </a>
+  <a class="icon-douban" href="javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:'',r='https://www.douban.com/recommend/?url='+e(d.location.href)+'&title='+e(d.title)+'&sel='+e(s)+'&v=1',w=450,h=330,x=function(){if(!window.open(r,'douban','toolbar=0,resizable=1,scrollbars=yes,status=1,width='+w+',height='+h+',left='+(screen.width-w)/2+',top='+(screen.height-h)/2))location.href=r+'&r=1'};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()">
+      <span class="hidden">豆瓣</span>
+  </a>
+</section>
+
+
+
+    
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  var disqus_shortname = 'icyleaf';
+  var disqus_url = 'http:\/\/icyleaf.com\/2019\/03\/asrock-z390-gaming-itx-install-hackintosh-tutorial\/';
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+  </footer>
+</article>
+
+</main>
+
+
+  <aside class="read-next">
+  
+  
+      <a class="read-next-story prev" style="background-image: url(/images/4k-hackintosh-hardwares.jpg)" href="http://icyleaf.com/2019/01/itx-coffee-lake-hackintosh-build-for-4k-video-editing/">
+          <section class="post">
+              <h2>攒了一台 4K 视频剪辑黑苹果</h2>
+          </section>
+      </a>
+  
+</aside>
+
+
+
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">icyleaf</a> All rights reserved - 2007</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+  </div>
+  <script type="text/javascript" src="http://icyleaf.com/js/jquery.js"></script>
+  <script type="text/javascript" src="http://icyleaf.com/js/jquery.fitvids.js"></script>
+  <script type="text/javascript" src="http://icyleaf.com/js/index.js"></script>
+  
+</body>
+</html>
+
