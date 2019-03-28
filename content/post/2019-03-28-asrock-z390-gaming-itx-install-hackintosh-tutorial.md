@@ -10,13 +10,12 @@ tags:
   - PC
   - 4K
   - 视频剪辑
-image: images/cover.jpg
-menu: ""
+image: images/install-boardcom-module-to-motherboard.jpg
 index: false
-draft: false
 comments: true
 isCJKLanguage: true
 share: true
+
 ---
 
 春节前购入一[台式机](http://icyleaf.com/2019/01/itx-coffee-lake-hackintosh-build-for-4k-video-editing/)挖坑要写黑苹果安装教程，
