@@ -1,6 +1,6 @@
 ---
 title: 攒了一台 4K 视频剪辑黑苹果
-date: 2019-01-30 10:30:12 +0000
+date: "2019-01-30T10:30:07+08:00"
 slug: itx-coffee-lake-hackintosh-build-for-4k-video-editing
 categories:
 - Technology
