@@ -18,6 +18,10 @@ share: true
 
 ---
 
+> 2019-04-01 更新：
+>
+> 更新疑惑解答无线网络慢的解决方案。
+
 春节前购入一台式机挖坑要写黑苹果安装教程，本来计划是 3 月初整理完毕期间赶上辞职彻底放飞自我，加上无法忍受编辑视频的龟毛速度购入一块 rx580 矿卡使用一周后良好，立马开始填坑。
 
 > 封图是博通网卡模块替换原由的分解图。
@@ -151,6 +155,13 @@ sudo "/Applications/Install macOS Mojave.app/Contents/Resources/createinstallmed
   - 点击右侧 "Check Coverage" 会打开一个浏览器输入验证码（可能需要翻墙）确保 Serial Number 是**无效的**，这样才能伪装这台机器是台新机器。如果是有效的话就再次重新生成即可。
 1. Intel Coffee Lake 架构[通用配置](https://hackintosh.gitbook.io/-r-hackintosh-vanilla-desktop-guide/config.plist-per-hardware/coffee-lake)
 
+### 无线（WIFI）及蓝牙驱动
+
+对于所谓的“免驱”博通网卡其实并不代表了不需要 kext 的帮助，尤其是我自以为是 Apple 钦点的插上就可以用结果毛都没认出来。按照 tonymacx86 [无线及蓝牙安装教程](https://www.tonymacx86.com/threads/broadcom-wifi-bluetooth-guide.242423/) 操作
+没有什么大的问题，直接使用 把 `Lilu.kext', `AirportBrcmFixup.kext`, `BrcmFirmwareRepo.kext` 和 `BrcmPatchRAM2.kext` 安装到 `/Library/Extensions/` 路径下重启即可。
+
+> 这里多说一句，理论上把上面的 kexts 放在 EFI 下也是可用的，放在 `/Library/Extensions/` 下是为了防止  Clover 加载 kexts 失败，直接缓存到系统中。
+
 ### 疑难杂症
 
 #### U 盘无法引导
@@ -211,6 +222,18 @@ macOS 10.11 之后由于 Apple USB 驱动重写后造成默认 USB 端口映射�
 
 1. 上面提到的 `BrcmFirmwareRepo.kext` 和 `BrcmPatchRAM2.kext` 这两个驱动需要使用 [Kext Utility](http://cvad-mac.narod.ru/index/0-4) 或 [KextBeast](https://www.tonymacx86.com/resources/kextbeast-2-0-2.399/) 安装到系统驱动目录。(推荐使用前者更简单，后者可能需要注册 tonymacx86 才可以下载)
 1. 第一步已经完成还不能用的话，那就是 USB 的 DSDT 映射文件出问题了，使用上面**机箱 USB 无法识别**提到的文件即可解决。
+
+#### 无线网络（WIFI）速度特别慢
+
+我在写完本教程后让我遇到的诡异问题，我是双系统在 Windows 下无线网络是正常的。经过这几天的分析和推友大神 [@shellexy](https://twitter.com/shellexy/status/1112272600141582337) 的帮助下，总结解决方案如下：
+
+1. 如果你是唯一的黑苹果系统，那么请在"系统偏好设置"的"节能"取消勾选"唤醒以供网络访问"
+1. 如果你是 Windows 和黑苹果双系统，完成上面一步后你还需要在 Windows 系统资源管理器 "管理" 的 "设备管理器" 找到博通无线模块切换到最后一个选项卡取消勾选”允许计算机关闭此设备以节约电源”
+
+如果上面两个方法都无效的话可以再试试：
+
+1. 黑苹果系统是否开启了无线网卡随机化 MAC 地址，尝试关闭
+1. 更改 WIFI 天线的方向，如果带线的天线那就尝试换换位置。
 
 #### 无法登录 App Store 或登录后无法下载 App
 

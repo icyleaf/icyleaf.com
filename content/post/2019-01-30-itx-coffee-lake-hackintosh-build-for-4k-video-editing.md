@@ -20,7 +20,7 @@ share: true
 
 > 2019-03-28 更新：
 >
-> 购入独立显卡 rx580，更新相关内容，尾部加上黑苹果安装教程。
+> 购入独立显卡 rx580，更新相关内容，尾部加上[黑苹果安装教程](http://icyleaf.com/2019/03/asrock-z390-gaming-itx-install-hackintosh-tutorial/)。
 >
 > 2019-02-18 更新：
 >
