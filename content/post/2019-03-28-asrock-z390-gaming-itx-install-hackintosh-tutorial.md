@@ -127,7 +127,14 @@ sudo "/Applications/Install macOS Mojave.app/Contents/Resources/createinstallmed
   - 打开 EFI 分区删除 "EFI/CLOVER" 下面的 "driver64" 目录（使用 UEFI 启动不需要）
   - 把下载的必备驱动全部复制到 "EFI/CLOVER/kexts/Ohter" 目录下面（该目录存在其他的 kexts 的话就全部删除掉）
   - 删除 "EFI/CLOVER/kexts/10.x.x" 目录
-1. 如果使用 USB3 安装，你可能需要 [aaron-usb-config.aml](https://www.tonymacx86.com/attachments/aaron-usb-config-zip.378128/) 补丁来激活主板上的 USB3 端口
+1. 如果使用 USB3 安装，你可能需要 [aaron-usb-config.aml](https://www.tonymacx86.com/attachments/aaron-usb-config-zip.378128/) 补丁来激活主板上的
+USB3 端口
+
+### 替换原有网络/蓝牙模块
+
+原有 Intel® Wireless-AC 9560 无线模块（集成无线 802.11ac 方案并提供蓝牙 5.0 和 2x2 802.11ac 2.4/5Ghz Wi-Fi 模块）在主板后部面部的顶部，需要拧下前后两颗螺丝，再拔掉 CMOS 电池的插头，嗯，没错尾部圆圆被塑料包裹的是 CMOS 电池。拆下模块后需要再把金属遮蔽盒拆下来就看到 Intel 无线模块的样子，小心把上面的两个天线拔掉再把模块也拆下放一边，我就得到了框架。
+
+从淘宝买回来的博通 + 转接卡可能是固定好的，我们需要把它拆开。转接卡要固定在框架上面后再把博通网卡插上拧上螺丝，框架上的两个天线随便接博通顶部两侧的插口上。转接卡高度超出框架最初拆下来的金属遮蔽盒不能再装回去。最好把框架固定到主板上就完成了。
 
 ### BIOS
 
