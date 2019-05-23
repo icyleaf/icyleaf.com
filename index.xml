@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2007</copyright>
-    <lastBuildDate>Wed, 10 Apr 2019 13:12:07 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 23 May 2019 22:45:07 +0800</lastBuildDate>
     
 	<atom:link href="http://icyleaf.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>创建无 Storyboard（xib） 的 macOS NSWindow</title>
+      <link>http://icyleaf.com/2019/05/create-macos-nswindow-without-storyboard/</link>
+      <pubDate>Thu, 23 May 2019 22:45:07 +0800</pubDate>
+      
+      <guid>http://icyleaf.com/2019/05/create-macos-nswindow-without-storyboard/</guid>
+      <description>前言 历届 WWDC 众多和 macOS 开发相关的视频中只要涉及到 UI 部分必会牵扯上 Storyboard，它能帮你辅助画 UI，使用 Auto Layout 进行布局，甚至你可以不用写一行</description>
+    </item>
     
     <item>
       <title>申请泰国电子落地签答疑解惑</title>
