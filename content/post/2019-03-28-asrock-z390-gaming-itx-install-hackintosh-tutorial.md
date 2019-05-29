@@ -45,7 +45,7 @@ share: true
 
 ## 安装环境
 
-本教程提到的版本信息，Clover 配置和 Kexts 均公开到个人 Github 仓库：[EFI-ASRock-Z390-Phantom-Gaming-ITX](https://github.com/icyleaf/EFI-ASRock-Z390-Phantom-Gaming-ITX) 。上面提到环境信息不再编辑更新，后续的以仓库为准。
+本教程提到的版本信息，Clover 配置和 Kexts 均公开到个人 Github 仓库：[EFI-ASRock-Z390-Phantom-Gaming-ITX](https://github.com/icyleaf/EFI-ASRock-Z390-Phantom-Gaming-ITX) 。下面提到环境信息后续变化以 Git 仓库为准。
 
 - macOS 版本：Mojave 10.14.3
 - BIOS 版本: 0.5.0
