@@ -5,12 +5,12 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-  	<meta property="og:title" content=" 打通 Sidekiq 的任督二脉 Ruby 和 Crystal &middot;  icyleaf" />
-  	<meta property="og:site_name" content="icyleaf" />
-  	<meta property="og:url" content="http://icyleaf.com/2017/04/sidekiq-works-in-ruby-togethor-with-crystal/" />
+    <meta property="og:title" content=" 打通 Sidekiq 的任督二脉 Ruby 和 Crystal &middot;  icyleaf" />
+    <meta property="og:site_name" content="icyleaf" />
+    <meta property="og:url" content="/2017/04/sidekiq-works-in-ruby-togethor-with-crystal/" />
 
     
-  	<meta property="og:type" content="article" />
+    <meta property="og:type" content="article" />
 
     <meta property="og:article:published_time" content="2017-04-26T16:00:49Z" />
 
@@ -23,9 +23,9 @@
     
     
 
-  <title>
-     打通 Sidekiq 的任督二脉 Ruby 和 Crystal &middot;  icyleaf
-  </title>
+    <title>
+         打通 Sidekiq 的任督二脉 Ruby 和 Crystal &middot;  icyleaf
+    </title>
 
     <meta name="description" content="热爱户外的码农、下厨初心者" />
 
@@ -33,7 +33,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link rel="shortcut icon" href="http://icyleaf.com/images/favicon.ico">
-	  <link rel="apple-touch-icon" href="http://icyleaf.com/images/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" href="http://icyleaf.com/images/apple-touch-icon.png" />
 
     <link rel="stylesheet" type="text/css" href="http://icyleaf.com/css/screen.css" />
     <link rel="stylesheet" type="text/css" href="http://icyleaf.com/css/nav.css" />
@@ -45,7 +45,10 @@
     
 
     
-        <link href="index.xml" rel="alternate" type="application/rss+xml" title="icyleaf" />
+        
+            <link href="http://icyleaf.com/index.xml" rel="alternate" type="application/rss+xml" title="icyleaf" />
+        
+        
     
     <meta name="generator" content="Hugo 0.47.1" />
 
@@ -53,22 +56,20 @@
 
     
     <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-      ga('create', 'UA-2570916-5', 'auto');
-      ga('send', 'pageview');
-
+        ga('create', 'UA-2570916-5', 'auto');
+        ga('send', 'pageview');
     </script>
     
 
     
 </head>
 <body class="nav-closed">
-
-  <div class="nav">
+    <div class="nav">
   <h3 class="nav-title">Menu</h3>
   <a href="#" class="nav-close">
     <span class="hidden">Close</span>
@@ -100,11 +101,10 @@
   </ul>
 
   
-    <a class="subscribe-button icon-feed" href="http://icyleaf.com/index.xml">Subscribe</a>
+    <a class="subscribe-button icon-feed" href="http://icyleaf.com/2017/04/sidekiq-works-in-ruby-togethor-with-crystal/">Subscribe</a>
   
 </div>
 <span class="nav-cover"></span>
-
 
  <div class="site-wrapper">
 
@@ -576,15 +576,15 @@ end
     
 <section class="share">
   <h4>Share this post</h4>
-  <a class="icon-twitter" href="https://twitter.com/share?text=%e6%89%93%e9%80%9a%20Sidekiq%20%e7%9a%84%e4%bb%bb%e7%9d%a3%e4%ba%8c%e8%84%89%20Ruby%20%e5%92%8c%20Crystal&nbsp;-&nbsp;icyleaf&amp;url=http%3a%2f%2ficyleaf.com%2f2017%2f04%2fsidekiq-works-in-ruby-togethor-with-crystal%2f"
+  <a class="icon-twitter" href="https://twitter.com/share?text=%e6%89%93%e9%80%9a%20Sidekiq%20%e7%9a%84%e4%bb%bb%e7%9d%a3%e4%ba%8c%e8%84%89%20Ruby%20%e5%92%8c%20Crystal&nbsp;-&nbsp;icyleaf&amp;url=%2f2017%2f04%2fsidekiq-works-in-ruby-togethor-with-crystal%2f"
       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
       <span class="hidden">Twitter</span>
   </a>
-  <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ficyleaf.com%2f2017%2f04%2fsidekiq-works-in-ruby-togethor-with-crystal%2f"
+  <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=%2f2017%2f04%2fsidekiq-works-in-ruby-togethor-with-crystal%2f"
       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
       <span class="hidden">Facebook</span>
   </a>
-  <a class="icon-weibo"href="http://service.weibo.com/share/share.php?url=http%3a%2f%2ficyleaf.com%2f2017%2f04%2fsidekiq-works-in-ruby-togethor-with-crystal%2f&amp;title=%e6%89%93%e9%80%9a%20Sidekiq%20%e7%9a%84%e4%bb%bb%e7%9d%a3%e4%ba%8c%e8%84%89%20Ruby%20%e5%92%8c%20Crystal&nbsp;-&nbsp;icyleaf"
+  <a class="icon-weibo"href="http://service.weibo.com/share/share.php?url=%2f2017%2f04%2fsidekiq-works-in-ruby-togethor-with-crystal%2f&amp;title=%e6%89%93%e9%80%9a%20Sidekiq%20%e7%9a%84%e4%bb%bb%e7%9d%a3%e4%ba%8c%e8%84%89%20Ruby%20%e5%92%8c%20Crystal&nbsp;-&nbsp;icyleaf"
       onclick="window.open(this.href, 'weibo-share','width=580,height=296');return false;">
       <span class="hidden">新浪微博</span>
   </a>
@@ -600,7 +600,7 @@ end
 <div id="disqus_thread"></div>
 <script type="text/javascript">
   var disqus_shortname = 'icyleaf';
-  var disqus_url = 'http:\/\/icyleaf.com\/2017\/04\/sidekiq-works-in-ruby-togethor-with-crystal\/';
+  var disqus_url = '\/2017\/04\/sidekiq-works-in-ruby-togethor-with-crystal\/';
   (function() {
     var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
     dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
