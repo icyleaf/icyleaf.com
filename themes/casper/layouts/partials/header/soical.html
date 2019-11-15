@@ -1,0 +1,10 @@
+{{ if isset .Site.Params "socials" }}
+
+{{ range .Site.Params.socials }}
+  <a class="bloglogo" href="{{ .link }}" target="_blank">
+    <i class="icon-{{ .name }}"></i>
+  </a>
+  &nbsp;
+{{ end }}
+
+{{ end }}
