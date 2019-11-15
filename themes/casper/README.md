@@ -66,7 +66,7 @@ hasCJKLanguage = true
   logo = "images/logo.png"
   googleAnalyticsUserID = "UA-2570916-5"
   # Optional RSS-Link, if not provided it defaults to the standard index.xml
-  RSSLink = "http://feeds.feedburner.com/..."
+  RelPermalink = "http://feeds.feedburner.com/..."
 
   # set socials account and link
   [[socials]]
