@@ -1,12 +1,18 @@
-+++
-date = "2014-07-11T10:54:24+02:00"
-draft = false
-title = "Post title"
-slug = "post-title"
-tags = ["tag1","tag2"]
-image = ""
-comments = true	# set false to hide Disqus
-share = true	# set false to hide share buttons
-menu= ""		# set "main" to add this content to the main menu
-author = ""
-+++
+---
+title: {{ replace .Name "-" " " | title }}
+date: {{ .Date }}
+slug: {{ .Name }}
+categories:
+  - Technology
+tags:
+  - Tag1
+  - Tag2
+image: images/cover.jpg
+menu: ""
+index: false
+draft: false
+comments: true
+isCJKLanguage: true
+share: true
+draft: true
+---
