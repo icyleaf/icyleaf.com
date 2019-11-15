@@ -14,10 +14,10 @@
     {{end}}
   </ul>
 
-  {{ if .Site.Params.RSSLink }}
-    <a class="subscribe-button icon-feed" href="{{ .Site.Params.RSSLink | relURL }}">Subscribe</a>
+  {{ if .Site.Params.RelPermalink }}
+    <a class="subscribe-button icon-feed" href="{{ .Site.Params.RelPermalink }}">Subscribe</a>
   {{ else }}
-    <a class="subscribe-button icon-feed" href="{{ .RSSLink | relURL }}">Subscribe</a>
+    <a class="subscribe-button icon-feed" href="{{ .RelPermalink }}">Subscribe</a>
   {{end}}
 </div>
 <span class="nav-cover"></span>
