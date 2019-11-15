@@ -1,5 +1,5 @@
 baseurl: http://icyleaf.com/
-languageCode: en-us
+languageCode: zh
 title: icyleaf
 theme: casper
 paginate: 10
@@ -7,7 +7,7 @@ disqusShortname: icyleaf
 hasCJKLanguage: true
 MetaDataFormat: yaml
 canonifyURLs: true
-copyright: All rights reserved - 2007
+copyright: All rights reserved - 2019
 params:
   description: 热爱户外的码农、下厨初心者
   author: icyleaf
