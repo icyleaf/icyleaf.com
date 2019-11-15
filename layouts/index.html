@@ -23,7 +23,7 @@
         {{end}}
     {{ end }}
 
-    {{ if not ($.Scratch.Get "paginatedSections") }}
+    {{ if not ($.Scratch.Get "Type") }}
         {{ if isset .Site.Params "paginatedSections" }}
             {{ $.Scratch.Set "paginatedSections" .Site.Params.paginatedSections }}
         {{ else }}
@@ -31,7 +31,7 @@
         {{ end }}
     {{ end }}
 
-    {{ $list := where .Data.Pages "Section" "in" ($.Scratch.Get "paginatedSections") }}
+    {{ $list := where .Site.RegularPages "Section" "in" ($.Scratch.Get "paginatedSections") }}
     {{ $list := where $list "Section" "!=" "" }}
     {{ $paginator := .Paginate ( $list ) }}
 
