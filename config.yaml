@@ -1,4 +1,4 @@
-baseurl: http://icyleaf.com/
+baseurl: https://icyleaf.com/
 languageCode: zh
 title: icyleaf
 theme: casper
@@ -16,7 +16,7 @@ params:
   RSSLink: index.xml
   # footer in post
   authorlocation: Beijing, China
-  authorwebsite: http://icyleaf.com
+  authorwebsite: https://icyleaf.com
   bio: 热爱户外的码农、下厨初心者
   # Global theme settings
   logo: images/icyleaf-icon.png
