@@ -2,58 +2,58 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Shell on icyleaf</title>
-    <link>http://icyleaf.com/tags/shell/</link>
+    <link>https://icyleaf.com/tags/shell/</link>
     <description>Recent content in Shell on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>All rights reserved - 2019</copyright>
     <lastBuildDate>Tue, 06 Nov 2012 12:34:56 +0800</lastBuildDate>
     
-	<atom:link href="http://icyleaf.com/tags/shell/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://icyleaf.com/tags/shell/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>修复 OS X 打开方式的重复项</title>
-      <link>http://icyleaf.com/2012/11/%E4%BF%AE%E5%A4%8D-os-x-%E6%89%93%E5%BC%80%E6%96%B9%E5%BC%8F%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9/</link>
+      <link>https://icyleaf.com/2012/11/%E4%BF%AE%E5%A4%8D-os-x-%E6%89%93%E5%BC%80%E6%96%B9%E5%BC%8F%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9/</link>
       <pubDate>Tue, 06 Nov 2012 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2012/11/%E4%BF%AE%E5%A4%8D-os-x-%E6%89%93%E5%BC%80%E6%96%B9%E5%BC%8F%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9/</guid>
+      <guid>https://icyleaf.com/2012/11/%E4%BF%AE%E5%A4%8D-os-x-%E6%89%93%E5%BC%80%E6%96%B9%E5%BC%8F%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9/</guid>
       <description>$ /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain system-domainuser  </description>
     </item>
     
     <item>
       <title>如何针对 iOS 设备进行网络抓包分析</title>
-      <link>http://icyleaf.com/2012/10/%E5%A6%82%E4%BD%95%E9%92%88%E5%AF%B9-ios-%E8%AE%BE%E5%A4%87%E8%BF%9B%E8%A1%8C%E7%BD%91%E7%BB%9C%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90/</link>
+      <link>https://icyleaf.com/2012/10/%E5%A6%82%E4%BD%95%E9%92%88%E5%AF%B9-ios-%E8%AE%BE%E5%A4%87%E8%BF%9B%E8%A1%8C%E7%BD%91%E7%BB%9C%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90/</link>
       <pubDate>Mon, 15 Oct 2012 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2012/10/%E5%A6%82%E4%BD%95%E9%92%88%E5%AF%B9-ios-%E8%AE%BE%E5%A4%87%E8%BF%9B%E8%A1%8C%E7%BD%91%E7%BB%9C%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90/</guid>
+      <guid>https://icyleaf.com/2012/10/%E5%A6%82%E4%BD%95%E9%92%88%E5%AF%B9-ios-%E8%AE%BE%E5%A4%87%E8%BF%9B%E8%A1%8C%E7%BD%91%E7%BB%9C%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90/</guid>
       <description>Charles 目前是 OS X 上面最好的抓包分析软件，相比 WireShark 功能更加强大，并支持代理功能。 iPad HTTP Debugging with Charles - 教大家如何使用它进行代理抓包 Testing / Tethering Data Driven Mobile Apps with Charles and OSX - 教大</description>
     </item>
     
     <item>
       <title>友盟 iOS 发布渠道自动化脚本</title>
-      <link>http://icyleaf.com/2012/05/ios-publish-channel-packger-for-umeng/</link>
+      <link>https://icyleaf.com/2012/05/ios-publish-channel-packger-for-umeng/</link>
       <pubDate>Thu, 10 May 2012 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2012/05/ios-publish-channel-packger-for-umeng/</guid>
+      <guid>https://icyleaf.com/2012/05/ios-publish-channel-packger-for-umeng/</guid>
       <description>现在公司的大多数手机项目的统计服务都是用的友盟，而自使用之初到现在都有一个渠道管理的功能，这个最后打包的时候实际上可能会产生一点点的麻烦，最</description>
     </item>
     
     <item>
       <title>获取公网 IP</title>
-      <link>http://icyleaf.com/2012/05/fetch-public-ip/</link>
+      <link>https://icyleaf.com/2012/05/fetch-public-ip/</link>
       <pubDate>Wed, 09 May 2012 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2012/05/fetch-public-ip/</guid>
+      <guid>https://icyleaf.com/2012/05/fetch-public-ip/</guid>
       <description>$ curl -s http://checkip.dyndns.org | grep -Eo &#39;([0-9]{1,3}\\.){3}[0-9]{1,3}&#39;  </description>
     </item>
     
     <item>
       <title>OSX</title>
-      <link>http://icyleaf.com/2010/12/switer-between-finder-and-terminal-in-osx/</link>
+      <link>https://icyleaf.com/2010/12/switer-between-finder-and-terminal-in-osx/</link>
       <pubDate>Wed, 08 Dec 2010 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2010/12/switer-between-finder-and-terminal-in-osx/</guid>
+      <guid>https://icyleaf.com/2010/12/switer-between-finder-and-terminal-in-osx/</guid>
       <description>在 Finder 打开 Terminal 并切换到当前目录 安装一个开源的 Finder 辅助工具：cdto。功能只有一个就是实现在 Finder 打开 Terminal 并切换到当前 Finder 目录。找到你系统的版本的 app （支持当</description>
     </item>
     

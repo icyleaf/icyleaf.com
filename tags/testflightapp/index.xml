@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Testflightapp on icyleaf</title>
-    <link>http://icyleaf.com/tags/testflightapp/</link>
+    <link>https://icyleaf.com/tags/testflightapp/</link>
     <description>Recent content in Testflightapp on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>All rights reserved - 2019</copyright>
     <lastBuildDate>Fri, 06 Apr 2012 12:34:56 +0800</lastBuildDate>
     
-	<atom:link href="http://icyleaf.com/tags/testflightapp/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://icyleaf.com/tags/testflightapp/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>自动化脚本上传应用至 testflightapp</title>
-      <link>http://icyleaf.com/2012/04/automating-script-to-testflight-from-xcode/</link>
+      <link>https://icyleaf.com/2012/04/automating-script-to-testflight-from-xcode/</link>
       <pubDate>Fri, 06 Apr 2012 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2012/04/automating-script-to-testflight-from-xcode/</guid>
+      <guid>https://icyleaf.com/2012/04/automating-script-to-testflight-from-xcode/</guid>
       <description>Testflightapp 是团队开发测试中起了重要的角色，尤其是到目前为止一直是免费，最近还推出的 Live 功能不仅可以统计本身的一些数据还可以把现有的一些其他的账户的数据</description>
     </item>
     

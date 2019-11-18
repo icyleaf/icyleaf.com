@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Jenkins on icyleaf</title>
-    <link>http://icyleaf.com/tags/jenkins/</link>
+    <link>https://icyleaf.com/tags/jenkins/</link>
     <description>Recent content in Jenkins on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>All rights reserved - 2019</copyright>
     <lastBuildDate>Wed, 18 Apr 2018 14:44:32 +0800</lastBuildDate>
     
-	<atom:link href="http://icyleaf.com/tags/jenkins/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://icyleaf.com/tags/jenkins/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>如何使用 Docker 管理 Jenkins</title>
-      <link>http://icyleaf.com/2018/04/how-to-manage-jenkins-with-docker/</link>
+      <link>https://icyleaf.com/2018/04/how-to-manage-jenkins-with-docker/</link>
       <pubDate>Wed, 18 Apr 2018 14:44:32 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2018/04/how-to-manage-jenkins-with-docker/</guid>
+      <guid>https://icyleaf.com/2018/04/how-to-manage-jenkins-with-docker/</guid>
       <description>官方的 jenkins 镜像已经不再维护管理而是由 Jenkins Community 进行更新，鉴于 Jenkins 的更新频率特别快社区版本会提供两个版本： lts 长期稳定版本，但还是会有新版提醒 latest 每周更新版</description>
     </item>
     

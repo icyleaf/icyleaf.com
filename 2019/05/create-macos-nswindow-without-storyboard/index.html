@@ -28,27 +28,27 @@
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="shortcut icon" href="http://icyleaf.com/images/favicon.ico">
-    <link rel="apple-touch-icon" href="http://icyleaf.com/images/apple-touch-icon.png" />
+    <link rel="shortcut icon" href="https://icyleaf.com/images/favicon.ico">
+    <link rel="apple-touch-icon" href="https://icyleaf.com/images/apple-touch-icon.png" />
 
-    <link rel="stylesheet" type="text/css" href="http://icyleaf.com/css/screen.css" />
-    <link rel="stylesheet" type="text/css" href="http://icyleaf.com/css/nav.css" />
+    <link rel="stylesheet" type="text/css" href="https://icyleaf.com/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="https://icyleaf.com/css/nav.css" />
 
     
-        <link rel="stylesheet" href="http://icyleaf.com/css/highlight/tomorrow-night.css">
-        <script src="http://icyleaf.com/js/highlight.pack.js"></script>
+        <link rel="stylesheet" href="https://icyleaf.com/css/highlight/tomorrow-night.css">
+        <script src="https://icyleaf.com/js/highlight.pack.js"></script>
         <script>hljs.initHighlightingOnLoad();</script>
     
 
     
         
-            <link href="http://icyleaf.com/index.xml" rel="alternate" type="application/rss+xml" title="icyleaf" />
+            <link href="https://icyleaf.com/index.xml" rel="alternate" type="application/rss+xml" title="icyleaf" />
         
         
     
     <meta name="generator" content="Hugo 0.47.1" />
 
-    <link rel="canonical" href="http://icyleaf.com/2019/05/create-macos-nswindow-without-storyboard/" />
+    <link rel="canonical" href="https://icyleaf.com/2019/05/create-macos-nswindow-without-storyboard/" />
 
     
     <script>
@@ -76,28 +76,28 @@
     
       
       <li class="nav-opened" role="presentation">
-      	<a href="http://icyleaf.com/">Home</a>
+      	<a href="https://icyleaf.com/">Home</a>
       </li>
     
       
       <li class="nav-opened" role="presentation">
-      	<a href="http://icyleaf.com/categories/technology">Technology</a>
+      	<a href="https://icyleaf.com/categories/technology">Technology</a>
       </li>
     
       
       <li class="nav-opened" role="presentation">
-      	<a href="http://icyleaf.com/tags">Tags</a>
+      	<a href="https://icyleaf.com/tags">Tags</a>
       </li>
     
       
       <li class="nav-opened" role="presentation">
-      	<a href="http://icyleaf.com/about">About</a>
+      	<a href="https://icyleaf.com/about">About</a>
       </li>
     
   </ul>
 
   
-    <a class="subscribe-button icon-feed" href="http://icyleaf.com/2019/05/create-macos-nswindow-without-storyboard/">Subscribe</a>
+    <a class="subscribe-button icon-feed" href="https://icyleaf.com/2019/05/create-macos-nswindow-without-storyboard/">Subscribe</a>
   
 </div>
 <span class="nav-cover"></span>
@@ -110,7 +110,7 @@
 
   <nav class="main-nav overlay clearfix">
   
-    <a class="blog-logo" href="http://icyleaf.com/"><img src="http://icyleaf.com/images/icyleaf-icon.png" alt="Blog Logo" /></a>
+    <a class="blog-logo" href="https://icyleaf.com/"><img src="https://icyleaf.com/images/icyleaf-icon.png" alt="Blog Logo" /></a>
   
 
   
@@ -135,7 +135,7 @@
         </time>
       
        
-        <span class="post-tag small"><a href="http://icyleaf.com/tags/macos/">#macOS</a></span>
+        <span class="post-tag small"><a href="https://icyleaf.com/tags/macos/">#macOS</a></span>
        
       </section>
     </header>
@@ -172,7 +172,7 @@
 
 <p>选中 Window 控件后后选择删除（<code>Main.storyboard</code> 还需要再删除默认生成的 ViewController 控件），删除后样子是这样的</p>
 
-<p><img src="http://icyleaf.com/tutorials/macos-app-without-storyboard/001/shot001-xcode-storyboard.png" alt="Storyboard and xib in Xcode" /></p>
+<p><img src="https://icyleaf.com/tutorials/macos-app-without-storyboard/001/shot001-xcode-storyboard.png" alt="Storyboard and xib in Xcode" /></p>
 
 <p>由于我们删除了默认的 NSWindow 因此需要在 <code>Appdelegate.swift</code> 文件创建一个：</p>
 
@@ -212,7 +212,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 <p>注意看上面代码块的备注，这两行代码不能颠倒，否则 <code>NSApplication.shared.mainWindow</code> 返回的是 <code>nil</code>，我们来运行一下看看，是不是就能看到一个 640x480 的窗口，标题显示的 hello world</p>
 
-<p><img src="http://icyleaf.com/tutorials/macos-app-without-storyboard/001/shot002-nswindow.png" alt="NSWindow App" /></p>
+<p><img src="https://icyleaf.com/tutorials/macos-app-without-storyboard/001/shot002-nswindow.png" alt="NSWindow App" /></p>
 
 <p>用鼠标拖拽缩放大小看看是不是到一个保留尺寸就无法再缩小了，这个就是通过代码设置的最小尺寸。虽然 App 可以运行了内容还是空空的，根据上面画出来的层级关系还需要一个 NSViewController 充当 contentViewController，它相当于 iOS 的 rootViewController 这样说应该就很容易理解了吧。</p>
 
@@ -337,7 +337,7 @@ class ViewController: NSViewController {
 
 <p>让我们在运行一次看看？</p>
 
-<p><img src="http://icyleaf.com/tutorials/macos-app-without-storyboard/001/shot003-final-app.png" alt="Final App" /></p>
+<p><img src="https://icyleaf.com/tutorials/macos-app-without-storyboard/001/shot003-final-app.png" alt="Final App" /></p>
 
 <p>Ta-Da! 完成了！</p>
 
@@ -350,7 +350,7 @@ class ViewController: NSViewController {
   <footer class="post-footer">
     
     <figure class="author-image">
-        <a class="img" href="http://icyleaf.com/" style="background-image: url(/images/icyleaf-icon.png)"><span class="hidden">icyleaf's Picture</span></a>
+        <a class="img" href="https://icyleaf.com/" style="background-image: url(/images/icyleaf-icon.png)"><span class="hidden">icyleaf's Picture</span></a>
     </figure>
     
 
@@ -361,13 +361,13 @@ class ViewController: NSViewController {
 
 
 <section class="author">
-  <h4><a href="http://icyleaf.com/">icyleaf</a></h4>
+  <h4><a href="https://icyleaf.com/">icyleaf</a></h4>
   
   <p>热爱户外的码农、下厨初心者</p>
   
   <div class="author-meta">
     <span class="author-location icon-location">Beijing, China</span>
-    <span class="author-link icon-link"><a href="http://icyleaf.com">http://icyleaf.com</a></span>
+    <span class="author-link icon-link"><a href="https://icyleaf.com">https://icyleaf.com</a></span>
   </div>
 </section>
 
@@ -400,8 +400,8 @@ class ViewController: NSViewController {
 <div id="disqus_thread"></div>
 <script type="text/javascript">
   var disqus_config = function () {
-    this.page.url = "http:\/\/icyleaf.com\/2019\/05\/create-macos-nswindow-without-storyboard\/";  
-    this.page.identifier = "http:\/\/icyleaf.com\/2019\/05\/create-macos-nswindow-without-storyboard\/"; 
+    this.page.url = "https:\/\/icyleaf.com\/2019\/05\/create-macos-nswindow-without-storyboard\/";  
+    this.page.identifier = "https:\/\/icyleaf.com\/2019\/05\/create-macos-nswindow-without-storyboard\/"; 
   };
 
   (function() {
@@ -425,7 +425,7 @@ class ViewController: NSViewController {
   <aside class="read-next">
   
   
-      <a class="read-next-story prev" style="no-cover" href="http://icyleaf.com/2019/04/apply-thailand-evisa/">
+      <a class="read-next-story prev" style="no-cover" href="https://icyleaf.com/2019/04/apply-thailand-evisa/">
           <section class="post">
               <h2>申请泰国电子落地签答疑解惑</h2>
           </section>
@@ -442,9 +442,9 @@ class ViewController: NSViewController {
         
     </footer>
   </div>
-  <script type="text/javascript" src="http://icyleaf.com/js/jquery.js"></script>
-  <script type="text/javascript" src="http://icyleaf.com/js/jquery.fitvids.js"></script>
-  <script type="text/javascript" src="http://icyleaf.com/js/index.js"></script>
+  <script type="text/javascript" src="https://icyleaf.com/js/jquery.js"></script>
+  <script type="text/javascript" src="https://icyleaf.com/js/jquery.fitvids.js"></script>
+  <script type="text/javascript" src="https://icyleaf.com/js/index.js"></script>
   
 </body>
 </html>

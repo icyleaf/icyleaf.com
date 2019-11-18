@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Gitlab on icyleaf</title>
-    <link>http://icyleaf.com/tags/gitlab/</link>
+    <link>https://icyleaf.com/tags/gitlab/</link>
     <description>Recent content in Gitlab on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>All rights reserved - 2019</copyright>
     <lastBuildDate>Sun, 26 Jan 2014 12:34:56 +0800</lastBuildDate>
     
-	<atom:link href="http://icyleaf.com/tags/gitlab/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://icyleaf.com/tags/gitlab/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Puma 替换 Unicorn 跑 Gitlab</title>
-      <link>http://icyleaf.com/2014/01/moving-unicorn-to-puma-on-gitlab/</link>
+      <link>https://icyleaf.com/2014/01/moving-unicorn-to-puma-on-gitlab/</link>
       <pubDate>Sun, 26 Jan 2014 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2014/01/moving-unicorn-to-puma-on-gitlab/</guid>
+      <guid>https://icyleaf.com/2014/01/moving-unicorn-to-puma-on-gitlab/</guid>
       <description>前篇介绍到如何在《CentoOS 上面安装 Gitlab》一文，gitlab 默认使用的是 unicorn 作为内部的 app server，再用 nginx 做代理转发。之前是在公</description>
     </item>
     

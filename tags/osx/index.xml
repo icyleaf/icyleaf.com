@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Osx on icyleaf</title>
-    <link>http://icyleaf.com/tags/osx/</link>
+    <link>https://icyleaf.com/tags/osx/</link>
     <description>Recent content in Osx on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>All rights reserved - 2019</copyright>
     <lastBuildDate>Fri, 05 Aug 2016 17:21:08 +0800</lastBuildDate>
     
-	<atom:link href="http://icyleaf.com/tags/osx/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://icyleaf.com/tags/osx/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>如何在 OS X 上安装 Rancher</title>
-      <link>http://icyleaf.com/2016/08/how-to-install-rancher-on-osx/</link>
+      <link>https://icyleaf.com/2016/08/how-to-install-rancher-on-osx/</link>
       <pubDate>Fri, 05 Aug 2016 17:21:08 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2016/08/how-to-install-rancher-on-osx/</guid>
+      <guid>https://icyleaf.com/2016/08/how-to-install-rancher-on-osx/</guid>
       <description>Rancher 是 Docker 编排解决方案的一种，好处在于可以做容器编排，网络，存储，负载均衡，还能够支持云服务器（比如 Amazon EC2/Azure/DigitalOcea</description>
     </item>
     

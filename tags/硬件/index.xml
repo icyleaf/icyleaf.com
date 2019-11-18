@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>硬件 on icyleaf</title>
-    <link>http://icyleaf.com/tags/%E7%A1%AC%E4%BB%B6/</link>
+    <link>https://icyleaf.com/tags/%E7%A1%AC%E4%BB%B6/</link>
     <description>Recent content in 硬件 on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>All rights reserved - 2019</copyright>
     <lastBuildDate>Thu, 28 Mar 2019 17:12:07 +0800</lastBuildDate>
     
-	<atom:link href="http://icyleaf.com/tags/%E7%A1%AC%E4%BB%B6/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://icyleaf.com/tags/%E7%A1%AC%E4%BB%B6/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>华擎 Z390 Gaming ITX 黑苹果安装教程</title>
-      <link>http://icyleaf.com/2019/03/asrock-z390-gaming-itx-install-hackintosh-tutorial/</link>
+      <link>https://icyleaf.com/2019/03/asrock-z390-gaming-itx-install-hackintosh-tutorial/</link>
       <pubDate>Thu, 28 Mar 2019 17:12:07 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2019/03/asrock-z390-gaming-itx-install-hackintosh-tutorial/</guid>
+      <guid>https://icyleaf.com/2019/03/asrock-z390-gaming-itx-install-hackintosh-tutorial/</guid>
       <description>2019-04-01 更新： 更新疑惑解答无线网络慢的解决方案。 春节前购入一台式机挖坑要写黑苹果安装教程，本来计划是 3 月初整理完毕期间赶上辞职彻底放飞自我，加上无</description>
     </item>
     
     <item>
       <title>攒了一台 4K 视频剪辑黑苹果</title>
-      <link>http://icyleaf.com/2019/01/itx-coffee-lake-hackintosh-build-for-4k-video-editing/</link>
+      <link>https://icyleaf.com/2019/01/itx-coffee-lake-hackintosh-build-for-4k-video-editing/</link>
       <pubDate>Wed, 30 Jan 2019 10:30:07 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2019/01/itx-coffee-lake-hackintosh-build-for-4k-video-editing/</guid>
+      <guid>https://icyleaf.com/2019/01/itx-coffee-lake-hackintosh-build-for-4k-video-editing/</guid>
       <description>2019-05-29 更新： 购入矿卡整 2 个月的时间目前没有翻车，macOS 下用于视频剪辑速度确实快了很多！在 Windows 用显卡超频检测风扇偶尔会提示风扇有问题但玩 Apex 英雄最</description>
     </item>
     

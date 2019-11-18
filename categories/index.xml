@@ -2,48 +2,48 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on icyleaf</title>
-    <link>http://icyleaf.com/categories/</link>
+    <link>https://icyleaf.com/categories/</link>
     <description>Recent content in Categories on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>All rights reserved - 2019</copyright>
     
-	<atom:link href="http://icyleaf.com/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://icyleaf.com/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Cooking</title>
-      <link>http://icyleaf.com/categories/cooking/</link>
+      <link>https://icyleaf.com/categories/cooking/</link>
       <pubDate>Mon, 14 Jan 2013 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/categories/cooking/</guid>
+      <guid>https://icyleaf.com/categories/cooking/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Life</title>
-      <link>http://icyleaf.com/categories/life/</link>
+      <link>https://icyleaf.com/categories/life/</link>
       <pubDate>Wed, 10 Apr 2019 13:12:07 +0800</pubDate>
       
-      <guid>http://icyleaf.com/categories/life/</guid>
+      <guid>https://icyleaf.com/categories/life/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Outdoor</title>
-      <link>http://icyleaf.com/categories/outdoor/</link>
+      <link>https://icyleaf.com/categories/outdoor/</link>
       <pubDate>Sat, 25 May 2013 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/categories/outdoor/</guid>
+      <guid>https://icyleaf.com/categories/outdoor/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Technology</title>
-      <link>http://icyleaf.com/categories/technology/</link>
+      <link>https://icyleaf.com/categories/technology/</link>
       <pubDate>Thu, 23 May 2019 22:45:07 +0800</pubDate>
       
-      <guid>http://icyleaf.com/categories/technology/</guid>
+      <guid>https://icyleaf.com/categories/technology/</guid>
       <description></description>
     </item>
     

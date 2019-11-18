@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Vagrant on icyleaf</title>
-    <link>http://icyleaf.com/tags/vagrant/</link>
+    <link>https://icyleaf.com/tags/vagrant/</link>
     <description>Recent content in Vagrant on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>All rights reserved - 2019</copyright>
     <lastBuildDate>Sat, 21 Dec 2013 12:34:56 +0800</lastBuildDate>
     
-	<atom:link href="http://icyleaf.com/tags/vagrant/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://icyleaf.com/tags/vagrant/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>学习 Ansible &#43; Vagrant</title>
-      <link>http://icyleaf.com/2013/12/learning-ansible-and-vagrant/</link>
+      <link>https://icyleaf.com/2013/12/learning-ansible-and-vagrant/</link>
       <pubDate>Sat, 21 Dec 2013 12:34:56 +0800</pubDate>
       
-      <guid>http://icyleaf.com/2013/12/learning-ansible-and-vagrant/</guid>
+      <guid>https://icyleaf.com/2013/12/learning-ansible-and-vagrant/</guid>
       <description>Ansible is a radically simple IT orchestration engine that makes your applications and systems easier to deploy. Avoid writing scripts or custom code to deploy and update your applications— automate in a language that approaches plain English, using SSH, with no agents to install on remote systems. 简单来说 Ansible 是一个极简化</description>
     </item>
     
