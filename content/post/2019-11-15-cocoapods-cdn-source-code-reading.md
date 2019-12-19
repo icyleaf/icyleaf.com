@@ -12,7 +12,6 @@ index: false
 comments: true
 isCJKLanguage: true
 share: true
-draft: true
 ---
 
 Cocoapods [1.7.2](https://blog.cocoapods.org/CocoaPods-1.7.2/) 版本开始增加 CDN 支持但默认没有启用，[1.8](http://blog.cocoapods.org/CocoaPods-1.8.0-beta/) 版本的发布舍弃了原始完整克隆的 Specs 仓库改用 CDN 服务。CDN 利用的是免费且强大的 [jsDelivr](https://www.jsdelivr.com/) CDN 服务，该 CDN 网络在国内是有备案因此速度和稳定性都会有很好的保证。该提案其实在去年已经有人使用 Cocoapods Plugin 的方式实现并向社区[贡献 PR](https://github.com/CocoaPods/CocoaPods/issues/8268)。
@@ -29,7 +28,7 @@ Cocoapods [1.7.2](https://blog.cocoapods.org/CocoaPods-1.7.2/) 版本开始增�
 
 ### 新的机制
 
-第一步分析 Podfile 里面的 source ，如果没有走默认 Cocoapods 的配置（1.8 以上是 https://cdn.cocoapods.org，之前的还是 Cocoapods/Spec），
+第一步分析 Podfile 里面的 source ，如果没有走默认 Cocoapods 的配置（1.8 以上是 https://cdn.cocoapods.org ，之前的还是 Cocoapods/Spec），
 如果本地不存在官方 cdn 的 repo 名字是 trunk 的保留字，自己无法创建。如果有自定义的 source 会追加上去 sources 列表。
 
 ```
@@ -69,7 +68,7 @@ prefix_lengths:
 
 第四步，分析 Pod 并获取 pod 的版本信息，比如 Podfile 我增加了一个 `pod "AFNetworking"`，把 pod 名字做 MD5 后的值取 Cocoapods-version.yml 的 prefiex\_length 数组长度的值单字母拆分用下划线分割按照规则拼成文件名 `all_pods_versions(_{fragment}).txt` (如果prefix\_length 为 0 则只会去下载 `/all_pods_versions.txt`)
 
-比如：prefix\_lengths 数组大小为 3，AFNetworking MD5 后 a75d452377f396bdc4b623a5df25820 则匹配前三位 a75 拆分后 a\_7\_5
+比如：prefix\_lengths 数组大小为 3，AFNetworking MD5 后 `a75d452377f396bdc4b623a5df25820` 则匹配前三位 a75 拆分后 a\_7\_5
 后查找 cdn url 路径的 `/all_pods_versions_a_7_5.txt` 下载下来后的内容：
 
 ```
@@ -79,7 +78,7 @@ JFCountryPicker/0.0.1/0.0.2
 JVEmptyElement/0.1.0
 ```
 
-第五步，下载 pod 的所有版本的 .podspec 文件，从上面的文件按照每行寻找第一段的名字，把后面的所有版本按照上面获取到的 prefix\_lengths 的值（例如 AFNetworking 是 a, 7 , 5） `/Specs/a/7/5/AFNetworking/{version}/AFNetworking.podspec.json` 一次下载，并保存 etag 为 `/Specs/a/7/5/AFNetworking/{version}/AFNetworking.podspec.json.etag`，如果没有找到的话就会直接报错 :(
+第五步，下载 pod 的所有版本的 .podspec 文件，从上面的文件按照每行寻找第一段的名字，把后面的所有版本按照上面获取到的 prefix\_lengths 的值（例如 AFNetworking 是 a, 7 , 5） `/Specs/a/7/5/AFNetworking/{version}/AFNetworking.podspec.json` 一次下载，并保存 etag 为 `/Specs/a/7/5/AFNetworking/{version}/AFNetworking.podspec.json.etag`，这个 etag 作用上面已经讲过，如果没有找到的话就会直接报错。
 
 ```
 Adding spec repo `trunk` with CDN `https://cdn.cocoapods.org/`
@@ -105,3 +104,8 @@ Cocoapods trunk 源的目录结构：
 
 第六步和老的机制第二步一样同样最终还是会寻找 podspec 里面下载地址去下载，
 也就是说**真正 CDN 缓存加速的只有原有 Specs 必要的 podspec 文件，而不会加速 Pod 真正源地址**，改机制只是减轻了本地更新官方 Specs 源的麻烦以及维护一个巨大的本地文件存储，这也是中心化机制的一个心结。
+
+### 结语
+
+这个机制大大减少了本地需要占一个较大存储的问题，尤其是初次 `pod install` 时间长的情况，但 Pod 库本身还是各自的
+地址本质上无法解决安装 Pod 消耗时间过长的问题。
