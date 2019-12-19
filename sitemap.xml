@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://icyleaf.com/2019/11/cocoapods-cdn-source-code-reading/</loc>
+    <lastmod>2019-11-15T19:10:07+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://icyleaf.com/2019/05/create-macos-nswindow-without-storyboard/</loc>
     <lastmod>2019-05-23T22:45:07+08:00</lastmod>
   </url>
@@ -795,7 +800,7 @@
   
   <url>
     <loc>https://icyleaf.com/tags/ios/</loc>
-    <lastmod>2017-03-28T20:12:07+08:00</lastmod>
+    <lastmod>2019-11-15T19:10:07+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -903,7 +908,7 @@
   
   <url>
     <loc>https://icyleaf.com/post/</loc>
-    <lastmod>2019-05-23T22:45:07+08:00</lastmod>
+    <lastmod>2019-11-15T19:10:07+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -951,7 +956,7 @@
   
   <url>
     <loc>https://icyleaf.com/tags/ruby/</loc>
-    <lastmod>2017-04-26T16:00:49+00:00</lastmod>
+    <lastmod>2019-11-15T19:10:07+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -987,7 +992,7 @@
   
   <url>
     <loc>https://icyleaf.com/categories/technology/</loc>
-    <lastmod>2019-05-23T22:45:07+08:00</lastmod>
+    <lastmod>2019-11-15T19:10:07+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -1053,7 +1058,7 @@
   
   <url>
     <loc>https://icyleaf.com/</loc>
-    <lastmod>2019-05-23T22:45:07+08:00</lastmod>
+    <lastmod>2019-11-15T19:10:07+08:00</lastmod>
     <priority>0</priority>
   </url>
   

@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>All rights reserved - 2019</copyright>
-    <lastBuildDate>Thu, 23 May 2019 22:45:07 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 15 Nov 2019 19:10:07 +0800</lastBuildDate>
     
 	<atom:link href="https://icyleaf.com/categories/technology/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Cocoapods 新增 CDN 支持的源码解读</title>
+      <link>https://icyleaf.com/2019/11/cocoapods-cdn-source-code-reading/</link>
+      <pubDate>Fri, 15 Nov 2019 19:10:07 +0800</pubDate>
+      
+      <guid>https://icyleaf.com/2019/11/cocoapods-cdn-source-code-reading/</guid>
+      <description>Cocoapods 1.7.2 版本开始增加 CDN 支持但默认没有启用，1.8 版本的发布舍弃了原始完整克隆的 Specs 仓库改用 CDN 服务。CDN 利用的是免费且强大的 jsDelivr CDN 服务，该 CDN 网络在国</description>
+    </item>
     
     <item>
       <title>创建无 Storyboard（xib） 的 macOS NSWindow</title>
