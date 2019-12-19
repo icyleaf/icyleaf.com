@@ -48,7 +48,7 @@ share: true
 本教程提到的版本信息，Clover 配置和 Kexts 均公开到个人 Github 仓库：[EFI-ASRock-Z390-Phantom-Gaming-ITX](https://github.com/icyleaf/EFI-ASRock-Z390-Phantom-Gaming-ITX) 。下面提到环境信息后续变化以 Git 仓库为准。
 
 - macOS 版本：Mojave 10.14.3
-- BIOS 版本: 0.5.0
+- BIOS 版本: 1.5.0
 - Clover 版本：v2.4k r4910
 - Clover Configuration 版本：v5.4.1.1
 - Kext Utility 版本：v2.6.6
