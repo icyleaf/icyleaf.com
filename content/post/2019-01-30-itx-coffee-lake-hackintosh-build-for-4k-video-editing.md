@@ -65,7 +65,7 @@ share: true
 
 业余兴趣爱好一直没有行动。之前出去玩攒了不少的视频素材，只有在结婚前花了三个月用 iMovie 剪了一个婚礼上播放的[视频](https://v.youku.com/v_show/id_XOTQyNTg0ODA4.html?sharefrom=iphone&sharekey=9aa274d71e8a3ba95e2fcf03efbc9e8e0)之后也有想学 Final Cut Pro（简称 FCP） 主要还是因为硬件不达标搁浅。
 
-题外话，经过慎重考虑我选择了 Adobe Premiere，支持 Windows 和 macOS 系统而且它也支持和 FCP 一样对独立显卡的渲染优化，反正这俩 App 对我来说都是新的。
+题外话，经过慎重考虑我选择了 ~~Adobe Premiere~~ **达芬奇（**真香！），支持 Windows 和 macOS 系统而且它也支持和 FCP 一样对独立显卡的渲染优化，反正这俩 App 对我来说都是新的。
 
 ### 为什么黑苹果？
 
