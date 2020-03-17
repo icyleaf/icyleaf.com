@@ -2,23 +2,102 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Unicorn on icyleaf</title>
-    <link>https://icyleaf.com/tags/unicorn/</link>
+    <link>https://icyleaf.com/tags/unicorn/index.xml</link>
     <description>Recent content in Unicorn on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>All rights reserved - 2019</copyright>
-    <lastBuildDate>Sun, 26 Jan 2014 12:34:56 +0800</lastBuildDate>
-    
-	<atom:link href="https://icyleaf.com/tags/unicorn/index.xml" rel="self" type="application/rss+xml" />
-    
+    <atom:link href="https://icyleaf.com/tags/unicorn/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Puma 替换 Unicorn 跑 Gitlab</title>
-      <link>https://icyleaf.com/2014/01/moving-unicorn-to-puma-on-gitlab/</link>
+      <link>https://icyleaf.com/2014/01/moving-unicorn-to-puma-on-gitlab</link>
       <pubDate>Sun, 26 Jan 2014 12:34:56 +0800</pubDate>
       
-      <guid>https://icyleaf.com/2014/01/moving-unicorn-to-puma-on-gitlab/</guid>
-      <description>前篇介绍到如何在《CentoOS 上面安装 Gitlab》一文，gitlab 默认使用的是 unicorn 作为内部的 app server，再用 nginx 做代理转发。之前是在公</description>
+      <guid>https://icyleaf.com/2014/01/moving-unicorn-to-puma-on-gitlab</guid>
+      <description>
+
+&lt;p&gt;前篇介绍到如何在《&lt;a href=&#34;http://icyleaf.com/2013/09/how-to-install-gitlab-on-centos/&#34;&gt;CentoOS 上面安装 Gitlab&lt;/a&gt;》一文，gitlab 默认使用的是 &lt;code&gt;unicorn&lt;/code&gt; 作为内部的 app server，再用 &lt;code&gt;nginx&lt;/code&gt; 做代理转发。之前是在公司内部搭建了一个平台，用着还算可以。有打算在 &lt;a href=&#34;https://www.linode.com/?r=66b0730eca572d3e45f083e29b1b3f8781b2a009&#34;&gt;Linode 购买的 VPS&lt;/a&gt; 上面，使用 &lt;code&gt;unicorn&lt;/code&gt; 跑服务的时候 &lt;code&gt;ruby&lt;/code&gt; 的进程居然占了 400-500M 左右，对于 Linode 刚刚免费升级之后才有 1G 内存的环境上，我还真有点放弃安装它的欲望。于是在想是否可以使用 &lt;code&gt;puma&lt;/code&gt; 替换掉原先的。&lt;/p&gt;
+
+&lt;h2 id=&#34;puma&#34;&gt;puma&lt;/h2&gt;
+
+&lt;p&gt;简单介绍下 &lt;a href=&#34;http://puma.io/&#34;&gt;&lt;code&gt;puma&lt;/code&gt;&lt;/a&gt;，它是一个由 ruby 编写的转为 &lt;a href=&#34;http://rack.github.io/&#34;&gt;&lt;code&gt;rack&lt;/code&gt;&lt;/a&gt; 设计的 app server，在性能和资源占有上却有极大的优势（下表数据来自官方）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;PUMA - 78 Mb
+RAINBOWS! (1X16) - 120 Mb
+UNICORN - 1076 Mb
+RAINBOWS! (16X32) - 1138 Mb
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;而且集成也非常的简单，若使用 rails 或者 sinatra（及 padrino）都已经支持，直接 &lt;code&gt;gem install puma&lt;/code&gt;，然后跑默认的 &lt;code&gt;rails/padrino server&lt;/code&gt; 会自动加载。&lt;/p&gt;
+
+&lt;h2 id=&#34;教程&#34;&gt;教程&lt;/h2&gt;
+
+&lt;p&gt;Okay，经过一番查找，官方在收集的 &lt;a href=&#34;https://gitlab.com/gitlab-org/gitlab-recipes/tree/master&#34;&gt;repices&lt;/a&gt; 里面有关于 &lt;code&gt;puma&lt;/code&gt; 的一些配置。他们也是收集的非官方资料，里面的资料只有借鉴意义，真正拿来用的时候各种问题，所以才有了本篇文字。&lt;/p&gt;
+
+&lt;p&gt;首先是关闭启动的 &lt;code&gt;gitlab&lt;/code&gt; 服务&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ (sudo) service gitlab stop
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;关闭之后，添加 puma gem，打开 &lt;code&gt;Gemfile&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;group :unicorn do
+  gem &#39;unicorn&#39;, &#39;~&amp;gt; 4.6.3&#39;
+	gem &#39;unicorn-worker-killer&#39;
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;找到上面的这段 group 替换成：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gem &#39;puma&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;再者修改 &lt;code&gt;config.ru&lt;/code&gt;，把下面这段代码做下替换，删除 unicorn 的代码，加载 puma：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;unless defined?(PhusionPassenger)
+  require &#39;unicorn&#39;
+  # Unicorn self-process killer
+  require &#39;unicorn/worker_killer&#39;
+  # Max memory size (RSS) per worker
+  use Unicorn::WorkerKiller::Oom, (200 * (1 &amp;lt;&amp;lt; 20)), (250 * (1 &amp;lt;&amp;lt; 20))
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;更新成&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;unless defined?(PhusionPassenger)
+  require &#39;puma&#39;
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;替换完毕更新 &lt;code&gt;gem&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# mysql 数据库
+bundle install --without development test postgres --path vendor/bundle --no-deployment
+# postgres 数据库
+bundle install --without development test mysql --path vendor/bundle --no-deployment 	
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;最后还有两处需要修改，添加 &lt;code&gt;config/puma.rb&lt;/code&gt;（替代 &lt;code&gt;config/unicorn.rb&lt;/code&gt;） 以及替换 &lt;code&gt;/etc/init.d/gitlab&lt;/code&gt; 服务脚本代码。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;config/puma.rb&lt;/code&gt;的代码在&lt;a href=&#34;https://gitlab.com/gitlab-org/gitlab-recipes/blob/master/app-server/puma/puma.rb&#34;&gt;这里可以下载&lt;/a&gt;，无需做任何的修改。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;/etc/init.d/gitlab&lt;/code&gt; 服务脚本：&lt;a href=&#34;https://gitlab.com/gitlab-org/gitlab-recipes/tree/master/init/sysvinit/centos&#34;&gt;CentOS&lt;/a&gt; | &lt;a href=&#34;https://gitlab.com/gitlab-org/gitlab-recipes/tree/master/init/sysvinit/debian&#34;&gt;Debian(Ubuntu)&lt;/a&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;服务脚本需要设置下执行权限： chmod +x /etc/init.d/gitlab&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;最后开启服务应该就完美了&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ (sudo) service gitlab start
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;我想用-apache-怎么办&#34;&gt;我想用 Apache 怎么办？&lt;/h2&gt;
+
+&lt;p&gt;嗯，我没尝试过，官方有提供收集的资料，&lt;a href=&#34;https://gitlab.com/gitlab-org/gitlab-recipes/tree/master/web-server&#34;&gt;自己查看下吧&lt;/a&gt;，记得要活学活用，直接套肯定会出问题的。&lt;/p&gt;
+</description>
     </item>
     
   </channel>

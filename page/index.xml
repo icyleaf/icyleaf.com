@@ -2,32 +2,69 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Pages on icyleaf</title>
-    <link>https://icyleaf.com/page/</link>
+    <link>https://icyleaf.com/page/index.xml</link>
     <description>Recent content in Pages on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>All rights reserved - 2019</copyright>
     <lastBuildDate>Wed, 10 Aug 2016 11:19:27 +0800</lastBuildDate>
-    
-	<atom:link href="https://icyleaf.com/page/index.xml" rel="self" type="application/rss+xml" />
-    
+    <atom:link href="https://icyleaf.com/page/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>project</title>
-      <link>https://icyleaf.com/project/</link>
+      <link>https://icyleaf.com/project</link>
       <pubDate>Wed, 10 Aug 2016 11:19:27 +0800</pubDate>
       
-      <guid>https://icyleaf.com/project/</guid>
+      <guid>https://icyleaf.com/project</guid>
       <description></description>
     </item>
     
     <item>
       <title>About</title>
-      <link>https://icyleaf.com/about/</link>
+      <link>https://icyleaf.com/about</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://icyleaf.com/about/</guid>
-      <description>很高兴认识你！我叫王燊(shēn)，自从 04 年开始使用 icyleaf 作为我的网络称呼。 曾经作为一名 Java 程序员出身，后因转经 PHP 后坠入 Android/iOS/Ruby 开发和管理。 专业的讲： 我</description>
+      <guid>https://icyleaf.com/about</guid>
+      <description>&lt;p&gt;很高兴认识你！我叫&lt;code&gt;王燊(shēn)&lt;/code&gt;，自从 04 年开始使用 &lt;code&gt;icyleaf&lt;/code&gt; 作为我的网络称呼。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;曾经作为一名 Java 程序员出身，后因转经 PHP 后坠入 Android/iOS/Ruby 开发和管理。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;专业的讲：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;我热爱编程。&lt;/li&gt;
+&lt;li&gt;我曾是 Windows 用户。&lt;/li&gt;
+&lt;li&gt;我现在是 macOS 死忠用户，服务器偏爱 Ubuntu/Debian。&lt;/li&gt;
+&lt;li&gt;和团队一起生产出数枚 Android 和 iOS 产品。&lt;/li&gt;
+&lt;li&gt;我负责移动研发管理，更专注团队和项目的管理。&lt;/li&gt;
+&lt;li&gt;我热爱开源，也喜爱&lt;a href=&#34;https://github.com/icyleaf&#34;&gt;贡献自己的代码&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;我是 ShareKit 首版和社区版国内分享功能的贡献者。&lt;/li&gt;
+&lt;li&gt;我偏爱使用 Ubuntu + Docker + Alpine 解决技术问题。&lt;/li&gt;
+&lt;li&gt;我开发（非官方）豆瓣移动版本：&lt;a href=&#34;http://www.douban.com/photos/album/17267307/&#34;&gt;魔豆&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;我是 &lt;a href=&#34;http://kohanaframework.org/&#34;&gt;Kohana&lt;/a&gt; PHP 框架中文社区的传道士（开源 &lt;a href=&#34;https://github.com/icyleaf/alpaca&#34;&gt;alpaca&lt;/a&gt; 社区系统及众多模块）。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;实际上我是这样一个人：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;我热爱编程。&lt;/li&gt;
+&lt;li&gt;我喜欢活在当下的生活。&lt;/li&gt;
+&lt;li&gt;我是 macOS/Linux 用户。&lt;/li&gt;
+&lt;li&gt;下厨初心者，喜欢中式面点。&lt;/li&gt;
+&lt;li&gt;家有&lt;a href=&#34;https://www.instagram.com/p/7X9ps_LOrw/?taken-by=icyleaf&#34;&gt;土豪妞&lt;/a&gt;相拥，膝下有&lt;a href=&#34;https://www.instagram.com/p/BGW2NytLOkc/?taken-by=icyleaf&#34;&gt;毛豆&lt;/a&gt;、&lt;a href=&#34;https://www.instagram.com/p/BLvgcmwB1xJ/?taken-by=icyleaf&#34;&gt;花生&lt;/a&gt;和&lt;del&gt;啤酒&lt;/del&gt;&lt;a href=&#34;https://www.instagram.com/p/BdZii7VD8Sn/?taken-by=icyleaf&#34;&gt;Beta&lt;/a&gt;作陪。&lt;/li&gt;
+&lt;li&gt;使用 iPod Touch 开始成为轻微苹果控。&lt;/li&gt;
+&lt;li&gt;曾经作为国内黑客类杂志(均已停刊)的自由撰稿人。&lt;/li&gt;
+&lt;li&gt;PlayStation 4 和 Nintendo Switch 游戏爱好者。&lt;/li&gt;
+&lt;li&gt;其实还是一名码农，虽然更多的时间是用于管理项目和团队把控。&lt;/li&gt;
+&lt;li&gt;出生于河南开封（KFC），毕业于天津（哏都），工作于北京（帝都)。&lt;/li&gt;
+&lt;li&gt;伪摄影爱好者：Kodak C340 &amp;gt; Canon 450D + GoPro 4 Sliver。&lt;/li&gt;
+&lt;li&gt;使用 N-GAGE &amp;gt; Blackberry 8310 &amp;gt; 8900 &amp;gt; Moto Defy &amp;gt; iPhone。&lt;/li&gt;
+&lt;li&gt;用双脚和味蕾寻觅城市的各个角落，只要有美食诱惑和独特的风景。&lt;/li&gt;
+&lt;li&gt;爬过野山/野长城，穿过沙漠，连穿五台山，贡嘎转山，骑行额尔古纳河边境。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
     </item>
     
   </channel>

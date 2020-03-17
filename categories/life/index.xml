@@ -2,121 +2,1191 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Life on icyleaf</title>
-    <link>https://icyleaf.com/categories/life/</link>
+    <link>https://icyleaf.com/categories/life/index.xml</link>
     <description>Recent content in Life on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>All rights reserved - 2019</copyright>
-    <lastBuildDate>Wed, 10 Apr 2019 13:12:07 +0800</lastBuildDate>
-    
-	<atom:link href="https://icyleaf.com/categories/life/index.xml" rel="self" type="application/rss+xml" />
-    
+    <atom:link href="https://icyleaf.com/categories/life/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>申请泰国电子落地签答疑解惑</title>
-      <link>https://icyleaf.com/2019/04/apply-thailand-evisa/</link>
+      <link>https://icyleaf.com/2019/04/apply-thailand-evisa</link>
       <pubDate>Wed, 10 Apr 2019 13:12:07 +0800</pubDate>
       
-      <guid>https://icyleaf.com/2019/04/apply-thailand-evisa/</guid>
-      <description>2019-03-28 更新： 拿着打印的 eVISA 到达曼谷机场后填写玩出入境申请表去专门的 eVISA 通道（可能有路障，工作人员知道是办理 eVISA 会放行）到那边几乎没有人在排队，我们附带</description>
+      <guid>https://icyleaf.com/2019/04/apply-thailand-evisa</guid>
+      <description>
+
+&lt;blockquote&gt;
+&lt;p&gt;2019-03-28 更新：&lt;/p&gt;
+
+&lt;p&gt;拿着打印的 eVISA 到达曼谷机场后填写玩出入境申请表去专门的 eVISA 通道（可能有路障，工作人员知道是办理 eVISA 会放行）到那边几乎没有人在排队，我们附带的照片（没贴上去）给了也没要（建议最好还是带着），5 分钟时间入境！&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;3月初购买了去泰国曼谷的机票，泰国的签证自 2018 年末增加了第四种在线申请电子落地签（E-Visa），赶上泰国免签证费延期到 2019 年 4 月底的好事情，还需要收第三方机构的手续费（这个后面展开）一家三口办下来比淘宝找中介要便宜好多，也不用落地排 1-2 小时队当场办落地签（据说落地入境走的是独立通道）&lt;/p&gt;
+
+&lt;p&gt;签证办理渠道对比表&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;渠道&lt;/th&gt;
+&lt;th&gt;办理机构&lt;/th&gt;
+&lt;th&gt;费用&lt;/th&gt;
+&lt;th&gt;停留时长&lt;/th&gt;
+&lt;th&gt;备注&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;自己递签&lt;/td&gt;
+&lt;td&gt;泰国大使馆&lt;/td&gt;
+&lt;td&gt;签证费&lt;/td&gt;
+&lt;td&gt;60天&lt;/td&gt;
+&lt;td&gt;资料要求多，耗时 7 天，婴儿同大人&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;代办&lt;/td&gt;
+&lt;td&gt;旅行社或淘宝&lt;/td&gt;
+&lt;td&gt;230 人民币签证费+中介费&lt;/td&gt;
+&lt;td&gt;60天&lt;/td&gt;
+&lt;td&gt;资料要求少，耗时 7 天，婴儿同大人&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;落地签&lt;/td&gt;
+&lt;td&gt;机场入境处&lt;/td&gt;
+&lt;td&gt;签证费&lt;/td&gt;
+&lt;td&gt;60天&lt;/td&gt;
+&lt;td&gt;排队办理耗时 1-2 小时&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;电子落地签&lt;/td&gt;
+&lt;td&gt;网站办理&lt;/td&gt;
+&lt;td&gt;签证费+手续费 525 泰铢&lt;/td&gt;
+&lt;td&gt;15天，不可延期&lt;/td&gt;
+&lt;td&gt;资料整理比较蛋疼，下签时间未知&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;上面三种要么要么自己跑大使馆，要么需要费用比较高，办理电子落地签每人也就收 525 泰铢。当时查了一些资料说是申请有好多坑，如果被拒签有一次修改的机会，再被拒签不退钱。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;一句话总结：是 2019 年 4 月底前最佳申请途径，费用低廉只要资料没有任何问题出发前肯定下签。唯一缺点是只有 15 天停留期且不可延期。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;申请攻略&#34;&gt;申请攻略&lt;/h3&gt;
+
+&lt;p&gt;泰国电子落地签申请入口：&lt;a href=&#34;https://www.evisathailand.com/&#34;&gt;https://www.evisathailand.com/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;通过我申请的过程来看我猜这是一个第三方机构委托，他们只负责资料的审核，通过后再递交泰国出入境管理局，因此是商业域名。具体申请步骤大家参考&lt;a href=&#34;https://bbs.qyer.com/thread-3121710-1.html&#34;&gt;2019泰国电子落地签申请亲妈式教学&lt;/a&gt;。&lt;/p&gt;
+
+&lt;h3 id=&#34;注意事项&#34;&gt;注意事项&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;姓名填写参照护照（名是多字的中间不要有空格）&lt;/li&gt;
+&lt;li&gt;上传附件支持 PNG/JPG/GIF/PDF 大于 100KB 总体小于 2MB&lt;/li&gt;
+&lt;li&gt;机票行程单和酒店预订单建议是英文版本&lt;/li&gt;
+&lt;li&gt;机票行程单往返在一个 PDF 文件的上传两次&lt;/li&gt;
+&lt;li&gt;酒店预订单接受 Booking 和 Airbnb（在邮件酒店预订单有打印功能，跳转网页后打开浏览器隐私模式切换英文打印就是纯英文版本）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;泰国电子落地签网站也在不断版本迭代中，以上办理中可能出现的问题后续可能会改善。&lt;/p&gt;
+
+&lt;h3 id=&#34;查询进度&#34;&gt;查询进度&lt;/h3&gt;
+
+&lt;p&gt;网址：&lt;a href=&#34;https://www.evisathailand.com/check&#34;&gt;https://www.evisathailand.com/check&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;输入 Application id 和护照号即可。&lt;/p&gt;
+
+&lt;p&gt;技术党这么做：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl &#39;https://www.evisathailand.com/check?q=check&#39; --data &#39;reference_code={application_id}&amp;amp;passport_number={passport_number}&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;解析结果用 html 解析器解析 css 查询路径 &lt;code&gt;.container ul li&lt;/code&gt; 数组里 h5 是标题，input 的 value 值为数值。&lt;/p&gt;
+
+&lt;p&gt;我是用了一个 telegram bot 可以发送命令查询结果，你也可以直接写一个定时脚本有结果了直接发邮件。&lt;/p&gt;
+
+&lt;h3 id=&#34;咨询渠道&#34;&gt;咨询渠道&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;发英文邮件至 &lt;code&gt;contact@evisathailand.com&lt;/code&gt; 回复频率未知，我是 6 天后得到的官腔答复。&lt;/li&gt;
+&lt;li&gt;加微信 &lt;code&gt;泰国电子落地签eVISA&lt;/code&gt; 直接中文留言，回复频率几分钟内繁体中文官腔回复（我猜又是一个客服委托机构）。&lt;/li&gt;
+&lt;li&gt;泰国电子落地签网站最底部 &lt;code&gt;LIVE CHAT 即时聊天&lt;/code&gt; 英文沟通，秒回复，当场给你审查资料并递交给泰国出入境管理局。（可能需要翻墙）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;何时下签&#34;&gt;何时下签&lt;/h3&gt;
+
+&lt;p&gt;办理电子签除了便宜以外，我另外看中的据说是 24 - 48 小时下签，然而我太年轻&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;我是 3 月 28 日晚上申请，真正下签是 4 月 10 日，耗时 13 天，期间我尝试了三种咨询渠道，只有最后一种最有效，资料审核后递交泰国出入境管理局后端状态是不可催的，我是从他们审查后递交泰国出入境管理局又花了 3 天才拿到 evisa，不过他们客服给我的答复是只要我这递交泰国出入境管理局了肯定在你出发前给你下签。&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>海淀驾校增驾摩托车驾照</title>
-      <link>https://icyleaf.com/2018/05/apply-for-a-motorcycle-license/</link>
+      <link>https://icyleaf.com/2018/05/apply-for-a-motorcycle-license</link>
       <pubDate>Mon, 14 May 2018 20:00:43 +0800</pubDate>
       
-      <guid>https://icyleaf.com/2018/05/apply-for-a-motorcycle-license/</guid>
-      <description>去年差不多这个时候也有过学摩托的念头顺便去了好几家摩托专卖店，当时有的店提供花钱买本的服务可惜一是担心假本二是没下定决心， 没过多久北京爆出来</description>
+      <guid>https://icyleaf.com/2018/05/apply-for-a-motorcycle-license</guid>
+      <description>
+
+&lt;p&gt;去年差不多这个时候也有过学摩托的念头顺便去了好几家摩托专卖店，当时有的店提供花钱买本的服务可惜一是担心假本二是没下定决心，
+没过多久北京爆出来相关买本的灰色买卖这事我估计也就黄了也没在继续下去。时隔一年后的今天再次够了每天搬电池充电的电动车通勤，
+上周鼓起勇气（家人的鼓励也很重要）报名了摩托车增驾 D 本。&lt;/p&gt;
+
+&lt;p&gt;北京可以学摩托车的驾校其实也不少，还是找了北边地区比较靠谱的海淀驾校。直接在官方微信公众号报名挂了电话不到一分钟就有工作人员
+打电话过来确认时间上门服务（这个真心赞）。后来工作人员告诉我如果在东方时尚学过本再报增驾会有 300 的优惠，可惜现在住北边了。&lt;/p&gt;
+
+&lt;p&gt;由于这两年快递的发展学摩托车的人也逐渐多起来，海淀驾校现在是每周一期开车，&lt;strong&gt;一期大约 14 天时间可以拿本&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;h2 id=&#34;14-天拿本流程&#34;&gt;14 天拿本流程&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;第一周周四之前报名(周五当天会发短信通知培训时间点)&lt;/li&gt;
+&lt;li&gt;第一周的周六下午科目一培训（必须去录指纹和点名才能参加考试）&lt;/li&gt;
+&lt;li&gt;第二周的周四下午科目一考试（挂了可以当场免费补考一次，再挂每次 50 元补考一次）&lt;/li&gt;
+&lt;li&gt;第三周的周二到周五和周日可以全天训练，周一下午和周六是下午半天可以训练（至少去一次，尽量在周四前去训练场见教练并签字，不然无法参加科目二、三考试）&lt;/li&gt;
+&lt;li&gt;第三周的周六上午是科目四培训（同样必须驱要点名才能参加考试）&lt;/li&gt;
+&lt;li&gt;第四周的周一上午科目二、三考试，下午科目四考试（都过了当天拿本）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;看着需要四周但实际上从你到驾校算起到拿本一切顺利的情况下正好 14 天。&lt;/p&gt;
+
+&lt;h3 id=&#34;训练课时&#34;&gt;训练课时&lt;/h3&gt;
+
+&lt;p&gt;目前北京学摩托车和学汽车不一样，不打卡不记录不用约考试学时一切教练说的算。
+如果你下载了 海淀驾校 App 里面可用只有查看班车路线和班车实时情况。&lt;/p&gt;
+
+&lt;h3 id=&#34;训练时长&#34;&gt;训练时长&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;上午&lt;/code&gt;: 8:00 ~ 11:30 (班车 12:00)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;下午&lt;/code&gt;: 12:30 ~ 15:30 (班车 16:15)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;训练车型&#34;&gt;训练车型&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;两轮&lt;/code&gt;：新采购的豪爵 125cc，循环挡。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;边三轮&lt;/code&gt;：已经服役好几年的嘉陵 600cc，国际挡，见本文章的封图。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;也就是说在这里学摩托必须要在工作日时间至少去 3 次，因为课时的原因怎么请假也得一天，建议选择一个全天可以练习的时间去。
+我们这期报名的是 100 多人，报名三轮是 27 人一组，如果是全到场的话半天课时也骑不了几次。不过大家也都不是每天都去，
+我周二去的时候教练说他还有 17 名学生没见过呢。&lt;/p&gt;
+
+&lt;p&gt;正常情况下学三轮通常都比两轮的要多很多，三轮数量有限是多人一组共享一辆车，两轮相对比较多一般情况下一人一辆，
+车都经过特殊优化限制速度，三轮调教的不会往一边歪。&lt;/p&gt;
+
+&lt;h2 id=&#34;报名所需资料&#34;&gt;报名所需资料&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;身份证原件及复印件（正反复印在一张纸上）&lt;/li&gt;
+&lt;li&gt;北京居住证原件和复印件（非京籍需要）&lt;/li&gt;
+&lt;li&gt;驾照原件和复印件（增驾需要，左右两证单面复印在一张纸上）&lt;/li&gt;
+&lt;li&gt;一寸白底照片（如果平时带眼镜，照片也需要有眼镜，没有的话给电子版工作人员可以给 P 上眼镜）&lt;/li&gt;
+&lt;li&gt;报名所需的钱（两轮 E 本 1600，三轮 D 本 2000）&lt;/li&gt;
+&lt;li&gt;体检费用 20 元（需要现金）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;摩托车驾照&#34;&gt;摩托车驾照&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;F&lt;/code&gt; 本，可以驾驶轻便型摩托车(50cc 以下排量），但市面上没有驾校可以学&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;E&lt;/code&gt; 本，可以驾驶&lt;strong&gt;任何排量&lt;/strong&gt;两轮摩托车以及 &lt;code&gt;F&lt;/code&gt; 本的摩托车&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;D&lt;/code&gt; 本，可以驾驶&lt;strong&gt;任何排量&lt;/strong&gt;三轮和边三轮（跨子）摩托车以及 &lt;code&gt;E&lt;/code&gt;、&lt;code&gt;F&lt;/code&gt; 本的摩托车&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;划重点了！除了 &lt;code&gt;F&lt;/code&gt; 以外可以开任何排量的车，无论是 110cc、250cc、400cc、1000cc 甚至更高排量的都！可！以！当然是可以上牌的车型。&lt;/p&gt;
+
+&lt;p&gt;两轮摩托车在驾驶时必须带安全头盔，三轮摩托车可以不用带安全头盔。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;对于纠结 &lt;code&gt;D&lt;/code&gt; 和 &lt;code&gt;E&lt;/code&gt; 本的童鞋，如果不差那几百元就直接 &lt;code&gt;D&lt;/code&gt; 本一劳永逸。&lt;/p&gt;
+
+&lt;p&gt;如果你认定你就只开两轮摩托那 &lt;code&gt;E&lt;/code&gt; 本也就足够了。倘若未来的有一天你后悔了想开三轮，对不起，你还得在增驾一次也就意味着重头学和考试一次。&lt;/p&gt;
+
+&lt;h2 id=&#34;上级考试资料&#34;&gt;上级考试资料&lt;/h2&gt;
+
+&lt;p&gt;下载 &lt;code&gt;驾校宝典&lt;/code&gt; 或 &lt;code&gt;驾校一点通&lt;/code&gt; 选择摩托车题库，科目一 400 道题，科目四 345 道题。但我在科目四考试时出现了 2 道没有见过的题，
+不过可以根据之前的知识解答。&lt;/p&gt;
+
+&lt;h2 id=&#34;训练场地指引&#34;&gt;训练场地指引&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;打开手机上的地图 App 搜索 &lt;code&gt;海淀驾校摩托车训练场&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;科目一和科目四培训及考试都在京海教学楼，以那里为起点沿着教学楼北边的道路（班车进驾校走的那条路）继续往西走 &lt;code&gt;1.8km&lt;/code&gt; 就抵达摩托车
+训练场。&lt;/p&gt;
+
+&lt;p&gt;如果你是开车去途中看到走路的童鞋基本上都是学摩托车的建议捎上一程，到目的地后可以把车停在训练场旁边的小树林旁。&lt;/p&gt;
+
+&lt;h2 id=&#34;训练和考试项目&#34;&gt;训练和考试项目&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;转弯打灯&lt;/li&gt;
+&lt;li&gt;单边桥&lt;/li&gt;
+&lt;li&gt;红绿灯（黄灯就停）&lt;/li&gt;
+&lt;li&gt;坡起&lt;/li&gt;
+&lt;li&gt;绕桩&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;认真按着教练说的练，重点是熟练操作，掌握好离合的半联动一切都好办。实际考试主要考察绕桩，其他项目就听声音是否熄火。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;注意的是你平时训练的车号并不一定考试会用到，尽量保证掌握每辆车的离合器和半联动的感觉。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;领取驾照所需资料&#34;&gt;领取驾照所需资料&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;驾照原件（增驾需要）&lt;/li&gt;
+&lt;li&gt;身份证原件&lt;/li&gt;
+&lt;li&gt;一寸白底照片（无所谓带不带眼镜）&lt;/li&gt;
+&lt;li&gt;海淀驾校的班车卡（可以坐班车的那张）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;注意教练声称增驾后的驾照的有效期是和原由的保持不变的（即如果你的驾照快到期了增驾后还需要在到期 90 天内换本），
+但实际情况是会帮你换下一个有效期的本。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;资料参考&#34;&gt;资料参考&lt;/h2&gt;
+
+&lt;p&gt;如果你对于我文字中没有提到的部分感兴趣建议查看下如下两篇文章：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://meixg.cn/2017/04/09/learn-motocycle/&#34;&gt;2017年3月海淀驾校增驾摩托车D本流程&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.sina.com.cn/s/blog_6d56a57d0102x0dz.html&#34;&gt;2017海淀驾校考摩托车驾照流程&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
     </item>
     
     <item>
       <title>北京上临时牌照流程</title>
-      <link>https://icyleaf.com/2017/03/how-to-get-temporary-car-license-in-beijing/</link>
+      <link>https://icyleaf.com/2017/03/how-to-get-temporary-car-license-in-beijing</link>
       <pubDate>Thu, 23 Mar 2017 00:00:00 +0800</pubDate>
       
-      <guid>https://icyleaf.com/2017/03/how-to-get-temporary-car-license-in-beijing/</guid>
-      <description>不在 4s 店购买一点精品的后果就是自己需要办理北京上临牌，准备如下资料备忘 办理所需资料 身份证 北京居住卡或居住证或工作居住证（非北京户口需要） 购车</description>
+      <guid>https://icyleaf.com/2017/03/how-to-get-temporary-car-license-in-beijing</guid>
+      <description>&lt;p&gt;不在 4s 店购买一点精品的后果就是自己需要办理北京上临牌，准备如下资料备忘&lt;/p&gt;
+
+&lt;p&gt;办理所需资料&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;身份证&lt;/li&gt;
+&lt;li&gt;北京居住卡或居住证或工作居住证（非北京户口需要）&lt;/li&gt;
+&lt;li&gt;购车发票&lt;/li&gt;
+&lt;li&gt;强险保单&lt;/li&gt;
+&lt;li&gt;合格证&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;备注：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;以上资料均需要原件及复印件一份&lt;/li&gt;
+&lt;li&gt;办理临时牌照不需要指标确认书。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;办理过程&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;进门按键领号排队，等叫到的时候去柜台将上述资料给工作人员。然后在一边等待制作完成即可。不需要填写任何单子，我去的时候人比较多，大概等了30分钟。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;办理时限&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;周一至周五：8：30 - 18：00&lt;/p&gt;
+
+&lt;p&gt;周六、日：9：00 - 16：00（法定节假日除外）&lt;/p&gt;
+
+&lt;p&gt;自受理申请之日起一个工作日内办理完毕。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;收费问题&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;收费10块（两张临牌纸，5块一张），在领临牌的时候给工作人员即可。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;办理地点&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;（一）跨辖区临时行驶车号牌：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;车辆管理所：朝阳区南四环东路18号&lt;/li&gt;
+&lt;li&gt;京朝分所：朝阳区孛罗营北街1号&lt;/li&gt;
+&lt;li&gt;京海分所：海淀区北安河乡海淀驾校院内&lt;/li&gt;
+&lt;li&gt;京丰分所：丰台区双林南路新丰考试场南门对面&lt;/li&gt;
+&lt;li&gt;京顺分所：顺义区后沙峪镇泗上村裕民大街17号&lt;/li&gt;
+&lt;li&gt;京南分所：大兴区黄村镇狼垡村公交考试场院内&lt;/li&gt;
+&lt;li&gt;京北分所：昌平区马池口镇马池口村北方检测场院内&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;有效期 7-15 天&lt;/p&gt;
+
+&lt;p&gt;（二）区域内临时行驶车号牌：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;东城车管站：东城区广渠门南小街5号，68399329
+
+&lt;ul&gt;
+&lt;li&gt;东城区朝内北小街豆瓣胡同1号楼4号门，88313419&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;西城车管站：西城区赵登禹路303号，68399206
+
+&lt;ul&gt;
+&lt;li&gt;西城区广外红莲南路33号，68399472&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;朝阳车管站：朝阳区百子湾西里303楼，88313586&lt;/li&gt;
+&lt;li&gt;海淀车管站：海淀区西北旺后厂村99号，62553336&lt;/li&gt;
+&lt;li&gt;丰台车管站：丰台区小屯西路南口加油站北侧卢沟桥乡综合办公大楼，68399740转5739&lt;/li&gt;
+&lt;li&gt;石景山车管站：石景山区杨庄路8号院，68863193&lt;/li&gt;
+&lt;li&gt;门头沟车管站：门头沟区滨河南路72号一层，69806430&lt;/li&gt;
+&lt;li&gt;房山车管站：房山区拱辰街道月华大街32号，68397030转5005&lt;/li&gt;
+&lt;li&gt;通州车管站：通州区运河西大街240号，60526300&lt;/li&gt;
+&lt;li&gt;昌平车管站：昌平区马池口村交通大队综合执法大厅10-15号窗口，88313830&lt;/li&gt;
+&lt;li&gt;顺义车管站：顺义区顺平西路10号院西院，81498347&lt;/li&gt;
+&lt;li&gt;大兴车管站：大兴区黄村镇海子角村500米路南，61268964&lt;/li&gt;
+&lt;li&gt;怀柔车管站：怀柔区青春路88号，89684090&lt;/li&gt;
+&lt;li&gt;平谷车管站：平谷区北街29号，69959863&lt;/li&gt;
+&lt;li&gt;密云车管站：密云县新北路25号，69068445&lt;/li&gt;
+&lt;li&gt;延庆车管站：延庆县延庆镇妫水南街，81194561&lt;/li&gt;
+&lt;li&gt;机场车管站：首都国际机场二纬路机场公安分局综合办公大楼，64539041&lt;/li&gt;
+&lt;li&gt;亦庄车管站：北京市经济技术开发区科创四街1号，88313933&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;有效期 7 天，可以申请办理 3 次&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;临时牌照有效期&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;临时号牌有效期为15天，最长期限不超过45天。
+每辆车最多能办理3张临时牌照。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;据 4S 店告知出京的临牌只能办一次且办完之后不能再办区域内临牌。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;临时牌照如何悬挂&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;机动车临时号牌为两张，正面为车牌号码和有效期，背面为机动车详细信息，所以机动车临时号牌是不能借给他人使用。使用临时号牌上路时，应该在机动车前后挡风玻璃处各张贴一张机动车号牌，将机动车号牌号码侧朝外，如果不按照规定悬挂号牌，将被处以200元罚款和12分违章。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;咨询电话&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;车管业务咨询电话：12122&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;根据其他网站的反馈咨询的情况可能和实际有出入。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;资料参考&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;北京市公安局 -  机动车临时通行牌证核发
+&lt;a href=&#34;http://www.bjgaj.gov.cn/web/detail_getZwgkInfo_279416.html&#34;&gt;http://www.bjgaj.gov.cn/web/detail_getZwgkInfo_279416.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;北京市公安局公安交通管理局 - 申请机动车临时行驶车号牌
+&lt;a href=&#34;http://www.bjjtgl.gov.cn/jgj/jdcgl/120149/index.html&#34;&gt;http://www.bjjtgl.gov.cn/jgj/jdcgl/120149/index.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;北京身份证北京买车上外地牌实施中
+&lt;a href=&#34;http://m.newsmth.net/article/Yaohao/34585&#34;&gt;http://m.newsmth.net/article/Yaohao/34585&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;汽车实用手册(16) 临时牌照实用手册
+&lt;a href=&#34;http://www.autohome.com.cn/use/201403/742174.html&#34;&gt;http://www.autohome.com.cn/use/201403/742174.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;百度经验 - 机动车办理北京市内临时牌照流程
+&lt;a href=&#34;http://jingyan.baidu.com/article/86fae34689365e3c48121a50.html&#34;&gt;http://jingyan.baidu.com/article/86fae34689365e3c48121a50.html&lt;/a&gt;&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>博客迁徙记</title>
-      <link>https://icyleaf.com/2015/12/a-history-of-my-blog/</link>
+      <link>https://icyleaf.com/2015/12/a-history-of-my-blog</link>
       <pubDate>Thu, 17 Dec 2015 15:01:56 +0800</pubDate>
       
-      <guid>https://icyleaf.com/2015/12/a-history-of-my-blog/</guid>
-      <description>最新状态：自去年 12 月更新后没想到我又迁移了新的博客系统，文章做了最新的变化整理。 长期的不更新导致更新最新的 Hexo 之后各种的不兼容，费了一番功夫迁</description>
+      <guid>https://icyleaf.com/2015/12/a-history-of-my-blog</guid>
+      <description>
+
+&lt;blockquote&gt;
+&lt;p&gt;最新状态：自去年 12 月更新后没想到我又迁移了新的博客系统，文章做了最新的变化整理。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;长期的不更新导致更新最新的 Hexo 之后各种的不兼容，费了一番功夫迁移，难得有一番时间给这里拔拔草，休憩一番。然后再吼一嗓子：&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;博客复活了！&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;博客的历史文章通过几次的系统和脚本转换过，已经不堪入目。在统一 markdown 格式的时候还翻看了自己写的文字有些感触。复活记可能还要经历几次，不如就写一篇博客的迁徙记吧。&lt;/p&gt;
+
+&lt;h2 id=&#34;my-opera-http-my-opera-com&#34;&gt;&lt;a href=&#34;http://my.opera.com&#34;&gt;My Opera&lt;/a&gt;&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;2006 ~ 2008&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;记忆已经有些模糊了，依稀记得第一次真正开始写博客是在上大二的时候，当时作为一名苦逼学生党，在网络上到处搜刮免费资源，误打误撞的在 My Opera 安家、开始了博客的更新。起初无非就是些不痛不痒的牢骚、生活流水，哪个黑客杂志发布我投稿的文章了和一些网络上发现的各种新鲜的技术资源。尤其热衷于博客主题的修改。&lt;/p&gt;
+
+&lt;p&gt;My Opera 定位是一个社交服务平台，在那个年代应该是和 MySpace 等竞争类似网站，自身提供的功能可谓强大，不仅仅是博客，还开放相册，自创建维护的群组论坛和好友社交等主要功能。也有不少的中国人和国外的留学生（及华人）在上面聚集。通过群组的查找（类似豆瓣小组但比起强大）加入了几个华人圈，其中我比较活跃的主要是一个名叫板秀的群组。里面提供各种在当时看来非常酷炫漂亮的主题。My Opera 博客除了默认几套主题以外，还提供可自定义 CSS 样式表作为其重要&amp;rdquo;秘密武器&amp;rdquo;。也使得我为之着迷。从此也在网络开开启了第二个交际圈（第一个是非安全黑客论坛圈）。&lt;/p&gt;
+
+&lt;p&gt;大学学的科目都是非常基础的语言课程，汇编语言、C、VB/VF 之类的和 CSS + HTML 一比较来说前者的诱惑力明显不如后者。之后除了学业以外开始正式的接触 HTML/CSS/Javascript 为后面的 web 开发做好了前期的铺垫。这当时是后话了。&lt;/p&gt;
+
+&lt;p&gt;好久不长，My Opera 因是免费注册使用被一些国内的偏激份子占据后开始各种宣传转法轮和反国家等言论。正碰巧那个时候 GFW 初出茅庐，开始了域名封杀的策略。在期间 GFW 偶尔抽风也就开始慢慢的淡出 My Opera 转战到迅速火起来的 Twitter。&lt;/p&gt;
+
+&lt;p&gt;自 2007 年注册 Twitter 之后所有话唠的信息都开始转移。My Opera 只剩下一些网络技术资源和扯蛋疼的文字。最后终结到大学毕业之后停止更新。&lt;/p&gt;
+
+&lt;p&gt;最终随着 Opera 被 Android 和 iOS 等现代智能浏览器的出现逐渐没落，2014 年 3 月 3 日正式的关闭了 My Opera 服务。&lt;/p&gt;
+
+&lt;p&gt;还好 Archive.org 有索引保存到历史快照，也算是一种纪念：（可能需要翻墙）&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://web.archive.org/web/20060820214239/http://my.opera.com/icyleaf/blog/&#34;&gt;博客快照&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://web.archive.org/web/20070206190114/http://my.opera.com/blogshowing/blog&#34;&gt;板秀群组快照&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;wordpress-http-www-wordpress-org&#34;&gt;&lt;a href=&#34;http://www.wordpress.org&#34;&gt;WordPress&lt;/a&gt;&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;2007 ~ 2012.3&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;鉴于 My Opera 进行被 GFW 抽打，最终管制监禁之后，开始考虑更换新的博客平台，在使用 WordPress 之前也在国内寻找一个稳定的平台。新浪博客因为明星效应略有反感再加上网站广告横飞、没有什么玩头就按着可以自定义 CSS 的方式找了几个（如今都消失了）都感觉不太靠谱。有些想放弃，有次回家过年和挚友 @&lt;a href=&#34;https://Twitter.com/lopor&#34;&gt;lopor&lt;/a&gt; 在网吧上网，聊到这事，他说他已经和几个 V2EX 朋友合租了一台 Dreamhost 虚拟主机（VPS 那个时候还处于买不起的状态），要不要自己搭建一个 WordPress，心里一边听他给我演示一边看他打开网站和 ssh 工具进行着不知道什么事情的操作。&lt;/p&gt;
+
+&lt;p&gt;说来也巧，在大学的时候和学校网络维护的老师混的比较熟悉，老师说看看 PHP 吧，语言很简单很容易就可以开发出来一个网站。而 WordPress 本来也是 PHP 开发的。接着就有了注册域名，让朋友把 WordPress 给我部署到虚拟空间，解析域名。一切起了就开始了第二阶段的博客记录，也是时间最长的一个阶段。&lt;/p&gt;
+
+&lt;p&gt;使用 WordPress 之后的两年里，工作写 Java/HTML/CSS/Javascript，晚上的时候就开始学习 PHP，最开始就是拿 WordPress 的插件练手。粗略的熟悉整体的通用函数和钩子，等运用的比较熟练了，找了一个轻量级的 Kohana 框架开始学习整体的架构和编程思想。&lt;/p&gt;
+
+&lt;p&gt;也是这一阶段开始了跨城市出走的经历，有 5 篇文章整理了去新疆乌鲁木齐出差之余游走在 7-5事件之后的一些所见所闻（当前从文字来看看不出什么端倪），里面的照片放在已经被墙的 Google Picasa 相册。再那的 11 天让我知道了 GFW 已经完善到可以瞬间做到一个内部的局域网（当时本地除了电话可以和外界沟通之外，短信和网络全部封闭）&lt;/p&gt;
+
+&lt;p&gt;WordPress 同样也是收到 Twitter 这类碎片化的微服务的冲击，文章数量开始逐年减少。内容上开始增加了养生（我这小小年级就开始了）和一些软件推荐和技巧性文章，偶尔还会发一些我开源代码的宣传。&lt;/p&gt;
+
+&lt;p&gt;最重要的是我开始了写年度计划和年终总结的文章，这将作为我人生的记录和回顾的最重要的证据。&lt;/p&gt;
+
+&lt;p&gt;这个期间的朋友大多数来自于 V2EX 社区和 Twitter 上面。还和部分的朋友一起参加过第一届的 Wordcamp 2008，朋友聚集了私下一起吐槽各种渣的地方。&lt;/p&gt;
+
+&lt;p&gt;WordPress 因简单方便，功能强大而流行也因太过于扩充里面的功能而没有很好的优化核心代码而遭人唾弃。@&lt;a href=&#34;http://Twitter.com/yichi&#34;&gt;yichi&lt;/a&gt; 有保存但是的部分照片 &lt;a href=&#34;https://www.flickr.com/photos/yichi0523/albums&#34;&gt;Flickr 相册&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;使用期间也挂过 Google Ads 和阿里妈妈广告联盟试图赚些收入。收入明细甚微，到目前对自己的定义还都是技术，营销果然不是我的菜。&lt;/p&gt;
+
+&lt;p&gt;历史快照：&lt;a href=&#34;https://web.archive.org/web/20100701151339/http://icyleaf.com/&#34;&gt;https://web.archive.org/web/20100701151339/http://icyleaf.com/&lt;/a&gt; 网站界面完整当时的仿照 Delicious.com (美味书签) 全站复制过来。&lt;/p&gt;
+
+&lt;p&gt;这里再说一个域名的小插曲，域名最开始还是 icyleaf.cn，国内为了推销 cn 域名起初大体都是 1 元第一年。用了一年之后发现之后的费用飙升到比 com 域名还贵，加上开了 Visa 信用卡立即切换过去。庆幸的是我的域名比较个性没有什么人抢注。&lt;/p&gt;
+
+&lt;h2 id=&#34;chyrp-https-github-com-vito-chyrp&#34;&gt;&lt;a href=&#34;https://github.com/vito/chyrp&#34;&gt;Chyrp&lt;/a&gt;&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;2012.4 ~ 2012.12&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;最新补充：&lt;/strong&gt; 终于想起来为什么更换掉 Wordpress，是因为 Wordpress 有个版本连续有后门被捅菊花，我的博客连连中招。反复清理无数感染的文件还是被捅。实在没精力跟它周折。想想也是时候放弃这个庞然怪物了。&lt;/p&gt;
+
+&lt;p&gt;自己已经记不得这个系统了，因为使用的时间不算很长，根据 Archive.org 的历史快照显示于 2012 年 4 月切换过来。系统提供迁移脚本直接把 mysql 数据转为为自己支持的字段格式。Chyrp 号称是最轻量级的微博客系统，有些类似 Tumblr。转换的原因现在想想应该是 Twitter 大多时候也是被 GFW 的状态，想用微博客系统把自己的牢骚、文章和一些图片揉到一起使用。还有一个原因是有插件可以支持 markdown 编写文章。&lt;/p&gt;
+
+&lt;p&gt;这段时间是在新浪乐居从事移动开发和团队建设的事情，文章更多的增加了针对 Android 和 iOS 开发相关的技术类文章。&lt;/p&gt;
+
+&lt;p&gt;我是一个念旧的人，之前记录的文字总想着可以保留下来，从这里开始后面的任何的博客系统的迁徙都会把数据转换过去。懂技术也算是一个优势（笑）&lt;/p&gt;
+
+&lt;p&gt;历史快照：&lt;a href=&#34;https://web.archive.org/web/20120414131120/http://icyleaf.com/&#34;&gt;https://web.archive.org/web/20120414131120/http://icyleaf.com/&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;pelican-https-github-com-getpelican-pelican&#34;&gt;&lt;a href=&#34;https://github.com/getpelican/pelican&#34;&gt;Pelican&lt;/a&gt;&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;2013.1 ~ 2013.12&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;这是一个短暂的瞬间，@&lt;a href=&#34;http://cnborn.net&#34;&gt;CNBorn&lt;/a&gt; 建议把动态的博客内容静态化速度就上去了。但是有些功能就需要依托外部的服务，比如搜索、评论。当时网站也还在 ping 值在 300 - 400 之间 DreamHost  虚拟主机上面。GFW 在不断进化和完善，这个时候就开始用上了 IP 封杀，Dreamhost 的大部分 IP 也没能幸免。毫不犹豫的就改换了 Pelican 这套框架。&lt;/p&gt;
+
+&lt;p&gt;动态切换为静态之后最大的问题就在于后台没有了，所有信息都需要在配置文件里面来处理。文章也只能本地写后生成静态文件并发布。没有选择部署在 Github Page 还是因为它的速度有些不太稳定了。已经使用了虚拟主机配合自建 VPN 的 Linode 主机而不使用确实有些浪费资源。&lt;/p&gt;
+
+&lt;p&gt;Chyrp 切换过来的历史文章通过自己写的脚本迁移过来，多少有些格式的不兼容和转换问题，手查和纠正了部分。主题借鉴于 Squarespace 给别人订制的样式，自己使用部分配色用 Twitter Bootstrap 重新实现。&lt;/p&gt;
+
+&lt;p&gt;使用 Pelican 的另外一个因素是想学习 Python，之后的文章开始增加了 python 相关和 Linux 基础技术文章。学习上重点放在了日常脚本的使用以及 pip+django 的功能学习，配合提交部分代码到 &lt;a href=&#34;https://github.com/openparty/openparty&#34;&gt;OpenParty&lt;/a&gt; 网站。&lt;/p&gt;
+
+&lt;p&gt;顺带提一句，Dango 自带的模板引擎和 Jinja2 用着是最爽的事情，和 Ruby 的 Haml/Slim 是不一样的 G 点。&lt;/p&gt;
+
+&lt;p&gt;本人从小偏爱骑行，在北京漂泊的日子，也只能是户外登山扎营（装备可压缩），反复的搬家对于还要再带一个自行车和一堆配件来说有些艰巨，在更换一个相对比较大的租房一狠心入了美利达公爵 650。长时间的骑行和休闲骑车差别很明显。累！很累！尤其是和公路车一起骑更累！骑行不像是登山，后者只需要完成登山的过程享受一把自虐，骑行是全程的，从你报名一个活动开始，你要从家骑到集合点、骑到目的地、骑到腐败点、最后还要疲惫的骑回家，这个过程是值得回忆的。也就有了我第一次长距离骑行，献给了&lt;a href=&#34;http://icyleaf.com/2013/05/25/riding-to-hulunbeier/&#34;&gt;http://icyleaf.com/2013/05/25/riding-to-hulunbeier/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;历史快照：&lt;a href=&#34;https://web.archive.org/web/20130201044534/http://icyleaf.com/&#34;&gt;https://web.archive.org/web/20130201044534/http://icyleaf.com/&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;hexo-https-hexo-io&#34;&gt;&lt;a href=&#34;https://hexo.io/&#34;&gt;Hexo&lt;/a&gt;&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;2013.12 ~ 2016.8&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Hexo 由台湾人使用 Node.js 开发并开源，网站本身提供明细的文档和插件扩展。对比 Pelican 来说比较适合国人，附带实用的命令行工具。Pelican 在使用中总有些不太爽的地方，Hexo 就在哪个时候出现在了我的视野，弥补了我的需要，用的顺手的系统就不在乎什么语言开发的，更何况也是静态发布。&lt;/p&gt;
+
+&lt;p&gt;主题真的是太喜欢之前实现的那个就直接由迁移的过来，历史文章又经历了一次迁移，其实已经有些部分的内容有些损坏了。单纯从主题和内容来说，整个网站有些支离破粹。&lt;/p&gt;
+
+&lt;p&gt;这个阶段对我而言是幸福的一年，对我的博客来说是相当冷落的一年。从结识土豪妞到一起走上婚姻殿堂，我感到非常的幸福。这里确是一片静寂两年的时间文章数量一个手都能数过来（寥寥 5 篇文章）。爱情和工作两方面的因素，直接导致各种的事情急剧减少，包括不仅限于户外登山、骑行、看书、电影。话说也奇怪了文章不少了可以理解，怎么外出活动也居然少了呢 &amp;gt;.&amp;lt;&lt;/p&gt;
+
+&lt;p&gt;博客的复活是意料之外的事情，前几天惯例的吸收网上的信息，看到推荐一个 VPS，和 DigitalOcean 类似 SSD 硬盘、最低每月 5 刀的租金。速度方面很明显，尝试一番后发现最优情况 ping 值可以稳定在 60 ~ 100 左右，下载速度也能达到 1~2Mb/s。信用卡刷钱先试 3 个月再说。自然就想到把博客迁移过来。年底将至，还要有两年的总结需要完成，提前做好准备也是件好事。&lt;/p&gt;
+
+&lt;p&gt;从 Dropbox 找回博客系统和日志，重新本地部署环境。悲催，Hexo 不工作了。检查后发现升级到 3.0 版本，代码结构变化了的。文章的格式也做了调整。又有事情要忙活了。&lt;/p&gt;
+
+&lt;p&gt;写好升级兼容脚本，文章没问题了，主题有崩了。脑海里立即飘出来一个曾经看到过的网站用的是 Hexo 搭建的，主题还挺好看。打开 Chrome 页面历史搜索关键字，打开目标网站快捷键切换到页面底部 &amp;ldquo;Theme - NexT&amp;rdquo;，一切就顺理成章的平滑过来。还顺手试了一把 &lt;code&gt;git subtree&lt;/code&gt; 代替费死牛力的 &lt;code&gt;git submodule&lt;/code&gt;。&lt;/p&gt;
+
+&lt;h2 id=&#34;hugo-http-gohugo-io&#34;&gt;&lt;a href=&#34;http://gohugo.io/&#34;&gt;Hugo&lt;/a&gt;&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;2016.8 ~ 至今&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Hugo 是用 Go 语言开发维护的，再了解和上手上着实让我研究了好一番，因为它的自由度太大了，初始化项目后居然连主题都不带的，都需要自己从 github 上安装一份之后才能运行。其实切换使用它的最根本原因是 Hexo 是满足我的绝大部分需求的尤其是原先用的 NexT 主题也很好用，但唯一比较麻烦的是它依赖 Node.js 每次用 Docker 在本地进行维护的时候都要更新好久。我也喜欢在 VPS 上也备有一套运行环境，脱离了有环境的电脑我随时可以写完同步后在服务器上面手动或自动生成。基于这点给我带来的困扰是最多的，因为我的服务器配置的最低标准，内存还不到 1G，每次 hexo 在生成静态资源的时候很容易把内存爆掉，直接抛出内存不足的异常。反观 hugo 命令编译后可以在任意平台直接使用，速度也是搜搜的，内存占用也就不用说了，虽然没有 hexo 的迁移方案，整体也很简单，因为 hugo 除了默认支持 toml 格式以为，还兼容 yaml 和 json。文章的内容都是 markdown 这个基本上是业界标配了。&lt;/p&gt;
+
+&lt;p&gt;在整理之余，我对于 docker 和 docker-compose 有了更好的理解，同时新的博客系统会用 caddy 把 nginx 替换掉跑一段时间看看，可能还会切换成 h2o 再跑一段时间来分别看看两者的性能情况。新的 http server 都是基于 HTTP/2 协议优化的。我想后面是属于 HTTPS + HTTP/2 的时代。&lt;/p&gt;
+
+&lt;h2 id=&#34;数字统计&#34;&gt;数字统计&lt;/h2&gt;
+
+&lt;p&gt;统计自使用自建博客系统开始计算，My Opera 作为一个自留地不再统计范围：&lt;/p&gt;
+
+&lt;h3 id=&#34;文章&#34;&gt;文章&lt;/h3&gt;
+
+&lt;p&gt;历经 8 年之余的时间共计 &lt;code&gt;90&lt;/code&gt; 篇：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;2007 年总文章数量 7 篇（有删减）&lt;/li&gt;
+&lt;li&gt;2008 年总文章数量 14 篇（有删减）&lt;/li&gt;
+&lt;li&gt;2009 年总文章数量 13 篇（有删减）&lt;/li&gt;
+&lt;li&gt;2010 年总文章数量 7 篇（有删减）&lt;/li&gt;
+&lt;li&gt;2011 年总文章数量 7 篇（有删减）&lt;/li&gt;
+&lt;li&gt;2012 年总文章数量 23 篇&lt;/li&gt;
+&lt;li&gt;2013 年总文章数量 14 篇&lt;/li&gt;
+&lt;li&gt;2014 年总文章数量 4 篇&lt;/li&gt;
+&lt;li&gt;2015 年总文章数量 3 篇&lt;/li&gt;
+&lt;li&gt;2016 年总文章数量 4 篇&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;标签&#34;&gt;标签&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Mac: 12&lt;/li&gt;
+&lt;li&gt;iOS: 10&lt;/li&gt;
+&lt;li&gt;PHP: 9&lt;/li&gt;
+&lt;li&gt;Linux: 8&lt;/li&gt;
+&lt;li&gt;Git: 7&lt;/li&gt;
+&lt;li&gt;年终总结: 7&lt;/li&gt;
+&lt;li&gt;养生: 6&lt;/li&gt;
+&lt;li&gt;Kohana: 5&lt;/li&gt;
+&lt;li&gt;Ruby: 5&lt;/li&gt;
+&lt;li&gt;Shell: 5&lt;/li&gt;
+&lt;li&gt;旅行: 5&lt;/li&gt;
+&lt;li&gt;Python: 5&lt;/li&gt;
+&lt;li&gt;App: 5&lt;/li&gt;
+&lt;li&gt;游记: 5&lt;/li&gt;
+&lt;li&gt;豆瓣: 4&lt;/li&gt;
+&lt;li&gt;Android: 4&lt;/li&gt;
+&lt;li&gt;XCode: 4&lt;/li&gt;
+&lt;li&gt;Virtualenv: 2&lt;/li&gt;
+&lt;li&gt;CentOS: 2&lt;/li&gt;
+&lt;li&gt;Google: 2&lt;/li&gt;
+&lt;li&gt;魔豆: 2&lt;/li&gt;
+&lt;li&gt;CSS: 2&lt;/li&gt;
+&lt;li&gt;卤煮: 1&lt;/li&gt;
+&lt;li&gt;Dash: 1&lt;/li&gt;
+&lt;li&gt;regex: 1&lt;/li&gt;
+&lt;li&gt;Flask: 1&lt;/li&gt;
+&lt;li&gt;Ubuntu: 1&lt;/li&gt;
+&lt;li&gt;美食: 1&lt;/li&gt;
+&lt;li&gt;家常菜: 1&lt;/li&gt;
+&lt;li&gt;Universal: 1&lt;/li&gt;
+&lt;li&gt;Xcode: 1&lt;/li&gt;
+&lt;li&gt;brew: 1&lt;/li&gt;
+&lt;li&gt;Hiking: 1&lt;/li&gt;
+&lt;li&gt;Dropbox: 1&lt;/li&gt;
+&lt;li&gt;apache: 1&lt;/li&gt;
+&lt;li&gt;Javascript: 1&lt;/li&gt;
+&lt;li&gt;Chrome: 1&lt;/li&gt;
+&lt;li&gt;Laptop: 1&lt;/li&gt;
+&lt;li&gt;eclipse: 1&lt;/li&gt;
+&lt;li&gt;VirtualBox: 1&lt;/li&gt;
+&lt;li&gt;Map: 1&lt;/li&gt;
+&lt;li&gt;Gem: 1&lt;/li&gt;
+&lt;li&gt;testflightapp: 1&lt;/li&gt;
+&lt;li&gt;Django: 1&lt;/li&gt;
+&lt;li&gt;umeng: 1&lt;/li&gt;
+&lt;li&gt;手机: 1&lt;/li&gt;
+&lt;li&gt;黑莓: 1&lt;/li&gt;
+&lt;li&gt;Vagrant: 1&lt;/li&gt;
+&lt;li&gt;Mockup: 1&lt;/li&gt;
+&lt;li&gt;北京: 1&lt;/li&gt;
+&lt;li&gt;Rails: 1&lt;/li&gt;
+&lt;li&gt;Gitlab: 1&lt;/li&gt;
+&lt;li&gt;ActiveRecord: 1&lt;/li&gt;
+&lt;li&gt;Unicorn: 1&lt;/li&gt;
+&lt;li&gt;Nginx: 1&lt;/li&gt;
+&lt;li&gt;Book: 1&lt;/li&gt;
+&lt;li&gt;Riding: 1&lt;/li&gt;
+&lt;li&gt;呼伦贝尔: 1&lt;/li&gt;
+&lt;li&gt;CocoaPods: 1&lt;/li&gt;
+&lt;li&gt;golang: 1&lt;/li&gt;
+&lt;li&gt;Sublime Text 2: 1&lt;/li&gt;
+&lt;li&gt;Database: 1&lt;/li&gt;
+&lt;li&gt;摄影: 1&lt;/li&gt;
+&lt;li&gt;校内: 1&lt;/li&gt;
+&lt;li&gt;海内: 1&lt;/li&gt;
+&lt;li&gt;开心网: 1&lt;/li&gt;
+&lt;li&gt;QuickLook: 1&lt;/li&gt;
+&lt;li&gt;Github: 1&lt;/li&gt;
+&lt;li&gt;食材: 1&lt;/li&gt;
+&lt;li&gt;沙漠: 1&lt;/li&gt;
+&lt;li&gt;Puma: 1&lt;/li&gt;
+&lt;/ul&gt;
+</description>
     </item>
     
     <item>
       <title>2013 年终总结</title>
-      <link>https://icyleaf.com/2013/12/2013-in-review/</link>
+      <link>https://icyleaf.com/2013/12/2013-in-review</link>
       <pubDate>Mon, 30 Dec 2013 12:34:56 +0800</pubDate>
       
-      <guid>https://icyleaf.com/2013/12/2013-in-review/</guid>
-      <description>人生能够走过几次 1314 新旧年的交替，都有些忘记过去的一年做了些什么事情，翻看日历和一些零碎的笔记在努力把之前的事情慢慢回忆起来。 工作 工作算得上又</description>
+      <guid>https://icyleaf.com/2013/12/2013-in-review</guid>
+      <description>
+
+&lt;p&gt;人生能够走过几次 1314 新旧年的交替，都有些忘记过去的一年做了些什么事情，翻看日历和一些零碎的笔记在努力把之前的事情慢慢回忆起来。&lt;/p&gt;
+
+&lt;h2 id=&#34;工作&#34;&gt;工作&lt;/h2&gt;
+
+&lt;p&gt;工作算得上又失落也有少许沉淀。&lt;/p&gt;
+
+&lt;p&gt;首先结束了人生第二家干了大约三年半的公司。当职位慢慢爬升，周围的环境已不再是曾经那么单纯程序员思维，在&lt;a href=&#34;http://icyleaf.com/2013/01/2011-2012-in-review/&#34;&gt;去年年终总结&lt;/a&gt;也提到过爬升所带来的宝贵经验，但今年却尝到了不一样的教训：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;产品和技术是为了市场（目标用户）服务&lt;/li&gt;
+&lt;li&gt;团队不能够急剧扩张&lt;/li&gt;
+&lt;li&gt;这不仅仅是一个人的『战役』&lt;/li&gt;
+&lt;li&gt;提防小人的冷枪&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;其实前者还好，总有办法弥补，但面对最后一条，我选择了无奈的离开&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;2007 年 12 月来北京之后，几乎没有怎么休息过，人生总是在岗位上奋斗，本想着这次离职可以在出走玩玩，时节又逢夏末秋初，正好是看雪山的季节。事情往往事与愿违，离职三天后，我入职了第三家公司，一朋友急缺人员，我选择了去帮他救火&amp;hellip;&lt;/p&gt;
+
+&lt;h2 id=&#34;技术&#34;&gt;技术&lt;/h2&gt;
+
+&lt;p&gt;在做移动互联网的这两年中，个人大概分析了下市场情况，挣钱的永远是那么两类，游戏和广告。而国内大多数公司都是为了抢占一个端口而做的业务相关的应用。除了不差钱的和玩票性质的以外，大多应用都不知道在干些什么。&lt;/p&gt;
+
+&lt;p&gt;『无论是 PC 还是 Mobile，展现给用户的最终还是数据。』基于这条理论，我决定尝试挖掘数据和分析数据，试图在数据中得到一些答案。《&lt;a href=&#34;http://book.douban.com/subject/10945606/&#34;&gt;精益创业&lt;/a&gt;》却给了相反的实践方案。个人打算结合两者的优势积累一些资料。&lt;/p&gt;
+
+&lt;p&gt;因为数据的采集，建立数据仓库和分析，我并没有采用 Python，而是使用了 Ruby。或许语法糖太多了，可以让我更快的解决一些实际问题。&lt;/p&gt;
+
+&lt;p&gt;虽然在移动最热的时候，暂停了一下。我想重新再开始那里才是真正的战场。&lt;/p&gt;
+
+&lt;h2 id=&#34;生活&#34;&gt;生活&lt;/h2&gt;
+
+&lt;h3 id=&#34;户外&#34;&gt;户外&lt;/h3&gt;
+
+&lt;p&gt;攒了三年多的假，竟然有了 20 多天假期，一南一北各去了一个地方：&lt;/p&gt;
+
+&lt;h4 id=&#34;1-风云莫测的贡嘎转山&#34;&gt;1. 风云莫测的贡嘎转山&lt;/h4&gt;
+
+&lt;p&gt;五一假期左右请了几天假连成 11 天，花了 8 天贡嘎转山，其余天在成都市内转了转整理成册。&lt;/p&gt;
+
+&lt;p&gt;浏览照片：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.douban.com/photos/album/102784556/&#34;&gt;贡嘎转山&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.douban.com/photos/album/123285098/&#34;&gt;天府之乐&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;2-骑行呼伦贝尔之额尔古纳河右岸&#34;&gt;2. 骑行呼伦贝尔之额尔古纳河右岸&lt;/h4&gt;
+
+&lt;p&gt;2013 年的端午节，受 &lt;a href=&#34;http://www.douban.com/people/loddit/&#34;&gt;loddit&lt;/a&gt; 邀请组成了 4 人小队前往呼伦贝尔，踏上了第一次为期 4.5 天的骑行活动。我还特意做了一个&lt;a href=&#34;http://icyleaf.com/2013/05/riding-to-hulunbeier/&#34;&gt;路线征集计划书&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;浏览照片：&lt;a href=&#34;http://www.douban.com/photos/album/107796607/&#34;&gt;骑行呼伦贝尔&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;3-两次山西五台山朝圣-反穿-正穿&#34;&gt;3. 两次山西五台山朝圣（反穿/正穿）&lt;/h4&gt;
+
+&lt;p&gt;去年冬季反穿过一次五台山，大雪纷飞。一直都知道大五台是一个四季变化的地方，特别想体验一下不同季节的风景。在 9 月初再次踏上五塔山的土地。幸福的是认识了土豪妞。&lt;/p&gt;
+
+&lt;p&gt;第二次去五台山是还想和她一起去体验雪景，结果天气晴朗，没有一点飘雪。那个时候已经是 11 月，哪里有像凛冬将至的赶脚，摔！&lt;/p&gt;
+
+&lt;p&gt;浏览照片：&lt;a href=&#34;http://www.douban.com/photos/album/111742562/&#34;&gt;朝圣五台山&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;阅读&#34;&gt;阅读&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://chart.googleapis.com/chart?chs=370x200&amp;amp;cht=bvs&amp;amp;chxp=2,100&amp;amp;chxt=y,x,x&amp;amp;chxl=0:|0|1|2|3|4|5|6|7|8|9|10|1:|1|2|3|4|5|6|7|8|9|10|11|12|2:|month&amp;amp;chf=c,lg,90,76A4FB,0.5,ffffff,0|bg,s,EFEFEF&amp;amp;chd=t:0,60,10,0,0,0,30,40,40,40,0,20&amp;amp;chco=0000ff&amp;amp;chtt=2013+年共阅读+24+本书&#34; alt=&#34;2013豆瓣阅读图表&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;上半年总把玩着 iPad，积攒的实体书虽多，看完的较少，更别提存储量更大的电子书了；下半年开始有读书量得益于从日本 amazon 海淘了一个 kindle paperwhite，加上豆瓣阅读和多看的给力，也购买了不少在价格上更有优势的电子书。&lt;/p&gt;
+
+&lt;p&gt;推荐书籍：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;技术：《Tmux &amp;ndash; Productive Mouse-Free Development》&lt;/li&gt;
+&lt;li&gt;创业：《精益创业》&lt;/li&gt;
+&lt;li&gt;历史：《极简欧洲史》&lt;/li&gt;
+&lt;li&gt;小说：《三国演义》《冰与火之歌》《星际争霸系列》&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;电影&#34;&gt;电影&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://chart.googleapis.com/chart?chs=370x200&amp;amp;cht=bvs&amp;amp;chxp=2,100&amp;amp;chxt=y,x,x&amp;amp;chxl=0:|0|5|10|15|20|1:|1|2|3|4|5|6|7|8|9|10|11|12|2:|month&amp;amp;chf=c,lg,90,76A4FB,0.5,ffffff,0|bg,s,EFEFEF&amp;amp;chd=t:60,80,60,20,75,30,65,40,50,55,30,35&amp;amp;chco=0000ff&amp;amp;chtt=2013+年共观影+120+部&#34; alt=&#34;2013豆瓣观影图表&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;囧，居然看了那么多电影，我自己都有些惊讶&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;推荐电影：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;纪录片：《独立游戏大电影》《工业光魔 创造不可能》&lt;/li&gt;
+&lt;li&gt;动画长篇：《疯狂原始人》&lt;/li&gt;
+&lt;li&gt;美剧：《纸牌屋》《绝命毒师》&lt;/li&gt;
+&lt;li&gt;IMAX：《地心引力》&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;家庭&#34;&gt;家庭&lt;/h3&gt;
+
+&lt;p&gt;爷爷永远的辞世，永远缅怀。&lt;/p&gt;
+
+&lt;p&gt;老院子自爷爷过世之后开始没了灵气，就连每年硕果累累的枣树也聋了，没有结一个枣，又逢拆迁计划，于是从不崇拜买房主义的我在家给父母合资买了套房子，在家也忙活了十多天参与房子的装修，劳神劳力费钱，唉&amp;hellip;从此荷包又瘪了 :(&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;新的一年我想尝试写写日记，就像《和时间做朋友》里面提到的，我想对于时间和事情的归档更加的精确，未来还有更多的事情要去做！&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>2011-2012 两年总结</title>
-      <link>https://icyleaf.com/2013/01/2011-2012-in-review/</link>
+      <link>https://icyleaf.com/2013/01/2011-2012-in-review</link>
       <pubDate>Tue, 01 Jan 2013 12:34:56 +0800</pubDate>
       
-      <guid>https://icyleaf.com/2013/01/2011-2012-in-review/</guid>
-      <description>从 2011 年忙碌到 2012 年，这两年的时间经历的很多事物，让我感受颇多，而我惊讶的是 2011 的年终总结居然缺失了。这两年工作上专注了一个领域，也是当前最火热移</description>
+      <guid>https://icyleaf.com/2013/01/2011-2012-in-review</guid>
+      <description>
+
+&lt;p&gt;从 2011 年忙碌到 2012 年，这两年的时间经历的很多事物，让我感受颇多，而我惊讶的是 2011 的年终总结居然缺失了。这两年工作上专注了一个领域，也是当前最火热移动互联网。两年放在一起总结也算是比较完整的。&lt;/p&gt;
+
+&lt;p&gt;总结从已下几大方面分别详细描述：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;移动互联网&lt;/li&gt;
+&lt;li&gt;技术&lt;/li&gt;
+&lt;li&gt;户外&lt;/li&gt;
+&lt;li&gt;书影音&lt;/li&gt;
+&lt;li&gt;下厨&lt;/li&gt;
+&lt;li&gt;品酒&lt;/li&gt;
+&lt;li&gt;游戏&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;移动互联网&#34;&gt;移动互联网&lt;/h2&gt;
+
+&lt;p&gt;在 2010 年终总结也有说过，因为出身 Java，对于 Android 的兴趣以及入手 MBP，又禁不住和 iOS 做个比较，以至于今后踏上了移动互联网的风潮。正好公司和领导也希望组建这样一个团队。于是 @lnsoso 牵头，尽快组建了小团队开始了新的尝试。&lt;/p&gt;
+
+&lt;h3 id=&#34;团队&#34;&gt;团队&lt;/h3&gt;
+
+&lt;p&gt;新的团队专注于移动互联网的手机平台：Android 和 iOS。应用主要是“房产”这个相对比较垂直的领域。虽然经历了两年的时间，我们还是保持轻小的团队，核心人员加起来也不到 6 个人，更像是一个创业团队。经历了两年的时间，做了一些产品，其中有欢乐，有痛苦，有争执，甚至更激烈的争吵。但是这些都不会阻碍我们的前进，不仅让我们之间在工作中更好的合作，生活上也成为了至好的朋友。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;能够和这么出色的移动团队一起工作，我感动非常的荣幸！借此感谢 @&lt;a href=&#34;http://weibo.com/206424200&#34;&gt;lnsoso&lt;/a&gt;， @&lt;a href=&#34;http://weibo.com/54mifan&#34;&gt;&lt;em&gt;米饭&lt;/em&gt;&lt;/a&gt;， @&lt;a href=&#34;http://weibo.com/stcui&#34;&gt;SC崔圣&lt;/a&gt;， @&lt;a href=&#34;http://weibo.com/u/1611804343&#34;&gt;瑞宇&lt;/a&gt;， 小胖， @&lt;a href=&#34;http://weibo.com/designl&#34;&gt;Design_L&lt;/a&gt;， 英军，周奎，庆祥，刘伟和小雨。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;角色变化&#34;&gt;角色变化&lt;/h3&gt;
+
+&lt;p&gt;小团队虽然灵活度很高，但每个人也要担着多项的角色，对于每个人来说都是一种挑战，同样对于我也是。从产品构思，原型设计，前端、后段的代码编写都需要一个人来全程承担，对于程序员来说，相对还算好，缺陷是容易站在局限的角度考虑事情；对于一个项目，不仅仅产品要优秀，更重要的还是要运营的好。对于这个角色我感到有压力。虽然这个行业大家都是在摸着石头过河，本身作为程序员来说，“运营”是一个艰巨的任务。&lt;/p&gt;
+
+&lt;p&gt;最初作为程序员来说，总是觉得和产品，设计等非技术人员存在沟通障碍。尤其是上面想法传达下来的本质变化导致开发出来一个四不像的“怪物”，内心会有一种“产品应该这样才符合逻辑，这样，那样修改灵活的更高”的冲动。然后自己真正担当了“&lt;strong&gt;产品&lt;/strong&gt;”这个角色，需要涉及到：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;扩大自己的思考范围&lt;/li&gt;
+&lt;li&gt;如何和各阶人员沟通&lt;/li&gt;
+&lt;li&gt;和所有参与人员很好沟通并还原真实想法继续碰撞火花&lt;/li&gt;
+&lt;li&gt;更好的在技术上展现&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;而“运营”这个角色，体现了如何把自己的产品扩散出去。程序员很难从自身的“小宇宙”释放出来。这也是为什么程序员的转型只有两个：架构师和产品经理。&lt;/p&gt;
+
+&lt;p&gt;说实话我本身不是一个好运营，也当不了这个角色。接触这个角色能让我在产品和技术上继续更多的思考。&lt;/p&gt;
+
+&lt;p&gt;不过“技术”才是我的最爱，其他的角色只是为了更好的让我架构于技术。&lt;/p&gt;
+
+&lt;h3 id=&#34;产品&#34;&gt;产品&lt;/h3&gt;
+
+&lt;p&gt;房产类的应用其实非常的小众。买房，装修对于大多数人来说都是一次性消费。也很难会有冲动消费。唯一可以有苗头的就是租房业务。然后这个行业由于各种房产中介的介入导致行业的乌鸦瘴气，再加上用户的流动性非常的大，需求周期相对比较长。导致整个房产行业相对比较难做。因此团队初期没有任何创新的应用，大多于公司业务相关：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://3g.leju.com/1/2011/1103/1.html&#34;&gt;口袋房产&lt;/a&gt; - 专注租房和二手房用户，里面整合了我们很多贴心而且很酷的功能。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://3g.leju.com/1/2011/1103/2.html&#34;&gt;乐居计算器&lt;/a&gt; - 最给力的房产、家居计算器。汇率第一时间更新，还有贷款的还款提醒，妈妈再也不用担心我忘记还款了。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://3g.leju.com/1/2011/1206/6.html&#34;&gt;帝都空气质量&lt;/a&gt; - 去年 PM2.5 很火的时候，花了一个星期做的小应用，上线第一天就冲到了天气分类前三名，而且当时我在外地出差，路上构思了很好的宣传语，结果第二天被“网监局”勒令下线了。原因在于应用不能以大公司的名义发布。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://3g.leju.com/1/2012/0614/8.html&#34;&gt;口袋新房&lt;/a&gt; - 凭借我们强大的房产数据库，打造最新最热的新房资料及资讯。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;后续还有些公司的产品由其他部门策划和开发。导致策划的创新项目又无法开展。这点较为头疼。&lt;/p&gt;
+
+&lt;p&gt;除此之外其实自己还有一个比较不太惹眼的项目：移动产品通用管理后台系统。由于产品的数据需要不断的交互，加上各种需求和统计需要，实现了很多很棒的功能：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;各个产品的信息，用于版本更新和应用推荐&lt;/li&gt;
+&lt;li&gt;用户评论的自动采集，Feedback 的反馈和答复&lt;/li&gt;
+&lt;li&gt;产品的用户统计数据&lt;/li&gt;
+&lt;li&gt;统计任意 iOS 产品的发布情况，策略分析和排名情况&lt;/li&gt;
+&lt;li&gt;应用调用接口的权限系统和统计数据&lt;/li&gt;
+&lt;li&gt;健全的日志系统&lt;/li&gt;
+&lt;li&gt;加上 twitter boostrap 的出现，又很好的兼容了移动设备。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;根据产品的需求不断的改善优化一个产品的感觉真好。&lt;/p&gt;
+
+&lt;h2 id=&#34;技术&#34;&gt;技术&lt;/h2&gt;
+
+&lt;h3 id=&#34;php-java-obj-c&#34;&gt;PHP/Java/Obj-C&lt;/h3&gt;
+
+&lt;p&gt;工作原因这三个语言哪个都不能丢，需实时关注和研究：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;PHP: 继续保持关注 Kohana 这个框架。更好为服务器端开发，为前端服务。&lt;/li&gt;
+&lt;li&gt;Java/Android: 从效率和内存管理上，更好的架构整个框架。&lt;/li&gt;
+&lt;li&gt;Obj-C/iOS: 除了自身的知识学习，每次 iOS 升级都有新鲜感，ARC，Storyboard 等特性。推荐 CocoaPod 管理库类。迁移升级 &lt;a href=&#34;https://github.com/icyleaf/ShareKit&#34;&gt;ShareKit&lt;/a&gt; 目前已经能够完美支持国内主流分享服务。生产自己的应用。&lt;/li&gt;
+&lt;li&gt;Obj-C/Mac：破天荒的为了朋友写了第一个编码转换的 Mac App：&lt;a href=&#34;http://icyleaf.com/2012/10/easyconvert-gbk-to-utf8-convert-tool-for-mac&#34;&gt;EasyConvert&lt;/a&gt;，而且还破天荒的收到一个 pull request，感动&lt;/li&gt;
+&lt;li&gt;Javascript/jQuery：写过几个豆瓣扩展，全选邀请好友，批量喜欢友邻的喜欢的东西。唉，热心肠就是要多付出。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;除此之外还接触了 Python 和 Go。&lt;/p&gt;
+
+&lt;p&gt;Python 作为脚本语言在命令行下可以完美处理零碎的工作，加上 &lt;a href=&#34;https://github.com/openparty/openparty&#34;&gt;OpenParty&lt;/a&gt; 网站代码需要改进，而又学习了 Django 框架（好大好重- -！）。&lt;/p&gt;
+
+&lt;p&gt;Go 了解不多，个人感觉更像是 C 的变异超集，性能和编写上有了很大的改进，也能很好的调试，甚至是为服务器端服务。但是受于 C 的理念和局限性， Go 也不能脱离一些缺陷的设计。&lt;/p&gt;
+
+&lt;h2 id=&#34;户外&#34;&gt;户外&lt;/h2&gt;
+
+&lt;p&gt;从 09 年开始和几个朋友陆续做了几次外出。起初爬山仅仅是为了活动筋骨，减少职业病的发生，但后来却逐渐的爱上了这个爱好。工作突然繁忙中断了下来，但对于户外热爱不曾熄灭过。2011 年夏天重新走出户外。&lt;/p&gt;
+
+&lt;h3 id=&#34;爬山&#34;&gt;爬山&lt;/h3&gt;
+
+&lt;p&gt;2011：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;2011-06-04 参加了活动 去看看初夏的关沟&lt;/li&gt;
+&lt;li&gt;2011-06-12 参加了活动 《小北队》“箭扣长城-那无法抵挡的诱惑”&lt;/li&gt;
+&lt;li&gt;2011-07-17 参加了活动 去十三陵走八陵一库&lt;/li&gt;
+&lt;li&gt;2011-07-31 参加了活动 【逍遥游】7月31日 水泉沟-黄花城-香屯一日穿越&lt;/li&gt;
+&lt;li&gt;2011-08-06 参加了活动 三岔村野长城&lt;/li&gt;
+&lt;li&gt;2011-08-13 参加了活动 【逍遥游】8月13-14翡翠岛第二季优惠活动火爆召集中&lt;/li&gt;
+&lt;li&gt;2011-09-03 参加了活动 【华北小黄山】云蒙天仙瀑 冷甸豪宅任我行&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;2012：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;2012-01-02 参加了活动 元旦崇礼雪乡穿越&lt;/li&gt;
+&lt;li&gt;2012-03-03 参加了活动 北京最美乡村-香屯-大云峡谷穿越，感受山谷间纯净的美-徒步、观冰瀑，摄影，赏古长城，一日穿越活动！&lt;/li&gt;
+&lt;li&gt;2012-03-17 尼泊尔文化之旅&lt;/li&gt;
+&lt;li&gt;2012-07-07 参加了活动 7号8号海陀第二届帐篷节扎营 纯属自娱自乐 捡拾垃圾活动。&lt;/li&gt;
+&lt;li&gt;2012-08-04 参加了活动 【三丰队】明长城、东指壶——平谷第一高峰连穿&lt;/li&gt;
+&lt;li&gt;2012-08-11 组织了活动 【漫步人生，活在当下】东灵山重装穿越，露营&lt;/li&gt;
+&lt;li&gt;2012-11-11 参加了活动 【漫步人生，活在当下】风雪箭扣 - 反穿线路，西栅子 - 将军把关 - 天梯 - 飞鹰倒挂&lt;/li&gt;
+&lt;li&gt;2012-11-19 参加了活动 【四野户外】风雪大五台，周末五台连穿&lt;/li&gt;
+&lt;li&gt;2012-12-08 组织了活动 【漫步人生，活在当下】经典线路：香八拉-新人拉练&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;户外照片：&lt;a href=&#34;http://www.517huwai.com/photos/11573&#34;&gt;http://www.517huwai.com/photos/11573&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;骑行&#34;&gt;骑行&lt;/h3&gt;
+
+&lt;p&gt;怎么说呢，既然爬山了，怎么能少的了骑车呢，从小就爱骑车，每逢周末都要骑上车在小城里面四处的骑行。虽然没有怎么骑行远路。从心底还是比较热爱的。在 2012 年 05 月末结束了缠绕我两年多的纠结，入手了“美利达”山地车（淘宝购入，远远低于低于市场价。全新专卖店货色）&lt;/p&gt;
+
+&lt;p&gt;然后总是频频刷街于长安街，还是没有太远的骑行，到现在最长的路线也就 100 多公里而已。骑行之后才真正发现，骑行原来比爬山过程更加艰辛。尤其是丘陵地带（有感于南京）。&lt;/p&gt;
+
+&lt;p&gt;明年争取环青海湖 :)&lt;/p&gt;
+
+&lt;p&gt;部分骑行路线：&lt;a href=&#34;http://www.douban.com/photos/album/34304181/&#34;&gt;http://www.douban.com/photos/album/34304181/&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;旅行&#34;&gt;旅行&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;2011年十一期间的北疆之旅，历时 8 天，花费 8k 上下&lt;/li&gt;
+&lt;li&gt;2012年三月的尼泊尔文化之旅，历史 7 天，花费 5k 上下&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;两次单身旅行，让我深深的感受到，其实出国游没有那么难，而且更舒服，钱还不一定比国内游贵。&lt;/p&gt;
+
+&lt;h2 id=&#34;书影音&#34;&gt;书影音&lt;/h2&gt;
+
+&lt;p&gt;数据来源于自己书影音的记录。&lt;/p&gt;
+
+&lt;h3 id=&#34;读书&#34;&gt;读书&lt;/h3&gt;
+
+&lt;p&gt;看了下历年的统计，我 2010 年读过 82 本（有水分）。 11 年读过 20 本，12 年读过 14 本，这两年读的书明显下降了好多，旅游的书在多数，技术的书明显少了很多。而图书馆去的次数也非常少了。来年要继续努力，读书不能再减了！&lt;/p&gt;
+
+&lt;p&gt;好评图书：窥视印度，不去会死，简单法则，冰与火之歌，黑客与画家，禅与摩托车的维修艺术。&lt;/p&gt;
+
+&lt;h3 id=&#34;电影&#34;&gt;电影&lt;/h3&gt;
+
+&lt;p&gt;很遗憾，IMDB Top250，居然历时三年还是没有看完，目前已经看到了第 194 名（不是最新的排名数据）。看了那么多不同类型的电影，终于从脑容量的电影成功转型，认识了一些影人，导演。相比较最近几年的电影，我很庆幸也很遗憾有那么多老电影没看过。&lt;/p&gt;
+
+&lt;p&gt;好评电影：IMDB Top250 所以电影 XD&lt;/p&gt;
+
+&lt;h3 id=&#34;音乐&#34;&gt;音乐&lt;/h3&gt;
+
+&lt;p&gt;尝试听古典音乐，而且还听了耶鲁大学的公开课《Listen to music》，让我喜欢上了德彪西的《月光》和柴可夫斯基第一&amp;amp;第一钢琴协奏曲。钢琴和小提琴的配合是那么的颤动心灵。&lt;/p&gt;
+
+&lt;p&gt;其实自己听的音乐比较杂，和电影类似，除了重金属，等比较极度喧嚣的音乐外，能接受度比较高。&lt;/p&gt;
+
+&lt;h2 id=&#34;下厨&#34;&gt;下厨&lt;/h2&gt;
+
+&lt;p&gt;总觉得出了开封，我们家的小吃在任何地方要么吃不着，要么没有熟悉的味道。加上新搬的家附近没有一家良心餐馆，结果把自己的身体吃垮了。时隔 3 年依赖重新下厨开灶。本身擅长开封小吃类面点：羊肉炕馍，大肉火烧，锅贴，千层饼，鸡蛋饼，炒凉粉各种折腾。反正吃的自己不亦乐乎。&lt;/p&gt;
+
+&lt;p&gt;就在写这篇总结之前，花了一个小时给自己做了几张鸡蛋饼，一碗紫菜虾皮汤。&lt;/p&gt;
+
+&lt;p&gt;做饭本着一个原则：不能亏待自己的肚子，嗯！&lt;/p&gt;
+
+&lt;h2 id=&#34;品酒&#34;&gt;品酒&lt;/h2&gt;
+
+&lt;p&gt;在 2011 年体检查出来轻微脂肪肝，而原因有三，我可能涉及到两种：酒精性脂肪肝，肥胖性脂肪肝。为了健康，戒了大半年酒（也在于追求对象要求）。最终于 11 年光棍节之后还是单身开了酒戒。转念的体检发现脂肪肝木有了。由于同年也开始了户外，所以最终也没有判断出原因 &amp;gt;.&amp;lt;&lt;/p&gt;
+
+&lt;p&gt;啤酒：经 Tin 大师的推荐，喜欢上了比利时啤酒，尤其是智美和都威，前者是修道院啤酒，口感醇厚可嘉，分蓝/红/白帽，红、蓝智美都会随温度不同而明显呈现味道上的变化，至于白帽国内没见到有卖的；而后者劲儿相对比较大，入口略苦，入喉之后出现甘甜，是一种前期痛苦立马又享受想和下一口的冲动。&lt;/p&gt;
+
+&lt;p&gt;白酒：伏特加，托 &lt;a href=&#34;http://www.douban.com/people/CNBorn/&#34;&gt;CNBorn&lt;/a&gt; 的福，尝试了纯伏特加的感觉，类似于都威前期，酒性很烈，入喉之后犹如一泉山水滋润着喉咙。这次试喝的是 Absolut Vodka。我不知道是否是否和喝的品牌有差异。&lt;/p&gt;
+
+&lt;p&gt;红酒：北京桂花陈酒，经济实惠的最佳选择。入口初体验入桂花糖水一般甜蜜，又夹杂着一些酒心糖的特殊酒味。后劲较大，一不小心很容易醉。&lt;/p&gt;
+
+&lt;h2 id=&#34;游戏&#34;&gt;游戏&lt;/h2&gt;
+
+&lt;p&gt;从小就爱玩游戏，打电动，从最初的掌声游戏机（俄罗斯方块），GBC，GBA SP，PSP 到主机类游戏红白机，街机，世嘉，土星，PS，PS2，电脑游戏，网游。都一概不拉的接触过。但自从开始工作之后接触的游戏基本上降到了最低。&lt;/p&gt;
+
+&lt;p&gt;一个机缘巧合，听说烈火战车（Twisted Metal）将于 2012 年情人节发行 PS3 版本。为了这个重温这个游戏，我居然入手了一台 PS3，因此购入了一些比较耐玩的游戏：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;烈火战车&lt;/li&gt;
+&lt;li&gt;刺客信条：兄弟会、启示录&lt;/li&gt;
+&lt;li&gt;镜之边缘&lt;/li&gt;
+&lt;li&gt;暴雨&lt;/li&gt;
+&lt;li&gt;神秘海域3&lt;/li&gt;
+&lt;li&gt;蝙蝠侠：阿卡姆疯人院&lt;/li&gt;
+&lt;li&gt;战地3&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;游戏对于来说属于业余消遣，没事时候的解闷工具。沉迷？已经不太可能了。&lt;/p&gt;
+
+&lt;h2 id=&#34;单纯&#34;&gt;单纯&lt;/h2&gt;
+
+&lt;p&gt;原来出了程序员这个圈子，其他地方是那么的妖魔化，我喜欢纯粹的程序员生活。希望自己可以保持这份单纯，同时多一份戒心，防止不轨分子的侵袭。&lt;/p&gt;
+
+&lt;h2 id=&#34;两年结语&#34;&gt;两年结语&lt;/h2&gt;
+
+&lt;p&gt;很长时间没有写东西了，这一写有些控制不了自己的思想，最近两年思考的东西太多了，同时又少了倾诉。做的事情也逐渐多了，有时候觉得总会被世俗的东西侵袭，一些理想化，纯粹的东西开始动摇。有时候变得很难把握。感觉曾经的很多东西都在一件件的被磨灭或改变。&lt;/p&gt;
+
+&lt;h2 id=&#34;2013&#34;&gt;2013？&lt;/h2&gt;
+
+&lt;p&gt;说好的世界末日没有到来，日子还有继续生活下去。该奋斗的东西也不能丢，相信自己的信念，勇往直前吧！少年!&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>2010年度总结</title>
-      <link>https://icyleaf.com/2011/01/2010-year-in-review/</link>
+      <link>https://icyleaf.com/2011/01/2010-year-in-review</link>
       <pubDate>Wed, 05 Jan 2011 12:34:56 +0800</pubDate>
       
-      <guid>https://icyleaf.com/2011/01/2010-year-in-review/</guid>
-      <description>2011年已至，又到了一年一度的年终终结的时候了。上个星期还和 @CNBorn同学聊了年终总结的事情，今天在看翻 Google Reader 发现订阅的很多人都写了总结</description>
+      <guid>https://icyleaf.com/2011/01/2010-year-in-review</guid>
+      <description>
+
+&lt;p&gt;2011年已至，又到了一年一度的年终终结的时候了。上个星期还和 @&lt;a href=&#34;http://cnborn.net&#34;&gt;CNBorn&lt;/a&gt;同学聊了年终总结的事情，今天在看翻 Google Reader 发现订阅的很多人都写了总结，虽然晚了几步，还得赶紧跟上。提炼过往的一年内所经历的事情，所感受到的一些事物&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;整体来说 2010 年对我来说是憧憬的一年。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://icyleaf.com/2008/12/2008-year-in-review/&#34;&gt;2008&lt;/a&gt; 年是起步并定制计划的一年，&lt;a href=&#34;http://icyleaf.com/2010/01/2009-year-in-review/&#34;&gt;2009&lt;/a&gt; 年是 2008 年计划沉淀后发挥的一年，2010 年在事业，技术，思想得到了逐步提高，这次总结大致按照性质为工作，技术，生活等几类：&lt;/p&gt;
+
+&lt;h3 id=&#34;工作&#34;&gt;工作&lt;/h3&gt;
+
+&lt;p&gt;2010年可谓是 Twitter 年，作为一名从 2007 年就开始使用的轻度用户到现在随时关注的中度用户。之所谓不能说重度用户，现在已经逐渐减少了 Twitter 的牢骚，慢慢的沉淀浮躁的心，做一些自认为有意义的事情。其中最大的也是让我最满意的一件就是通过 Twitter 让我成功的从 Java 转到了 PHP 开发，感谢  @&lt;a href=&#34;http://twitter.com/lnsoso&#34;&gt;lnsoso&lt;/a&gt; 给我这个机会。对个人来说，比较遗憾的是在转入 PHP 这一行业之前，曾尝试以移动互联网开发者的身份“杀入”豆瓣，后因逢遇高人 @&lt;a href=&#34;http://www.douban.com/people/flycondor/&#34;&gt;flycondor&lt;/a&gt; 告知个人能力有待提高，未遂。&lt;/p&gt;
+
+&lt;p&gt;虽然没能进入豆瓣，但能转入互联网开发领域已经让人欣喜了，在&lt;a href=&#34;http://house.sina.com.cn&#34;&gt;新浪乐居&lt;/a&gt;的一年内，由于公司技术氛围很融洽，经常会在一起讨论一些技术，分享会。给个人有很好的成长空间和发挥能力。同时非常欣喜能遇上这么多好好的同事和领导 :)&lt;/p&gt;
+
+&lt;h3 id=&#34;技术&#34;&gt;技术&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;PHP/Kohana
+​1. 2009 年提到的 Douban API Package 以开源的形式正式发布到了&lt;a href=&#34;https://github.com/icyleaf/douban&#34;&gt;github&lt;/a&gt; 上面。
+​2. &lt;a href=&#34;https://github.com/icyleaf/alpaca&#34;&gt;alpaca&lt;/a&gt;社区系统在整个一年之中虽然没太多的功能增加，但其代码在不断的重构（最近在读&lt;a href=&#34;http://book.douban.com/subject/4262627/&#34;&gt;重构&lt;/a&gt;更加确定了重构的重要性）
+​3. 学习了一个轻量级的模版引擎框架 &lt;a href=&#34;http://www.twig-project.org/&#34;&gt;twig-php&lt;/a&gt;，虽然也是今年开始熟悉 Smarty 的，但是我更喜欢 twig，语义清晰，解析速度迅速，其实框架的灵感来自于 Django 自身的模版系统，而且易于扩展开发。 详情请看作者在最初的&lt;a href=&#34;http://fabien.potencier.org/article/34/templating-engines-in-php&#34;&gt;介绍&lt;/a&gt;。
+​4. gears 项目一个类似于 ROR 下面 Redmine 的项目需求管理系统，由于 PHP 上面没也太好的系统，自己着手开发并熟悉下复杂逻辑的开发，项目尚在开发中，没有源码发布 :(&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;JAVA/Android
+在 2010 年的后半年因好奇和对 Google 开源的个人憧憬心态开始对 Android 开发做了一些研究，开始东拼西凑的做了一些小的应用，后被公司看中正式着手一个公司项目的 App，历时近 3 个月，边学习边琢磨边专注 Android 界面设计，在 12 月中旬终于可以缓一口气，并可以拍拍胸脯说这个软件可以在同等行业内软件的用户体验是可以最棒的！当然功能也不差的 :) 不过该项目还没有最后的完成，等待发布吧！&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Objective-C/iOS
+接触 iOS 开发的时间在 Android 之后，正好在做完一两个 Android 应用的时候拥有的人生的第一台 MacBook Pro，破不急奈的安装了 Xcode 一展其 IDE 和 Interface Builder 的风采，体验完之后傻了，相对于 Android 的界面设计，我真想发泄一下摔些东西。同等的时间在 Android 下只能设计界面，而在 Xcode 里面设计界面只是几分钟的时候（参考&lt;a href=&#34;http://developer.apple.com/library/mac/#documentation/UserExperience/Conceptual/AppleHIGuidelines/XHIGIntro/XHIGIntro.html&#34;&gt;Apple HIG&lt;/a&gt;）其余的时间可尽情的编码。于是从头开始学 Objective-C 下一步尝试 iOS 开发。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;另外很高兴成功 &lt;a href=&#34;http://www.beijing-open-party.org/&#34;&gt;Beijng Open Party&lt;/a&gt; 活动的志愿者，希望在新的一年中可以努力为 OP 加油&amp;amp;奋斗！&lt;/p&gt;
+
+&lt;h3 id=&#34;数码设备&#34;&gt;数码设备&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Mac Book Pro
+本来是期待身边的朋友购买的，因某人坚持不下，自己集资购入该设备，为今后 iOS 开发打好前期准备。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;BlackBerry 8900
+再一次下定觉得购入了第二台 bb 设备，第一台 8310 走完了它自己人生光辉的一年，主要是被我蹂躏了不成样子了，作为 RIM 公司后期拥有绝对血统的 8900 和 9000，果断入手前者，同时对 @cooku 童鞋当时问她为什么不买 9000 自我推倒- -！&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;iPad
+啊哈，有一个推倒前期自我反对思想的奢侈品，作为一个较长期的苹果用户，其产品具有一定的“洗脑”作用。当然目前 iPad 使用频率最高的是 iBook、Twitter 和浏览器，偶尔玩玩游戏和体验一些有趣的 app。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Canon 50mm/1.8f
+第一个也可能是唯一个佳能的镜头，用的次数并不是很多 &amp;gt;.&amp;lt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;读书&#34;&gt;读书&lt;/h3&gt;
+
+&lt;p&gt;书里面水分很多，夹杂了一些曾经看到的漫画和小说，但也阅读了一些有信仰，有深刻含义的图书，比如 1984，动物庄园，切·格瓦拉传，刀锋，不去会死，苹果往事。&lt;/p&gt;
+
+&lt;p&gt;技术图书推荐：Rework(Olivda 合译本)，用户故事，重构，Pro Git，给大家看的设计书&lt;/p&gt;
+
+&lt;p&gt;![](&lt;a href=&#34;http://chart.apis.google.com/chart?chs=400x200&amp;amp;cht=bvs&amp;amp;chd=s:CEUEIKSEcIrQ&amp;amp;chxt=y,x,x&amp;amp;chxl=0:|0|5|10|15|20|25|30|1:|1|2|3|4|5|6|7|8|9|10|11|12|2:|month&amp;amp;chxp=2,100&amp;amp;chf=c,lg,90,76A4FB,0.5,ffffff,0|bg,s,EFEFEF&amp;amp;chco=0000ff&amp;amp;chtt=82%20books+you+added+in+year+2010|divided+by+month&#34;&gt;http://chart.apis.google.com/chart?chs=400x200&amp;amp;cht=bvs&amp;amp;chd=s:CEUEIKSEcIrQ&amp;amp;chxt=y,x,x&amp;amp;chxl=0:|0|5|10|15|20|25|30|1:|1|2|3|4|5|6|7|8|9|10|11|12|2:|month&amp;amp;chxp=2,100&amp;amp;chf=c,lg,90,76A4FB,0.5,ffffff,0|bg,s,EFEFEF&amp;amp;chco=0000ff&amp;amp;chtt=82%20books+you+added+in+year+2010|divided+by+month&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;电影&#34;&gt;电影&lt;/h3&gt;
+
+&lt;p&gt;这一年的电影可没少看，因总看恐怖片被 @CNBorn 无比鄙视，因此开始计划看完[IMDB Top 250][]([电驴下载][])，起初计划每天一部，逐渐到后来因各种工作或其他事情只能减少频率，啊，现在已经看满编号的第 100 部了（不包括下面已经看过的）！今年继续努力！&lt;/p&gt;
+
+&lt;h3 id=&#34;音乐&#34;&gt;音乐&lt;/h3&gt;
+
+&lt;p&gt;这方面还是比较随心所欲，没有太大的变动，只不过开始听古典（莫扎特），开始小听下电影的
+OST （曾一度在网上搜索关键词写成 OTA）&lt;/p&gt;
+
+&lt;h3 id=&#34;日志&#34;&gt;日志&lt;/h3&gt;
+
+&lt;p&gt;好吧，我承认我没有达到去年说的要求：“2010年的日志数量和2009年类似”，刚才统计了结果，发现
+2009 年度共计发布了 31 篇日志，而 2010 年加上 09 年的总结在内也仅仅只有 10 篇，数量下降了 1/3 左右，汗颜。今年开始经过会多发布技术相关的日志，早期一些分享软件或框架的内容会少一些，比较不能再这么水下去了&amp;hellip;&lt;/p&gt;
+
+&lt;h3 id=&#34;运动&#34;&gt;运动&lt;/h3&gt;
+
+&lt;p&gt;很遗憾，2010 年度并没也什么运动了&amp;hellip;需要恢复！我要减灰 Orz&amp;hellip;&lt;/p&gt;
+
+&lt;h3 id=&#34;言而总之&#34;&gt;言而总之&lt;/h3&gt;
+
+&lt;p&gt;2010 年读了许多书，也看了不少电影，在个人修养上面有很大的提高，早晨 6 点 50 起床是一个长期考验而且我坚持下来了，也算是摆脱了很大的“懒”的坏习惯。今年最大的开发实践准备尝试敏捷开发流程 + TDD以及重构相结合的开发模式双结合。&lt;/p&gt;
+
+&lt;p&gt;新的一年，加油！&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>水果属性概述</title>
-      <link>https://icyleaf.com/2010/09/fruit-properties-overview/</link>
+      <link>https://icyleaf.com/2010/09/fruit-properties-overview</link>
       <pubDate>Sat, 25 Sep 2010 12:34:56 +0800</pubDate>
       
-      <guid>https://icyleaf.com/2010/09/fruit-properties-overview/</guid>
-      <description>热性水果：适合寒性体质 榴连、黑枣 温性水果：适合寒性体质 芒果、荔枝、桃子、龙眼、红毛丹、水蜜桃、板栗、释迦、椰子肉、金桔、乌梅、樱桃、红枣、 李</description>
+      <guid>https://icyleaf.com/2010/09/fruit-properties-overview</guid>
+      <description>&lt;p&gt;&lt;strong&gt;热性水果&lt;/strong&gt;：适合寒性体质&lt;/p&gt;
+
+&lt;p&gt;榴连、黑枣&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;温性水果&lt;/strong&gt;：适合寒性体质&lt;/p&gt;
+
+&lt;p&gt;芒果、荔枝、桃子、龙眼、红毛丹、水蜜桃、板栗、释迦、椰子肉、金桔、乌梅、樱桃、红枣、&lt;/p&gt;
+
+&lt;p&gt;李子(微温)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;平性水果&lt;/strong&gt;：适合各种体质&lt;/p&gt;
+
+&lt;p&gt;百香果、柠檬、番石榴、酪梨、凤梨、葡萄、莲雾、柳橙、甘蔗、木瓜、橄榄、梅子、印度枣&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;凉性水果&lt;/strong&gt;：适合热性体质&lt;/p&gt;
+
+&lt;p&gt;火龙果、梨、苹果、杨桃、山竹、葡萄柚、草莓、枇杷&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;寒性水果&lt;/strong&gt;：适合热性体质&lt;/p&gt;
+
+&lt;p&gt;蕃茄(微寒)、西瓜、香蕉、奇异果、甜瓜、柚子、橘子、柿子、椰子水、桑椹&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>2009年度总结</title>
-      <link>https://icyleaf.com/2010/01/2009-year-in-review/</link>
+      <link>https://icyleaf.com/2010/01/2009-year-in-review</link>
       <pubDate>Fri, 01 Jan 2010 12:34:56 +0800</pubDate>
       
-      <guid>https://icyleaf.com/2010/01/2009-year-in-review/</guid>
-      <description>忙碌了一天下来，刚打开电脑看着 twitter 刷出来的消息发觉已经到了 2010 年。回顾去年的那篇年度总结感受颇多，年度总结这玩意对于自己来说算是一次思维的整理和</description>
+      <guid>https://icyleaf.com/2010/01/2009-year-in-review</guid>
+      <description>&lt;p&gt;忙碌了一天下来，刚打开电脑看着 twitter 刷出来的消息发觉已经到了 2010 年。回顾去年的那篇&lt;a href=&#34;http://icyleaf.com/2008/12/30/2008-year-in-review/&#34;&gt;年度总结&lt;/a&gt;感受颇多，年度总结这玩意对于自己来说算是一次思维的整理和归档。就算度过了没有硬性计划的 2009 年总结还是多少要写一些。&lt;/p&gt;
+
+&lt;p&gt;回顾整个 2009 年做的事情，发现其中一些持续的事情是在完善 2008 年度的计划：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;通过维护一个 PHP5 的轻量级开源框架 Kohana 的中文化社区，开始深层次的了解和读懂一个框架的逻辑和模式；通过参加一年的 OpernParty 开源社区的活动，（不完全）吸收了很多新鲜养分。&lt;/li&gt;
+&lt;li&gt;成立 &lt;a href=&#34;http://kohana.cn&#34;&gt;Kohana 中文社区&lt;/a&gt;已经有一年多的时间也经历了很多：成功完成了对其&lt;a href=&#34;http://khnfans.cn/docs&#34;&gt;中文文档&lt;/a&gt;的翻译工作；不断向社区提交和共享代码。然而对于社区的运营也感受颇多，虽然过程是辛苦的，但是我很欣慰。同时还得感谢&lt;a href=&#34;http://iiiorz.net&#34;&gt;非正常非人类&lt;/a&gt;，e6nian，&lt;a href=&#34;http://codeigniter.org.cn&#34;&gt;Codeigniter中国&lt;/a&gt;老大 Hex，daqing 对 Kohana 和我的支持！&lt;/li&gt;
+&lt;li&gt;2009年读了一些各种各样的书，这些书都是我以前几乎没有涉及过的种类。其中一大部分（感谢 &lt;a href=&#34;http://cnborn.net&#34;&gt;CNBorn&lt;/a&gt;的推荐）得益于公司搬家，使得上下班几乎有两个小时的闲余时间，很多书籍都是在这段时间消灭的。以后还会继续读更多值得看的书，书再多还是不嫌多的。&lt;/li&gt;
+&lt;li&gt;2009年度入手了三个数码产品：iPod Touch ，Canon 450D 和 DELL 2209WA。正式成为 Apple 使用用户和摄影爱好者。&lt;/li&gt;
+&lt;li&gt;2008年的那些项目都难产掉了，2009年又有一些项目脚踏实地的进行着：&lt;a href=&#34;http://icyleaf.com/2009/06/22/modou/&#34; target=&#34;_self&#34;&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://icyleaf.com/2009/06/22/modou/&#34;&gt;魔豆&lt;/a&gt;：一个用于移动终端，手持设备的非官方版豆瓣网移动版本。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://icyleaf.com/2009/07/06/douban-api-console/&#34;&gt;豆瓣 API控制台&lt;/a&gt;：魔豆附属项目，开发豆瓣 API 的辅助工具，仅适用于Firefox。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://kohana.cn&#34;&gt;Aplaca&lt;/a&gt;：一个轻量级的基于 Kohana v3 开发的论坛系统（目前已上线，因为在开发中暂无发布）。&lt;/li&gt;
+&lt;li&gt;Douban API Package：这是一个重构版本，最近一直在测试和写测试用例，近期会以开源协议的形式发布。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+&lt;li&gt;新疆出差游：得益于 090705 事件造成那个地区封锁了网络，又因公司项目的事情前去出差，第一次坐灰机，第一次跑那么远的地方。详情请参见&lt;a href=&#34;http://icyleaf.com/2009/11/18/xinjiang-yaxin-diary-1/&#34;&gt;系列游记&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;随着寻找各种北京美食，加上工作的性质，对于运动少了许多，今年之中抽出了不少的周末参与到户外运动之中，即活动了筋骨，也提高了身体机能，还能认识很多驴友和漂亮的风景何乐而不为呢。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;总结完毕发现今年的日志数量急剧下降，或许以后的年度日志数量也会在这个数量左右徘徊，随着时间的推移，心智愈加成熟（自我感觉），心要慢慢的静下来（不能在浮躁了）深层次的学习一些技能，继续英语的学习和适当的户外运动，可能的话计划去某个地方游玩。再有就是不能把
+2009 年的最大的遗憾留在今年，继续加油！&lt;/p&gt;
+
+&lt;p&gt;UPDATE: 最大的遗憾在 2010 年初已经完美 :)&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>新疆随笔之五</title>
-      <link>https://icyleaf.com/2009/11/xinjiang-diary-5/</link>
+      <link>https://icyleaf.com/2009/11/xinjiang-diary-5</link>
       <pubDate>Thu, 26 Nov 2009 12:34:56 +0800</pubDate>
       
-      <guid>https://icyleaf.com/2009/11/xinjiang-diary-5/</guid>
-      <description>11月02日以后，基本上工作就忙完了，于是 04 日我准备一次暴走扫街，活动地点是市中心，人民广场附近以及红山公园南邻的人民公园。去那边坐的还是前</description>
+      <guid>https://icyleaf.com/2009/11/xinjiang-diary-5</guid>
+      <description>&lt;p&gt;11月02日以后，基本上工作就忙完了，于是 04 日我准备一次暴走扫街，活动地点是市中心，人民广场附近以及红山公园南邻的人民公园。去那边坐的还是前往二道桥大巴扎的公交车，嗯，看来是热点线路，怪不得人那么的多。在上面的随笔我应该说过乌市是一个很现代化的城市，整个乌市和其他大城市没什么太大的差别，也就有一个区域是维族居住生活区。所以来到了人民广场对于周围的环境一点都不陌生，到处高楼大厦，商场一座座，虽然天有点凉，但是人很是很多，一点也看不出来那天是星期三，我直接避开了繁华的路段，转走些小巷细路的。也没发现太多的东西，嗯，可能这附近还是太大众化了，而且还有王府井&amp;hellip;偶尔会有些卖囊的和大面积的买葡萄干之类的干活摊位。&lt;/p&gt;
+
+&lt;p&gt;其实那天的天气特别的糟糕，那个天气真想让我骂人，于是开始想是否买个 CPL 会好一些，接着开始询问附近是否有器材城，果不其然，闹市中必有所需，离我不远处正好有一个赛博电脑城，一进去就感觉整个市场就像菜市场一样混乱，但是并没有像海龙那样狗皮膏药的烦你。好不容易找到一家佳能店（奇怪，大多数的DSLR都是尼康的），问了一下，价格小贵，张口就是 180 元，不过一看都是肯高的，心里就有些没底，据说这东西假货居多，而且防伪已经换了不下 10 编了，有没有互联网，谁知道到底是真的假的，真的还好，如果是假的，我也总不能从北京再跑回去吧，琢磨了半天还是没买。不过回来之后听 CNBorn 说这样的鬼天气用 CPL 是没用的。呃，俺的相机至今也就一个配件：UV。主要保护镜头而已，嘿嘿。呃，跑题了&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;那天只顾四处转，不知道哪了就看地图，一点也没有留意时间，转到哪是哪，累了就休息。我的第一个休息点是位于解放南路和北路交口附近的汗腾格里大寺。貌似这边开始就是维族区了，因为我在通过地下通道见到了都是维族乞丐以及路道两边都是维族人的摊位，而且不说汉语。因此我遇见了一个可爱的维族小女孩：身袭火红的外套，一路小跑的就跑过我的眼前，坐到了我的旁边。迅速抓起相机，调整焦距，对焦，按下快门，于是就抓拍到了小女孩的第一张照片。不过这样也被小女孩吸引到了，于是同时我也想办法去吸引她，留住她。这一交谈不要紧，果然又是满口的维语。没办法，我开始使用重复口语回答，比划，给她看我拍的照片，让她玩我的相机，算是暂时不跑开了，刚开始小女孩还有些不适应，到后来越来越有镜头感。这也是我来新疆后最满意的一部分。&lt;/p&gt;
+
+&lt;p&gt;不过小女孩还是呆不住的，玩了一会就跑到大寺一层的商场里（哈，熟悉吧，大巴扎的清真寺一层也是商场，好怪异哦），我也休息的差不多了，准备去对面的新华书店找找旅游的书看看乌市还有些什么好玩的地方。说道看书，我这里岔题下，之前有去过市图书馆（离我住宿的地方很近），临时进入，需要投放一元钱，然后会给你一个临时卡，进入到各层之后就发现，馆藏的图书甚少，而且借书还有年费，不过里面人还是蛮多的，还有专门的维文藏馆。但是最重要的是自习室好多美女哦，我还趁机搭讪了一把，哈哈～这些我信了新疆出美女这句话。咱们再把话题转回新华书店，进入需要存包，无论是家乐福超市还是这里，就算是封闭的背包也需要存，当开始由于我手拿着相机进入的，误被人当成了记者，不过回头想想也是，身穿的这身行头，再配个单反相机，还真可能在非帝都，魔都这样的城市误解（以前在天津的时候也有被人误当成记者&amp;hellip;）。由于我把寄存的话会不安全，我也不放心，还是垂头丧气的出了书店。闹市！必有士兵巡逻把守，最重要的是我看到了一个很帅气的武警站岗，刚开始我踱步看着他走了过去，心里不甘，于是又折回走到武警身边向他说明了情况（给他拍相），估计他也把我当记者了还是很热心肠，走到了防暴盾牌中间，摆出了帅气的姿势，等待我的拍照，娃哈哈～&lt;/p&gt;
+
+&lt;p&gt;拍完之后，我的计划准备走前往人民公园（见上路线图从大寺到人民公园的路程），这段路程是最长而且也是让我最迷茫的路程，地图看了半天找不到走到了哪里，所以绕了一些地方，不过我发现我走到人民公园的那些路段都是繁华路段，到处商场一座座，人来人往，兵来兵往的。向西走的这些路段都是汉族区，所以让我比较郁闷，即使到了一个很大型的服装批发集散地，也找不到一点点的维族服装&amp;hellip;本还想可以买几顶小方帽呢，集散地的西边尽头就是人民公园，不过在那边并没有找到公园的入口，问路人，他们说不远处有个缺口走进去就行了，呃&amp;hellip;看来这也是一个不收费的公园，果不其然，这座公园并没有太多的人，也许跟天气有关系，因为我从图书馆仅有的一点资料了解到，这边公园会有群众载歌载舞。看来我来的时候正好错过了，到处都是光秃秃。转了很大一圈发现真的没什么的东西就回去找地方吃饭。谁知道让我走到了红山公园才能看到一个回去的公交车站&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;本次随笔到此结束，留下最后一部分作为美食的简单汇总。&lt;/p&gt;
+
+&lt;p&gt;如果觉得今天的文字太枯燥，看看下面的石榴解解馋&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>新疆随笔之四</title>
-      <link>https://icyleaf.com/2009/11/xinjiang-yaxin-diary-4/</link>
+      <link>https://icyleaf.com/2009/11/xinjiang-yaxin-diary-4</link>
       <pubDate>Tue, 24 Nov 2009 12:34:56 +0800</pubDate>
       
-      <guid>https://icyleaf.com/2009/11/xinjiang-yaxin-diary-4/</guid>
-      <description>就在清真寺旁边有一道短街有好几家当地的新疆维族饭馆，来回转了几圈，看看这家看看那家犹豫不定，不知道是吃手抓饭好呢，还是烤串，烤馕这些的好，突</description>
+      <guid>https://icyleaf.com/2009/11/xinjiang-yaxin-diary-4</guid>
+      <description>&lt;p&gt;就在清真寺旁边有一道短街有好几家当地的新疆维族饭馆，来回转了几圈，看看这家看看那家犹豫不定，不知道是吃手抓饭好呢，还是烤串，烤馕这些的好，突然看见有家是在外面放的一个大锅，一边架子放着带肉的羊骨头，锅里是翻滚的红红的汤，看着新鲜和卖家比划了几下，说要一碗尝尝（汉语也不是很熟练），然后进了里屋，哇，里面坐满了维族人，操着维语不知道在谈论些什么。然而他们的目光大多投向了手持相机的我，心里有些胆怯，找了一个小角落坐了下面重新打量四周，内部也是常见的清真的建筑风格，看来我来到店家还挺不错，而且价格也非常的便宜。不一会一份看着不咋地的饭端了上来，嗯，这应该是囊包肉，看来也不想其他非新疆城市做的那么好看，里面有南瓜，囊，和羊骨头肉，不过还不赖，汤浓肉劲，一会功夫一碗就被我消灭掉了。噢！差点忘记交代，本来想要一份酸奶的，可惜卖家告诉我这个只有早上才有的，但是我在其他地方吃过，味道和乌鲁木齐驻京办事处的差不多，只不过盛酸奶的容器和勺子并没那么精致。&lt;/p&gt;
+
+&lt;p&gt;最后给大家看一下这家位处国际市集大巴扎旁边饭馆的菜单价格：&lt;/p&gt;
+
+&lt;p&gt;趁着吃完饭，看着小伙计在炒手抓饭，抓拍的几张，然后正好被老板看到，和我叽哩咕嘟的说了一通，当开始以为是不让拍呢，搞了半天才明白，原来是让我给他的小伙计拍一张，于是就有了下面这张照片：&lt;/p&gt;
+
+&lt;p&gt;烤串，这样串串分三种，一种是常见的竹签，一种是粗树枝（乌鲁木齐驻京办事处也是），一种是木边的金属串：&lt;/p&gt;
+
+&lt;p&gt;啊，还有新疆特有的囊，嗯，这个烤馕的烤具和我们家乡烙火烧的家什一样，这个拍的是肉囊（6元一个）：&lt;/p&gt;
+
+&lt;p&gt;美食拍的差不多了，就开始在大巴扎的外围四周溜达，过程中认识一个外地游客的老乡，说是老乡实际上就是想互相拍个照，反正没事一起走走吧，于是就有了下面这张照片，这张是那个老乡（应该有40 岁左右了吧）找到当地的保安合影的。&lt;/p&gt;
+
+&lt;p&gt;转来转去这附近也就集市，观光塔和清真寺，后者进门都是收费的，现在是反季，门票都是 10元，我都没有进去，观光塔其实并不高，而且外面宣传的太邪乎；清真寺更搞，一层居然是商场，二层以上才是清真寺，由于不能拍照和在做礼拜，无法进去。最后就站在公交车站，手持地图寻找下一个目标。经过询问，还真巧，正好问着一个导游，据他说，乌市市区除了这里（大巴扎）就只有红山公园可以看看，因为那里可以俯瞰整个乌市，询问好路线，顺便抓拍了一张当时的路面状况就撤离了这里。&lt;/p&gt;
+
+&lt;p&gt;在找另外一个公交车站时，经过地下通道拍到的，嗯，也和北京差不多，过道两边摆的小摊位和零星的乞讨者。以及路边看到的唯一一家卖葡萄干的老大爷，于是我也顺便买了些，嗯，购买的时候又遇到了语言障碍&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;买完葡萄干后发现做公交车的零钱花掉了&amp;hellip;哈，居然这都给忘记了，看到二道桥商场旁边有个大棚的市场，心想买些小玩意换些零钱，这不买不知道，居然让我知道了惊天的秘密！为什么这么说呢，对于一个外地人又没有经过了解就过来玩，对于这边的物价是毫无概念的，尤其是整改后面向国际的大巴扎。其实对面的大棚卖的东西和大巴扎里面的是一模一样的，买纯羊毛的东西，卖家上来也是掏出打火机去燎一点边（不明白的见上面随笔三），而且可能大棚的卖家不是本地人，我知道内幕的那家卖家是山西（还是陕西的？），&lt;strong&gt;我买了 3 个纯羊毛的围巾，经过砍价后居然 120 元就买到了！之前一件就花了我 80 元。天啊！这是何等的利润啊！&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;买完这几件后手里就只剩下几块的交通费了，而且东西还蛮多蛮沉的，于是先回了趟宾馆放东西然后在去的红山公园（公交车只有不到 10 站地），说来不行，这要我外出的那几天天气一直的不好，尤其是到午后的时间，整个天空弥漫着一层似烟似雾的障碍物，就和北京的天气一样恶心。公园没有入园门票，但院内的其他部分地方和设施是单向收费的（寺庙，远眺楼，摩天轮，以及各种娱乐小项目），其实这样蛮好，可惜北京人太多，否则我想应该也会是这样的模式。进去之后人并不是很多，其实这个时候天气也算是蛮凉的了，大多数的娱乐项目都已经关闭，湖面也是干涸的。我就四处溜达了一圈，跑到远眺楼上面呆了一会，里面没什么东西，乌市包括亚心的介绍性文字，和大量的图片（新旧城市对比）。&lt;/p&gt;
+
+&lt;p&gt;在回去的时候，看到有一群人在拍照（经询问是给合唱团拍外景），我就凑了过去和摄影师的助理聊上了，他说一般每年的 5 月中下旬和 10 月初来新疆玩是最好的，当然是说周边的风景区，市里实在没什么大多的东西，喀什稍微好些，市里的古建筑更多一些，好像从乌市到喀什坐飞机还得1个多小时。然后有说了一串串让我记不住的风景区的名字还让我看了他们拍的照片，那叫一个美啊&amp;hellip;有兴趣的朋友们可以去那个助理给我推荐的新疆天山网（由于疆内的网络还是封锁的，大家可以等开网了之后去看看），这是一个当地的门户网站，里面有一些关于旅行的活动可以参加。&lt;/p&gt;
+
+&lt;p&gt;告别了他们之后，我也结束了今天的行程，打道回府（实际上是去吃夜市了，这个我准备放在随笔的最后一节写一些关于新疆美食的总结吧）。今天的随笔就到这样，让大家等候多时了，希望这部分的随笔还能让大家满意
+:)&lt;/p&gt;
+
+&lt;p&gt;明天的随笔是暴走扫街！想知道我都拍到了什么吗？哈哈，下回书接着记录。&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>新疆随笔之三</title>
-      <link>https://icyleaf.com/2009/11/xinjiang-yaxin-diary-3/</link>
+      <link>https://icyleaf.com/2009/11/xinjiang-yaxin-diary-3</link>
       <pubDate>Fri, 20 Nov 2009 12:34:56 +0800</pubDate>
       
-      <guid>https://icyleaf.com/2009/11/xinjiang-yaxin-diary-3/</guid>
+      <guid>https://icyleaf.com/2009/11/xinjiang-yaxin-diary-3</guid>
       <description>&lt;p&gt;幸好我们的客户是中国移动，人家休息了我们也可以放松一下。 10 月 31
 日（星期六），我耐不住性子抓上相机勇敢的出门了。出门前还是到酒店的前台确认了一下外出是否有生命危险，呃，比较没经历过嘛&amp;hellip;买了一份带有
 公交路线的地图，前往了今天的第一站，乌市最有特色的维族区市集&amp;ndash;大巴扎。&lt;/p&gt;
@@ -129,142 +1199,121 @@
 
 &lt;p&gt;[audio=&lt;a href=&#34;http://icyleaf.com/wp-content/uploads/2009/11/xinjiang_bus_tips.mp3,新疆公交车提示音,download&#34;&gt;http://icyleaf.com/wp-content/uploads/2009/11/xinjiang_bus_tips.mp3,新疆公交车提示音,download&lt;/a&gt;]&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://fleet1.footbig.com/478/m/b7/b6/b7b64d3a1feb80b05202f93f4426a418-6929.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;img src=&#34;http://fleet1.footbig.com/478/m/b7/b6/b7b64d3a1feb80b05202f93f4426a418-6929.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;起初的时候，相机还不敢拿出来，毕竟对于外地人来说，新疆人的第一印象并不是很好，而且这里又是
+July 5th
+的突发现场，先后拿着相机诚惶诚恐的拍了几张又放了包里，主要是因为这个时候（大概
+11
+点多）我还没有看到一个外地人，而且集市上的卖家还都是在店里坐着，偶尔遇到朋友了，亲切的握个手，闲谈起来。幸好的是一个拿着相机的游客引入我
+的眼帘，这一下子让我放下了顾虑和担心，开始对着别人，展示的物品肆无忌惮的拍起来，
+看到新鲜的玩意儿就抓起来瞅瞅，店里的挂毯，围巾，披肩，到小摊位的铜镜，各种管制刀具，玉器，还有狼牙，由于不知道是狼牙真的假的，就随随便问了问，然后就发
+现了一个问题，这个卖家不怎会说汉语，当我问她多少钱的时候，“10 koi”，“恩? 10
+koi?”，“10 koi”，我试着笔出手指，然后说 10
+元一个？卖家赶紧“恩，恩”的点点头，这下明白了，原来 “koi”
+就是“元”的意思啊，不过心里一琢磨，一颗小小的狼牙这也太贵了吧，说声谢谢就离开了。&lt;/p&gt;
+
+&lt;p&gt;经过四处溜达一圈的经验，我发现，我拿着相机拍别人的商品的时候，他们都会热心的上前来询问有什么需要购买的，然后利用任何可以“勾引”的新鲜玩意和把戏把你“勾搭”回
+来。我得承认他们卖东西很有一套，而且很和蔼，涉及到买围巾，披肩等服饰的店面，大多数都是年轻的美女，看中哪个，二话不说，取下来就
+往自己身上展示，如果涉及到纯羊毛，迅雷不及掩耳之势点着了打火机，拽着一点边毛就点着了，吹灭，让你凑上闻闻，伸手搓一下，嗯，果然，没错，是纯羊毛
+的。下面，最重要的来了，大家肯定很关心价格问题，好吧，他们喊价也很常见，上来张开一个高价，然后在声称平时（以
+July 5th
+为由）卖一个更高的价格，而且我每到一家都是说，开门价，第一单生意，给你便宜些，但是我心里没底啊，不过他们张口报的高价其实比北京这边购买还是要便宜的很多的，我看中的第一件商品是想送给妈妈的围巾，卖家报“120”，心里踌躇的半天，卖家看到我犹豫，上来就说，“你给个价格吧”心里琢磨了半天，一边按照常规砍价学给出了一个半价
+60
+元，一边心里自问，这个价格会不会找来一顿爆骂，然后把我扫地出门（嗯，这种事可以在天津发生，从此之后买东西还价有些害怕），谁知道卖家并没有怒火，而
+是很亲切的和我讨价还价，他让一小步，我也让一小步，最后我拿出杀手锏，我就这
+80
+元，你这围巾卖不卖，如果得到答案不卖，里面转头走人，果不其然，卖家同意了，趁着没事，和美女卖家聊了起来，问了问最近的情况。顺便又趁机戴了几顶帽拍
+了一下，由于担心外面太短，也没敢没拿太多钱，所以很不错的帽子到最后也没有买，另外至于价格的最终秘密我会放到下一部分的随笔揭秘（不是不是，是时候未到，哈哈
+o(∩_∩)o&amp;hellip;）：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://fleet1.footbig.com/478/m/28/9c/289cdb9c73e3ae016a3b33a5102fc1c1-2329.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://fleet1.footbig.com/478/m/da/e6/dae6755e5f909dfb38b145c4e5838cbb-1691.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;告别美女卖家之后又去其他店面去祸害：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://fleet1.footbig.com/478/m/bd/cf/bdcf4e8c2dc93d5e904b9b9e477516cc-6388.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://fleet1.footbig.com/478/m/51/cf/51cf0f2dabfdec5bba7ba0e5a62e9033-1799.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://fleet1.footbig.com/478/m/91/b9/91b9b30367877e13ebc98b3321b9ee7a-4187.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;到目前为止集市是逛的差不多了，到四周随便转转，就来到了大巴扎的中心小广场，这里有座观光塔，它的前面有一个大巴扎的金字塔标志，后面的旁边是清真寺（下图左边）&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://fleet1.footbig.com/478/m/63/d2/63d286200b408d63baf319d03f4184a1-9160.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;哈，还有摆摊卖石榴汁的：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://fleet1.footbig.com/478/m/e6/69/e66925b4306c2a76555ac60e008ba980-9037.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;
+看到这些突然想起来，这一早上还没有吃饭呢，嗯，找当地特色饭馆去...精彩继续稍后回来，请明天这个时候准时收看
+XD
+
+&lt;/div&gt;
+&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>新疆随笔之二</title>
-      <link>https://icyleaf.com/2009/11/xinjiang-diary-2/</link>
+      <link>https://icyleaf.com/2009/11/xinjiang-diary-2</link>
       <pubDate>Thu, 19 Nov 2009 12:34:56 +0800</pubDate>
       
-      <guid>https://icyleaf.com/2009/11/xinjiang-diary-2/</guid>
-      <description>差不多 11 点钟，飞机就到达了乌市地窝堡机场，打听好同事的住处就赶了过去，坐在出租车上面发现副驾驶的右角居然有摄像头，对于初次到达乌市，第一印象</description>
+      <guid>https://icyleaf.com/2009/11/xinjiang-diary-2</guid>
+      <description>&lt;p&gt;差不多  11 点钟，飞机就到达了乌市地窝堡机场，打听好同事的住处就赶了过去，坐在出租车上面发现副驾驶的右角居然有摄像头，对于初次到达乌市，第一印象和普通的省会城市差不多，环境也不是太好。幸好乌市并不是太大，出租车的费用也不很贵（起步 6 元，每公里 1.3元）。半个小时的时间就到达了同事所在的如家快捷酒店。附近有市政府所以也比较安全（也就可能不安全，为什么这么说呢。众所周知，自 July 5th 之后那边发生了一些事情，导致不少流血事件的发生，以及群众前往市政府游行，闹的同事晚上都不敢在外出，随时都能看到持棍的人见到不是同族的就会发生冲突）。另外一个重要原因是自 July 5th 之后，随着网上的曝光，整个疆内的网络，包括短信全部停运（最初是可以发短信不能打电话），现在是只能打电话，所以我们这边的项目也只有我前来现场开发。这也是为什么我会在那天之后消失在网上，甚至在 twitter 上面飞机起飞前说完“乌市见”后就没有音讯的原因&amp;hellip;说来安全是指，附近（还包括人群嚷嚷的街区）都有警察，武警，特警上街巡逻和士兵哨点把守，好家伙每队中起码有一个持长枪。&lt;/p&gt;
+
+&lt;p&gt;这边昼夜温差好大，刚去的那些天天气还都不错，白天有太阳和北京的天气差不多，不过到了晚上气温骤降，大概晚上 7 点和同事出去吃饭，我穿了带过去的所有衣服（一件Tee，一件线衣，一个带背心的小西服）都是浑身打颤，只有吃完一碗面之后才能抵御下外面的冷空气。除此之外，差不多还有
+2 个小时的时差，其实这没有任何的影响。这里上班时间都是 10:00，早上 8 点的时候外面还是黑乎乎的一片，于是我又钻到被窝里呼呼睡一统 XD&lt;/p&gt;
+
+&lt;p&gt;由于我没有通行证无法进移动公司，我主要是做远程开发，工作日的大部分时间都是在宾馆编程，看看电视（无奈之举，只有看 CCTV 获得一些外界的信息），虽然疆内的网站是开着的，不过由于宾馆的网速慢的要死，疆内突发的高访问量，导致各个网站都是很慢很慢的，不过新闻大多数还都是那些疆内新闻和无关紧要的要闻&amp;hellip;.&lt;/p&gt;
+
+&lt;p&gt;下图大家可以看出，乌市所有的指示的文字都是汉语和维语双文，这是为什么呢？接下来的随笔记着说明，待续&amp;hellip;（这次图片少了些，后面的更精彩哦）&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>亚心随笔之一</title>
-      <link>https://icyleaf.com/2009/11/xinjiang-diary-1/</link>
+      <link>https://icyleaf.com/2009/11/xinjiang-diary-1</link>
       <pubDate>Wed, 18 Nov 2009 12:34:56 +0800</pubDate>
       
-      <guid>https://icyleaf.com/2009/11/xinjiang-diary-1/</guid>
-      <description>突遇一次机遇能有幸到新疆出差，由于时间紧急，没有来得及做准备工作就飞了过去，来了之后才明白我为什么才有机会出差走一遭&amp;hellip;一共在那</description>
+      <guid>https://icyleaf.com/2009/11/xinjiang-diary-1</guid>
+      <description>&lt;p&gt;突遇一次机遇能有幸到新疆出差，由于时间紧急，没有来得及做准备工作就飞了过去，来了之后才明白我为什么才有机会出差走一遭&amp;hellip;一共在那边呆了有 11 天（10月27日-11月6日）的时间，除了工作外还抽出来了些时间在市里暴走，扫街。顺便品尝了不少的当地美食。最近刚刚可以闲的下来整理了一下照片，
+写下了下面的随笔记录：&lt;/p&gt;
+
+&lt;p&gt;11 月 27 日早在 T1 坐的海航飞往乌鲁木齐（以下简称乌市）的飞机，我专门挑了一个靠窗户的座位。这是我第一次做飞机，也在打机票的时候闹了一个很囧的事情，我选择的是电子自主出票，尤其是可以选择座位，最开始我总以为，飞机的窗户是大窗户而不是每个靠边的座位都能占到窗户，于是傻乎乎的问了机场服务人员&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;那天阳光灿烂， 由于起飞的时候正好是早上 8 点多钟，从北京飞往乌市需要 4 个小时的时间，起初新鲜抓着相机拍了好多的云彩和大大的太阳，一抹蓝蓝的天空，后来飞机一直在厚厚的云层中飞行，抓起书继续阅读《向加泰罗尼亚致敬》一书，偶尔和身边的新疆人随便闲扯几句，他是一个很粗犷但心很细的中年人，从事销售行业。和他聊起了第一印象还是很不错的，没有传说中的那么恶略。趁下机的时候还给了我一些提醒。&lt;/p&gt;
+
+&lt;p&gt;当飞机经过甘肃，莫高窟之后，透过飞机出窗户看到的就是另一番风景：一望无际的沙漠，蜿蜒的山脉，旷阔的牧地，曲折的河流，水库和巍巍的天山被银白的白雪覆盖，相机是一直不断的刷刷刷的拍个不停，那个时候阳光已经非常明媚，而且加上窗户的反光，阳光的光晕，以及不小心就能拍到机翼，导致废掉了好多照片。&lt;/p&gt;
+
+&lt;p&gt;待续&amp;hellip;&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>话说相机二三事</title>
-      <link>https://icyleaf.com/2009/05/talk-about-camera/</link>
+      <link>https://icyleaf.com/2009/05/talk-about-camera</link>
       <pubDate>Mon, 11 May 2009 12:34:56 +0800</pubDate>
       
-      <guid>https://icyleaf.com/2009/05/talk-about-camera/</guid>
-      <description>记忆中的童年，曾经在父母的衣柜底部发现了一部特老式的国产红梅HM-1相机（起初忘记什么牌子，只记得有一个梅字），外观有些像莱卡，但要厚许多，</description>
-    </item>
-    
-    <item>
-      <title>回顾 2008 年度及总结报告</title>
-      <link>https://icyleaf.com/2008/12/2008-year-in-review/</link>
-      <pubDate>Tue, 30 Dec 2008 12:34:56 +0800</pubDate>
-      
-      <guid>https://icyleaf.com/2008/12/2008-year-in-review/</guid>
-      <description>2008 年是一个不平凡的一年，这一年发生了很多大事件：南方雪灾，西藏拉萨暴力事件，四川汶川大地震，北京奥运会，三鹿奶粉事件，0807（本人毕业）&amp;</description>
-    </item>
-    
-    <item>
-      <title>正式入黑莓系</title>
-      <link>https://icyleaf.com/2008/12/join-into-blackberry/</link>
-      <pubDate>Tue, 16 Dec 2008 12:34:56 +0800</pubDate>
-      
-      <guid>https://icyleaf.com/2008/12/join-into-blackberry/</guid>
-      <description>真的忘记了为什么要买黑莓手机，也许是自己手机太老已没有软件支持；也许是受 P阿姨 的不断诱惑；也许是因为黑莓的软件是 Java 编写的；更也许是 iPhone&amp;amp;G1 太贵了让</description>
-    </item>
-    
-    <item>
-      <title>入手HP6520</title>
-      <link>https://icyleaf.com/2008/06/buyed-hp6520/</link>
-      <pubDate>Mon, 30 Jun 2008 12:34:56 +0800</pubDate>
-      
-      <guid>https://icyleaf.com/2008/06/buyed-hp6520/</guid>
-      <description>前天在中关村入手的，哈哈 o(∩_∩)o&amp;hellip;惠普6520(054)，多年的梦想终于完成了，我的075Q计划延期完成，虽然晚了半年之</description>
-    </item>
-    
-    <item>
-      <title>北京的卤煮</title>
-      <link>https://icyleaf.com/2008/05/beijings-lu-zhu/</link>
-      <pubDate>Mon, 26 May 2008 12:34:56 +0800</pubDate>
-      
-      <guid>https://icyleaf.com/2008/05/beijings-lu-zhu/</guid>
-      <description>卤煮火烧在北京是一种尽人皆知的食品，它是将火烧和炖好的猪肠和猪肺放在一起煮（有时也用猪腰子），买一碗主食副食和热汤都有了。 据我所知，这火烧每</description>
-    </item>
-    
-    <item>
-      <title>防止电脑操作者患上职业病</title>
-      <link>https://icyleaf.com/2008/04/prevention-of-occupational-diseases-computer-operator/</link>
-      <pubDate>Tue, 15 Apr 2008 12:34:56 +0800</pubDate>
-      
-      <guid>https://icyleaf.com/2008/04/prevention-of-occupational-diseases-computer-operator/</guid>
-      <description>早餐应吃好，营养充分，以保证旺盛的精力，并有足够的热量。 中餐应多吃含蛋白质高的食物，如瘦猪肉、牛肉、羊肉、鸡鸭、动物内脏、各种鱼、豆类及豆制</description>
-    </item>
-    
-    <item>
-      <title>脖子落枕怎么办及治疗方法</title>
-      <link>https://icyleaf.com/2008/04/how-do-stiff-neck-and-neck-treatment/</link>
-      <pubDate>Sun, 06 Apr 2008 12:34:56 +0800</pubDate>
-      
-      <guid>https://icyleaf.com/2008/04/how-do-stiff-neck-and-neck-treatment/</guid>
-      <description>前天在朋友家过夜，他的枕头好硬，硬的可以和石头相比较，第二天直接，脖子落枕&amp;hellip;脖子落枕真的是很难受啊，如何治疗呢？在网上搜了下.</description>
-    </item>
-    
-    <item>
-      <title>2008，春节吉祥</title>
-      <link>https://icyleaf.com/2008/01/2008-spring-hello/</link>
-      <pubDate>Wed, 30 Jan 2008 12:34:56 +0800</pubDate>
-      
-      <guid>https://icyleaf.com/2008/01/2008-spring-hello/</guid>
-      <description>春节马上就要到了，今年是奥运年，所以今年的春节是非常特别的。 在这个特别的日子，请您在这里留下您的祝福！ 首先最先的是祭灶，不知道大家知不知道这</description>
-    </item>
-    
-    <item>
-      <title>2008，一个全新的我</title>
-      <link>https://icyleaf.com/2007/12/2008-a-new-i/</link>
-      <pubDate>Thu, 27 Dec 2007 12:34:56 +0800</pubDate>
-      
-      <guid>https://icyleaf.com/2007/12/2008-a-new-i/</guid>
-      <description>看着漫步等人参与的号召：使我的新年目标成功！活动让我情不自禁。希望有兴趣的朋友也可以参与进来！ 其实我是一个有些冲动的人，什么事情都想要尝试，</description>
-    </item>
-    
-    <item>
-      <title>博客串联：5 个关于你的问题</title>
-      <link>https://icyleaf.com/2007/12/blog-series-five-on-your-question/</link>
-      <pubDate>Sat, 01 Dec 2007 12:34:56 +0800</pubDate>
-      
-      <guid>https://icyleaf.com/2007/12/blog-series-five-on-your-question/</guid>
-      <description>记得是漫步好几天前在饭否给我发的信息，让我参与这个活动，由于这几天一直再忙，耽搁了，今天补上：） 你从什么时候开始 Blogging 的？ 上大学的时候接触到了博</description>
-    </item>
-    
-    <item>
-      <title>如何治疗嘴唇破皮</title>
-      <link>https://icyleaf.com/2007/11/how-to-treat-lips-popi/</link>
-      <pubDate>Fri, 09 Nov 2007 12:34:56 +0800</pubDate>
-      
-      <guid>https://icyleaf.com/2007/11/how-to-treat-lips-popi/</guid>
-      <description>嘴唇破皮确实是一件很痛苦的事情，我也是身受体会，最近嘴唇的皮还是一点一点的起皮。我自称是耐渴性人物，可是嘴唇一开始破皮，就总想用舌头舔，结果</description>
-    </item>
-    
-    <item>
-      <title>人为什么会上火</title>
-      <link>https://icyleaf.com/2007/10/why-do-people-at-fire/</link>
-      <pubDate>Tue, 30 Oct 2007 12:34:56 +0800</pubDate>
-      
-      <guid>https://icyleaf.com/2007/10/why-do-people-at-fire/</guid>
-      <description>我发现我现在浑身是病，特开“养生之道”专栏，给自己给大家介绍一些发生在我身上的一些问题和解决方法。希望大家喜欢 上火对我来说可以说是家常便饭，</description>
-    </item>
-    
-    <item>
-      <title>如何降低胆固醇</title>
-      <link>https://icyleaf.com/2007/10/how-to-reduce-cholesterol/</link>
-      <pubDate>Mon, 29 Oct 2007 12:34:56 +0800</pubDate>
-      
-      <guid>https://icyleaf.com/2007/10/how-to-reduce-cholesterol/</guid>
-      <description>忘记了一个小小重要的事情，上次去北京献血时的验血结果，护士告诉我胆固醇有些过高，说是熬夜导致，熬夜肯定是有的通宵唱K嘛，但是我有些疑惑，为什</description>
+      <guid>https://icyleaf.com/2009/05/talk-about-camera</guid>
+      <description>&lt;p&gt;记忆中的童年，曾经在父母的衣柜底部发现了一部特老式的国产&lt;a href=&#34;http://www.camgle.com/thread-14101-1-1.html&#34;&gt;红梅HM-1相机&lt;/a&gt;（起初忘记什么牌子，只记得有一个梅字），外观有些像莱卡，但要厚许多，镜头是从内部有上往下翻出来，镜头的链接还属于褶皱型的类似塑料，不知道怎么形容，于是Google了一下，发现学名叫120遮叠式皮腔相机。不过因当时年少不懂，几经折磨的相机被我玩坏了&amp;hellip;而且是在没有胶卷的情况下，而后诚惶诚恐的把相机重新塞到父母的衣柜下面，从此封口不提此事，幸好后来也没有找我质问。后来才知道那相机是我父亲年轻时购买的机器，同时在家里的相册也发现了不是父亲外出拍摄的照片，当时都是黑白照，或许是父亲的基因遗传还是其他原因，从此对相机产生了浓厚的兴趣。或许对于高科技新鲜物品都是充满了美好的欲望：对于相机，对于电脑亦是&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;学生时代，尤其喜欢把玩胶卷相机，记得在我们上初中的时候当时特流行也最易用的“傻瓜相机”，只要学校组织外出活动，就会想办法去借到一个相机，带上1-2卷胶卷，享受拍照的乐趣，尤其在胶卷用完之后就会跑到一个黑黑的角落，甚至回家后放在被窝里面取出胶卷，生怕一点的曝光出现。后来因有了电脑而着迷，但只要有机会接触到相机就会特兴奋。（下面附图的傻瓜相机应该还是高级货，网上找的其他的都太模糊）&lt;/p&gt;
+
+&lt;p&gt;后来，也就是2008年来北京工作的第一年，开始花自己钱的时候，给自己购买了一份生日礼物：柯达 C340，我的第一款数码相机，虽说是在淘宝上面淘过来的二手相机，歹说也 500 万像素呢～从此无论到哪都会随身携带着它，我还很清楚的记得，当初在购买此相机之后不久，另外一个在北京的朋友给我看来一本关于相机拍摄的初级入门电子书。就在我认真阅读第一节“一般来说数码相机都设有快门优先和光圈优先&amp;hellip;”，抓起自己的相机“玩命”的寻找也没有发现这两个曝光功能，随之删除掉了那本入门电子书。开始就是抓什么拍什么，再也不看电子书教程和论坛经验之类的东西生怕受了打击&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;很快一年的时间过去了，这部老爷机我也逐渐熟悉，照片技术也愈发熟练起来，同时也明白了它的优缺点，开机速度和快门速度都比较慢，微拍的时候最不容易对焦，对于较暗光线拍照效果急剧下降，最要命越用耗电量也越大，两节新的 AA 南孚电池在不开闪光灯的情况下最多撑3-4个小时。于此同时从 &lt;a href=&#34;http://twitter.com/CNBorn&#34;&gt;CNBorn&lt;/a&gt; 和 &lt;a href=&#34;http://twitter.com/yichi&#34;&gt;yichi&lt;/a&gt; 同学了解到一些单反相机的知识，于是心开始动摇了&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;终于，于昨天（2009年05月10日）在 CNBorn 陪同下来到了北京五棵松器材城入手了属于自己的单反相机 —— 佳能 450D + 18-55 IS 套机。随后来到在这期《时尚先生》韩寒的外拍场地，北京世界风情园进行了第一次试拍。虽然因某些原因成为了烂尾工程，但这是一个非常适合练习拍摄的地方，重合了多国的建筑风格，荒废的场地还带着一些探险，寻找古籍的趣味，在一些建筑内，纵横交错的柱子又称了练习用光的有利条件。最最重要的是来到这里的人很少，或许会有少数的摄影爱好者前来外拍，但是最起码的我们不会再因为人多等等原因而延误拍摄的痛苦和无奈。&lt;/p&gt;
+
+&lt;p&gt;从此揭开了新的拍摄乐章&amp;hellip;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;最后特别感谢山居的&lt;a href=&#34;http://www.shanju.org/&#34;&gt;清隐子&lt;/a&gt;对各种相机的看法，豆瓣的&lt;a href=&#34;http://www.douban.com/people/mattony/&#34;&gt;强哥&lt;/a&gt;解答我的问题，yichi 的购买注意事项等问题的解答，CNBorn
+帮我这单反小白验机和使用光圈，快门知识；相机包的挑选！ :P&lt;/p&gt;
+</description>
     </item>
     
   </channel>

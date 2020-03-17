@@ -2,32 +2,248 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Macos on icyleaf</title>
-    <link>https://icyleaf.com/tags/macos/</link>
+    <link>https://icyleaf.com/tags/macos/index.xml</link>
     <description>Recent content in Macos on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>All rights reserved - 2019</copyright>
-    <lastBuildDate>Thu, 23 May 2019 22:45:07 +0800</lastBuildDate>
-    
-	<atom:link href="https://icyleaf.com/tags/macos/index.xml" rel="self" type="application/rss+xml" />
-    
+    <atom:link href="https://icyleaf.com/tags/macos/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>创建无 Storyboard（xib） 的 macOS NSWindow</title>
-      <link>https://icyleaf.com/2019/05/create-macos-nswindow-without-storyboard/</link>
+      <link>https://icyleaf.com/2019/05/create-macos-nswindow-without-storyboard</link>
       <pubDate>Thu, 23 May 2019 22:45:07 +0800</pubDate>
       
-      <guid>https://icyleaf.com/2019/05/create-macos-nswindow-without-storyboard/</guid>
-      <description>前言 历届 WWDC 众多和 macOS 开发相关的视频中只要涉及到 UI 部分必会牵扯上 Storyboard，它能帮你辅助画 UI，使用 Auto Layout 进行布局，甚至你可以不用写一行</description>
+      <guid>https://icyleaf.com/2019/05/create-macos-nswindow-without-storyboard</guid>
+      <description>
+
+&lt;h3 id=&#34;前言&#34;&gt;前言&lt;/h3&gt;
+
+&lt;p&gt;历届 WWDC 众多和 macOS 开发相关的视频中只要涉及到 UI 部分必会牵扯上 Storyboard，它能帮你辅助画 UI，使用 Auto Layout 进行布局，甚至你可以不用写一行代码仅仅使用它和 Core Data 就能完成一个 CURD 的功能。苹果总是极力的推荐所有的开发者（尤其是初学者）使用 Storyboard，它给人最直观的感受，配置参数也都做了调教（有时候开启一个参数需要手敲好多行代码）。&lt;/p&gt;
+
+&lt;p&gt;但总有那么一群人就是不爱使用 Storyboard（比如我），尤其 App 涉及比较多的界面和交互的时候感觉还是代码更可控，团队开发在代码仓库管理上也更为方便。&lt;/p&gt;
+
+&lt;p&gt;何奈在网络上存在的绝大多数的教程和视频都是以 Storyboard 为主，稍不留神可能就忘记设置了哪里，再或者过段时间举一反三的时候总会忘记在 Storyboard 设置了什么而无法实现同样的效果。&lt;/p&gt;
+
+&lt;p&gt;恰好我最近比较闲花了点时间在写 macOS App，过程中体会到了 macOS 和 iOS 两个体系存在了巨大的差异，可能是习惯了 iOS 框架的编码方式就感觉到 macOS 格格不入，想要完成一个在 iOS 上简单的界面但 macOS 上就要想尽各种办法来去实现，迫切期待在马上来临的 WWDC 2019 上宣布新的解决方案。&lt;/p&gt;
+
+&lt;h3 id=&#34;开始教学&#34;&gt;开始教学&lt;/h3&gt;
+
+&lt;p&gt;打开 Xcode 选择 macOS 下面的 Cocoa App 进行下一步，填写好项目名称后勾不勾选 &lt;strong&gt;Use Storyboard&lt;/strong&gt; 都没有关系，勾选就会创建一个 &lt;code&gt;Main.storyboard&lt;/code&gt; 的文件，不勾选也会创建一个 &lt;code&gt;MainMenu.xib&lt;/code&gt; 的文件，选择项目保存的路径就创建好第一个项目了。&lt;/p&gt;
+
+&lt;p&gt;无论默认的是 &lt;code&gt;Main.storyboard&lt;/code&gt; 或 &lt;code&gt;MainMenu.xib&lt;/code&gt; 都会一个 Main Menu 控件这里咱们先不管它，除此之外还会有一个 Window 控件，一个 macOS App 基础的层级关系是这样的&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;+--------------------------------------------------------------+
+|                           NSWindow                           |
+|  +--------------------------------------------------------+  |
+|  |                    NSViewController                    |  |
+|  |  +--------------------------------------------------+  |  |
+|  |  |                      NSView                      |  |  |
+|  |  +--------------------------------------------------+  |  |
+|  +--------------------------------------------------------+  |
++--------------------------------------------------------------+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;选中 Window 控件后后选择删除（&lt;code&gt;Main.storyboard&lt;/code&gt; 还需要再删除默认生成的 ViewController 控件），删除后样子是这样的&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://icyleaf.com/tutorials/macos-app-without-storyboard/001/shot001-xcode-storyboard.png&#34; alt=&#34;Storyboard and xib in Xcode&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;由于我们删除了默认的 NSWindow 因此需要在 &lt;code&gt;Appdelegate.swift&lt;/code&gt; 文件创建一个：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;import Cocoa
+
+@NSApplicationMain
+class AppDelegate: NSObject, NSApplicationDelegate {
+
+    // 创建默认的 Window
+    lazy var window: NSWindow = {
+       let w = NSWindow(contentRect: NSMakeRect(0, 0, 640, 480),
+                        styleMask: [.titled, .resizable, .miniaturizable, .closable, .fullSizeContentView],
+                        backing: .buffered,
+                        defer: false)
+
+        // 设置最小尺寸
+        w.minSize = NSMakeSize(320, 240)
+
+        // 打开显示在屏幕的中心位置
+        w.center()
+
+        return w
+    }()
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;默认的 window 设置好了，我们让他赶紧显示出来吧，在 &lt;code&gt;applicationDidFinishLaunching&lt;/code&gt; 方法添加如下代码:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;func applicationDidFinishLaunching(_ aNotification: Notification) {
+    // 设置为 mainWindow 这样我们才能通过下面的代码调用
+    window.makeKeyAndOrderFront(nil)
+
+    // 设置 mainWindow 的标题
+    NSApplication.shared.mainWindow?.title = &amp;quot;Hello world&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;注意看上面代码块的备注，这两行代码不能颠倒，否则 &lt;code&gt;NSApplication.shared.mainWindow&lt;/code&gt; 返回的是 &lt;code&gt;nil&lt;/code&gt;，我们来运行一下看看，是不是就能看到一个 640x480 的窗口，标题显示的 hello world&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://icyleaf.com/tutorials/macos-app-without-storyboard/001/shot002-nswindow.png&#34; alt=&#34;NSWindow App&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;用鼠标拖拽缩放大小看看是不是到一个保留尺寸就无法再缩小了，这个就是通过代码设置的最小尺寸。虽然 App 可以运行了内容还是空空的，根据上面画出来的层级关系还需要一个 NSViewController 充当 contentViewController，它相当于 iOS 的 rootViewController 这样说应该就很容易理解了吧。&lt;/p&gt;
+
+&lt;p&gt;假设 App 需要完成这样一个功能，界面有一个 Label 和 Button，点击 Button 可以改变 Label 的文字内容：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;+----------------------+          +----------------------+
+|                      |          |                      |
+|   Click the button   |          |         Yeah!        |
+|                      |          |                      |
+| +------------------+ | -------&amp;gt; | +------------------+ |
+| |     Click me     | |          | |     Click me     | |
+| +------------------+ |          | +------------------+ |
+|                      |          |                      |
++----------------------+          +----------------------+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;我们用原生 Auto Layout 布局后的代码是这样的&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;import Cocoa
+
+class ViewController: NSViewController {
+
+    lazy var label: NSTextField = {
+        let v = NSTextField(labelWithString: &amp;quot;Press the button&amp;quot;)
+        v.translatesAutoresizingMaskIntoConstraints = false
+
+        return v
+    }()
+
+
+    lazy var button: NSButton = {
+        let v = NSButton(frame: .zero)
+        v.translatesAutoresizingMaskIntoConstraints = false
+
+        return v
+    }()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        view.addSubview(label)
+        view.addSubview(button)
+
+        NSLayoutConstraint.activate([
+            label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            label.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -20),
+
+            button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            button.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 20),
+            button.heightAnchor.constraint(equalToConstant: 30),
+            button.widthAnchor.constraint(equalToConstant: 100)
+            ])
+
+        button.title = &amp;quot;Click me&amp;quot;
+        button.target = self
+        button.action = #selector(onClickme)
+    }
+
+    @objc func onClickme(_ sender: NSButton) {
+        label.textColor = .red
+        label.stringValue = &amp;quot;Yeah!&amp;quot;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;代码看着不错的样子，还差最后一步把 ViewController 添加到 NSWindow 里吧，返回 &lt;code&gt;AppDelegate.swift&lt;/code&gt; 文件找到上次编辑的 &lt;code&gt;applicationDidFinishLaunching&lt;/code&gt; 方法里面在代码的末尾添加最后的代码：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;func applicationDidFinishLaunching(_ aNotification: Notification) {
+    // 设置为 mainWindow 这样我们才能通过下面的代码调用
+    window.makeKeyAndOrderFront(nil)
+
+    // 设置 mainWindow 的标题
+    NSApplication.shared.mainWindow?.title = &amp;quot;Hello world&amp;quot;
+
+    // 设置 contentViewController
+    let contentViewController = ViewController() // or ViewController(nibName:nil, bundle: nil)
+    window.contentViewController = contentViewController
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;咦？！你这不对啊，&lt;code&gt;NSViewController&lt;/code&gt; 代码在初始化的时候是不能这样的，必须通过 &lt;code&gt;init(coder:)&lt;/code&gt; 或 &lt;code&gt;init(nibName:bundle:)&lt;/code&gt; 这两种方法才行，这样写运行会提示 &amp;ldquo;could not load the nibName: WithoutStoryboard.ViewController in bundle (null).&amp;rdquo; 错误的！&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;观察的不错嘛，这点小细节都你发现了，NSViewController 类通常都是通过 &lt;code&gt;init(nibName:bundle:)&lt;/code&gt; 进行初始化来关联 xib 界面，既然我们抛弃了 Storyboard（xib) 那怎么办呢，这里理解 NSViewController 的&lt;a href=&#34;https://developer.apple.com/documentation/appkit/nsviewcontroller&#34;&gt;生命周期&lt;/a&gt; （macOS 10.10 之后版本)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;+----------------------------------+   +------------------------------+
+|               init               +--&amp;gt;+           loadView()         |
++-----------------+----------------+   +---------------+--------------+
+| Storyboard(xib) |      code      |                   |
++----------------------------------+                   v
+|  init(coder:)   | init(nibName:  |   +---------------+--------------+
+|                 |      bundle:)  |   |          viewDidLoad()       |
++-----------------+----------------+   +---------------+--------------+
+                                                       |
+                                                       v
++----------------------------------+   +---------------+--------------+
+|        viewWillDisappear()       +&amp;lt;--+         viewWillAppear()     |
++-----------------+----------------+   +------------------------------+
+                  |                    |    updateViewConstraints()   |
+                  |                    |                              |
+                  v                    |       viewWillLayout()       |
++-----------------+----------------+   |                              |
+|         viewDidDisappear()       |   |        viewDidLayout()       |
++----------------------------------+   +------------------------------+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;生命周期和 iOS 的 UIViewController 也差不多，从上面的生命周期来看只能覆写 loadView 方法才行：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;class ViewController: NSViewController {
+
+    override func loadView() {
+        // 设置 ViewController 大小同 mainWindow
+        guard let windowRect = NSApplication.shared.mainWindow?.frame else { return }
+        view = NSView(frame: windowRect)
+    }
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;看了上面代码也就明白了为什么在 &lt;code&gt;AppDelegate.swift&lt;/code&gt; 设置 contentViewController 需要在代码块的末尾添加了吧，如果在最开始添加那就无法获取到 mainWindow 也就无法设置 ViewController 的 frame。这里还有个小提醒 macOS 10.10 之后版本在覆写该方法如果调用了 &lt;code&gt;super.loadView()&lt;/code&gt; 方法就会自动加载同名的 xib 文件&lt;strong&gt;绝对不能填写&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;p&gt;让我们在运行一次看看？&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://icyleaf.com/tutorials/macos-app-without-storyboard/001/shot003-final-app.png&#34; alt=&#34;Final App&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Ta-Da! 完成了！&lt;/p&gt;
+
+&lt;h3 id=&#34;结语&#34;&gt;结语&lt;/h3&gt;
+
+&lt;p&gt;这算是一个开篇，后续还会再继续整理，尽请期待。&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>如何解决 macOS 编译丢失 C Header 文件</title>
-      <link>https://icyleaf.com/2018/10/apply-for-a-motorcycle-license/</link>
+      <link>https://icyleaf.com/2018/10/apply-for-a-motorcycle-license</link>
       <pubDate>Wed, 24 Oct 2018 14:30:07 +0800</pubDate>
       
-      <guid>https://icyleaf.com/2018/10/apply-for-a-motorcycle-license/</guid>
-      <description>今天在 macOS 10.14 通过 brew 安装 libgit2 之后调用时提示提示 fatal error: &#39;time.h&#39; file not found，本以为是 brew 的问题自己去编译问题依然。 确认了 Xcode Command Line Tools 并且再次确认了 xcode-select -s /Applications/Xcode.app 之后</description>
+      <guid>https://icyleaf.com/2018/10/apply-for-a-motorcycle-license</guid>
+      <description>&lt;p&gt;今天在 macOS 10.14 通过 brew 安装 libgit2 之后调用时提示提示 &lt;code&gt;fatal error: &#39;time.h&#39; file not found&lt;/code&gt;，本以为是 brew 的问题自己去编译问题依然。
+确认了 Xcode Command Line Tools 并且再次确认了 &lt;code&gt;xcode-select -s /Applications/Xcode.app&lt;/code&gt; 之后还是这样，就连重启大法也不用之后，
+在 Google 上检索换了好些关键词也没找到问题出在哪，索性把关键词继续模糊放大扩大范围，看到了 github 一个不知道是啥的项目看到有 &lt;code&gt;&#39;stdio.h.h&#39; file not found&lt;/code&gt;
+类似的 issue 终于找到了&lt;a href=&#34;https://github.com/frida/frida/issues/338#issuecomment-424595668&#34;&gt;解决答案&lt;/a&gt;：&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;关键原因是在于找不到 /usr/include 目录，然而安装 command-line tools 也不会自动帮你解决，而是需要在安装后再手动安装 /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg 才行。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;跟随这个解决方案也附带了&lt;a href=&#34;https://forums.developer.apple.com/thread/104296&#34;&gt;解释&lt;/a&gt;：&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;From the latest Xcode 10 Beta 2 release notes.&lt;/p&gt;
+
+&lt;p&gt;The Command Line Tools package installs the macOS system headers inside the macOS SDK. Software that compiles with the installed tools will search for macOS headers at the standard include path: /Applications/Xcodebeta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.1 4.sdk/usr/include For legacy software that looks for the macOS headers in the base system under /usr/include, please install the package file located at: /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
     </item>
     
   </channel>

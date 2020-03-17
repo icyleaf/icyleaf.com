@@ -2,32 +2,262 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Hexo on icyleaf</title>
-    <link>https://icyleaf.com/tags/hexo/</link>
+    <link>https://icyleaf.com/tags/hexo/index.xml</link>
     <description>Recent content in Hexo on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>All rights reserved - 2019</copyright>
-    <lastBuildDate>Thu, 17 Dec 2015 15:01:56 +0800</lastBuildDate>
-    
-	<atom:link href="https://icyleaf.com/tags/hexo/index.xml" rel="self" type="application/rss+xml" />
-    
+    <atom:link href="https://icyleaf.com/tags/hexo/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>博客迁徙记</title>
-      <link>https://icyleaf.com/2015/12/a-history-of-my-blog/</link>
+      <link>https://icyleaf.com/2015/12/a-history-of-my-blog</link>
       <pubDate>Thu, 17 Dec 2015 15:01:56 +0800</pubDate>
       
-      <guid>https://icyleaf.com/2015/12/a-history-of-my-blog/</guid>
-      <description>最新状态：自去年 12 月更新后没想到我又迁移了新的博客系统，文章做了最新的变化整理。 长期的不更新导致更新最新的 Hexo 之后各种的不兼容，费了一番功夫迁</description>
+      <guid>https://icyleaf.com/2015/12/a-history-of-my-blog</guid>
+      <description>
+
+&lt;blockquote&gt;
+&lt;p&gt;最新状态：自去年 12 月更新后没想到我又迁移了新的博客系统，文章做了最新的变化整理。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;长期的不更新导致更新最新的 Hexo 之后各种的不兼容，费了一番功夫迁移，难得有一番时间给这里拔拔草，休憩一番。然后再吼一嗓子：&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;博客复活了！&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;博客的历史文章通过几次的系统和脚本转换过，已经不堪入目。在统一 markdown 格式的时候还翻看了自己写的文字有些感触。复活记可能还要经历几次，不如就写一篇博客的迁徙记吧。&lt;/p&gt;
+
+&lt;h2 id=&#34;my-opera-http-my-opera-com&#34;&gt;&lt;a href=&#34;http://my.opera.com&#34;&gt;My Opera&lt;/a&gt;&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;2006 ~ 2008&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;记忆已经有些模糊了，依稀记得第一次真正开始写博客是在上大二的时候，当时作为一名苦逼学生党，在网络上到处搜刮免费资源，误打误撞的在 My Opera 安家、开始了博客的更新。起初无非就是些不痛不痒的牢骚、生活流水，哪个黑客杂志发布我投稿的文章了和一些网络上发现的各种新鲜的技术资源。尤其热衷于博客主题的修改。&lt;/p&gt;
+
+&lt;p&gt;My Opera 定位是一个社交服务平台，在那个年代应该是和 MySpace 等竞争类似网站，自身提供的功能可谓强大，不仅仅是博客，还开放相册，自创建维护的群组论坛和好友社交等主要功能。也有不少的中国人和国外的留学生（及华人）在上面聚集。通过群组的查找（类似豆瓣小组但比起强大）加入了几个华人圈，其中我比较活跃的主要是一个名叫板秀的群组。里面提供各种在当时看来非常酷炫漂亮的主题。My Opera 博客除了默认几套主题以外，还提供可自定义 CSS 样式表作为其重要&amp;rdquo;秘密武器&amp;rdquo;。也使得我为之着迷。从此也在网络开开启了第二个交际圈（第一个是非安全黑客论坛圈）。&lt;/p&gt;
+
+&lt;p&gt;大学学的科目都是非常基础的语言课程，汇编语言、C、VB/VF 之类的和 CSS + HTML 一比较来说前者的诱惑力明显不如后者。之后除了学业以外开始正式的接触 HTML/CSS/Javascript 为后面的 web 开发做好了前期的铺垫。这当时是后话了。&lt;/p&gt;
+
+&lt;p&gt;好久不长，My Opera 因是免费注册使用被一些国内的偏激份子占据后开始各种宣传转法轮和反国家等言论。正碰巧那个时候 GFW 初出茅庐，开始了域名封杀的策略。在期间 GFW 偶尔抽风也就开始慢慢的淡出 My Opera 转战到迅速火起来的 Twitter。&lt;/p&gt;
+
+&lt;p&gt;自 2007 年注册 Twitter 之后所有话唠的信息都开始转移。My Opera 只剩下一些网络技术资源和扯蛋疼的文字。最后终结到大学毕业之后停止更新。&lt;/p&gt;
+
+&lt;p&gt;最终随着 Opera 被 Android 和 iOS 等现代智能浏览器的出现逐渐没落，2014 年 3 月 3 日正式的关闭了 My Opera 服务。&lt;/p&gt;
+
+&lt;p&gt;还好 Archive.org 有索引保存到历史快照，也算是一种纪念：（可能需要翻墙）&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://web.archive.org/web/20060820214239/http://my.opera.com/icyleaf/blog/&#34;&gt;博客快照&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://web.archive.org/web/20070206190114/http://my.opera.com/blogshowing/blog&#34;&gt;板秀群组快照&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;wordpress-http-www-wordpress-org&#34;&gt;&lt;a href=&#34;http://www.wordpress.org&#34;&gt;WordPress&lt;/a&gt;&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;2007 ~ 2012.3&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;鉴于 My Opera 进行被 GFW 抽打，最终管制监禁之后，开始考虑更换新的博客平台，在使用 WordPress 之前也在国内寻找一个稳定的平台。新浪博客因为明星效应略有反感再加上网站广告横飞、没有什么玩头就按着可以自定义 CSS 的方式找了几个（如今都消失了）都感觉不太靠谱。有些想放弃，有次回家过年和挚友 @&lt;a href=&#34;https://Twitter.com/lopor&#34;&gt;lopor&lt;/a&gt; 在网吧上网，聊到这事，他说他已经和几个 V2EX 朋友合租了一台 Dreamhost 虚拟主机（VPS 那个时候还处于买不起的状态），要不要自己搭建一个 WordPress，心里一边听他给我演示一边看他打开网站和 ssh 工具进行着不知道什么事情的操作。&lt;/p&gt;
+
+&lt;p&gt;说来也巧，在大学的时候和学校网络维护的老师混的比较熟悉，老师说看看 PHP 吧，语言很简单很容易就可以开发出来一个网站。而 WordPress 本来也是 PHP 开发的。接着就有了注册域名，让朋友把 WordPress 给我部署到虚拟空间，解析域名。一切起了就开始了第二阶段的博客记录，也是时间最长的一个阶段。&lt;/p&gt;
+
+&lt;p&gt;使用 WordPress 之后的两年里，工作写 Java/HTML/CSS/Javascript，晚上的时候就开始学习 PHP，最开始就是拿 WordPress 的插件练手。粗略的熟悉整体的通用函数和钩子，等运用的比较熟练了，找了一个轻量级的 Kohana 框架开始学习整体的架构和编程思想。&lt;/p&gt;
+
+&lt;p&gt;也是这一阶段开始了跨城市出走的经历，有 5 篇文章整理了去新疆乌鲁木齐出差之余游走在 7-5事件之后的一些所见所闻（当前从文字来看看不出什么端倪），里面的照片放在已经被墙的 Google Picasa 相册。再那的 11 天让我知道了 GFW 已经完善到可以瞬间做到一个内部的局域网（当时本地除了电话可以和外界沟通之外，短信和网络全部封闭）&lt;/p&gt;
+
+&lt;p&gt;WordPress 同样也是收到 Twitter 这类碎片化的微服务的冲击，文章数量开始逐年减少。内容上开始增加了养生（我这小小年级就开始了）和一些软件推荐和技巧性文章，偶尔还会发一些我开源代码的宣传。&lt;/p&gt;
+
+&lt;p&gt;最重要的是我开始了写年度计划和年终总结的文章，这将作为我人生的记录和回顾的最重要的证据。&lt;/p&gt;
+
+&lt;p&gt;这个期间的朋友大多数来自于 V2EX 社区和 Twitter 上面。还和部分的朋友一起参加过第一届的 Wordcamp 2008，朋友聚集了私下一起吐槽各种渣的地方。&lt;/p&gt;
+
+&lt;p&gt;WordPress 因简单方便，功能强大而流行也因太过于扩充里面的功能而没有很好的优化核心代码而遭人唾弃。@&lt;a href=&#34;http://Twitter.com/yichi&#34;&gt;yichi&lt;/a&gt; 有保存但是的部分照片 &lt;a href=&#34;https://www.flickr.com/photos/yichi0523/albums&#34;&gt;Flickr 相册&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;使用期间也挂过 Google Ads 和阿里妈妈广告联盟试图赚些收入。收入明细甚微，到目前对自己的定义还都是技术，营销果然不是我的菜。&lt;/p&gt;
+
+&lt;p&gt;历史快照：&lt;a href=&#34;https://web.archive.org/web/20100701151339/http://icyleaf.com/&#34;&gt;https://web.archive.org/web/20100701151339/http://icyleaf.com/&lt;/a&gt; 网站界面完整当时的仿照 Delicious.com (美味书签) 全站复制过来。&lt;/p&gt;
+
+&lt;p&gt;这里再说一个域名的小插曲，域名最开始还是 icyleaf.cn，国内为了推销 cn 域名起初大体都是 1 元第一年。用了一年之后发现之后的费用飙升到比 com 域名还贵，加上开了 Visa 信用卡立即切换过去。庆幸的是我的域名比较个性没有什么人抢注。&lt;/p&gt;
+
+&lt;h2 id=&#34;chyrp-https-github-com-vito-chyrp&#34;&gt;&lt;a href=&#34;https://github.com/vito/chyrp&#34;&gt;Chyrp&lt;/a&gt;&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;2012.4 ~ 2012.12&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;最新补充：&lt;/strong&gt; 终于想起来为什么更换掉 Wordpress，是因为 Wordpress 有个版本连续有后门被捅菊花，我的博客连连中招。反复清理无数感染的文件还是被捅。实在没精力跟它周折。想想也是时候放弃这个庞然怪物了。&lt;/p&gt;
+
+&lt;p&gt;自己已经记不得这个系统了，因为使用的时间不算很长，根据 Archive.org 的历史快照显示于 2012 年 4 月切换过来。系统提供迁移脚本直接把 mysql 数据转为为自己支持的字段格式。Chyrp 号称是最轻量级的微博客系统，有些类似 Tumblr。转换的原因现在想想应该是 Twitter 大多时候也是被 GFW 的状态，想用微博客系统把自己的牢骚、文章和一些图片揉到一起使用。还有一个原因是有插件可以支持 markdown 编写文章。&lt;/p&gt;
+
+&lt;p&gt;这段时间是在新浪乐居从事移动开发和团队建设的事情，文章更多的增加了针对 Android 和 iOS 开发相关的技术类文章。&lt;/p&gt;
+
+&lt;p&gt;我是一个念旧的人，之前记录的文字总想着可以保留下来，从这里开始后面的任何的博客系统的迁徙都会把数据转换过去。懂技术也算是一个优势（笑）&lt;/p&gt;
+
+&lt;p&gt;历史快照：&lt;a href=&#34;https://web.archive.org/web/20120414131120/http://icyleaf.com/&#34;&gt;https://web.archive.org/web/20120414131120/http://icyleaf.com/&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;pelican-https-github-com-getpelican-pelican&#34;&gt;&lt;a href=&#34;https://github.com/getpelican/pelican&#34;&gt;Pelican&lt;/a&gt;&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;2013.1 ~ 2013.12&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;这是一个短暂的瞬间，@&lt;a href=&#34;http://cnborn.net&#34;&gt;CNBorn&lt;/a&gt; 建议把动态的博客内容静态化速度就上去了。但是有些功能就需要依托外部的服务，比如搜索、评论。当时网站也还在 ping 值在 300 - 400 之间 DreamHost  虚拟主机上面。GFW 在不断进化和完善，这个时候就开始用上了 IP 封杀，Dreamhost 的大部分 IP 也没能幸免。毫不犹豫的就改换了 Pelican 这套框架。&lt;/p&gt;
+
+&lt;p&gt;动态切换为静态之后最大的问题就在于后台没有了，所有信息都需要在配置文件里面来处理。文章也只能本地写后生成静态文件并发布。没有选择部署在 Github Page 还是因为它的速度有些不太稳定了。已经使用了虚拟主机配合自建 VPN 的 Linode 主机而不使用确实有些浪费资源。&lt;/p&gt;
+
+&lt;p&gt;Chyrp 切换过来的历史文章通过自己写的脚本迁移过来，多少有些格式的不兼容和转换问题，手查和纠正了部分。主题借鉴于 Squarespace 给别人订制的样式，自己使用部分配色用 Twitter Bootstrap 重新实现。&lt;/p&gt;
+
+&lt;p&gt;使用 Pelican 的另外一个因素是想学习 Python，之后的文章开始增加了 python 相关和 Linux 基础技术文章。学习上重点放在了日常脚本的使用以及 pip+django 的功能学习，配合提交部分代码到 &lt;a href=&#34;https://github.com/openparty/openparty&#34;&gt;OpenParty&lt;/a&gt; 网站。&lt;/p&gt;
+
+&lt;p&gt;顺带提一句，Dango 自带的模板引擎和 Jinja2 用着是最爽的事情，和 Ruby 的 Haml/Slim 是不一样的 G 点。&lt;/p&gt;
+
+&lt;p&gt;本人从小偏爱骑行，在北京漂泊的日子，也只能是户外登山扎营（装备可压缩），反复的搬家对于还要再带一个自行车和一堆配件来说有些艰巨，在更换一个相对比较大的租房一狠心入了美利达公爵 650。长时间的骑行和休闲骑车差别很明显。累！很累！尤其是和公路车一起骑更累！骑行不像是登山，后者只需要完成登山的过程享受一把自虐，骑行是全程的，从你报名一个活动开始，你要从家骑到集合点、骑到目的地、骑到腐败点、最后还要疲惫的骑回家，这个过程是值得回忆的。也就有了我第一次长距离骑行，献给了&lt;a href=&#34;http://icyleaf.com/2013/05/25/riding-to-hulunbeier/&#34;&gt;http://icyleaf.com/2013/05/25/riding-to-hulunbeier/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;历史快照：&lt;a href=&#34;https://web.archive.org/web/20130201044534/http://icyleaf.com/&#34;&gt;https://web.archive.org/web/20130201044534/http://icyleaf.com/&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;hexo-https-hexo-io&#34;&gt;&lt;a href=&#34;https://hexo.io/&#34;&gt;Hexo&lt;/a&gt;&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;2013.12 ~ 2016.8&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Hexo 由台湾人使用 Node.js 开发并开源，网站本身提供明细的文档和插件扩展。对比 Pelican 来说比较适合国人，附带实用的命令行工具。Pelican 在使用中总有些不太爽的地方，Hexo 就在哪个时候出现在了我的视野，弥补了我的需要，用的顺手的系统就不在乎什么语言开发的，更何况也是静态发布。&lt;/p&gt;
+
+&lt;p&gt;主题真的是太喜欢之前实现的那个就直接由迁移的过来，历史文章又经历了一次迁移，其实已经有些部分的内容有些损坏了。单纯从主题和内容来说，整个网站有些支离破粹。&lt;/p&gt;
+
+&lt;p&gt;这个阶段对我而言是幸福的一年，对我的博客来说是相当冷落的一年。从结识土豪妞到一起走上婚姻殿堂，我感到非常的幸福。这里确是一片静寂两年的时间文章数量一个手都能数过来（寥寥 5 篇文章）。爱情和工作两方面的因素，直接导致各种的事情急剧减少，包括不仅限于户外登山、骑行、看书、电影。话说也奇怪了文章不少了可以理解，怎么外出活动也居然少了呢 &amp;gt;.&amp;lt;&lt;/p&gt;
+
+&lt;p&gt;博客的复活是意料之外的事情，前几天惯例的吸收网上的信息，看到推荐一个 VPS，和 DigitalOcean 类似 SSD 硬盘、最低每月 5 刀的租金。速度方面很明显，尝试一番后发现最优情况 ping 值可以稳定在 60 ~ 100 左右，下载速度也能达到 1~2Mb/s。信用卡刷钱先试 3 个月再说。自然就想到把博客迁移过来。年底将至，还要有两年的总结需要完成，提前做好准备也是件好事。&lt;/p&gt;
+
+&lt;p&gt;从 Dropbox 找回博客系统和日志，重新本地部署环境。悲催，Hexo 不工作了。检查后发现升级到 3.0 版本，代码结构变化了的。文章的格式也做了调整。又有事情要忙活了。&lt;/p&gt;
+
+&lt;p&gt;写好升级兼容脚本，文章没问题了，主题有崩了。脑海里立即飘出来一个曾经看到过的网站用的是 Hexo 搭建的，主题还挺好看。打开 Chrome 页面历史搜索关键字，打开目标网站快捷键切换到页面底部 &amp;ldquo;Theme - NexT&amp;rdquo;，一切就顺理成章的平滑过来。还顺手试了一把 &lt;code&gt;git subtree&lt;/code&gt; 代替费死牛力的 &lt;code&gt;git submodule&lt;/code&gt;。&lt;/p&gt;
+
+&lt;h2 id=&#34;hugo-http-gohugo-io&#34;&gt;&lt;a href=&#34;http://gohugo.io/&#34;&gt;Hugo&lt;/a&gt;&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;2016.8 ~ 至今&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Hugo 是用 Go 语言开发维护的，再了解和上手上着实让我研究了好一番，因为它的自由度太大了，初始化项目后居然连主题都不带的，都需要自己从 github 上安装一份之后才能运行。其实切换使用它的最根本原因是 Hexo 是满足我的绝大部分需求的尤其是原先用的 NexT 主题也很好用，但唯一比较麻烦的是它依赖 Node.js 每次用 Docker 在本地进行维护的时候都要更新好久。我也喜欢在 VPS 上也备有一套运行环境，脱离了有环境的电脑我随时可以写完同步后在服务器上面手动或自动生成。基于这点给我带来的困扰是最多的，因为我的服务器配置的最低标准，内存还不到 1G，每次 hexo 在生成静态资源的时候很容易把内存爆掉，直接抛出内存不足的异常。反观 hugo 命令编译后可以在任意平台直接使用，速度也是搜搜的，内存占用也就不用说了，虽然没有 hexo 的迁移方案，整体也很简单，因为 hugo 除了默认支持 toml 格式以为，还兼容 yaml 和 json。文章的内容都是 markdown 这个基本上是业界标配了。&lt;/p&gt;
+
+&lt;p&gt;在整理之余，我对于 docker 和 docker-compose 有了更好的理解，同时新的博客系统会用 caddy 把 nginx 替换掉跑一段时间看看，可能还会切换成 h2o 再跑一段时间来分别看看两者的性能情况。新的 http server 都是基于 HTTP/2 协议优化的。我想后面是属于 HTTPS + HTTP/2 的时代。&lt;/p&gt;
+
+&lt;h2 id=&#34;数字统计&#34;&gt;数字统计&lt;/h2&gt;
+
+&lt;p&gt;统计自使用自建博客系统开始计算，My Opera 作为一个自留地不再统计范围：&lt;/p&gt;
+
+&lt;h3 id=&#34;文章&#34;&gt;文章&lt;/h3&gt;
+
+&lt;p&gt;历经 8 年之余的时间共计 &lt;code&gt;90&lt;/code&gt; 篇：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;2007 年总文章数量 7 篇（有删减）&lt;/li&gt;
+&lt;li&gt;2008 年总文章数量 14 篇（有删减）&lt;/li&gt;
+&lt;li&gt;2009 年总文章数量 13 篇（有删减）&lt;/li&gt;
+&lt;li&gt;2010 年总文章数量 7 篇（有删减）&lt;/li&gt;
+&lt;li&gt;2011 年总文章数量 7 篇（有删减）&lt;/li&gt;
+&lt;li&gt;2012 年总文章数量 23 篇&lt;/li&gt;
+&lt;li&gt;2013 年总文章数量 14 篇&lt;/li&gt;
+&lt;li&gt;2014 年总文章数量 4 篇&lt;/li&gt;
+&lt;li&gt;2015 年总文章数量 3 篇&lt;/li&gt;
+&lt;li&gt;2016 年总文章数量 4 篇&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;标签&#34;&gt;标签&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Mac: 12&lt;/li&gt;
+&lt;li&gt;iOS: 10&lt;/li&gt;
+&lt;li&gt;PHP: 9&lt;/li&gt;
+&lt;li&gt;Linux: 8&lt;/li&gt;
+&lt;li&gt;Git: 7&lt;/li&gt;
+&lt;li&gt;年终总结: 7&lt;/li&gt;
+&lt;li&gt;养生: 6&lt;/li&gt;
+&lt;li&gt;Kohana: 5&lt;/li&gt;
+&lt;li&gt;Ruby: 5&lt;/li&gt;
+&lt;li&gt;Shell: 5&lt;/li&gt;
+&lt;li&gt;旅行: 5&lt;/li&gt;
+&lt;li&gt;Python: 5&lt;/li&gt;
+&lt;li&gt;App: 5&lt;/li&gt;
+&lt;li&gt;游记: 5&lt;/li&gt;
+&lt;li&gt;豆瓣: 4&lt;/li&gt;
+&lt;li&gt;Android: 4&lt;/li&gt;
+&lt;li&gt;XCode: 4&lt;/li&gt;
+&lt;li&gt;Virtualenv: 2&lt;/li&gt;
+&lt;li&gt;CentOS: 2&lt;/li&gt;
+&lt;li&gt;Google: 2&lt;/li&gt;
+&lt;li&gt;魔豆: 2&lt;/li&gt;
+&lt;li&gt;CSS: 2&lt;/li&gt;
+&lt;li&gt;卤煮: 1&lt;/li&gt;
+&lt;li&gt;Dash: 1&lt;/li&gt;
+&lt;li&gt;regex: 1&lt;/li&gt;
+&lt;li&gt;Flask: 1&lt;/li&gt;
+&lt;li&gt;Ubuntu: 1&lt;/li&gt;
+&lt;li&gt;美食: 1&lt;/li&gt;
+&lt;li&gt;家常菜: 1&lt;/li&gt;
+&lt;li&gt;Universal: 1&lt;/li&gt;
+&lt;li&gt;Xcode: 1&lt;/li&gt;
+&lt;li&gt;brew: 1&lt;/li&gt;
+&lt;li&gt;Hiking: 1&lt;/li&gt;
+&lt;li&gt;Dropbox: 1&lt;/li&gt;
+&lt;li&gt;apache: 1&lt;/li&gt;
+&lt;li&gt;Javascript: 1&lt;/li&gt;
+&lt;li&gt;Chrome: 1&lt;/li&gt;
+&lt;li&gt;Laptop: 1&lt;/li&gt;
+&lt;li&gt;eclipse: 1&lt;/li&gt;
+&lt;li&gt;VirtualBox: 1&lt;/li&gt;
+&lt;li&gt;Map: 1&lt;/li&gt;
+&lt;li&gt;Gem: 1&lt;/li&gt;
+&lt;li&gt;testflightapp: 1&lt;/li&gt;
+&lt;li&gt;Django: 1&lt;/li&gt;
+&lt;li&gt;umeng: 1&lt;/li&gt;
+&lt;li&gt;手机: 1&lt;/li&gt;
+&lt;li&gt;黑莓: 1&lt;/li&gt;
+&lt;li&gt;Vagrant: 1&lt;/li&gt;
+&lt;li&gt;Mockup: 1&lt;/li&gt;
+&lt;li&gt;北京: 1&lt;/li&gt;
+&lt;li&gt;Rails: 1&lt;/li&gt;
+&lt;li&gt;Gitlab: 1&lt;/li&gt;
+&lt;li&gt;ActiveRecord: 1&lt;/li&gt;
+&lt;li&gt;Unicorn: 1&lt;/li&gt;
+&lt;li&gt;Nginx: 1&lt;/li&gt;
+&lt;li&gt;Book: 1&lt;/li&gt;
+&lt;li&gt;Riding: 1&lt;/li&gt;
+&lt;li&gt;呼伦贝尔: 1&lt;/li&gt;
+&lt;li&gt;CocoaPods: 1&lt;/li&gt;
+&lt;li&gt;golang: 1&lt;/li&gt;
+&lt;li&gt;Sublime Text 2: 1&lt;/li&gt;
+&lt;li&gt;Database: 1&lt;/li&gt;
+&lt;li&gt;摄影: 1&lt;/li&gt;
+&lt;li&gt;校内: 1&lt;/li&gt;
+&lt;li&gt;海内: 1&lt;/li&gt;
+&lt;li&gt;开心网: 1&lt;/li&gt;
+&lt;li&gt;QuickLook: 1&lt;/li&gt;
+&lt;li&gt;Github: 1&lt;/li&gt;
+&lt;li&gt;食材: 1&lt;/li&gt;
+&lt;li&gt;沙漠: 1&lt;/li&gt;
+&lt;li&gt;Puma: 1&lt;/li&gt;
+&lt;/ul&gt;
+</description>
     </item>
     
     <item>
       <title>Hexo 主题推荐 NexT</title>
-      <link>https://icyleaf.com/2015/12/hexo-theme-next/</link>
+      <link>https://icyleaf.com/2015/12/hexo-theme-next</link>
       <pubDate>Thu, 17 Dec 2015 14:41:00 +0800</pubDate>
       
-      <guid>https://icyleaf.com/2015/12/hexo-theme-next/</guid>
-      <description>这是我见过配备最完善的 hexo 主题，支持丰富的配置，和 hexo 一样完善的文档。兼容国内外的扩展服务，最重要的主题作者还是国人。 文档：http://the</description>
+      <guid>https://icyleaf.com/2015/12/hexo-theme-next</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://camo.githubusercontent.com/2e2c5c6d351ebe899fcebed0f56a5b72b2660b06/687474703a2f2f696973736e616e2e636f6d2f6e657875732f6e6578742f6e6578742d736368656d65732e6a7067&#34; alt=&#34;Snapshot&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这是我见过配备最完善的 hexo 主题，支持丰富的配置，和 hexo 一样完善的文档。兼容国内外的扩展服务，最重要的主题作者还是国人。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;文档：&lt;a href=&#34;http://theme-next.iissnan.com/&#34;&gt;http://theme-next.iissnan.com/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;源码：&lt;a href=&#34;https://github.com/iissnan/hexo-theme-next&#34;&gt;https://github.com/iissnan/hexo-theme-next&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
     </item>
     
   </channel>
