@@ -2,58 +2,23 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>开心网 on icyleaf</title>
-    <link>https://icyleaf.com/tags/%E5%BC%80%E5%BF%83%E7%BD%91/index.xml</link>
+    <link>https://icyleaf.com/tags/%E5%BC%80%E5%BF%83%E7%BD%91/</link>
     <description>Recent content in 开心网 on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>All rights reserved - 2019</copyright>
-    <atom:link href="https://icyleaf.com/tags/%E5%BC%80%E5%BF%83%E7%BD%91/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 10 Oct 2008 12:34:56 +0800</lastBuildDate>
+    
+	<atom:link href="https://icyleaf.com/tags/%E5%BC%80%E5%BF%83%E7%BD%91/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>校内网，海内网，开心网用户隐私查看器</title>
-      <link>https://icyleaf.com/2008/10/the-school-network-network-happy-at-home-and-network-user-privacy-viewer</link>
+      <link>https://icyleaf.com/2008/10/the-school-network-network-happy-at-home-and-network-user-privacy-viewer/</link>
       <pubDate>Fri, 10 Oct 2008 12:34:56 +0800</pubDate>
       
-      <guid>https://icyleaf.com/2008/10/the-school-network-network-happy-at-home-and-network-user-privacy-viewer</guid>
-      <description>&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;更新&lt;/strong&gt;：目前校内网已经修补了此漏洞，所以大家可以放弃了，除非你想抓住那 1% 的机会&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;你想查看他或她的私隐信息吗？如果你说的他或她是校内网，海内网，开心网的用户，那么请你尝试一下，校内网，海内网，开心网用户隐私查看器。通过这个工具，你可以轻松的获得用户的相册照片，日志文章以及状态（迷你博客）的内容。恩&amp;hellip;趁着目前都还没有打补丁之前。不要做坏事哦～&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;工具&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://labs.icyleaf.com/tools/sns_user_informations.php&#34;&gt;校内网，海内网，开心网用户隐私查看器&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;此工具重点做的是校内网的功能模块，对于海内网和开心网的用户，只是显示了用户的相关链接。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;使用说明&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;首先！必须先登录网站系统之后才进行操作！
-无论是校内网，海内网还是开心网的用户，首先都需要获得用户的ID，那么怎么获得呢，很简单，只要打开用户的个人界面，查看地址的末尾的数字。一般会以下列的方式出现：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;http://xiaonei.com/profile.do?id=123456
-http://www.hainei.com/user?r=123456
-http://www.kaixin001.com/home/?uid=123456
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;数字前面的就可以看出来是用户ID。获得用户ID之后，只要把用户ID填入到校内网，海内网，开心网用户隐私查看器的相应输入框，并选择是哪个网站的用户，点击”Get it!“，稍等片刻就会获得用户的相关链接。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;原理&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;由于校内网和海内网均属于一个团队开发出来的，所以在系统但自身机制上的问题，可以通过地址绕过的方式查看用户的相册，日志，状态记录等等非用户资料信息。但是开心网可能考虑到用户的安全性，在默认选项上安全系数提高了一级。那么到底是哪里提供了呢，好的，我简单讲解一下，对于校内网和海内网，用户无论是创建相册还是添加日志和状态记录，默认的隐私属性（谁能浏览）为”全站用户可见”，这就导致了校内网，海内网，开心网用户隐私查看器的出现。而开心网除了日志之外，其相册，记录默认为“好友可见”。所以，可查看的资源只有日志，还有极少数的用户可能会把相册的隐私属性设置为”全站用户可见”。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;补救方法&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;等待系统的修改，或者系统可能就是为了这样&amp;hellip;&lt;/li&gt;
-&lt;li&gt;手动修改&amp;hellip;把隐私属性修改为“好友可见”或其他。&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;strong&gt;特别声明&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;本工具只为技术交流使用，请勿做非法事情，如有此事请自己承担法律责任！切记！切记！&lt;/p&gt;
-</description>
+      <guid>https://icyleaf.com/2008/10/the-school-network-network-happy-at-home-and-network-user-privacy-viewer/</guid>
+      <description>更新：目前校内网已经修补了此漏洞，所以大家可以放弃了，除非你想抓住那 1% 的机会 你想查看他或她的私隐信息吗？如果你说的他或她是校内网，海内网，开</description>
     </item>
     
   </channel>

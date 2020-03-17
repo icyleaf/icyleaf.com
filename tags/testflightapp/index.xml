@@ -2,38 +2,23 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Testflightapp on icyleaf</title>
-    <link>https://icyleaf.com/tags/testflightapp/index.xml</link>
+    <link>https://icyleaf.com/tags/testflightapp/</link>
     <description>Recent content in Testflightapp on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>All rights reserved - 2019</copyright>
-    <atom:link href="https://icyleaf.com/tags/testflightapp/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 06 Apr 2012 12:34:56 +0800</lastBuildDate>
+    
+	<atom:link href="https://icyleaf.com/tags/testflightapp/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>自动化脚本上传应用至 testflightapp</title>
-      <link>https://icyleaf.com/2012/04/automating-script-to-testflight-from-xcode</link>
+      <link>https://icyleaf.com/2012/04/automating-script-to-testflight-from-xcode/</link>
       <pubDate>Fri, 06 Apr 2012 12:34:56 +0800</pubDate>
       
-      <guid>https://icyleaf.com/2012/04/automating-script-to-testflight-from-xcode</guid>
-      <description>&lt;p&gt;Testflightapp 是团队开发测试中起了重要的角色，尤其是到目前为止一直是免费，最近还推出的 Live 功能不仅可以统计本身的一些数据还可以把现有的一些其他的账户的数据（比如， itunesconnect，Apple iAd，admob 等）导入进一步扩大聚合。&lt;/p&gt;
-
-&lt;p&gt;尤其是它真的重视开发着的核心需求，仅推出了唯一的一个公开 API，就是上传打包后的 ipa 文件，配合 Xcode 中 Archive 的 Post-action 可以轻松搞定自动化的操作。&lt;/p&gt;
-
-&lt;p&gt;下面是网上搜集的脚本，算是我发现定制化比较强的&lt;a href=&#34;https://gist.github.com/1379127&#34;&gt;自动化脚本&lt;/a&gt;，而且注解也写的很详细。可以在配合我的打包脚本，可以把各个发布渠道的事情一起自动化。&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;注意：Xcode 默认的 run script 是 &lt;code&gt;/bin/sh&lt;/code&gt;，而上面的脚本是
-&lt;code&gt;/bin/bash&lt;/code&gt;。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;这个 Post-action 不爽的地方在于所有的 &lt;code&gt;echo&lt;/code&gt; 没有办法直接输出到 Xcode 的 output 里面，所以脚本只能把 log 保持到了 &lt;code&gt;/tmp&lt;/code&gt;
-目录下面，如果发现出现问题请仔细查看 log。&lt;/p&gt;
-
-&lt;p&gt;BTW，Post-actions 添加的脚本对于忽略了 XCode 干扰文件的版本控制来说，它没有归入到版本控制之中，脚本是被转义后放在了一个 xcscheme 的 xml 文件中：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;(project).xcodeproj/xcuserdata/(username).xcuserdatad/xcschemes/(name).xcscheme
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+      <guid>https://icyleaf.com/2012/04/automating-script-to-testflight-from-xcode/</guid>
+      <description>Testflightapp 是团队开发测试中起了重要的角色，尤其是到目前为止一直是免费，最近还推出的 Live 功能不仅可以统计本身的一些数据还可以把现有的一些其他的账户的数据</description>
     </item>
     
   </channel>

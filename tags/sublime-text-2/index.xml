@@ -2,37 +2,23 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Sublime Text 2 on icyleaf</title>
-    <link>https://icyleaf.com/tags/sublime-text-2/index.xml</link>
+    <link>https://icyleaf.com/tags/sublime-text-2/</link>
     <description>Recent content in Sublime Text 2 on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>All rights reserved - 2019</copyright>
-    <atom:link href="https://icyleaf.com/tags/sublime-text-2/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 30 Jul 2012 12:34:56 +0800</lastBuildDate>
+    
+	<atom:link href="https://icyleaf.com/tags/sublime-text-2/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Sublime Text 2 &#43; GoSublime &#43; ZSH 的配置</title>
-      <link>https://icyleaf.com/2012/07/sublime-text-2-and-gosublime-with-zsh</link>
+      <link>https://icyleaf.com/2012/07/sublime-text-2-and-gosublime-with-zsh/</link>
       <pubDate>Mon, 30 Jul 2012 12:34:56 +0800</pubDate>
       
-      <guid>https://icyleaf.com/2012/07/sublime-text-2-and-gosublime-with-zsh</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;http://www.sublimetext.com/2&#34;&gt;Sublime Text 2&lt;/a&gt;（下面简称 Subl） 通过 PCIP（Package Control: Install Package）安装各式各样的插件，其中还包括 Google 刚刚发布 1.0+ 的 golang 语言也有相应的插件 &lt;a href=&#34;https://github.com/DisposaBoy/GoSublime&#34;&gt;GoSublime&lt;/a&gt;，其实本来用 tmux + vim 也能解决编写和执行命令之间切换的工作。但是 tmux 的快捷键有时候重复多了会很不爽&amp;hellip;&lt;/p&gt;
-
-&lt;p&gt;于是今天开始尝试使用 Subl 来编写 golang，安装完毕插件之后，编写还是比较方便的，有语法高亮，代码提示，错误提示，快速编译执行等，但是我在编译执行的时候总是会报如下错误:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;/bin/sh: go: command not found&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;由于插件默认是安装 sh shell 去搜索路径的，肯定是因为在 &lt;code&gt;.bash_profile&lt;/code&gt; 里面没有找到 go 命令，而我已经切换了 zsh shell （.zshrc）因此才会报此错误。&lt;/p&gt;
-
-&lt;p&gt;最后翻找了半天资料，发现通过 Preferencs -&amp;gt; Brower Packages -&amp;gt; Gosublime 下面有一个 &lt;a href=&#34;https://github.com/DisposaBoy/GoSublime/blob/master/USAGE.md&#34;&gt;USAGE.md&lt;/a&gt; 的文档，原来修改 &lt;code&gt;GoSublime.sublime-settings&lt;/code&gt; 下面的 &lt;code&gt;env&lt;/code&gt; 的 $PATH 解决了此问题：&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&amp;ldquo;env&amp;rdquo;: { &amp;ldquo;PATH&amp;rdquo;: &amp;ldquo;/usr/local/sbin:/usr/local/bin:$PATH&amp;rdquo;}&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;再次编译运行，搞定！&lt;/p&gt;
-</description>
+      <guid>https://icyleaf.com/2012/07/sublime-text-2-and-gosublime-with-zsh/</guid>
+      <description>Sublime Text 2（下面简称 Subl） 通过 PCIP（Package Control: Install Package）安装各式各样的插件，其中还包括 Google 刚刚发布 1.0+ 的 golang 语言也有相应的插件 G</description>
     </item>
     
   </channel>
