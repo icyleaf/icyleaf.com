@@ -2,41 +2,994 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Ci on icyleaf</title>
-    <link>https://icyleaf.com/tags/ci/</link>
+    <link>https://icyleaf.com/tags/ci/index.xml</link>
     <description>Recent content in Ci on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>All rights reserved - 2019</copyright>
-    <lastBuildDate>Tue, 28 Mar 2017 20:12:07 +0800</lastBuildDate>
-    
-	<atom:link href="https://icyleaf.com/tags/ci/index.xml" rel="self" type="application/rss+xml" />
-    
+    <atom:link href="https://icyleaf.com/tags/ci/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>你虐我千百遍，我待你如初恋，直到我遇到 match</title>
-      <link>https://icyleaf.com/2017/03/fastlane-match-in-action/</link>
+      <link>https://icyleaf.com/2017/03/fastlane-match-in-action</link>
       <pubDate>Tue, 28 Mar 2017 20:12:07 +0800</pubDate>
       
-      <guid>https://icyleaf.com/2017/03/fastlane-match-in-action/</guid>
-      <description>系列目录 Fastlane - iOS 和 Android 的自动化构建工具 深入浅出 Fastlane 一看你就懂 你虐我千百遍，我待你如初恋，直到我遇到 match 前言 通过前两篇的文章大家已经对 fastlane 的概念和基本使</description>
+      <guid>https://icyleaf.com/2017/03/fastlane-match-in-action</guid>
+      <description>
+
+&lt;h2 id=&#34;系列目录&#34;&gt;系列目录&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/&#34;&gt;Fastlane - iOS 和 Android 的自动化构建工具&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://icyleaf.com/2016/07/fastlane-in-action/&#34;&gt;深入浅出 Fastlane 一看你就懂&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://icyleaf.com/2017/03/fastlane-match-in-action/&#34;&gt;你虐我千百遍，我待你如初恋，直到我遇到 match&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+
+&lt;p&gt;通过前两篇的文章大家已经对 fastlane 的概念和基本使用已经有了初步的掌握，在第二篇中也有提到 fastlane 实现的各种功能其实都是基于独立封装设计的各个工具实现。它们即可以单独成为一个体系同时也会被吸纳到 fastlane 的 action 系统之中。&lt;code&gt;match&lt;/code&gt; 是在 iOS 开发和持续测试和构建中最重中之重的环节，它维护和管理着 iOS 的各种证书和 profile 的创建、更新工作。想必很多用户听到 iOS 证书和 profile 都会头大脑涨，恨不得要手撕鬼子的技能点来对付他们（如图）&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://codesigning.guide/assets/img/cs-the-problem.png&#34; alt=&#34;code-signing-problem&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;上图来源于作者专门整理的网站 &lt;a href=&#34;https://codesigning.guide/，对于&#34;&gt;https://codesigning.guide/，对于&lt;/a&gt; iOS App 签名原理感兴趣的可以参见 JSPatch 作者的分析：&lt;a href=&#34;http://blog.cnbang.net/tech/3386/&#34;&gt;http://blog.cnbang.net/tech/3386/&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;功能特性&#34;&gt;功能特性&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;主动/被动创建、更新、Xcode 所需的各种证书和打包所需的 Profiles&lt;/li&gt;
+&lt;li&gt;托管 Xcode 所需的各种证书和打包所需的 Profiles&lt;/li&gt;
+&lt;li&gt;统一并共享团队成员统一使用&lt;/li&gt;
+&lt;li&gt;证书具有密码加密保护（openssl）&lt;/li&gt;
+&lt;li&gt;支持多团队（账户）&lt;/li&gt;
+&lt;li&gt;支持单 App 多 Target(identifier)&lt;/li&gt;
+&lt;li&gt;内测支持企业账户（v0.11.0 还在测试可用，并没有正式支持）&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;原理&#34;&gt;原理&lt;/h2&gt;
+
+&lt;p&gt;match 其实是在 fastlane 基础包 cert、sign、spaceship、credentials_manager 之上把 iOS 开发者证书流程化的工具。为了实现团队内共享项目的开发者证书，它使用 git 仓库对证书进行托管，首先需要进行初始化，配置 git 仓库、项目的 iDP 信息之后，下载 Development、AppStore、AdHoc 的开发者证书和项目的 Profile files，并通过 openssl 的方式进行安全加密后提交并推送到 git 仓库，其他成员（或自动化构建系统）使用时需要输入密钥后才能把证书解密并导入到 keychain 和 Profiles 目录。&lt;/p&gt;
+
+&lt;p&gt;如果对于证书加密策略感兴趣的可以在本文底部资料参考的第一个链接查看详情。&lt;/p&gt;
+
+&lt;h2 id=&#34;使用&#34;&gt;使用&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;最新 fastlane 已经包含了所有的子模块，独立的 match 不在更新，请直接安装 fastlane，使用 fastlane match 代替 match 命令。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;安装就很简单通过 &lt;code&gt;gem install fastlane&lt;/code&gt; 会把它的全家桶一并下载安装，首先可以看下帮助：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ fastlane match --help
+
+  match
+
+  Easily sync your certificates and profiles across your team using git
+
+  Commands:
+    adhoc             Run match for a adhoc provisioning profile
+    appstore          Run match for a appstore provisioning profile
+    change_password   Re-encrypt all files with a different password
+    decrypt           Decrypts the repository and keeps it on the filesystem
+    development       Run match for a development provisioning profile
+    help              Display global or [command] help documentation
+    init              Create the Matchfile for you
+    nuke              Delete all certificates and provisioning profiles from the Apple Dev Portal
+    nuke development  Delete all certificates and provisioning profiles from the Apple Dev Portal of the type development
+    nuke distribution Delete all certificates and provisioning profiles from the Apple Dev Portal of the type distribution
+    run               Easily sync your certificates and profiles across your team using git
+
+  Global Options:
+    --verbose
+    -r, --git_url STRING URL to the git repo containing all the certificates (MATCH_GIT_URL)
+    --git_branch STRING  Specific git branch to use (MATCH_GIT_BRANCH)
+    -y, --type STRING    Create a development certificate instead of a distribution one (MATCH_TYPE)
+    -a, --app_identifier [VALUE] The bundle identifier(s) of your app (comma-separated) (MATCH_APP_IDENTIFIER)
+    -u, --username STRING Your Apple ID Username (MATCH_USERNAME)
+    -s, --keychain_name STRING Keychain the items should be imported to (MATCH_KEYCHAIN_NAME)
+    -p, --keychain_password STRING This might be required the first time you access certificates on a new mac. For the login/default keychain this is your account password (MATCH_KEYCHAIN_PASSWORD)
+    --readonly [VALUE]   Only fetch existing certificates and profiles, don&#39;t generate new ones (MATCH_READONLY)
+    -b, --team_id STRING The ID of your Developer Portal team if you&#39;re in multiple teams (FASTLANE_TEAM_ID)
+    -l, --team_name STRING The name of your Developer Portal team if you&#39;re in multiple teams (FASTLANE_TEAM_NAME)
+    --verbose [VALUE]    Print out extra information and all commands (MATCH_VERBOSE)
+    --force [VALUE]      Renew the provisioning profiles every time you run match (MATCH_FORCE)
+    --skip_confirmation [VALUE] Disables confirmation prompts during nuke, answering them with yes (MATCH_SKIP_CONFIRMATION)
+    --shallow_clone [VALUE] Make a shallow clone of the repository (truncate the history to 1 revision) (MATCH_SHALLOW_CLONE)
+    --force_for_new_devices [VALUE] Renew the provisioning profiles if the device count on the developer portal has changed (MATCH_FORCE_FOR_NEW_DEVICES)
+    --skip_docs [VALUE]  Skip generation of a README.md for the created git repository (MATCH_SKIP_DOCS)
+    -h, --help           Display help documentation
+    -v, --version        Display version information
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;建议大家在项目中创建并配置 &lt;code&gt;fastlane/Matchfile&lt;/code&gt; 文件可以把命令需要的参数省略：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ fastlane match init
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;设置好 git_url(git 仓库地址）、type（默认同步证书类型）、app_identifier、username（iDP 的账户名）即可。&lt;/p&gt;
+
+&lt;h2 id=&#34;生成和同步证书&#34;&gt;生成和同步证书&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 开发环境证书
+$ fastlane match development
+# 产品环境证书
+$ fastlane match appstore
+# 内测环境证书
+$ fastlane match adhoc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;初次使用的时候会提示需要输入 iDP 的账户密码，校验成功后可以保存到 keychain 中后续可以不在重复输入（好贴心）密码（也可通过设置变量 FASTLANE_PASSWORD），该密码就是上面提到的证书加密的密钥，请妥善保存。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;提示：如果担心密码泄露可设置 FASTLANE_DONT_STORE_PASSWORD = true 不进行密码保存至 keychain，在 keychain 可通过关键词 &amp;ldquo;deliver.&amp;rdquo; 检索。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;有的童鞋说我们有 299 的企业证书，为什么不做支持呢？起初作者并没有打算进行支持是担心滥用以及代码结构需要较大的变更，随着开发者呼声太高，其实还是做了支持，只不过并没有正式的纳入，需要通过配置环境变量支持：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 企业环境证书
+$ ENV[&#39;MATCH_FORCE_ENTERPRISE&#39;] = &#39;1&#39; &amp;amp;&amp;amp; fastlane match enterprise
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;修改密钥&#34;&gt;修改密钥&lt;/h2&gt;
+
+&lt;p&gt;建议密码定期更换或再人员发生变更之后进行密码变更：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ fastlane match change_password
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;重新生成&#34;&gt;重新生成&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;慎用&lt;/strong&gt;：match 提供一个命令允许把当前的证书撤销后并全新的重新生成一份，这个事项是会把证书和 Profiles 全部包含在内，如果单纯的想只重设 Profles 并同步是不支持的。我想这也是为什么该命名叫做 &lt;code&gt;nuke&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;我这里可给大家提供一种只同步 profile 的方法：首先在 git 仓库中找到你要重设的 profile 文件，并把它从仓库中删除提交，然后在执行该类型的命令即可，命令发现没有 profile 会自动再生成一个 profile 并下载同步至 git 仓库。&lt;/p&gt;
+
+&lt;h2 id=&#34;资料参考&#34;&gt;资料参考&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://macoscope.com/blog/simplify-your-life-with-fastlane-match/&#34;&gt;http://macoscope.com/blog/simplify-your-life-with-fastlane-match/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/fastlane/fastlane/issues/2007&#34;&gt;https://github.com/fastlane/fastlane/issues/2007&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
     </item>
     
     <item>
       <title>深入浅出 Fastlane 一看你就懂</title>
-      <link>https://icyleaf.com/2016/07/fastlane-in-action/</link>
+      <link>https://icyleaf.com/2016/07/fastlane-in-action</link>
       <pubDate>Tue, 19 Jul 2016 20:12:07 +0800</pubDate>
       
-      <guid>https://icyleaf.com/2016/07/fastlane-in-action/</guid>
-      <description>这是《 Fastlane - iOS 和 Android 的自动化构建工具》系列的第二篇。 本篇我想着重介绍 fastlane 本身的基本使用，这里使用 fastlane v1.98.0 作为演示版本。 系列索引 Fastlane - iOS 和 Android 的自动化构建工</description>
+      <guid>https://icyleaf.com/2016/07/fastlane-in-action</guid>
+      <description>
+
+&lt;p&gt;这是《 &lt;a href=&#34;https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/&#34;&gt;Fastlane - iOS 和 Android 的自动化构建工具&lt;/a&gt;》系列的第二篇。&lt;/p&gt;
+
+&lt;p&gt;本篇我想着重介绍 &lt;code&gt;fastlane&lt;/code&gt; 本身的基本使用，这里使用 fastlane v1.98.0 作为演示版本。&lt;/p&gt;
+
+&lt;h3 id=&#34;系列索引&#34;&gt;系列索引&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/&#34;&gt;Fastlane - iOS 和 Android 的自动化构建工具&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://icyleaf.com/2016/07/fastlane-in-action/&#34;&gt;深入浅出 Fastlane 一看你就懂&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://icyleaf.com/2017/03/fastlane-match-in-action/&#34;&gt;你虐我千百遍，我待你如初恋，直到我遇到 match&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;命令行工具&#34;&gt;命令行工具&lt;/h2&gt;
+
+&lt;p&gt;安装之后默认会安装一个命令行工具 &lt;code&gt;fastlane&lt;/code&gt;，利用它可以初始化、执行任务、查看任务定义、查看可用的动作和动作的详细定义，甚至可以用它来创建自定义的动作、插件以及一些辅助功能。想了解的话可以先看看它的帮助：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ fastlane --help
+
+  fastlane
+
+  CLI for &#39;fastlane&#39; - The easiest way to automate building and releasing your iOS and Android apps
+
+        Run using `fastlane [platform] [lane_name]`
+        To pass values to the lanes use `fastlane [platform] [lane_name] key:value key2:value2`
+
+  Commands:
+    action                  Shows more information for a specific command
+    actions                 Lists all available fastlane actions
+    add_plugin              Add a new plugin to your fastlane setup
+    disable_crash_reporting Deprecated: fastlane doesn&#39;t use a crash reporter any more
+    docs                    Generate a markdown based documentation based on the Fastfile
+    enable_auto_complete    Enable tab auto completion
+    enable_crash_reporting  Deprecated: fastlane doesn&#39;t use a crash reporter any more
+    help                    Display global or [command] help documentation
+    init                    Helps you with your initial fastlane setup
+    install_plugins         Install all plugins for this project
+    lanes                   Lists all available lanes and shows their description
+    list                    Lists all available lanes without description
+    new_action              Create a new custom action for fastlane.
+    new_plugin              Create a new plugin that can be used with fastlane
+    run                     Run a fastlane one-off action without a full lane
+    search_plugins          Search for plugins, search query is optional
+    trigger                 Run a sepcific lane. Pass the lane name and optionally the platform first.
+    update_plugins          Update all plugin dependencies
+
+  Global Options:
+    --verbose
+    -h, --help           Display help documentation
+    -v, --version        Display version information
+
+  Author:
+    Felix Krause &amp;lt;fastlane@krausefx.com&amp;gt;
+
+  Website:
+    https://fastlane.tools
+
+  GitHub:
+    https://github.com/fastlane/fastlane
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;我会随着下面每个概念的解释和展开来配合上面的命令一起讲解。&lt;/p&gt;
+
+&lt;h2 id=&#34;生命周期&#34;&gt;生命周期&lt;/h2&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;执行顺序&lt;/th&gt;
+&lt;th&gt;方法名&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;before_all&lt;/td&gt;
+&lt;td&gt;在执行 lane 之前只执行一次&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;before_each&lt;/td&gt;
+&lt;td&gt;每次执行 lane 之前都会执行一次&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;lane&lt;/td&gt;
+&lt;td&gt;自定义的任务&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;after_each&lt;/td&gt;
+&lt;td&gt;每次执行 lane 之后都会执行一次&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;after_all&lt;/td&gt;
+&lt;td&gt;在执行 lane 成功结束之后执行一次&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;6&lt;/td&gt;
+&lt;td&gt;error&lt;/td&gt;
+&lt;td&gt;在执行上述情况任意环境报错都会中止并执行一次&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;以上的部分大家在上一篇已经见识过了，有些还没接触到，不用着急都会一一说明。&lt;/p&gt;
+
+&lt;h2 id=&#34;任务-lane&#34;&gt;任务（lane）&lt;/h2&gt;
+
+&lt;p&gt;正常情况下你可能只会是用到一种任务方法 &lt;code&gt;lane&lt;/code&gt; 但其实它会包含很多中高级用法。在文章的末尾会详细描述。&lt;/p&gt;
+
+&lt;h3 id=&#34;任务定义&#34;&gt;任务定义&lt;/h3&gt;
+
+&lt;p&gt;定义任务的方法类似于 rake 的 task，但使用上缺比前者要好用很多，见下表：&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;定义&lt;/th&gt;
+&lt;th&gt;是否必须&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;th&gt;备注&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;desc&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;false&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;方法描述&lt;/td&gt;
+&lt;td&gt;可多次使用打到换行的目的&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;name&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;true&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;方法名&lt;/td&gt;
+&lt;td&gt;符号化的方法名&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;options&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;false&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;方法参数&lt;/td&gt;
+&lt;td&gt;返回 Hash 类型&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;task&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;true&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;方法主体&lt;/td&gt;
+&lt;td&gt;参考 ruby 的方法代码且支持 ruby 代码&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;desc &#39;定义一个 build 方法&#39;
+desc &#39;参数 adhoc 判断是否为内测版本, 默认为 false&#39;
+desc &#39;fastlane build&#39;
+desc &#39;fastlane build adhoc:true&#39;
+lane :build do |options|
+  # task to do something
+  adhoc = options[:adhoc] || false
+  puts &amp;quot;adhoc: #{adhoc}&amp;quot;
+
+  gym(type: adhoc ? &#39;adhoc&#39; : &#39;appstore&#39;)
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;任务执行&#34;&gt;任务执行&lt;/h3&gt;
+
+&lt;p&gt;一般情况下它需要配合定义好的 lane 才能使用，刚刚我们定义的一个 build 方法，我们这里就试着执行一下吧。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 默认执行
+$ fastlane build
+# 传递参数
+$ fastlane build adhoc:true
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;任务互调&#34;&gt;任务互调&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;lane&lt;/code&gt; 其实可以理解为 &lt;code&gt;def&lt;/code&gt; 的别名，因此多个 lane 的话实际上是可以相互调用的，这个其实特别实用，这样其实我就可以把 cocoapods 的执行放到单独的 lane 里面而不是 &lt;code&gt;before_all&lt;/code&gt;，这样执行非构建的任务就不会执行不相关的任务或动作，因此 fastlane 而产生了一个私有任务用内部使用 &lt;code&gt;private_lane&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;
+default_platform :ios
+
+platform :ios do
+  desc &#39;构建前的准备工作&#39;
+  desc &#39;这是一个私有任务，仅供 Fastfile 内部 lane 调用使用&#39;
+  lane :prepare do
+    cocoapods
+    match
+  end
+
+  desc &#39;通用的构建任务&#39;
+  desc &#39;fastlane build&#39;
+  desc &#39;fastlane build type:adhoc&#39;
+  lane :build do |options|
+    # 调用上面 prepare 私有任务
+    prepare
+
+    case options[:type]
+    when &#39;adhoc&#39;
+      # 调用 下面 adhoc 任务
+      adhoc
+    else
+      # 调用下面 appstore 任务
+      appstore
+    end
+  end
+
+  desc &#39;构建 adhoc 任务&#39;
+  desc &#39;fastlane adhoc&#39;
+  lane :adhoc do
+    gym(type: &#39;adhoc&#39;)
+  end
+
+  desc &#39;构建 appstore 任务&#39;
+  desc &#39;fastlane appstore&#39;
+  lane :appstore do
+    gym(type: &#39;appstore&#39;)
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上面的任务中，&lt;code&gt;build&lt;/code&gt;/&lt;code&gt;adhoc&lt;/code&gt;/&lt;code&gt;appstore&lt;/code&gt; 都可以执行，只有 &lt;code&gt;prepare&lt;/code&gt; 是无法通过命令行外部执行，如果执行会直接报错：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ fastlane prepare
+[19:17:42]: You can&#39;t call the private lane &#39;prepare&#39; directly
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;任务返回值&#34;&gt;任务返回值&lt;/h3&gt;
+
+&lt;p&gt;和 ruby 的方法一致，每个 lane 最后一行会默认作为返回值（无需 &lt;a href=&#34;http://learnrubythehardway.org/book/ex21.html&#34;&gt;return&lt;/a&gt;）。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;
+lane :sum do |options|
+  options[:a] + optiona[:b]
+end
+
+lane :calculate do
+  value = sum(a: 3, b: 5)
+  puts value #=&amp;gt; 8
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;引入外部任务文件&#34;&gt;引入外部任务文件&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;Fastfile&lt;/code&gt; 除了自身以外还能够引入外部其他的 &lt;code&gt;Fastfile&lt;/code&gt; 并调用任务，只需要导入外部文件并使用特殊的方法标识即可：&lt;/p&gt;
+
+&lt;h4 id=&#34;1-import-导入本地文件&#34;&gt;1. import - 导入本地文件&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# 导入 lanes 目录的 AndroidFastfile
+import &amp;quot;lanes/AndroidFastfile&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;2-import-from-git-导入-git-仓库文件&#34;&gt;2. import_from_git - 导入 git 仓库文件&lt;/h4&gt;
+
+&lt;p&gt;可以直接引入 git 仓库的 Fastfile 文件是一个非常赞的功能，通过使用发现其实现原理是先把 git 仓库克隆下来后在引入相对于的文件，因此建议国内在没有网络加速（翻墙）的情况下尽量不用引入比较大的 git 仓库，否则使用会需要漫长的等待&amp;hellip;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# 导入 mozilla/firefox-ios 项目下 fastlane 下面 Fastfile 文件
+import_from_git(url: &#39;https://github.com/mozilla/firefox-ios&#39;)
+# 或者
+import_from_git(url: &#39;git@github.com:mozilla/firefox-ios.git&#39;,
+               path: &#39;fastlane/Fastfile&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;假若外部引入的 &lt;code&gt;Fastfile&lt;/code&gt; 有个方法是 &lt;strong&gt;build&lt;/strong&gt;，在命令行工具直接执行即可，如果外部和内部都有相同的任务名，执行会直接报错：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ fastlane ios build
+
+[!] Lane &#39;gradle&#39; was defined multiple times!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;如果发生这样的事情且你希望在主体 &lt;code&gt;Fastfile&lt;/code&gt; 也调用的话需要使用特殊的方法定义：&lt;code&gt;override_lane&lt;/code&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;注意：此方法只会覆盖外部的相同方法名的代码执行，目前暂时无法使用类似 ruby 的 &lt;code&gt;super&lt;/code&gt; 继承原由方法！&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;override_lane :build do
+  ...
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;任务查看&#34;&gt;任务查看&lt;/h3&gt;
+
+&lt;p&gt;只需执行下面这行命令就可以看到非私有任务的可用列表信息&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ fastlane lanes
+
+--------- ios---------
+----- fastlane ios build
+通用的构建任务
+fastlane build
+fastlane build type:adhoc
+
+----- fastlane ios adhoc
+构建 adhoc 任务
+
+----- fastlane ios appstore
+构建 appstore 任务
+
+Execute using `fastlane [lane_name]`
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;扩展-action&#34;&gt;扩展（Action）&lt;/h2&gt;
+
+&lt;p&gt;扩展是 fastlane 的杀手锏，重在集成了众多非常优秀好用的方法供 lane 内部使用，截至 fastlane v&lt;code&gt;1.98.0&lt;/code&gt; 版本以包含 175 个扩展，这个数量还在陆续增加中。扩展初期是由发起人一个人完成，后续的大部分都是社区共享，如果你发现没有你想要的扩展，可以先去 &lt;a href=&#34;https://github.com/fastlane/fastlane/issues?q=is%3Aopen+is%3Aissue+label%3Aaction&#34;&gt;issues&lt;/a&gt; 搜索下没有要么自己动手提交要么只有等待了.&lt;/p&gt;
+
+&lt;h3 id=&#34;扩展列表&#34;&gt;扩展列表&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ fastlane actions
++--------------------+-------------------------------------------------------------+------------------+
+|                                   Available fastlane actions                                        |
++--------------------+-------------------------------------------------------------+------------------+
+| Action             | Description                                                 | Author           |
++--------------------+-------------------------------------------------------------+------------------+
+| adb                | Run ADB Actions                                             | hjanuschka       |
+| adb_devices        | Get an Array of Connected android device serials            | hjanuschka       |
+| add_git_tag        | This will add an annotated git tag to the current branch    | Multiple         |
+...
++--------------------+-------------------------------------------------------------+------------------+
+  Total of 175 actions
+
+Get more information for one specific action using `fastlane action [name]`
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;扩展使用帮助&#34;&gt;扩展使用帮助&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 查看 adb 扩展的使用帮助
+$ fastlane action adb
+Loading documentation for adb:
+
++---------------------------------+
+|               adb               |
++---------------------------------+
+| Run ADB Actions                 |
+|                                 |
+| see adb --help for more details |
+|                                 |
+| Created by hjanuschka           |
++---------------------------------+
+
++----------+----------------------------------------------------------------------+-------------------+---------+
+|                                                  adb Options                                                  |
++----------+----------------------------------------------------------------------+-------------------+---------+
+| Key      | Description                                                          | Env Var           | Default |
++----------+----------------------------------------------------------------------+-------------------+---------+
+| serial   | Android serial, which device should be used for this command         | FL_ANDROID_SERIAL |         |
+| command  | All commands you want to pass to the adb command, e.g. `kill-server` | FL_ADB_COMMAND    |         |
+| adb_path | The path to your `adb` binary                                        | FL_ADB_PATH       | adb     |
++----------+----------------------------------------------------------------------+-------------------+---------+
+
++-------------------------------+
+|       adb Return Value        |
++-------------------------------+
+| The output of the adb command |
++-------------------------------+
+
+More information can be found on https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Actions.md
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;创建自定义扩展&#34;&gt;创建自定义扩展&lt;/h3&gt;
+
+&lt;p&gt;通过内置的命令创建你需要的扩展，扩展名必须是全部小写且只能使用下划线分割词组，生成好的扩展文件会在 &lt;code&gt;fastlane/actions&lt;/code&gt; 目录找到:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ fastlane new_action
+Must be lower case, and use a &#39;_&#39; between words. Do not use &#39;.&#39;
+examples: &#39;testflight&#39;, &#39;upload_to_s3&#39;
+Name of your action: hello
+[15:33:15]: Created new action file &#39;./fastlane/actions/hello.rb&#39;. Edit it to implement your custom action.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这块会占比较大的篇幅，尽情期待后续的展开。&lt;/p&gt;
+
+&lt;h3 id=&#34;引入外部扩展&#34;&gt;引入外部扩展&lt;/h3&gt;
+
+&lt;p&gt;这块其实也有两种方法可以引入，文件引入是官方教程提供的方法，第二种是我个人尝试出来的，第三种是最近版本才官方支持的。&lt;/p&gt;
+
+&lt;h4 id=&#34;1-本地文件引入&#34;&gt;1. 本地文件引入&lt;/h4&gt;
+
+&lt;p&gt;自定义的扩展其实也算是本地文件引入的一种形式，当然位于其他路径的通过指定方法也能做到&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# 引入项目根目录 script/share_actions 路径
+actions_path &#39;../script/share_actions&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;2-rubygem-引入&#34;&gt;2. rubygem 引入&lt;/h4&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;不再建议使用本方法，请看第三种插件引入。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;我在团队内部创建了一个自定义的扩展，仅限于团队内部使用而无法贡献社区，我只能采取封装成 ruby gem 包，通过 ruby 的 &lt;code&gt;require&lt;/code&gt; 方式引入，最终可以完美支持，目前已在项目中使用大半年之久。最重要的是我是开源的：&lt;a href=&#34;https://github.com/icyleaf/fastlane-qyer&#34;&gt;fastlane-qyer&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# 首先安装需要的 rubygem: gem install fastlane-qyer
+require &#39;fastlane-qyer&#39;
+
+lane :upload do
+  qyer(api_key: &#39;[token]&#39;)
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;注意，使用 rubygem 引入的无法在 fastlane actions 中显示出来，也无法使用 fastlane action [name] 查看使用帮助。我猜想一是官方没有这样提供思路，二是就算你引入了 gem 也不是特别好判断里面的文件结构。&lt;/p&gt;
+
+&lt;h4 id=&#34;3-插件引入&#34;&gt;3. 插件引入&lt;/h4&gt;
+
+&lt;p&gt;我注意到 &lt;a href=&#34;https://github.com/fastlane/fastlane/releases/tag/1.93.0&#34;&gt;1.93.0&lt;/a&gt; 增加了插件机制，很好的解决第二种出现的一些问题。大概看了一下主要是采用 &lt;code&gt;Gemfile&lt;/code&gt; 的方式使用 &lt;code&gt;Pluginfile&lt;/code&gt; 维护了引入第三方插件列表。实现原理还是属于第二种方法。&lt;/p&gt;
+
+&lt;p&gt;通过 &lt;code&gt;fastlane search_plugins&lt;/code&gt; 查看当前支持的插件，并使用 &lt;code&gt;fastlane add_plugins [name]&lt;/code&gt; 引入。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ fastlane search_plugins
+[16:04:33]: Listing all available fastlane plugins
+
++--------------------------+---------------------------------------------------+-----------+
+|                                Available fastlane plugins                                |
++--------------------------+---------------------------------------------------+-----------+
+| Name                     | Description                                       | Downloads |
++--------------------------+---------------------------------------------------+-----------+
+| ruby                     | Useful fastlane actions for Ruby projects         | 782       |
+| versioning               | Allows to work set/get app version directly       | 758       |
+|                          | to/from Info.plist                                |           |
+| branding                 | Add some branding to your fastlane output         | 716       |
+| instrumented_tests       | New action to run instrumented tests for android. | 590       |
+|                          | This basically creates and boots an emulator      |           |
+|                          | before running an gradle commands so that you can |           |
+|                          | run instrumented tests against that emulator.     |           |
+|                          | After the gradle command is executed, the avd     |           |
+|                          | gets shut down and deleted. This is really        |           |
+|                          | helpful on CI services, keeping them clean and    |           |
+|                          | always having a fresh avd for testing.            |           |
+| xamarin_build            | Build xamarin android\ios projects                | 582       |
+| appicon                  | Generate required icon sizes and iconset from a   | 509       |
+|                          | master application icon.                          |           |
+...
+| download_file            | This action downloads a file from an HTTP/HTTPS   | 171       |
+|                          | url (e.g. ZIP file) and puts it in a destination  |           |
+|                          | path                                              |           |
++--------------------------+---------------------------------------------------+-----------+
+
+# 添加 sentry 插件
+$ fastlane add_plugin sentry
+[16:16:23]: Plugin &#39;fastlane-plugin-sentry&#39; was added to &#39;./fastlane/Pluginfile&#39;
+[16:16:23]: It looks like fastlane plugins are not yet set up for this project.
+[16:16:23]: fastlane will create a new Gemfile at path &#39;Gemfile&#39;
+[16:16:23]: This change is neccessary for fastlane plugins to work
+Should fastlane modify the Gemfile at path &#39;Gemfile&#39; for you? (y/n)
+y
+[16:16:29]: Successfully modified &#39;Gemfile&#39;
+[16:16:29]: Make sure to commit your Gemfile, Gemfile.lock and Pluginfile to version control
+Installing plugin dependencies...
+Successfully installed plugins
+
+$ cat fastlane/Pluginfile
+# Autogenerated by fastlane
+#
+# Ensure this file is checked in to source control!
+
+gem &#39;fastlane-plugin-sentry&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;更详细的继续期待后续报道，我要挖坑无数。&lt;/p&gt;
+
+&lt;h3 id=&#34;扩展的命令行调用&#34;&gt;扩展的命令行调用&lt;/h3&gt;
+
+&lt;p&gt;社区的力量果然是很强大的，陆续添加了那么多功能，早期用户表示不开心！嗯，由于社区的呼声和贡献目前可以通过命令调用扩展：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 使用 notification 扩展发送一个通知消息
+$ fastlane run notification message:&amp;quot;Hi macOS&amp;quot; title:&amp;quot;Fastlane Notification&amp;quot;
+[15:58:05]: --------------------------
+[15:58:05]: --- Step: notification ---
+[15:58:05]: --------------------------
+[15:58:05]: Result: true
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;辅助功能&#34;&gt;辅助功能&lt;/h2&gt;
+
+&lt;h3 id=&#34;自动更新&#34;&gt;自动更新&lt;/h3&gt;
+
+&lt;p&gt;fastlane 提供一个方法 &lt;code&gt;update_fastlane&lt;/code&gt; 用于对于自身的版本检查和更新，这个第一篇文章我也有提到过。它其实一个是一个扩展，使用 &lt;code&gt;fastlane action update_fastlane&lt;/code&gt; 能够看到使用帮助。它有一个参数是可以指定检查特定的 fastlane 工具并进行更新，但其实它是使用 rubygems 进行对 gem 的更新，因此这块其实可以传入任何需要检查并更新的 gem：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;update_fastlane(tools:&#39;fastlane,gym,match,cocoapods,rest-client&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;环境变量&#34;&gt;环境变量&lt;/h3&gt;
+
+&lt;p&gt;从 fastlane 的设计体系上在各个地方都加入了环境变量的支持，每个扩展的参数、以及扩展需要共享给其他扩展和任务读取的数据都是通过环境变量获取，如下是我收集的比较常用的列表：&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;环境变量&lt;/th&gt;
+&lt;th&gt;来源&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;th&gt;备注&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;FASTLANE_USER&lt;/td&gt;
+&lt;td&gt;credentials_manager&lt;/td&gt;
+&lt;td&gt;Apple 开发者账户名&lt;/td&gt;
+&lt;td&gt;验证通过后会保存 Keychain&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;FASTLANE_PASSWORD&lt;/td&gt;
+&lt;td&gt;credentials_manager&lt;/td&gt;
+&lt;td&gt;Apple 开发者账户密码&lt;/td&gt;
+&lt;td&gt;验证通过后会保存 Keychain&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;FASTLANE_TEAM_ID&lt;br /&gt;CERT_TEAM_ID&lt;/td&gt;
+&lt;td&gt;produce&lt;br /&gt;sigh&lt;/td&gt;
+&lt;td&gt;Apple 团队 ID&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;DELIVER_USER&lt;br \&gt;PRODUCE_USERNAME&lt;/td&gt;
+&lt;td&gt;deliver&lt;br /&gt;produce&lt;/td&gt;
+&lt;td&gt;iTunesConnect 账户名&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;DELIVER_PASSWORD&lt;/td&gt;
+&lt;td&gt;deliver&lt;/td&gt;
+&lt;td&gt;iTunesConnect 账户密码&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;MATCH_PASSWORD&lt;/td&gt;
+&lt;td&gt;match&lt;/td&gt;
+&lt;td&gt;证书加/解密密码&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;FASTLANE_XCODE_LIST_TIMEOUT&lt;/td&gt;
+&lt;td&gt;fastlane_core&lt;/td&gt;
+&lt;td&gt;获取 iOS Scheme 的超时时间&lt;/td&gt;
+&lt;td&gt;默认 10s&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</description>
     </item>
     
     <item>
       <title>Fastlane - iOS 和 Android 的自动化构建工具</title>
-      <link>https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/</link>
+      <link>https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android</link>
       <pubDate>Mon, 11 Jul 2016 12:36:07 +0800</pubDate>
       
-      <guid>https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/</guid>
-      <description>系列索引 Fastlane - iOS 和 Android 的自动化构建工具 深入浅出 Fastlane 一看你就懂 你虐我千百遍，我待你如初恋，直到我遇到 match 前言 这篇文章整理了很久，发现在一篇文章里无法一</description>
+      <guid>https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android</guid>
+      <description>
+
+&lt;h3 id=&#34;系列索引&#34;&gt;系列索引&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/&#34;&gt;Fastlane - iOS 和 Android 的自动化构建工具&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://icyleaf.com/2016/07/fastlane-in-action/&#34;&gt;深入浅出 Fastlane 一看你就懂&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://icyleaf.com/2017/03/fastlane-match-in-action/&#34;&gt;你虐我千百遍，我待你如初恋，直到我遇到 match&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+
+&lt;p&gt;这篇文章整理了很久，发现在一篇文章里无法一一讲述和全面的覆盖，初步打算是把这个做成一个系列，想到哪里就写到哪里，如果恰好有读者爱戴并有一些建议反馈，我也会根据大家的需要调整内容的方向和深度。论美剧的编剧的重要性(笑)。&lt;/p&gt;
+
+&lt;h2 id=&#34;初次邂逅&#34;&gt;初次邂逅&lt;/h2&gt;
+
+&lt;p&gt;初时 fastlane 的时候是去年的 11 月份，看到大就感觉遇到了神器一般的惊喜。它一个针对于 iOS 和 Android（后来才支持的）全方位自动化流程的工具，请看下图&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://fastlane.tools/assets/img/intro-fastlane-tree.png&#34; alt=&#34;fastlane-flow&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;流程图中每个环节都是独立的工具，每个工具只干一件事情，分工非常的明确。以下是我在团队项目中用到的：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/fastlane/fastlane/tree/master/scan&#34;&gt;scan&lt;/a&gt; 自动化测试工具，很好的封装了 Unit Test&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/fastlane/fastlane/tree/master/sigh&#34;&gt;sigh&lt;/a&gt; 针对于 iOS 项目开发证书和 Provision file 的下载工具&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/fastlane/fastlane/tree/master/match&#34;&gt;match&lt;/a&gt; 同步团队每个人的证书和 Provision file 的超赞工具，规范&lt;a href=&#34;https://codesigning.guide/&#34;&gt;代码签名&lt;/a&gt;（虽然里面有些设定比较损）&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/fastlane/fastlane/tree/master/gym&#34;&gt;gym&lt;/a&gt; 针对于 iOS 打包和签名的自动化工具，完爆 &lt;code&gt;xctool&lt;/code&gt;，而 &lt;code&gt;shenzhen&lt;/code&gt; 也放弃维护&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/icyleaf/fastlane-qyer&#34;&gt;qyer&lt;/a&gt; 团队定制的工具，用于检测包和上传到自己的内部分发平台&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/fastlane/fastlane&#34;&gt;fastlane&lt;/a&gt; 简单理解就是控制整体流程和实现的框架容器&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;利用目前支持的工具可以做所有包含自动化和可持续化构建的每个环节，比如单元测试、截图、分发渠道、上传元数据和 ipa 包提交审核等等。看到这这些是不是很兴奋？
+反正我看到之后就像黑夜看到了光明，果断抛弃自己维护的脚本。&lt;/p&gt;
+
+&lt;h2 id=&#34;基本构成&#34;&gt;基本构成&lt;/h2&gt;
+
+&lt;p&gt;Fastlane 提供的流程的众多工具都是可以独立存在和使用（提供 cli 命令），也可以统一由 fastlane 来控制。它在使用中提出了两个概念：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;action&lt;/code&gt;: Fastlane 的插件，截至当前内置 165 个至多，不过每个动作的颗粒度大小不一。&lt;a href=&#34;https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Actions.md&#34;&gt;查看详情&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;lane&lt;/code&gt;: Fastlane 的任务（或者可以理解为命令），一个可以包含多个 lanes，通过 &lt;code&gt;fastlane&lt;/code&gt; cli 传入制定的 lane 来执行。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;光说不干假把式，看法宝：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;lane :adhoc do
+  # build version 自动加一
+  increment_build_number
+  # 执行 pod install
+  cocoapods
+  # 调用 facebook 的 xctool 进行单元测试
+  xctool
+  # 对模拟器运行的 App 进行截图
+  snapshot
+  # 安装团队证书和 profiles
+  match
+  # 上传 App 元数据和签名的 ipa 到 iTunes Conneects
+  deliver
+  # 把截图套进一个设备外壳
+  frameit
+  # 允许自定义的脚本文件
+  sh &amp;quot;./customScript.sh&amp;quot;
+  # 发消息到 slack
+  slack
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;
+
+&lt;p&gt;工具的起源本身是专门针对 iOS 项目，因此目前依赖于 macOS 10.9 以上系统，Ruby 是一个众所周知的轮子发明者，很多知名的工具都是它开发的，fastlane 也不例外。以下是依赖环境：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;macOS 10.9+&lt;/li&gt;
+&lt;li&gt;Ruby 2.0+ (推荐 rvm 或 rbenv 安装)&lt;/li&gt;
+&lt;li&gt;Xcode + command line tools&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;以上依赖配置好之后就可以通过 rubygem 进行安装：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ [sudo] gem install fastlane
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;fastlane 默认会把核心工具都会进行安装，需要大家耐心等待一会&amp;hellip;&lt;/p&gt;
+
+&lt;h2 id=&#34;初始化&#34;&gt;初始化&lt;/h2&gt;
+
+&lt;p&gt;有两种方法可以初始化，一种是通过命令，一种是自己创建指定的（至少包含一个）约束文件 &lt;code&gt;Fastfile&lt;/code&gt;。首先我先介绍大家使用命令初始化:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 切换只你开发的 iOS 项目根目录
+$ cd to/your/ios/project
+$ fastlane init
+[11:46:34]: Detected iOS/Mac project in current directory...
+[11:46:34]: This setup will help you get up and running in no time.
+[11:46:34]: fastlane will check what tools you&#39;re already using and set up
+[11:46:34]: the tool automatically for you. Have fun!
+[11:46:34]: Created new folder &#39;./fastlane&#39;.
+...
+Your Apple ID (e.g. fastlane@krausefx.com): xxx@gmail.com
+[11:46:59]: Verifying if app is available on the Apple Developer Portal and iTunes Connect...
+[11:46:59]: Starting login with user &#39;xxx@gmail.com&#39;
+Multiple teams found on the Developer Portal, please enter the number of the team you want to use:
+1) XXXXXXXXXX &amp;quot;XXXXXXXXXX&amp;quot; (In-House)
+2) YYYYYYYYYY &amp;quot;YYYYYYYYYY&amp;quot; (Company/Organization)
++----------------+----------------------------------------------------------------------------+
+|                                       Detected Values                                       |
++----------------+----------------------------------------------------------------------------+
+| Apple ID       | xxx@gmail.com                                                              |
+| App Name       | Hello Fastlane                                                             |
+| App Identifier | com.icyleaf.demo.HelloFastlane                                             |
+| Workspace      | /Users/icyleaf/Development/iOS/HelloFastlane.xcworkspace                   |
++----------------+----------------------------------------------------------------------------+
+
+[11:48:36]: This app identifier doesn&#39;t exist on iTunes Connect yet, it will be created for you
+Please confirm the above values (y/n) n
+App Identifier (com.krausefx.app): com.icyleaf.demo.HelloFastlane
+[11:50:04]: Created new file &#39;./fastlane/Appfile&#39;. Edit it to manage your preferred app metadata information.
+Optional: The scheme name of your app (If you don&#39;t need one, just hit Enter): AppDemo
+[11:50:40]: &#39;snapshot&#39; not enabled.
+[11:50:40]: &#39;cocoapods&#39; enabled.
+[11:50:40]: &#39;carthage&#39; not enabled.
+[11:50:40]: Created new file &#39;./fastlane/Fastfile&#39;. Edit it to manage your own deployment lanes.
+[11:50:40]: fastlane will send the number of errors for each action to
+[11:50:40]: https://github.com/fastlane/enhancer to detect integration issues
+[11:50:40]: No sensitive/private information will be uploaded
+[11:50:40]: Successfully finished setting up fastlane
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这部分会进行联网，并提示输入你的 Apple ID 来验证你的应用是否存在（没有也会帮你自动创建）并获取相应的关键信息，通过一系列的流程下来把获取的信息会创建一个 &lt;code&gt;fastlane&lt;/code&gt; 目录
+并并写入相应的文件（如果某些信息没有填写会忽略某些文件的生成）：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Fastfile&lt;/code&gt;: 核心文件，主要用于 cli 调用和处理具体的流程，&lt;a href=&#34;https://github.com/fastlane/fastlane/tree/master/fastlane/docs#fastfile&#34;&gt;了解详情&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Appfile&lt;/code&gt;: 从 Apple Developer Portal 获取和项目相关的信息，&lt;a href=&#34;https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Appfile.md&#34;&gt;了解详情&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Deliverfile&lt;/code&gt;: 从 iTunes Connect 获取和项目相关的信息，&lt;a href=&#34;https://github.com/fastlane/fastlane/blob/master/deliver/Deliverfile.md&#34;&gt;了解详情&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;抛开其他的几个文件先不说，大家先把注意力放到刚创建好的 &lt;code&gt;Fastfile&lt;/code&gt; 文件上面（可能有变化，仅作参考），如果大家对 Ruby 有了解的话，它定义的 DSL 语言非常类似 &lt;a href=&#34;https://github.com/ruby/rake&#34;&gt;rake&lt;/a&gt;，但流程上有参考的 &lt;a href=&#34;https://github.com/rspec/rspec&#34;&gt;rspec&lt;/a&gt;，一旦不满足需求还可以使用 Ruby 代码来实现。单凭 DSL 语言来说就算对于 Ruby 没有基础的也能很快掌握，大多都是比较简单易懂的语法。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# Customise this file, documentation can be found here:
+# https://github.com/fastlane/fastlane/tree/master/fastlane/docs
+# All available actions: https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Actions.md
+# can also be listed using the `fastlane actions` command
+
+# Change the syntax highlighting to Ruby
+# All lines starting with a # are ignored when running `fastlane`
+
+# If you want to automatically update fastlane if a new version is available:
+# update_fastlane
+
+# This is the minimum version number required.
+# Update this, if you use features of a newer version
+fastlane_version &amp;quot;1.95.0&amp;quot;
+
+default_platform :ios
+
+platform :ios do
+  # 执行所有命令前都会先执行这里
+  before_all do
+    # ENV[&amp;quot;SLACK_URL&amp;quot;] = &amp;quot;https://hooks.slack.com/services/...&amp;quot;
+    cocoapods
+  end
+
+  desc &amp;quot;Runs all the tests&amp;quot;
+  lane :test do
+    scan
+  end
+
+  desc &amp;quot;Submit a new Beta Build to Apple TestFlight&amp;quot;
+  desc &amp;quot;This will also make sure the profile is up to date&amp;quot;
+  lane :beta do
+    # match(type: &amp;quot;appstore&amp;quot;) # more information: https://codesigning.guide
+    gym(scheme: &amp;quot;AppDemo&amp;quot;) # Build your app - more options available
+    pilot
+
+    # sh &amp;quot;your_script.sh&amp;quot;
+    # You can also use other beta testing services here (run `fastlane actions`)
+  end
+
+  desc &amp;quot;Deploy a new version to the App Store&amp;quot;
+  lane :appstore do
+    # match(type: &amp;quot;appstore&amp;quot;)
+    # snapshot
+    gym(scheme: &amp;quot;AppDemo&amp;quot;) # Build your app - more options available
+    deliver(force: true)
+    # frameit
+  end
+
+  # 你可以定义属于自己的 lane（任务）
+  lane :hello do
+    puts &amp;quot;hello world&amp;quot;
+  end
+
+  # 仅当上述流程全部执行成功后才会走这里。其实应该定义为 after_success
+  after_all do |lane|
+    # slack(
+    #   message: &amp;quot;Successfully deployed new App Update.&amp;quot;
+    # )
+  end
+
+  # 如果流程发生异常会走这里并终止
+  error do |lane, exception|
+    # slack(
+    #   message: exception.message,
+    #   success: false
+    # )
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;通过上面的注解，我想大家对它已经有了初步的了解，那么定义完之后该如何执行呢？回到刚才的终端（关闭了？那再切换到刚才的 iOS 项目的根目录）：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ fastlane ios hello
+[11:56:24]: -------------------------------------------------
+[11:56:24]: --- Step: Verifying required fastlane version ---
+[11:56:24]: -------------------------------------------------
+[11:56:24]: fastlane version valid
+[11:56:24]: ------------------------------
+[11:56:24]: --- Step: default_platform ---
+[11:56:24]: ------------------------------
+[11:56:24]: Driving the lane &#39;ios hello&#39; 🚀
+[11:56:24]: -----------------------
+[11:56:24]: --- Step: cocoapods ---
+[11:56:24]: -----------------------
+[11:56:24]: $ pod install
+...
+[11:56:28]: hello world
+
++------+-------------------------------------+-------------+
+|                     fastlane summary                     |
++------+-------------------------------------+-------------+
+| Step | Action                              | Time (in s) |
++------+-------------------------------------+-------------+
+| 1    | Verifying required fastlane version | 0           |
+| 2    | default_platform                    | 0           |
+| 3    | cocoapods                           | 4           |
++------+-------------------------------------+-------------+
+
+[11:56:28]: fastlane.tools finished successfully 🎉
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;哒哒！一个简单的任务执行完毕！&lt;/p&gt;
+
+&lt;p&gt;如果大家注意观察上面的文件可能注意到一些小细节：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# 自动更新 fastlane 工具，需要 rubygems &amp;gt;= 2.1.0
+update_fastlane
+
+# 最低兼容版本，由于 fastlane 还是逐步健壮的阶段更新速度还是蛮快的，
+# 为了防止新特性在旧版本的不支持会强制设置一个最低兼容版本
+# 不过工具特别贴心的会在每次执行之后会检查是否有新版本，如果有会在最后末尾追加新版本提醒
+fastlane_version &amp;quot;1.95.0&amp;quot;
+
+# 默认使用平台是 ios，也就是说文件可以定义多个平台，
+# 通过上述执行的命令也能看出来是执行的 ios 平台下面的 hello 任务。
+# 这个的作用是可以在执行 fastlane 的时候省略 ios，不信你执行 fastlane hello 试试。
+default_platform :ios
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;android-的支持&#34;&gt;Android 的支持&lt;/h2&gt;
+
+&lt;p&gt;这个的支持我觉得关键是社区的呼声太大，加上贡献者的热情（我提交过许多 issues 和个别 PL，响应非常的迅速）很快就加上了其支持，
+但具体的特性不是特别多，主要是对于 &lt;code&gt;gradle&lt;/code&gt; 的封装，我先不做展开介绍，大家可以先看看&lt;a href=&#34;https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Android.md&#34;&gt;官方文档&lt;/a&gt;，如果后续有特别不明白的地方我在做具体的讲解。&lt;/p&gt;
+
+&lt;p&gt;今天就先写到这里后续我会继续整理更多的使用指南和实战范例共大家参考，最后给大家附赠官方给大家的一些&lt;a href=&#34;https://github.com/fastlane/examples&#34;&gt;范例&lt;/a&gt;。&lt;/p&gt;
+</description>
     </item>
     
   </channel>

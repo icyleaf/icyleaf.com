@@ -2,59 +2,111 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Shell on icyleaf</title>
-    <link>https://icyleaf.com/tags/shell/</link>
+    <link>https://icyleaf.com/tags/shell/index.xml</link>
     <description>Recent content in Shell on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>All rights reserved - 2019</copyright>
-    <lastBuildDate>Tue, 06 Nov 2012 12:34:56 +0800</lastBuildDate>
-    
-	<atom:link href="https://icyleaf.com/tags/shell/index.xml" rel="self" type="application/rss+xml" />
-    
+    <atom:link href="https://icyleaf.com/tags/shell/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>修复 OS X 打开方式的重复项</title>
-      <link>https://icyleaf.com/2012/11/%E4%BF%AE%E5%A4%8D-os-x-%E6%89%93%E5%BC%80%E6%96%B9%E5%BC%8F%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9/</link>
+      <link>https://icyleaf.com/2012/11/%E4%BF%AE%E5%A4%8D-os-x-%E6%89%93%E5%BC%80%E6%96%B9%E5%BC%8F%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9</link>
       <pubDate>Tue, 06 Nov 2012 12:34:56 +0800</pubDate>
       
-      <guid>https://icyleaf.com/2012/11/%E4%BF%AE%E5%A4%8D-os-x-%E6%89%93%E5%BC%80%E6%96%B9%E5%BC%8F%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9/</guid>
-      <description>$ /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain system-domainuser  </description>
+      <guid>https://icyleaf.com/2012/11/%E4%BF%AE%E5%A4%8D-os-x-%E6%89%93%E5%BC%80%E6%96%B9%E5%BC%8F%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9</guid>
+      <description>&lt;pre&gt;&lt;code&gt;$ /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain system-domainuser
+&lt;/code&gt;&lt;/pre&gt;
+</description>
     </item>
     
     <item>
       <title>如何针对 iOS 设备进行网络抓包分析</title>
-      <link>https://icyleaf.com/2012/10/%E5%A6%82%E4%BD%95%E9%92%88%E5%AF%B9-ios-%E8%AE%BE%E5%A4%87%E8%BF%9B%E8%A1%8C%E7%BD%91%E7%BB%9C%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90/</link>
+      <link>https://icyleaf.com/2012/10/%E5%A6%82%E4%BD%95%E9%92%88%E5%AF%B9-ios-%E8%AE%BE%E5%A4%87%E8%BF%9B%E8%A1%8C%E7%BD%91%E7%BB%9C%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90</link>
       <pubDate>Mon, 15 Oct 2012 12:34:56 +0800</pubDate>
       
-      <guid>https://icyleaf.com/2012/10/%E5%A6%82%E4%BD%95%E9%92%88%E5%AF%B9-ios-%E8%AE%BE%E5%A4%87%E8%BF%9B%E8%A1%8C%E7%BD%91%E7%BB%9C%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90/</guid>
-      <description>Charles 目前是 OS X 上面最好的抓包分析软件，相比 WireShark 功能更加强大，并支持代理功能。 iPad HTTP Debugging with Charles - 教大家如何使用它进行代理抓包 Testing / Tethering Data Driven Mobile Apps with Charles and OSX - 教大</description>
+      <guid>https://icyleaf.com/2012/10/%E5%A6%82%E4%BD%95%E9%92%88%E5%AF%B9-ios-%E8%AE%BE%E5%A4%87%E8%BF%9B%E8%A1%8C%E7%BD%91%E7%BB%9C%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90</guid>
+      <description>&lt;p&gt;Charles 目前是 OS X 上面最好的抓包分析软件，相比 WireShark 功能更加强大，并支持代理功能。&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.ravelrumba.com/blog/ipad-http-debugging/&#34;&gt;iPad HTTP Debugging with Charles&lt;/a&gt; - 教大家如何使用它进行代理抓包&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.skinkers.com/2012/06/12/testing-tethering-data-driven-mobile-apps-with-charles-and-osx-ipad-iphone-http-debugging/&#34;&gt;Testing / Tethering Data Driven Mobile Apps with Charles and OSX&lt;/a&gt; - 教大家如何进行 request remap，适合不改动代码的情况下修改域名切换环境&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;不过 Charles 的确定就是共享软件，未注册版本可以使用全功能但是限制是只能允许使用 30 分钟，那么&amp;hellip;习惯用 Terminal 的还有一个方法：&lt;a href=&#34;http://useyourloaf.com/blog/2012/02/07/remote-packet-capture-for-ios-devices.html&#34;&gt;Remote Packet Capture for iOS Devices&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ rvictl -s &amp;lt;UDID&amp;gt;
+$ rvictl -l
+$ tcpdump -n -t -i rvi0 -q tcp
+&lt;/code&gt;&lt;/pre&gt;
+</description>
     </item>
     
     <item>
       <title>友盟 iOS 发布渠道自动化脚本</title>
-      <link>https://icyleaf.com/2012/05/ios-publish-channel-packger-for-umeng/</link>
+      <link>https://icyleaf.com/2012/05/ios-publish-channel-packger-for-umeng</link>
       <pubDate>Thu, 10 May 2012 12:34:56 +0800</pubDate>
       
-      <guid>https://icyleaf.com/2012/05/ios-publish-channel-packger-for-umeng/</guid>
-      <description>现在公司的大多数手机项目的统计服务都是用的友盟，而自使用之初到现在都有一个渠道管理的功能，这个最后打包的时候实际上可能会产生一点点的麻烦，最</description>
+      <guid>https://icyleaf.com/2012/05/ios-publish-channel-packger-for-umeng</guid>
+      <description>&lt;p&gt;现在公司的大多数手机项目的统计服务都是用的&lt;a href=&#34;http:///www.umeng.com&#34;&gt;友盟&lt;/a&gt;，而自使用之初到现在都有一个渠道管理的功能，这个最后打包的时候实际上可能会产生一点点的麻烦，最早第一个 app 发布的时候，写了一个半自动的脚本，凑合用了很久，现在觉得需要完全自动化，于是借鉴之前 &lt;a href=&#34;http://icyleaf.com/2012/04/automating-script-to-testFlight-from-xcode/&#34;&gt;testflightapp 的自动化脚本&lt;/a&gt;，重新改造脚本。&lt;/p&gt;
+
+&lt;p&gt;实现分两部分：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;iOS 代码&lt;/li&gt;
+&lt;li&gt;自动化脚本&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;实现原理很简单，我利用一个文本文件放置在项目当中（比如：&lt;code&gt;PublishChannel.txt&lt;/code&gt;），里面只需要存上发布渠道的名字，默认是 &lt;code&gt;App Store&lt;/code&gt;。在代码中只需要想友盟调用函数的时候，读取这个文件即可。只需要做这样简单的工作就结束了 iOS 代码部分的工作。&lt;/p&gt;
+
+&lt;p&gt;主要的功能基本上都是由自动化脚本完成。因为它要去标记分发渠道，处理打包工作：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;打包需要一个符合官方发布要求的 Icon，即 512x512 px，PNG 格式且名字必须是 &lt;code&gt;iTunesArtwork&lt;/code&gt; （不能包含后缀，无比保证在终端检查）&lt;/li&gt;
+&lt;li&gt;修改 PublishChannel.txt 的分发渠道&lt;/li&gt;
+&lt;li&gt;同时需要把 .app 的文件放在 &lt;code&gt;Payload&lt;/code&gt; 并和 &lt;code&gt;iTunesArtwork&lt;/code&gt; 一起打成 ipa 包（实际上就是一个 zip，改成了 ipa）&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;这样看起来其实工作也不复杂，只不过分发渠道多了就是有些浪费时间。同样还是采用了 Archive 的 Post-Action，这里面可以插入脚本以及外部的调用脚本（如果看不到下面的具体代码，请&lt;a href=&#34;https://gist.github.com/2650508&#34;&gt;点击这里&lt;/a&gt;：&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/2650508.js?file=package.sh&#34;&gt;&lt;/script&gt;
+</description>
     </item>
     
     <item>
       <title>获取公网 IP</title>
-      <link>https://icyleaf.com/2012/05/fetch-public-ip/</link>
+      <link>https://icyleaf.com/2012/05/fetch-public-ip</link>
       <pubDate>Wed, 09 May 2012 12:34:56 +0800</pubDate>
       
-      <guid>https://icyleaf.com/2012/05/fetch-public-ip/</guid>
-      <description>$ curl -s http://checkip.dyndns.org | grep -Eo &#39;([0-9]{1,3}\\.){3}[0-9]{1,3}&#39;  </description>
+      <guid>https://icyleaf.com/2012/05/fetch-public-ip</guid>
+      <description>&lt;pre&gt;&lt;code&gt;$ curl -s http://checkip.dyndns.org | grep -Eo &#39;([0-9]{1,3}\\.){3}[0-9]{1,3}&#39;
+&lt;/code&gt;&lt;/pre&gt;
+</description>
     </item>
     
     <item>
       <title>OSX</title>
-      <link>https://icyleaf.com/2010/12/switer-between-finder-and-terminal-in-osx/</link>
+      <link>https://icyleaf.com/2010/12/switer-between-finder-and-terminal-in-osx</link>
       <pubDate>Wed, 08 Dec 2010 12:34:56 +0800</pubDate>
       
-      <guid>https://icyleaf.com/2010/12/switer-between-finder-and-terminal-in-osx/</guid>
-      <description>在 Finder 打开 Terminal 并切换到当前目录 安装一个开源的 Finder 辅助工具：cdto。功能只有一个就是实现在 Finder 打开 Terminal 并切换到当前 Finder 目录。找到你系统的版本的 app （支持当</description>
+      <guid>https://icyleaf.com/2010/12/switer-between-finder-and-terminal-in-osx</guid>
+      <description>&lt;p&gt;&lt;strong&gt;在 Finder 打开 Terminal 并切换到当前目录&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;安装一个开源的 Finder 辅助工具：&lt;a href=&#34;http://code.google.com/p/cdto/&#34;&gt;cdto&lt;/a&gt;。功能只有一个就是实现在 Finder
+打开 Terminal 并切换到当前 Finder 目录。找到你系统的版本的 app （支持当前
+OS X 10.4 以上版本，应该都是雪豹了 吧）拷贝到 Applications 下并把它拖到
+Finder 的工具栏上即可。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;从 Terminal 中用 Finder 打开当前路径的目录&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ open .
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;PS，如果是 Ubuntu 系统的话请安装 nautilus，然后在 Terminal 里面输入&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ nautilus .
+&lt;/code&gt;&lt;/pre&gt;
+</description>
     </item>
     
   </channel>

@@ -2,23 +2,58 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Gem on icyleaf</title>
-    <link>https://icyleaf.com/tags/gem/</link>
+    <link>https://icyleaf.com/tags/gem/index.xml</link>
     <description>Recent content in Gem on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>All rights reserved - 2019</copyright>
-    <lastBuildDate>Sat, 25 Jan 2014 12:34:56 +0800</lastBuildDate>
-    
-	<atom:link href="https://icyleaf.com/tags/gem/index.xml" rel="self" type="application/rss+xml" />
-    
+    <atom:link href="https://icyleaf.com/tags/gem/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>初识 Ruby Gem Guard</title>
-      <link>https://icyleaf.com/2014/01/intro-ruby-gem-guard/</link>
+      <link>https://icyleaf.com/2014/01/intro-ruby-gem-guard</link>
       <pubDate>Sat, 25 Jan 2014 12:34:56 +0800</pubDate>
       
-      <guid>https://icyleaf.com/2014/01/intro-ruby-gem-guard/</guid>
-      <description>Guard 是一个很好的 Web 辅助开发工具，因为看了 tutsplus 网站的介绍视频：Guard is your best firend。这里把视频的东西提取出来自我消化： $ gem install guard 它实际的工作</description>
+      <guid>https://icyleaf.com/2014/01/intro-ruby-gem-guard</guid>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;http://guardgem.org&#34;&gt;Guard&lt;/a&gt; 是一个很好的 Web 辅助开发工具，因为看了 tutsplus 网站的介绍视频：&lt;a href=&#34;http://net.tutsplus.com/tutorials/tools-and-tips/guard-is-your-best-friend/&#34;&gt;Guard is your best firend&lt;/a&gt;。这里把视频的东西提取出来自我消化：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ gem install guard
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;它实际的工作就像名字那样，实时守卫这某些文件并做出对应的操作，本质上相当于一个有这个思想的禁卫兵，通过指派命令（安装扩展 gem）而负责守卫和执行，比如视频中提到的：&lt;/p&gt;
+
+&lt;p&gt;上面是概念的理解，实际上的流程是，设定一系列的规则，让他监控文件内容（修改时间）的动态，一旦发生变化则根据不同的命令执行不同的操作。&lt;/p&gt;
+
+&lt;p&gt;具体基本操作不再多少，官方 &lt;a href=&#34;https://github.com/guard/guard&#34;&gt;README&lt;/a&gt; 写的非常详细，或者通过上面视频也能熟悉。&lt;/p&gt;
+
+&lt;h2 id=&#34;guard-sass&#34;&gt;guard-sass&lt;/h2&gt;
+
+&lt;p&gt;监听 &lt;a href=&#34;http://sass-lang.com/&#34;&gt;sass&lt;/a&gt; 文件并转换成 css 文件&lt;/p&gt;
+
+&lt;h2 id=&#34;guard-coffeescript&#34;&gt;guard-coffeescript&lt;/h2&gt;
+
+&lt;p&gt;监听 &lt;a href=&#34;http://coffeescript.org/&#34;&gt;coffeescript&lt;/a&gt; 文件并转换成 js 文件&lt;/p&gt;
+
+&lt;h2 id=&#34;guard-rspec&#34;&gt;guard-rspec&lt;/h2&gt;
+
+&lt;p&gt;自动跑 &lt;a href=&#34;https://github.com/rspec/rspec-core&#34;&gt;rspec&lt;/a&gt; test&lt;/p&gt;
+
+&lt;h2 id=&#34;guard-livereload&#34;&gt;guard-livereload&lt;/h2&gt;
+
+&lt;p&gt;配合浏览器的辅助工具，做到无需手动刷新页面即可看到 html/css/js 的修改变化，浏览器需要安装配套插件。&lt;/p&gt;
+
+&lt;h2 id=&#34;guard-zeus&#34;&gt;guard-zeus&lt;/h2&gt;
+
+&lt;p&gt;自动接管 &lt;a href=&#34;https://github.com/burke/zeus&#34;&gt;zeus&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;guard-puma&#34;&gt;guard-puma&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://puma.io&#34;&gt;puma&lt;/a&gt; 是目前比较新的一个 web 服务器，这个扩展可以监听配置变化从而自动重启服务器。&lt;/p&gt;
+
+&lt;p&gt;官方列举的所有扩展：&lt;a href=&#34;https://github.com/guard/guard/wiki/List-of-available-Guards&#34;&gt;List of available Guards&lt;/a&gt;&lt;/p&gt;
+</description>
     </item>
     
   </channel>

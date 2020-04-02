@@ -2,23 +2,110 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Jenkins on icyleaf</title>
-    <link>https://icyleaf.com/tags/jenkins/</link>
+    <link>https://icyleaf.com/tags/jenkins/index.xml</link>
     <description>Recent content in Jenkins on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>All rights reserved - 2019</copyright>
-    <lastBuildDate>Wed, 18 Apr 2018 14:44:32 +0800</lastBuildDate>
-    
-	<atom:link href="https://icyleaf.com/tags/jenkins/index.xml" rel="self" type="application/rss+xml" />
-    
+    <atom:link href="https://icyleaf.com/tags/jenkins/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>如何使用 Docker 管理 Jenkins</title>
-      <link>https://icyleaf.com/2018/04/how-to-manage-jenkins-with-docker/</link>
+      <link>https://icyleaf.com/2018/04/how-to-manage-jenkins-with-docker</link>
       <pubDate>Wed, 18 Apr 2018 14:44:32 +0800</pubDate>
       
-      <guid>https://icyleaf.com/2018/04/how-to-manage-jenkins-with-docker/</guid>
-      <description>官方的 jenkins 镜像已经不再维护管理而是由 Jenkins Community 进行更新，鉴于 Jenkins 的更新频率特别快社区版本会提供两个版本： lts 长期稳定版本，但还是会有新版提醒 latest 每周更新版</description>
+      <guid>https://icyleaf.com/2018/04/how-to-manage-jenkins-with-docker</guid>
+      <description>
+
+&lt;p&gt;官方的 &lt;a href=&#34;https://hub.docker.com/_/jenkins&#34;&gt;jenkins&lt;/a&gt; 镜像已经不再维护管理而是由 Jenkins Community 进行更新，鉴于 Jenkins 的更新频率特别快社区版本会提供两个版本：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;lts&lt;/code&gt; 长期稳定版本，但还是会有新版提醒&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;latest&lt;/code&gt; 每周更新版本&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;都是基于 alpine 系统封装因此镜像的体积会大大减小很多。如果你是内网使用可以不用在意更新问题长期使用一个版本也没太大问题。&lt;/p&gt;
+
+&lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;
+
+&lt;p&gt;创建镜像时需要注意几个地方：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;关联本地 volumes&lt;/li&gt;
+&lt;li&gt;设置时区（默认是 UTC 时间）&lt;/li&gt;
+&lt;li&gt;映射 50000 端口（这个是 master 和 slave 的通讯端口）和 8000 端口（Web）&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;pre&gt;&lt;code&gt;docker run -d --restart=always
+    -p 8000:8080 -p 50000:50000
+    -v /var/lib/docker/jenkins:/var/jenkins_home
+    -e JAVA_OPTS=-Duser.timezone=Asia/Shanghai
+    jenkins/jenkins:lts
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;对于进行设置 JAVA 的参数可以参考：&lt;a href=&#34;https://github.com/jenkinsci/docker/issues/45&#34;&gt;https://github.com/jenkinsci/docker/issues/45&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;配置-jenkins-的插件源&#34;&gt;配置 Jenkins 的插件源&lt;/h2&gt;
+
+&lt;p&gt;使用过它的人都知道管理和安装插件是一个奇慢无比的事情，虽然提供了代理服务器但我这还有一个更好的方案。&lt;/p&gt;
+
+&lt;p&gt;我在翻阅国内镜像源网站的时候发现清华大学开源软件镜像站其实提供了国内 Jenkins 插件的镜像源但一直很低调的没有公布，通过进入&lt;code&gt;管理插件 -&amp;gt; 高级&lt;/code&gt;页面拉到最底部有个升级站点的自定义框，填入&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.json
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;安装插件的时候系统默认会测试网络就是 ping 下 Google 的网站，它会提示失败但不用担心它会继续尝试下载和安装插件。&lt;/p&gt;
+
+&lt;h2 id=&#34;升级&#34;&gt;升级&lt;/h2&gt;
+
+&lt;p&gt;此方法适用于所有的容器的升级步骤。&lt;/p&gt;
+
+&lt;p&gt;首先需要找到容器的名字，这里我想会有不少人会问为什么你在创建一个容器的时候不指定一个名字，
+那是因为后面还需要创建一个新版本的容器而名字不能一样，因此我现在创建都让 docker 随机分配。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ docker ps
+CONTAINER ID  ...   NAMES
+8f48718fdd07  ...   naughty_pasteur
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;拿到之后先停止运行后，创建一个数据备份容器再进行拉取最新版本&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ docker stop naughty_pasteur
+$ docker docker create --volumes-from naughty_pasteur --name jenkins-data jenkins/jenkins:lts
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;拉取最新版本后恢复数据：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ docker pull jenkins/jenkins:lts
+$ docker run -d --restart=always
+    --volumes-from jenkins-data
+    -p 8000:8080 -p 50000:50000
+    -v /var/lib/docker/jenkins:/var/jenkins_home
+    -e JAVA_OPTS=-Duser.timezone=Asia/Shanghai
+    jenkins/jenkins:lts
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;确保通过 web 访问和 build 正常后删除老的和数据备份的容器&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ docker rm naughty_pasteur
+$ docker rm jenkins-data
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;疑惑解答&#34;&gt;疑惑解答&lt;/h2&gt;
+
+&lt;h3 id=&#34;1-我忘记设置时区但我进实例修改了时区在-jenkins-里不生效&#34;&gt;1. 我忘记设置时区但我进实例修改了时区在 Jenkins 里不生效&lt;/h3&gt;
+
+&lt;p&gt;在 Jenkins 的系统设置页面找到脚本命令行运行：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;System.setProperty(&#39;org.apache.commons.jelly.tags.fmt.timeZone&#39;, &#39;Asia/Shanghai&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;执行后即时生效无需重启，方法来自&lt;a href=&#34;https://wiki.jenkins.io/display/JENKINS/Change+time+zone&#34;&gt;官方文档&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;官方文档&#34;&gt;官方文档&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/jenkinsci/docker/blob/master/README.md&#34;&gt;https://github.com/jenkinsci/docker/blob/master/README.md&lt;/a&gt;&lt;/p&gt;
+</description>
     </item>
     
   </channel>

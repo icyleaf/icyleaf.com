@@ -2,23 +2,27 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>手机 on icyleaf</title>
-    <link>https://icyleaf.com/tags/%E6%89%8B%E6%9C%BA/</link>
+    <link>https://icyleaf.com/tags/%E6%89%8B%E6%9C%BA/index.xml</link>
     <description>Recent content in 手机 on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>All rights reserved - 2019</copyright>
-    <lastBuildDate>Tue, 16 Dec 2008 12:34:56 +0800</lastBuildDate>
-    
-	<atom:link href="https://icyleaf.com/tags/%E6%89%8B%E6%9C%BA/index.xml" rel="self" type="application/rss+xml" />
-    
+    <atom:link href="https://icyleaf.com/tags/%E6%89%8B%E6%9C%BA/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>正式入黑莓系</title>
-      <link>https://icyleaf.com/2008/12/join-into-blackberry/</link>
+      <link>https://icyleaf.com/2008/12/join-into-blackberry</link>
       <pubDate>Tue, 16 Dec 2008 12:34:56 +0800</pubDate>
       
-      <guid>https://icyleaf.com/2008/12/join-into-blackberry/</guid>
-      <description>真的忘记了为什么要买黑莓手机，也许是自己手机太老已没有软件支持；也许是受 P阿姨 的不断诱惑；也许是因为黑莓的软件是 Java 编写的；更也许是 iPhone&amp;amp;G1 太贵了让</description>
+      <guid>https://icyleaf.com/2008/12/join-into-blackberry</guid>
+      <description>&lt;p&gt;真的忘记了为什么要买黑莓手机，也许是自己手机太老已没有软件支持；也许是受 &lt;a href=&#34;http://www.ipoisson.net&#34;&gt;P阿姨&lt;/a&gt; 的不断诱惑；也许是因为黑莓的软件是 Java 编写的；更也许是 iPhone&amp;amp;G1 太贵了让我望尘却步&amp;hellip;不管怎么说，我于2008年12月14日正式入黑莓系，控应该还达不到 XD。&lt;/p&gt;
+
+&lt;p&gt;本来想要买 8820，主要是考虑到在北京可能 WIFI用到的比较多，不过后来听说黑莓对 WIFI 的支持不是很好，而且我也很热衷于 8310 red 版的外观&amp;hellip;后来想想还是先买一个 8310，如果用 WIFI 的话就在买一个 iTouch&amp;hellip;（iTouch 是受 &lt;a href=&#34;http://utombox.com&#34;&gt;Utom&lt;/a&gt; 同学的诱惑）&lt;/p&gt;
+
+&lt;p&gt;说道买黑莓还得感谢 &lt;a href=&#34;http://blog.donews.com/CNBorn/&#34;&gt;CNBorn&lt;/a&gt; 同学的推荐的店家，价格合适且质量还过的去，而且卖家因我白去一趟还特意给我一个小小的惊喜：原装耳机和4G的内存卡，而且服务还不错。不过幸好没有在大学生联盟的天津卖家，七楼那里购买（&lt;a href=&#34;http://www.52blackberry.com/thread-159426-1-1.html&#34;&gt;原因看这里&lt;/a&gt;），实在是让人汗颜&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;最后还是感谢 &lt;a href=&#34;http://www.ipoisson.net&#34;&gt;P阿姨&lt;/a&gt; 再我购机之前的指点以及分享相关软件，主题和资料 :P&lt;/p&gt;
+</description>
     </item>
     
   </channel>

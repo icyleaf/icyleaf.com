@@ -2,32 +2,138 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Virtualenv on icyleaf</title>
-    <link>https://icyleaf.com/tags/virtualenv/</link>
+    <link>https://icyleaf.com/tags/virtualenv/index.xml</link>
     <description>Recent content in Virtualenv on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>All rights reserved - 2019</copyright>
-    <lastBuildDate>Wed, 16 Jan 2013 12:34:56 +0800</lastBuildDate>
-    
-	<atom:link href="https://icyleaf.com/tags/virtualenv/index.xml" rel="self" type="application/rss+xml" />
-    
+    <atom:link href="https://icyleaf.com/tags/virtualenv/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>介绍 virtualenvwrapper</title>
-      <link>https://icyleaf.com/2013/01/intro-virtualenvwrapper/</link>
+      <link>https://icyleaf.com/2013/01/intro-virtualenvwrapper</link>
       <pubDate>Wed, 16 Jan 2013 12:34:56 +0800</pubDate>
       
-      <guid>https://icyleaf.com/2013/01/intro-virtualenvwrapper/</guid>
-      <description>上回说到 virtualenv 的基本使用，这会为了提高工作效率，再次介绍针对于它增强的一个扩展 virtualenvwrapper。 安装配置 $ pip install virtualenvwrapper 安装好之后需要</description>
+      <guid>https://icyleaf.com/2013/01/intro-virtualenvwrapper</guid>
+      <description>
+
+&lt;p&gt;上回说到 &lt;a href=&#34;http://icyleaf.com/2012/07/intro-virtualenv&#34;&gt;virtualenv&lt;/a&gt; 的基本使用，这会为了提高工作效率，再次介绍针对于它增强的一个扩展 &lt;a href=&#34;http://www.doughellmann.com/projects/virtualenvwrapper/&#34;&gt;virtualenvwrapper&lt;/a&gt;。&lt;/p&gt;
+
+&lt;h2 id=&#34;安装配置&#34;&gt;安装配置&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;$ pip install virtualenvwrapper
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;安装好之后需要简单配置下，主要是设置独立环境的保存路径：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ export WORKON_HOME=~/Envs
+$ mkdir -p $WORKON_HOME
+$ source /usr/local/bin/virtualenvwrapper.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;如果使用 oh-my-zsh 的可以开启对应的 virtualenvwrapper 插件， &lt;code&gt;WORKON_HOME&lt;/code&gt; 会设置在 &lt;code&gt;~/.virtualenvs/&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;常用命令&#34;&gt;常用命令&lt;/h2&gt;
+
+&lt;h1 id=&#34;查看已创建的环境&#34;&gt;查看已创建的环境&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;$ lsvirtualenv
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;创建环境&#34;&gt;创建环境&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;$ mkvirtualenv &amp;lt;env_name&amp;gt;
+$ mkvirtualenv -r requirements.txt &amp;lt;env_name&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;切换到某个环境&#34;&gt;切换到某个环境&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;$ workon &amp;lt;env_name&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;设置当前环境的默认工作路径-下次执行-workon-命令会自动切换路径&#34;&gt;设置当前环境的默认工作路径(下次执行 workon 命令会自动切换路径)&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;(env_name) $ setvirtualenvproject
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;查看当前环境已安装的-packages&#34;&gt;查看当前环境已安装的 packages&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;$ lssitepackages
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;删除环境&#34;&gt;删除环境&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;$ rmvirtualenv &amp;lt;env_name&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;创建临时环境-deactivate-之后自动销毁&#34;&gt;创建临时环境 (deactivate 之后自动销毁)&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;$ mktmpenv
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;查看更详细的&lt;a href=&#34;http://virtualenvwrapper.readthedocs.org/en/latest/command_ref.html&#34;&gt;命令描述文档&lt;/a&gt;。&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>初次接触 virtualenv</title>
-      <link>https://icyleaf.com/2012/07/intro-virtualenv/</link>
+      <link>https://icyleaf.com/2012/07/intro-virtualenv</link>
       <pubDate>Fri, 27 Jul 2012 12:34:56 +0800</pubDate>
       
-      <guid>https://icyleaf.com/2012/07/intro-virtualenv/</guid>
-      <description>python 的 virtualenv 功能看着类似于 Ruby 的 RVM，其实这两个东西我都没有用过，本身脚本语言用的最熟练的是 php，最近觉得 php 在处理一些多线程和终端繁琐的事情上有</description>
+      <guid>https://icyleaf.com/2012/07/intro-virtualenv</guid>
+      <description>&lt;p&gt;python 的 virtualenv 功能看着类似于 Ruby 的 RVM，其实这两个东西我都没有用过，本身脚本语言用的最熟练的是 php，最近觉得 php 在处理一些多线程和终端繁琐的事情上有些局限性。决定熟悉下 python 并尝试用 django 做一个小应用。&lt;/p&gt;
+
+&lt;p&gt;由于本身 &lt;a href=&#34;http://github.com/openparty/openparty&#34;&gt;OpenParty&lt;/a&gt; 的代码也是基于 django 开发的，加上最近也开始使用了 virtualenv，这样正好解决了不同项目在使用不同的环境造成的一些困扰。&lt;/p&gt;
+
+&lt;p&gt;OS X 本身已经安装了 easy_install 可以通过命令安装：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ easy_install pip
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;安装好之后，可以为每个项目创建一个专属的开发环境，这个环境可以单独存放在一个目录下面，比如：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~/envs
+      \
+      |- env1
+      |- env2
+      \- env3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;创建一个的纯净的开发环境:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ virtualenv --no-site-packages &amp;lt;env_name&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;进入专属的开发环境：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ source &amp;lt;env_name&amp;gt;/bin/activate
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;你会发现 &lt;code&gt;(&amp;lt;env_name&amp;gt;)&lt;/code&gt; 会出现在你终端提示的前面，这个时候就说明进入该环境，以后的任何和 python 相关的依赖都是在这个环境下面，和系统全局的不受任何影响。&lt;/p&gt;
+
+&lt;p&gt;比如通过快速安装项目的依赖：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;(env_name)$ pip install -r requirements
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;下载的依赖都会存放在这个路径：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;env_name&amp;gt;/lib/python2.7/site-packages/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;退出当前的开发环境：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ deactivate
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;资料参考：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;http://github.com/openparty/openparty&#34;&gt;OpenParty README&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.virtualenv.org/&#34;&gt;virtualenv&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://jsome.net/blog/2010/06/11/start-to-use-virtualenv&#34;&gt;开始使用Virtualenv&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
     </item>
     
   </channel>
