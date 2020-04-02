@@ -2,222 +2,23 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Cocoapods on icyleaf</title>
-    <link>https://icyleaf.com/tags/cocoapods/index.xml</link>
+    <link>https://icyleaf.com/tags/cocoapods/</link>
     <description>Recent content in Cocoapods on icyleaf</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>All rights reserved - 2019</copyright>
-    <atom:link href="https://icyleaf.com/tags/cocoapods/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 20 Jan 2015 12:34:56 +0800</lastBuildDate>
+    
+	<atom:link href="https://icyleaf.com/tags/cocoapods/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>极速化 CocoaPods</title>
-      <link>https://icyleaf.com/2015/01/speed-up-cocoapods</link>
+      <link>https://icyleaf.com/2015/01/speed-up-cocoapods/</link>
       <pubDate>Tue, 20 Jan 2015 12:34:56 +0800</pubDate>
       
-      <guid>https://icyleaf.com/2015/01/speed-up-cocoapods</guid>
-      <description>
-
-&lt;p&gt;&lt;a href=&#34;http://cocoapods.org/&#34;&gt;Cocopods&lt;/a&gt; 本身是一个优秀的 iOS 开发的包管理工具，涵盖了 7k+ 的开源组件，包管理库是托管在 Github。
-众所周知的原因它的速度日渐缓慢，有时会频繁报如下错误：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ pod install
-
-Cloning into &#39;/path/to/ios/project/Pods/xxx&#39;
-
-error: RPC failed; result=52, HTTP code = 0
-
-fatal: The remote end hung up unexpectedly
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;本文主要为解决该问题而诞生的，以下的加速方案不局限于目前已流传的优化方案，而是在此基础上&lt;strong&gt;彻底的加速&lt;/strong&gt;！&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;使用淘宝 Ruby Gems 源（Cocoapods 使用 ruby 开发）&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;pod install&lt;/code&gt; 时不设置包的更新：&lt;a href=&#34;http://phatblat.com/blog/2014/07/30/pod-install/&#34;&gt;参考文章&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;使用国内 git 服务器镜像 Cocoapods Spec: &lt;a href=&#34;http://blog.devtang.com/blog/2014/05/25/use-cocoapod-to-manage-ios-lib-dependency/&#34;&gt;参考文章&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;如果你对 Cocoapods 有更深层次的理解，请参见：&lt;a href=&#34;http://www.objc.io/issue-6/cocoapods-under-the-hood.html&#34;&gt;objc.io: Cocoapods under the hood&lt;/a&gt; &lt;a href=&#34;http://objccn.io/issue-6-4/&#34;&gt;中文版本&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;今天早晨看到微博众多 iOS 开发者赞同转发《&lt;a href=&#34;http://weibo.com/p/1001603800875490492754&#34;&gt;CocoaPods最佳实践探讨&lt;/a&gt;》一文，
-针对 &lt;code&gt;Pods&lt;/code&gt; 建议纳入版本控制也是无奈之举。之前公司项目中也是这样施行很长一段时间，不排除更新可能会造成很多无用信息&amp;rdquo;刷屏&amp;rdquo;，
-偶尔还会因为版本冲突造成一些混乱状况需要处理。个人还是更倾向于精简原则，遵循&lt;a href=&#34;http://guides.cocoapods.org/using/using-cocoapods.html#should-i-ignore-the-pods-directory-in-source-control&#34;&gt;官方的建议&lt;/a&gt;。&lt;/p&gt;
-
-&lt;p&gt;大家都是技术人员，其实这些小问题难道因为 github 倒下就没有解决方案了吗？！看我如何撕破这层纸老虎：&lt;/p&gt;
-
-&lt;h3 id=&#34;技术概述&#34;&gt;技术概述&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Cocopods v0.34.0+&lt;/li&gt;
-&lt;li&gt;Gitlab: 自建私有 git 服务器&lt;/li&gt;
-&lt;li&gt;gitlab-mirrors: 专用于 github 镜像至 gitlab 并保持定期更新&lt;/li&gt;
-&lt;li&gt;rake: ruby 的代码构建工具（不懂 ruby 的可以把它理解为命令聚合工具）&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;技术剖析&#34;&gt;技术剖析&lt;/h3&gt;
-
-&lt;p&gt;Cocoapods 自身支持&lt;a href=&#34;http://guides.cocoapods.org/making/private-cocoapods.html&#34;&gt;私有仓库&lt;/a&gt;，
-恰好的是就在前不久发布的 &lt;a href=&#34;https://github.com/CocoaPods/CocoaPods/blob/master/CHANGELOG.md#0340&#34;&gt;0.34.0&lt;/a&gt; 版本支持 &lt;code&gt;Podfile&lt;/code&gt;
-添加多个的包源仓库，举个例子：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;source &#39;https://github.com/artsy/Specs.git&#39;
-source &#39;https://github.com/CocoaPods/Specs.git&#39;
-
-pod &#39;AFNetworking&#39;
-pod &#39;Mantle&#39;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;这个特性其实是为了扩充官方 Spec 的同时可以更好的让开发者管理私有的公共组件，那我同样是从这里下手：&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;前提是自己以及搭建好 gitlab 服务器：&lt;a href=&#34;https://about.gitlab.com/downloads/&#34;&gt;官方教程 （Ubuntu）&lt;/a&gt; | &lt;a href=&#34;http://icyleaf.com/2013/09/how-to-install-gitlab-on-centos/&#34;&gt;本人教程 （CentOS）&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h4 id=&#34;自力更生&#34;&gt;自力更生&lt;/h4&gt;
-
-&lt;p&gt;首先我们需要创建一个自己的 Spec 仓库，目录结构如下：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;.
-├── CocoaPods-version.yml
-├── Specs/
-├── README.md
-├── Rakefile
-└── Gemfile
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;配置不做详细描述，这里比官方多了两个文件 &lt;code&gt;Rakefile&lt;/code&gt; 和 &lt;code&gt;Gemfile&lt;/code&gt; 都是 rake 所需的文件，这个后面会讲到。
-再者就是配置 &lt;a href=&#34;https://github.com/samrocketman/gitlab-mirrors#three-easy-steps&#34;&gt;gitlab-mirrors&lt;/a&gt;，教程很详细不再重复。&lt;/p&gt;
-
-&lt;h4 id=&#34;偷梁换柱&#34;&gt;偷梁换柱&lt;/h4&gt;
-
-&lt;p&gt;利用私有 Spec 仓库特性，可以把官方 &lt;code&gt;Spec&lt;/code&gt; 目录下面的包按需或全部镜像过来，再次基础上&lt;strong&gt;把里面涉及 github 的地址替换成 gitlab 的地址&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;你没有看错，这是核心步骤，如果这步没有做那么和国内镜像的地址没有任何差别。核心代码如下：&lt;/p&gt;
-
-&lt;h5 id=&#34;rakefile&#34;&gt;Rakefile&lt;/h5&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;require &#39;uri&#39;
-require &#39;fileutils&#39;
-require &#39;multi_json&#39;
-require &#39;net/ssh&#39;
-
-desc &#39;镜像一个 github 包至 gitlab 仓库&#39;
-task :clone, [:name] do |t, p|
-  name = p[:name]
-  current_path = Dir.pwd
-
-  specs = Dir[File.join(File.expand_path(&#39;~&#39;), &#39;.cocoapods/repos/master/Specs/*&#39;)]
-
-  repo = specs.select { |s| File.basename(s) == name }.first
-
-  if repo
-    puts &amp;quot; * found repo, copy it here&amp;quot;
-    repo_store_path = File.join(current_path, &#39;Specs&#39;)
-    FileUtils.cp_r repo, repo_store_path
-
-    puts &amp;quot; * updating repo url&amp;quot;
-    Dir[&amp;quot;#{repo_store_path}/#{name}/*&amp;quot;].each do |f|
-      pod_file = File.join(f, &amp;quot;#{name}.podspec.json&amp;quot;)
-      json = File.read(pod_file)
-      data = MultiJson.load json
-
-      if data[&#39;source&#39;][&#39;git&#39;]
-        puts &amp;quot; -&amp;gt; #{data[&#39;version&#39;]}: git&amp;quot;
-        orginal_repo_url = data[&#39;source&#39;][&#39;git&#39;]
-        coverted_repo_name =  URI.parse(orginal_repo_url).path[1..-1].gsub(&#39;/&#39;, &#39;-&#39;).downcase
-        data[&#39;source&#39;][&#39;git&#39;] = &amp;quot;http://gitlab.dev/mirrors/#{coverted_repo_name}&amp;quot;
-
-        File.write(pod_file, JSON.pretty_generate(data))
-      else data[&#39;source&#39;][&#39;http&#39;]
-        puts &amp;quot; -&amp;gt; #{data[&#39;version&#39;]}: http url, do you want speed up?&amp;quot;
-      else data[&#39;source&#39;][&#39;svn&#39;]
-        puts &amp;quot; -&amp;gt; #{data[&#39;version&#39;]}: svn repo, do you want speed up?&amp;quot;
-      end
-    end
-  else
-    puts &amp;quot;Not find spec named: #{name}&amp;quot;
-  end
-end
-
-desc &#39;gitlab 服务器镜像 Cocoapod Spec&#39;
-task :mirror, [:repo] do |t, p|
-  host        = &#39;172..0.1&#39;
-  user        = &#39;icyleaf&#39;
-  options     = {:keys =&amp;gt; &#39;~/.ssh/keys/id_rsa.pub&#39;}
-
-  puts &amp;quot;Connect gitlab server and mirror&amp;quot;
-  Net::SSH.start(host, user, options) do |ssh|
-    gitmirror_path = &#39;/home/gitmirror/gitlab-mirrors&#39;
-    cmd = &amp;quot;sudo -u gitmirror -H rake \&amp;quot;add[#{p[:repo]}]\&amp;quot;&amp;quot;
-    stdout = ssh.exec!(&amp;quot;echo &#39;cd #{gitmirror_path} &amp;amp;&amp;amp; #{cmd}&#39;&amp;quot;)
-    puts stdout
-    ssh.loop
-  end
-end
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h5 id=&#34;gemfile&#34;&gt;Gemfile&lt;/h5&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;source &amp;quot;https://ruby.taobao.org&amp;quot;
-
-gem &#39;rest_client&#39;
-gem &#39;multi_json&#39;
-gem &#39;rake&#39;
-gem &#39;net-ssh&#39;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;code&gt;rake&lt;/code&gt; 里面有两个 task：&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;mirror: 镜像 iOS 开源组件&lt;/li&gt;
-&lt;li&gt;clone: 负责把官方 spec 指定包（开源组件的版本控制）替换 gitlab 地址并加入到私有包仓库&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;总结&#34;&gt;总结&lt;/h3&gt;
-
-&lt;p&gt;通过工具总有办法可以改进和提升开发者的效率和解决各种的问题，希望本文可以给大家带来更多的灵感！&lt;/p&gt;
-
-&lt;h3 id=&#34;答疑解惑&#34;&gt;答疑解惑&lt;/h3&gt;
-
-&lt;h5 id=&#34;f-这套理论靠谱吗&#34;&gt;F: 这套理论靠谱吗？&lt;/h5&gt;
-
-&lt;p&gt;A: 目前我们团队已经采用并运行了很长一段时间，没有任何风险。最大的优势在于兼容官方的仓库，
-就算无法链接自己的私有服务器，使用官方和国内镜像的都可以瞬间切换。&lt;/p&gt;
-
-&lt;h5 id=&#34;f-如果没有服务器可以实现吗&#34;&gt;F: 如果没有服务器可以实现吗？&lt;/h5&gt;
-
-&lt;p&gt;A: 醒醒吧孩子，就连单纯的镜像官方 Cocoapods Spec 还需要一个服务器执行定期同步脚本呢。&lt;/p&gt;
-
-&lt;h5 id=&#34;f-国内-git-托管服务器能够支持吗&#34;&gt;F: 国内 git 托管服务器能够支持吗？&lt;/h5&gt;
-
-&lt;p&gt;A: 据我所知国内大部分 git 托管服务器的解决方案都是基于 gitlab 二次开发的，理论上可行，
-上面提到的 gitlab-mirror 本身依赖于 gitlab 的 api 在镜像的同时自动新建仓库。如果有成功的欢迎反馈。&lt;/p&gt;
-
-&lt;h5 id=&#34;f-我从你代码发现服务器同样调用了一个-rake-脚本-你没有开源&#34;&gt;F: 我从你代码发现服务器同样调用了一个 rake 脚本，你没有开源！&lt;/h5&gt;
-
-&lt;p&gt;A: 眼睛真够敏锐的，个人对 gitlab-mirror 再做镜像时做了一个约束，新建一个 &lt;code&gt;Rakefile&lt;/code&gt; 文件放到你的 gitlab-mirror 项目根目录即可：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;require &#39;uri&#39;
-
-desc &amp;quot;Adding repo to gitmirror&amp;quot;
-task :add, [:repo] do |t, p|
-  repo = p[:repo]
-
-  begin
-    name = URI.parse(repo).path[1..-1].gsub(&#39;/&#39;, &#39;-&#39;).gsub(&#39;.git&#39;, &#39;&#39;)
-    if name
-      `./add_mirror.sh -f --git --project-name #{name} --mirror #{repo}`
-    end
-  rescue Error =&amp;gt; e
-    puts &#39;not url&#39;
-  end
-end
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h5 id=&#34;f-我还有问题&#34;&gt;F: 我还有问题！&lt;/h5&gt;
-
-&lt;p&gt;A: 麻烦请留言，谢谢！&lt;/p&gt;
-</description>
+      <guid>https://icyleaf.com/2015/01/speed-up-cocoapods/</guid>
+      <description>Cocopods 本身是一个优秀的 iOS 开发的包管理工具，涵盖了 7k+ 的开源组件，包管理库是托管在 Github。 众所周知的原因它的速度日渐缓慢，有时会频繁报如下错误</description>
     </item>
     
   </channel>
