@@ -181,12 +181,12 @@
 <h2 id="名词解释">名词解释</h2>
 
 <ul>
-<li><code>BIOS</code> - <em><strong>B</strong>asic <strong>I</strong>nput/<strong>O</strong>utput <strong>S</strong>ystem</em> 缩写，它是主板上标准的固件接口，负责在开机时做硬件启动和检测等工作，并且担任操作系统控制硬件时的中介角色。</li>
+<li><code>BIOS</code> - <strong><em>B</em></strong><em>asic <strong>I</strong>nput/<strong>O</strong>utput <strong>S</strong>ystem</em> 缩写，它是主板上标准的固件接口，负责在开机时做硬件启动和检测等工作，并且担任操作系统控制硬件时的中介角色。</li>
 <li><code>(U)EFI</code> - <em>(<strong>U</strong>nified) <strong>E</strong>xtensible <strong>F</strong>irmware <strong>I</strong>nterface</em> 缩写，它是代替 BIOS 的升级方案，(U)EFI 是模块化，支持图形化界面和鼠标操作。UEFI 是基于 Intel EFI 1.1 发展而来的归属国际组织管理，本质上还是 EFI。<a href="https://www.zhihu.com/question/21672895">BIOS 和 UEFI 的区别</a>，它会以一个名为 EFI 独立分区存在里面是其配置数据。</li>
-<li><code>ACPI</code> - <em><strong>A</strong>dvanced <strong>C</strong>onfiguration and <strong>P</strong>ower <strong>I</strong>nterface</em> 缩写。它是 BIOS 中&rdquo;电源管理”和“配置管理”的接口，它由很多表组成，包括 RSDP, SDTH, RSDT, FADT, FACS, DSDT, SSDT, MADT, SBST, XSDT, ECDT, SLIT, SRAT 等。</li>
+<li><code>ACPI</code> - <strong><em>A</em></strong><em>dvanced <strong>C</strong>onfiguration and <strong>P</strong>ower <strong>I</strong>nterface</em> 缩写。它是 BIOS 中&rdquo;电源管理”和“配置管理”的接口，它由很多表组成，包括 RSDP, SDTH, RSDT, FADT, FACS, DSDT, SSDT, MADT, SBST, XSDT, ECDT, SLIT, SRAT 等。</li>
 <li><code>DSDT</code> - <em>The <strong>D</strong>ifferentiated <strong>S</strong>ystem <strong>D</strong>escription <strong>T</strong>able</em> 缩写，它是主板 BIOS 中 ACPI 的一个表，包含了所有除基本系统以外所有不同设备的信息，也就是每台计算机设备的基本系统是相同的，而不相同的设备用 DSDT 来描述。macOS 不完整支持 ACPI 规范，仅支持它的子集 DSDT。因此这个在黑苹果配置中会经常提到。</li>
-<li><code>AML</code> - <em><strong>A</strong>CPI <strong>M</strong>achine <strong>L</strong>anguage</em> 缩写，它是 ACPI 描述语言，用来编辑 ACPI 各种表的代码。</li>
-<li><code>Kext(s)</code> - <em><strong>K</strong>ernel <strong>Ext</strong>ension</em> 缩写，你可以简单的理解为它是 macOS 的驱动文件（内核扩展）。</li>
+<li><code>AML</code> - <strong><em>A</em></strong><em>CPI <strong>M</strong>achine <strong>L</strong>anguage</em> 缩写，它是 ACPI 描述语言，用来编辑 ACPI 各种表的代码。</li>
+<li><code>Kext(s)</code> - <strong><em>K</em></strong><em>ernel <strong>Ext</strong>ension</em> 缩写，你可以简单的理解为它是 macOS 的驱动文件（内核扩展）。</li>
 <li><code>Clover</code> - 我们使用的启动引导器。Mac 主机使用了自定义固件来启动 macOS。 PC 硬件本身无法做到而 Clover 可以帮我们实现。同时它还提供 kext 注入，ACPI 重命名，kext 补丁和一些其他功能。更多请看黑果小兵的<a href="http://blog.daliansky.net/clover-user-manual.html">使用教程</a>。</li>
 <li><code>config.plist</code> - 这个文件用来告诉 Clover 该怎么去做。它是一个 XML 格式的属性列表文件（有点类似 HTML）其中最核心的部分是配置黑苹果才能正常运行。你可以使用文本编辑器或者 Clover Configuration App 编辑。</li>
 </ul>
@@ -197,54 +197,7 @@
 
 <h2 id="安装环境">安装环境</h2>
 
-<p>本教程提到的版本信息，Clover 配置和 Kexts 均公开到个人 Github 仓库：<a href="https://github.com/icyleaf/EFI-ASRock-Z390-Phantom-Gaming-ITX">EFI-ASRock-Z390-Phantom-Gaming-ITX</a> 。下面提到环境信息后续变化以 Git 仓库为准。</p>
-
-<ul>
-<li>macOS 版本：Mojave 10.14.3</li>
-<li>BIOS 版本: 1.5.0</li>
-<li>Clover 版本：v2.4k r4910</li>
-<li>Clover Configuration 版本：v5.4.1.1</li>
-<li>Kext Utility 版本：v2.6.6</li>
-<li>hackintool 版本: v2.1.5</li>
-</ul>
-
-<h3 id="安装成果">安装成果</h3>
-
-<h4 id="完美">完美</h4>
-
-<ul class="task-list">
-<li><label><input type="checkbox" checked disabled class="task-list-item"> 显卡（DisplayPort 接显示器）
-
-<ul class="task-list">
-<li><label><input type="checkbox" checked disabled class="task-list-item"> Intel UHD630 核显</label></li>
-<li><label><input type="checkbox" checked disabled class="task-list-item"> AMD RX580</label></li>
-</ul></label></li>
-<li><label><input type="checkbox" checked disabled class="task-list-item"> 声卡(Realtek ALC1220)
-
-<ul class="task-list">
-<li><label><input type="checkbox" checked disabled class="task-list-item"> 主板后置</label></li>
-<li><label><input type="checkbox" checked disabled class="task-list-item"> 机箱前置</label></li>
-<li><label><input type="checkbox" checked disabled class="task-list-item"> DisplayPort 声音输出</label></li>
-</ul></label></li>
-<li><label><input type="checkbox" checked disabled class="task-list-item"> 睡眠/唤醒</label></li>
-<li><label><input type="checkbox" checked disabled class="task-list-item"> 有线网卡</label></li>
-<li><label><input type="checkbox" checked disabled class="task-list-item"> 无线 WiFi</label></li>
-<li><label><input type="checkbox" checked disabled class="task-list-item"> 蓝牙
-
-<ul class="task-list">
-<li><label><input type="checkbox" checked disabled class="task-list-item"> 耳机</label></li>
-<li><label><input type="checkbox" checked disabled class="task-list-item"> Trackpad 2</label></li>
-<li><label><input type="checkbox" checked disabled class="task-list-item"> Airdrop</label></li>
-<li><label><input type="checkbox" checked disabled class="task-list-item"> Handoff</label></li>
-</ul></label></li>
-<li><label><input type="checkbox" checked disabled class="task-list-item"> 所有 USB 插口</label></li>
-</ul>
-
-<h4 id="无法使用">无法使用</h4>
-
-<ul>
-<li>雷电 3 口</li>
-</ul>
+<p>本教程提到的环境和版本信息、Clover 配置和 Kexts 均公开到个人 Github 仓库：<a href="https://github.com/icyleaf/EFI-ASRock-Z390-Phantom-Gaming-ITX">EFI-ASRock-Z390-Phantom-Gaming-ITX</a> 。</p>
 
 <h2 id="安装前的准备工作">安装前的准备工作</h2>
 
@@ -305,7 +258,8 @@
 
 <ol>
 <li>安装 <a href="https://github.com/Dids/clover-builder/releases">Clover</a>（建议使用上面我采用的版本）点击下一步至看到 “Change Install Location&rdquo; 选择启动 U 盘</li>
-<li>点击左下角的 &ldquo;Customize&rdquo; 开始定制特定的驱动：
+<li>点击左下角的 &ldquo;Customize&rdquo; 开始定制特定的驱动：</li>
+</ol>
 
 <ul>
 <li>勾选 &ldquo;仅安装 UEFI 开机版本（Clover for UEFI booting only）&rdquo;</li>
@@ -313,15 +267,20 @@
 <li>勾选 &ldquo;UEFI drivers&rdquo; 下面的 &ldquo;ApfsDriverLoader-64.efi&rdquo;, &ldquo;AptioMemoryFix-64.efi&rdquo;, &ldquo;EmuVariableUefi-64&rdquo;, &ldquo;FSInject-64.efi&rdquo;</li>
 <li>勾选 &ldquo;安装 RC scripts 到目标磁盘&rdquo;（启动 U 盘不用勾选，安装成后再次安装 Clover 到硬盘时需要勾选）</li>
 <li>其他的选项都不勾选</li>
-</ul></li>
-<li>清理 EFI 目录
+</ul>
+
+<ol>
+<li>清理 EFI 目录</li>
+</ol>
 
 <ul>
 <li>使用 <a href="https://mackie100projects.altervista.org/download-clover-configurator/">Clover Configurator</a> 挂载 EFI 分区</li>
 <li>打开 EFI 分区删除 &ldquo;EFI/CLOVER&rdquo; 下面的 &ldquo;driver64&rdquo; 目录（使用 UEFI 启动不需要）</li>
 <li>把下载的必备驱动全部复制到 &ldquo;EFI/CLOVER/kexts/Ohter&rdquo; 目录下面（该目录存在其他的 kexts 的话就全部删除掉）</li>
 <li>删除 &ldquo;EFI/CLOVER/kexts/10.x.x&rdquo; 目录</li>
-</ul></li>
+</ul>
+
+<ol>
 <li>如果使用 USB3 安装，你可能需要 <a href="https://www.tonymacx86.com/attachments/aaron-usb-config-zip.378128/">aaron-usb-config.aml</a> 补丁来激活主板上的
 USB3 端口</li>
 </ol>
@@ -332,7 +291,9 @@ USB3 端口</li>
 
 <p><img src="https://img.alicdn.com/imgextra/i3/394188259/O1CN01A7yd1U2AsfcpqsQJo_!!394188259.jpg" alt="m2-vs-boardcom-vs-dadapter" /></p>
 
-<p>避免广告的嫌疑，淘宝自行搜 <code>BCM94360CS2 NGFF M.2 转接卡</code>，买回来的博通网卡 + 转接卡可能是固定好的，我们需要把它拆开。转接卡要固定在框架上面后再把博通网卡插上拧上螺丝，框架上的两个天线随便接博通顶部两侧的插口上。转接卡高度超出框架最初拆下来的金属遮蔽盒不能再装回去。最好把框架固定到主板上就完成了（查看<a href="http://icyleaf.com/images/install-boardcom-module-to-motherboard.jpg">步骤分解图</a>）。</p>
+<p>避免广告的嫌疑，淘宝自行搜 <code>BCM94360CS2 NGFF M.2 转接卡</code>，买回来的博通网卡 + 转接卡可能是固定好的，我们需要把它拆开。转接卡要固定在框架上面后再把博通网卡插上拧上螺丝，框架上的两个天线随便接博通顶部两侧的插口上。转接卡高度超出框架最初拆下来的金属遮蔽盒不能再装回去。最好把框架固定到主板上就完成了。</p>
+
+<p><img src="http://icyleaf.com/images/install-boardcom-module-to-motherboard.jpg" alt="" /></p>
 
 <h3 id="bios">BIOS</h3>
 
@@ -358,12 +319,15 @@ USB3 端口</li>
 <ol>
 <li>使用 Clover Configurator 挂载硬盘的 EFI 分区</li>
 <li>复制启动 U 盘的 driver64UEFI 和 kexts 目录到硬盘对应位置</li>
-<li>使用 Clover Configurator 打开 &ldquo;EFI/CLOVER/config.plist&rdquo;
+<li>使用 Clover Configurator 打开 &ldquo;EFI/CLOVER/config.plist&rdquo;</li>
+</ol>
 
 <ul>
 <li>在 SMBIOS 选项界面生成 Serial Number 和 SMUUID（点击 Generate New）</li>
 <li>点击右侧 &ldquo;Check Coverage&rdquo; 会打开一个浏览器输入验证码（可能需要翻墙）确保 Serial Number 是<strong>无效的</strong>，这样才能伪装这台机器是台新机器。如果是有效的话就再次重新生成即可。</li>
-</ul></li>
+</ul>
+
+<ol>
 <li>Intel Coffee Lake 架构<a href="https://hackintosh.gitbook.io/-r-hackintosh-vanilla-desktop-guide/config.plist-per-hardware/coffee-lake">通用配置</a></li>
 </ol>
 
