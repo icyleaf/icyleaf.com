@@ -17,9 +17,13 @@ isCJKLanguage: true
 share: true
 
 ---
+> **2020-07-09 更新：**
+>
+> 6月份采购了一个 LG 面板的 DIY 4k 显示器，价格很香 1500 元，就是驱动板固件差点，单摇臂换了双摇臂来挂两个 4k 显示器。具体请看[我买过的显示器](https://gist.github.com/icyleaf/b09d70da0a7c368fe550338088b5dbc3)。
+>
 > **2020-03-17 更新**：
 >
-> 去年双十一 900 多升级了西数 1T 黑盘 SSD；原先的三星 970 EVO 250G 改了 Windows 系统；水冷一直稳定没有翻车；显卡稳定运行没有翻车，从 Pr 转为达芬奇基本上渲染利用 GPU 效果还是很不错的。macOS 系统也一路升级到了 10.15.3。
+> 去年双十一 900 多升级了西数 1T 黑盘 SSD；原先的三星 970 EVO 250G 改了 Windows 系统；水冷一直稳定没有翻车；显卡稳定运行没有翻车，从 Pr 转为达芬奇基本上渲染利用 GPU 效果还是很不错的。macOS 系统也一路升级到了 10.15.5。
 >
 > **2019-05-29 更新**：
 >
@@ -65,7 +69,7 @@ share: true
 
 业余兴趣爱好一直没有行动。之前出去玩攒了不少的视频素材，只有在结婚前花了三个月用 iMovie 剪了一个婚礼上播放的[视频](https://v.youku.com/v_show/id_XOTQyNTg0ODA4.html?sharefrom=iphone&sharekey=9aa274d71e8a3ba95e2fcf03efbc9e8e0)之后也有想学 Final Cut Pro（简称 FCP） 主要还是因为硬件不达标搁浅。
 
-题外话，经过慎重考虑我选择了 ~~Adobe Premiere~~ **达芬奇（**真香！），支持 Windows 和 macOS 系统而且它也支持和 FCP 一样对独立显卡的渲染优化，反正这俩 App 对我来说都是新的。
+题外话，经过慎重考虑我选择了 ~~Adobe Premiere~~ **达芬奇**真香！，支持 Windows 和 macOS 系统而且它也支持和 FCP 一样对独立显卡的渲染优化，反正这俩 App 对我来说都是新的。
 
 ### 为什么黑苹果？
 
@@ -131,6 +135,8 @@ AMX RX 500 系列和更好的 R9 系列全系 macOS 免驱的，AMD 和 Apple �
 涉及图片处理和视频编辑的话必须要上独立显卡，无论是看 [2018](https://bartechtv.com/the-best-graphics-cards-for-hackintosh-in-2018/) 或 [2019](https://bartechtv.com/the-best-hackintosh-graphics-cards-for-2019/) 最佳显卡
 列表 rx560 都是垫底的，我的预算其实是还是 rx560 的预算（800 左右）而全新的 rx580 价格实在感人，我也盯了很久的矿卡感觉可以尝试下，于是在闲鱼花了 750 包邮买了一块 2017 年份的蓝宝石 RX580 8G 1411MHz Nitro+ 超白金。特别注意如果你确实想从闲鱼买请不要相信卖家所说的网吧淘汰，全新，用钱急出等关键词。因为这类的 99% 其实都是矿卡，如果卖家坦白说这就是矿卡可以问问质保、退货政策。截至 2019 年 5 月 29日购入矿卡整 2 个月的时间目前没有翻车，macOS 下用于视频剪辑速度确实快了很多！在 Windows 用显卡超频检测风扇偶尔会提示风扇有问题但玩 Apex 英雄最高画质渲染除了显卡风扇噪音比较大以外没有任何问题。一般来说矿卡日常使用没有太大问题，后续会考虑换个显卡风扇。
 
+附带一个显卡购买指南：[https://dortania.github.io/GPU-Buyers-Guide/](https://dortania.github.io/GPU-Buyers-Guide/ "https://dortania.github.io/GPU-Buyers-Guide/")
+
 ### 为什么选择这么少容量的 SSD？
 
 如果你不差钱的话请上三星 970 EVO 500G。
@@ -168,7 +174,7 @@ AMX RX 500 系列和更好的 R9 系列全系 macOS 免驱的，AMD 和 Apple �
 | Half mini | BCM94360HMB/AzureWave AW-CB160H | 3T3R |  |  | tonymacx86 列表之一，国内没找到 |
 | Half mini | BCM94352 HMB/AzureWave AW-CE123H |  |  |  | tonymacx86 列表之一，国内没找到 |
 
-更多博通模块请看 [wikidevi](https://wikidevi.com/wiki/User:Omega/Broadcom_modules_(Apple))，其他兼容的列表请看 [osxlatitude 的整理](https://osxlatitude.com/forums/topic/2120-inventory-of-supportedunsupported-wireless-cards-1-snow-leopard-el-capitan/)
+更多博通模块请看 [wikidevi](https://wikidevi.com/wiki/User:Omega/Broadcom_modules_(Apple))，其他兼容的列表请看 [osxlatitude 的整理](https://osxlatitude.com/forums/topic/2120-inventory-of-supportedunsupported-wireless-cards-1-snow-leopard-el-capitan/)或者是[无线购买指南](https://dortania.github.io/Wireless-Buyers-Guide/)。
 
 首先排除 PCIe 接口华擎 Z390 itx 版只有一个接口这个是为独立显卡准备的，虽然我很想入 BCM94360CD 四天线。 因此只能考虑 M.2 接口，上面的模块虽然也可以直接插 M.2 接口（底子还是 PCIe 嘛）但板子仅支持 2260/2280，支持 2260 的口我已经插了 SSD（因为主板提供散热马甲），~~因此我只能考虑 2280。淘宝上能找到的支持 2280 转接卡的模块基本上只有 BCM94360CS2 和 BCM943602CS，考虑到后者是较新的 5G 可以达到 1300M，这俩价格也差不多基本上会考虑后者~~。受春节的影响没有入手，期间在浏览的时候发现华擎 Z370 可以拆卸原本的 Intel 的无线模块用来安装博通网卡/蓝牙模块，联系了 up 主没有得到解答只能从他视频扣细节，Intel 网卡型号不一样但确定插槽是 M.2 Key E，考虑到主板自带两个天线口放弃了三天线的 BCM943602CS，买了最物美价廉的 BCM94360CS2，带上转接卡高度 2230 机箱可以兼容。附上一个 M.2 接口的一栏图：
 
