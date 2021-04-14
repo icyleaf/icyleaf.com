@@ -17,6 +17,10 @@ isCJKLanguage: true
 share: true
 
 ---
+> 2021-04-14 更新：
+>
+> 系统升级至 Big Sur 之后已经从 Clover 该用 OpenCore 可从 [EFI 仓库](https://github.com/icyleaf/EFI-ASRock-Z390-Phantom-Gaming-ITX)查看历史变更。
+>
 > 2019-04-01 更新：
 >
 > 更新疑惑解答无线网络慢的解决方案。
