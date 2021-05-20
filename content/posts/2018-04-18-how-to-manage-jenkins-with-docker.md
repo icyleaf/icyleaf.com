@@ -29,7 +29,7 @@ menu: ''
 1. 设置时区（默认是 UTC 时间）
 1. 映射 50000 端口（这个是 master 和 slave 的通讯端口）和 8000 端口（Web）
 
-```
+```bash
 docker run -d --restart=always
     -p 8000:8080 -p 50000:50000
     -v /var/lib/docker/jenkins:/var/jenkins_home
@@ -45,7 +45,7 @@ docker run -d --restart=always
 
 我在翻阅国内镜像源网站的时候发现清华大学开源软件镜像站其实提供了国内 Jenkins 插件的镜像源但一直很低调的没有公布，通过进入`管理插件 -> 高级`页面拉到最底部有个升级站点的自定义框，填入
 
-```
+```bash
 https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.json
 ```
 
@@ -58,7 +58,7 @@ https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.json
 首先需要找到容器的名字，这里我想会有不少人会问为什么你在创建一个容器的时候不指定一个名字，
 那是因为后面还需要创建一个新版本的容器而名字不能一样，因此我现在创建都让 docker 随机分配。
 
-```
+```bash
 $ docker ps
 CONTAINER ID  ...   NAMES
 8f48718fdd07  ...   naughty_pasteur
@@ -66,14 +66,14 @@ CONTAINER ID  ...   NAMES
 
 拿到之后先停止运行后，创建一个数据备份容器再进行拉取最新版本
 
-```
+```bash
 $ docker stop naughty_pasteur
 $ docker docker create --volumes-from naughty_pasteur --name jenkins-data jenkins/jenkins:lts
 ```
 
 拉取最新版本后恢复数据：
 
-```
+```bash
 $ docker pull jenkins/jenkins:lts
 $ docker run -d --restart=always
     --volumes-from jenkins-data
@@ -85,7 +85,7 @@ $ docker run -d --restart=always
 
 确保通过 web 访问和 build 正常后删除老的和数据备份的容器
 
-```
+```bash
 $ docker rm naughty_pasteur
 $ docker rm jenkins-data
 ```
@@ -96,7 +96,7 @@ $ docker rm jenkins-data
 
 在 Jenkins 的系统设置页面找到脚本命令行运行：
 
-```
+```java
 System.setProperty('org.apache.commons.jelly.tags.fmt.timeZone', 'Asia/Shanghai')
 ```
 

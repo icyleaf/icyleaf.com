@@ -59,7 +59,7 @@ sudo yum install libselinux-python docker-io
 
 同样需要注意的是 1.7.1 版本的 docker 配置文件是在 `/etc/sysconfig/docker` 而不是网上和官方说的 `/etc/default/docker` 打开此文件在 other_args 配置对于的源即可。
 
-```
+```bash
 # /etc/sysconfig/docker
 #
 # Other arguments to pass to the docker daemon process
@@ -83,14 +83,14 @@ DOCKER_NOWARN_KERNEL_VERSION=1
 
 后面就没什么好说的了，启动服务和设置开机自启动就完事了
 
-```
+```bash
 sudo chkconfig docker on
 sudo service docker start
 ```
 
 验证下启动的服务是否已经配置了国内镜像源
 
-```
+```bash
 $ ps aux | grep "docker -d"
 
 root     16992  0.1  0.1 1239860 32276 ?       Sl   Dec29   2:02 /usr/bin/docker -d --registry-mirror=https://docker.mirrors.ustc.edu.cn

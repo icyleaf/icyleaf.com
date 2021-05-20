@@ -3,7 +3,7 @@ title: "初学 git 入门"
 date: "2008-11-07T12:34:56+08:00"
 categories:
   - Technology
-tags: 
+tags:
 - Git
 slug: "new-guy-to-git"
 
@@ -18,21 +18,21 @@ slug: "new-guy-to-git"
 
 首先是下载并安装 [git][]。接着设置用户标识：
 
-```
+```txt
 $ git config --global user.name yourname
 $ git config --global user.email example@mail.com
 ```
- 
+
 然后创建一个目录作为版本库：
 
-```
+```txt
 $ mkdir examplecd examplegit init
 ```
 
 把本地文件同步到远程 git host 服务网站上面
 
 
-```
+```txt
 # 添加文件
 $ git add filename
 

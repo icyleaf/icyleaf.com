@@ -21,7 +21,7 @@ slug: "how-to-using-android-map-key-both-in-development-and-production"
 
 在命令行或者终端执行下面命令（注意指明 debug.keystore 的路径）即可获取到 MD5 值。
 
-```
+```bash
 $ keytool -list -keystore debug.keystore
 ```
 
@@ -29,7 +29,7 @@ $ keytool -list -keystore debug.keystore
 
 假如你的应用需要上线到官方的 Google Market 上面，则需要根据其 apk 的签名证书（keystore）的 MD5 值去生成，方法也很简单，发布的签名同样可以使用 Eclipse 的 Export 工具制作。制作完毕后（或许这个生成的签名没有 .keystore 后缀，不用在意）。同样也使用上面的命令获取其 MD5 值。
 
-```
+```bash
 # 比如，证书路径 /home/icyleaf/android/ews
 $ keytool -list -keystore /home/icyleaf/android/ews...
 

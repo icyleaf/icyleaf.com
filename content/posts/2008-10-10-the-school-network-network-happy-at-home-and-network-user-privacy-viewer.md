@@ -3,7 +3,7 @@ title: "校内网，海内网，开心网用户隐私查看器"
 date: "2008-10-10T12:34:56+08:00"
 categories:
   - Technology
-tags: 
+tags:
 - PHP
 - 校内
 - 海内
@@ -27,7 +27,7 @@ slug: "the-school-network-network-happy-at-home-and-network-user-privacy-viewer"
 首先！必须先登录网站系统之后才进行操作！
 无论是校内网，海内网还是开心网的用户，首先都需要获得用户的ID，那么怎么获得呢，很简单，只要打开用户的个人界面，查看地址的末尾的数字。一般会以下列的方式出现：
 
-```
+```txt
 http://xiaonei.com/profile.do?id=123456
 http://www.hainei.com/user?r=123456
 http://www.kaixin001.com/home/?uid=123456

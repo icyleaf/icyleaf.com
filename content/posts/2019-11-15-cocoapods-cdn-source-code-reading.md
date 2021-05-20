@@ -31,7 +31,7 @@ Cocoapods [1.7.2](https://blog.cocoapods.org/CocoaPods-1.7.2/) 版本开始增�
 第一步分析 Podfile 里面的 source ，如果没有走默认 Cocoapods 的配置（1.8 以上是 https://cdn.cocoapods.org ，之前的还是 Cocoapods/Spec），
 如果本地不存在官方 cdn 的 repo 名字是 trunk 的保留字，自己无法创建。如果有自定义的 source 会追加上去 sources 列表。
 
-```
+```txt
 $ http HEAD https://cdn.cocoapods.org/all_pods.txt
 HTTP/1.1 200 OK
 Accept-Ranges: bytes
@@ -71,7 +71,7 @@ prefix_lengths:
 比如：prefix\_lengths 数组大小为 3，AFNetworking MD5 后 `a75d452377f396bdc4b623a5df25820` 则匹配前三位 a75 拆分后 a\_7\_5
 后查找 cdn url 路径的 `/all_pods_versions_a_7_5.txt` 下载下来后的内容：
 
-```
+```txt
 Fuse/0.1.0/0.2.0/1.0.0/1.1.0/1.2.0
 GXFlowView/1.0.0
 JFCountryPicker/0.0.1/0.0.2
@@ -80,7 +80,7 @@ JVEmptyElement/0.1.0
 
 第五步，下载 pod 的所有版本的 .podspec 文件，从上面的文件按照每行寻找第一段的名字，把后面的所有版本按照上面获取到的 prefix\_lengths 的值（例如 AFNetworking 是 a, 7 , 5） `/Specs/a/7/5/AFNetworking/{version}/AFNetworking.podspec.json` 一次下载，并保存 etag 为 `/Specs/a/7/5/AFNetworking/{version}/AFNetworking.podspec.json.etag`，这个 etag 作用上面已经讲过，如果没有找到的话就会直接报错。
 
-```
+```txt
 Adding spec repo `trunk` with CDN `https://cdn.cocoapods.org/`
   CDN: trunk Relative path downloaded: CocoaPods-version.yml, save ETag: "031c25b97a0aca21900087e355dcf663-ssl"
   CDN: trunk Relative path: CocoaPods-version.yml exists! Returning local because checking is only perfomed in repo update
@@ -91,7 +91,7 @@ Adding spec repo `trunk` with CDN `https://cdn.cocoapods.org/`
 
 Cocoapods trunk 源的目录结构：
 
-```
+```txt
 .cocoapods
   repo
     trunk

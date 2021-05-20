@@ -14,30 +14,30 @@ slug: "how-to-get-xpath-of-an-element-for-php-and-javascript"
 
 于是想，如果可以找到 Javascript 版的相关代码就一定可以改成 PHP 版本的，结果在 Google 搜索找到了...
 
-```
+```javascript
 var elt = document.getElementById('table');
 var xpath = getElementXPath(elt);alert(xpath);
 
 // Get full XPath of an element
-function getElementXPath(elt){  
-	var path = "";   
-	for (; elt && elt.nodeType == 1; elt = elt.parentNode)   
-	{        
-		idx = getElementIdx(elt);        
-		xname = elt.tagName;     
-		if (idx > 1) xname += "[" + idx + "]";       
-		path = "/" + xname + path;   
+function getElementXPath(elt){
+	var path = "";
+	for (; elt && elt.nodeType == 1; elt = elt.parentNode)
+	{
+		idx = getElementIdx(elt);
+		xname = elt.tagName;
+		if (idx > 1) xname += "[" + idx + "]";
+		path = "/" + xname + path;
 	}
-	return path;    
+	return path;
 }
 
 // Get Idx of an element
-function getElementIdx(elt){    
-	var count = 1;    
-	for (var sib = elt.previousSibling; sib ; sib = sib.previousSibling)    
-	{        
-		if(sib.nodeType == 1 && sib.tagName == elt.tagName)  count++    
-	}        
+function getElementIdx(elt){
+	var count = 1;
+	for (var sib = elt.previousSibling; sib ; sib = sib.previousSibling)
+	{
+		if(sib.nodeType == 1 && sib.tagName == elt.tagName)  count++
+	}
 	return count;
 }
 ```
@@ -45,7 +45,7 @@ function getElementIdx(elt){
 
 PHP 改进版：
 
-```
+```php
 // Use it before import PHP Simple HTML DOM Parser
 $html = file_get_html('http://www.google.com/');
 
@@ -61,40 +61,40 @@ $xpath = getElementXPath($elt1);
 // it will return if found it: html/body/div[10]
 $xpath = getElementXPath($elt2);
 
-function getElementXPath($elt){    
-	$path = '';  
-	$first = TRUE;   
+function getElementXPath($elt){
+	$path = '';
+	$first = TRUE;
 	for(; ($elt AND $elt->nodetype == 1); $elt = $elt->parent())
-	{        
-		$xname = $elt->tag;      
-		$idx = getElementIdx($elt);           
-		if ($first AND isset($elt->attr['id']))      
-		{            
-			$path = '//*[@id="' . $elt->attr['id'] . '"]';           
-			break;      
-		}             
+	{
+		$xname = $elt->tag;
+		$idx = getElementIdx($elt);
+		if ($first AND isset($elt->attr['id']))
+		{
+			$path = '//*[@id="' . $elt->attr['id'] . '"]';
+			break;
+		}
 
-		if ($idx > 1)       
-		{            
-			%xname .= '[' . $idx . ']';      
-		}             
+		if ($idx > 1)
+		{
+			%xname .= '[' . $idx . ']';
+		}
 
-		$path = '/'.$xname.$path;             
-		$first = FALSE;  
-	}     
+		$path = '/'.$xname.$path;
+		$first = FALSE;
+	}
 
 	return $path;
 }
 
-function getElementIdx($elt){    
-	$count = 1;    
-	for($sib = $elt->prev_sibling(); $sib ; $sib = $sib->prev_sibling())    
-	{        
-		if($sib->nodetype == 1 && $sib->tag == $elt->tag)        
-		{         
-			$count++;        
-		}    
-	}        
+function getElementIdx($elt){
+	$count = 1;
+	for($sib = $elt->prev_sibling(); $sib ; $sib = $sib->prev_sibling())
+	{
+		if($sib->nodetype == 1 && $sib->tag == $elt->tag)
+		{
+			$count++;
+		}
+	}
 	return $count;
 }
 ```

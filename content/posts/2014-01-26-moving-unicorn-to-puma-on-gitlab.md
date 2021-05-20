@@ -19,7 +19,7 @@ date: "2014-01-26T12:34:56+08:00"
 
 简单介绍下 [`puma`](http://puma.io/)，它是一个由 ruby 编写的转为 [`rack`](http://rack.github.io/) 设计的 app server，在性能和资源占有上却有极大的优势（下表数据来自官方）
 
-```
+```txt
 PUMA - 78 Mb
 RAINBOWS! (1X16) - 120 Mb
 UNICORN - 1076 Mb
@@ -35,13 +35,13 @@ Okay，经过一番查找，官方在收集的 [repices](https://gitlab.com/gitl
 
 首先是关闭启动的 `gitlab` 服务
 
-```
+```bash
 $ (sudo) service gitlab stop
 ```
 
 关闭之后，添加 puma gem，打开 `Gemfile`
 
-```
+```ruby
 group :unicorn do
   gem 'unicorn', '~> 4.6.3'
 	gem 'unicorn-worker-killer'
@@ -50,13 +50,13 @@ end
 
 找到上面的这段 group 替换成：
 
-```
+```ruby
 gem 'puma'
 ```
 
 再者修改 `config.ru`，把下面这段代码做下替换，删除 unicorn 的代码，加载 puma：
 
-```
+```ruby
 unless defined?(PhusionPassenger)
   require 'unicorn'
   # Unicorn self-process killer
@@ -68,7 +68,7 @@ end
 
 更新成
 
-```
+```ruby
 unless defined?(PhusionPassenger)
   require 'puma'
 end
@@ -77,11 +77,11 @@ end
 
 替换完毕更新 `gem`
 
-```
+```bash
 # mysql 数据库
 bundle install --without development test postgres --path vendor/bundle --no-deployment
 # postgres 数据库
-bundle install --without development test mysql --path vendor/bundle --no-deployment 	
+bundle install --without development test mysql --path vendor/bundle --no-deployment
 ```
 
 最后还有两处需要修改，添加 `config/puma.rb`（替代 `config/unicorn.rb`） 以及替换 `/etc/init.d/gitlab` 服务脚本代码。
@@ -94,7 +94,7 @@ bundle install --without development test mysql --path vendor/bundle --no-deploy
 
 最后开启服务应该就完美了
 
-```
+```bash
 $ (sudo) service gitlab start
 ```
 

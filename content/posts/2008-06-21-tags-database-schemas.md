@@ -36,7 +36,7 @@ slug: "tags-database-schemas"
 
 查询方式： “search+webservice+semweb”:
 
-```
+```txt
 SELECT *FROM `delicious`WHERE tags LIKE "%search%"AND tags LIKE "%webservice%"AND tags LIKE "%semweb%"
 ```
 
@@ -44,7 +44,7 @@ SELECT *FROM `delicious`WHERE tags LIKE "%search%"AND tags LIKE "%webservice%"AN
 
 查询方式： “search|webservice|semweb”:
 
-```
+```txt
 SELECT *FROM `delicious`WHERE tags LIKE "%search%"OR tags LIKE "%webservice%"OR tags LIKE "%semweb%"
 ```
 
@@ -52,7 +52,7 @@ SELECT *FROM `delicious`WHERE tags LIKE "%search%"OR tags LIKE "%webservice%"OR 
 
 查询方式： “search+webservice-semweb”
 
-```
+```txt
 SELECT *FROM `delicious`WHERE tags LIKE "%search%"AND tags LIKE "%webservice%"AND tags NOT LIKE "%semweb%"
 ```
 
@@ -81,7 +81,7 @@ SELECT *FROM `delicious`WHERE tags LIKE "%search%"AND tags LIKE "%webservice%"AN
 
 查询方式：“bookmark+webservice+semweb”:
 
-```
+```txt
 SELECT b.*FROM scBookmarks b, scCategories cWHERE c.bId = b.bIdAND (c.category IN ('bookmark', 'webservice', 'semweb'))GROUP BY b.bIdHAVING COUNT( b.bId )=3
 ```
 
@@ -93,7 +93,7 @@ SELECT b.*FROM scBookmarks b, scCategories cWHERE c.bId = b.bIdAND (c.category I
 
 Just leave out the `HAVING` clause and you have union:
 
-```
+```txt
 SELECT b.*FROM scBookmarks b, scCategories cWHERE c.bId = b.bIdAND (c.category IN ('bookmark', 'webservice', 'semweb'))GROUP BY b.bId
 ```
 
@@ -101,7 +101,7 @@ SELECT b.*FROM scBookmarks b, scCategories cWHERE c.bId = b.bIdAND (c.category I
 
 查询方式：“bookmark+webservice-semweb”，意味着：`bookmark AND webservice AND NOT semweb`
 
-```
+```txt
 SELECT b. *FROM scBookmarks b, scCategories cWHERE b.bId = c.bIdAND (c.category IN ('bookmark', 'webservice'))AND b.bId NOTIN (SELECT b.bId FROM scBookmarks b, scCategories c WHERE b.bId = c.bId AND c.category = 'semweb')GROUP BY b.bIdHAVING COUNT( b.bId ) =2
 ```
 
@@ -121,7 +121,7 @@ SELECT b. *FROM scBookmarks b, scCategories cWHERE b.bId = c.bIdAND (c.category 
 
 查询方式：“bookmark+webservice+semweb”
 
-```
+```txt
 SELECT b.*FROM tagmap bt, bookmark b, tag tWHERE bt.tag_id = t.tag_idAND (t.name IN ('bookmark', 'webservice', 'semweb'))AND b.id = bt.bookmark_idGROUP BY b.idHAVING COUNT( b.id )=3
 ```
 
@@ -129,7 +129,7 @@ SELECT b.*FROM tagmap bt, bookmark b, tag tWHERE bt.tag_id = t.tag_idAND (t.name
 
 查询方式：“bookmark|webservice|semweb”
 
-```
+```txt
 SELECT b.*FROM tagmap bt, bookmark b, tag tWHERE bt.tag_id = t.tag_idAND (t.name IN ('bookmark', 'webservice', 'semweb'))AND b.id = bt.bookmark_idGROUP BY b.id
 ```
 
@@ -137,7 +137,7 @@ SELECT b.*FROM tagmap bt, bookmark b, tag tWHERE bt.tag_id = t.tag_idAND (t.name
 
 查询方式：“bookmark+webservice-semweb”，意味：bookmark AND webservice AND NOT semweb.
 
-```
+```txt
 SELECT b. *FROM bookmark b, tagmap bt, tag tWHERE b.id = bt.bookmark_idAND bt.tag_id = t.tag_idAND (t.name IN ('Programming', 'Algorithms'))AND b.id NOT IN (SELECT b.id FROM bookmark b, tagmap bt, tag t WHERE b.id = bt.bookmark_id AND bt.tag_id = t.tag_id AND t.name = 'Python')GROUP BY b.idHAVING COUNT( b.id ) =2
 ```
 

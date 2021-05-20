@@ -35,7 +35,7 @@ Douban API Package 是一个使用 PHP 开发且基于 Kohana v3 开发的一个
 
 你可以在部署完毕的 Kohana 系统的根目录执行下面操作：
 
-```
+```txt
 $ git submodule add git://github.com/icyleaf/douban.git modules/douban
 ```
 
@@ -45,9 +45,9 @@ $ git submodule add git://github.com/icyleaf/douban.git modules/douban
 
 步骤 2: 在 `bootstrap.php` 文件中启用该模块(默认情况下，存储在 `application` 文件夹)
 
-```
+```txt
 /** * Enable modules. Modules are referenced by a relative or absolute path. *
-/Kohana::modules(array(     
+/Kohana::modules(array(
 	'douban'        => MODPATH.'douban',     // Douban API Module    //
 	'database'   => MODPATH.'database',   // Database access    //
 	'image'      => MODPATH.'image',      // Image manipulation    //
@@ -56,32 +56,32 @@ $ git submodule add git://github.com/icyleaf/douban.git modules/douban
 	'paypal'     => MODPATH.'paypal',     // PayPal integration (not complete)    //
 	'todoist'    => MODPATH.'todoist',    // Todoist integration    //
 	'unittest'   => MODPATH.'unittest',   // Unit testing    // 'codebench'  => MODPATH.
-	'codebench',  // Benchmarking tool    
+	'codebench',  // Benchmarking tool
 ));
 ```
 
 
 **目录结构**
 
-```
+```txt
 douban
-   +--- classes         
-   			+--- controller               # 豆瓣样例         
-   					+--- douban                   # Douban API Package               
-   							+--- api               # Douban API                
-   							+--- core.php          # Douban Core            
-   							+--- oauth.php         # Douban OAuth                
-   							+--- request.php       # Douban Requset                 
-						   	+--- response.php      # Douban Response         
-					+--- douban.php               # Douban API Class  
-   +--- config         
-   			+--- douban.php               # 豆瓣 API 配置文件         
-   			+--- user_agents.php          # 奉送给大家一些手机 User agent 配置文件  
-   +--- media         
-   			+--- images                   # 奉送给大家豆瓣 API 用到的图像        
-   +--- vendor         
-   			+--- OAuth.php                # OAuth 官方推荐 PHP 库  
-   			+--- LICENSE  
+   +--- classes
+   			+--- controller               # 豆瓣样例
+   					+--- douban                   # Douban API Package
+   							+--- api               # Douban API
+   							+--- core.php          # Douban Core
+   							+--- oauth.php         # Douban OAuth
+   							+--- request.php       # Douban Requset
+						   	+--- response.php      # Douban Response
+					+--- douban.php               # Douban API Class
+   +--- config
+   			+--- douban.php               # 豆瓣 API 配置文件
+   			+--- user_agents.php          # 奉送给大家一些手机 User agent 配置文件
+   +--- media
+   			+--- images                   # 奉送给大家豆瓣 API 用到的图像
+   +--- vendor
+   			+--- OAuth.php                # OAuth 官方推荐 PHP 库
+   			+--- LICENSE
    +--- README.markdown
 ```
 

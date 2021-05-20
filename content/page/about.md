@@ -3,7 +3,7 @@ title: About
 image: images/about.jpg
 type: ''
 comments: false
-date: 
+date:
 index: false
 menu: ''
 

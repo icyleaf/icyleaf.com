@@ -30,9 +30,9 @@ display 属性，哈哈，是不是明白了？好吧，看代码吧。
 
 HTML 代码：
 
-```
+```txt
 Name:<input name="name" /><br />
-Email:<input name="email" /><br />     
+Email:<input name="email" /><br />
 Comment:<input name="comment" /><br />
 <input type="hidden" class="special" />
 <input type="submit" value="Post it" />
@@ -40,7 +40,7 @@ Comment:<input name="comment" /><br />
 
 CSS 代码：
 
-```
+```txt
 body {line-height:35px;font-family:Arial, Helvetica, sans-serif;color:#333;font-size:14px;}
 .special {display:none;}
 ```

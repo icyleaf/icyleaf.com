@@ -42,8 +42,8 @@ ngnix 的时候肯定会报错，因为这些 web 容器启动均占用的 80
 编辑 `/etc/nginx/sites-available/default` 文件，修改 server 段中的 listen
 为 localhost:8080，其中 8080 是更改的监听端口：
 
-```
-server {    
+```txt
+server {
 listen   localhost:8080;
 server_name  localhost;
 # [...]
@@ -113,62 +113,62 @@ Nginx 的配置相对比较简单，语法很像 PHP 代码，如果不了解的
 
 编辑 **/etc/nginx/nginx.conf** 文件并作如下修改：
 
-```
+```txt
 [...]
 worker_processes  5;
-[...]    
+[...]
 keepalive_timeout   2;
 [...]
 ```
 
 定义虚拟主机的配置项存放在 `/etc/nginx/conf.d/` 目录下面，每个虚拟主机配置一个文件并以 .conf 为文件后缀即可，默认是 default，也就是上面修改 Nginx 默认监听端口的文件，这里还要进一步对它配（点击右侧展开）：
 
-```
+```txt
 [...]
-server {        
-listen   80;        
-server_name  _;        
-access_log  /var/log/nginx/localhost.access.log;        
-location / {                
-root   /var/www/nginx-default;                
-index  index.php index.html index.htm;        
-}        
+server {
+listen   80;
+server_name  _;
+access_log  /var/log/nginx/localhost.access.log;
+location / {
+root   /var/www/nginx-default;
+index  index.php index.html index.htm;
+}
 
-location /doc {                
-root   /usr/share;                
-autoindex on;                
-allow 127.0.0.1;                
-deny all;        
+location /doc {
+root   /usr/share;
+autoindex on;
+allow 127.0.0.1;
+deny all;
 }        l
 
-ocation /images {                
-root   /usr/share;                
-autoindex on;        
-}        
+ocation /images {
+root   /usr/share;
+autoindex on;
+}
 
-# error_page  404  /404.html;        
-# redirect server error pages to the static page /50x.html        
-# error_page   500 502 503 504  /50x.html;        
-location = /50x.html {                
-root   /var/www/nginx-default;        
-}        
+# error_page  404  /404.html;
+# redirect server error pages to the static page /50x.html
+# error_page   500 502 503 504  /50x.html;
+location = /50x.html {
+root   /var/www/nginx-default;
+}
 
-# proxy the PHP scripts to Apache listening on 127.0.0.1:80       
-#location ~ \.php$ {                
-#proxy_pass   http://127.0.0.1;        
-#}        
+# proxy the PHP scripts to Apache listening on 127.0.0.1:80
+#location ~ \.php$ {
+#proxy_pass   http://127.0.0.1;
+#}
 
-# pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000        
-location ~ \.php$ {                
-fastcgi_pass   127.0.0.1:9000;               
-fastcgi_index  index.php;                
-fastcgi_param  SCRIPT_FILENAME  /var/www/nginx-default$fastcgi_script_name;                
-include        fastcgi_params;        
-}        
+# pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+location ~ \.php$ {
+fastcgi_pass   127.0.0.1:9000;
+fastcgi_index  index.php;
+fastcgi_param  SCRIPT_FILENAME  /var/www/nginx-default$fastcgi_script_name;
+include        fastcgi_params;
+}
 
-# deny access to .htaccess files, if Apache's document root        # concurs with nginx's one        
-# location ~ /\.ht {                
-deny  all;        
+# deny access to .htaccess files, if Apache's document root        # concurs with nginx's one
+# location ~ /\.ht {
+deny  all;
 }
 }
 
@@ -183,7 +183,7 @@ deny  all;
 
 最重要的是关于 PHP 部分的 location 段：**\~ \\.php\$ {}**，Nginx 默认没有开启，我们要确保它开启并在 fastcgi\_param 一行更改了参数（因为浏览器调用的默认 PHP 解析器无法找到 PHP 脚本）：
 
-```
+```txt
 fastcgi_param SCRIPT_FILENAME /var/www/nginx-default$fastcgi_script_name;
 ```
 
@@ -191,7 +191,7 @@ fastcgi_param SCRIPT_FILENAME /var/www/nginx-default$fastcgi_script_name;
 
 重启 Nginx，然后编辑一个 info.php 文件：
 
-```
+```txt
 // 创建 /var/www/nginx-default/info.php 文件
 ```
 
@@ -205,29 +205,29 @@ Kohana 采用的 v3 版本，[安装步骤][]（本文把 kohana 存放在 `/hom
 
 添加 Nginx 虚拟主机配置文件：
 
-```
+```txt
 # 创建 /etc/nginx/conf.d/kohana.conf 文件
-server {   
-listen   kohana.local:8080;  
-server_name  kohana.local;   
+server {
+listen   kohana.local:8080;
+server_name  kohana.local;
 access_log  /var/log/nginx/kohana.access.log;
 
-# define server root path    
-set $root_path /home/icyleaf/php/kohana;  
+# define server root path
+set $root_path /home/icyleaf/php/kohana;
 
-location / {     
+location / {
 root   $root_path;       index  index.php index.html index.htm;
-if (!-e $request_filename) {         
-rewrite ^/(.*)$ /index.php?kohana_uri=/$1 last;      
-}    
+if (!-e $request_filename) {
+rewrite ^/(.*)$ /index.php?kohana_uri=/$1 last;
+}
 }
 
-# pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000  
-location ~ \.php$ {      
-root   $root_path;       
-fastcgi_pass   127.0.0.1:9000;       
-fastcgi_index  index.php;        
-fastcgi_param  SCRIPT_FILENAME  $root_path$fastcgi_script_name;      include fastcgi_params;  
+# pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+location ~ \.php$ {
+root   $root_path;
+fastcgi_pass   127.0.0.1:9000;
+fastcgi_index  index.php;
+fastcgi_param  SCRIPT_FILENAME  $root_path$fastcgi_script_name;      include fastcgi_params;
 }
 }
 ```
@@ -235,15 +235,15 @@ fastcgi_param  SCRIPT_FILENAME  $root_path$fastcgi_script_name;      include fas
 配置中首先定义了一个变量 \$root\_path 指定 Kohana 的源码的路径，对于
 Kohana 的 URL rewrite url 重点是 location 段的：
 
-```
-if (!-e $request_filename) {    
+```txt
+if (!-e $request_filename) {
 rewrite ^/(.*)$ /index.php?kohana_uri=/$1 last;
 }
 ```
 
 编辑完成后重载 Nginx 配置：
 
-```
+```bash
 $ sudo /etc/init.d/nginx reload
 ```
 

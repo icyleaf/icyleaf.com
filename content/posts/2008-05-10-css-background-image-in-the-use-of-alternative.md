@@ -3,7 +3,7 @@ title: "CSS中background-image的另类使用"
 date: "2008-05-10T12:34:56+08:00"
 categories:
   - Technology
-tags: 
+tags:
 - CSS
 slug: "css-background-image-in-the-use-of-alternative"
 
@@ -11,7 +11,7 @@ slug: "css-background-image-in-the-use-of-alternative"
 
 在CSS众多的样式当中，background可以说是扮演着重要的角色，它可以设置对象的背景样式。如颜色或者使用一张图片代替，今天我要多说两句的就是使用一张图片的参数：image。准确的来说应该是background-image。我们可以这样用它：
 
-```
+```txt
 body{background-image: url(http://www.icyleaf.cn/logo.jpg);
 ```
 
@@ -22,7 +22,7 @@ CSS Sprites是一种把所有的图片都以base64编码以源代码的形式写
 `data:URL` 标签是在1995年第一次提出，按[RFC2397规范的描述][]：它是"allows
 inclusion of small data items as 'immediate' data.（允许在页面中包含一些小的即时数据）"。如一个内嵌的的图片可以这样引用：
 
-```
+```txt
 body{background-image:url(data:image/gif;base64,R0lGODlhCAAIAJEAAOnp6eTk5O7m8AAAACH5BAEAAAIALAAAAAAIAAgAAAINjAMJh2q6DnxOVsqmLQA7);}
 ```
 

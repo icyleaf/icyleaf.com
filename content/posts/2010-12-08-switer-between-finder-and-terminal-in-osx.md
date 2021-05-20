@@ -20,12 +20,12 @@ Finder 的工具栏上即可。
 
 **从 Terminal 中用 Finder 打开当前路径的目录**
 
-```
+```bash
 $ open .
 ```
 
 PS，如果是 Ubuntu 系统的话请安装 nautilus，然后在 Terminal 里面输入
 
-```
+```bash
 $ nautilus .
 ```

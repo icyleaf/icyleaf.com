@@ -24,7 +24,7 @@ key，详情请看[这里][]。第二种则相对于比较简单：命令行流�
 ​1. 复制报错的尾部 NO\_PUBKEY 后面的串的后 8
 位（以上面的为例：4E5E17B5），执行:
 
-```
+```bash
 $ gpg --keyserver keyserver.ubuntu.com --recv 4E5E17B5# 返回信息gpg: requesting key 4E5E17B5 from hkp server keyserver.ubuntu.comgpg: key 4E5E17B5: public key "Launchpad PPA for chromium-daily" importedgpg: no ultimately trusted keys foundgpg: Total number processed: 1gpg:               imported: 1  (RSA: 1)
 $ gpg --export --armor 4E5E17B5 | sudo apt-key add -# 返回信息OK
 ```
