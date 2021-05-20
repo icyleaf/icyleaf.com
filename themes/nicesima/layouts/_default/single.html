@@ -65,7 +65,7 @@
             </ul>
         </div>
         {{ end }}
-    
+
         {{ with .Params.references }}
         <div class="post-ref">
             <h2 id="参考链接">参考链接</h2>
@@ -91,7 +91,7 @@
                 <span>{{ . }} </span>
             </p>
             {{ end }}
-            
+
             {{ with .Permalink }}
             <p class="copyright-item">
                     <span>Link:</span>
@@ -134,7 +134,7 @@
     {{ if .Params.showPostSocialLinks | default true}}
     <div class="post-social">
         <div class="social-links">
-            {{ partial "social.html" . }}
+            {{ partial "socials.html" . }}
         </div>
     </div>
     {{ end }}

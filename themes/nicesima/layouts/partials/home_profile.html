@@ -5,7 +5,7 @@
         <a href="/posts/"> <img src="{{ (printf "%s" $avatar)}}"> </a>
     </div>
     {{ end }}
-    {{ with .Site.Params.subtitle}}
+    {{ with .Site.Params.subtitle | default .Site.Params.Description | default .Site.Params.author }}
     <div id="subtitle">
     </div>
     </body>
@@ -14,7 +14,7 @@
       let i = 0,
         timer = 0,
         str = '{{ . }}'
-    
+
       function typing () {
         if (i <= str.length) {
           divTyping.innerHTML = str.slice(0, i++) + '_'
@@ -29,7 +29,7 @@
     </script>
     {{ end }}
     <div class="social-links">
-        {{ partial "social.html" . }}
+        {{ partial "socials.html" . }}
     </div>
 </div>
 

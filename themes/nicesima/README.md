@@ -1,29 +1,13 @@
 # nicesima(偽島, ニセシマ)
 
-[![Hugo](https://img.shields.io/badge/hugo-0.80.0-blue.svg)](https://gohugo.io)
+[![Hugo](https://img.shields.io/badge/hugo-0.83.1-blue.svg)](https://gohugo.io)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-
-### A blog theme for [Hugo](https://gohugo.io).
 
 ![Screenshot](https://raw.githubusercontent.com/Mogeko/mogege/master/images/Screenshot.png)
 
-**This project is based on
-[mogege](https://github.com/Mogeko/mogege) which based on 
-[LeaveIt](https://raw.githubusercontent.com/liuzc/LeaveIt/)**
+### A blog theme for [Hugo](https://gohugo.io).
 
-By [Mogeko](https://github.com/Mogeko), the author of [mogege](https://github.com/Mogeko/mogege):
-> Because the author of
-> [LeaveIt](https://raw.githubusercontent.com/liuzc/LeaveIt/) seems to have
-> abandoned this project, but I prefer this theme, so I simply reopened a new
-> project.
-> 
-> At this stage, I mainly integrate the part I modified with LeaveIt, and will add
-> more features in the future.
-
-I like this theme named [mogege](https://github.com/Mogeko/mogege), 
-but **some features is modified** for complying with my habits.
-So **that maybe not fit the others**.
-
+**This project is based on [nicesima](https://github.com/niceRAM/nicesima)**
 ## Features
 
 - Images lazy loading
@@ -64,15 +48,14 @@ Here is a table showing the similarities and differences between [nicesima](http
 
 Hugo-extended 0.80.0 or higher
 
-**Hugo extended version**, read more
-[here](https://gohugo.io/news/0.48-relnotes/)
+**Hugo extended version**, read more [here](https://gohugo.io/news/0.48-relnotes/)
 
 ## Installation
 
 Navigate to your hugo project root and run:
 
 ```bash
-git submodule add https://github.com/niceRAM/nicesima themes/nicesima
+git submodule add https://github.com/icyleaf/nicesima themes/nicesima
 ```
 
 Then run hugo (or set `theme: nicesima` in configuration file)
@@ -88,7 +71,7 @@ Below is example how to create new site from scratch
 ```bash
 hugo new site mydocs; cd mydocs
 git init
-git submodule add https://github.com/niceRAM/nicesima  themes/nicesima
+git submodule add https://github.com/icyleaf/nicesima  themes/nicesima
 cp -R themes/nicesima/exampleSite/content .
 ```
 
@@ -231,7 +214,7 @@ or
 {{< es Easy-searched-text bd >}}
 ```
 
-And you can set any of the above search engines as the default in `config.toml` by the following: 
+And you can set any of the above search engines as the default in `config.toml` by the following:
 
 ```toml
 [params]
@@ -256,14 +239,12 @@ autoCollapseToc = true
 
 ## utteranc comment system
 
-This blog supports the 
-[utteranc](https://utteranc.es) comment system. 
+This blog supports the [utteranc](https://utteranc.es) comment system.
 
 It is lighter and more powerful than Gitalk.
 
-To use utteranc, you need make sure the 
-[utterances app](https://github.com/apps/utterances) is 
-installed on the repo, otherwise users will not be able to post comments. 
+To use utteranc, you need make sure the [utterances app](https://github.com/apps/utterances) is
+installed on the repo, otherwise users will not be able to post comments.
 
 Then enable utteranc in config.toml
 
@@ -272,13 +253,13 @@ Then enable utteranc in config.toml
     enableUtteranc = true
 ```
 
-Then Configuration: (For more settings, please refer to 
+Then Configuration: (For more settings, please refer to
 [HomePage](https://utteranc.es))
 
 ```toml
 [params.utteranc] # Homepage: https://utteranc.es
     repo = "" # The repo to store comments
-    issueTerm = "title" # the mapping between blog posts and GitHub issues. 
+    issueTerm = "title" # the mapping between blog posts and GitHub issues.
     theme = "preferred-color-scheme" # Theme
     crossorigin = "anonymous" # default: anonymous
 ```
