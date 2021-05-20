@@ -23,12 +23,11 @@ jobs:
       - name: Build
         run: hugo --minify
 
-      - name: Create cname file
-        run: echo 'icyleaf.com' > public/CNAME
-
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         if: github.ref == 'refs/heads/master'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
+          commit_message: "Deploy: ${{ github.event.head_commit.message }}"
+          cname: icyleaf.com
