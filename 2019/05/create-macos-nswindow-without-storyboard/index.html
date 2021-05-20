@@ -1,137 +1,156 @@
-<!doctype html><html lang=zh><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta property=og:title content="创建无 Storyboard（xib） 的 macOS NSWindow &middot;  icyleaf"><meta property=og:site_name content=icyleaf><meta property=og:url content=https://icyleaf.com/2019/05/create-macos-nswindow-without-storyboard/><meta property=og:type content=article><meta property=og:article:published_time content=2019-05-23T22:45:07&#43;08:00><meta property=og:article:tag content=macOS><title>创建无 Storyboard（xib） 的 macOS NSWindow &middot; icyleaf</title><meta name=description content=热爱户外的码农、下厨初心者><meta name=HandheldFriendly content=True><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" href=https://icyleaf.com/images/favicon.ico><link rel=apple-touch-icon href=https://icyleaf.com/images/apple-touch-icon.png><link rel=stylesheet href=https://icyleaf.com/css/screen.css><link rel=stylesheet href=https://icyleaf.com/css/nav.css><link rel=stylesheet href=https://icyleaf.com/css/highlight/tomorrow-night.css><script src=https://icyleaf.com/js/highlight.pack.js></script><script>hljs.initHighlightingOnLoad();</script><link href=https://icyleaf.com/index.xml rel=alternate type=application/rss+xml title=icyleaf><meta name=generator content="Hugo 0.47.1"><link rel=canonical href=https://icyleaf.com/2019/05/create-macos-nswindow-without-storyboard/><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-2570916-5','auto');ga('send','pageview');</script></head><body class=nav-closed><div class=nav><h3 class=nav-title>Menu</h3><a href=# class=nav-close><span class=hidden>Close</span></a><ul><li class=nav-opened role=presentation><a href=https://icyleaf.com/>Home</a><li class=nav-opened role=presentation><a href=https://icyleaf.com/categories/technology>Technology</a><li class=nav-opened role=presentation><a href=https://icyleaf.com/tags>Tags</a><li class=nav-opened role=presentation><a href=https://icyleaf.com/about>About</a></ul><a class="subscribe-button icon-feed" href=https://icyleaf.com/2019/05/create-macos-nswindow-without-storyboard/>Subscribe</a></div><span class=nav-cover></span><div class=site-wrapper><header class="main-header post-head no-cover"><nav class="main-nav overlay clearfix"><a class=blog-logo href=https://icyleaf.com/><img src=https://icyleaf.com/images/icyleaf-icon.png alt="Blog Logo"></a>
-<a class=menu-button href=#><span class=burger>&#9776;</span><span class=word>Menu</span></a></nav></header><main class=content role=main><article class="post post"><header class=post-header><h1 class=post-title>创建无 Storyboard（xib） 的 macOS NSWindow</h1><small></small><section class=post-meta><time class=post-date datetime=2019-05-23T22:45:07&#43;08:00>May 23, 2019</time>
-<span class="post-tag small"><a href=https://icyleaf.com/tags/macos/>#macOS</a></span></section></header><section class=post-content><h3 id=前言>前言</h3><p>历届 WWDC 众多和 macOS 开发相关的视频中只要涉及到 UI 部分必会牵扯上 Storyboard，它能帮你辅助画 UI，使用 Auto Layout 进行布局，甚至你可以不用写一行代码仅仅使用它和 Core Data 就能完成一个 CURD 的功能。苹果总是极力的推荐所有的开发者（尤其是初学者）使用 Storyboard，它给人最直观的感受，配置参数也都做了调教（有时候开启一个参数需要手敲好多行代码）。<p>但总有那么一群人就是不爱使用 Storyboard（比如我），尤其 App 涉及比较多的界面和交互的时候感觉还是代码更可控，团队开发在代码仓库管理上也更为方便。<p>何奈在网络上存在的绝大多数的教程和视频都是以 Storyboard 为主，稍不留神可能就忘记设置了哪里，再或者过段时间举一反三的时候总会忘记在 Storyboard 设置了什么而无法实现同样的效果。<p>恰好我最近比较闲花了点时间在写 macOS App，过程中体会到了 macOS 和 iOS 两个体系存在了巨大的差异，可能是习惯了 iOS 框架的编码方式就感觉到 macOS 格格不入，想要完成一个在 iOS 上简单的界面但 macOS 上就要想尽各种办法来去实现，迫切期待在马上来临的 WWDC 2019 上宣布新的解决方案。<h3 id=开始教学>开始教学</h3><p>打开 Xcode 选择 macOS 下面的 Cocoa App 进行下一步，填写好项目名称后勾不勾选 <strong>Use Storyboard</strong> 都没有关系，勾选就会创建一个 <code>Main.storyboard</code> 的文件，不勾选也会创建一个 <code>MainMenu.xib</code> 的文件，选择项目保存的路径就创建好第一个项目了。<p>无论默认的是 <code>Main.storyboard</code> 或 <code>MainMenu.xib</code> 都会一个 Main Menu 控件这里咱们先不管它，除此之外还会有一个 Window 控件，一个 macOS App 基础的层级关系是这样的<pre><code class=language-text>+--------------------------------------------------------------+
-|                           NSWindow                           |
-|  +--------------------------------------------------------+  |
-|  |                    NSViewController                    |  |
-|  |  +--------------------------------------------------+  |  |
-|  |  |                      NSView                      |  |  |
-|  |  +--------------------------------------------------+  |  |
-|  +--------------------------------------------------------+  |
-+--------------------------------------------------------------+
-</code></pre><p>选中 Window 控件后后选择删除（<code>Main.storyboard</code> 还需要再删除默认生成的 ViewController 控件），删除后样子是这样的<p><img src=https://icyleaf.com/tutorials/macos-app-without-storyboard/001/shot001-xcode-storyboard.png alt="Storyboard and xib in Xcode"><p>由于我们删除了默认的 NSWindow 因此需要在 <code>Appdelegate.swift</code> 文件创建一个：<pre><code class=language-swift>import Cocoa
-
-@NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
-
-    // 创建默认的 Window
-    lazy var window: NSWindow = {
-       let w = NSWindow(contentRect: NSMakeRect(0, 0, 640, 480),
-                        styleMask: [.titled, .resizable, .miniaturizable, .closable, .fullSizeContentView],
-                        backing: .buffered,
-                        defer: false)
-
-        // 设置最小尺寸
-        w.minSize = NSMakeSize(320, 240)
-
-        // 打开显示在屏幕的中心位置
-        w.center()
-
-        return w
-    }()
-}
-</code></pre><p>默认的 window 设置好了，我们让他赶紧显示出来吧，在 <code>applicationDidFinishLaunching</code> 方法添加如下代码:<pre><code class=language-swift>func applicationDidFinishLaunching(_ aNotification: Notification) {
-    // 设置为 mainWindow 这样我们才能通过下面的代码调用
-    window.makeKeyAndOrderFront(nil)
-
-    // 设置 mainWindow 的标题
-    NSApplication.shared.mainWindow?.title = &quot;Hello world&quot;
-}
-</code></pre><p>注意看上面代码块的备注，这两行代码不能颠倒，否则 <code>NSApplication.shared.mainWindow</code> 返回的是 <code>nil</code>，我们来运行一下看看，是不是就能看到一个 640x480 的窗口，标题显示的 hello world<p><img src=https://icyleaf.com/tutorials/macos-app-without-storyboard/001/shot002-nswindow.png alt="NSWindow App"><p>用鼠标拖拽缩放大小看看是不是到一个保留尺寸就无法再缩小了，这个就是通过代码设置的最小尺寸。虽然 App 可以运行了内容还是空空的，根据上面画出来的层级关系还需要一个 NSViewController 充当 contentViewController，它相当于 iOS 的 rootViewController 这样说应该就很容易理解了吧。<p>假设 App 需要完成这样一个功能，界面有一个 Label 和 Button，点击 Button 可以改变 Label 的文字内容：<pre><code class=language-text>+----------------------+          +----------------------+
-|                      |          |                      |
-|   Click the button   |          |         Yeah!        |
-|                      |          |                      |
-| +------------------+ | -------&gt; | +------------------+ |
-| |     Click me     | |          | |     Click me     | |
-| +------------------+ |          | +------------------+ |
-|                      |          |                      |
-+----------------------+          +----------------------+
-</code></pre><p>我们用原生 Auto Layout 布局后的代码是这样的<pre><code class=language-swift>import Cocoa
-
-class ViewController: NSViewController {
-
-    lazy var label: NSTextField = {
-        let v = NSTextField(labelWithString: &quot;Press the button&quot;)
-        v.translatesAutoresizingMaskIntoConstraints = false
-
-        return v
-    }()
-
-
-    lazy var button: NSButton = {
-        let v = NSButton(frame: .zero)
-        v.translatesAutoresizingMaskIntoConstraints = false
-
-        return v
-    }()
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        view.addSubview(label)
-        view.addSubview(button)
-
-        NSLayoutConstraint.activate([
-            label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            label.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -20),
-
-            button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            button.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 20),
-            button.heightAnchor.constraint(equalToConstant: 30),
-            button.widthAnchor.constraint(equalToConstant: 100)
-            ])
-
-        button.title = &quot;Click me&quot;
-        button.target = self
-        button.action = #selector(onClickme)
-    }
-
-    @objc func onClickme(_ sender: NSButton) {
-        label.textColor = .red
-        label.stringValue = &quot;Yeah!&quot;
-    }
-}
-</code></pre><p>代码看着不错的样子，还差最后一步把 ViewController 添加到 NSWindow 里吧，返回 <code>AppDelegate.swift</code> 文件找到上次编辑的 <code>applicationDidFinishLaunching</code> 方法里面在代码的末尾添加最后的代码：<pre><code class=language-swift>func applicationDidFinishLaunching(_ aNotification: Notification) {
-    // 设置为 mainWindow 这样我们才能通过下面的代码调用
-    window.makeKeyAndOrderFront(nil)
-
-    // 设置 mainWindow 的标题
-    NSApplication.shared.mainWindow?.title = &quot;Hello world&quot;
-
-    // 设置 contentViewController
-    let contentViewController = ViewController() // or ViewController(nibName:nil, bundle: nil)
-    window.contentViewController = contentViewController
-}
-</code></pre><blockquote><p>咦？！你这不对啊，<code>NSViewController</code> 代码在初始化的时候是不能这样的，必须通过 <code>init(coder:)</code> 或 <code>init(nibName:bundle:)</code> 这两种方法才行，这样写运行会提示 &ldquo;could not load the nibName: WithoutStoryboard.ViewController in bundle (null).&rdquo; 错误的！</blockquote><p>观察的不错嘛，这点小细节都你发现了，NSViewController 类通常都是通过 <code>init(nibName:bundle:)</code> 进行初始化来关联 xib 界面，既然我们抛弃了 Storyboard（xib) 那怎么办呢，这里理解 NSViewController 的<a href=https://developer.apple.com/documentation/appkit/nsviewcontroller>生命周期</a> （macOS 10.10 之后版本)<pre><code class=language-text>+----------------------------------+   +------------------------------+
-|               init               +--&gt;+           loadView()         |
-+-----------------+----------------+   +---------------+--------------+
-| Storyboard(xib) |      code      |                   |
-+----------------------------------+                   v
-|  init(coder:)   | init(nibName:  |   +---------------+--------------+
-|                 |      bundle:)  |   |          viewDidLoad()       |
-+-----------------+----------------+   +---------------+--------------+
-                                                       |
-                                                       v
-+----------------------------------+   +---------------+--------------+
-|        viewWillDisappear()       +&lt;--+         viewWillAppear()     |
-+-----------------+----------------+   +------------------------------+
-                  |                    |    updateViewConstraints()   |
-                  |                    |                              |
-                  v                    |       viewWillLayout()       |
-+-----------------+----------------+   |                              |
-|         viewDidDisappear()       |   |        viewDidLayout()       |
-+----------------------------------+   +------------------------------+
-</code></pre><p>生命周期和 iOS 的 UIViewController 也差不多，从上面的生命周期来看只能覆写 loadView 方法才行：<pre><code class=language-swift>class ViewController: NSViewController {
-
-    override func loadView() {
-        // 设置 ViewController 大小同 mainWindow
-        guard let windowRect = NSApplication.shared.mainWindow?.frame else { return }
-        view = NSView(frame: windowRect)
-    }
-
-}
-</code></pre><p>看了上面代码也就明白了为什么在 <code>AppDelegate.swift</code> 设置 contentViewController 需要在代码块的末尾添加了吧，如果在最开始添加那就无法获取到 mainWindow 也就无法设置 ViewController 的 frame。这里还有个小提醒 macOS 10.10 之后版本在覆写该方法如果调用了 <code>super.loadView()</code> 方法就会自动加载同名的 xib 文件<strong>绝对不能填写</strong>。<p>让我们在运行一次看看？<p><img src=https://icyleaf.com/tutorials/macos-app-without-storyboard/001/shot003-final-app.png alt="Final App"><p>Ta-Da! 完成了！<h3 id=结语>结语</h3><p>这算是一个开篇，后续还会再继续整理，尽请期待。</section><footer class=post-footer><figure class=author-image><a class=img href=https://icyleaf.com/ style=background-image:url(/images/icyleaf-icon.png)><span class=hidden>icyleaf's Picture</span></a></figure><section class=author><h4><a href=https://icyleaf.com/>icyleaf</a></h4><p>热爱户外的码农、下厨初心者<div class=author-meta><span class="author-location icon-location">Beijing, China</span>
-<span class="author-link icon-link"><a href=https://icyleaf.com>https://icyleaf.com</a></span></div></section><section class=share><h4>Share this post</h4><a class=icon-twitter href="https://twitter.com/share?text=%e5%88%9b%e5%bb%ba%e6%97%a0%20Storyboard%ef%bc%88xib%ef%bc%89%20%e7%9a%84%20macOS%20NSWindow&nbsp;-&nbsp;icyleaf&amp;url=https%3a%2f%2ficyleaf.com%2f2019%2f05%2fcreate-macos-nswindow-without-storyboard%2f" onclick="window.open(this.href,'twitter-share','width=550,height=235');return false;"><span class=hidden>Twitter</span></a>
-<a class=icon-facebook href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ficyleaf.com%2f2019%2f05%2fcreate-macos-nswindow-without-storyboard%2f" onclick="window.open(this.href,'facebook-share','width=580,height=296');return false;"><span class=hidden>Facebook</span></a>
-<a class=icon-weibo href="http://service.weibo.com/share/share.php?url=https%3a%2f%2ficyleaf.com%2f2019%2f05%2fcreate-macos-nswindow-without-storyboard%2f&amp;title=%e5%88%9b%e5%bb%ba%e6%97%a0%20Storyboard%ef%bc%88xib%ef%bc%89%20%e7%9a%84%20macOS%20NSWindow&nbsp;-&nbsp;icyleaf" onclick="window.open(this.href,'weibo-share','width=580,height=296');return false;"><span class=hidden>新浪微博</span></a>
-<a class=icon-douban href="https://www.douban.com/recommend/?url=https%3a%2f%2ficyleaf.com%2f2019%2f05%2fcreate-macos-nswindow-without-storyboard%2f&title=%e5%88%9b%e5%bb%ba%e6%97%a0%20Storyboard%ef%bc%88xib%ef%bc%89%20%e7%9a%84%20macOS%20NSWindow&v=1" onclick="window.open(this.href,'douban-share','width=580,height=300');return false;"><span class=hidden>豆瓣</span></a></section><div id=disqus_thread></div><script>var disqus_config=function(){this.page.url="https:\/\/icyleaf.com\/2019\/05\/create-macos-nswindow-without-storyboard\/";this.page.identifier="https:\/\/icyleaf.com\/2019\/05\/create-macos-nswindow-without-storyboard\/";};(function(){var d=document,s=d.createElement('script');s.src='https://icyleaf.disqus.com/embed.js';s.setAttribute('data-timestamp',+new Date());(d.head||d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript></footer></article></main><aside class=read-next><a class=read-next-story style=no-cover href=https://icyleaf.com/2019/11/cocoapods-cdn-source-code-reading/><section class=post><h2>Cocoapods 新增 CDN 支持的源码解读</h2></section></a><a class="read-next-story prev" style=no-cover href=https://icyleaf.com/2019/04/apply-thailand-evisa/><section class=post><h2>申请泰国电子落地签答疑解惑</h2></section></a></aside><footer class="site-footer clearfix"><section class=copyright><a href>icyleaf</a> All rights reserved - 2019</section><section class=poweredby>Proudly generated by <a class=icon-hugo href=http://gohugo.io>HUGO</a>, with <a class=icon-theme href=https://github.com/vjeantet/hugo-theme-casper>Casper</a> theme</section></footer></div><script src=https://icyleaf.com/js/jquery.js></script><script src=https://icyleaf.com/js/jquery.fitvids.js></script><script src=https://icyleaf.com/js/index.js></script></body></html>
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="chrome=1"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta name=author content="icyleaf"><meta name=description content="日常写代码热爱户外的梦想家"><link rel=prev href=https://icyleaf.com/2019/04/apply-thailand-evisa/><link rel=next href=https://icyleaf.com/2019/11/cocoapods-cdn-source-code-reading/><link rel=canonical href=https://icyleaf.com/2019/05/create-macos-nswindow-without-storyboard/><link rel=apple-touch-icon sizes=180x180 href=https://icyleaf.com/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=https://icyleaf.com/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=https://icyleaf.com/favicon-16x16.png><link rel=manifest href=https://icyleaf.com/site.webmanifest><link rel=mask-icon href=https://icyleaf.com/safari-pinned-tab.svg color=#5bbad5><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"><title>创建无 Storyboard（xib） 的 macOS NSWindow | icyleaf</title><meta name=title content="创建无 Storyboard（xib） 的 macOS NSWindow | icyleaf"><link rel=stylesheet href=https://icyleaf.com/css/main.min.css><link rel=stylesheet href=https://icyleaf.com/font/iconfont.css><link rel=stylesheet href=https://icyleaf.com/font-ali/iconfont.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/icyleaf.com\/"},"articleSection":"posts","name":"创建无 Storyboard（xib） 的 macOS NSWindow","headline":"创建无 Storyboard（xib） 的 macOS NSWindow","description":"前言 历届 WWDC 众多和 macOS 开发相关的视频中只要涉及到 UI 部分必会牵扯上 Storyboard，它能帮你辅助画 UI，使用 Auto Layout 进行布局，甚至你可以不用写一行","inLanguage":"zh-cn","author":"icyleaf","creator":"icyleaf","publisher":"icyleaf","accountablePerson":"icyleaf","copyrightHolder":"icyleaf","copyrightYear":"2019","datePublished":"2019-05-23 22:45:07 \u002b0800 \u002b0800","dateModified":"2019-05-23 22:45:07 \u002b0800 \u002b0800","url":"https:\/\/icyleaf.com\/2019\/05\/create-macos-nswindow-without-storyboard\/","wordCount":"1872","keywords":["macOS","icyleaf"]}</script></head><body><div class=wrapper><nav class=navbar><progress class=content_progress max=0 value=0></progress><div class=container><div class="navbar-header header-back2home-logo"><span class=logo_mark>>$</span>
+<a href=https://icyleaf.com/><span class=logo_text>cd /home/</span>
+<span class=logo_cursor></span></a></div><div class=navbar-right><span class=menu><a class=menu-item href=https://icyleaf.com/posts title>Posts</a>
+<a class=menu-item href=https://icyleaf.com/categories title>Categories</a>
+<a class=menu-item href=https://icyleaf.com/tags title>Tags</a>
+<a class=menu-item href=https://icyleaf.com/about title>About</a>
+<span class=divide></span><a href=javascript:void(0); class=theme-switch><i class="iconfont icon-dark-mode"></i></a></span></div></div></nav><nav class=navbar-mobile id=nav-mobile style=display:none><progress class=content_progress max=0 value=0></progress><div class=container><div class=navbar><div class="navbar-header header-logo"><a href=https://icyleaf.com/>icyleaf</a></div><div class=navbar-right><div><a href=javascript:void(0); class=theme-switch><i class="iconfont icon-dark-mode"></i></a></div><div class=menu-toggle><span></span><span></span><span></span></div></div></div><div class=menu id=mobile-menu><nav class=mb-md><a class=menu-item href=https://icyleaf.com/posts title><h3>Posts</h3><div class=menu-active></div></a><a class=menu-item href=https://icyleaf.com/categories title><h3>Categories</h3><div class=menu-active></div></a><a class=menu-item href=https://icyleaf.com/tags title><h3>Tags</h3><div class=menu-active></div></a><a class=menu-item href=https://icyleaf.com/about title><h3>About</h3><div class=menu-active></div></a></nav></div></div></nav><main class=main><div class=container><article class=post-warp itemscope itemtype=http://schema.org/Article><header class=post-header><h1 class=post-title itemprop="name headline">创建无 Storyboard（xib） 的 macOS NSWindow</h1><div class=post-meta>Written by <a itemprop=name href=https://icyleaf.com/ rel=author>icyleaf</a> with ♥
+<span class=post-time>on <time datetime=2019-05-23 itemprop=datePublished>May 23, 2019</time></span>
+in
+<i class="iconfont icon-folder"></i>
+<span class=post-category><a href=https://icyleaf.com/categories/technology/>Technology,</a></span>
+<span class=post-word-count>1872 words</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title></h2><div class="post-toc-content always-active"><nav id=TableOfContents><ul><li><ul><li><a href=#前言>前言</a></li><li><a href=#开始教学>开始教学</a></li><li><a href=#结语>结语</a></li></ul></li></ul></nav></div></div><div class=post-content><h3 id=前言>前言</h3><p>历届 WWDC 众多和 macOS 开发相关的视频中只要涉及到 UI 部分必会牵扯上 Storyboard，它能帮你辅助画 UI，使用 Auto Layout 进行布局，甚至你可以不用写一行代码仅仅使用它和 Core Data 就能完成一个 CURD 的功能。苹果总是极力的推荐所有的开发者（尤其是初学者）使用 Storyboard，它给人最直观的感受，配置参数也都做了调教（有时候开启一个参数需要手敲好多行代码）。</p><p>但总有那么一群人就是不爱使用 Storyboard（比如我），尤其 App 涉及比较多的界面和交互的时候感觉还是代码更可控，团队开发在代码仓库管理上也更为方便。</p><p>何奈在网络上存在的绝大多数的教程和视频都是以 Storyboard 为主，稍不留神可能就忘记设置了哪里，再或者过段时间举一反三的时候总会忘记在 Storyboard 设置了什么而无法实现同样的效果。</p><p>恰好我最近比较闲花了点时间在写 macOS App，过程中体会到了 macOS 和 iOS 两个体系存在了巨大的差异，可能是习惯了 iOS 框架的编码方式就感觉到 macOS 格格不入，想要完成一个在 iOS 上简单的界面但 macOS 上就要想尽各种办法来去实现，迫切期待在马上来临的 WWDC 2019 上宣布新的解决方案。</p><h3 id=开始教学>开始教学</h3><p>打开 Xcode 选择 macOS 下面的 Cocoa App 进行下一步，填写好项目名称后勾不勾选 <strong>Use Storyboard</strong> 都没有关系，勾选就会创建一个 <code>Main.storyboard</code> 的文件，不勾选也会创建一个 <code>MainMenu.xib</code> 的文件，选择项目保存的路径就创建好第一个项目了。</p><p>无论默认的是 <code>Main.storyboard</code> 或 <code>MainMenu.xib</code> 都会一个 Main Menu 控件这里咱们先不管它，除此之外还会有一个 Window 控件，一个 macOS App 基础的层级关系是这样的</p><div class=highlight><pre class=chroma><code class=language-text data-lang=text><span class=ln>1</span>+--------------------------------------------------------------+
+<span class=ln>2</span>|                           NSWindow                           |
+<span class=ln>3</span>|  +--------------------------------------------------------+  |
+<span class=ln>4</span>|  |                    NSViewController                    |  |
+<span class=ln>5</span>|  |  +--------------------------------------------------+  |  |
+<span class=ln>6</span>|  |  |                      NSView                      |  |  |
+<span class=ln>7</span>|  |  +--------------------------------------------------+  |  |
+<span class=ln>8</span>|  +--------------------------------------------------------+  |
+<span class=ln>9</span>+--------------------------------------------------------------+
+</code></pre></div><p>选中 Window 控件后后选择删除（<code>Main.storyboard</code> 还需要再删除默认生成的 ViewController 控件），删除后样子是这样的</p><p><img src=https://icyleaf.com/tutorials/macos-app-without-storyboard/001/shot001-xcode-storyboard.png alt="Storyboard and xib in Xcode" loading=lazy></p><p>由于我们删除了默认的 NSWindow 因此需要在 <code>Appdelegate.swift</code> 文件创建一个：</p><div class=highlight><pre class=chroma><code class=language-swift data-lang=swift><span class=ln> 1</span><span class=kd>import</span> <span class=nc>Cocoa</span>
+<span class=ln> 2</span>
+<span class=ln> 3</span><span class=kr>@NSApplicationMain</span>
+<span class=ln> 4</span><span class=kd>class</span> <span class=nc>AppDelegate</span><span class=p>:</span> <span class=n>NSObject</span><span class=p>,</span> <span class=n>NSApplicationDelegate</span> <span class=p>{</span>
+<span class=ln> 5</span>
+<span class=ln> 6</span>    <span class=c1>// 创建默认的 Window</span>
+<span class=ln> 7</span>    <span class=kr>lazy</span> <span class=kd>var</span> <span class=nv>window</span><span class=p>:</span> <span class=n>NSWindow</span> <span class=p>=</span> <span class=p>{</span>
+<span class=ln> 8</span>       <span class=kd>let</span> <span class=nv>w</span> <span class=p>=</span> <span class=n>NSWindow</span><span class=p>(</span><span class=n>contentRect</span><span class=p>:</span> <span class=n>NSMakeRect</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=mi>640</span><span class=p>,</span> <span class=mi>480</span><span class=p>),</span>
+<span class=ln> 9</span>                        <span class=n>styleMask</span><span class=p>:</span> <span class=p>[.</span><span class=n>titled</span><span class=p>,</span> <span class=p>.</span><span class=n>resizable</span><span class=p>,</span> <span class=p>.</span><span class=n>miniaturizable</span><span class=p>,</span> <span class=p>.</span><span class=n>closable</span><span class=p>,</span> <span class=p>.</span><span class=n>fullSizeContentView</span><span class=p>],</span>
+<span class=ln>10</span>                        <span class=n>backing</span><span class=p>:</span> <span class=p>.</span><span class=n>buffered</span><span class=p>,</span>
+<span class=ln>11</span>                        <span class=k>defer</span><span class=p>:</span> <span class=kc>false</span><span class=p>)</span>
+<span class=ln>12</span>
+<span class=ln>13</span>        <span class=c1>// 设置最小尺寸</span>
+<span class=ln>14</span>        <span class=n>w</span><span class=p>.</span><span class=n>minSize</span> <span class=p>=</span> <span class=n>NSMakeSize</span><span class=p>(</span><span class=mi>320</span><span class=p>,</span> <span class=mi>240</span><span class=p>)</span>
+<span class=ln>15</span>
+<span class=ln>16</span>        <span class=c1>// 打开显示在屏幕的中心位置</span>
+<span class=ln>17</span>        <span class=n>w</span><span class=p>.</span><span class=n>center</span><span class=p>()</span>
+<span class=ln>18</span>
+<span class=ln>19</span>        <span class=k>return</span> <span class=n>w</span>
+<span class=ln>20</span>    <span class=p>}()</span>
+<span class=ln>21</span><span class=p>}</span>
+</code></pre></div><p>默认的 window 设置好了，我们让他赶紧显示出来吧，在 <code>applicationDidFinishLaunching</code> 方法添加如下代码:</p><div class=highlight><pre class=chroma><code class=language-swift data-lang=swift><span class=ln>1</span><span class=kd>func</span> <span class=nf>applicationDidFinishLaunching</span><span class=p>(</span><span class=kc>_</span> <span class=n>aNotification</span><span class=p>:</span> <span class=n>Notification</span><span class=p>)</span> <span class=p>{</span>
+<span class=ln>2</span>    <span class=c1>// 设置为 mainWindow 这样我们才能通过下面的代码调用</span>
+<span class=ln>3</span>    <span class=n>window</span><span class=p>.</span><span class=n>makeKeyAndOrderFront</span><span class=p>(</span><span class=kc>nil</span><span class=p>)</span>
+<span class=ln>4</span>
+<span class=ln>5</span>    <span class=c1>// 设置 mainWindow 的标题</span>
+<span class=ln>6</span>    <span class=n>NSApplication</span><span class=p>.</span><span class=n>shared</span><span class=p>.</span><span class=n>mainWindow</span><span class=p>?.</span><span class=n>title</span> <span class=p>=</span> <span class=s>&#34;Hello world&#34;</span>
+<span class=ln>7</span><span class=p>}</span>
+</code></pre></div><p>注意看上面代码块的备注，这两行代码不能颠倒，否则 <code>NSApplication.shared.mainWindow</code> 返回的是 <code>nil</code>，我们来运行一下看看，是不是就能看到一个 640x480 的窗口，标题显示的 hello world</p><p><img src=https://icyleaf.com/tutorials/macos-app-without-storyboard/001/shot002-nswindow.png alt="NSWindow App" loading=lazy></p><p>用鼠标拖拽缩放大小看看是不是到一个保留尺寸就无法再缩小了，这个就是通过代码设置的最小尺寸。虽然 App 可以运行了内容还是空空的，根据上面画出来的层级关系还需要一个 NSViewController 充当 contentViewController，它相当于 iOS 的 rootViewController 这样说应该就很容易理解了吧。</p><p>假设 App 需要完成这样一个功能，界面有一个 Label 和 Button，点击 Button 可以改变 Label 的文字内容：</p><div class=highlight><pre class=chroma><code class=language-text data-lang=text><span class=ln>1</span>+----------------------+          +----------------------+
+<span class=ln>2</span>|                      |          |                      |
+<span class=ln>3</span>|   Click the button   |          |         Yeah!        |
+<span class=ln>4</span>|                      |          |                      |
+<span class=ln>5</span>| +------------------+ | -------&gt; | +------------------+ |
+<span class=ln>6</span>| |     Click me     | |          | |     Click me     | |
+<span class=ln>7</span>| +------------------+ |          | +------------------+ |
+<span class=ln>8</span>|                      |          |                      |
+<span class=ln>9</span>+----------------------+          +----------------------+
+</code></pre></div><p>我们用原生 Auto Layout 布局后的代码是这样的</p><div class=highlight><pre class=chroma><code class=language-swift data-lang=swift><span class=ln> 1</span><span class=kd>import</span> <span class=nc>Cocoa</span>
+<span class=ln> 2</span>
+<span class=ln> 3</span><span class=kd>class</span> <span class=nc>ViewController</span><span class=p>:</span> <span class=n>NSViewController</span> <span class=p>{</span>
+<span class=ln> 4</span>
+<span class=ln> 5</span>    <span class=kr>lazy</span> <span class=kd>var</span> <span class=nv>label</span><span class=p>:</span> <span class=n>NSTextField</span> <span class=p>=</span> <span class=p>{</span>
+<span class=ln> 6</span>        <span class=kd>let</span> <span class=nv>v</span> <span class=p>=</span> <span class=n>NSTextField</span><span class=p>(</span><span class=n>labelWithString</span><span class=p>:</span> <span class=s>&#34;Press the button&#34;</span><span class=p>)</span>
+<span class=ln> 7</span>        <span class=n>v</span><span class=p>.</span><span class=n>translatesAutoresizingMaskIntoConstraints</span> <span class=p>=</span> <span class=kc>false</span>
+<span class=ln> 8</span>
+<span class=ln> 9</span>        <span class=k>return</span> <span class=n>v</span>
+<span class=ln>10</span>    <span class=p>}()</span>
+<span class=ln>11</span>
+<span class=ln>12</span>
+<span class=ln>13</span>    <span class=kr>lazy</span> <span class=kd>var</span> <span class=nv>button</span><span class=p>:</span> <span class=n>NSButton</span> <span class=p>=</span> <span class=p>{</span>
+<span class=ln>14</span>        <span class=kd>let</span> <span class=nv>v</span> <span class=p>=</span> <span class=n>NSButton</span><span class=p>(</span><span class=n>frame</span><span class=p>:</span> <span class=p>.</span><span class=n>zero</span><span class=p>)</span>
+<span class=ln>15</span>        <span class=n>v</span><span class=p>.</span><span class=n>translatesAutoresizingMaskIntoConstraints</span> <span class=p>=</span> <span class=kc>false</span>
+<span class=ln>16</span>
+<span class=ln>17</span>        <span class=k>return</span> <span class=n>v</span>
+<span class=ln>18</span>    <span class=p>}()</span>
+<span class=ln>19</span>
+<span class=ln>20</span>    <span class=kr>override</span> <span class=kd>func</span> <span class=nf>viewDidLoad</span><span class=p>()</span> <span class=p>{</span>
+<span class=ln>21</span>        <span class=kc>super</span><span class=p>.</span><span class=n>viewDidLoad</span><span class=p>()</span>
+<span class=ln>22</span>
+<span class=ln>23</span>        <span class=n>view</span><span class=p>.</span><span class=n>addSubview</span><span class=p>(</span><span class=n>label</span><span class=p>)</span>
+<span class=ln>24</span>        <span class=n>view</span><span class=p>.</span><span class=n>addSubview</span><span class=p>(</span><span class=n>button</span><span class=p>)</span>
+<span class=ln>25</span>
+<span class=ln>26</span>        <span class=n>NSLayoutConstraint</span><span class=p>.</span><span class=n>activate</span><span class=p>([</span>
+<span class=ln>27</span>            <span class=n>label</span><span class=p>.</span><span class=n>centerXAnchor</span><span class=p>.</span><span class=n>constraint</span><span class=p>(</span><span class=n>equalTo</span><span class=p>:</span> <span class=n>view</span><span class=p>.</span><span class=n>centerXAnchor</span><span class=p>),</span>
+<span class=ln>28</span>            <span class=n>label</span><span class=p>.</span><span class=n>centerYAnchor</span><span class=p>.</span><span class=n>constraint</span><span class=p>(</span><span class=n>equalTo</span><span class=p>:</span> <span class=n>view</span><span class=p>.</span><span class=n>centerYAnchor</span><span class=p>,</span> <span class=n>constant</span><span class=p>:</span> <span class=o>-</span><span class=mi>20</span><span class=p>),</span>
+<span class=ln>29</span>
+<span class=ln>30</span>            <span class=n>button</span><span class=p>.</span><span class=n>centerXAnchor</span><span class=p>.</span><span class=n>constraint</span><span class=p>(</span><span class=n>equalTo</span><span class=p>:</span> <span class=n>view</span><span class=p>.</span><span class=n>centerXAnchor</span><span class=p>),</span>
+<span class=ln>31</span>            <span class=n>button</span><span class=p>.</span><span class=n>topAnchor</span><span class=p>.</span><span class=n>constraint</span><span class=p>(</span><span class=n>equalTo</span><span class=p>:</span> <span class=n>label</span><span class=p>.</span><span class=n>bottomAnchor</span><span class=p>,</span> <span class=n>constant</span><span class=p>:</span> <span class=mi>20</span><span class=p>),</span>
+<span class=ln>32</span>            <span class=n>button</span><span class=p>.</span><span class=n>heightAnchor</span><span class=p>.</span><span class=n>constraint</span><span class=p>(</span><span class=n>equalToConstant</span><span class=p>:</span> <span class=mi>30</span><span class=p>),</span>
+<span class=ln>33</span>            <span class=n>button</span><span class=p>.</span><span class=n>widthAnchor</span><span class=p>.</span><span class=n>constraint</span><span class=p>(</span><span class=n>equalToConstant</span><span class=p>:</span> <span class=mi>100</span><span class=p>)</span>
+<span class=ln>34</span>            <span class=p>])</span>
+<span class=ln>35</span>
+<span class=ln>36</span>        <span class=n>button</span><span class=p>.</span><span class=n>title</span> <span class=p>=</span> <span class=s>&#34;Click me&#34;</span>
+<span class=ln>37</span>        <span class=n>button</span><span class=p>.</span><span class=n>target</span> <span class=p>=</span> <span class=kc>self</span>
+<span class=ln>38</span>        <span class=n>button</span><span class=p>.</span><span class=n>action</span> <span class=p>=</span> <span class=k>#selector</span><span class=p>(</span><span class=n>onClickme</span><span class=p>)</span>
+<span class=ln>39</span>    <span class=p>}</span>
+<span class=ln>40</span>
+<span class=ln>41</span>    <span class=kr>@objc</span> <span class=kd>func</span> <span class=nf>onClickme</span><span class=p>(</span><span class=kc>_</span> <span class=n>sender</span><span class=p>:</span> <span class=n>NSButton</span><span class=p>)</span> <span class=p>{</span>
+<span class=ln>42</span>        <span class=n>label</span><span class=p>.</span><span class=n>textColor</span> <span class=p>=</span> <span class=p>.</span><span class=n>red</span>
+<span class=ln>43</span>        <span class=n>label</span><span class=p>.</span><span class=n>stringValue</span> <span class=p>=</span> <span class=s>&#34;Yeah!&#34;</span>
+<span class=ln>44</span>    <span class=p>}</span>
+<span class=ln>45</span><span class=p>}</span>
+</code></pre></div><p>代码看着不错的样子，还差最后一步把 ViewController 添加到 NSWindow 里吧，返回 <code>AppDelegate.swift</code> 文件找到上次编辑的 <code>applicationDidFinishLaunching</code> 方法里面在代码的末尾添加最后的代码：</p><div class=highlight><pre class=chroma><code class=language-swift data-lang=swift><span class=ln> 1</span><span class=kd>func</span> <span class=nf>applicationDidFinishLaunching</span><span class=p>(</span><span class=kc>_</span> <span class=n>aNotification</span><span class=p>:</span> <span class=n>Notification</span><span class=p>)</span> <span class=p>{</span>
+<span class=ln> 2</span>    <span class=c1>// 设置为 mainWindow 这样我们才能通过下面的代码调用</span>
+<span class=ln> 3</span>    <span class=n>window</span><span class=p>.</span><span class=n>makeKeyAndOrderFront</span><span class=p>(</span><span class=kc>nil</span><span class=p>)</span>
+<span class=ln> 4</span>
+<span class=ln> 5</span>    <span class=c1>// 设置 mainWindow 的标题</span>
+<span class=ln> 6</span>    <span class=n>NSApplication</span><span class=p>.</span><span class=n>shared</span><span class=p>.</span><span class=n>mainWindow</span><span class=p>?.</span><span class=n>title</span> <span class=p>=</span> <span class=s>&#34;Hello world&#34;</span>
+<span class=ln> 7</span>
+<span class=ln> 8</span>    <span class=c1>// 设置 contentViewController</span>
+<span class=ln> 9</span>    <span class=kd>let</span> <span class=nv>contentViewController</span> <span class=p>=</span> <span class=n>ViewController</span><span class=p>()</span> <span class=c1>// or ViewController(nibName:nil, bundle: nil)</span>
+<span class=ln>10</span>    <span class=n>window</span><span class=p>.</span><span class=n>contentViewController</span> <span class=p>=</span> <span class=n>contentViewController</span>
+<span class=ln>11</span><span class=p>}</span>
+</code></pre></div><blockquote><p>咦？！你这不对啊，<code>NSViewController</code> 代码在初始化的时候是不能这样的，必须通过 <code>init(coder:)</code> 或 <code>init(nibName:bundle:)</code> 这两种方法才行，这样写运行会提示 &ldquo;could not load the nibName: WithoutStoryboard.ViewController in bundle (null).&rdquo; 错误的！</p></blockquote><p>观察的不错嘛，这点小细节都你发现了，NSViewController 类通常都是通过 <code>init(nibName:bundle:)</code> 进行初始化来关联 xib 界面，既然我们抛弃了 Storyboard（xib) 那怎么办呢，这里理解 NSViewController 的<a href=https://developer.apple.com/documentation/appkit/nsviewcontroller>生命周期</a> （macOS 10.10 之后版本)</p><div class=highlight><pre class=chroma><code class=language-text data-lang=text><span class=ln> 1</span>+----------------------------------+   +------------------------------+
+<span class=ln> 2</span>|               init               +--&gt;+           loadView()         |
+<span class=ln> 3</span>+-----------------+----------------+   +---------------+--------------+
+<span class=ln> 4</span>| Storyboard(xib) |      code      |                   |
+<span class=ln> 5</span>+----------------------------------+                   v
+<span class=ln> 6</span>|  init(coder:)   | init(nibName:  |   +---------------+--------------+
+<span class=ln> 7</span>|                 |      bundle:)  |   |          viewDidLoad()       |
+<span class=ln> 8</span>+-----------------+----------------+   +---------------+--------------+
+<span class=ln> 9</span>                                                       |
+<span class=ln>10</span>                                                       v
+<span class=ln>11</span>+----------------------------------+   +---------------+--------------+
+<span class=ln>12</span>|        viewWillDisappear()       +&lt;--+         viewWillAppear()     |
+<span class=ln>13</span>+-----------------+----------------+   +------------------------------+
+<span class=ln>14</span>                  |                    |    updateViewConstraints()   |
+<span class=ln>15</span>                  |                    |                              |
+<span class=ln>16</span>                  v                    |       viewWillLayout()       |
+<span class=ln>17</span>+-----------------+----------------+   |                              |
+<span class=ln>18</span>|         viewDidDisappear()       |   |        viewDidLayout()       |
+<span class=ln>19</span>+----------------------------------+   +------------------------------+
+</code></pre></div><p>生命周期和 iOS 的 UIViewController 也差不多，从上面的生命周期来看只能覆写 loadView 方法才行：</p><div class=highlight><pre class=chroma><code class=language-swift data-lang=swift><span class=ln>1</span><span class=kd>class</span> <span class=nc>ViewController</span><span class=p>:</span> <span class=n>NSViewController</span> <span class=p>{</span>
+<span class=ln>2</span>
+<span class=ln>3</span>    <span class=kr>override</span> <span class=kd>func</span> <span class=nf>loadView</span><span class=p>()</span> <span class=p>{</span>
+<span class=ln>4</span>        <span class=c1>// 设置 ViewController 大小同 mainWindow</span>
+<span class=ln>5</span>        <span class=k>guard</span> <span class=kd>let</span> <span class=nv>windowRect</span> <span class=p>=</span> <span class=n>NSApplication</span><span class=p>.</span><span class=n>shared</span><span class=p>.</span><span class=n>mainWindow</span><span class=p>?.</span><span class=n>frame</span> <span class=k>else</span> <span class=p>{</span> <span class=k>return</span> <span class=p>}</span>
+<span class=ln>6</span>        <span class=n>view</span> <span class=p>=</span> <span class=n>NSView</span><span class=p>(</span><span class=n>frame</span><span class=p>:</span> <span class=n>windowRect</span><span class=p>)</span>
+<span class=ln>7</span>    <span class=p>}</span>
+<span class=ln>8</span>
+<span class=ln>9</span><span class=p>}</span>
+</code></pre></div><p>看了上面代码也就明白了为什么在 <code>AppDelegate.swift</code> 设置 contentViewController 需要在代码块的末尾添加了吧，如果在最开始添加那就无法获取到 mainWindow 也就无法设置 ViewController 的 frame。这里还有个小提醒 macOS 10.10 之后版本在覆写该方法如果调用了 <code>super.loadView()</code> 方法就会自动加载同名的 xib 文件<strong>绝对不能填写</strong>。</p><p>让我们在运行一次看看？</p><p><img src=https://icyleaf.com/tutorials/macos-app-without-storyboard/001/shot003-final-app.png alt="Final App" loading=lazy></p><p>Ta-Da! 完成了！</p><h3 id=结语>结语</h3><p>这算是一个开篇，后续还会再继续整理，尽请期待。</p></div><div class=post-copyright><p class=copyright-item><span>Author:</span>
+<span>icyleaf</span></p><p class=copyright-item><span>Link:</span>
+<a href=https://icyleaf.com/2019/05/create-macos-nswindow-without-storyboard/>https://icyleaf.com/2019/05/create-macos-nswindow-without-storyboard/</a></p></div><div class=post-tags><section><i class="iconfont icon-tag"></i>Tag(s):
+<span class=tag><a href=https://icyleaf.com/tags/macos/>#macOS</a></span></section><section><a href=javascript:window.history.back();>back</a></span> ·
+<span><a href=https://icyleaf.com/>home</a></span></section></div><div class=post-nav><a href=https://icyleaf.com/2019/04/apply-thailand-evisa/ class=prev rel=prev title=申请泰国电子落地签答疑解惑><i class="iconfont icon-left"></i>&nbsp;申请泰国电子落地签答疑解惑</a>
+<a href=https://icyleaf.com/2019/11/cocoapods-cdn-source-code-reading/ class=next rel=next title="Cocoapods 新增 CDN 支持的源码解读">Cocoapods 新增 CDN 支持的源码解读&nbsp;<i class="iconfont icon-right"></i></a></div><div class=post-social><div class=social-links><style type=text/css>@font-face{font-family:iconfont;src:url(//at.alicdn.com/t/font_1910062_4213q7gpkpy.eot);src:url(//at.alicdn.com/t/font_1910062_4213q7gpkpy.eot?#iefix)format('embedded-opentype'),url(//at.alicdn.com/t/font_1910062_4213q7gpkpy.woff2)format('woff2'),url(//at.alicdn.com/t/font_1910062_4213q7gpkpy.woff)format('woff'),url(//at.alicdn.com/t/font_1910062_4213q7gpkpy.ttf)format('truetype'),url(//at.alicdn.com/t/font_1910062_4213q7gpkpy.svg#iconfont)format('svg')}</style><a class=bloglogo href=https://github.com/icyleaf target=_blank rel="me noopener"><i class="iconfont icon-github" alt=github></i></a>
+<a class=bloglogo href=https://twitter.com/icyleaf target=_blank rel="me noopener"><i class="iconfont icon-twitter" alt=twitter></i></a>
+<a class=bloglogo href=https://www.facebook.com/icyleaf target=_blank rel="me noopener"><i class="iconfont icon-facebook" alt=facebook></i></a>
+<a class=bloglogo href=https://www.linkedin.com/in/icyleaf target=_blank rel="me noopener"><i class="iconfont icon-linkedin" alt=linkedin></i></a>
+<a class=bloglogo href=https://www.instagram.com/icyleaf/ target=_blank rel="me noopener"><i class="iconfont icon-instagram" alt=instagram></i></a>
+<a class=bloglogo href=https://www.douban.com/people/icyleaf target=_blank rel="me noopener"><i class="iconfont icon-douban" alt=douban></i></a></div></div><div class=post-comment><div id=disqus_thread></div><script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return}var b=document,a=b.createElement('script');a.async=!0,a.src='//icyleaf.disqus.com/embed.js',a.setAttribute('data-timestamp',+new Date),(b.head||b.body).appendChild(a)})()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div></article></div></main><footer class=footer><div class=copyright>&copy;
+<span itemprop=copyrightYear>2005 - 2021</span>
+<span>🍺</span>
+<span class=author itemprop=copyrightHolder><a href=https://icyleaf.com/>icyleaf</a></span>
+| <span>Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow">Hugo</a> & <a href=https://github.com/icyleaf/hugo-theme-nicesima target=_blank rel="external nofollow">nicesima</a></span></div></footer><script src=https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js crossorigin=anonymous></script><script defer src=https://icyleaf.com/js/vendor_main.min.js></script><script src=https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin=anonymous></script><script>pangu.spacingPage()</script><script>(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-2570916-5','auto'),ga('send','pageview')</script></div></body></html>

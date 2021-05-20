@@ -1,84 +1,103 @@
-<!doctype html><html lang=zh><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta property=og:title content="如何获取 Element 的 XPath [PHP/Javascript] &middot;  icyleaf"><meta property=og:site_name content=icyleaf><meta property=og:url content=https://icyleaf.com/2010/04/how-to-get-xpath-of-an-element-for-php-and-javascript/><meta property=og:type content=article><meta property=og:article:published_time content=2010-04-02T12:34:56&#43;08:00><meta property=og:article:tag content=PHP><meta property=og:article:tag content=Javascript><title>如何获取 Element 的 XPath [PHP/Javascript] &middot; icyleaf</title><meta name=description content=热爱户外的码农、下厨初心者><meta name=HandheldFriendly content=True><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" href=https://icyleaf.com/images/favicon.ico><link rel=apple-touch-icon href=https://icyleaf.com/images/apple-touch-icon.png><link rel=stylesheet href=https://icyleaf.com/css/screen.css><link rel=stylesheet href=https://icyleaf.com/css/nav.css><link rel=stylesheet href=https://icyleaf.com/css/highlight/tomorrow-night.css><script src=https://icyleaf.com/js/highlight.pack.js></script><script>hljs.initHighlightingOnLoad();</script><link href=https://icyleaf.com/index.xml rel=alternate type=application/rss+xml title=icyleaf><meta name=generator content="Hugo 0.47.1"><link rel=canonical href=https://icyleaf.com/2010/04/how-to-get-xpath-of-an-element-for-php-and-javascript/><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-2570916-5','auto');ga('send','pageview');</script></head><body class=nav-closed><div class=nav><h3 class=nav-title>Menu</h3><a href=# class=nav-close><span class=hidden>Close</span></a><ul><li class=nav-opened role=presentation><a href=https://icyleaf.com/>Home</a><li class=nav-opened role=presentation><a href=https://icyleaf.com/categories/technology>Technology</a><li class=nav-opened role=presentation><a href=https://icyleaf.com/tags>Tags</a><li class=nav-opened role=presentation><a href=https://icyleaf.com/about>About</a></ul><a class="subscribe-button icon-feed" href=https://icyleaf.com/2010/04/how-to-get-xpath-of-an-element-for-php-and-javascript/>Subscribe</a></div><span class=nav-cover></span><div class=site-wrapper><header class="main-header post-head no-cover"><nav class="main-nav overlay clearfix"><a class=blog-logo href=https://icyleaf.com/><img src=https://icyleaf.com/images/icyleaf-icon.png alt="Blog Logo"></a>
-<a class=menu-button href=#><span class=burger>&#9776;</span><span class=word>Menu</span></a></nav></header><main class=content role=main><article class="post post"><header class=post-header><h1 class=post-title>如何获取 Element 的 XPath [PHP/Javascript]</h1><small></small><section class=post-meta><time class=post-date datetime=2010-04-02T12:34:56&#43;08:00>Apr 2, 2010</time>
-<span class="post-tag small"><a href=https://icyleaf.com/tags/php/>#PHP</a></span>
-<span class="post-tag small"><a href=https://icyleaf.com/tags/javascript/>#Javascript</a></span></section></header><section class=post-content><p>这两天研究 HTML 的 DOM 需要寻找某个 Element 元素的完整 XPath 路径，由于使用的是 <a href=http://simplehtmldom.sourceforge.net/manual.htm>PHP Simple HTML DOM Parser</a> 开源库，这个库类的使用方法几乎兼容 Javascript 的 DOM 语法并附带 DOM 选择器。虽然功能强大但是并不能直接获取 Element 的 XPath。这个怎么办呢，依稀记得 Firebug 有一个功能，选择某个元素在它的控制台可以显示 XPath。嗯，着手实践一下发现不仅可以显示而且还可以复制 XPath。<p>于是想，如果可以找到 Javascript 版的相关代码就一定可以改成 PHP 版本的，结果在 Google 搜索找到了&hellip;<pre><code>var elt = document.getElementById('table');
-var xpath = getElementXPath(elt);alert(xpath);
-
-// Get full XPath of an element
-function getElementXPath(elt){  
-	var path = &quot;&quot;;   
-	for (; elt &amp;&amp; elt.nodeType == 1; elt = elt.parentNode)   
-	{        
-		idx = getElementIdx(elt);        
-		xname = elt.tagName;     
-		if (idx &gt; 1) xname += &quot;[&quot; + idx + &quot;]&quot;;       
-		path = &quot;/&quot; + xname + path;   
-	}
-	return path;    
-}
-
-// Get Idx of an element
-function getElementIdx(elt){    
-	var count = 1;    
-	for (var sib = elt.previousSibling; sib ; sib = sib.previousSibling)    
-	{        
-		if(sib.nodeType == 1 &amp;&amp; sib.tagName == elt.tagName)  count++    
-	}        
-	return count;
-}
-</code></pre><p>PHP 改进版：<pre><code>// Use it before import PHP Simple HTML DOM Parser
-$html = file_get_html('http://www.google.com/');
-
-// find a sample element by id
-$elt1 = $html-&gt;find('#footer', 0);
-
-// find a sample element by tag name
-$elt2= $html-&gt;find('div', 10);
-
-// it will return if found it: [@id=&quot;footer&quot;]
-$xpath = getElementXPath($elt1);
-
-// it will return if found it: html/body/div[10]
-$xpath = getElementXPath($elt2);
-
-function getElementXPath($elt){    
-	$path = '';  
-	$first = TRUE;   
-	for(; ($elt AND $elt-&gt;nodetype == 1); $elt = $elt-&gt;parent())
-	{        
-		$xname = $elt-&gt;tag;      
-		$idx = getElementIdx($elt);           
-		if ($first AND isset($elt-&gt;attr['id']))      
-		{            
-			$path = '//*[@id=&quot;' . $elt-&gt;attr['id'] . '&quot;]';           
-			break;      
-		}             
-
-		if ($idx &gt; 1)       
-		{            
-			%xname .= '[' . $idx . ']';      
-		}             
-
-		$path = '/'.$xname.$path;             
-		$first = FALSE;  
-	}     
-
-	return $path;
-}
-
-function getElementIdx($elt){    
-	$count = 1;    
-	for($sib = $elt-&gt;prev_sibling(); $sib ; $sib = $sib-&gt;prev_sibling())    
-	{        
-		if($sib-&gt;nodetype == 1 &amp;&amp; $sib-&gt;tag == $elt-&gt;tag)        
-		{         
-			$count++;        
-		}    
-	}        
-	return $count;
-}
-</code></pre><p>大家同样可以把上面的代码直接 crack 到 PHP Simple HTML DOM Parser 库中。</section><footer class=post-footer><figure class=author-image><a class=img href=https://icyleaf.com/ style=background-image:url(/images/icyleaf-icon.png)><span class=hidden>icyleaf's Picture</span></a></figure><section class=author><h4><a href=https://icyleaf.com/>icyleaf</a></h4><p>热爱户外的码农、下厨初心者<div class=author-meta><span class="author-location icon-location">Beijing, China</span>
-<span class="author-link icon-link"><a href=https://icyleaf.com>https://icyleaf.com</a></span></div></section><section class=share><h4>Share this post</h4><a class=icon-twitter href="https://twitter.com/share?text=%e5%a6%82%e4%bd%95%e8%8e%b7%e5%8f%96%20Element%20%e7%9a%84%20XPath%20%5bPHP%2fJavascript%5d&nbsp;-&nbsp;icyleaf&amp;url=https%3a%2f%2ficyleaf.com%2f2010%2f04%2fhow-to-get-xpath-of-an-element-for-php-and-javascript%2f" onclick="window.open(this.href,'twitter-share','width=550,height=235');return false;"><span class=hidden>Twitter</span></a>
-<a class=icon-facebook href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ficyleaf.com%2f2010%2f04%2fhow-to-get-xpath-of-an-element-for-php-and-javascript%2f" onclick="window.open(this.href,'facebook-share','width=580,height=296');return false;"><span class=hidden>Facebook</span></a>
-<a class=icon-weibo href="http://service.weibo.com/share/share.php?url=https%3a%2f%2ficyleaf.com%2f2010%2f04%2fhow-to-get-xpath-of-an-element-for-php-and-javascript%2f&amp;title=%e5%a6%82%e4%bd%95%e8%8e%b7%e5%8f%96%20Element%20%e7%9a%84%20XPath%20%5bPHP%2fJavascript%5d&nbsp;-&nbsp;icyleaf" onclick="window.open(this.href,'weibo-share','width=580,height=296');return false;"><span class=hidden>新浪微博</span></a>
-<a class=icon-douban href="https://www.douban.com/recommend/?url=https%3a%2f%2ficyleaf.com%2f2010%2f04%2fhow-to-get-xpath-of-an-element-for-php-and-javascript%2f&title=%e5%a6%82%e4%bd%95%e8%8e%b7%e5%8f%96%20Element%20%e7%9a%84%20XPath%20%5bPHP%2fJavascript%5d&v=1" onclick="window.open(this.href,'douban-share','width=580,height=300');return false;"><span class=hidden>豆瓣</span></a></section><div id=disqus_thread></div><script>var disqus_config=function(){this.page.url="https:\/\/icyleaf.com\/2010\/04\/how-to-get-xpath-of-an-element-for-php-and-javascript\/";this.page.identifier="https:\/\/icyleaf.com\/2010\/04\/how-to-get-xpath-of-an-element-for-php-and-javascript\/";};(function(){var d=document,s=d.createElement('script');s.src='https://icyleaf.disqus.com/embed.js';s.setAttribute('data-timestamp',+new Date());(d.head||d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript></footer></article></main><aside class=read-next><a class=read-next-story style=no-cover href=https://icyleaf.com/2010/05/nginx-with-fastcgi-build-kohana/><section class=post><h2>Nginx&#43;FastCGI 环境搭建 Kohana</h2></section></a><a class="read-next-story prev" style=no-cover href=https://icyleaf.com/2010/01/douban-api-package/><section class=post><h2>Douban API Package 发布！</h2></section></a></aside><footer class="site-footer clearfix"><section class=copyright><a href>icyleaf</a> All rights reserved - 2019</section><section class=poweredby>Proudly generated by <a class=icon-hugo href=http://gohugo.io>HUGO</a>, with <a class=icon-theme href=https://github.com/vjeantet/hugo-theme-casper>Casper</a> theme</section></footer></div><script src=https://icyleaf.com/js/jquery.js></script><script src=https://icyleaf.com/js/jquery.fitvids.js></script><script src=https://icyleaf.com/js/index.js></script></body></html>
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="chrome=1"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta name=author content="icyleaf"><meta name=description content="日常写代码热爱户外的梦想家"><link rel=prev href=https://icyleaf.com/2010/01/douban-api-package/><link rel=next href=https://icyleaf.com/2010/05/nginx-with-fastcgi-build-kohana/><link rel=canonical href=https://icyleaf.com/2010/04/how-to-get-xpath-of-an-element-for-php-and-javascript/><link rel=apple-touch-icon sizes=180x180 href=https://icyleaf.com/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=https://icyleaf.com/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=https://icyleaf.com/favicon-16x16.png><link rel=manifest href=https://icyleaf.com/site.webmanifest><link rel=mask-icon href=https://icyleaf.com/safari-pinned-tab.svg color=#5bbad5><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"><title>如何获取 Element 的 XPath [PHP/Javascript] | icyleaf</title><meta name=title content="如何获取 Element 的 XPath [PHP/Javascript] | icyleaf"><link rel=stylesheet href=https://icyleaf.com/css/main.min.css><link rel=stylesheet href=https://icyleaf.com/font/iconfont.css><link rel=stylesheet href=https://icyleaf.com/font-ali/iconfont.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/icyleaf.com\/"},"articleSection":"posts","name":"如何获取 Element 的 XPath [PHP\/Javascript]","headline":"如何获取 Element 的 XPath [PHP\/Javascript]","description":"这两天研究 HTML 的 DOM 需要寻找某个 Element 元素的完整 XPath 路径，由于使用的是 PHP Simple HTML DOM Parser 开源库，这个库类的使用方法几乎兼容 Javascript 的 DOM 语法并附带 DOM 选择器。虽然功能强","inLanguage":"zh-cn","author":"icyleaf","creator":"icyleaf","publisher":"icyleaf","accountablePerson":"icyleaf","copyrightHolder":"icyleaf","copyrightYear":"2010","datePublished":"2010-04-02 12:34:56 \u002b0800 \u002b0800","dateModified":"2010-04-02 12:34:56 \u002b0800 \u002b0800","url":"https:\/\/icyleaf.com\/2010\/04\/how-to-get-xpath-of-an-element-for-php-and-javascript\/","wordCount":"527","keywords":["PHP","Javascript","icyleaf"]}</script></head><body><div class=wrapper><nav class=navbar><progress class=content_progress max=0 value=0></progress><div class=container><div class="navbar-header header-back2home-logo"><span class=logo_mark>>$</span>
+<a href=https://icyleaf.com/><span class=logo_text>cd /home/</span>
+<span class=logo_cursor></span></a></div><div class=navbar-right><span class=menu><a class=menu-item href=https://icyleaf.com/posts title>Posts</a>
+<a class=menu-item href=https://icyleaf.com/categories title>Categories</a>
+<a class=menu-item href=https://icyleaf.com/tags title>Tags</a>
+<a class=menu-item href=https://icyleaf.com/about title>About</a>
+<span class=divide></span><a href=javascript:void(0); class=theme-switch><i class="iconfont icon-dark-mode"></i></a></span></div></div></nav><nav class=navbar-mobile id=nav-mobile style=display:none><progress class=content_progress max=0 value=0></progress><div class=container><div class=navbar><div class="navbar-header header-logo"><a href=https://icyleaf.com/>icyleaf</a></div><div class=navbar-right><div><a href=javascript:void(0); class=theme-switch><i class="iconfont icon-dark-mode"></i></a></div><div class=menu-toggle><span></span><span></span><span></span></div></div></div><div class=menu id=mobile-menu><nav class=mb-md><a class=menu-item href=https://icyleaf.com/posts title><h3>Posts</h3><div class=menu-active></div></a><a class=menu-item href=https://icyleaf.com/categories title><h3>Categories</h3><div class=menu-active></div></a><a class=menu-item href=https://icyleaf.com/tags title><h3>Tags</h3><div class=menu-active></div></a><a class=menu-item href=https://icyleaf.com/about title><h3>About</h3><div class=menu-active></div></a></nav></div></div></nav><main class=main><div class=container><article class=post-warp itemscope itemtype=http://schema.org/Article><header class=post-header><h1 class=post-title itemprop="name headline">如何获取 Element 的 XPath [PHP/Javascript]</h1><div class=post-meta>Written by <a itemprop=name href=https://icyleaf.com/ rel=author>icyleaf</a> with ♥
+<span class=post-time>on <time datetime=2010-04-02 itemprop=datePublished>April 2, 2010</time></span>
+in
+<i class="iconfont icon-folder"></i>
+<span class=post-category><a href=https://icyleaf.com/categories/technology/>Technology,</a></span>
+<span class=post-word-count>527 words</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title></h2><div class="post-toc-content always-active"><nav id=TableOfContents></nav></div></div><div class=post-content><p>这两天研究 HTML 的 DOM 需要寻找某个 Element 元素的完整 XPath 路径，由于使用的是 <a href=http://simplehtmldom.sourceforge.net/manual.htm>PHP Simple HTML DOM Parser</a> 开源库，这个库类的使用方法几乎兼容 Javascript 的 DOM 语法并附带 DOM 选择器。虽然功能强大但是并不能直接获取 Element 的 XPath。这个怎么办呢，依稀记得 Firebug 有一个功能，选择某个元素在它的控制台可以显示 XPath。嗯，着手实践一下发现不仅可以显示而且还可以复制 XPath。</p><p>于是想，如果可以找到 Javascript 版的相关代码就一定可以改成 PHP 版本的，结果在 Google 搜索找到了&mldr;</p><div class=highlight><pre class=chroma><code class=language-javascript data-lang=javascript><span class=ln> 1</span><span class=kd>var</span> <span class=nx>elt</span> <span class=o>=</span> <span class=nb>document</span><span class=p>.</span><span class=nx>getElementById</span><span class=p>(</span><span class=s1>&#39;table&#39;</span><span class=p>);</span>
+<span class=ln> 2</span><span class=kd>var</span> <span class=nx>xpath</span> <span class=o>=</span> <span class=nx>getElementXPath</span><span class=p>(</span><span class=nx>elt</span><span class=p>);</span><span class=nx>alert</span><span class=p>(</span><span class=nx>xpath</span><span class=p>);</span>
+<span class=ln> 3</span>
+<span class=ln> 4</span><span class=c1>// Get full XPath of an element
+</span><span class=ln> 5</span><span class=c1></span><span class=kd>function</span> <span class=nx>getElementXPath</span><span class=p>(</span><span class=nx>elt</span><span class=p>){</span>
+<span class=ln> 6</span>	<span class=kd>var</span> <span class=nx>path</span> <span class=o>=</span> <span class=s2>&#34;&#34;</span><span class=p>;</span>
+<span class=ln> 7</span>	<span class=k>for</span> <span class=p>(;</span> <span class=nx>elt</span> <span class=o>&amp;&amp;</span> <span class=nx>elt</span><span class=p>.</span><span class=nx>nodeType</span> <span class=o>==</span> <span class=mi>1</span><span class=p>;</span> <span class=nx>elt</span> <span class=o>=</span> <span class=nx>elt</span><span class=p>.</span><span class=nx>parentNode</span><span class=p>)</span>
+<span class=ln> 8</span>	<span class=p>{</span>
+<span class=ln> 9</span>		<span class=nx>idx</span> <span class=o>=</span> <span class=nx>getElementIdx</span><span class=p>(</span><span class=nx>elt</span><span class=p>);</span>
+<span class=ln>10</span>		<span class=nx>xname</span> <span class=o>=</span> <span class=nx>elt</span><span class=p>.</span><span class=nx>tagName</span><span class=p>;</span>
+<span class=ln>11</span>		<span class=k>if</span> <span class=p>(</span><span class=nx>idx</span> <span class=o>&gt;</span> <span class=mi>1</span><span class=p>)</span> <span class=nx>xname</span> <span class=o>+=</span> <span class=s2>&#34;[&#34;</span> <span class=o>+</span> <span class=nx>idx</span> <span class=o>+</span> <span class=s2>&#34;]&#34;</span><span class=p>;</span>
+<span class=ln>12</span>		<span class=nx>path</span> <span class=o>=</span> <span class=s2>&#34;/&#34;</span> <span class=o>+</span> <span class=nx>xname</span> <span class=o>+</span> <span class=nx>path</span><span class=p>;</span>
+<span class=ln>13</span>	<span class=p>}</span>
+<span class=ln>14</span>	<span class=k>return</span> <span class=nx>path</span><span class=p>;</span>
+<span class=ln>15</span><span class=p>}</span>
+<span class=ln>16</span>
+<span class=ln>17</span><span class=c1>// Get Idx of an element
+</span><span class=ln>18</span><span class=c1></span><span class=kd>function</span> <span class=nx>getElementIdx</span><span class=p>(</span><span class=nx>elt</span><span class=p>){</span>
+<span class=ln>19</span>	<span class=kd>var</span> <span class=nx>count</span> <span class=o>=</span> <span class=mi>1</span><span class=p>;</span>
+<span class=ln>20</span>	<span class=k>for</span> <span class=p>(</span><span class=kd>var</span> <span class=nx>sib</span> <span class=o>=</span> <span class=nx>elt</span><span class=p>.</span><span class=nx>previousSibling</span><span class=p>;</span> <span class=nx>sib</span> <span class=p>;</span> <span class=nx>sib</span> <span class=o>=</span> <span class=nx>sib</span><span class=p>.</span><span class=nx>previousSibling</span><span class=p>)</span>
+<span class=ln>21</span>	<span class=p>{</span>
+<span class=ln>22</span>		<span class=k>if</span><span class=p>(</span><span class=nx>sib</span><span class=p>.</span><span class=nx>nodeType</span> <span class=o>==</span> <span class=mi>1</span> <span class=o>&amp;&amp;</span> <span class=nx>sib</span><span class=p>.</span><span class=nx>tagName</span> <span class=o>==</span> <span class=nx>elt</span><span class=p>.</span><span class=nx>tagName</span><span class=p>)</span>  <span class=nx>count</span><span class=o>++</span>
+<span class=ln>23</span>	<span class=p>}</span>
+<span class=ln>24</span>	<span class=k>return</span> <span class=nx>count</span><span class=p>;</span>
+<span class=ln>25</span><span class=p>}</span>
+</code></pre></div><p>PHP 改进版：</p><div class=highlight><pre class=chroma><code class=language-php data-lang=php><span class=ln> 1</span><span class=c1>// Use it before import PHP Simple HTML DOM Parser
+</span><span class=ln> 2</span><span class=c1></span><span class=nv>$html</span> <span class=o>=</span> <span class=nx>file_get_html</span><span class=p>(</span><span class=s1>&#39;http://www.google.com/&#39;</span><span class=p>);</span>
+<span class=ln> 3</span>
+<span class=ln> 4</span><span class=c1>// find a sample element by id
+</span><span class=ln> 5</span><span class=c1></span><span class=nv>$elt1</span> <span class=o>=</span> <span class=nv>$html</span><span class=o>-&gt;</span><span class=na>find</span><span class=p>(</span><span class=s1>&#39;#footer&#39;</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+<span class=ln> 6</span>
+<span class=ln> 7</span><span class=c1>// find a sample element by tag name
+</span><span class=ln> 8</span><span class=c1></span><span class=nv>$elt2</span><span class=o>=</span> <span class=nv>$html</span><span class=o>-&gt;</span><span class=na>find</span><span class=p>(</span><span class=s1>&#39;div&#39;</span><span class=p>,</span> <span class=mi>10</span><span class=p>);</span>
+<span class=ln> 9</span>
+<span class=ln>10</span><span class=c1>// it will return if found it: [@id=&#34;footer&#34;]
+</span><span class=ln>11</span><span class=c1></span><span class=nv>$xpath</span> <span class=o>=</span> <span class=nx>getElementXPath</span><span class=p>(</span><span class=nv>$elt1</span><span class=p>);</span>
+<span class=ln>12</span>
+<span class=ln>13</span><span class=c1>// it will return if found it: html/body/div[10]
+</span><span class=ln>14</span><span class=c1></span><span class=nv>$xpath</span> <span class=o>=</span> <span class=nx>getElementXPath</span><span class=p>(</span><span class=nv>$elt2</span><span class=p>);</span>
+<span class=ln>15</span>
+<span class=ln>16</span><span class=k>function</span> <span class=nf>getElementXPath</span><span class=p>(</span><span class=nv>$elt</span><span class=p>){</span>
+<span class=ln>17</span>	<span class=nv>$path</span> <span class=o>=</span> <span class=s1>&#39;&#39;</span><span class=p>;</span>
+<span class=ln>18</span>	<span class=nv>$first</span> <span class=o>=</span> <span class=k>TRUE</span><span class=p>;</span>
+<span class=ln>19</span>	<span class=k>for</span><span class=p>(;</span> <span class=p>(</span><span class=nv>$elt</span> <span class=k>AND</span> <span class=nv>$elt</span><span class=o>-&gt;</span><span class=na>nodetype</span> <span class=o>==</span> <span class=mi>1</span><span class=p>);</span> <span class=nv>$elt</span> <span class=o>=</span> <span class=nv>$elt</span><span class=o>-&gt;</span><span class=na>parent</span><span class=p>())</span>
+<span class=ln>20</span>	<span class=p>{</span>
+<span class=ln>21</span>		<span class=nv>$xname</span> <span class=o>=</span> <span class=nv>$elt</span><span class=o>-&gt;</span><span class=na>tag</span><span class=p>;</span>
+<span class=ln>22</span>		<span class=nv>$idx</span> <span class=o>=</span> <span class=nx>getElementIdx</span><span class=p>(</span><span class=nv>$elt</span><span class=p>);</span>
+<span class=ln>23</span>		<span class=k>if</span> <span class=p>(</span><span class=nv>$first</span> <span class=k>AND</span> <span class=nx>isset</span><span class=p>(</span><span class=nv>$elt</span><span class=o>-&gt;</span><span class=na>attr</span><span class=p>[</span><span class=s1>&#39;id&#39;</span><span class=p>]))</span>
+<span class=ln>24</span>		<span class=p>{</span>
+<span class=ln>25</span>			<span class=nv>$path</span> <span class=o>=</span> <span class=s1>&#39;//*[@id=&#34;&#39;</span> <span class=o>.</span> <span class=nv>$elt</span><span class=o>-&gt;</span><span class=na>attr</span><span class=p>[</span><span class=s1>&#39;id&#39;</span><span class=p>]</span> <span class=o>.</span> <span class=s1>&#39;&#34;]&#39;</span><span class=p>;</span>
+<span class=ln>26</span>			<span class=k>break</span><span class=p>;</span>
+<span class=ln>27</span>		<span class=p>}</span>
+<span class=ln>28</span>
+<span class=ln>29</span>		<span class=k>if</span> <span class=p>(</span><span class=nv>$idx</span> <span class=o>&gt;</span> <span class=mi>1</span><span class=p>)</span>
+<span class=ln>30</span>		<span class=p>{</span>
+<span class=ln>31</span>			<span class=o>%</span><span class=nx>xname</span> <span class=o>.=</span> <span class=s1>&#39;[&#39;</span> <span class=o>.</span> <span class=nv>$idx</span> <span class=o>.</span> <span class=s1>&#39;]&#39;</span><span class=p>;</span>
+<span class=ln>32</span>		<span class=p>}</span>
+<span class=ln>33</span>
+<span class=ln>34</span>		<span class=nv>$path</span> <span class=o>=</span> <span class=s1>&#39;/&#39;</span><span class=o>.</span><span class=nv>$xname</span><span class=o>.</span><span class=nv>$path</span><span class=p>;</span>
+<span class=ln>35</span>		<span class=nv>$first</span> <span class=o>=</span> <span class=k>FALSE</span><span class=p>;</span>
+<span class=ln>36</span>	<span class=p>}</span>
+<span class=ln>37</span>
+<span class=ln>38</span>	<span class=k>return</span> <span class=nv>$path</span><span class=p>;</span>
+<span class=ln>39</span><span class=p>}</span>
+<span class=ln>40</span>
+<span class=ln>41</span><span class=k>function</span> <span class=nf>getElementIdx</span><span class=p>(</span><span class=nv>$elt</span><span class=p>){</span>
+<span class=ln>42</span>	<span class=nv>$count</span> <span class=o>=</span> <span class=mi>1</span><span class=p>;</span>
+<span class=ln>43</span>	<span class=k>for</span><span class=p>(</span><span class=nv>$sib</span> <span class=o>=</span> <span class=nv>$elt</span><span class=o>-&gt;</span><span class=na>prev_sibling</span><span class=p>();</span> <span class=nv>$sib</span> <span class=p>;</span> <span class=nv>$sib</span> <span class=o>=</span> <span class=nv>$sib</span><span class=o>-&gt;</span><span class=na>prev_sibling</span><span class=p>())</span>
+<span class=ln>44</span>	<span class=p>{</span>
+<span class=ln>45</span>		<span class=k>if</span><span class=p>(</span><span class=nv>$sib</span><span class=o>-&gt;</span><span class=na>nodetype</span> <span class=o>==</span> <span class=mi>1</span> <span class=o>&amp;&amp;</span> <span class=nv>$sib</span><span class=o>-&gt;</span><span class=na>tag</span> <span class=o>==</span> <span class=nv>$elt</span><span class=o>-&gt;</span><span class=na>tag</span><span class=p>)</span>
+<span class=ln>46</span>		<span class=p>{</span>
+<span class=ln>47</span>			<span class=nv>$count</span><span class=o>++</span><span class=p>;</span>
+<span class=ln>48</span>		<span class=p>}</span>
+<span class=ln>49</span>	<span class=p>}</span>
+<span class=ln>50</span>	<span class=k>return</span> <span class=nv>$count</span><span class=p>;</span>
+<span class=ln>51</span><span class=p>}</span>
+</code></pre></div><p>大家同样可以把上面的代码直接 crack 到 PHP Simple HTML DOM Parser 库中。</p></div><div class=post-copyright><p class=copyright-item><span>Author:</span>
+<span>icyleaf</span></p><p class=copyright-item><span>Link:</span>
+<a href=https://icyleaf.com/2010/04/how-to-get-xpath-of-an-element-for-php-and-javascript/>https://icyleaf.com/2010/04/how-to-get-xpath-of-an-element-for-php-and-javascript/</a></p></div><div class=post-tags><section><i class="iconfont icon-tag"></i>Tag(s):
+<span class=tag><a href=https://icyleaf.com/tags/php/>#PHP</a></span>
+<span class=tag><a href=https://icyleaf.com/tags/javascript/>#Javascript</a></span></section><section><a href=javascript:window.history.back();>back</a></span> ·
+<span><a href=https://icyleaf.com/>home</a></span></section></div><div class=post-nav><a href=https://icyleaf.com/2010/01/douban-api-package/ class=prev rel=prev title="Douban API Package 发布！"><i class="iconfont icon-left"></i>&nbsp;Douban API Package 发布！</a>
+<a href=https://icyleaf.com/2010/05/nginx-with-fastcgi-build-kohana/ class=next rel=next title="Nginx+FastCGI 环境搭建 Kohana">Nginx+FastCGI 环境搭建 Kohana&nbsp;<i class="iconfont icon-right"></i></a></div><div class=post-social><div class=social-links><style type=text/css>@font-face{font-family:iconfont;src:url(//at.alicdn.com/t/font_1910062_4213q7gpkpy.eot);src:url(//at.alicdn.com/t/font_1910062_4213q7gpkpy.eot?#iefix)format('embedded-opentype'),url(//at.alicdn.com/t/font_1910062_4213q7gpkpy.woff2)format('woff2'),url(//at.alicdn.com/t/font_1910062_4213q7gpkpy.woff)format('woff'),url(//at.alicdn.com/t/font_1910062_4213q7gpkpy.ttf)format('truetype'),url(//at.alicdn.com/t/font_1910062_4213q7gpkpy.svg#iconfont)format('svg')}</style><a class=bloglogo href=https://github.com/icyleaf target=_blank rel="me noopener"><i class="iconfont icon-github" alt=github></i></a>
+<a class=bloglogo href=https://twitter.com/icyleaf target=_blank rel="me noopener"><i class="iconfont icon-twitter" alt=twitter></i></a>
+<a class=bloglogo href=https://www.facebook.com/icyleaf target=_blank rel="me noopener"><i class="iconfont icon-facebook" alt=facebook></i></a>
+<a class=bloglogo href=https://www.linkedin.com/in/icyleaf target=_blank rel="me noopener"><i class="iconfont icon-linkedin" alt=linkedin></i></a>
+<a class=bloglogo href=https://www.instagram.com/icyleaf/ target=_blank rel="me noopener"><i class="iconfont icon-instagram" alt=instagram></i></a>
+<a class=bloglogo href=https://www.douban.com/people/icyleaf target=_blank rel="me noopener"><i class="iconfont icon-douban" alt=douban></i></a></div></div><div class=post-comment><div id=disqus_thread></div><script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return}var b=document,a=b.createElement('script');a.async=!0,a.src='//icyleaf.disqus.com/embed.js',a.setAttribute('data-timestamp',+new Date),(b.head||b.body).appendChild(a)})()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div></article></div></main><footer class=footer><div class=copyright>&copy;
+<span itemprop=copyrightYear>2005 - 2021</span>
+<span>🍺</span>
+<span class=author itemprop=copyrightHolder><a href=https://icyleaf.com/>icyleaf</a></span>
+| <span>Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow">Hugo</a> & <a href=https://github.com/icyleaf/hugo-theme-nicesima target=_blank rel="external nofollow">nicesima</a></span></div></footer><script src=https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js crossorigin=anonymous></script><script defer src=https://icyleaf.com/js/vendor_main.min.js></script><script src=https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin=anonymous></script><script>pangu.spacingPage()</script><script>(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-2570916-5','auto'),ga('send','pageview')</script></div></body></html>

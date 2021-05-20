@@ -1,240 +1,259 @@
-<!doctype html><html lang=zh><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta property=og:title content="打通 Sidekiq 的任督二脉 Ruby 和 Crystal &middot;  icyleaf"><meta property=og:site_name content=icyleaf><meta property=og:url content=https://icyleaf.com/2017/04/sidekiq-works-in-ruby-togethor-with-crystal/><meta property=og:type content=article><meta property=og:article:published_time content=2017-04-26T16:00:49Z><meta property=og:article:tag content=Ruby><meta property=og:article:tag content=Crystal><meta property=og:article:tag content=Sidekiq><title>打通 Sidekiq 的任督二脉 Ruby 和 Crystal &middot; icyleaf</title><meta name=description content=热爱户外的码农、下厨初心者><meta name=HandheldFriendly content=True><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" href=https://icyleaf.com/images/favicon.ico><link rel=apple-touch-icon href=https://icyleaf.com/images/apple-touch-icon.png><link rel=stylesheet href=https://icyleaf.com/css/screen.css><link rel=stylesheet href=https://icyleaf.com/css/nav.css><link rel=stylesheet href=https://icyleaf.com/css/highlight/tomorrow-night.css><script src=https://icyleaf.com/js/highlight.pack.js></script><script>hljs.initHighlightingOnLoad();</script><link href=https://icyleaf.com/index.xml rel=alternate type=application/rss+xml title=icyleaf><meta name=generator content="Hugo 0.47.1"><link rel=canonical href=https://icyleaf.com/2017/04/sidekiq-works-in-ruby-togethor-with-crystal/><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-2570916-5','auto');ga('send','pageview');</script></head><body class=nav-closed><div class=nav><h3 class=nav-title>Menu</h3><a href=# class=nav-close><span class=hidden>Close</span></a><ul><li class=nav-opened role=presentation><a href=https://icyleaf.com/>Home</a><li class=nav-opened role=presentation><a href=https://icyleaf.com/categories/technology>Technology</a><li class=nav-opened role=presentation><a href=https://icyleaf.com/tags>Tags</a><li class=nav-opened role=presentation><a href=https://icyleaf.com/about>About</a></ul><a class="subscribe-button icon-feed" href=https://icyleaf.com/2017/04/sidekiq-works-in-ruby-togethor-with-crystal/>Subscribe</a></div><span class=nav-cover></span><div class=site-wrapper><header class="main-header post-head" style=background-image:url(https://icyleaf.com//uploads/2017/04/26/sidekiq-web-ui.png)><nav class="main-nav overlay clearfix"><a class=blog-logo href=https://icyleaf.com/><img src=https://icyleaf.com/images/icyleaf-icon.png alt="Blog Logo"></a>
-<a class=menu-button href=#><span class=burger>&#9776;</span><span class=word>Menu</span></a></nav></header><main class=content role=main><article class="post post"><header class=post-header><h1 class=post-title>打通 Sidekiq 的任督二脉 Ruby 和 Crystal</h1><small></small><section class=post-meta><time class=post-date datetime=2017-04-26T16:00:49Z>Apr 26, 2017</time>
-<span class="post-tag small"><a href=https://icyleaf.com/tags/ruby/>#Ruby</a></span>
-<span class="post-tag small"><a href=https://icyleaf.com/tags/crystal/>#Crystal</a></span>
-<span class="post-tag small"><a href=https://icyleaf.com/tags/sidekiq/>#Sidekiq</a></span></section></header><section class=post-content><p>自从开始研究 Crystal 这门语言（之前也有<a href=http://icyleaf.com/2016/07/gitlab-api-wrapper-for-crystal/>介绍</a>过），基本上每隔一段时间都会看看它的近况，去年 sidekiq 的作者用该语言重新实现了 sidekiq 项目而且给出了特别竟然的<a href=http://www.mikeperham.com/2016/05/25/sidekiq-for-crystal/>对比数据</a>。<p><img src=https://icyleaf.com/uploads/2017/04/26/sidekiq-benchmarks.png alt=IMAGE><p>相对比 Gitlab 采用 go 语言重新 gitlab_ci_runner 而学习一门新的语言达到高效率低内存的方法之外 Crystal 就像是新的希望。使用 Crystal 重新的 sidekiq 的代码也非常的简单但已经实现了核心功能和 Web UI。<p>本篇就给大家介绍下如果在 Ruby on Rails 的框架下调度和执行 Crystal 写的 Workers。测试环境是在 macOS 下，其他版本信息如下：<ul><li>Ruby 2.0+<ul><li>Rails 5.0<li>Sidekiq 5.0</ul><li>Crystal 0.22.0+<ul><li>Sidekiq.cr 0.7.0</ul></ul><h2 id=配置-rails-环境>配置 Rails 环境</h2><p>如何配置 Ruby、Rails、Bundler、Redis 就不在赘述，只讲核心，首先新建一个最基础的 rails 项目，不用额外的第三方辅助工具，数据库用 sqlite 减少外部依赖：<pre><code class=language-bash>$ rails new ruby_on_rails -B -T -S -C -M  -d sqlite3
-</code></pre><p>进入项目 <code>ruby_on_rails</code> 编辑 <code>Gemfile</code>:<pre><code class=language-ruby># 修改源地址
-source 'https://gems.ruby-china.org'
-
-# 新增 sidekiq 的支持
-gem 'redis-rails'
-gem 'sidekiq'
-
-# 其余的不用修改
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~&gt; 5.0.2'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
-# Use Puma as the app server
-gem 'puma', '~&gt; 3.0'
-
-gem 'redis-rails'
-gem 'sidekiq'
-
-group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platform: :mri
-end
-
-group :development do
-  # Access an IRB console on exception pages or by using &lt;%= console %&gt; anywhere in the code.
-  gem 'web-console', '&gt;= 3.3.0'
-  gem 'listen', '~&gt; 3.0.5'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-  gem 'spring-watcher-listen', '~&gt; 2.0.0'
-end
-
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-</code></pre><p>配置好之后执行 <code>bundle insall</code> 安装好 Gem 的依赖，再创建文件 <code>config/initializers/sidekiq.rb</code>:<pre><code class=language-ruby>redis_config = { url: 'redis://localhost:6379/8' }
-
-Sidekiq.configure_server do |config|
-  config.redis = redis_config
-end
-
-Sidekiq.configure_client do |config|
-  config.redis = redis_config
-end
-</code></pre><p>Sidekiq 的配置就完事了。<h2 id=配置-crystal-环境>配置 Crystal 环境</h2><p>Crystal 是基于 LLVM 开发，除了 Windows 以外其他绝大数系统基本上都支持（最新支持的 ARM 架构，可在树莓派上安装），<a href=https://crystal-lang.org/docs/installation/>安装步骤</a>同样不再赘述。<p>安装好之后首先创建一个新项目：<pre><code class=language-bash>$ crystal init app crystal
-</code></pre><p>进入项目 <code>crystal</code> 编辑 <code>Shard.yml</code> 这是一个类似于 Gemfile 的功能，但实现的去中心化，在文件末尾新增如下依赖：<pre><code class=language-yaml>dependencies:
-  sidekiq:
-    github: mperham/sidekiq.cr
-    branch: master
-</code></pre><p>执行 <code>shards update</code> 或 <code>crystal deps</code> 安装依赖即可。<h2 id=编写-workers>编写 Workers</h2><p>Worker 的功能很简单，就是做一个类似 Redis ping 的功能，Worker 在日志输出 PONG。<h3 id=ruby-版本>Ruby 版本</h3><p>安装 sidekiq 后会在 rails 内置命令可生成基础模板，切换到 <code>ruby_on_rails</code> 目录：<pre><code class=language-bash>$ rails g sidekiq:worker ping1
-      create  app/workers/ping1_worker.rb
-$ rails g sidekiq:worker ping2
-      create  app/workers/ping2_worker.rb
-</code></pre><p>worker 的内容也很简单，我在日志输出增加了 <code>[Ruby]</code> 作为 Ruby 版本的标识便于后面的辨识<pre><code class=language-ruby># app/workers/ping1_worker.rb
-class Ping1Worker
-  include Sidekiq::Worker
-
-  def perform(*args)
-    logger.info &quot;[Ruby] PONG !&quot;
-  end
-end
-
-# app/workers/ping2_worker.rb
-class Ping2Worker
-  include Sidekiq::Worker
-
-  def perform(*args)
-    logger.info &quot;[Ruby] PONG PONG !!&quot;
-  end
-end
-</code></pre><h3 id=crystal-版本>Crystal 版本</h3><p>切换到 <code>crystal</code> 目录下和 Ruby 不同的是它的源码是存放在 src 目录下面，我们稍微调整下结构：<pre><code class=language-bash>.
-├── LICENSE
-├── README.md
-├── lib
-├── shard.lock
-├── shard.yml
-├── spec
-└── src
-    ├── crystal_server.cr
-    └── workers
-        ├── ping1_worker.cr
-        └── ping2_worker.cr
-</code></pre><p>worker 的内容如下，并设置 queue 为 <code>crystal</code> 用于指派使用:<pre><code class=language-crystal># src/workers/ping1_worker.cr
-class Ping1Worker
-  include Sidekiq::Worker
-  sidekiq_options do |job|
-    job.queue = &quot;crystal&quot;
-  end
-
-  def perform()
-    logger.info &quot;[Crystal] PONG !&quot;
-  end
-end
-
-# src/workers/ping2_worker.cr
-class Ping2Worker
-  include Sidekiq::Worker
-  sidekiq_options do |job|
-    job.queue = &quot;crystal&quot;
-  end
-
-  def perform()
-    logger.info &quot;[Crystal] PONG PONG !!&quot;
-  end
-end
-</code></pre><p>通过代码可以看出 Ruby 和 Crystal 的代码基本上是完全一样的。<h2 id=任督二脉>任督二脉</h2><p>对于使用 Sidekiq 的童鞋都知道，如果我想执行一个队列任务，只需要调用下 Worker 本身的 <code>perform_*</code> 方法，这样的话根本无法调用一个不同语言版本的 Worker 否则 sidekiq 会报类似如下错误：<pre><code class=language-bash>2017-04-26T06:19:14.187Z 50690 TID-ox4qa1k8o WARN: {&quot;context&quot;:&quot;Job raised exception&quot;,&quot;job&quot;:{&quot;class&quot;:&quot;Crystal::Ping1Worker&quot;,&quot;args&quot;:[],&quot;retry&quot;:true,&quot;queue&quot;:&quot;default&quot;,&quot;jid&quot;:&quot;42ce106d79
-01a274f3db2d54&quot;,&quot;created_at&quot;:1493187554.181674,&quot;enqueued_at&quot;:1493187554.1820428},&quot;jobstr&quot;:&quot;{\&quot;class\&quot;:\&quot;Crystal::Ping1Worker\&quot;,\&quot;args\&quot;:[],\&quot;retry\&quot;:true,\&quot;queue\&quot;:\&quot;default\&quot;,\&quot;jid
-\&quot;:\&quot;42ce106d7901a274f3db2d54\&quot;,\&quot;created_at\&quot;:1493187554.181674,\&quot;enqueued_at\&quot;:1493187554.1820428}&quot;}
-2017-04-26T06:19:14.187Z 50690 TID-ox4qa1k8o WARN: NameError: uninitialized constant Crystal
-</code></pre><p>打通任督二脉的关键在于两个版本都提供一个 low-level 的 API 可用于定制化调用：<h3 id=ruby-版本-1>Ruby 版本</h3><pre><code class=language-ruby>job_id = Sidekiq::Client.push(
-  'queue' =&gt; '',  # 指派特定的队列名，默认是 default
-  'class' =&gt; '',  # Worker 的类名，可以是实例化类型或字符串类型
-  'args' =&gt;[]     # Worker 接收的参数，以数组形式传递
-)
-</code></pre><h3 id=crystal-版本-1>Crystal 版本</h3><pre><code class=language-crystal>job = Sidekiq::Job.new
-job.queue = &quot;default&quot;   # 指派特定的队列名，默认是 default
-job.klass = &quot;&quot;          # Worker 的类名，可以是实例化类型或字符串类型
-job.args = [].to_json   # Worker 接收的参数，以数组形式传递
-
-client = Sidekiq::Client.new
-job_id = client.push(job)
-</code></pre><h2 id=打通任督二脉>打通任督二脉</h2><p>准备工作就绪，打通任督二脉的关键就只差一个了！那就是对于 redis 数据共享，细心的童鞋可能留意了上面只配置了 Ruby 版本的 redis 连接，但对于 Crystal 我故意留白没有说明。因为这个是最关键的一步，对于当前 sidekiq.cr 版本来说。<p>sidekiq.cr 对于作者来说是一次试水并没有话特别大的精力，Crystal 本身还处在开发阶段在未到达 1.0 之前会有各种 Break Changes。而且作者是非常照顾 Heroku 的开发者，默认仅支持该服务平台 Redis-to-Go 服务，因此想设置 Redis 连接信息必须通过系统的环境变量：<pre><code class=language-bash>REDISTOGO_URL=redis://localhost:6379/8
-REDIS_PROVIDER=$REDISTOGO_URL
-</code></pre><p>上面的配置是不可省略的，因为我个人不懂 Heroku 给作者乱提了 PL 还被作者狠批了一顿 :(<p>回到话题本身，我们来继续写上 <code>src/crystal_server.cr</code> 关键的代码：<blockquote><p>注意：redis 连接信息无比保证和 rails 配置的是一致的！</blockquote><pre><code class=language-crystal>require &quot;sidekiq&quot;
-require &quot;sidekiq/cli&quot;
-require &quot;./workers/*&quot;
-
-ENV[&quot;LOCAL_REDIS&quot;] = &quot;redis://localhost:6379/8&quot;
-ENV[&quot;REDIS_PROVIDER&quot;] = &quot;LOCAL_REDIS&quot;
-
-cli = Sidekiq::CLI.new
-server = cli.configure do |config|
-  # 支持中间件，默认留空即可
-end
-
-cli.run(server)
-</code></pre><p>代码需要编译执行，因为不编译是无法给 sidekiq cli 传递它接受的参数（当然也有方法，我放在末尾范例源码中自己寻找）<pre><code class=language-bash>$ crystal build src/crystal_server.cr -o crystal_server
-</code></pre><p>通过上面命令把源码编译成可执行文件到项目根目录的 <code>crystal_server</code> 文件。<p>打开终端一：启动 ruby 的 sidekiq server<pre><code class=language-bash>$ cd ruby_on_rails
-$ sidekiq -q default
-2017-04-26T06:47:19.299Z 76282 TID-owewdljsc INFO: Booting Sidekiq 4.2.10 with redis options {:url=&gt;&quot;redis://localhost:6379/8&quot;}
-
-
-         m,
-         `$b
-    .ss,  $$:         .,d$
-    `$$P,d$P'    .,md$P&quot;'
-     ,$$$$$bmmd$$$P^'
-   .d$$$$$$$$$$P'
-   $$^' `&quot;^$$$'       ____  _     _      _    _
-   $:     ,$$:       / ___|(_) __| | ___| | _(_) __ _
-   `b     :$$        \___ \| |/ _` |/ _ \ |/ / |/ _` |
-          $$:         ___) | | (_| |  __/   &lt;| | (_| |
-          $$         |____/|_|\__,_|\___|_|\_\_|\__, |
-        .d$$                                       |_|
-
-2017-04-26T06:47:19.433Z 76282 TID-owewdljsc INFO: Running in ruby 2.4.0p0 (2016-12-24 revision 57164) [x86_64-darwin16]
-2017-04-26T06:47:19.433Z 76282 TID-owewdljsc INFO: See LICENSE and the LGPL-3.0 for licensing details.
-2017-04-26T06:47:19.433Z 76282 TID-owewdljsc INFO: Upgrade to Sidekiq Pro for more features and support: http://sidekiq.org
-2017-04-26T06:47:19.442Z 76282 TID-owewdljsc INFO: Starting processing, hit Ctrl-C to stop
-</code></pre><p>打开终端二：启动 crystal 的 sidekiq server<pre><code class=language-bash>$ cd crystal
-$ ./crystal_server -q crystal
-
-         m,
-         `$b
-    .ss,  $$:         .,d$
-    `$$P,d$P'    .,md$P&quot;'
-     ,$$$$$bmmd$$$P^'
-   .d$$$$$$$$$$P'
-   $$^' `&quot;^$$$'       ____  _     _      _    _
-   $:     ,$$:       / ___|(_) __| | ___| | _(_) __ _
-   `b     :$$        \___ \| |/ _` |/ _ \ |/ / |/ _` |
-          $$:         ___) | | (_| |  __/   &lt;| | (_| |
-          $$         |____/|_|\__,_|\___|_|\_\_|\__, |
-        .d$$                                       |_|
-
-2017-04-26T06:48:42.755Z 83552 TID-21ybwjk  INFO: Sidekiq v0.7.0 in Crystal 0.22.0
-2017-04-26T06:48:42.755Z 83552 TID-21ybwjk  INFO: Licensed for use under the terms of the GNU LGPL-3.0 license.
-2017-04-26T06:48:42.755Z 83552 TID-21ybwjk  INFO: Upgrade to Sidekiq Enterprise for more features and support: http://sidekiq.org
-2017-04-26T06:48:42.755Z 83552 TID-21ybwjk  INFO: Starting processing with 25 workers
-2017-04-26T06:48:42.756Z 83552 TID-21ybwjk  INFO: Press Ctrl-C to stop
-</code></pre><h2 id=验证功力效果>验证功力效果</h2><p>两边的 sidekiq server 都已经跑起来了，我们先从 rails 启动 console 验证，注意留意两个 sidekiq 终端日志的输出：<pre><code class=language-bash>$ rails console
-Loading development environment (Rails 5.0.2)
-
-# 调用 rails 本身的 ping1 和 ping2 worker
-2.4.0 :001 &gt; Sidekiq::Client.push('class' =&gt; 'Ping1Worker', 'args' =&gt;[])
- =&gt; &quot;961500753aa127b73ac50851&quot;
-2.4.0 :002 &gt; Sidekiq::Client.push('class' =&gt; 'Ping2Worker', 'args' =&gt;[])
- =&gt; &quot;be366d2e5f44adf367853d82&quot;
-</code></pre><p>对应 rails 的 sidekiq server 会同时输出：<pre><code class=language-bash>2017-04-26T06:53:01.722Z 76282 TID-owex58ag8 Ping1Worker JID-961500753aa127b73ac50851 INFO: start
-2017-04-26T06:53:01.722Z 76282 TID-owex58ag8 Ping1Worker JID-961500753aa127b73ac50851 INFO: [Ruby] PONG !
-2017-04-26T06:53:01.722Z 76282 TID-owex58ag8 Ping1Worker JID-961500753aa127b73ac50851 INFO: done: 0.0 sec
-2017-04-26T06:53:52.681Z 76282 TID-owex58bs0 Ping2Worker JID-be366d2e5f44adf367853d82 INFO: start
-2017-04-26T06:53:52.681Z 76282 TID-owex58bs0 Ping2Worker JID-be366d2e5f44adf367853d82 INFO: [Ruby] PONG PONG !!
-2017-04-26T06:53:52.681Z 76282 TID-owex58bs0 Ping2Worker JID-be366d2e5f44adf367853d82 INFO: done: 0.0 sec
-</code></pre><p>自身一脉本来就是通的没什么好稀奇的，验证另外一脉：<pre><code class=language-bash>$ rails console
-Loading development environment (Rails 5.0.2)
-
-# 调用 crystal 的 ping1 和 ping2 worker
-2.4.0 :001 &gt; Sidekiq::Client.push('class' =&gt; 'Ping1Worker', 'args' =&gt;[], 'queue' =&gt; 'crystal')
- =&gt; &quot;324cf5e07b5e2999b0a45565&quot;
-2.4.0 :002 &gt; Sidekiq::Client.push('class' =&gt; 'Ping2Worker', 'args' =&gt;[], 'queue' =&gt; 'crystal')
- =&gt; &quot;06c60bb9d52d9a31d48d2fdc&quot;
-</code></pre><p>看看 crystal 的 sidekiq server 的日志：<pre><code class=language-bash>2017-04-26T06:57:11.846Z 21253 TID-1z8q4cg  JID=324cf5e07b5e2999b0a45565 INFO: Start
-2017-04-26T06:57:11.846Z 21253 TID-1z8q4cg  JID=324cf5e07b5e2999b0a45565 INFO: [Crystal] PONG !
-2017-04-26T06:57:11.846Z 21253 TID-1z8q4cg  JID=324cf5e07b5e2999b0a45565 INFO: Done: 0.000046 sec
-2017-04-26T06:57:20.785Z 21253 TID-1z8q3y8  JID=06c60bb9d52d9a31d48d2fdc INFO: Start
-2017-04-26T06:57:20.785Z 21253 TID-1z8q3y8  JID=06c60bb9d52d9a31d48d2fdc INFO: [Crystal] PONG PONG !!
-2017-04-26T06:57:20.785Z 21253 TID-1z8q3y8  JID=06c60bb9d52d9a31d48d2fdc INFO: Done: 0.000049 sec
-</code></pre><p>验证通过！打通了！<p>Crystal 这边向 Ruby 调用也可行，但只有通过如下代码，有个别时候自身调用也没有日志输出，不过在 Web UI 却发现已处理的数字已正常更新，该问题我再调查下。<pre><code class=language-crystal>require &quot;sidekiq&quot;
-
-ENV[&quot;LOCAL_REDIS&quot;] = &quot;redis://localhost:6379/8&quot;
-ENV[&quot;REDIS_PROVIDER&quot;] = &quot;LOCAL_REDIS&quot;
-
-workers = %w(Ping1Worker Ping2Worker)
-workers.each do |wk_class|
-  job = Sidekiq::Job.new
-  job.queue = &quot;default&quot;
-  job.klass = wk_class
-
-  Sidekiq::Client.default_context = Sidekiq::Client::Context.new
-
-  client = Sidekiq::Client.new
-  job_id = client.push(job)
-  puts &quot;[#{wk_class}] job id: #{job_id}&quot;
-end
-</code></pre><pre><code class=language-bash>2017-04-26T07:20:58.754Z 62256 TID-oukzi7jck Ping1Worker JID-1fee81b35052cba1f6525de5 INFO: start
-2017-04-26T07:20:58.754Z 62256 TID-oukzi7jck Ping1Worker JID-1fee81b35052cba1f6525de5 INFO: [Ruby] PONG !
-2017-04-26T07:20:58.755Z 62256 TID-oukzi7jck Ping1Worker JID-1fee81b35052cba1f6525de5 INFO: done: 0.0 sec
-2017-04-26T07:20:58.756Z 62256 TID-oul02vzfw Ping2Worker JID-0bb7eef097447784fb48d943 INFO: start
-2017-04-26T07:20:58.756Z 62256 TID-oul02vzfw Ping2Worker JID-0bb7eef097447784fb48d943 INFO: [Ruby] PONG PONG !!
-2017-04-26T07:20:58.756Z 62256 TID-oul02vzfw Ping2Worker JID-0bb7eef097447784fb48d943 INFO: done: 0.0 sec
-</code></pre><h2 id=结语>结语</h2><p>本篇只是通过一个最简单的例子让大家知道互通的方法，实际使用中对于数据交互等还有更多需要考虑的地方，这里就暂时不做展开。非常期待 Crystal 今年立的 <a href=https://crystal-lang.org/2016/12/29/crystal-new-year-resolutions-for-2017-1-0.html>1.0 的目标</a>。<p>对于 Crystal 语言本身的评价，大家也可看下 RubyChina 站长的心得<a href=https://ruby-china.org/topics/32771>Crystal 说我最近关注 Crystal 的感受</a>，编译语言有编译语言的坑，入坑需谨慎。<p>本文演示的代码已经整理并放到了 <a href=https://github.com/icyleaf/sidekiq-with-ruby-and-crystal>Github</a>，对于不明白的地方可配合代码更好服用。</section><footer class=post-footer><figure class=author-image><a class=img href=https://icyleaf.com/ style=background-image:url(/images/icyleaf-icon.png)><span class=hidden>icyleaf's Picture</span></a></figure><section class=author><h4><a href=https://icyleaf.com/>icyleaf</a></h4><p>热爱户外的码农、下厨初心者<div class=author-meta><span class="author-location icon-location">Beijing, China</span>
-<span class="author-link icon-link"><a href=https://icyleaf.com>https://icyleaf.com</a></span></div></section><section class=share><h4>Share this post</h4><a class=icon-twitter href="https://twitter.com/share?text=%e6%89%93%e9%80%9a%20Sidekiq%20%e7%9a%84%e4%bb%bb%e7%9d%a3%e4%ba%8c%e8%84%89%20Ruby%20%e5%92%8c%20Crystal&nbsp;-&nbsp;icyleaf&amp;url=https%3a%2f%2ficyleaf.com%2f2017%2f04%2fsidekiq-works-in-ruby-togethor-with-crystal%2f" onclick="window.open(this.href,'twitter-share','width=550,height=235');return false;"><span class=hidden>Twitter</span></a>
-<a class=icon-facebook href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ficyleaf.com%2f2017%2f04%2fsidekiq-works-in-ruby-togethor-with-crystal%2f" onclick="window.open(this.href,'facebook-share','width=580,height=296');return false;"><span class=hidden>Facebook</span></a>
-<a class=icon-weibo href="http://service.weibo.com/share/share.php?url=https%3a%2f%2ficyleaf.com%2f2017%2f04%2fsidekiq-works-in-ruby-togethor-with-crystal%2f&amp;title=%e6%89%93%e9%80%9a%20Sidekiq%20%e7%9a%84%e4%bb%bb%e7%9d%a3%e4%ba%8c%e8%84%89%20Ruby%20%e5%92%8c%20Crystal&nbsp;-&nbsp;icyleaf" onclick="window.open(this.href,'weibo-share','width=580,height=296');return false;"><span class=hidden>新浪微博</span></a>
-<a class=icon-douban href="https://www.douban.com/recommend/?url=https%3a%2f%2ficyleaf.com%2f2017%2f04%2fsidekiq-works-in-ruby-togethor-with-crystal%2f&title=%e6%89%93%e9%80%9a%20Sidekiq%20%e7%9a%84%e4%bb%bb%e7%9d%a3%e4%ba%8c%e8%84%89%20Ruby%20%e5%92%8c%20Crystal&v=1" onclick="window.open(this.href,'douban-share','width=580,height=300');return false;"><span class=hidden>豆瓣</span></a></section><div id=disqus_thread></div><script>var disqus_config=function(){this.page.url="https:\/\/icyleaf.com\/2017\/04\/sidekiq-works-in-ruby-togethor-with-crystal\/";this.page.identifier="https:\/\/icyleaf.com\/2017\/04\/sidekiq-works-in-ruby-togethor-with-crystal\/";};(function(){var d=document,s=d.createElement('script');s.src='https://icyleaf.disqus.com/embed.js';s.setAttribute('data-timestamp',+new Date());(d.head||d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript></footer></article></main><aside class=read-next><a class=read-next-story style=background-image:url(/images/cover.jpg) href=https://icyleaf.com/2017/05/fast-crystal/><section class=post><h2>Fast Crystal</h2></section></a><a class="read-next-story prev" style=background-image:url(https://github.com/fastlane/fastlane/raw/master/match/assets/match.png) href=https://icyleaf.com/2017/03/fastlane-match-in-action/><section class=post><h2>你虐我千百遍，我待你如初恋，直到我遇到 match</h2></section></a></aside><footer class="site-footer clearfix"><section class=copyright><a href>icyleaf</a> All rights reserved - 2019</section><section class=poweredby>Proudly generated by <a class=icon-hugo href=http://gohugo.io>HUGO</a>, with <a class=icon-theme href=https://github.com/vjeantet/hugo-theme-casper>Casper</a> theme</section></footer></div><script src=https://icyleaf.com/js/jquery.js></script><script src=https://icyleaf.com/js/jquery.fitvids.js></script><script src=https://icyleaf.com/js/index.js></script></body></html>
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="chrome=1"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta name=author content="icyleaf"><meta name=description content="日常写代码热爱户外的梦想家"><link rel=prev href=https://icyleaf.com/2017/03/fastlane-match-in-action/><link rel=next href=https://icyleaf.com/2017/05/fast-crystal/><link rel=canonical href=https://icyleaf.com/2017/04/sidekiq-works-in-ruby-togethor-with-crystal/><link rel=apple-touch-icon sizes=180x180 href=https://icyleaf.com/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=https://icyleaf.com/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=https://icyleaf.com/favicon-16x16.png><link rel=manifest href=https://icyleaf.com/site.webmanifest><link rel=mask-icon href=https://icyleaf.com/safari-pinned-tab.svg color=#5bbad5><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"><title>打通 Sidekiq 的任督二脉 Ruby 和 Crystal | icyleaf</title><meta name=title content="打通 Sidekiq 的任督二脉 Ruby 和 Crystal | icyleaf"><link rel=stylesheet href=https://icyleaf.com/css/main.min.css><link rel=stylesheet href=https://icyleaf.com/font/iconfont.css><link rel=stylesheet href=https://icyleaf.com/font-ali/iconfont.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/icyleaf.com\/"},"articleSection":"posts","name":"打通 Sidekiq 的任督二脉 Ruby 和 Crystal","headline":"打通 Sidekiq 的任督二脉 Ruby 和 Crystal","description":"自从开始研究 Crystal 这门语言（之前也有介绍过），基本上每隔一段时间都会看看它的近况，去年 sidekiq 的作者用该语言重新实现了 sidekiq 项目而且给出了特别竟然的对比数","inLanguage":"zh-cn","author":"icyleaf","creator":"icyleaf","publisher":"icyleaf","accountablePerson":"icyleaf","copyrightHolder":"icyleaf","copyrightYear":"2017","datePublished":"2017-04-26 16:00:49 \u002b0000 UTC","dateModified":"2017-04-26 16:00:49 \u002b0000 UTC","url":"https:\/\/icyleaf.com\/2017\/04\/sidekiq-works-in-ruby-togethor-with-crystal\/","wordCount":"2703","keywords":["Ruby","Crystal","Sidekiq","icyleaf"]}</script></head><body><div class=wrapper><nav class=navbar><progress class=content_progress max=0 value=0></progress><div class=container><div class="navbar-header header-back2home-logo"><span class=logo_mark>>$</span>
+<a href=https://icyleaf.com/><span class=logo_text>cd /home/</span>
+<span class=logo_cursor></span></a></div><div class=navbar-right><span class=menu><a class=menu-item href=https://icyleaf.com/posts title>Posts</a>
+<a class=menu-item href=https://icyleaf.com/categories title>Categories</a>
+<a class=menu-item href=https://icyleaf.com/tags title>Tags</a>
+<a class=menu-item href=https://icyleaf.com/about title>About</a>
+<span class=divide></span><a href=javascript:void(0); class=theme-switch><i class="iconfont icon-dark-mode"></i></a></span></div></div></nav><nav class=navbar-mobile id=nav-mobile style=display:none><progress class=content_progress max=0 value=0></progress><div class=container><div class=navbar><div class="navbar-header header-logo"><a href=https://icyleaf.com/>icyleaf</a></div><div class=navbar-right><div><a href=javascript:void(0); class=theme-switch><i class="iconfont icon-dark-mode"></i></a></div><div class=menu-toggle><span></span><span></span><span></span></div></div></div><div class=menu id=mobile-menu><nav class=mb-md><a class=menu-item href=https://icyleaf.com/posts title><h3>Posts</h3><div class=menu-active></div></a><a class=menu-item href=https://icyleaf.com/categories title><h3>Categories</h3><div class=menu-active></div></a><a class=menu-item href=https://icyleaf.com/tags title><h3>Tags</h3><div class=menu-active></div></a><a class=menu-item href=https://icyleaf.com/about title><h3>About</h3><div class=menu-active></div></a></nav></div></div></nav><div class="main-header post-head" style=background-image:url(https://icyleaf.com//uploads/2017/04/26/sidekiq-web-ui.png)></div><main class=main><div class=container><article class=post-warp itemscope itemtype=http://schema.org/Article><header class=post-header><h1 class=post-title itemprop="name headline">打通 Sidekiq 的任督二脉 Ruby 和 Crystal</h1><div class=post-meta>Written by <a itemprop=name href=https://icyleaf.com/ rel=author>icyleaf</a> with ♥
+<span class=post-time>on <time datetime=2017-04-26 itemprop=datePublished>April 26, 2017</time></span>
+in
+<i class="iconfont icon-folder"></i>
+<span class=post-category><a href=https://icyleaf.com/categories/technology/>Technology,</a></span>
+<span class=post-word-count>2703 words</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title></h2><div class="post-toc-content always-active"><nav id=TableOfContents><ul><li><a href=#配置-rails-环境>配置 Rails 环境</a></li><li><a href=#配置-crystal-环境>配置 Crystal 环境</a></li><li><a href=#编写-workers>编写 Workers</a><ul><li><a href=#ruby-版本>Ruby 版本</a></li><li><a href=#crystal-版本>Crystal 版本</a></li></ul></li><li><a href=#任督二脉>任督二脉</a><ul><li><a href=#ruby-版本-1>Ruby 版本</a></li><li><a href=#crystal-版本-1>Crystal 版本</a></li></ul></li><li><a href=#打通任督二脉>打通任督二脉</a></li><li><a href=#验证功力效果>验证功力效果</a></li><li><a href=#结语>结语</a></li></ul></nav></div></div><div class=post-content><p>自从开始研究 Crystal 这门语言（之前也有<a href=http://icyleaf.com/2016/07/gitlab-api-wrapper-for-crystal/>介绍</a>过），基本上每隔一段时间都会看看它的近况，去年 sidekiq 的作者用该语言重新实现了 sidekiq 项目而且给出了特别竟然的<a href=http://www.mikeperham.com/2016/05/25/sidekiq-for-crystal/>对比数据</a>。</p><p><img src=https://icyleaf.com/uploads/2017/04/26/sidekiq-benchmarks.png alt=IMAGE loading=lazy></p><p>相对比 Gitlab 采用 go 语言重新 gitlab_ci_runner 而学习一门新的语言达到高效率低内存的方法之外 Crystal 就像是新的希望。使用 Crystal 重新的 sidekiq 的代码也非常的简单但已经实现了核心功能和 Web UI。</p><p>本篇就给大家介绍下如果在 Ruby on Rails 的框架下调度和执行 Crystal 写的 Workers。测试环境是在 macOS 下，其他版本信息如下：</p><ul><li>Ruby 2.0+<ul><li>Rails 5.0</li><li>Sidekiq 5.0</li></ul></li><li>Crystal 0.22.0+<ul><li>Sidekiq.cr 0.7.0</li></ul></li></ul><h2 id=配置-rails-环境>配置 Rails 环境</h2><p>如何配置 Ruby、Rails、Bundler、Redis 就不在赘述，只讲核心，首先新建一个最基础的 rails 项目，不用额外的第三方辅助工具，数据库用 sqlite 减少外部依赖：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>$ rails new ruby_on_rails -B -T -S -C -M  -d sqlite3
+</code></pre></div><p>进入项目 <code>ruby_on_rails</code> 编辑 <code>Gemfile</code>:</p><div class=highlight><pre class=chroma><code class=language-ruby data-lang=ruby><span class=ln> 1</span><span class=c1># 修改源地址</span>
+<span class=ln> 2</span><span class=n>source</span> <span class=s1>&#39;https://gems.ruby-china.org&#39;</span>
+<span class=ln> 3</span>
+<span class=ln> 4</span><span class=c1># 新增 sidekiq 的支持</span>
+<span class=ln> 5</span><span class=n>gem</span> <span class=s1>&#39;redis-rails&#39;</span>
+<span class=ln> 6</span><span class=n>gem</span> <span class=s1>&#39;sidekiq&#39;</span>
+<span class=ln> 7</span>
+<span class=ln> 8</span><span class=c1># 其余的不用修改</span>
+<span class=ln> 9</span><span class=c1># Bundle edge Rails instead: gem &#39;rails&#39;, github: &#39;rails/rails&#39;</span>
+<span class=ln>10</span><span class=n>gem</span> <span class=s1>&#39;rails&#39;</span><span class=p>,</span> <span class=s1>&#39;~&gt; 5.0.2&#39;</span>
+<span class=ln>11</span><span class=c1># Use sqlite3 as the database for Active Record</span>
+<span class=ln>12</span><span class=n>gem</span> <span class=s1>&#39;sqlite3&#39;</span>
+<span class=ln>13</span><span class=c1># Use Puma as the app server</span>
+<span class=ln>14</span><span class=n>gem</span> <span class=s1>&#39;puma&#39;</span><span class=p>,</span> <span class=s1>&#39;~&gt; 3.0&#39;</span>
+<span class=ln>15</span>
+<span class=ln>16</span><span class=n>gem</span> <span class=s1>&#39;redis-rails&#39;</span>
+<span class=ln>17</span><span class=n>gem</span> <span class=s1>&#39;sidekiq&#39;</span>
+<span class=ln>18</span>
+<span class=ln>19</span><span class=n>group</span> <span class=ss>:development</span><span class=p>,</span> <span class=ss>:test</span> <span class=k>do</span>
+<span class=ln>20</span>  <span class=c1># Call &#39;byebug&#39; anywhere in the code to stop execution and get a debugger console</span>
+<span class=ln>21</span>  <span class=n>gem</span> <span class=s1>&#39;byebug&#39;</span><span class=p>,</span> <span class=ss>platform</span><span class=p>:</span> <span class=ss>:mri</span>
+<span class=ln>22</span><span class=k>end</span>
+<span class=ln>23</span>
+<span class=ln>24</span><span class=n>group</span> <span class=ss>:development</span> <span class=k>do</span>
+<span class=ln>25</span>  <span class=c1># Access an IRB console on exception pages or by using &lt;%= console %&gt; anywhere in the code.</span>
+<span class=ln>26</span>  <span class=n>gem</span> <span class=s1>&#39;web-console&#39;</span><span class=p>,</span> <span class=s1>&#39;&gt;= 3.3.0&#39;</span>
+<span class=ln>27</span>  <span class=n>gem</span> <span class=s1>&#39;listen&#39;</span><span class=p>,</span> <span class=s1>&#39;~&gt; 3.0.5&#39;</span>
+<span class=ln>28</span>  <span class=c1># Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring</span>
+<span class=ln>29</span>  <span class=n>gem</span> <span class=s1>&#39;spring&#39;</span>
+<span class=ln>30</span>  <span class=n>gem</span> <span class=s1>&#39;spring-watcher-listen&#39;</span><span class=p>,</span> <span class=s1>&#39;~&gt; 2.0.0&#39;</span>
+<span class=ln>31</span><span class=k>end</span>
+<span class=ln>32</span>
+<span class=ln>33</span><span class=c1># Windows does not include zoneinfo files, so bundle the tzinfo-data gem</span>
+<span class=ln>34</span><span class=n>gem</span> <span class=s1>&#39;tzinfo-data&#39;</span><span class=p>,</span> <span class=ss>platforms</span><span class=p>:</span> <span class=o>[</span><span class=ss>:mingw</span><span class=p>,</span> <span class=ss>:mswin</span><span class=p>,</span> <span class=ss>:x64_mingw</span><span class=p>,</span> <span class=ss>:jruby</span><span class=o>]</span>
+</code></pre></div><p>配置好之后执行 <code>bundle insall</code> 安装好 Gem 的依赖，再创建文件 <code>config/initializers/sidekiq.rb</code>:</p><div class=highlight><pre class=chroma><code class=language-ruby data-lang=ruby><span class=ln>1</span><span class=n>redis_config</span> <span class=o>=</span> <span class=p>{</span> <span class=ss>url</span><span class=p>:</span> <span class=s1>&#39;redis://localhost:6379/8&#39;</span> <span class=p>}</span>
+<span class=ln>2</span>
+<span class=ln>3</span><span class=no>Sidekiq</span><span class=o>.</span><span class=n>configure_server</span> <span class=k>do</span> <span class=o>|</span><span class=n>config</span><span class=o>|</span>
+<span class=ln>4</span>  <span class=n>config</span><span class=o>.</span><span class=n>redis</span> <span class=o>=</span> <span class=n>redis_config</span>
+<span class=ln>5</span><span class=k>end</span>
+<span class=ln>6</span>
+<span class=ln>7</span><span class=no>Sidekiq</span><span class=o>.</span><span class=n>configure_client</span> <span class=k>do</span> <span class=o>|</span><span class=n>config</span><span class=o>|</span>
+<span class=ln>8</span>  <span class=n>config</span><span class=o>.</span><span class=n>redis</span> <span class=o>=</span> <span class=n>redis_config</span>
+<span class=ln>9</span><span class=k>end</span>
+</code></pre></div><p>Sidekiq 的配置就完事了。</p><h2 id=配置-crystal-环境>配置 Crystal 环境</h2><p>Crystal 是基于 LLVM 开发，除了 Windows 以外其他绝大数系统基本上都支持（最新支持的 ARM 架构，可在树莓派上安装），<a href=https://crystal-lang.org/docs/installation/>安装步骤</a>同样不再赘述。</p><p>安装好之后首先创建一个新项目：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>$ crystal init app crystal
+</code></pre></div><p>进入项目 <code>crystal</code> 编辑 <code>Shard.yml</code> 这是一个类似于 Gemfile 的功能，但实现的去中心化，在文件末尾新增如下依赖：</p><div class=highlight><pre class=chroma><code class=language-yaml data-lang=yaml><span class=ln>1</span><span class=nt>dependencies</span><span class=p>:</span><span class=w>
+</span><span class=ln>2</span><span class=w>  </span><span class=nt>sidekiq</span><span class=p>:</span><span class=w>
+</span><span class=ln>3</span><span class=w>    </span><span class=nt>github</span><span class=p>:</span><span class=w> </span><span class=l>mperham/sidekiq.cr</span><span class=w>
+</span><span class=ln>4</span><span class=w>    </span><span class=nt>branch</span><span class=p>:</span><span class=w> </span><span class=l>master</span><span class=w>
+</span></code></pre></div><p>执行 <code>shards update</code> 或 <code>crystal deps</code> 安装依赖即可。</p><h2 id=编写-workers>编写 Workers</h2><p>Worker 的功能很简单，就是做一个类似 Redis ping 的功能，Worker 在日志输出 PONG。</p><h3 id=ruby-版本>Ruby 版本</h3><p>安装 sidekiq 后会在 rails 内置命令可生成基础模板，切换到 <code>ruby_on_rails</code> 目录：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>$ rails g sidekiq:worker ping1
+<span class=ln>2</span>      create  app/workers/ping1_worker.rb
+<span class=ln>3</span>$ rails g sidekiq:worker ping2
+<span class=ln>4</span>      create  app/workers/ping2_worker.rb
+</code></pre></div><p>worker 的内容也很简单，我在日志输出增加了 <code>[Ruby]</code> 作为 Ruby 版本的标识便于后面的辨识</p><div class=highlight><pre class=chroma><code class=language-ruby data-lang=ruby><span class=ln> 1</span><span class=c1># app/workers/ping1_worker.rb</span>
+<span class=ln> 2</span><span class=k>class</span> <span class=nc>Ping1Worker</span>
+<span class=ln> 3</span>  <span class=kp>include</span> <span class=no>Sidekiq</span><span class=o>::</span><span class=no>Worker</span>
+<span class=ln> 4</span>
+<span class=ln> 5</span>  <span class=k>def</span> <span class=nf>perform</span><span class=p>(</span><span class=o>*</span><span class=n>args</span><span class=p>)</span>
+<span class=ln> 6</span>    <span class=n>logger</span><span class=o>.</span><span class=n>info</span> <span class=s2>&#34;[Ruby] PONG !&#34;</span>
+<span class=ln> 7</span>  <span class=k>end</span>
+<span class=ln> 8</span><span class=k>end</span>
+<span class=ln> 9</span>
+<span class=ln>10</span><span class=c1># app/workers/ping2_worker.rb</span>
+<span class=ln>11</span><span class=k>class</span> <span class=nc>Ping2Worker</span>
+<span class=ln>12</span>  <span class=kp>include</span> <span class=no>Sidekiq</span><span class=o>::</span><span class=no>Worker</span>
+<span class=ln>13</span>
+<span class=ln>14</span>  <span class=k>def</span> <span class=nf>perform</span><span class=p>(</span><span class=o>*</span><span class=n>args</span><span class=p>)</span>
+<span class=ln>15</span>    <span class=n>logger</span><span class=o>.</span><span class=n>info</span> <span class=s2>&#34;[Ruby] PONG PONG !!&#34;</span>
+<span class=ln>16</span>  <span class=k>end</span>
+<span class=ln>17</span><span class=k>end</span>
+</code></pre></div><h3 id=crystal-版本>Crystal 版本</h3><p>切换到 <code>crystal</code> 目录下和 Ruby 不同的是它的源码是存放在 src 目录下面，我们稍微调整下结构：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln> 1</span>.
+<span class=ln> 2</span>├── LICENSE
+<span class=ln> 3</span>├── README.md
+<span class=ln> 4</span>├── lib
+<span class=ln> 5</span>├── shard.lock
+<span class=ln> 6</span>├── shard.yml
+<span class=ln> 7</span>├── spec
+<span class=ln> 8</span>└── src
+<span class=ln> 9</span>    ├── crystal_server.cr
+<span class=ln>10</span>    └── workers
+<span class=ln>11</span>        ├── ping1_worker.cr
+<span class=ln>12</span>        └── ping2_worker.cr
+</code></pre></div><p>worker 的内容如下，并设置 queue 为 <code>crystal</code> 用于指派使用:</p><div class=highlight><pre class=chroma><code class=language-crystal data-lang=crystal><span class=ln> 1</span><span class=c1># src/workers/ping1_worker.cr</span>
+<span class=ln> 2</span><span class=k>class</span> <span class=nc>Ping1Worker</span>
+<span class=ln> 3</span>  <span class=k>include</span> <span class=n>Sidekiq</span><span class=o>::</span><span class=n>Worker</span>
+<span class=ln> 4</span>  <span class=n>sidekiq_options</span> <span class=k>do</span> <span class=o>|</span><span class=n>job</span><span class=o>|</span>
+<span class=ln> 5</span>    <span class=n>job</span><span class=o>.</span><span class=n>queue</span> <span class=o>=</span> <span class=s2>&#34;crystal&#34;</span>
+<span class=ln> 6</span>  <span class=k>end</span>
+<span class=ln> 7</span>
+<span class=ln> 8</span>  <span class=k>def</span> <span class=nf>perform</span><span class=p>()</span>
+<span class=ln> 9</span>    <span class=n>logger</span><span class=o>.</span><span class=n>info</span> <span class=s2>&#34;[Crystal] PONG !&#34;</span>
+<span class=ln>10</span>  <span class=k>end</span>
+<span class=ln>11</span><span class=k>end</span>
+<span class=ln>12</span>
+<span class=ln>13</span><span class=c1># src/workers/ping2_worker.cr</span>
+<span class=ln>14</span><span class=k>class</span> <span class=nc>Ping2Worker</span>
+<span class=ln>15</span>  <span class=k>include</span> <span class=n>Sidekiq</span><span class=o>::</span><span class=n>Worker</span>
+<span class=ln>16</span>  <span class=n>sidekiq_options</span> <span class=k>do</span> <span class=o>|</span><span class=n>job</span><span class=o>|</span>
+<span class=ln>17</span>    <span class=n>job</span><span class=o>.</span><span class=n>queue</span> <span class=o>=</span> <span class=s2>&#34;crystal&#34;</span>
+<span class=ln>18</span>  <span class=k>end</span>
+<span class=ln>19</span>
+<span class=ln>20</span>  <span class=k>def</span> <span class=nf>perform</span><span class=p>()</span>
+<span class=ln>21</span>    <span class=n>logger</span><span class=o>.</span><span class=n>info</span> <span class=s2>&#34;[Crystal] PONG PONG !!&#34;</span>
+<span class=ln>22</span>  <span class=k>end</span>
+<span class=ln>23</span><span class=k>end</span>
+</code></pre></div><p>通过代码可以看出 Ruby 和 Crystal 的代码基本上是完全一样的。</p><h2 id=任督二脉>任督二脉</h2><p>对于使用 Sidekiq 的童鞋都知道，如果我想执行一个队列任务，只需要调用下 Worker 本身的 <code>perform_*</code> 方法，这样的话根本无法调用一个不同语言版本的 Worker 否则 sidekiq 会报类似如下错误：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>2017-04-26T06:19:14.187Z <span class=m>50690</span> TID-ox4qa1k8o WARN: <span class=o>{</span><span class=s2>&#34;context&#34;</span>:<span class=s2>&#34;Job raised exception&#34;</span>,<span class=s2>&#34;job&#34;</span>:<span class=o>{</span><span class=s2>&#34;class&#34;</span>:<span class=s2>&#34;Crystal::Ping1Worker&#34;</span>,<span class=s2>&#34;args&#34;</span>:<span class=o>[]</span>,<span class=s2>&#34;retry&#34;</span>:true,<span class=s2>&#34;queue&#34;</span>:<span class=s2>&#34;default&#34;</span>,<span class=s2>&#34;jid&#34;</span>:<span class=s2>&#34;42ce106d79
+</span><span class=ln>2</span><span class=s2>01a274f3db2d54&#34;</span>,<span class=s2>&#34;created_at&#34;</span>:1493187554.181674,<span class=s2>&#34;enqueued_at&#34;</span>:1493187554.1820428<span class=o>}</span>,<span class=s2>&#34;jobstr&#34;</span>:<span class=s2>&#34;{\&#34;class\&#34;:\&#34;Crystal::Ping1Worker\&#34;,\&#34;args\&#34;:[],\&#34;retry\&#34;:true,\&#34;queue\&#34;:\&#34;default\&#34;,\&#34;jid
+</span><span class=ln>3</span><span class=s2>\&#34;:\&#34;42ce106d7901a274f3db2d54\&#34;,\&#34;created_at\&#34;:1493187554.181674,\&#34;enqueued_at\&#34;:1493187554.1820428}&#34;</span><span class=o>}</span>
+<span class=ln>4</span>2017-04-26T06:19:14.187Z <span class=m>50690</span> TID-ox4qa1k8o WARN: NameError: uninitialized constant Crystal
+</code></pre></div><p>打通任督二脉的关键在于两个版本都提供一个 low-level 的 API 可用于定制化调用：</p><h3 id=ruby-版本-1>Ruby 版本</h3><div class=highlight><pre class=chroma><code class=language-ruby data-lang=ruby><span class=ln>1</span><span class=n>job_id</span> <span class=o>=</span> <span class=no>Sidekiq</span><span class=o>::</span><span class=no>Client</span><span class=o>.</span><span class=n>push</span><span class=p>(</span>
+<span class=ln>2</span>  <span class=s1>&#39;queue&#39;</span> <span class=o>=&gt;</span> <span class=s1>&#39;&#39;</span><span class=p>,</span>  <span class=c1># 指派特定的队列名，默认是 default</span>
+<span class=ln>3</span>  <span class=s1>&#39;class&#39;</span> <span class=o>=&gt;</span> <span class=s1>&#39;&#39;</span><span class=p>,</span>  <span class=c1># Worker 的类名，可以是实例化类型或字符串类型</span>
+<span class=ln>4</span>  <span class=s1>&#39;args&#39;</span> <span class=o>=&gt;[]</span>     <span class=c1># Worker 接收的参数，以数组形式传递</span>
+<span class=ln>5</span><span class=p>)</span>
+</code></pre></div><h3 id=crystal-版本-1>Crystal 版本</h3><div class=highlight><pre class=chroma><code class=language-crystal data-lang=crystal><span class=ln>1</span><span class=n>job</span> <span class=o>=</span> <span class=n>Sidekiq</span><span class=o>::</span><span class=n>Job</span><span class=o>.</span><span class=n>new</span>
+<span class=ln>2</span><span class=n>job</span><span class=o>.</span><span class=n>queue</span> <span class=o>=</span> <span class=s2>&#34;default&#34;</span>   <span class=c1># 指派特定的队列名，默认是 default</span>
+<span class=ln>3</span><span class=n>job</span><span class=o>.</span><span class=n>klass</span> <span class=o>=</span> <span class=s2>&#34;&#34;</span>          <span class=c1># Worker 的类名，可以是实例化类型或字符串类型</span>
+<span class=ln>4</span><span class=n>job</span><span class=o>.</span><span class=n>args</span> <span class=o>=</span> <span class=o>[].</span><span class=n>to_json</span>   <span class=c1># Worker 接收的参数，以数组形式传递</span>
+<span class=ln>5</span>
+<span class=ln>6</span><span class=n>client</span> <span class=o>=</span> <span class=n>Sidekiq</span><span class=o>::</span><span class=n>Client</span><span class=o>.</span><span class=n>new</span>
+<span class=ln>7</span><span class=n>job_id</span> <span class=o>=</span> <span class=n>client</span><span class=o>.</span><span class=n>push</span><span class=p>(</span><span class=n>job</span><span class=p>)</span>
+</code></pre></div><h2 id=打通任督二脉>打通任督二脉</h2><p>准备工作就绪，打通任督二脉的关键就只差一个了！那就是对于 redis 数据共享，细心的童鞋可能留意了上面只配置了 Ruby 版本的 redis 连接，但对于 Crystal 我故意留白没有说明。因为这个是最关键的一步，对于当前 sidekiq.cr 版本来说。</p><p>sidekiq.cr 对于作者来说是一次试水并没有话特别大的精力，Crystal 本身还处在开发阶段在未到达 1.0 之前会有各种 Break Changes。而且作者是非常照顾 Heroku 的开发者，默认仅支持该服务平台 Redis-to-Go 服务，因此想设置 Redis 连接信息必须通过系统的环境变量：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span><span class=nv>REDISTOGO_URL</span><span class=o>=</span>redis://localhost:6379/8
+<span class=ln>2</span><span class=nv>REDIS_PROVIDER</span><span class=o>=</span><span class=nv>$REDISTOGO_URL</span>
+</code></pre></div><p>上面的配置是不可省略的，因为我个人不懂 Heroku 给作者乱提了 PL 还被作者狠批了一顿 :(</p><p>回到话题本身，我们来继续写上 <code>src/crystal_server.cr</code> 关键的代码：</p><blockquote><p>注意：redis 连接信息无比保证和 rails 配置的是一致的！</p></blockquote><div class=highlight><pre class=chroma><code class=language-crystal data-lang=crystal><span class=ln> 1</span><span class=k>require</span> <span class=s2>&#34;sidekiq&#34;</span>
+<span class=ln> 2</span><span class=k>require</span> <span class=s2>&#34;sidekiq/cli&#34;</span>
+<span class=ln> 3</span><span class=k>require</span> <span class=s2>&#34;./workers/*&#34;</span>
+<span class=ln> 4</span>
+<span class=ln> 5</span><span class=no>ENV</span><span class=o>[</span><span class=s2>&#34;LOCAL_REDIS&#34;</span><span class=o>]</span> <span class=o>=</span> <span class=s2>&#34;redis://localhost:6379/8&#34;</span>
+<span class=ln> 6</span><span class=no>ENV</span><span class=o>[</span><span class=s2>&#34;REDIS_PROVIDER&#34;</span><span class=o>]</span> <span class=o>=</span> <span class=s2>&#34;LOCAL_REDIS&#34;</span>
+<span class=ln> 7</span>
+<span class=ln> 8</span><span class=n>cli</span> <span class=o>=</span> <span class=n>Sidekiq</span><span class=o>::</span><span class=no>CLI</span><span class=o>.</span><span class=n>new</span>
+<span class=ln> 9</span><span class=n>server</span> <span class=o>=</span> <span class=n>cli</span><span class=o>.</span><span class=n>configure</span> <span class=k>do</span> <span class=o>|</span><span class=n>config</span><span class=o>|</span>
+<span class=ln>10</span>  <span class=c1># 支持中间件，默认留空即可</span>
+<span class=ln>11</span><span class=k>end</span>
+<span class=ln>12</span>
+<span class=ln>13</span><span class=n>cli</span><span class=o>.</span><span class=n>run</span><span class=p>(</span><span class=n>server</span><span class=p>)</span>
+</code></pre></div><p>代码需要编译执行，因为不编译是无法给 sidekiq cli 传递它接受的参数（当然也有方法，我放在末尾范例源码中自己寻找）</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>$ crystal build src/crystal_server.cr -o crystal_server
+</code></pre></div><p>通过上面命令把源码编译成可执行文件到项目根目录的 <code>crystal_server</code> 文件。</p><p>打开终端一：启动 ruby 的 sidekiq server</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln> 1</span>$ <span class=nb>cd</span> ruby_on_rails
+<span class=ln> 2</span>$ sidekiq -q default
+<span class=ln> 3</span>2017-04-26T06:47:19.299Z <span class=m>76282</span> TID-owewdljsc INFO: Booting Sidekiq 4.2.10 with redis options <span class=o>{</span>:url<span class=o>=</span>&gt;<span class=s2>&#34;redis://localhost:6379/8&#34;</span><span class=o>}</span>
+<span class=ln> 4</span>
+<span class=ln> 5</span>
+<span class=ln> 6</span>         m,
+<span class=ln> 7</span>         <span class=sb>`</span><span class=nv>$b</span>
+<span class=ln> 8</span>    .ss,  <span class=nv>$$</span>:         .,d$
+<span class=ln> 9</span>    <span class=sb>`</span><span class=nv>$$</span>P,d<span class=nv>$P</span><span class=s1>&#39;    .,md$P&#34;&#39;</span>
+<span class=ln>10</span>     ,<span class=nv>$$$$$bmmd$$$P</span>^<span class=s1>&#39;
+</span><span class=ln>11</span><span class=s1>   .d$$$$$$$$$$P&#39;</span>
+<span class=ln>12</span>   <span class=nv>$$</span>^<span class=s1>&#39; `&#34;^$$$&#39;</span>       ____  _     _      _    _
+<span class=ln>13</span>   $:     ,<span class=nv>$$</span>:       / ___<span class=p>|</span><span class=o>(</span>_<span class=o>)</span> __<span class=p>|</span> <span class=p>|</span> ___<span class=p>|</span> <span class=p>|</span> _<span class=o>(</span>_<span class=o>)</span> __ _
+<span class=ln>14</span>   <span class=sb>`</span>b     :<span class=nv>$$</span>        <span class=se>\_</span>__ <span class=se>\|</span> <span class=p>|</span>/ _<span class=sb>`</span> <span class=p>|</span>/ _ <span class=se>\ </span><span class=p>|</span>/ / <span class=p>|</span>/ _<span class=sb>`</span> <span class=p>|</span>
+<span class=ln>15</span>          <span class=nv>$$</span>:         ___<span class=o>)</span> <span class=p>|</span> <span class=p>|</span> <span class=o>(</span>_<span class=p>|</span> <span class=p>|</span>  __/   &lt;<span class=p>|</span> <span class=p>|</span> <span class=o>(</span>_<span class=p>|</span> <span class=p>|</span>
+<span class=ln>16</span>          <span class=nv>$$</span>         <span class=p>|</span>____/<span class=p>|</span>_<span class=p>|</span><span class=se>\_</span>_,_<span class=p>|</span><span class=se>\_</span>__<span class=p>|</span>_<span class=p>|</span><span class=se>\_\_</span><span class=p>|</span><span class=se>\_</span>_, <span class=p>|</span>
+<span class=ln>17</span>        .d<span class=nv>$$</span>                                       <span class=p>|</span>_<span class=p>|</span>
+<span class=ln>18</span>
+<span class=ln>19</span>2017-04-26T06:47:19.433Z <span class=m>76282</span> TID-owewdljsc INFO: Running in ruby 2.4.0p0 <span class=o>(</span>2016-12-24 revision 57164<span class=o>)</span> <span class=o>[</span>x86_64-darwin16<span class=o>]</span>
+<span class=ln>20</span>2017-04-26T06:47:19.433Z <span class=m>76282</span> TID-owewdljsc INFO: See LICENSE and the LGPL-3.0 <span class=k>for</span> licensing details.
+<span class=ln>21</span>2017-04-26T06:47:19.433Z <span class=m>76282</span> TID-owewdljsc INFO: Upgrade to Sidekiq Pro <span class=k>for</span> more features and support: http://sidekiq.org
+<span class=ln>22</span>2017-04-26T06:47:19.442Z <span class=m>76282</span> TID-owewdljsc INFO: Starting processing, hit Ctrl-C to stop
+</code></pre></div><p>打开终端二：启动 crystal 的 sidekiq server</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln> 1</span>$ <span class=nb>cd</span> crystal
+<span class=ln> 2</span>$ ./crystal_server -q crystal
+<span class=ln> 3</span>
+<span class=ln> 4</span>         m,
+<span class=ln> 5</span>         <span class=sb>`</span><span class=nv>$b</span>
+<span class=ln> 6</span>    .ss,  <span class=nv>$$</span>:         .,d$
+<span class=ln> 7</span>    <span class=sb>`</span><span class=nv>$$</span>P,d<span class=nv>$P</span><span class=s1>&#39;    .,md$P&#34;&#39;</span>
+<span class=ln> 8</span>     ,<span class=nv>$$$$$bmmd$$$P</span>^<span class=s1>&#39;
+</span><span class=ln> 9</span><span class=s1>   .d$$$$$$$$$$P&#39;</span>
+<span class=ln>10</span>   <span class=nv>$$</span>^<span class=s1>&#39; `&#34;^$$$&#39;</span>       ____  _     _      _    _
+<span class=ln>11</span>   $:     ,<span class=nv>$$</span>:       / ___<span class=p>|</span><span class=o>(</span>_<span class=o>)</span> __<span class=p>|</span> <span class=p>|</span> ___<span class=p>|</span> <span class=p>|</span> _<span class=o>(</span>_<span class=o>)</span> __ _
+<span class=ln>12</span>   <span class=sb>`</span>b     :<span class=nv>$$</span>        <span class=se>\_</span>__ <span class=se>\|</span> <span class=p>|</span>/ _<span class=sb>`</span> <span class=p>|</span>/ _ <span class=se>\ </span><span class=p>|</span>/ / <span class=p>|</span>/ _<span class=sb>`</span> <span class=p>|</span>
+<span class=ln>13</span>          <span class=nv>$$</span>:         ___<span class=o>)</span> <span class=p>|</span> <span class=p>|</span> <span class=o>(</span>_<span class=p>|</span> <span class=p>|</span>  __/   &lt;<span class=p>|</span> <span class=p>|</span> <span class=o>(</span>_<span class=p>|</span> <span class=p>|</span>
+<span class=ln>14</span>          <span class=nv>$$</span>         <span class=p>|</span>____/<span class=p>|</span>_<span class=p>|</span><span class=se>\_</span>_,_<span class=p>|</span><span class=se>\_</span>__<span class=p>|</span>_<span class=p>|</span><span class=se>\_\_</span><span class=p>|</span><span class=se>\_</span>_, <span class=p>|</span>
+<span class=ln>15</span>        .d<span class=nv>$$</span>                                       <span class=p>|</span>_<span class=p>|</span>
+<span class=ln>16</span>
+<span class=ln>17</span>2017-04-26T06:48:42.755Z <span class=m>83552</span> TID-21ybwjk  INFO: Sidekiq v0.7.0 in Crystal 0.22.0
+<span class=ln>18</span>2017-04-26T06:48:42.755Z <span class=m>83552</span> TID-21ybwjk  INFO: Licensed <span class=k>for</span> use under the terms of the GNU LGPL-3.0 license.
+<span class=ln>19</span>2017-04-26T06:48:42.755Z <span class=m>83552</span> TID-21ybwjk  INFO: Upgrade to Sidekiq Enterprise <span class=k>for</span> more features and support: http://sidekiq.org
+<span class=ln>20</span>2017-04-26T06:48:42.755Z <span class=m>83552</span> TID-21ybwjk  INFO: Starting processing with <span class=m>25</span> workers
+<span class=ln>21</span>2017-04-26T06:48:42.756Z <span class=m>83552</span> TID-21ybwjk  INFO: Press Ctrl-C to stop
+</code></pre></div><h2 id=验证功力效果>验证功力效果</h2><p>两边的 sidekiq server 都已经跑起来了，我们先从 rails 启动 console 验证，注意留意两个 sidekiq 终端日志的输出：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>$ rails console
+<span class=ln>2</span>Loading development environment <span class=o>(</span>Rails 5.0.2<span class=o>)</span>
+<span class=ln>3</span>
+<span class=ln>4</span><span class=c1># 调用 rails 本身的 ping1 和 ping2 worker</span>
+<span class=ln>5</span>2.4.0 :001 &gt; Sidekiq::Client.push<span class=o>(</span><span class=s1>&#39;class&#39;</span> <span class=o>=</span>&gt; <span class=s1>&#39;Ping1Worker&#39;</span>, <span class=s1>&#39;args&#39;</span> <span class=o>=</span>&gt;<span class=o>[])</span>
+<span class=ln>6</span> <span class=o>=</span>&gt; <span class=s2>&#34;961500753aa127b73ac50851&#34;</span>
+<span class=ln>7</span>2.4.0 :002 &gt; Sidekiq::Client.push<span class=o>(</span><span class=s1>&#39;class&#39;</span> <span class=o>=</span>&gt; <span class=s1>&#39;Ping2Worker&#39;</span>, <span class=s1>&#39;args&#39;</span> <span class=o>=</span>&gt;<span class=o>[])</span>
+<span class=ln>8</span> <span class=o>=</span>&gt; <span class=s2>&#34;be366d2e5f44adf367853d82&#34;</span>
+</code></pre></div><p>对应 rails 的 sidekiq server 会同时输出：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>2017-04-26T06:53:01.722Z <span class=m>76282</span> TID-owex58ag8 Ping1Worker JID-961500753aa127b73ac50851 INFO: start
+<span class=ln>2</span>2017-04-26T06:53:01.722Z <span class=m>76282</span> TID-owex58ag8 Ping1Worker JID-961500753aa127b73ac50851 INFO: <span class=o>[</span>Ruby<span class=o>]</span> PONG !
+<span class=ln>3</span>2017-04-26T06:53:01.722Z <span class=m>76282</span> TID-owex58ag8 Ping1Worker JID-961500753aa127b73ac50851 INFO: <span class=k>done</span>: 0.0 sec
+<span class=ln>4</span>2017-04-26T06:53:52.681Z <span class=m>76282</span> TID-owex58bs0 Ping2Worker JID-be366d2e5f44adf367853d82 INFO: start
+<span class=ln>5</span>2017-04-26T06:53:52.681Z <span class=m>76282</span> TID-owex58bs0 Ping2Worker JID-be366d2e5f44adf367853d82 INFO: <span class=o>[</span>Ruby<span class=o>]</span> PONG PONG !!
+<span class=ln>6</span>2017-04-26T06:53:52.681Z <span class=m>76282</span> TID-owex58bs0 Ping2Worker JID-be366d2e5f44adf367853d82 INFO: <span class=k>done</span>: 0.0 sec
+</code></pre></div><p>自身一脉本来就是通的没什么好稀奇的，验证另外一脉：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>$ rails console
+<span class=ln>2</span>Loading development environment <span class=o>(</span>Rails 5.0.2<span class=o>)</span>
+<span class=ln>3</span>
+<span class=ln>4</span><span class=c1># 调用 crystal 的 ping1 和 ping2 worker</span>
+<span class=ln>5</span>2.4.0 :001 &gt; Sidekiq::Client.push<span class=o>(</span><span class=s1>&#39;class&#39;</span> <span class=o>=</span>&gt; <span class=s1>&#39;Ping1Worker&#39;</span>, <span class=s1>&#39;args&#39;</span> <span class=o>=</span>&gt;<span class=o>[]</span>, <span class=s1>&#39;queue&#39;</span> <span class=o>=</span>&gt; <span class=s1>&#39;crystal&#39;</span><span class=o>)</span>
+<span class=ln>6</span> <span class=o>=</span>&gt; <span class=s2>&#34;324cf5e07b5e2999b0a45565&#34;</span>
+<span class=ln>7</span>2.4.0 :002 &gt; Sidekiq::Client.push<span class=o>(</span><span class=s1>&#39;class&#39;</span> <span class=o>=</span>&gt; <span class=s1>&#39;Ping2Worker&#39;</span>, <span class=s1>&#39;args&#39;</span> <span class=o>=</span>&gt;<span class=o>[]</span>, <span class=s1>&#39;queue&#39;</span> <span class=o>=</span>&gt; <span class=s1>&#39;crystal&#39;</span><span class=o>)</span>
+<span class=ln>8</span> <span class=o>=</span>&gt; <span class=s2>&#34;06c60bb9d52d9a31d48d2fdc&#34;</span>
+</code></pre></div><p>看看 crystal 的 sidekiq server 的日志：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>2017-04-26T06:57:11.846Z <span class=m>21253</span> TID-1z8q4cg  <span class=nv>JID</span><span class=o>=</span>324cf5e07b5e2999b0a45565 INFO: Start
+<span class=ln>2</span>2017-04-26T06:57:11.846Z <span class=m>21253</span> TID-1z8q4cg  <span class=nv>JID</span><span class=o>=</span>324cf5e07b5e2999b0a45565 INFO: <span class=o>[</span>Crystal<span class=o>]</span> PONG !
+<span class=ln>3</span>2017-04-26T06:57:11.846Z <span class=m>21253</span> TID-1z8q4cg  <span class=nv>JID</span><span class=o>=</span>324cf5e07b5e2999b0a45565 INFO: Done: 0.000046 sec
+<span class=ln>4</span>2017-04-26T06:57:20.785Z <span class=m>21253</span> TID-1z8q3y8  <span class=nv>JID</span><span class=o>=</span>06c60bb9d52d9a31d48d2fdc INFO: Start
+<span class=ln>5</span>2017-04-26T06:57:20.785Z <span class=m>21253</span> TID-1z8q3y8  <span class=nv>JID</span><span class=o>=</span>06c60bb9d52d9a31d48d2fdc INFO: <span class=o>[</span>Crystal<span class=o>]</span> PONG PONG !!
+<span class=ln>6</span>2017-04-26T06:57:20.785Z <span class=m>21253</span> TID-1z8q3y8  <span class=nv>JID</span><span class=o>=</span>06c60bb9d52d9a31d48d2fdc INFO: Done: 0.000049 sec
+</code></pre></div><p>验证通过！打通了！</p><p>Crystal 这边向 Ruby 调用也可行，但只有通过如下代码，有个别时候自身调用也没有日志输出，不过在 Web UI 却发现已处理的数字已正常更新，该问题我再调查下。</p><div class=highlight><pre class=chroma><code class=language-crystal data-lang=crystal><span class=ln> 1</span><span class=k>require</span> <span class=s2>&#34;sidekiq&#34;</span>
+<span class=ln> 2</span>
+<span class=ln> 3</span><span class=no>ENV</span><span class=o>[</span><span class=s2>&#34;LOCAL_REDIS&#34;</span><span class=o>]</span> <span class=o>=</span> <span class=s2>&#34;redis://localhost:6379/8&#34;</span>
+<span class=ln> 4</span><span class=no>ENV</span><span class=o>[</span><span class=s2>&#34;REDIS_PROVIDER&#34;</span><span class=o>]</span> <span class=o>=</span> <span class=s2>&#34;LOCAL_REDIS&#34;</span>
+<span class=ln> 5</span>
+<span class=ln> 6</span><span class=n>workers</span> <span class=o>=</span> <span class=sx>%w(Ping1Worker Ping2Worker)</span>
+<span class=ln> 7</span><span class=n>workers</span><span class=o>.</span><span class=n>each</span> <span class=k>do</span> <span class=o>|</span><span class=n>wk_class</span><span class=o>|</span>
+<span class=ln> 8</span>  <span class=n>job</span> <span class=o>=</span> <span class=n>Sidekiq</span><span class=o>::</span><span class=n>Job</span><span class=o>.</span><span class=n>new</span>
+<span class=ln> 9</span>  <span class=n>job</span><span class=o>.</span><span class=n>queue</span> <span class=o>=</span> <span class=s2>&#34;default&#34;</span>
+<span class=ln>10</span>  <span class=n>job</span><span class=o>.</span><span class=n>klass</span> <span class=o>=</span> <span class=n>wk_class</span>
+<span class=ln>11</span>
+<span class=ln>12</span>  <span class=n>Sidekiq</span><span class=o>::</span><span class=n>Client</span><span class=o>.</span><span class=n>default_context</span> <span class=o>=</span> <span class=n>Sidekiq</span><span class=o>::</span><span class=n>Client</span><span class=o>::</span><span class=n>Context</span><span class=o>.</span><span class=n>new</span>
+<span class=ln>13</span>
+<span class=ln>14</span>  <span class=n>client</span> <span class=o>=</span> <span class=n>Sidekiq</span><span class=o>::</span><span class=n>Client</span><span class=o>.</span><span class=n>new</span>
+<span class=ln>15</span>  <span class=n>job_id</span> <span class=o>=</span> <span class=n>client</span><span class=o>.</span><span class=n>push</span><span class=p>(</span><span class=n>job</span><span class=p>)</span>
+<span class=ln>16</span>  <span class=nb>puts</span> <span class=s2>&#34;[</span><span class=si>#{</span><span class=n>wk_class</span><span class=si>}</span><span class=s2>] job id: </span><span class=si>#{</span><span class=n>job_id</span><span class=si>}</span><span class=s2>&#34;</span>
+<span class=ln>17</span><span class=k>end</span>
+</code></pre></div><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>2017-04-26T07:20:58.754Z <span class=m>62256</span> TID-oukzi7jck Ping1Worker JID-1fee81b35052cba1f6525de5 INFO: start
+<span class=ln>2</span>2017-04-26T07:20:58.754Z <span class=m>62256</span> TID-oukzi7jck Ping1Worker JID-1fee81b35052cba1f6525de5 INFO: <span class=o>[</span>Ruby<span class=o>]</span> PONG !
+<span class=ln>3</span>2017-04-26T07:20:58.755Z <span class=m>62256</span> TID-oukzi7jck Ping1Worker JID-1fee81b35052cba1f6525de5 INFO: <span class=k>done</span>: 0.0 sec
+<span class=ln>4</span>2017-04-26T07:20:58.756Z <span class=m>62256</span> TID-oul02vzfw Ping2Worker JID-0bb7eef097447784fb48d943 INFO: start
+<span class=ln>5</span>2017-04-26T07:20:58.756Z <span class=m>62256</span> TID-oul02vzfw Ping2Worker JID-0bb7eef097447784fb48d943 INFO: <span class=o>[</span>Ruby<span class=o>]</span> PONG PONG !!
+<span class=ln>6</span>2017-04-26T07:20:58.756Z <span class=m>62256</span> TID-oul02vzfw Ping2Worker JID-0bb7eef097447784fb48d943 INFO: <span class=k>done</span>: 0.0 sec
+</code></pre></div><h2 id=结语>结语</h2><p>本篇只是通过一个最简单的例子让大家知道互通的方法，实际使用中对于数据交互等还有更多需要考虑的地方，这里就暂时不做展开。非常期待 Crystal 今年立的 <a href=https://crystal-lang.org/2016/12/29/crystal-new-year-resolutions-for-2017-1-0.html>1.0 的目标</a>。</p><p>对于 Crystal 语言本身的评价，大家也可看下 RubyChina 站长的心得<a href=https://ruby-china.org/topics/32771>Crystal 说我最近关注 Crystal 的感受</a>，编译语言有编译语言的坑，入坑需谨慎。</p><p>本文演示的代码已经整理并放到了 <a href=https://github.com/icyleaf/sidekiq-with-ruby-and-crystal>Github</a>，对于不明白的地方可配合代码更好服用。</p></div><div class=post-copyright><p class=copyright-item><span>Author:</span>
+<span>icyleaf</span></p><p class=copyright-item><span>Link:</span>
+<a href=https://icyleaf.com/2017/04/sidekiq-works-in-ruby-togethor-with-crystal/>https://icyleaf.com/2017/04/sidekiq-works-in-ruby-togethor-with-crystal/</a></p></div><div class=post-tags><section><i class="iconfont icon-tag"></i>Tag(s):
+<span class=tag><a href=https://icyleaf.com/tags/ruby/>#Ruby</a></span>
+<span class=tag><a href=https://icyleaf.com/tags/crystal/>#Crystal</a></span>
+<span class=tag><a href=https://icyleaf.com/tags/sidekiq/>#Sidekiq</a></span></section><section><a href=javascript:window.history.back();>back</a></span> ·
+<span><a href=https://icyleaf.com/>home</a></span></section></div><div class=post-nav><a href=https://icyleaf.com/2017/03/fastlane-match-in-action/ class=prev rel=prev title="你虐我千百遍，我待你如初恋，直到我遇到 match"><i class="iconfont icon-left"></i>&nbsp;你虐我千百遍，我待你如初恋，直到我遇到 match</a>
+<a href=https://icyleaf.com/2017/05/fast-crystal/ class=next rel=next title="Fast Crystal">Fast Crystal&nbsp;<i class="iconfont icon-right"></i></a></div><div class=post-social><div class=social-links><style type=text/css>@font-face{font-family:iconfont;src:url(//at.alicdn.com/t/font_1910062_4213q7gpkpy.eot);src:url(//at.alicdn.com/t/font_1910062_4213q7gpkpy.eot?#iefix)format('embedded-opentype'),url(//at.alicdn.com/t/font_1910062_4213q7gpkpy.woff2)format('woff2'),url(//at.alicdn.com/t/font_1910062_4213q7gpkpy.woff)format('woff'),url(//at.alicdn.com/t/font_1910062_4213q7gpkpy.ttf)format('truetype'),url(//at.alicdn.com/t/font_1910062_4213q7gpkpy.svg#iconfont)format('svg')}</style><a class=bloglogo href=https://github.com/icyleaf target=_blank rel="me noopener"><i class="iconfont icon-github" alt=github></i></a>
+<a class=bloglogo href=https://twitter.com/icyleaf target=_blank rel="me noopener"><i class="iconfont icon-twitter" alt=twitter></i></a>
+<a class=bloglogo href=https://www.facebook.com/icyleaf target=_blank rel="me noopener"><i class="iconfont icon-facebook" alt=facebook></i></a>
+<a class=bloglogo href=https://www.linkedin.com/in/icyleaf target=_blank rel="me noopener"><i class="iconfont icon-linkedin" alt=linkedin></i></a>
+<a class=bloglogo href=https://www.instagram.com/icyleaf/ target=_blank rel="me noopener"><i class="iconfont icon-instagram" alt=instagram></i></a>
+<a class=bloglogo href=https://www.douban.com/people/icyleaf target=_blank rel="me noopener"><i class="iconfont icon-douban" alt=douban></i></a></div></div><div class=post-comment><div id=disqus_thread></div><script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return}var b=document,a=b.createElement('script');a.async=!0,a.src='//icyleaf.disqus.com/embed.js',a.setAttribute('data-timestamp',+new Date),(b.head||b.body).appendChild(a)})()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div></article></div></main><footer class=footer><div class=copyright>&copy;
+<span itemprop=copyrightYear>2005 - 2021</span>
+<span>🍺</span>
+<span class=author itemprop=copyrightHolder><a href=https://icyleaf.com/>icyleaf</a></span>
+| <span>Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow">Hugo</a> & <a href=https://github.com/icyleaf/hugo-theme-nicesima target=_blank rel="external nofollow">nicesima</a></span></div></footer><script src=https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js crossorigin=anonymous></script><script defer src=https://icyleaf.com/js/vendor_main.min.js></script><script src=https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin=anonymous></script><script>pangu.spacingPage()</script><script>(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-2570916-5','auto'),ga('send','pageview')</script></div></body></html>

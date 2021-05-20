@@ -1,113 +1,132 @@
-<!doctype html><html lang=zh><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta property=og:title content="极速化 CocoaPods &middot;  icyleaf"><meta property=og:site_name content=icyleaf><meta property=og:url content=https://icyleaf.com/2015/01/speed-up-cocoapods/><meta property=og:type content=article><meta property=og:article:published_time content=2015-01-20T12:34:56&#43;08:00><meta property=og:article:tag content=CocoaPods><meta property=og:article:tag content=iOS><title>极速化 CocoaPods &middot; icyleaf</title><meta name=description content=热爱户外的码农、下厨初心者><meta name=HandheldFriendly content=True><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" href=https://icyleaf.com/images/favicon.ico><link rel=apple-touch-icon href=https://icyleaf.com/images/apple-touch-icon.png><link rel=stylesheet href=https://icyleaf.com/css/screen.css><link rel=stylesheet href=https://icyleaf.com/css/nav.css><link rel=stylesheet href=https://icyleaf.com/css/highlight/tomorrow-night.css><script src=https://icyleaf.com/js/highlight.pack.js></script><script>hljs.initHighlightingOnLoad();</script><link href=https://icyleaf.com/index.xml rel=alternate type=application/rss+xml title=icyleaf><meta name=generator content="Hugo 0.47.1"><link rel=canonical href=https://icyleaf.com/2015/01/speed-up-cocoapods/><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-2570916-5','auto');ga('send','pageview');</script></head><body class=nav-closed><div class=nav><h3 class=nav-title>Menu</h3><a href=# class=nav-close><span class=hidden>Close</span></a><ul><li class=nav-opened role=presentation><a href=https://icyleaf.com/>Home</a><li class=nav-opened role=presentation><a href=https://icyleaf.com/categories/technology>Technology</a><li class=nav-opened role=presentation><a href=https://icyleaf.com/tags>Tags</a><li class=nav-opened role=presentation><a href=https://icyleaf.com/about>About</a></ul><a class="subscribe-button icon-feed" href=https://icyleaf.com/2015/01/speed-up-cocoapods/>Subscribe</a></div><span class=nav-cover></span><div class=site-wrapper><header class="main-header post-head no-cover"><nav class="main-nav overlay clearfix"><a class=blog-logo href=https://icyleaf.com/><img src=https://icyleaf.com/images/icyleaf-icon.png alt="Blog Logo"></a>
-<a class=menu-button href=#><span class=burger>&#9776;</span><span class=word>Menu</span></a></nav></header><main class=content role=main><article class="post post"><header class=post-header><h1 class=post-title>极速化 CocoaPods</h1><small></small><section class=post-meta><time class=post-date datetime=2015-01-20T12:34:56&#43;08:00>Jan 20, 2015</time>
-<span class="post-tag small"><a href=https://icyleaf.com/tags/cocoapods/>#CocoaPods</a></span>
-<span class="post-tag small"><a href=https://icyleaf.com/tags/ios/>#iOS</a></span></section></header><section class=post-content><p><a href=http://cocoapods.org/>Cocopods</a> 本身是一个优秀的 iOS 开发的包管理工具，涵盖了 7k+ 的开源组件，包管理库是托管在 Github。
-众所周知的原因它的速度日渐缓慢，有时会频繁报如下错误：<pre><code class=language-bash>$ pod install
-
-Cloning into '/path/to/ios/project/Pods/xxx'
-
-error: RPC failed; result=52, HTTP code = 0
-
-fatal: The remote end hung up unexpectedly
-</code></pre><p>本文主要为解决该问题而诞生的，以下的加速方案不局限于目前已流传的优化方案，而是在此基础上<strong>彻底的加速</strong>！<ul><li>使用淘宝 Ruby Gems 源（Cocoapods 使用 ruby 开发）<li><code>pod install</code> 时不设置包的更新：<a href=http://phatblat.com/blog/2014/07/30/pod-install/>参考文章</a><li>使用国内 git 服务器镜像 Cocoapods Spec: <a href=http://blog.devtang.com/blog/2014/05/25/use-cocoapod-to-manage-ios-lib-dependency/>参考文章</a></ul><p>如果你对 Cocoapods 有更深层次的理解，请参见：<a href=http://www.objc.io/issue-6/cocoapods-under-the-hood.html>objc.io: Cocoapods under the hood</a> <a href=http://objccn.io/issue-6-4/>中文版本</a><p>今天早晨看到微博众多 iOS 开发者赞同转发《<a href=http://weibo.com/p/1001603800875490492754>CocoaPods最佳实践探讨</a>》一文，
-针对 <code>Pods</code> 建议纳入版本控制也是无奈之举。之前公司项目中也是这样施行很长一段时间，不排除更新可能会造成很多无用信息&rdquo;刷屏&rdquo;，
-偶尔还会因为版本冲突造成一些混乱状况需要处理。个人还是更倾向于精简原则，遵循<a href=http://guides.cocoapods.org/using/using-cocoapods.html#should-i-ignore-the-pods-directory-in-source-control>官方的建议</a>。<p>大家都是技术人员，其实这些小问题难道因为 github 倒下就没有解决方案了吗？！看我如何撕破这层纸老虎：<h3 id=技术概述>技术概述</h3><ul><li>Cocopods v0.34.0+<li>Gitlab: 自建私有 git 服务器<li>gitlab-mirrors: 专用于 github 镜像至 gitlab 并保持定期更新<li>rake: ruby 的代码构建工具（不懂 ruby 的可以把它理解为命令聚合工具）</ul><h3 id=技术剖析>技术剖析</h3><p>Cocoapods 自身支持<a href=http://guides.cocoapods.org/making/private-cocoapods.html>私有仓库</a>，
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="chrome=1"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta name=author content="icyleaf"><meta name=description content="日常写代码热爱户外的梦想家"><link rel=prev href=https://icyleaf.com/2014/01/moving-unicorn-to-puma-on-gitlab/><link rel=next href=https://icyleaf.com/2015/12/hexo-theme-next/><link rel=canonical href=https://icyleaf.com/2015/01/speed-up-cocoapods/><link rel=apple-touch-icon sizes=180x180 href=https://icyleaf.com/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=https://icyleaf.com/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=https://icyleaf.com/favicon-16x16.png><link rel=manifest href=https://icyleaf.com/site.webmanifest><link rel=mask-icon href=https://icyleaf.com/safari-pinned-tab.svg color=#5bbad5><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"><title>极速化 CocoaPods | icyleaf</title><meta name=title content="极速化 CocoaPods | icyleaf"><link rel=stylesheet href=https://icyleaf.com/css/main.min.css><link rel=stylesheet href=https://icyleaf.com/font/iconfont.css><link rel=stylesheet href=https://icyleaf.com/font-ali/iconfont.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/icyleaf.com\/"},"articleSection":"posts","name":"极速化 CocoaPods","headline":"极速化 CocoaPods","description":"Cocopods 本身是一个优秀的 iOS 开发的包管理工具，涵盖了 7k\u002b 的开源组件，包管理库是托管在 Github。 众所周知的原因它的速度日渐缓慢，有时会频繁报如下错误","inLanguage":"zh-cn","author":"icyleaf","creator":"icyleaf","publisher":"icyleaf","accountablePerson":"icyleaf","copyrightHolder":"icyleaf","copyrightYear":"2015","datePublished":"2015-01-20 12:34:56 \u002b0800 \u002b0800","dateModified":"2015-01-20 12:34:56 \u002b0800 \u002b0800","url":"https:\/\/icyleaf.com\/2015\/01\/speed-up-cocoapods\/","wordCount":"1600","keywords":["CocoaPods","iOS","icyleaf"]}</script></head><body><div class=wrapper><nav class=navbar><progress class=content_progress max=0 value=0></progress><div class=container><div class="navbar-header header-back2home-logo"><span class=logo_mark>>$</span>
+<a href=https://icyleaf.com/><span class=logo_text>cd /home/</span>
+<span class=logo_cursor></span></a></div><div class=navbar-right><span class=menu><a class=menu-item href=https://icyleaf.com/posts title>Posts</a>
+<a class=menu-item href=https://icyleaf.com/categories title>Categories</a>
+<a class=menu-item href=https://icyleaf.com/tags title>Tags</a>
+<a class=menu-item href=https://icyleaf.com/about title>About</a>
+<span class=divide></span><a href=javascript:void(0); class=theme-switch><i class="iconfont icon-dark-mode"></i></a></span></div></div></nav><nav class=navbar-mobile id=nav-mobile style=display:none><progress class=content_progress max=0 value=0></progress><div class=container><div class=navbar><div class="navbar-header header-logo"><a href=https://icyleaf.com/>icyleaf</a></div><div class=navbar-right><div><a href=javascript:void(0); class=theme-switch><i class="iconfont icon-dark-mode"></i></a></div><div class=menu-toggle><span></span><span></span><span></span></div></div></div><div class=menu id=mobile-menu><nav class=mb-md><a class=menu-item href=https://icyleaf.com/posts title><h3>Posts</h3><div class=menu-active></div></a><a class=menu-item href=https://icyleaf.com/categories title><h3>Categories</h3><div class=menu-active></div></a><a class=menu-item href=https://icyleaf.com/tags title><h3>Tags</h3><div class=menu-active></div></a><a class=menu-item href=https://icyleaf.com/about title><h3>About</h3><div class=menu-active></div></a></nav></div></div></nav><main class=main><div class=container><article class=post-warp itemscope itemtype=http://schema.org/Article><header class=post-header><h1 class=post-title itemprop="name headline">极速化 CocoaPods</h1><div class=post-meta>Written by <a itemprop=name href=https://icyleaf.com/ rel=author>icyleaf</a> with ♥
+<span class=post-time>on <time datetime=2015-01-20 itemprop=datePublished>January 20, 2015</time></span>
+in
+<i class="iconfont icon-folder"></i>
+<span class=post-category><a href=https://icyleaf.com/categories/technology/>Technology,</a></span>
+<span class=post-word-count>1600 words</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title></h2><div class="post-toc-content always-active"><nav id=TableOfContents><ul><li><ul><li><a href=#技术概述>技术概述</a></li><li><a href=#技术剖析>技术剖析</a></li><li><a href=#总结>总结</a></li><li><a href=#答疑解惑>答疑解惑</a></li></ul></li></ul></nav></div></div><div class=post-content><p><a href=http://cocoapods.org/>Cocopods</a> 本身是一个优秀的 iOS 开发的包管理工具，涵盖了 7k+ 的开源组件，包管理库是托管在 Github。
+众所周知的原因它的速度日渐缓慢，有时会频繁报如下错误：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>$ pod install
+<span class=ln>2</span>
+<span class=ln>3</span>Cloning into <span class=s1>&#39;/path/to/ios/project/Pods/xxx&#39;</span>
+<span class=ln>4</span>
+<span class=ln>5</span>error: RPC failed<span class=p>;</span> <span class=nv>result</span><span class=o>=</span>52, HTTP <span class=nv>code</span> <span class=o>=</span> <span class=m>0</span>
+<span class=ln>6</span>
+<span class=ln>7</span>fatal: The remote end hung up unexpectedly
+</code></pre></div><p>本文主要为解决该问题而诞生的，以下的加速方案不局限于目前已流传的优化方案，而是在此基础上<strong>彻底的加速</strong>！</p><ul><li>使用淘宝 Ruby Gems 源（Cocoapods 使用 ruby 开发）</li><li><code>pod install</code> 时不设置包的更新：<a href=http://phatblat.com/blog/2014/07/30/pod-install/>参考文章</a></li><li>使用国内 git 服务器镜像 Cocoapods Spec: <a href=http://blog.devtang.com/blog/2014/05/25/use-cocoapod-to-manage-ios-lib-dependency/>参考文章</a></li></ul><p>如果你对 Cocoapods 有更深层次的理解，请参见：<a href=http://www.objc.io/issue-6/cocoapods-under-the-hood.html>objc.io: Cocoapods under the hood</a> <a href=http://objccn.io/issue-6-4/>中文版本</a></p><p>今天早晨看到微博众多 iOS 开发者赞同转发《<a href=http://weibo.com/p/1001603800875490492754>CocoaPods最佳实践探讨</a>》一文，
+针对 <code>Pods</code> 建议纳入版本控制也是无奈之举。之前公司项目中也是这样施行很长一段时间，不排除更新可能会造成很多无用信息"刷屏"，
+偶尔还会因为版本冲突造成一些混乱状况需要处理。个人还是更倾向于精简原则，遵循<a href=http://guides.cocoapods.org/using/using-cocoapods.html#should-i-ignore-the-pods-directory-in-source-control>官方的建议</a>。</p><p>大家都是技术人员，其实这些小问题难道因为 github 倒下就没有解决方案了吗？！看我如何撕破这层纸老虎：</p><h3 id=技术概述>技术概述</h3><ul><li>Cocopods v0.34.0+</li><li>Gitlab: 自建私有 git 服务器</li><li>gitlab-mirrors: 专用于 github 镜像至 gitlab 并保持定期更新</li><li>rake: ruby 的代码构建工具（不懂 ruby 的可以把它理解为命令聚合工具）</li></ul><h3 id=技术剖析>技术剖析</h3><p>Cocoapods 自身支持<a href=http://guides.cocoapods.org/making/private-cocoapods.html>私有仓库</a>，
 恰好的是就在前不久发布的 <a href=https://github.com/CocoaPods/CocoaPods/blob/master/CHANGELOG.md#0340>0.34.0</a> 版本支持 <code>Podfile</code>
-添加多个的包源仓库，举个例子：<pre><code class=language-ruby>source 'https://github.com/artsy/Specs.git'
-source 'https://github.com/CocoaPods/Specs.git'
-
-pod 'AFNetworking'
-pod 'Mantle'
-</code></pre><p>这个特性其实是为了扩充官方 Spec 的同时可以更好的让开发者管理私有的公共组件，那我同样是从这里下手：<blockquote><p>前提是自己以及搭建好 gitlab 服务器：<a href=https://about.gitlab.com/downloads/>官方教程 （Ubuntu）</a> | <a href=http://icyleaf.com/2013/09/how-to-install-gitlab-on-centos/>本人教程 （CentOS）</a></blockquote><h4 id=自力更生>自力更生</h4><p>首先我们需要创建一个自己的 Spec 仓库，目录结构如下：<pre><code class=language-bash>.
-├── CocoaPods-version.yml
-├── Specs/
-├── README.md
-├── Rakefile
-└── Gemfile
-</code></pre><p>配置不做详细描述，这里比官方多了两个文件 <code>Rakefile</code> 和 <code>Gemfile</code> 都是 rake 所需的文件，这个后面会讲到。
-再者就是配置 <a href=https://github.com/samrocketman/gitlab-mirrors#three-easy-steps>gitlab-mirrors</a>，教程很详细不再重复。<h4 id=偷梁换柱>偷梁换柱</h4><p>利用私有 Spec 仓库特性，可以把官方 <code>Spec</code> 目录下面的包按需或全部镜像过来，再次基础上<strong>把里面涉及 github 的地址替换成 gitlab 的地址</strong><p>你没有看错，这是核心步骤，如果这步没有做那么和国内镜像的地址没有任何差别。核心代码如下：<h5 id=rakefile>Rakefile</h5><pre><code class=language-ruby>require 'uri'
-require 'fileutils'
-require 'multi_json'
-require 'net/ssh'
-
-desc '镜像一个 github 包至 gitlab 仓库'
-task :clone, [:name] do |t, p|
-  name = p[:name]
-  current_path = Dir.pwd
-
-  specs = Dir[File.join(File.expand_path('~'), '.cocoapods/repos/master/Specs/*')]
-
-  repo = specs.select { |s| File.basename(s) == name }.first
-
-  if repo
-    puts &quot; * found repo, copy it here&quot;
-    repo_store_path = File.join(current_path, 'Specs')
-    FileUtils.cp_r repo, repo_store_path
-
-    puts &quot; * updating repo url&quot;
-    Dir[&quot;#{repo_store_path}/#{name}/*&quot;].each do |f|
-      pod_file = File.join(f, &quot;#{name}.podspec.json&quot;)
-      json = File.read(pod_file)
-      data = MultiJson.load json
-
-      if data['source']['git']
-        puts &quot; -&gt; #{data['version']}: git&quot;
-        orginal_repo_url = data['source']['git']
-        coverted_repo_name =  URI.parse(orginal_repo_url).path[1..-1].gsub('/', '-').downcase
-        data['source']['git'] = &quot;http://gitlab.dev/mirrors/#{coverted_repo_name}&quot;
-
-        File.write(pod_file, JSON.pretty_generate(data))
-      else data['source']['http']
-        puts &quot; -&gt; #{data['version']}: http url, do you want speed up?&quot;
-      else data['source']['svn']
-        puts &quot; -&gt; #{data['version']}: svn repo, do you want speed up?&quot;
-      end
-    end
-  else
-    puts &quot;Not find spec named: #{name}&quot;
-  end
-end
-
-desc 'gitlab 服务器镜像 Cocoapod Spec'
-task :mirror, [:repo] do |t, p|
-  host        = '172..0.1'
-  user        = 'icyleaf'
-  options     = {:keys =&gt; '~/.ssh/keys/id_rsa.pub'}
-
-  puts &quot;Connect gitlab server and mirror&quot;
-  Net::SSH.start(host, user, options) do |ssh|
-    gitmirror_path = '/home/gitmirror/gitlab-mirrors'
-    cmd = &quot;sudo -u gitmirror -H rake \&quot;add[#{p[:repo]}]\&quot;&quot;
-    stdout = ssh.exec!(&quot;echo 'cd #{gitmirror_path} &amp;&amp; #{cmd}'&quot;)
-    puts stdout
-    ssh.loop
-  end
-end
-</code></pre><h5 id=gemfile>Gemfile</h5><pre><code class=language-ruby>source &quot;https://ruby.taobao.org&quot;
-
-gem 'rest_client'
-gem 'multi_json'
-gem 'rake'
-gem 'net-ssh'
-</code></pre><p><code>rake</code> 里面有两个 task：<ul><li>mirror: 镜像 iOS 开源组件<li>clone: 负责把官方 spec 指定包（开源组件的版本控制）替换 gitlab 地址并加入到私有包仓库</ul><h3 id=总结>总结</h3><p>通过工具总有办法可以改进和提升开发者的效率和解决各种的问题，希望本文可以给大家带来更多的灵感！<h3 id=答疑解惑>答疑解惑</h3><h5 id=f-这套理论靠谱吗>F: 这套理论靠谱吗？</h5><p>A: 目前我们团队已经采用并运行了很长一段时间，没有任何风险。最大的优势在于兼容官方的仓库，
-就算无法链接自己的私有服务器，使用官方和国内镜像的都可以瞬间切换。<h5 id=f-如果没有服务器可以实现吗>F: 如果没有服务器可以实现吗？</h5><p>A: 醒醒吧孩子，就连单纯的镜像官方 Cocoapods Spec 还需要一个服务器执行定期同步脚本呢。<h5 id=f-国内-git-托管服务器能够支持吗>F: 国内 git 托管服务器能够支持吗？</h5><p>A: 据我所知国内大部分 git 托管服务器的解决方案都是基于 gitlab 二次开发的，理论上可行，
-上面提到的 gitlab-mirror 本身依赖于 gitlab 的 api 在镜像的同时自动新建仓库。如果有成功的欢迎反馈。<h5 id=f-我从你代码发现服务器同样调用了一个-rake-脚本-你没有开源>F: 我从你代码发现服务器同样调用了一个 rake 脚本，你没有开源！</h5><p>A: 眼睛真够敏锐的，个人对 gitlab-mirror 再做镜像时做了一个约束，新建一个 <code>Rakefile</code> 文件放到你的 gitlab-mirror 项目根目录即可：<pre><code class=language-ruby>require 'uri'
-
-desc &quot;Adding repo to gitmirror&quot;
-task :add, [:repo] do |t, p|
-  repo = p[:repo]
-
-  begin
-    name = URI.parse(repo).path[1..-1].gsub('/', '-').gsub('.git', '')
-    if name
-      `./add_mirror.sh -f --git --project-name #{name} --mirror #{repo}`
-    end
-  rescue Error =&gt; e
-    puts 'not url'
-  end
-end
-</code></pre><h5 id=f-我还有问题>F: 我还有问题！</h5><p>A: 麻烦请留言，谢谢！</section><footer class=post-footer><figure class=author-image><a class=img href=https://icyleaf.com/ style=background-image:url(/images/icyleaf-icon.png)><span class=hidden>icyleaf's Picture</span></a></figure><section class=author><h4><a href=https://icyleaf.com/>icyleaf</a></h4><p>热爱户外的码农、下厨初心者<div class=author-meta><span class="author-location icon-location">Beijing, China</span>
-<span class="author-link icon-link"><a href=https://icyleaf.com>https://icyleaf.com</a></span></div></section><section class=share><h4>Share this post</h4><a class=icon-twitter href="https://twitter.com/share?text=%e6%9e%81%e9%80%9f%e5%8c%96%20CocoaPods&nbsp;-&nbsp;icyleaf&amp;url=https%3a%2f%2ficyleaf.com%2f2015%2f01%2fspeed-up-cocoapods%2f" onclick="window.open(this.href,'twitter-share','width=550,height=235');return false;"><span class=hidden>Twitter</span></a>
-<a class=icon-facebook href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ficyleaf.com%2f2015%2f01%2fspeed-up-cocoapods%2f" onclick="window.open(this.href,'facebook-share','width=580,height=296');return false;"><span class=hidden>Facebook</span></a>
-<a class=icon-weibo href="http://service.weibo.com/share/share.php?url=https%3a%2f%2ficyleaf.com%2f2015%2f01%2fspeed-up-cocoapods%2f&amp;title=%e6%9e%81%e9%80%9f%e5%8c%96%20CocoaPods&nbsp;-&nbsp;icyleaf" onclick="window.open(this.href,'weibo-share','width=580,height=296');return false;"><span class=hidden>新浪微博</span></a>
-<a class=icon-douban href="https://www.douban.com/recommend/?url=https%3a%2f%2ficyleaf.com%2f2015%2f01%2fspeed-up-cocoapods%2f&title=%e6%9e%81%e9%80%9f%e5%8c%96%20CocoaPods&v=1" onclick="window.open(this.href,'douban-share','width=580,height=300');return false;"><span class=hidden>豆瓣</span></a></section><div id=disqus_thread></div><script>var disqus_config=function(){this.page.url="https:\/\/icyleaf.com\/2015\/01\/speed-up-cocoapods\/";this.page.identifier="https:\/\/icyleaf.com\/2015\/01\/speed-up-cocoapods\/";};(function(){var d=document,s=d.createElement('script');s.src='https://icyleaf.disqus.com/embed.js';s.setAttribute('data-timestamp',+new Date());(d.head||d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript></footer></article></main><aside class=read-next><a class=read-next-story style=no-cover href=https://icyleaf.com/2015/12/hexo-theme-next/><section class=post><h2>Hexo 主题推荐 NexT</h2></section></a><a class="read-next-story prev" style=no-cover href=https://icyleaf.com/2014/01/moving-unicorn-to-puma-on-gitlab/><section class=post><h2>Puma 替换 Unicorn 跑 Gitlab</h2></section></a></aside><footer class="site-footer clearfix"><section class=copyright><a href>icyleaf</a> All rights reserved - 2019</section><section class=poweredby>Proudly generated by <a class=icon-hugo href=http://gohugo.io>HUGO</a>, with <a class=icon-theme href=https://github.com/vjeantet/hugo-theme-casper>Casper</a> theme</section></footer></div><script src=https://icyleaf.com/js/jquery.js></script><script src=https://icyleaf.com/js/jquery.fitvids.js></script><script src=https://icyleaf.com/js/index.js></script></body></html>
+添加多个的包源仓库，举个例子：</p><div class=highlight><pre class=chroma><code class=language-ruby data-lang=ruby><span class=ln>1</span><span class=n>source</span> <span class=s1>&#39;https://github.com/artsy/Specs.git&#39;</span>
+<span class=ln>2</span><span class=n>source</span> <span class=s1>&#39;https://github.com/CocoaPods/Specs.git&#39;</span>
+<span class=ln>3</span>
+<span class=ln>4</span><span class=n>pod</span> <span class=s1>&#39;AFNetworking&#39;</span>
+<span class=ln>5</span><span class=n>pod</span> <span class=s1>&#39;Mantle&#39;</span>
+</code></pre></div><p>这个特性其实是为了扩充官方 Spec 的同时可以更好的让开发者管理私有的公共组件，那我同样是从这里下手：</p><blockquote><p>前提是自己以及搭建好 gitlab 服务器：<a href=https://about.gitlab.com/downloads/>官方教程 （Ubuntu）</a> | <a href=http://icyleaf.com/2013/09/how-to-install-gitlab-on-centos/>本人教程 （CentOS）</a></p></blockquote><h4 id=自力更生>自力更生</h4><p>首先我们需要创建一个自己的 Spec 仓库，目录结构如下：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>.
+<span class=ln>2</span>├── CocoaPods-version.yml
+<span class=ln>3</span>├── Specs/
+<span class=ln>4</span>├── README.md
+<span class=ln>5</span>├── Rakefile
+<span class=ln>6</span>└── Gemfile
+</code></pre></div><p>配置不做详细描述，这里比官方多了两个文件 <code>Rakefile</code> 和 <code>Gemfile</code> 都是 rake 所需的文件，这个后面会讲到。
+再者就是配置 <a href=https://github.com/samrocketman/gitlab-mirrors#three-easy-steps>gitlab-mirrors</a>，教程很详细不再重复。</p><h4 id=偷梁换柱>偷梁换柱</h4><p>利用私有 Spec 仓库特性，可以把官方 <code>Spec</code> 目录下面的包按需或全部镜像过来，再次基础上<strong>把里面涉及 github 的地址替换成 gitlab 的地址</strong></p><p>你没有看错，这是核心步骤，如果这步没有做那么和国内镜像的地址没有任何差别。核心代码如下：</p><h5 id=rakefile>Rakefile</h5><div class=highlight><pre class=chroma><code class=language-ruby data-lang=ruby><span class=ln> 1</span><span class=nb>require</span> <span class=s1>&#39;uri&#39;</span>
+<span class=ln> 2</span><span class=nb>require</span> <span class=s1>&#39;fileutils&#39;</span>
+<span class=ln> 3</span><span class=nb>require</span> <span class=s1>&#39;multi_json&#39;</span>
+<span class=ln> 4</span><span class=nb>require</span> <span class=s1>&#39;net/ssh&#39;</span>
+<span class=ln> 5</span>
+<span class=ln> 6</span><span class=n>desc</span> <span class=s1>&#39;镜像一个 github 包至 gitlab 仓库&#39;</span>
+<span class=ln> 7</span><span class=n>task</span> <span class=ss>:clone</span><span class=p>,</span> <span class=o>[</span><span class=ss>:name</span><span class=o>]</span> <span class=k>do</span> <span class=o>|</span><span class=n>t</span><span class=p>,</span> <span class=nb>p</span><span class=o>|</span>
+<span class=ln> 8</span>  <span class=nb>name</span> <span class=o>=</span> <span class=nb>p</span><span class=o>[</span><span class=ss>:name</span><span class=o>]</span>
+<span class=ln> 9</span>  <span class=n>current_path</span> <span class=o>=</span> <span class=no>Dir</span><span class=o>.</span><span class=n>pwd</span>
+<span class=ln>10</span>
+<span class=ln>11</span>  <span class=n>specs</span> <span class=o>=</span> <span class=no>Dir</span><span class=o>[</span><span class=no>File</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=no>File</span><span class=o>.</span><span class=n>expand_path</span><span class=p>(</span><span class=s1>&#39;~&#39;</span><span class=p>),</span> <span class=s1>&#39;.cocoapods/repos/master/Specs/*&#39;</span><span class=p>)</span><span class=o>]</span>
+<span class=ln>12</span>
+<span class=ln>13</span>  <span class=n>repo</span> <span class=o>=</span> <span class=n>specs</span><span class=o>.</span><span class=n>select</span> <span class=p>{</span> <span class=o>|</span><span class=n>s</span><span class=o>|</span> <span class=no>File</span><span class=o>.</span><span class=n>basename</span><span class=p>(</span><span class=n>s</span><span class=p>)</span> <span class=o>==</span> <span class=nb>name</span> <span class=p>}</span><span class=o>.</span><span class=n>first</span>
+<span class=ln>14</span>
+<span class=ln>15</span>  <span class=k>if</span> <span class=n>repo</span>
+<span class=ln>16</span>    <span class=nb>puts</span> <span class=s2>&#34; * found repo, copy it here&#34;</span>
+<span class=ln>17</span>    <span class=n>repo_store_path</span> <span class=o>=</span> <span class=no>File</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>current_path</span><span class=p>,</span> <span class=s1>&#39;Specs&#39;</span><span class=p>)</span>
+<span class=ln>18</span>    <span class=no>FileUtils</span><span class=o>.</span><span class=n>cp_r</span> <span class=n>repo</span><span class=p>,</span> <span class=n>repo_store_path</span>
+<span class=ln>19</span>
+<span class=ln>20</span>    <span class=nb>puts</span> <span class=s2>&#34; * updating repo url&#34;</span>
+<span class=ln>21</span>    <span class=no>Dir</span><span class=o>[</span><span class=s2>&#34;</span><span class=si>#{</span><span class=n>repo_store_path</span><span class=si>}</span><span class=s2>/</span><span class=si>#{</span><span class=nb>name</span><span class=si>}</span><span class=s2>/*&#34;</span><span class=o>].</span><span class=n>each</span> <span class=k>do</span> <span class=o>|</span><span class=n>f</span><span class=o>|</span>
+<span class=ln>22</span>      <span class=n>pod_file</span> <span class=o>=</span> <span class=no>File</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>f</span><span class=p>,</span> <span class=s2>&#34;</span><span class=si>#{</span><span class=nb>name</span><span class=si>}</span><span class=s2>.podspec.json&#34;</span><span class=p>)</span>
+<span class=ln>23</span>      <span class=n>json</span> <span class=o>=</span> <span class=no>File</span><span class=o>.</span><span class=n>read</span><span class=p>(</span><span class=n>pod_file</span><span class=p>)</span>
+<span class=ln>24</span>      <span class=n>data</span> <span class=o>=</span> <span class=no>MultiJson</span><span class=o>.</span><span class=n>load</span> <span class=n>json</span>
+<span class=ln>25</span>
+<span class=ln>26</span>      <span class=k>if</span> <span class=n>data</span><span class=o>[</span><span class=s1>&#39;source&#39;</span><span class=o>][</span><span class=s1>&#39;git&#39;</span><span class=o>]</span>
+<span class=ln>27</span>        <span class=nb>puts</span> <span class=s2>&#34; -&gt; </span><span class=si>#{</span><span class=n>data</span><span class=o>[</span><span class=s1>&#39;version&#39;</span><span class=o>]</span><span class=si>}</span><span class=s2>: git&#34;</span>
+<span class=ln>28</span>        <span class=n>orginal_repo_url</span> <span class=o>=</span> <span class=n>data</span><span class=o>[</span><span class=s1>&#39;source&#39;</span><span class=o>][</span><span class=s1>&#39;git&#39;</span><span class=o>]</span>
+<span class=ln>29</span>        <span class=n>coverted_repo_name</span> <span class=o>=</span>  <span class=no>URI</span><span class=o>.</span><span class=n>parse</span><span class=p>(</span><span class=n>orginal_repo_url</span><span class=p>)</span><span class=o>.</span><span class=n>path</span><span class=o>[</span><span class=mi>1</span><span class=o>..-</span><span class=mi>1</span><span class=o>].</span><span class=n>gsub</span><span class=p>(</span><span class=s1>&#39;/&#39;</span><span class=p>,</span> <span class=s1>&#39;-&#39;</span><span class=p>)</span><span class=o>.</span><span class=n>downcase</span>
+<span class=ln>30</span>        <span class=n>data</span><span class=o>[</span><span class=s1>&#39;source&#39;</span><span class=o>][</span><span class=s1>&#39;git&#39;</span><span class=o>]</span> <span class=o>=</span> <span class=s2>&#34;http://gitlab.dev/mirrors/</span><span class=si>#{</span><span class=n>coverted_repo_name</span><span class=si>}</span><span class=s2>&#34;</span>
+<span class=ln>31</span>
+<span class=ln>32</span>        <span class=no>File</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=n>pod_file</span><span class=p>,</span> <span class=no>JSON</span><span class=o>.</span><span class=n>pretty_generate</span><span class=p>(</span><span class=n>data</span><span class=p>))</span>
+<span class=ln>33</span>      <span class=k>else</span> <span class=n>data</span><span class=o>[</span><span class=s1>&#39;source&#39;</span><span class=o>][</span><span class=s1>&#39;http&#39;</span><span class=o>]</span>
+<span class=ln>34</span>        <span class=nb>puts</span> <span class=s2>&#34; -&gt; </span><span class=si>#{</span><span class=n>data</span><span class=o>[</span><span class=s1>&#39;version&#39;</span><span class=o>]</span><span class=si>}</span><span class=s2>: http url, do you want speed up?&#34;</span>
+<span class=ln>35</span>      <span class=k>else</span> <span class=n>data</span><span class=o>[</span><span class=s1>&#39;source&#39;</span><span class=o>][</span><span class=s1>&#39;svn&#39;</span><span class=o>]</span>
+<span class=ln>36</span>        <span class=nb>puts</span> <span class=s2>&#34; -&gt; </span><span class=si>#{</span><span class=n>data</span><span class=o>[</span><span class=s1>&#39;version&#39;</span><span class=o>]</span><span class=si>}</span><span class=s2>: svn repo, do you want speed up?&#34;</span>
+<span class=ln>37</span>      <span class=k>end</span>
+<span class=ln>38</span>    <span class=k>end</span>
+<span class=ln>39</span>  <span class=k>else</span>
+<span class=ln>40</span>    <span class=nb>puts</span> <span class=s2>&#34;Not find spec named: </span><span class=si>#{</span><span class=nb>name</span><span class=si>}</span><span class=s2>&#34;</span>
+<span class=ln>41</span>  <span class=k>end</span>
+<span class=ln>42</span><span class=k>end</span>
+<span class=ln>43</span>
+<span class=ln>44</span><span class=n>desc</span> <span class=s1>&#39;gitlab 服务器镜像 Cocoapod Spec&#39;</span>
+<span class=ln>45</span><span class=n>task</span> <span class=ss>:mirror</span><span class=p>,</span> <span class=o>[</span><span class=ss>:repo</span><span class=o>]</span> <span class=k>do</span> <span class=o>|</span><span class=n>t</span><span class=p>,</span> <span class=nb>p</span><span class=o>|</span>
+<span class=ln>46</span>  <span class=n>host</span>        <span class=o>=</span> <span class=s1>&#39;172..0.1&#39;</span>
+<span class=ln>47</span>  <span class=n>user</span>        <span class=o>=</span> <span class=s1>&#39;icyleaf&#39;</span>
+<span class=ln>48</span>  <span class=n>options</span>     <span class=o>=</span> <span class=p>{</span><span class=ss>:keys</span> <span class=o>=&gt;</span> <span class=s1>&#39;~/.ssh/keys/id_rsa.pub&#39;</span><span class=p>}</span>
+<span class=ln>49</span>
+<span class=ln>50</span>  <span class=nb>puts</span> <span class=s2>&#34;Connect gitlab server and mirror&#34;</span>
+<span class=ln>51</span>  <span class=no>Net</span><span class=o>::</span><span class=no>SSH</span><span class=o>.</span><span class=n>start</span><span class=p>(</span><span class=n>host</span><span class=p>,</span> <span class=n>user</span><span class=p>,</span> <span class=n>options</span><span class=p>)</span> <span class=k>do</span> <span class=o>|</span><span class=n>ssh</span><span class=o>|</span>
+<span class=ln>52</span>    <span class=n>gitmirror_path</span> <span class=o>=</span> <span class=s1>&#39;/home/gitmirror/gitlab-mirrors&#39;</span>
+<span class=ln>53</span>    <span class=n>cmd</span> <span class=o>=</span> <span class=s2>&#34;sudo -u gitmirror -H rake </span><span class=se>\&#34;</span><span class=s2>add[</span><span class=si>#{</span><span class=nb>p</span><span class=o>[</span><span class=ss>:repo</span><span class=o>]</span><span class=si>}</span><span class=s2>]</span><span class=se>\&#34;</span><span class=s2>&#34;</span>
+<span class=ln>54</span>    <span class=n>stdout</span> <span class=o>=</span> <span class=n>ssh</span><span class=o>.</span><span class=n>exec!</span><span class=p>(</span><span class=s2>&#34;echo &#39;cd </span><span class=si>#{</span><span class=n>gitmirror_path</span><span class=si>}</span><span class=s2> &amp;&amp; </span><span class=si>#{</span><span class=n>cmd</span><span class=si>}</span><span class=s2>&#39;&#34;</span><span class=p>)</span>
+<span class=ln>55</span>    <span class=nb>puts</span> <span class=n>stdout</span>
+<span class=ln>56</span>    <span class=n>ssh</span><span class=o>.</span><span class=n>loop</span>
+<span class=ln>57</span>  <span class=k>end</span>
+<span class=ln>58</span><span class=k>end</span>
+</code></pre></div><h5 id=gemfile>Gemfile</h5><div class=highlight><pre class=chroma><code class=language-ruby data-lang=ruby><span class=ln>1</span><span class=n>source</span> <span class=s2>&#34;https://ruby.taobao.org&#34;</span>
+<span class=ln>2</span>
+<span class=ln>3</span><span class=n>gem</span> <span class=s1>&#39;rest_client&#39;</span>
+<span class=ln>4</span><span class=n>gem</span> <span class=s1>&#39;multi_json&#39;</span>
+<span class=ln>5</span><span class=n>gem</span> <span class=s1>&#39;rake&#39;</span>
+<span class=ln>6</span><span class=n>gem</span> <span class=s1>&#39;net-ssh&#39;</span>
+</code></pre></div><p><code>rake</code> 里面有两个 task：</p><ul><li>mirror: 镜像 iOS 开源组件</li><li>clone: 负责把官方 spec 指定包（开源组件的版本控制）替换 gitlab 地址并加入到私有包仓库</li></ul><h3 id=总结>总结</h3><p>通过工具总有办法可以改进和提升开发者的效率和解决各种的问题，希望本文可以给大家带来更多的灵感！</p><h3 id=答疑解惑>答疑解惑</h3><h5 id=f-这套理论靠谱吗>F: 这套理论靠谱吗？</h5><p>A: 目前我们团队已经采用并运行了很长一段时间，没有任何风险。最大的优势在于兼容官方的仓库，
+就算无法链接自己的私有服务器，使用官方和国内镜像的都可以瞬间切换。</p><h5 id=f-如果没有服务器可以实现吗>F: 如果没有服务器可以实现吗？</h5><p>A: 醒醒吧孩子，就连单纯的镜像官方 Cocoapods Spec 还需要一个服务器执行定期同步脚本呢。</p><h5 id=f-国内-git-托管服务器能够支持吗>F: 国内 git 托管服务器能够支持吗？</h5><p>A: 据我所知国内大部分 git 托管服务器的解决方案都是基于 gitlab 二次开发的，理论上可行，
+上面提到的 gitlab-mirror 本身依赖于 gitlab 的 api 在镜像的同时自动新建仓库。如果有成功的欢迎反馈。</p><h5 id=f-我从你代码发现服务器同样调用了一个-rake-脚本你没有开源>F: 我从你代码发现服务器同样调用了一个 rake 脚本，你没有开源！</h5><p>A: 眼睛真够敏锐的，个人对 gitlab-mirror 再做镜像时做了一个约束，新建一个 <code>Rakefile</code> 文件放到你的 gitlab-mirror 项目根目录即可：</p><div class=highlight><pre class=chroma><code class=language-ruby data-lang=ruby><span class=ln> 1</span><span class=nb>require</span> <span class=s1>&#39;uri&#39;</span>
+<span class=ln> 2</span>
+<span class=ln> 3</span><span class=n>desc</span> <span class=s2>&#34;Adding repo to gitmirror&#34;</span>
+<span class=ln> 4</span><span class=n>task</span> <span class=ss>:add</span><span class=p>,</span> <span class=o>[</span><span class=ss>:repo</span><span class=o>]</span> <span class=k>do</span> <span class=o>|</span><span class=n>t</span><span class=p>,</span> <span class=nb>p</span><span class=o>|</span>
+<span class=ln> 5</span>  <span class=n>repo</span> <span class=o>=</span> <span class=nb>p</span><span class=o>[</span><span class=ss>:repo</span><span class=o>]</span>
+<span class=ln> 6</span>
+<span class=ln> 7</span>  <span class=k>begin</span>
+<span class=ln> 8</span>    <span class=nb>name</span> <span class=o>=</span> <span class=no>URI</span><span class=o>.</span><span class=n>parse</span><span class=p>(</span><span class=n>repo</span><span class=p>)</span><span class=o>.</span><span class=n>path</span><span class=o>[</span><span class=mi>1</span><span class=o>..-</span><span class=mi>1</span><span class=o>].</span><span class=n>gsub</span><span class=p>(</span><span class=s1>&#39;/&#39;</span><span class=p>,</span> <span class=s1>&#39;-&#39;</span><span class=p>)</span><span class=o>.</span><span class=n>gsub</span><span class=p>(</span><span class=s1>&#39;.git&#39;</span><span class=p>,</span> <span class=s1>&#39;&#39;</span><span class=p>)</span>
+<span class=ln> 9</span>    <span class=k>if</span> <span class=nb>name</span>
+<span class=ln>10</span>      <span class=sb>`./add_mirror.sh -f --git --project-name </span><span class=si>#{</span><span class=nb>name</span><span class=si>}</span><span class=sb> --mirror </span><span class=si>#{</span><span class=n>repo</span><span class=si>}</span><span class=sb>`</span>
+<span class=ln>11</span>    <span class=k>end</span>
+<span class=ln>12</span>  <span class=k>rescue</span> <span class=no>Error</span> <span class=o>=&gt;</span> <span class=n>e</span>
+<span class=ln>13</span>    <span class=nb>puts</span> <span class=s1>&#39;not url&#39;</span>
+<span class=ln>14</span>  <span class=k>end</span>
+<span class=ln>15</span><span class=k>end</span>
+</code></pre></div><h5 id=f-我还有问题>F: 我还有问题！</h5><p>A: 麻烦请留言，谢谢！</p></div><div class=post-copyright><p class=copyright-item><span>Author:</span>
+<span>icyleaf</span></p><p class=copyright-item><span>Link:</span>
+<a href=https://icyleaf.com/2015/01/speed-up-cocoapods/>https://icyleaf.com/2015/01/speed-up-cocoapods/</a></p></div><div class=post-tags><section><i class="iconfont icon-tag"></i>Tag(s):
+<span class=tag><a href=https://icyleaf.com/tags/cocoapods/>#CocoaPods</a></span>
+<span class=tag><a href=https://icyleaf.com/tags/ios/>#iOS</a></span></section><section><a href=javascript:window.history.back();>back</a></span> ·
+<span><a href=https://icyleaf.com/>home</a></span></section></div><div class=post-nav><a href=https://icyleaf.com/2014/01/moving-unicorn-to-puma-on-gitlab/ class=prev rel=prev title="Puma 替换 Unicorn 跑 Gitlab"><i class="iconfont icon-left"></i>&nbsp;Puma 替换 Unicorn 跑 Gitlab</a>
+<a href=https://icyleaf.com/2015/12/hexo-theme-next/ class=next rel=next title="Hexo 主题推荐 NexT">Hexo 主题推荐 NexT&nbsp;<i class="iconfont icon-right"></i></a></div><div class=post-social><div class=social-links><style type=text/css>@font-face{font-family:iconfont;src:url(//at.alicdn.com/t/font_1910062_4213q7gpkpy.eot);src:url(//at.alicdn.com/t/font_1910062_4213q7gpkpy.eot?#iefix)format('embedded-opentype'),url(//at.alicdn.com/t/font_1910062_4213q7gpkpy.woff2)format('woff2'),url(//at.alicdn.com/t/font_1910062_4213q7gpkpy.woff)format('woff'),url(//at.alicdn.com/t/font_1910062_4213q7gpkpy.ttf)format('truetype'),url(//at.alicdn.com/t/font_1910062_4213q7gpkpy.svg#iconfont)format('svg')}</style><a class=bloglogo href=https://github.com/icyleaf target=_blank rel="me noopener"><i class="iconfont icon-github" alt=github></i></a>
+<a class=bloglogo href=https://twitter.com/icyleaf target=_blank rel="me noopener"><i class="iconfont icon-twitter" alt=twitter></i></a>
+<a class=bloglogo href=https://www.facebook.com/icyleaf target=_blank rel="me noopener"><i class="iconfont icon-facebook" alt=facebook></i></a>
+<a class=bloglogo href=https://www.linkedin.com/in/icyleaf target=_blank rel="me noopener"><i class="iconfont icon-linkedin" alt=linkedin></i></a>
+<a class=bloglogo href=https://www.instagram.com/icyleaf/ target=_blank rel="me noopener"><i class="iconfont icon-instagram" alt=instagram></i></a>
+<a class=bloglogo href=https://www.douban.com/people/icyleaf target=_blank rel="me noopener"><i class="iconfont icon-douban" alt=douban></i></a></div></div><div class=post-comment><div id=disqus_thread></div><script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return}var b=document,a=b.createElement('script');a.async=!0,a.src='//icyleaf.disqus.com/embed.js',a.setAttribute('data-timestamp',+new Date),(b.head||b.body).appendChild(a)})()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div></article></div></main><footer class=footer><div class=copyright>&copy;
+<span itemprop=copyrightYear>2005 - 2021</span>
+<span>🍺</span>
+<span class=author itemprop=copyrightHolder><a href=https://icyleaf.com/>icyleaf</a></span>
+| <span>Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow">Hugo</a> & <a href=https://github.com/icyleaf/hugo-theme-nicesima target=_blank rel="external nofollow">nicesima</a></span></div></footer><script src=https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js crossorigin=anonymous></script><script defer src=https://icyleaf.com/js/vendor_main.min.js></script><script src=https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin=anonymous></script><script>pangu.spacingPage()</script><script>(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-2570916-5','auto'),ga('send','pageview')</script></div></body></html>

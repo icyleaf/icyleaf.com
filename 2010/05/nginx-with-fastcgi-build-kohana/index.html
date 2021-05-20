@@ -1,127 +1,146 @@
-<!doctype html><html lang=zh><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta property=og:title content="Nginx&#43;FastCGI 环境搭建 Kohana &middot;  icyleaf"><meta property=og:site_name content=icyleaf><meta property=og:url content=https://icyleaf.com/2010/05/nginx-with-fastcgi-build-kohana/><meta property=og:type content=article><meta property=og:article:published_time content=2010-05-31T12:34:56&#43;08:00><meta property=og:article:tag content=Nginx><meta property=og:article:tag content=PHP><meta property=og:article:tag content=Kohana><title>Nginx&#43;FastCGI 环境搭建 Kohana &middot; icyleaf</title><meta name=description content=热爱户外的码农、下厨初心者><meta name=HandheldFriendly content=True><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" href=https://icyleaf.com/images/favicon.ico><link rel=apple-touch-icon href=https://icyleaf.com/images/apple-touch-icon.png><link rel=stylesheet href=https://icyleaf.com/css/screen.css><link rel=stylesheet href=https://icyleaf.com/css/nav.css><link rel=stylesheet href=https://icyleaf.com/css/highlight/tomorrow-night.css><script src=https://icyleaf.com/js/highlight.pack.js></script><script>hljs.initHighlightingOnLoad();</script><link href=https://icyleaf.com/index.xml rel=alternate type=application/rss+xml title=icyleaf><meta name=generator content="Hugo 0.47.1"><link rel=canonical href=https://icyleaf.com/2010/05/nginx-with-fastcgi-build-kohana/><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-2570916-5','auto');ga('send','pageview');</script></head><body class=nav-closed><div class=nav><h3 class=nav-title>Menu</h3><a href=# class=nav-close><span class=hidden>Close</span></a><ul><li class=nav-opened role=presentation><a href=https://icyleaf.com/>Home</a><li class=nav-opened role=presentation><a href=https://icyleaf.com/categories/technology>Technology</a><li class=nav-opened role=presentation><a href=https://icyleaf.com/tags>Tags</a><li class=nav-opened role=presentation><a href=https://icyleaf.com/about>About</a></ul><a class="subscribe-button icon-feed" href=https://icyleaf.com/2010/05/nginx-with-fastcgi-build-kohana/>Subscribe</a></div><span class=nav-cover></span><div class=site-wrapper><header class="main-header post-head no-cover"><nav class="main-nav overlay clearfix"><a class=blog-logo href=https://icyleaf.com/><img src=https://icyleaf.com/images/icyleaf-icon.png alt="Blog Logo"></a>
-<a class=menu-button href=#><span class=burger>&#9776;</span><span class=word>Menu</span></a></nav></header><main class=content role=main><article class="post post"><header class=post-header><h1 class=post-title>Nginx&#43;FastCGI 环境搭建 Kohana</h1><small></small><section class=post-meta><time class=post-date datetime=2010-05-31T12:34:56&#43;08:00>May 31, 2010</time>
-<span class="post-tag small"><a href=https://icyleaf.com/tags/nginx/>#Nginx</a></span>
-<span class="post-tag small"><a href=https://icyleaf.com/tags/php/>#PHP</a></span>
-<span class="post-tag small"><a href=https://icyleaf.com/tags/kohana/>#Kohana</a></span></section></header><section class=post-content><p>Kohana 默认仅对 Apache 环境提供的部署支持，其实对于 Nginx+FastCGI
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="chrome=1"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta name=author content="icyleaf"><meta name=description content="日常写代码热爱户外的梦想家"><link rel=prev href=https://icyleaf.com/2010/04/how-to-get-xpath-of-an-element-for-php-and-javascript/><link rel=next href=https://icyleaf.com/2010/09/fruit-properties-overview/><link rel=canonical href=https://icyleaf.com/2010/05/nginx-with-fastcgi-build-kohana/><link rel=apple-touch-icon sizes=180x180 href=https://icyleaf.com/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=https://icyleaf.com/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=https://icyleaf.com/favicon-16x16.png><link rel=manifest href=https://icyleaf.com/site.webmanifest><link rel=mask-icon href=https://icyleaf.com/safari-pinned-tab.svg color=#5bbad5><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"><title>Nginx+FastCGI 环境搭建 Kohana | icyleaf</title><meta name=title content="Nginx+FastCGI 环境搭建 Kohana | icyleaf"><link rel=stylesheet href=https://icyleaf.com/css/main.min.css><link rel=stylesheet href=https://icyleaf.com/font/iconfont.css><link rel=stylesheet href=https://icyleaf.com/font-ali/iconfont.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/icyleaf.com\/"},"articleSection":"posts","name":"Nginx\u002bFastCGI 环境搭建 Kohana","headline":"Nginx\u002bFastCGI 环境搭建 Kohana","description":"Kohana 默认仅对 Apache 环境提供的部署支持，其实对于 Nginx\u002bFastCGI 也是很容易支持的。本文搭建环境是 Ubuntu 10.4 并采用 apt-get 方式安装，喜爱编译的朋友可以自行解决 :) 1. 安装 MySQL 1$ sudo apt-get install","inLanguage":"zh-cn","author":"icyleaf","creator":"icyleaf","publisher":"icyleaf","accountablePerson":"icyleaf","copyrightHolder":"icyleaf","copyrightYear":"2010","datePublished":"2010-05-31 12:34:56 \u002b0800 \u002b0800","dateModified":"2010-05-31 12:34:56 \u002b0800 \u002b0800","url":"https:\/\/icyleaf.com\/2010\/05\/nginx-with-fastcgi-build-kohana\/","wordCount":"1787","keywords":["Nginx","PHP","Kohana","icyleaf"]}</script></head><body><div class=wrapper><nav class=navbar><progress class=content_progress max=0 value=0></progress><div class=container><div class="navbar-header header-back2home-logo"><span class=logo_mark>>$</span>
+<a href=https://icyleaf.com/><span class=logo_text>cd /home/</span>
+<span class=logo_cursor></span></a></div><div class=navbar-right><span class=menu><a class=menu-item href=https://icyleaf.com/posts title>Posts</a>
+<a class=menu-item href=https://icyleaf.com/categories title>Categories</a>
+<a class=menu-item href=https://icyleaf.com/tags title>Tags</a>
+<a class=menu-item href=https://icyleaf.com/about title>About</a>
+<span class=divide></span><a href=javascript:void(0); class=theme-switch><i class="iconfont icon-dark-mode"></i></a></span></div></div></nav><nav class=navbar-mobile id=nav-mobile style=display:none><progress class=content_progress max=0 value=0></progress><div class=container><div class=navbar><div class="navbar-header header-logo"><a href=https://icyleaf.com/>icyleaf</a></div><div class=navbar-right><div><a href=javascript:void(0); class=theme-switch><i class="iconfont icon-dark-mode"></i></a></div><div class=menu-toggle><span></span><span></span><span></span></div></div></div><div class=menu id=mobile-menu><nav class=mb-md><a class=menu-item href=https://icyleaf.com/posts title><h3>Posts</h3><div class=menu-active></div></a><a class=menu-item href=https://icyleaf.com/categories title><h3>Categories</h3><div class=menu-active></div></a><a class=menu-item href=https://icyleaf.com/tags title><h3>Tags</h3><div class=menu-active></div></a><a class=menu-item href=https://icyleaf.com/about title><h3>About</h3><div class=menu-active></div></a></nav></div></div></nav><main class=main><div class=container><article class=post-warp itemscope itemtype=http://schema.org/Article><header class=post-header><h1 class=post-title itemprop="name headline">Nginx+FastCGI 环境搭建 Kohana</h1><div class=post-meta>Written by <a itemprop=name href=https://icyleaf.com/ rel=author>icyleaf</a> with ♥
+<span class=post-time>on <time datetime=2010-05-31 itemprop=datePublished>May 31, 2010</time></span>
+in
+<i class="iconfont icon-folder"></i>
+<span class=post-category><a href=https://icyleaf.com/categories/technology/>Technology,</a></span>
+<span class=post-word-count>1787 words</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title></h2><div class="post-toc-content always-active"><nav id=TableOfContents><ul><li><ul><li><a href=#1-安装-mysql>1. 安装 MySQL</a></li><li><a href=#2-安装-nginx>2. 安装 Nginx</a></li><li><a href=#3-安装-php5>3. 安装 PHP5</a></li><li><a href=#4-配置-nginx>4. 配置 Nginx</a></li><li><a href=#5-安装配置-kohana>5. 安装&配置 Kohana</a></li></ul></li></ul></nav></div></div><div class=post-content><p>Kohana 默认仅对 Apache 环境提供的部署支持，其实对于 Nginx+FastCGI
 也是很容易支持的。本文搭建环境是 Ubuntu 10.4 并采用 apt-get
-方式安装，喜爱编译的朋友可以自行解决 :)<h3 id=1-安装-mysql>1. 安装 MySQL</h3><pre><code class=language-bash>$ sudo apt-get install mysql-server mysql-client
-</code></pre><p>安装过程在会提示设置 root 账户的密码，如果是本机测试开发可以留空后稍候设置。<h3 id=2-安装-nginx>2. 安装 Nginx</h3><pre><code class=language-bash># 安装 Nginx
-$ sudo apt-get install nginx
-
-# 启动 Nginx
-$ sudo /etc/init.d/nginx start
-</code></pre><p>完成上面两步之后，打开浏览器，输入 localhost 或 127.0.0.1 如果看到 <strong>Welcome to Nginx!</strong> 字样就说明安装成功了，是不是很简单 :)<p>注意，如果你的机器上面如果安装了其他 web 容器（比如 Apache，Lighttd等），启动
+方式安装，喜爱编译的朋友可以自行解决 :)</p><h3 id=1-安装-mysql>1. 安装 MySQL</h3><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>$ sudo apt-get install mysql-server mysql-client
+</code></pre></div><p>安装过程在会提示设置 root 账户的密码，如果是本机测试开发可以留空后稍候设置。</p><h3 id=2-安装-nginx>2. 安装 Nginx</h3><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span><span class=c1># 安装 Nginx</span>
+<span class=ln>2</span>$ sudo apt-get install nginx
+<span class=ln>3</span>
+<span class=ln>4</span><span class=c1># 启动 Nginx</span>
+<span class=ln>5</span>$ sudo /etc/init.d/nginx start
+</code></pre></div><p>完成上面两步之后，打开浏览器，输入 localhost 或 127.0.0.1 如果看到 <strong>Welcome to Nginx!</strong> 字样就说明安装成功了，是不是很简单 :)</p><p>注意，如果你的机器上面如果安装了其他 web 容器（比如 Apache，Lighttd等），启动
 ngnix 的时候肯定会报错，因为这些 web 容器启动均占用的 80
-端口，更改的方法如下：<p>编辑 <code>/etc/nginx/sites-available/default</code> 文件，修改 server 段中的 listen
-为 localhost:8080，其中 8080 是更改的监听端口：<pre><code>server {    
-listen   localhost:8080;
-server_name  localhost;
-# [...]
-</code></pre><p>保存后重启 Nginx：<pre><code class=language-bash>$ sudo /etc/init.d/nginx restart
-</code></pre><h3 id=3-安装-php5>3. 安装 PHP5</h3><p>PHP 在 Nginx 下是通过 FastCGI 模式运行的，使用 Debain 的包管理可以安装
+端口，更改的方法如下：</p><p>编辑 <code>/etc/nginx/sites-available/default</code> 文件，修改 server 段中的 listen
+为 localhost:8080，其中 8080 是更改的监听端口：</p><div class=highlight><pre class=chroma><code class=language-txt data-lang=txt><span class=ln>1</span>server {
+<span class=ln>2</span>listen   localhost:8080;
+<span class=ln>3</span>server_name  localhost;
+<span class=ln>4</span># [...]
+</code></pre></div><p>保存后重启 Nginx：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>$ sudo /etc/init.d/nginx restart
+</code></pre></div><h3 id=3-安装-php5>3. 安装 PHP5</h3><p>PHP 在 Nginx 下是通过 FastCGI 模式运行的，使用 Debain 的包管理可以安装
 PHP5 和一些必须的（比如，php5-mysql）和可选的扩展（比如，Kohana 要求的
 php5-curl，php5-gd，php5-mcrypt），下面前 5
-个是必须的，其他可以依据个人需求添加或减少：<pre><code class=language-bash>$ sudo apt-get install php5-cgi php5-mysql php5-curl php5-gd php5-mcrypt php5-idn php-pear php5-imagick php5-imap php5-memcache php5-mhash php5-ming php5-pspell php5-recode php5-snmp php5-tidy php5-xmlrpc php5-xsl
-</code></pre><p>安装完毕后，需要编辑 php 的配置：<pre><code class=language-bash># 编辑 /etc/php5/cgi/php.ini 文件
-# 修改 cgi.fix_pathinfo 的值为 1（如果此项被注解掉了，请删除前面的 # 符号）	cgi.fix_pathinfo = 1
-</code></pre><p>至此 PHP5 已经安装完毕，但是还没有结束，因为我们还没有让它支持 FastCGI
-嗯，由于 Debain 包并没有提供单独的 FastCGI 守护程序，因此我们可以使用其他的方式实现，通常使用的是 lighttpd 项目提供的 spawn-fcgi（本文也用的这个，但是它总会出现小毛病，导致 Nginx 服务 Down 掉，稍候也会给出一点解决方案）或者是 <a href=http://php-fpm.org/>PHP-FPM</a>（专门为 PHP 提供 FastCGI 进程管理的软件）<p>好吧，让我们在安装 lighttpd：<pre><code class=language-bash>$ sudo apt-get install lighttpd
-</code></pre><p>安装完毕后会你发现一些错误信息：<pre><code class=language-bash>Starting web server: lighttpd
-2010-05-31 10:44:51: (network.c.300) can not bind to port: 80 Address already in use failed!
-</code></pre><p>还是上面提到的重复占用端口的问题，不过由于我们只是使用它的 spawn-fcgi 因此我们可以不让它当作服务启动：<pre><code class=language-bash>$ sudo update-rc.d -f lighttpd remove
-</code></pre><p>好了，让我们开启 FastCGI 守护进程：<pre><code class=language-bash>$ /usr/bin/spawn-fcgi -a 127.0.0.1 -p 9000 -u www-data -g www-data -f /usr/bin/php5-cgi -P /var/run/fastcgi-php.pid
-</code></pre><p>其中 -a 代表 ip 地址， -p 是进程的端口， -u 是用户， -g 是用户组，-f 是 <code>php5-cgi</code> 的执行路径，-P 是进程的 pid，可以适当的在后面在加一个 -C 参数，这个数创建的进程数，本机开发的话一般设置在 3 - 5 左右即可（也可以使用 ab 测试以设置适当的进程数，这样可以防止 Nginx 的无辜 Down 掉）<p>提示：spawn-fcgi 必须在运行的状况下才能使得 Nginx 支持 PHP
+个是必须的，其他可以依据个人需求添加或减少：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>$ sudo apt-get install php5-cgi php5-mysql php5-curl php5-gd php5-mcrypt php5-idn php-pear php5-imagick php5-imap php5-memcache php5-mhash php5-ming php5-pspell php5-recode php5-snmp php5-tidy php5-xmlrpc php5-xsl
+</code></pre></div><p>安装完毕后，需要编辑 php 的配置：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span><span class=c1># 编辑 /etc/php5/cgi/php.ini 文件</span>
+<span class=ln>2</span><span class=c1># 修改 cgi.fix_pathinfo 的值为 1（如果此项被注解掉了，请删除前面的 # 符号）	cgi.fix_pathinfo = 1</span>
+</code></pre></div><p>至此 PHP5 已经安装完毕，但是还没有结束，因为我们还没有让它支持 FastCGI
+嗯，由于 Debain 包并没有提供单独的 FastCGI 守护程序，因此我们可以使用其他的方式实现，通常使用的是 lighttpd 项目提供的 spawn-fcgi（本文也用的这个，但是它总会出现小毛病，导致 Nginx 服务 Down 掉，稍候也会给出一点解决方案）或者是 <a href=http://php-fpm.org/>PHP-FPM</a>（专门为 PHP 提供 FastCGI 进程管理的软件）</p><p>好吧，让我们在安装 lighttpd：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>$ sudo apt-get install lighttpd
+</code></pre></div><p>安装完毕后会你发现一些错误信息：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>Starting web server: lighttpd
+<span class=ln>2</span>2010-05-31 10:44:51: <span class=o>(</span>network.c.300<span class=o>)</span> can not <span class=nb>bind</span> to port: <span class=m>80</span> Address already in use failed!
+</code></pre></div><p>还是上面提到的重复占用端口的问题，不过由于我们只是使用它的 spawn-fcgi 因此我们可以不让它当作服务启动：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>$ sudo update-rc.d -f lighttpd remove
+</code></pre></div><p>好了，让我们开启 FastCGI 守护进程：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>$ /usr/bin/spawn-fcgi -a 127.0.0.1 -p <span class=m>9000</span> -u www-data -g www-data -f /usr/bin/php5-cgi -P /var/run/fastcgi-php.pid
+</code></pre></div><p>其中 -a 代表 ip 地址， -p 是进程的端口， -u 是用户， -g 是用户组，-f 是 <code>php5-cgi</code> 的执行路径，-P 是进程的 pid，可以适当的在后面在加一个 -C 参数，这个数创建的进程数，本机开发的话一般设置在 3 - 5 左右即可（也可以使用 ab 测试以设置适当的进程数，这样可以防止 Nginx 的无辜 Down 掉）</p><p>提示：spawn-fcgi 必须在运行的状况下才能使得 Nginx 支持 PHP
 运行，因此可以把上面的启动代码追加到 /etc/rc.local 文件的尾部保存（在 exit
-命令之前）。<h3 id=4-配置-nginx>4. 配置 Nginx</h3><p>Nginx 的配置相对比较简单，语法很像 PHP 代码，如果不了解的可以参考这个：<a href=http://wiki.nginx.org/NginxFullExample>范例1</a>和<a href=http://wiki.nginx.org/NginxFullExample2>范例2</a><p>编辑 <strong>/etc/nginx/nginx.conf</strong> 文件并作如下修改：<pre><code>[...]
-worker_processes  5;
-[...]    
-keepalive_timeout   2;
-[...]
-</code></pre><p>定义虚拟主机的配置项存放在 <code>/etc/nginx/conf.d/</code> 目录下面，每个虚拟主机配置一个文件并以 .conf 为文件后缀即可，默认是 default，也就是上面修改 Nginx 默认监听端口的文件，这里还要进一步对它配（点击右侧展开）：<pre><code>[...]
-server {        
-listen   80;        
-server_name  _;        
-access_log  /var/log/nginx/localhost.access.log;        
-location / {                
-root   /var/www/nginx-default;                
-index  index.php index.html index.htm;        
-}        
-
-location /doc {                
-root   /usr/share;                
-autoindex on;                
-allow 127.0.0.1;                
-deny all;        
-}        l
-
-ocation /images {                
-root   /usr/share;                
-autoindex on;        
-}        
-
-# error_page  404  /404.html;        
-# redirect server error pages to the static page /50x.html        
-# error_page   500 502 503 504  /50x.html;        
-location = /50x.html {                
-root   /var/www/nginx-default;        
-}        
-
-# proxy the PHP scripts to Apache listening on 127.0.0.1:80       
-#location ~ \.php$ {                
-#proxy_pass   http://127.0.0.1;        
-#}        
-
-# pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000        
-location ~ \.php$ {                
-fastcgi_pass   127.0.0.1:9000;               
-fastcgi_index  index.php;                
-fastcgi_param  SCRIPT_FILENAME  /var/www/nginx-default$fastcgi_script_name;                
-include        fastcgi_params;        
-}        
-
-# deny access to .htaccess files, if Apache's document root        # concurs with nginx's one        
-# location ~ /\.ht {                
-deny  all;        
-}
-}
-
-[...]
-</code></pre><p>说明下里面的个别参数：<p><strong>server_name</strong> 是虚拟主机的服务器入口名称，可以是 IP 也可以是域名。<p><strong>location</strong> 段，我在 index 追加了 index.php， root 路径是 <code>/var/www/nginx-default</code> 说明该虚拟主机的根目录在这里。<p>最重要的是关于 PHP 部分的 location 段：<strong>~ \.php\$ {}</strong>，Nginx 默认没有开启，我们要确保它开启并在 fastcgi_param 一行更改了参数（因为浏览器调用的默认 PHP 解析器无法找到 PHP 脚本）：<pre><code>fastcgi_param SCRIPT_FILENAME /var/www/nginx-default$fastcgi_script_name;
-</code></pre><p>最后确保在 include 和 fastcgi_params 之间隔出几个空格（BUG）<p>重启 Nginx，然后编辑一个 info.php 文件：<pre><code>// 创建 /var/www/nginx-default/info.php 文件
-</code></pre><p>保存后在浏览器访问（比如：<a href=http://localhost/info.php>http://localhost/info.php</a> 或
-<a href=http://localhost:8080/info.php)，如看到>http://localhost:8080/info.php)，如看到</a> phpinfo
-的参数页面说明配置安装成功 :)<h3 id=5-安装-配置-kohana>5. 安装&amp;配置 Kohana</h3><p>Kohana 采用的 v3 版本，<a href=http://v3.kohana.cn/guide/tutorials.git>安装步骤</a>（本文把 kohana 存放在 <code>/home/icyleaf/php/kohana</code> 目录）<p>添加 Nginx 虚拟主机配置文件：<pre><code># 创建 /etc/nginx/conf.d/kohana.conf 文件
-server {   
-listen   kohana.local:8080;  
-server_name  kohana.local;   
-access_log  /var/log/nginx/kohana.access.log;
-
-# define server root path    
-set $root_path /home/icyleaf/php/kohana;  
-
-location / {     
-root   $root_path;       index  index.php index.html index.htm;
-if (!-e $request_filename) {         
-rewrite ^/(.*)$ /index.php?kohana_uri=/$1 last;      
-}    
-}
-
-# pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000  
-location ~ \.php$ {      
-root   $root_path;       
-fastcgi_pass   127.0.0.1:9000;       
-fastcgi_index  index.php;        
-fastcgi_param  SCRIPT_FILENAME  $root_path$fastcgi_script_name;      include fastcgi_params;  
-}
-}
-</code></pre><p>配置中首先定义了一个变量 \$root_path 指定 Kohana 的源码的路径，对于
-Kohana 的 URL rewrite url 重点是 location 段的：<pre><code>if (!-e $request_filename) {    
-rewrite ^/(.*)$ /index.php?kohana_uri=/$1 last;
-}
-</code></pre><p>编辑完成后重载 Nginx 配置：<pre><code>$ sudo /etc/init.d/nginx reload
-</code></pre><p>至此教程结束，额外说明的是 Kohana 默认的 .htaccess 对 Nginx 无效可有可无
-:)</section><footer class=post-footer><figure class=author-image><a class=img href=https://icyleaf.com/ style=background-image:url(/images/icyleaf-icon.png)><span class=hidden>icyleaf's Picture</span></a></figure><section class=author><h4><a href=https://icyleaf.com/>icyleaf</a></h4><p>热爱户外的码农、下厨初心者<div class=author-meta><span class="author-location icon-location">Beijing, China</span>
-<span class="author-link icon-link"><a href=https://icyleaf.com>https://icyleaf.com</a></span></div></section><section class=share><h4>Share this post</h4><a class=icon-twitter href="https://twitter.com/share?text=Nginx%2bFastCGI%20%e7%8e%af%e5%a2%83%e6%90%ad%e5%bb%ba%20Kohana&nbsp;-&nbsp;icyleaf&amp;url=https%3a%2f%2ficyleaf.com%2f2010%2f05%2fnginx-with-fastcgi-build-kohana%2f" onclick="window.open(this.href,'twitter-share','width=550,height=235');return false;"><span class=hidden>Twitter</span></a>
-<a class=icon-facebook href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ficyleaf.com%2f2010%2f05%2fnginx-with-fastcgi-build-kohana%2f" onclick="window.open(this.href,'facebook-share','width=580,height=296');return false;"><span class=hidden>Facebook</span></a>
-<a class=icon-weibo href="http://service.weibo.com/share/share.php?url=https%3a%2f%2ficyleaf.com%2f2010%2f05%2fnginx-with-fastcgi-build-kohana%2f&amp;title=Nginx%2bFastCGI%20%e7%8e%af%e5%a2%83%e6%90%ad%e5%bb%ba%20Kohana&nbsp;-&nbsp;icyleaf" onclick="window.open(this.href,'weibo-share','width=580,height=296');return false;"><span class=hidden>新浪微博</span></a>
-<a class=icon-douban href="https://www.douban.com/recommend/?url=https%3a%2f%2ficyleaf.com%2f2010%2f05%2fnginx-with-fastcgi-build-kohana%2f&title=Nginx%2bFastCGI%20%e7%8e%af%e5%a2%83%e6%90%ad%e5%bb%ba%20Kohana&v=1" onclick="window.open(this.href,'douban-share','width=580,height=300');return false;"><span class=hidden>豆瓣</span></a></section><div id=disqus_thread></div><script>var disqus_config=function(){this.page.url="https:\/\/icyleaf.com\/2010\/05\/nginx-with-fastcgi-build-kohana\/";this.page.identifier="https:\/\/icyleaf.com\/2010\/05\/nginx-with-fastcgi-build-kohana\/";};(function(){var d=document,s=d.createElement('script');s.src='https://icyleaf.disqus.com/embed.js';s.setAttribute('data-timestamp',+new Date());(d.head||d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript></footer></article></main><aside class=read-next><a class=read-next-story style=no-cover href=https://icyleaf.com/2010/09/fruit-properties-overview/><section class=post><h2>水果属性概述</h2></section></a><a class="read-next-story prev" style=no-cover href=https://icyleaf.com/2010/04/how-to-get-xpath-of-an-element-for-php-and-javascript/><section class=post><h2>如何获取 Element 的 XPath [PHP/Javascript]</h2></section></a></aside><footer class="site-footer clearfix"><section class=copyright><a href>icyleaf</a> All rights reserved - 2019</section><section class=poweredby>Proudly generated by <a class=icon-hugo href=http://gohugo.io>HUGO</a>, with <a class=icon-theme href=https://github.com/vjeantet/hugo-theme-casper>Casper</a> theme</section></footer></div><script src=https://icyleaf.com/js/jquery.js></script><script src=https://icyleaf.com/js/jquery.fitvids.js></script><script src=https://icyleaf.com/js/index.js></script></body></html>
+命令之前）。</p><h3 id=4-配置-nginx>4. 配置 Nginx</h3><p>Nginx 的配置相对比较简单，语法很像 PHP 代码，如果不了解的可以参考这个：<a href=http://wiki.nginx.org/NginxFullExample>范例1</a>和<a href=http://wiki.nginx.org/NginxFullExample2>范例2</a></p><p>编辑 <strong>/etc/nginx/nginx.conf</strong> 文件并作如下修改：</p><div class=highlight><pre class=chroma><code class=language-txt data-lang=txt><span class=ln>1</span>[...]
+<span class=ln>2</span>worker_processes  5;
+<span class=ln>3</span>[...]
+<span class=ln>4</span>keepalive_timeout   2;
+<span class=ln>5</span>[...]
+</code></pre></div><p>定义虚拟主机的配置项存放在 <code>/etc/nginx/conf.d/</code> 目录下面，每个虚拟主机配置一个文件并以 .conf 为文件后缀即可，默认是 default，也就是上面修改 Nginx 默认监听端口的文件，这里还要进一步对它配（点击右侧展开）：</p><div class=highlight><pre class=chroma><code class=language-txt data-lang=txt><span class=ln> 1</span>[...]
+<span class=ln> 2</span>server {
+<span class=ln> 3</span>listen   80;
+<span class=ln> 4</span>server_name  _;
+<span class=ln> 5</span>access_log  /var/log/nginx/localhost.access.log;
+<span class=ln> 6</span>location / {
+<span class=ln> 7</span>root   /var/www/nginx-default;
+<span class=ln> 8</span>index  index.php index.html index.htm;
+<span class=ln> 9</span>}
+<span class=ln>10</span>
+<span class=ln>11</span>location /doc {
+<span class=ln>12</span>root   /usr/share;
+<span class=ln>13</span>autoindex on;
+<span class=ln>14</span>allow 127.0.0.1;
+<span class=ln>15</span>deny all;
+<span class=ln>16</span>}        l
+<span class=ln>17</span>
+<span class=ln>18</span>ocation /images {
+<span class=ln>19</span>root   /usr/share;
+<span class=ln>20</span>autoindex on;
+<span class=ln>21</span>}
+<span class=ln>22</span>
+<span class=ln>23</span># error_page  404  /404.html;
+<span class=ln>24</span># redirect server error pages to the static page /50x.html
+<span class=ln>25</span># error_page   500 502 503 504  /50x.html;
+<span class=ln>26</span>location = /50x.html {
+<span class=ln>27</span>root   /var/www/nginx-default;
+<span class=ln>28</span>}
+<span class=ln>29</span>
+<span class=ln>30</span># proxy the PHP scripts to Apache listening on 127.0.0.1:80
+<span class=ln>31</span>#location ~ \.php$ {
+<span class=ln>32</span>#proxy_pass   http://127.0.0.1;
+<span class=ln>33</span>#}
+<span class=ln>34</span>
+<span class=ln>35</span># pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+<span class=ln>36</span>location ~ \.php$ {
+<span class=ln>37</span>fastcgi_pass   127.0.0.1:9000;
+<span class=ln>38</span>fastcgi_index  index.php;
+<span class=ln>39</span>fastcgi_param  SCRIPT_FILENAME  /var/www/nginx-default$fastcgi_script_name;
+<span class=ln>40</span>include        fastcgi_params;
+<span class=ln>41</span>}
+<span class=ln>42</span>
+<span class=ln>43</span># deny access to .htaccess files, if Apache&#39;s document root        # concurs with nginx&#39;s one
+<span class=ln>44</span># location ~ /\.ht {
+<span class=ln>45</span>deny  all;
+<span class=ln>46</span>}
+<span class=ln>47</span>}
+<span class=ln>48</span>
+<span class=ln>49</span>[...]
+</code></pre></div><p>说明下里面的个别参数：</p><p><strong>server_name</strong> 是虚拟主机的服务器入口名称，可以是 IP 也可以是域名。</p><p><strong>location</strong> 段，我在 index 追加了 index.php， root 路径是 <code>/var/www/nginx-default</code> 说明该虚拟主机的根目录在这里。</p><p>最重要的是关于 PHP 部分的 location 段：<strong>~ \.php$ {}</strong>，Nginx 默认没有开启，我们要确保它开启并在 fastcgi_param 一行更改了参数（因为浏览器调用的默认 PHP 解析器无法找到 PHP 脚本）：</p><div class=highlight><pre class=chroma><code class=language-txt data-lang=txt><span class=ln>1</span>fastcgi_param SCRIPT_FILENAME /var/www/nginx-default$fastcgi_script_name;
+</code></pre></div><p>最后确保在 include 和 fastcgi_params 之间隔出几个空格（BUG）</p><p>重启 Nginx，然后编辑一个 info.php 文件：</p><div class=highlight><pre class=chroma><code class=language-txt data-lang=txt><span class=ln>1</span>// 创建 /var/www/nginx-default/info.php 文件
+</code></pre></div><p>保存后在浏览器访问（比如：http://localhost/info.php 或
+http://localhost:8080/info.php)，如看到 phpinfo
+的参数页面说明配置安装成功 :)</p><h3 id=5-安装配置-kohana>5. 安装&配置 Kohana</h3><p>Kohana 采用的 v3 版本，<a href=http://v3.kohana.cn/guide/tutorials.git>安装步骤</a>（本文把 kohana 存放在 <code>/home/icyleaf/php/kohana</code> 目录）</p><p>添加 Nginx 虚拟主机配置文件：</p><div class=highlight><pre class=chroma><code class=language-txt data-lang=txt><span class=ln> 1</span># 创建 /etc/nginx/conf.d/kohana.conf 文件
+<span class=ln> 2</span>server {
+<span class=ln> 3</span>listen   kohana.local:8080;
+<span class=ln> 4</span>server_name  kohana.local;
+<span class=ln> 5</span>access_log  /var/log/nginx/kohana.access.log;
+<span class=ln> 6</span>
+<span class=ln> 7</span># define server root path
+<span class=ln> 8</span>set $root_path /home/icyleaf/php/kohana;
+<span class=ln> 9</span>
+<span class=ln>10</span>location / {
+<span class=ln>11</span>root   $root_path;       index  index.php index.html index.htm;
+<span class=ln>12</span>if (!-e $request_filename) {
+<span class=ln>13</span>rewrite ^/(.*)$ /index.php?kohana_uri=/$1 last;
+<span class=ln>14</span>}
+<span class=ln>15</span>}
+<span class=ln>16</span>
+<span class=ln>17</span># pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+<span class=ln>18</span>location ~ \.php$ {
+<span class=ln>19</span>root   $root_path;
+<span class=ln>20</span>fastcgi_pass   127.0.0.1:9000;
+<span class=ln>21</span>fastcgi_index  index.php;
+<span class=ln>22</span>fastcgi_param  SCRIPT_FILENAME  $root_path$fastcgi_script_name;      include fastcgi_params;
+<span class=ln>23</span>}
+<span class=ln>24</span>}
+</code></pre></div><p>配置中首先定义了一个变量 $root_path 指定 Kohana 的源码的路径，对于
+Kohana 的 URL rewrite url 重点是 location 段的：</p><div class=highlight><pre class=chroma><code class=language-txt data-lang=txt><span class=ln>1</span>if (!-e $request_filename) {
+<span class=ln>2</span>rewrite ^/(.*)$ /index.php?kohana_uri=/$1 last;
+<span class=ln>3</span>}
+</code></pre></div><p>编辑完成后重载 Nginx 配置：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>$ sudo /etc/init.d/nginx reload
+</code></pre></div><p>至此教程结束，额外说明的是 Kohana 默认的 .htaccess 对 Nginx 无效可有可无
+:)</p></div><div class=post-copyright><p class=copyright-item><span>Author:</span>
+<span>icyleaf</span></p><p class=copyright-item><span>Link:</span>
+<a href=https://icyleaf.com/2010/05/nginx-with-fastcgi-build-kohana/>https://icyleaf.com/2010/05/nginx-with-fastcgi-build-kohana/</a></p></div><div class=post-tags><section><i class="iconfont icon-tag"></i>Tag(s):
+<span class=tag><a href=https://icyleaf.com/tags/nginx/>#Nginx</a></span>
+<span class=tag><a href=https://icyleaf.com/tags/php/>#PHP</a></span>
+<span class=tag><a href=https://icyleaf.com/tags/kohana/>#Kohana</a></span></section><section><a href=javascript:window.history.back();>back</a></span> ·
+<span><a href=https://icyleaf.com/>home</a></span></section></div><div class=post-nav><a href=https://icyleaf.com/2010/04/how-to-get-xpath-of-an-element-for-php-and-javascript/ class=prev rel=prev title="如何获取 Element 的 XPath [PHP/Javascript]"><i class="iconfont icon-left"></i>&nbsp;如何获取 Element 的 XPath [PHP/Javascript]</a>
+<a href=https://icyleaf.com/2010/09/fruit-properties-overview/ class=next rel=next title=水果属性概述>水果属性概述&nbsp;<i class="iconfont icon-right"></i></a></div><div class=post-social><div class=social-links><style type=text/css>@font-face{font-family:iconfont;src:url(//at.alicdn.com/t/font_1910062_4213q7gpkpy.eot);src:url(//at.alicdn.com/t/font_1910062_4213q7gpkpy.eot?#iefix)format('embedded-opentype'),url(//at.alicdn.com/t/font_1910062_4213q7gpkpy.woff2)format('woff2'),url(//at.alicdn.com/t/font_1910062_4213q7gpkpy.woff)format('woff'),url(//at.alicdn.com/t/font_1910062_4213q7gpkpy.ttf)format('truetype'),url(//at.alicdn.com/t/font_1910062_4213q7gpkpy.svg#iconfont)format('svg')}</style><a class=bloglogo href=https://github.com/icyleaf target=_blank rel="me noopener"><i class="iconfont icon-github" alt=github></i></a>
+<a class=bloglogo href=https://twitter.com/icyleaf target=_blank rel="me noopener"><i class="iconfont icon-twitter" alt=twitter></i></a>
+<a class=bloglogo href=https://www.facebook.com/icyleaf target=_blank rel="me noopener"><i class="iconfont icon-facebook" alt=facebook></i></a>
+<a class=bloglogo href=https://www.linkedin.com/in/icyleaf target=_blank rel="me noopener"><i class="iconfont icon-linkedin" alt=linkedin></i></a>
+<a class=bloglogo href=https://www.instagram.com/icyleaf/ target=_blank rel="me noopener"><i class="iconfont icon-instagram" alt=instagram></i></a>
+<a class=bloglogo href=https://www.douban.com/people/icyleaf target=_blank rel="me noopener"><i class="iconfont icon-douban" alt=douban></i></a></div></div><div class=post-comment><div id=disqus_thread></div><script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return}var b=document,a=b.createElement('script');a.async=!0,a.src='//icyleaf.disqus.com/embed.js',a.setAttribute('data-timestamp',+new Date),(b.head||b.body).appendChild(a)})()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div></article></div></main><footer class=footer><div class=copyright>&copy;
+<span itemprop=copyrightYear>2005 - 2021</span>
+<span>🍺</span>
+<span class=author itemprop=copyrightHolder><a href=https://icyleaf.com/>icyleaf</a></span>
+| <span>Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow">Hugo</a> & <a href=https://github.com/icyleaf/hugo-theme-nicesima target=_blank rel="external nofollow">nicesima</a></span></div></footer><script src=https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js crossorigin=anonymous></script><script defer src=https://icyleaf.com/js/vendor_main.min.js></script><script src=https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin=anonymous></script><script>pangu.spacingPage()</script><script>(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-2570916-5','auto'),ga('send','pageview')</script></div></body></html>
