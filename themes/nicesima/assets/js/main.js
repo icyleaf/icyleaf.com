@@ -70,13 +70,8 @@ _Blog.scrollIndicator = function () {
 _Blog.changeTile = function () {
   const currentTile = document.title
   window.onblur = function () {
-    titles = [
-      '☕趁机摸🐟',
-      '🚔こちを見ろ！',
-      '👻你看不见我~你看不见我~',
-      '🎶少し休んでもいいぞ～',
-    ]
-    this.document.title = titles[Math.floor(Math.random() * titles.length)]
+    emoji = ['🐟', '☕', '🚔', '👻', '🎶']
+    this.document.title = emoji[Math.floor(Math.random() * emoji.length)] + currentTile
   }
   window.onfocus = function () {
     this.document.title = currentTile

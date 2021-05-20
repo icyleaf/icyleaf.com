@@ -1,12 +1,12 @@
 /** Layout **/
-  
+
 .wrapper {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   width: 100%;
 }
-  
+
 .navbar {
   height: 4rem;
   line-height: 4rem;
@@ -98,8 +98,7 @@
   line-height: 4rem;
   padding-top: 2em;
 }
-  
-  
+
 .notfound {
   font-size: 2em;
   transform: translateY(35vh);
@@ -110,4 +109,21 @@
   0% { opacity: 0; }
   50% { opacity: 1; }
   100% { opacity: 0; }
+}
+
+.main-header {
+  position: relative;
+  display: table;
+  width: 100%;
+  height: 100vh;
+  text-align: center;
+  background: #222 no-repeat center center;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.post-head.main-header {
+  height: 40vh;
+  min-height: 180px;
+  background-color: #FFF;
 }

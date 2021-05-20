@@ -1,23 +1,26 @@
 <footer class="footer">
-    <div class="copyright">
-        &copy;
-        {{ with .Site.Params.Since }}
-        <span itemprop="copyrightYear">{{.}} - {{ now.Year }}</span>
-        {{ end }}
-        {{ if .Site.Params.Mark }}
-        <span class="{{ .Site.Params.MarkAnime | default "" }}">{{ .Site.Params.Mark }}</span>
-        {{ end }}
-        {{ if .Site.Params.author }}
-          <span class="author" itemprop="copyrightHolder"><a href="{{ .Site.BaseURL }}">{{ .Site.Params.author  }}</a></span>
-        {{ end }}
+  <div class="copyright">
+    &copy;
+    {{ with .Site.Params.Since }}
+    <span itemprop="copyrightYear">{{.}} - {{ now.Year }}</span>
+    {{ end }}
 
-        {{ with .Site.Params.beian }}
-        | <a href="http://www.miibeian.gov.cn/" target="_blank" rel="external nofollow">{{ . }} </a>
-        {{ end }}
+    {{ if .Site.Params.Mark }}
+    <span class="{{ .Site.Params.MarkAnime | default "" }}">{{ .Site.Params.Mark }}</span>
+    {{ end }}
 
-        {{if ne .Site.Params.hideHUGOSupport true}}
-        | <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/icyleaf/hugo-theme-nicesima" target="_blank" rel="external nofollow">nicesima</a></span>
-        {{ end }}
-    </div>
+    {{ if .Site.Params.author }}
+    <span class="author" itemprop="copyrightHolder"><a href="{{ .Site.BaseURL }}">{{ .Site.Params.author  }}</a></span>
+    {{ end }}
+
+    {{ with .Site.Params.beian }}
+    | <a href="http://www.miibeian.gov.cn/" target="_blank" rel="external nofollow">{{ . }} </a>
+    {{ end }}
+
+    {{if ne .Site.Params.hideHUGOSupport true}}
+    | <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/icyleaf/hugo-theme-nicesima" target="_blank" rel="external nofollow">nicesima</a></span>
+    {{ end }}
+  </div>
 </footer>
+
 {{ partial "js.html" . }}
