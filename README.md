@@ -19,14 +19,11 @@
 - [icyleafcn/hugo][icyleaf-hugo-link]
 - [icyleafcn/caddy][icyleaf-caddy-link]
 
-### Hugo
-
-没错，我又移情别恋了！主题使用自改的 [Casper](http://github.com/icyleaf/hugo-theme-casper)
-
 ### 部署
 
 ```bash
-$ git clone https://github.com/icyleaf/icyleaf.com.git blog && cd blog
+$ git clone https://github.com/icyleaf/icyleaf.com.git blog
+$ cd blog
 $ [sudo] docker-compose up -d
 ```
 
@@ -50,7 +47,7 @@ $ [sudo] docker-compose up -d
 ├── static
 │   └── images
 └── themes              # hugo 主题
-│   └── casper
+│   └── ...
 └── system              # Docker 容器所需的资源
     ├── site
     │   └── run.sh

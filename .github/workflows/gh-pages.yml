@@ -4,6 +4,12 @@ on:
   push:
     branches:
       - master
+    paths-ignore:
+      - 'README.md'
+      - 'Dockerfile'
+      - 'docker-compose.yml'
+      - 'rootfs'
+      - '.*'
   pull_request:
 
 jobs:
