@@ -1,327 +1,54 @@
-<!DOCTYPE html>
-<html lang="zh">
-<head>
-
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
-    <meta property="og:title" content=" 如何在 CentOS 上安装 Gitlab &middot;  icyleaf" />
-    <meta property="og:site_name" content="icyleaf" />
-    <meta property="og:url" content="https://icyleaf.com/2013/09/how-to-install-gitlab-on-centos/" />
-
-    
-    <meta property="og:type" content="article" />
-
-    <meta property="og:article:published_time" content="2013-09-17T12:34:56&#43;08:00" />
-
-    
-    <meta property="og:article:tag" content="Linux" />
-    
-    <meta property="og:article:tag" content="CentOS" />
-    
-    <meta property="og:article:tag" content="Git" />
-    
-    
-
-    <title>
-         如何在 CentOS 上安装 Gitlab &middot;  icyleaf
-    </title>
-
-    <meta name="description" content="热爱户外的码农、下厨初心者" />
-
-    <meta name="HandheldFriendly" content="True" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <link rel="shortcut icon" href="https://icyleaf.com/images/favicon.ico">
-    <link rel="apple-touch-icon" href="https://icyleaf.com/images/apple-touch-icon.png" />
-
-    <link rel="stylesheet" type="text/css" href="https://icyleaf.com/css/screen.css" />
-    <link rel="stylesheet" type="text/css" href="https://icyleaf.com/css/nav.css" />
-
-    
-        <link rel="stylesheet" href="https://icyleaf.com/css/highlight/tomorrow-night.css">
-        <script src="https://icyleaf.com/js/highlight.pack.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script>
-    
-
-    
-        
-            <link href="https://icyleaf.com/index.xml" rel="alternate" type="application/rss+xml" title="icyleaf" />
-        
-        
-    
-    <meta name="generator" content="Hugo 0.47.1" />
-
-    <link rel="canonical" href="https://icyleaf.com/2013/09/how-to-install-gitlab-on-centos/" />
-
-    
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-        ga('create', 'UA-2570916-5', 'auto');
-        ga('send', 'pageview');
-    </script>
-    
-
-    
-</head>
-<body class="nav-closed">
-    <div class="nav">
-  <h3 class="nav-title">Menu</h3>
-  <a href="#" class="nav-close">
-    <span class="hidden">Close</span>
-  </a>
-  <ul>
-    
-
-    
-      
-      <li class="nav-opened" role="presentation">
-      	<a href="https://icyleaf.com/">Home</a>
-      </li>
-    
-      
-      <li class="nav-opened" role="presentation">
-      	<a href="https://icyleaf.com/categories/technology">Technology</a>
-      </li>
-    
-      
-      <li class="nav-opened" role="presentation">
-      	<a href="https://icyleaf.com/tags">Tags</a>
-      </li>
-    
-      
-      <li class="nav-opened" role="presentation">
-      	<a href="https://icyleaf.com/about">About</a>
-      </li>
-    
-  </ul>
-
-  
-    <a class="subscribe-button icon-feed" href="https://icyleaf.com/2013/09/how-to-install-gitlab-on-centos/">Subscribe</a>
-  
-</div>
-<span class="nav-cover"></span>
-
- <div class="site-wrapper">
-
-
-  <header class="main-header post-head no-cover">
-
-
-  <nav class="main-nav overlay clearfix">
-  
-    <a class="blog-logo" href="https://icyleaf.com/"><img src="https://icyleaf.com/images/icyleaf-icon.png" alt="Blog Logo" /></a>
-  
-
-  
-    <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
-  
-</nav>
-
-  
-</header>
-
-<main class="content" role="main">
-  <article class="post post">
-    <header class="post-header">
-      <h1 class="post-title">如何在 CentOS 上安装 Gitlab</h1>
-      <small></small>
-
-      <section class="post-meta">
-      
-      
-        <time class="post-date" datetime="2013-09-17T12:34:56&#43;08:00">
-          Sep 17, 2013
-        </time>
-      
-       
-        <span class="post-tag small"><a href="https://icyleaf.com/tags/linux/">#Linux</a></span>
-       
-        <span class="post-tag small"><a href="https://icyleaf.com/tags/centos/">#CentOS</a></span>
-       
-        <span class="post-tag small"><a href="https://icyleaf.com/tags/git/">#Git</a></span>
-       
-      </section>
-    </header>
-
-    <section class="post-content">
-      
-
-<p>2013 年 08 月的 OpenParty &ldquo;<a href="http://www.beijing-open-party.org/event/25">花事如期</a>&rdquo; 活动上，<a href="https://github.com/vecio">晓东</a>在他的机器上演示了自建 Gitlab 的项目，看到 Gitlab 目前已经比较成熟，而不像早期寒碜的界面，这个时候看安装一下也是不错的事情，不过他们的项目文档只提供了 Ubuntu 系统的<a href="https://github.com/gitlabhq/gitlabhq#installation">安装文档</a>，对于 CentOS 没有提到，非官方的文档有比较老久，凭着之前熟悉 Ubuntu 和学习 CentOS，那就开始安装吧：</p>
-
-<p>以下教程在 <code>CentOS 6 x86_64</code> 版本下操作。</p>
-
-<h2 id="首先安装-epel-和编译依赖库">首先安装 EPEL 和编译依赖库</h2>
-
-<pre><code>$ rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
-</code></pre>
-
-<blockquote>
-<p>如果你是非 64 位，去上面的网址找到适合你发行版的最新版本的 epel rpm</p>
-</blockquote>
-
-<pre><code>$ yum -y update
+<!doctype html><html lang=zh><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta property=og:title content="如何在 CentOS 上安装 Gitlab &middot;  icyleaf"><meta property=og:site_name content=icyleaf><meta property=og:url content=https://icyleaf.com/2013/09/how-to-install-gitlab-on-centos/><meta property=og:type content=article><meta property=og:article:published_time content=2013-09-17T12:34:56&#43;08:00><meta property=og:article:tag content=Linux><meta property=og:article:tag content=CentOS><meta property=og:article:tag content=Git><title>如何在 CentOS 上安装 Gitlab &middot; icyleaf</title><meta name=description content=热爱户外的码农、下厨初心者><meta name=HandheldFriendly content=True><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" href=https://icyleaf.com/images/favicon.ico><link rel=apple-touch-icon href=https://icyleaf.com/images/apple-touch-icon.png><link rel=stylesheet href=https://icyleaf.com/css/screen.css><link rel=stylesheet href=https://icyleaf.com/css/nav.css><link rel=stylesheet href=https://icyleaf.com/css/highlight/tomorrow-night.css><script src=https://icyleaf.com/js/highlight.pack.js></script><script>hljs.initHighlightingOnLoad();</script><link href=https://icyleaf.com/index.xml rel=alternate type=application/rss+xml title=icyleaf><meta name=generator content="Hugo 0.47.1"><link rel=canonical href=https://icyleaf.com/2013/09/how-to-install-gitlab-on-centos/><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-2570916-5','auto');ga('send','pageview');</script></head><body class=nav-closed><div class=nav><h3 class=nav-title>Menu</h3><a href=# class=nav-close><span class=hidden>Close</span></a><ul><li class=nav-opened role=presentation><a href=https://icyleaf.com/>Home</a><li class=nav-opened role=presentation><a href=https://icyleaf.com/categories/technology>Technology</a><li class=nav-opened role=presentation><a href=https://icyleaf.com/tags>Tags</a><li class=nav-opened role=presentation><a href=https://icyleaf.com/about>About</a></ul><a class="subscribe-button icon-feed" href=https://icyleaf.com/2013/09/how-to-install-gitlab-on-centos/>Subscribe</a></div><span class=nav-cover></span><div class=site-wrapper><header class="main-header post-head no-cover"><nav class="main-nav overlay clearfix"><a class=blog-logo href=https://icyleaf.com/><img src=https://icyleaf.com/images/icyleaf-icon.png alt="Blog Logo"></a>
+<a class=menu-button href=#><span class=burger>&#9776;</span><span class=word>Menu</span></a></nav></header><main class=content role=main><article class="post post"><header class=post-header><h1 class=post-title>如何在 CentOS 上安装 Gitlab</h1><small></small><section class=post-meta><time class=post-date datetime=2013-09-17T12:34:56&#43;08:00>Sep 17, 2013</time>
+<span class="post-tag small"><a href=https://icyleaf.com/tags/linux/>#Linux</a></span>
+<span class="post-tag small"><a href=https://icyleaf.com/tags/centos/>#CentOS</a></span>
+<span class="post-tag small"><a href=https://icyleaf.com/tags/git/>#Git</a></span></section></header><section class=post-content><p>2013 年 08 月的 OpenParty &ldquo;<a href=http://www.beijing-open-party.org/event/25>花事如期</a>&rdquo; 活动上，<a href=https://github.com/vecio>晓东</a>在他的机器上演示了自建 Gitlab 的项目，看到 Gitlab 目前已经比较成熟，而不像早期寒碜的界面，这个时候看安装一下也是不错的事情，不过他们的项目文档只提供了 Ubuntu 系统的<a href=https://github.com/gitlabhq/gitlabhq#installation>安装文档</a>，对于 CentOS 没有提到，非官方的文档有比较老久，凭着之前熟悉 Ubuntu 和学习 CentOS，那就开始安装吧：<p>以下教程在 <code>CentOS 6 x86_64</code> 版本下操作。<h2 id=首先安装-epel-和编译依赖库>首先安装 EPEL 和编译依赖库</h2><pre><code>$ rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+</code></pre><blockquote><p>如果你是非 64 位，去上面的网址找到适合你发行版的最新版本的 epel rpm</blockquote><pre><code>$ yum -y update
 $ yum -y install gcc gcc-c++ make autoconf libyaml-devel gdbm-devel ncurses-devel openssl-devel zlib-devel readline-devel curl-devel expat-devel gettext-devel  tk-devel libxml2-devel libffi-devel libxslt-devel libicu-devel sendmail patch libyaml* pcre-devel sqlite-devel vim
-</code></pre>
-
-<h2 id="安装-python-2-7">安装 Python 2.7+</h2>
-
-<p>Gitlab 要求 Python 2.5.5+ 以及 Ruby 1.9+</p>
-
-<p>系统 Python 默认是 2.6.x，如果你想把 Python 升级到目前比较流行的 2.7.x 就参照下面步骤，否则直接跳过。（Gitlab 目前不支持 Python 3.0）</p>
-
-<pre><code>$ mkdir /tmp/gitlab &amp;&amp; cd /tmp/gitlab
+</code></pre><h2 id=安装-python-2-7>安装 Python 2.7+</h2><p>Gitlab 要求 Python 2.5.5+ 以及 Ruby 1.9+<p>系统 Python 默认是 2.6.x，如果你想把 Python 升级到目前比较流行的 2.7.x 就参照下面步骤，否则直接跳过。（Gitlab 目前不支持 Python 3.0）<pre><code>$ mkdir /tmp/gitlab &amp;&amp; cd /tmp/gitlab
 $ curl --progress http://python.org/ftp/python/2.7.5/Python-2.7.5.tgz | tar xvf
 $ cd Python-2.7.5
 $ ./configure --prefix=/usr/local
 $ make &amp;&amp; make altinstall
-</code></pre>
-
-<p>安装好之后，需要做两件事情，替换默认 python 的版本至最新版本，</p>
-
-<pre><code>$ sudo ln -s /usr/local/bin/python2.7 /usr/local/bin/python
-</code></pre>
-
-<blockquote>
-<p>因为系统默认 <code>PATH</code> 的寻址路径是 <code>/usr/local/bin</code></p>
-</blockquote>
-
-<p>最后看下 Python 版本是否是刚刚安装的版本：</p>
-
-<pre><code>$ python --version
-</code></pre>
-
-<blockquote>
-<p>由于 <code>yum</code> 是 python 的一个 module，所以这块修改可能会引起无法调用 yum 脚本，所以需要修改这个文件 <code>/usr/bin/yum</code> 的第一行为 <code>!#/usr/bin/python2.6</code></p>
-</blockquote>
-
-<h2 id="安装-ruby-2-0">安装 Ruby 2.0</h2>
-
-<p>Ruby 1.9 和 2.0 的特性差别不大，索性升级至最新 2.0 版本即可</p>
-
-<pre><code>$ cd /tmp/gitlab
+</code></pre><p>安装好之后，需要做两件事情，替换默认 python 的版本至最新版本，<pre><code>$ sudo ln -s /usr/local/bin/python2.7 /usr/local/bin/python
+</code></pre><blockquote><p>因为系统默认 <code>PATH</code> 的寻址路径是 <code>/usr/local/bin</code></blockquote><p>最后看下 Python 版本是否是刚刚安装的版本：<pre><code>$ python --version
+</code></pre><blockquote><p>由于 <code>yum</code> 是 python 的一个 module，所以这块修改可能会引起无法调用 yum 脚本，所以需要修改这个文件 <code>/usr/bin/yum</code> 的第一行为 <code>!#/usr/bin/python2.6</code></blockquote><h2 id=安装-ruby-2-0>安装 Ruby 2.0</h2><p>Ruby 1.9 和 2.0 的特性差别不大，索性升级至最新 2.0 版本即可<pre><code>$ cd /tmp/gitlab
 $ curl --progress http://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p247.tar.gz | tar xz
 $ cd ruby-2.0.0-p247
 $ ./configure
 $ make
 $ make install
-</code></pre>
-
-<p>ruby 2.0 已经内置 gem (v2.0.3)，只需要安装 bundler</p>
-
-<pre><code>$ gem install bundler
-</code></pre>
-
-<blockquote>
-<p>若在执行 <code>sudo ruby</code> 或 <code>sudo gem</code> 找不到命令，因为编译的路径配置到了 <code>/usr/local/bin</code>，我们只需要做下软链接到 root 用户可以找到的 <code>$PATH</code> 路径：</p>
-</blockquote>
-
-<pre><code>$ ln -s /usr/local/bin/ruby /usr/bin/ruby
+</code></pre><p>ruby 2.0 已经内置 gem (v2.0.3)，只需要安装 bundler<pre><code>$ gem install bundler
+</code></pre><blockquote><p>若在执行 <code>sudo ruby</code> 或 <code>sudo gem</code> 找不到命令，因为编译的路径配置到了 <code>/usr/local/bin</code>，我们只需要做下软链接到 root 用户可以找到的 <code>$PATH</code> 路径：</blockquote><pre><code>$ ln -s /usr/local/bin/ruby /usr/bin/ruby
 $ ln -s /usr/local/bin/gem /usr/bin/gem
 $ ln -s /usr/local/bin/bundle /usr/bin/bundle
-</code></pre>
-
-<h2 id="安装-git-和-gitolite">安装 Git 和 Gitolite</h2>
-
-<pre><code>$ yum -y install git-all gitolite
-</code></pre>
-
-<h2 id="安装-nginx">安装 Nginx</h2>
-
-<pre><code>$ yum -y install nginx
+</code></pre><h2 id=安装-git-和-gitolite>安装 Git 和 Gitolite</h2><pre><code>$ yum -y install git-all gitolite
+</code></pre><h2 id=安装-nginx>安装 Nginx</h2><pre><code>$ yum -y install nginx
 $ service nginx start
-</code></pre>
-
-<blockquote>
-<p>nginx 需要从 EPEL 中安装，默认系统没有 nginx 包。</p>
-</blockquote>
-
-<h2 id="安装-mysql-和-redis">安装 Mysql 和 Redis</h2>
-
-<p>Gitlab 要求强制安装 redis 处理一些数据，另外支持 MySQL 和 PostgreSQL，这里主要以 MySQL 为例</p>
-
-<pre><code>$ yum -y install mysql mysql-devel mysql-server redis
-</code></pre>
-
-<p>配置 Mysql 和 gitlab 需要的用户和数据库</p>
-
-<pre><code>$ service mysqld start
+</code></pre><blockquote><p>nginx 需要从 EPEL 中安装，默认系统没有 nginx 包。</blockquote><h2 id=安装-mysql-和-redis>安装 Mysql 和 Redis</h2><p>Gitlab 要求强制安装 redis 处理一些数据，另外支持 MySQL 和 PostgreSQL，这里主要以 MySQL 为例<pre><code>$ yum -y install mysql mysql-devel mysql-server redis
+</code></pre><p>配置 Mysql 和 gitlab 需要的用户和数据库<pre><code>$ service mysqld start
 $ mysql -u root
 $ mysql&gt; CREATE USER 'gitlab'@'localhost' IDENTIFIED BY 'gitlab';
 $ mysql&gt; CREATE DATABASE IF NOT EXISTS `gitlabhq_production` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`;
 $ mysql&gt; GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER ON `gitlabhq_production`.* TO 'gitlab'@'localhost';
 $ mysql&gt; \q
-</code></pre>
-
-<p>Redis 使用默认配置即可，直接启动</p>
-
-<pre><code>$ service redis start
-</code></pre>
-
-<h2 id="添加-gitlab-用户">添加 Gitlab 用户</h2>
-
-<pre><code>$ useradd -c 'GitLab' git
-</code></pre>
-
-<p>CentOS 的命令没有办法直接禁止用户的访问的参数，需要用下面命令：</p>
-
-<pre><code>$ passwd -l git 	
-</code></pre>
-
-<h2 id="安装-gitlab-shell">安装 Gitlab-shell</h2>
-
-<p>使用 root 账户切换到 git 账户下操作，可以比官方教程省去一些麻烦的输入</p>
-
-<pre><code>$ su git &amp;&amp; cd /home/git
+</code></pre><p>Redis 使用默认配置即可，直接启动<pre><code>$ service redis start
+</code></pre><h2 id=添加-gitlab-用户>添加 Gitlab 用户</h2><pre><code>$ useradd -c 'GitLab' git
+</code></pre><p>CentOS 的命令没有办法直接禁止用户的访问的参数，需要用下面命令：<pre><code>$ passwd -l git 	
+</code></pre><h2 id=安装-gitlab-shell>安装 Gitlab-shell</h2><p>使用 root 账户切换到 git 账户下操作，可以比官方教程省去一些麻烦的输入<pre><code>$ su git &amp;&amp; cd /home/git
 $ git clone https://github.com/gitlabhq/gitlab-shell.git
 $ cd gitlab-shell
-</code></pre>
-
-<p>通过 <code>git tag</code> 查看最新版本并切换之</p>
-
-<pre><code>$ git checkout v1.7.1
-</code></pre>
-
-<p>编辑配置文件修改你要设定的域名（domain），比如 <code>http://gitlab.dev/</code></p>
-
-<pre><code>$ vim config.yml
-</code></pre>
-
-<p>完成之后执行安装脚本</p>
-
-<pre><code>$ ./bin/install
-</code></pre>
-
-<h2 id="安装-gitlab">安装 Gitlab</h2>
-
-<pre><code>$ cd /home/git
+</code></pre><p>通过 <code>git tag</code> 查看最新版本并切换之<pre><code>$ git checkout v1.7.1
+</code></pre><p>编辑配置文件修改你要设定的域名（domain），比如 <code>http://gitlab.dev/</code><pre><code>$ vim config.yml
+</code></pre><p>完成之后执行安装脚本<pre><code>$ ./bin/install
+</code></pre><h2 id=安装-gitlab>安装 Gitlab</h2><pre><code>$ cd /home/git
 $ git clone https://github.com/gitlabhq/gitlabhq.git gitlab
 $ cd /home/git/gitlab
-</code></pre>
-
-<p>通过 <code>git tag</code> 查看最新版本并切换之</p>
-
-<pre><code>$ git checkout 6.0.1
-</code></pre>
-
-<p>这里需要配置的东西多一些，这里参考<a href="https://github.com/gitlabhq/gitlabhq/blob/master/doc/install/installation.md#configure-it">官方的文档</a>，也可以安装我下面的步骤来：</p>
-
-<pre><code>$ cd /home/git/gitlab
-</code></pre>
-
-<p>复制配置文件，修改 host 相关的配置项，主要是 domain 要和上面的 <code>http://gitlab.dev</code></p>
-
-<pre><code>$ cp config.yml{.example,}
+</code></pre><p>通过 <code>git tag</code> 查看最新版本并切换之<pre><code>$ git checkout 6.0.1
+</code></pre><p>这里需要配置的东西多一些，这里参考<a href=https://github.com/gitlabhq/gitlabhq/blob/master/doc/install/installation.md#configure-it>官方的文档</a>，也可以安装我下面的步骤来：<pre><code>$ cd /home/git/gitlab
+</code></pre><p>复制配置文件，修改 host 相关的配置项，主要是 domain 要和上面的 <code>http://gitlab.dev</code><pre><code>$ cp config.yml{.example,}
 $ vim config/gitlab.yml
-</code></pre>
-
-<p>确认 gitlab 以下目录的权限是否正确</p>
-
-<pre><code>$ mkdir tmp/pids/
+</code></pre><p>确认 gitlab 以下目录的权限是否正确<pre><code>$ mkdir tmp/pids/
 $ mkdir tmp/sockets/
 $ chown -R git log/
 $ chown -R git tmp/
@@ -329,96 +56,30 @@ $ chmod -R u+rwX log/
 $ chmod -R u+rwX tmp/
 $ chmod -R u+rwX tmp/pids/
 $ chmod -R u+rwX tmp/sockets/
-</code></pre>
-
-<p>创建 satellites 目录，这个目录是保存各个用户的仓库</p>
-
-<pre><code>$ mkdir /home/git/gitlab-satellites
-</code></pre>
-
-<p>创建 uploads 目录（为什么 gitlab 不在项目中创建呢= =！）</p>
-
-<pre><code>$ mkdir public/uploads
+</code></pre><p>创建 satellites 目录，这个目录是保存各个用户的仓库<pre><code>$ mkdir /home/git/gitlab-satellites
+</code></pre><p>创建 uploads 目录（为什么 gitlab 不在项目中创建呢= =！）<pre><code>$ mkdir public/uploads
 $ chmod -R u+rwX  public/uploads
-</code></pre>
-
-<p>复制 unicorn 配置文件</p>
-
-<pre><code>$ cp config/unicorn.rb{.example,}
-</code></pre>
-
-<p>设置 ruby web 容器的参数，比如 2GB RAM 服务器可以设置 3 个 worker。</p>
-
-<blockquote>
-<p>如果系统其他服务占用了 unicorn 的端口，记得改名。</p>
-</blockquote>
-
-<pre><code>$ vim config/unicorn.rb
-</code></pre>
-
-<p>设置一些 git 全局参数</p>
-
-<pre><code>$ git config --global user.name &quot;GitLab&quot;
+</code></pre><p>复制 unicorn 配置文件<pre><code>$ cp config/unicorn.rb{.example,}
+</code></pre><p>设置 ruby web 容器的参数，比如 2GB RAM 服务器可以设置 3 个 worker。<blockquote><p>如果系统其他服务占用了 unicorn 的端口，记得改名。</blockquote><pre><code>$ vim config/unicorn.rb
+</code></pre><p>设置一些 git 全局参数<pre><code>$ git config --global user.name &quot;GitLab&quot;
 $ git config --global user.email &quot;gitlab@localhost&quot;
 $ git config --global core.autocrlf input
-</code></pre>
-
-<p>配置 gitlab 数据库设置</p>
-
-<pre><code>$ cp config/database.yml{.mysql,}
+</code></pre><p>配置 gitlab 数据库设置<pre><code>$ cp config/database.yml{.mysql,}
 $ vim config/database.yml
 $ chmod o-rwx config/database.yml
-</code></pre>
-
-<p>安装必需的 Ruby Gems</p>
-
-<pre><code>$ cd /home/git/gitlab
+</code></pre><p>安装必需的 Ruby Gems<pre><code>$ cd /home/git/gitlab
 $ [sudo] gem install charlock_holmes --version '0.6.9.4'
 $ bundle install --deployment --without development test postgres aws
-</code></pre>
-
-<p>初始化数据库数据（执行输入 <code>Yes</code> 继续创建）</p>
-
-<pre><code>$ bundle exec rake gitlab:setup RAILS_ENV=production
-</code></pre>
-
-<p>设置 init 脚本</p>
-
-<pre><code>$ sudo cp lib/support/init.d/gitlab /etc/init.d/gitlab
+</code></pre><p>初始化数据库数据（执行输入 <code>Yes</code> 继续创建）<pre><code>$ bundle exec rake gitlab:setup RAILS_ENV=production
+</code></pre><p>设置 init 脚本<pre><code>$ sudo cp lib/support/init.d/gitlab /etc/init.d/gitlab
 $ sudo chmod +x /etc/init.d/gitlab
-</code></pre>
-
-<h2 id="检查-gitlab-状态">检查 Gitlab 状态</h2>
-
-<pre><code>$ bundle exec rake gitlab:env:info RAILS_ENV=production
-</code></pre>
-
-<p>启动 gitlab 服务</p>
-
-<pre><code>$ sudo service gitlab start
-</code></pre>
-
-<p>再起检查，保证所有项目都是绿色</p>
-
-<pre><code>$ bundle exec rake gitlab:check RAILS_ENV=production
-</code></pre>
-
-<h2 id="配置-nginx">配置 nginx</h2>
-
-<p>根据 nginx 的安装路径适当修改下面的路径即可，我们先把 gitlab 提供的配置文件拷贝过去</p>
-
-<pre><code>$ sudo mkdir -p /etc/nginx/conf/sites/
+</code></pre><h2 id=检查-gitlab-状态>检查 Gitlab 状态</h2><pre><code>$ bundle exec rake gitlab:env:info RAILS_ENV=production
+</code></pre><p>启动 gitlab 服务<pre><code>$ sudo service gitlab start
+</code></pre><p>再起检查，保证所有项目都是绿色<pre><code>$ bundle exec rake gitlab:check RAILS_ENV=production
+</code></pre><h2 id=配置-nginx>配置 nginx</h2><p>根据 nginx 的安装路径适当修改下面的路径即可，我们先把 gitlab 提供的配置文件拷贝过去<pre><code>$ sudo mkdir -p /etc/nginx/conf/sites/
 $ sudo cp lib/support/nginx/gitlab /etc/nginx/conf/sites/gitlab.conf
-</code></pre>
-
-<blockquote>
-<p>根据 nginx 版本和不同发行版的不同，配置结构可能不同根据你的实际情况加载 <code>gitlab.conf</code></p>
-</blockquote>
-
-<p>修改 <code>gitlab.conf</code> 的 <code>YOUR_SERVER_FQDN</code> 为上面设置的 domain。
-最后修改 <code>nginx.conf</code> 或者 <code>default.conf</code> 加载 <code>/etc/nginx/conf/site</code> 下所有 conf 文件</p>
-
-<pre><code>http {
+</code></pre><blockquote><p>根据 nginx 版本和不同发行版的不同，配置结构可能不同根据你的实际情况加载 <code>gitlab.conf</code></blockquote><p>修改 <code>gitlab.conf</code> 的 <code>YOUR_SERVER_FQDN</code> 为上面设置的 domain。
+最后修改 <code>nginx.conf</code> 或者 <code>default.conf</code> 加载 <code>/etc/nginx/conf/site</code> 下所有 conf 文件<pre><code>http {
 
 	include /etc/nginx/conf/site/*.conf;
 
@@ -426,32 +87,12 @@ $ sudo cp lib/support/nginx/gitlab /etc/nginx/conf/sites/gitlab.conf
 		…
 	}
 }
-</code></pre>
-
-<p>保存后，重启各个服务</p>
-
-<pre><code>$ sudo service nginx reload
+</code></pre><p>保存后，重启各个服务<pre><code>$ sudo service nginx reload
 $ sudo service gitlab restart
-</code></pre>
-
-<h2 id="开始-gitlab-之旅">开始 Gitlab 之旅</h2>
-
-<p>配置好 hosts 即可访问 <code>gitlab.dev</code></p>
-
-<pre><code>$ echo &quot;127.0.0.1 gitlab.dev&quot; &gt;&gt; /etc/hosts
-</code></pre>
-
-<p>默认的用户名密码：</p>
-
-<pre><code>admin@local.host
+</code></pre><h2 id=开始-gitlab-之旅>开始 Gitlab 之旅</h2><p>配置好 hosts 即可访问 <code>gitlab.dev</code><pre><code>$ echo &quot;127.0.0.1 gitlab.dev&quot; &gt;&gt; /etc/hosts
+</code></pre><p>默认的用户名密码：<pre><code>admin@local.host
 5iveL!fe
-</code></pre>
-
-<h2 id="各种坑">各种坑</h2>
-
-<h3 id="1-错误日志报权限错误">1. 错误日志报权限错误</h3>
-
-<pre><code>2013/11/07 00:42:21 [crit] 15875#0: *2 stat() &quot;/home/git/gitlab/public/favicon.ico.html&quot; failed (13: Permission denied), client: 33.33.33.1, server: gitlab.web.lo, request: &quot;GET /favicon.ico HTTP/1.1&quot;, host: &quot;gitlab.web.lo&quot;
+</code></pre><h2 id=各种坑>各种坑</h2><h3 id=1-错误日志报权限错误>1. 错误日志报权限错误</h3><pre><code>2013/11/07 00:42:21 [crit] 15875#0: *2 stat() &quot;/home/git/gitlab/public/favicon.ico.html&quot; failed (13: Permission denied), client: 33.33.33.1, server: gitlab.web.lo, request: &quot;GET /favicon.ico HTTP/1.1&quot;, host: &quot;gitlab.web.lo&quot;
 2013/11/07 00:42:21 [crit] 15875#0: *2 connect() to unix:/home/git/gitlab/tmp/sockets/gitlab.socket failed (13: Permission denied) while connecting to upstream, client: 33.33.33.1, server: gitlab.web.lo, request: &quot;GET /favicon.ico HTTP/1.1&quot;, upstream: &quot;http://unix:/home/git/gitlab/tmp/sockets/gitlab.socket:/favicon.ico&quot;, host: &quot;gitlab.web.lo&quot;
 2013/11/07 00:42:31 [crit] 15875#0: *2 stat() &quot;/home/git/gitlab/public/&quot; failed (13: Permission denied), client: 33.33.33.1, server: gitlab.web.lo, request: &quot;GET / HTTP/1.1&quot;, host: &quot;gitlab.web.lo&quot;
 2013/11/07 00:42:31 [crit] 15875#0: *2 stat() &quot;/home/git/gitlab/public//index.html&quot; failed (13: Permission denied), client: 33.33.33.1, server: gitlab.web.lo, request: &quot;GET / HTTP/1.1&quot;, host: &quot;gitlab.web.lo&quot;
@@ -461,131 +102,10 @@ $ sudo service gitlab restart
 2013/11/07 00:42:31 [crit] 15875#0: *2 stat() &quot;/home/git/gitlab/public/favicon.ico/index.html&quot; failed (13: Permission denied), client: 33.33.33.1, server: gitlab.web.lo, request: &quot;GET /favicon.ico HTTP/1.1&quot;, host: &quot;gitlab.web.lo&quot;
 2013/11/07 00:42:31 [crit] 15875#0: *2 stat() &quot;/home/git/gitlab/public/favicon.ico.html&quot; failed (13: Permission denied), client: 33.33.33.1, server: gitlab.web.lo, request: &quot;GET /favicon.ico HTTP/1.1&quot;, host: &quot;gitlab.web.lo&quot;
 2013/11/07 00:42:31 [crit] 15875#0: *2 connect() to unix:/home/git/gitlab/tmp/sockets/gitlab.socket failed (13: Permission denied) while connecting to upstream, client: 33.33.33.1, server: gitlab.web.lo, request: &quot;GET /favicon.ico HTTP/1.1&quot;, upstream: &quot;http://unix:/home/git/gitlab/tmp/sockets/gitlab.socket:/favicon.ico&quot;, host: &quot;gitlab.web.lo&quot;
-</code></pre>
-
-<p>解决方案:</p>
-
-<pre><code>$ (sudo) chmod o+x /home/git
-</code></pre>
-
-<h3 id="2-8080-端口被占用">2. 8080 端口被占用</h3>
-
-<p>这样主要是因为 nginx 的配置是做 unicorn 的代理转发，实际上 gitlab 是由 unicorn 容器驱动，而在配置里默认绑定的是 <code>8080</code> 端口</p>
-
-<pre><code>$ vim /home/git/gitlab/config/unicorn.rb
-</code></pre>
-
-<p>找到 <code>listen &quot;127.0.0.1:8080&quot;, :tcp_nopush =&gt; true</code> 修改成其他未占用的端口号即可。</p>
-
-    </section>
-
-  <footer class="post-footer">
-    
-    <figure class="author-image">
-        <a class="img" href="https://icyleaf.com/" style="background-image: url(/images/icyleaf-icon.png)"><span class="hidden">icyleaf's Picture</span></a>
-    </figure>
-    
-
-    
-
-
-
-
-
-<section class="author">
-  <h4><a href="https://icyleaf.com/">icyleaf</a></h4>
-  
-  <p>热爱户外的码农、下厨初心者</p>
-  
-  <div class="author-meta">
-    <span class="author-location icon-location">Beijing, China</span>
-    <span class="author-link icon-link"><a href="https://icyleaf.com">https://icyleaf.com</a></span>
-  </div>
-</section>
-
-
-
-    
-<section class="share">
-  <h4>Share this post</h4>
-  <a class="icon-twitter" href="https://twitter.com/share?text=%e5%a6%82%e4%bd%95%e5%9c%a8%20CentOS%20%e4%b8%8a%e5%ae%89%e8%a3%85%20Gitlab&nbsp;-&nbsp;icyleaf&amp;url=https%3a%2f%2ficyleaf.com%2f2013%2f09%2fhow-to-install-gitlab-on-centos%2f"
-      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-      <span class="hidden">Twitter</span>
-  </a>
-  <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ficyleaf.com%2f2013%2f09%2fhow-to-install-gitlab-on-centos%2f"
-      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-      <span class="hidden">Facebook</span>
-  </a>
-  <a class="icon-weibo" href="http://service.weibo.com/share/share.php?url=https%3a%2f%2ficyleaf.com%2f2013%2f09%2fhow-to-install-gitlab-on-centos%2f&amp;title=%e5%a6%82%e4%bd%95%e5%9c%a8%20CentOS%20%e4%b8%8a%e5%ae%89%e8%a3%85%20Gitlab&nbsp;-&nbsp;icyleaf"
-      onclick="window.open(this.href, 'weibo-share','width=580,height=296');return false;">
-      <span class="hidden">新浪微博</span>
-  </a>
-  <a class="icon-douban" href="https://www.douban.com/recommend/?url=https%3a%2f%2ficyleaf.com%2f2013%2f09%2fhow-to-install-gitlab-on-centos%2f&title=%e5%a6%82%e4%bd%95%e5%9c%a8%20CentOS%20%e4%b8%8a%e5%ae%89%e8%a3%85%20Gitlab&v=1"
-      onclick="window.open(this.href, 'douban-share','width=580,height=300');return false;">
-    <span class="hidden">豆瓣</span>
-  </a>
-</section>
-
-
-
-    
-
-<div id="disqus_thread"></div>
-<script type="text/javascript">
-  var disqus_config = function () {
-    this.page.url = "https:\/\/icyleaf.com\/2013\/09\/how-to-install-gitlab-on-centos\/";  
-    this.page.identifier = "https:\/\/icyleaf.com\/2013\/09\/how-to-install-gitlab-on-centos\/"; 
-  };
-
-  (function() {
-    var d = document, s = d.createElement('script');
-    s.src = 'https://icyleaf.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-  })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
-
-
-
-  </footer>
-</article>
-
-</main>
-
-
-  <aside class="read-next">
-  
-      <a class="read-next-story" style="no-cover" href="https://icyleaf.com/2013/10/about-pager-on-git/">
-          <section class="post">
-              <h2>Git 和 Pager 的那点事</h2>
-              
-          </section>
-      </a>
-  
-  
-      <a class="read-next-story prev" style="no-cover" href="https://icyleaf.com/2013/09/network-configuration-in-centos/">
-          <section class="post">
-              <h2>配置 CentOS 的网络联网设置</h2>
-          </section>
-      </a>
-  
-</aside>
-
-
-
-    <footer class="site-footer clearfix">
-        <section class="copyright"><a href="">icyleaf</a> All rights reserved - 2019</section>
-        
-        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
-        
-    </footer>
-  </div>
-  <script type="text/javascript" src="https://icyleaf.com/js/jquery.js"></script>
-  <script type="text/javascript" src="https://icyleaf.com/js/jquery.fitvids.js"></script>
-  <script type="text/javascript" src="https://icyleaf.com/js/index.js"></script>
-  
-</body>
-</html>
-
+</code></pre><p>解决方案:<pre><code>$ (sudo) chmod o+x /home/git
+</code></pre><h3 id=2-8080-端口被占用>2. 8080 端口被占用</h3><p>这样主要是因为 nginx 的配置是做 unicorn 的代理转发，实际上 gitlab 是由 unicorn 容器驱动，而在配置里默认绑定的是 <code>8080</code> 端口<pre><code>$ vim /home/git/gitlab/config/unicorn.rb
+</code></pre><p>找到 <code>listen &quot;127.0.0.1:8080&quot;, :tcp_nopush =&gt; true</code> 修改成其他未占用的端口号即可。</section><footer class=post-footer><figure class=author-image><a class=img href=https://icyleaf.com/ style=background-image:url(/images/icyleaf-icon.png)><span class=hidden>icyleaf's Picture</span></a></figure><section class=author><h4><a href=https://icyleaf.com/>icyleaf</a></h4><p>热爱户外的码农、下厨初心者<div class=author-meta><span class="author-location icon-location">Beijing, China</span>
+<span class="author-link icon-link"><a href=https://icyleaf.com>https://icyleaf.com</a></span></div></section><section class=share><h4>Share this post</h4><a class=icon-twitter href="https://twitter.com/share?text=%e5%a6%82%e4%bd%95%e5%9c%a8%20CentOS%20%e4%b8%8a%e5%ae%89%e8%a3%85%20Gitlab&nbsp;-&nbsp;icyleaf&amp;url=https%3a%2f%2ficyleaf.com%2f2013%2f09%2fhow-to-install-gitlab-on-centos%2f" onclick="window.open(this.href,'twitter-share','width=550,height=235');return false;"><span class=hidden>Twitter</span></a>
+<a class=icon-facebook href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ficyleaf.com%2f2013%2f09%2fhow-to-install-gitlab-on-centos%2f" onclick="window.open(this.href,'facebook-share','width=580,height=296');return false;"><span class=hidden>Facebook</span></a>
+<a class=icon-weibo href="http://service.weibo.com/share/share.php?url=https%3a%2f%2ficyleaf.com%2f2013%2f09%2fhow-to-install-gitlab-on-centos%2f&amp;title=%e5%a6%82%e4%bd%95%e5%9c%a8%20CentOS%20%e4%b8%8a%e5%ae%89%e8%a3%85%20Gitlab&nbsp;-&nbsp;icyleaf" onclick="window.open(this.href,'weibo-share','width=580,height=296');return false;"><span class=hidden>新浪微博</span></a>
+<a class=icon-douban href="https://www.douban.com/recommend/?url=https%3a%2f%2ficyleaf.com%2f2013%2f09%2fhow-to-install-gitlab-on-centos%2f&title=%e5%a6%82%e4%bd%95%e5%9c%a8%20CentOS%20%e4%b8%8a%e5%ae%89%e8%a3%85%20Gitlab&v=1" onclick="window.open(this.href,'douban-share','width=580,height=300');return false;"><span class=hidden>豆瓣</span></a></section><div id=disqus_thread></div><script>var disqus_config=function(){this.page.url="https:\/\/icyleaf.com\/2013\/09\/how-to-install-gitlab-on-centos\/";this.page.identifier="https:\/\/icyleaf.com\/2013\/09\/how-to-install-gitlab-on-centos\/";};(function(){var d=document,s=d.createElement('script');s.src='https://icyleaf.disqus.com/embed.js';s.setAttribute('data-timestamp',+new Date());(d.head||d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript></footer></article></main><aside class=read-next><a class=read-next-story style=no-cover href=https://icyleaf.com/2013/10/about-pager-on-git/><section class=post><h2>Git 和 Pager 的那点事</h2></section></a><a class="read-next-story prev" style=no-cover href=https://icyleaf.com/2013/09/network-configuration-in-centos/><section class=post><h2>配置 CentOS 的网络联网设置</h2></section></a></aside><footer class="site-footer clearfix"><section class=copyright><a href>icyleaf</a> All rights reserved - 2019</section><section class=poweredby>Proudly generated by <a class=icon-hugo href=http://gohugo.io>HUGO</a>, with <a class=icon-theme href=https://github.com/vjeantet/hugo-theme-casper>Casper</a> theme</section></footer></div><script src=https://icyleaf.com/js/jquery.js></script><script src=https://icyleaf.com/js/jquery.fitvids.js></script><script src=https://icyleaf.com/js/index.js></script></body></html>

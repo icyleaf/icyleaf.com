@@ -1,163 +1,8 @@
-<!DOCTYPE html>
-<html lang="zh">
-<head>
-
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
-    <meta property="og:title" content=" ActiveRecord 使用秘笈 &middot;  icyleaf" />
-    <meta property="og:site_name" content="icyleaf" />
-    <meta property="og:url" content="https://icyleaf.com/2013/12/activerecord-tips/" />
-
-    
-    <meta property="og:type" content="article" />
-
-    <meta property="og:article:published_time" content="2013-12-03T12:34:56&#43;08:00" />
-
-    
-    <meta property="og:article:tag" content="Ruby" />
-    
-    <meta property="og:article:tag" content="ActiveRecord" />
-    
-    <meta property="og:article:tag" content="Rails" />
-    
-    
-
-    <title>
-         ActiveRecord 使用秘笈 &middot;  icyleaf
-    </title>
-
-    <meta name="description" content="热爱户外的码农、下厨初心者" />
-
-    <meta name="HandheldFriendly" content="True" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <link rel="shortcut icon" href="https://icyleaf.com/images/favicon.ico">
-    <link rel="apple-touch-icon" href="https://icyleaf.com/images/apple-touch-icon.png" />
-
-    <link rel="stylesheet" type="text/css" href="https://icyleaf.com/css/screen.css" />
-    <link rel="stylesheet" type="text/css" href="https://icyleaf.com/css/nav.css" />
-
-    
-        <link rel="stylesheet" href="https://icyleaf.com/css/highlight/tomorrow-night.css">
-        <script src="https://icyleaf.com/js/highlight.pack.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script>
-    
-
-    
-        
-            <link href="https://icyleaf.com/index.xml" rel="alternate" type="application/rss+xml" title="icyleaf" />
-        
-        
-    
-    <meta name="generator" content="Hugo 0.47.1" />
-
-    <link rel="canonical" href="https://icyleaf.com/2013/12/activerecord-tips/" />
-
-    
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-        ga('create', 'UA-2570916-5', 'auto');
-        ga('send', 'pageview');
-    </script>
-    
-
-    
-</head>
-<body class="nav-closed">
-    <div class="nav">
-  <h3 class="nav-title">Menu</h3>
-  <a href="#" class="nav-close">
-    <span class="hidden">Close</span>
-  </a>
-  <ul>
-    
-
-    
-      
-      <li class="nav-opened" role="presentation">
-      	<a href="https://icyleaf.com/">Home</a>
-      </li>
-    
-      
-      <li class="nav-opened" role="presentation">
-      	<a href="https://icyleaf.com/categories/technology">Technology</a>
-      </li>
-    
-      
-      <li class="nav-opened" role="presentation">
-      	<a href="https://icyleaf.com/tags">Tags</a>
-      </li>
-    
-      
-      <li class="nav-opened" role="presentation">
-      	<a href="https://icyleaf.com/about">About</a>
-      </li>
-    
-  </ul>
-
-  
-    <a class="subscribe-button icon-feed" href="https://icyleaf.com/2013/12/activerecord-tips/">Subscribe</a>
-  
-</div>
-<span class="nav-cover"></span>
-
- <div class="site-wrapper">
-
-
-  <header class="main-header post-head no-cover">
-
-
-  <nav class="main-nav overlay clearfix">
-  
-    <a class="blog-logo" href="https://icyleaf.com/"><img src="https://icyleaf.com/images/icyleaf-icon.png" alt="Blog Logo" /></a>
-  
-
-  
-    <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
-  
-</nav>
-
-  
-</header>
-
-<main class="content" role="main">
-  <article class="post post">
-    <header class="post-header">
-      <h1 class="post-title">ActiveRecord 使用秘笈</h1>
-      <small></small>
-
-      <section class="post-meta">
-      
-      
-        <time class="post-date" datetime="2013-12-03T12:34:56&#43;08:00">
-          Dec 3, 2013
-        </time>
-      
-       
-        <span class="post-tag small"><a href="https://icyleaf.com/tags/ruby/">#Ruby</a></span>
-       
-        <span class="post-tag small"><a href="https://icyleaf.com/tags/activerecord/">#ActiveRecord</a></span>
-       
-        <span class="post-tag small"><a href="https://icyleaf.com/tags/rails/">#Rails</a></span>
-       
-      </section>
-    </header>
-
-    <section class="post-content">
-      
-
-<p>ActiveRecord 是 Rails 内置的 ORM 框架，大多数人学习 Ruby 都是从 rails 开始，接触的也是这个 ORM，因此就有了这个使用秘笈。</p>
-
-<h1 id="支持-rake-db-xxx-命令">支持 <code>rake db:xxx</code> 命令</h1>
-
-<p>在非 rails 项目怎么让 rake 支持 db:xxx 命令呢？把如下代码放到 <code>Rakefile</code> 中:</p>
-
-<pre><code>namespace :db do
+<!doctype html><html lang=zh><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta property=og:title content="ActiveRecord 使用秘笈 &middot;  icyleaf"><meta property=og:site_name content=icyleaf><meta property=og:url content=https://icyleaf.com/2013/12/activerecord-tips/><meta property=og:type content=article><meta property=og:article:published_time content=2013-12-03T12:34:56&#43;08:00><meta property=og:article:tag content=Ruby><meta property=og:article:tag content=ActiveRecord><meta property=og:article:tag content=Rails><title>ActiveRecord 使用秘笈 &middot; icyleaf</title><meta name=description content=热爱户外的码农、下厨初心者><meta name=HandheldFriendly content=True><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" href=https://icyleaf.com/images/favicon.ico><link rel=apple-touch-icon href=https://icyleaf.com/images/apple-touch-icon.png><link rel=stylesheet href=https://icyleaf.com/css/screen.css><link rel=stylesheet href=https://icyleaf.com/css/nav.css><link rel=stylesheet href=https://icyleaf.com/css/highlight/tomorrow-night.css><script src=https://icyleaf.com/js/highlight.pack.js></script><script>hljs.initHighlightingOnLoad();</script><link href=https://icyleaf.com/index.xml rel=alternate type=application/rss+xml title=icyleaf><meta name=generator content="Hugo 0.47.1"><link rel=canonical href=https://icyleaf.com/2013/12/activerecord-tips/><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-2570916-5','auto');ga('send','pageview');</script></head><body class=nav-closed><div class=nav><h3 class=nav-title>Menu</h3><a href=# class=nav-close><span class=hidden>Close</span></a><ul><li class=nav-opened role=presentation><a href=https://icyleaf.com/>Home</a><li class=nav-opened role=presentation><a href=https://icyleaf.com/categories/technology>Technology</a><li class=nav-opened role=presentation><a href=https://icyleaf.com/tags>Tags</a><li class=nav-opened role=presentation><a href=https://icyleaf.com/about>About</a></ul><a class="subscribe-button icon-feed" href=https://icyleaf.com/2013/12/activerecord-tips/>Subscribe</a></div><span class=nav-cover></span><div class=site-wrapper><header class="main-header post-head no-cover"><nav class="main-nav overlay clearfix"><a class=blog-logo href=https://icyleaf.com/><img src=https://icyleaf.com/images/icyleaf-icon.png alt="Blog Logo"></a>
+<a class=menu-button href=#><span class=burger>&#9776;</span><span class=word>Menu</span></a></nav></header><main class=content role=main><article class="post post"><header class=post-header><h1 class=post-title>ActiveRecord 使用秘笈</h1><small></small><section class=post-meta><time class=post-date datetime=2013-12-03T12:34:56&#43;08:00>Dec 3, 2013</time>
+<span class="post-tag small"><a href=https://icyleaf.com/tags/ruby/>#Ruby</a></span>
+<span class="post-tag small"><a href=https://icyleaf.com/tags/activerecord/>#ActiveRecord</a></span>
+<span class="post-tag small"><a href=https://icyleaf.com/tags/rails/>#Rails</a></span></section></header><section class=post-content><p>ActiveRecord 是 Rails 内置的 ORM 框架，大多数人学习 Ruby 都是从 rails 开始，接触的也是这个 ORM，因此就有了这个使用秘笈。<h1 id=支持-rake-db-xxx-命令>支持 <code>rake db:xxx</code> 命令</h1><p>在非 rails 项目怎么让 rake 支持 db:xxx 命令呢？把如下代码放到 <code>Rakefile</code> 中:<pre><code>namespace :db do
   require 'activerecord'
   require 'yaml'
 
@@ -203,33 +48,10 @@
     end
   end
 end
-</code></pre>
-
-<p>初始化数据库结构</p>
-
-<pre><code>$ rake db:init
-</code></pre>
-
-<h1 id="支持-sql-server">支持 SQL Server</h1>
-
-<p>只针对 *nix 系统：</p>
-
-<ol>
-<li>安装 freetds</li>
-</ol>
-
-<pre><code>* Mac OS: `brew install freetds`
+</code></pre><p>初始化数据库结构<pre><code>$ rake db:init
+</code></pre><h1 id=支持-sql-server>支持 SQL Server</h1><p>只针对 *nix 系统：<ol><li>安装 freetds</ol><pre><code>* Mac OS: `brew install freetds`
 * CentOS: `yum install -y freetds`
-</code></pre>
-
-<ol>
-<li><code>gem install tiny_tds</code></li>
-<li><code>gem install activerecord-sqlserver-adapter</code></li>
-</ol>
-
-<p>引用如下：</p>
-
-<pre><code>require 'tiny_tds'
+</code></pre><ol><li><code>gem install tiny_tds</code><li><code>gem install activerecord-sqlserver-adapter</code></ol><p>引用如下：<pre><code>require 'tiny_tds'
 require 'activerecord-sqlserver-adapter'
 require 'active_record'
 
@@ -247,13 +69,7 @@ class Users &lt; ActiveRecord::Base
 	self.table_name = 'User'
 	default_scope { lock('WITH (NOLOCK)') }
 end
-</code></pre>
-
-<h1 id="多数据库支持">多数据库支持</h1>
-
-<p>创建 <code>config/database.yml</code> 文件:</p>
-
-<pre><code>development:
+</code></pre><h1 id=多数据库支持>多数据库支持</h1><p>创建 <code>config/database.yml</code> 文件:<pre><code>development:
   adapter: mysql2
   host: localhost
   username: root
@@ -275,11 +91,7 @@ production:
   username: root
   password: p@ssword
   database: production
-</code></pre>
-
-<p>创建 <code>lib/model.rb</code> 文件:</p>
-
-<pre><code>$dbconfig = YAML::load(File::open('config/database.yml'))
+</code></pre><p>创建 <code>lib/model.rb</code> 文件:<pre><code>$dbconfig = YAML::load(File::open('config/database.yml'))
 
 class User &lt; ActiveRecord::Base
   establish_connection $dbconfig['development']
@@ -292,13 +104,7 @@ end
 class Tag &lt; ActiveRecord::Base
   establish_connection $dbconfig['production']
 end
-</code></pre>
-
-<h1 id="动态创建表名">动态创建表名</h1>
-
-<p>假若有个需求需要按照每月分表（当然也可以安装业务分表什么的），我们可以通过下面方式调用：</p>
-
-<pre><code># 插入 post，如果表不存在则创建后插入
+</code></pre><h1 id=动态创建表名>动态创建表名</h1><p>假若有个需求需要按照每月分表（当然也可以安装业务分表什么的），我们可以通过下面方式调用：<pre><code># 插入 post，如果表不存在则创建后插入
 post = Post.date('201312').get_or_create_table.create(
   title:'test',
   content:'body'
@@ -343,117 +149,8 @@ class Post &lt; ActiveRecord::Base
     &quot;#{@date_users}&quot;
   end
 end
-</code></pre>
-
-    </section>
-
-  <footer class="post-footer">
-    
-    <figure class="author-image">
-        <a class="img" href="https://icyleaf.com/" style="background-image: url(/images/icyleaf-icon.png)"><span class="hidden">icyleaf's Picture</span></a>
-    </figure>
-    
-
-    
-
-
-
-
-
-<section class="author">
-  <h4><a href="https://icyleaf.com/">icyleaf</a></h4>
-  
-  <p>热爱户外的码农、下厨初心者</p>
-  
-  <div class="author-meta">
-    <span class="author-location icon-location">Beijing, China</span>
-    <span class="author-link icon-link"><a href="https://icyleaf.com">https://icyleaf.com</a></span>
-  </div>
-</section>
-
-
-
-    
-<section class="share">
-  <h4>Share this post</h4>
-  <a class="icon-twitter" href="https://twitter.com/share?text=ActiveRecord%20%e4%bd%bf%e7%94%a8%e7%a7%98%e7%ac%88&nbsp;-&nbsp;icyleaf&amp;url=https%3a%2f%2ficyleaf.com%2f2013%2f12%2factiverecord-tips%2f"
-      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-      <span class="hidden">Twitter</span>
-  </a>
-  <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ficyleaf.com%2f2013%2f12%2factiverecord-tips%2f"
-      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-      <span class="hidden">Facebook</span>
-  </a>
-  <a class="icon-weibo" href="http://service.weibo.com/share/share.php?url=https%3a%2f%2ficyleaf.com%2f2013%2f12%2factiverecord-tips%2f&amp;title=ActiveRecord%20%e4%bd%bf%e7%94%a8%e7%a7%98%e7%ac%88&nbsp;-&nbsp;icyleaf"
-      onclick="window.open(this.href, 'weibo-share','width=580,height=296');return false;">
-      <span class="hidden">新浪微博</span>
-  </a>
-  <a class="icon-douban" href="https://www.douban.com/recommend/?url=https%3a%2f%2ficyleaf.com%2f2013%2f12%2factiverecord-tips%2f&title=ActiveRecord%20%e4%bd%bf%e7%94%a8%e7%a7%98%e7%ac%88&v=1"
-      onclick="window.open(this.href, 'douban-share','width=580,height=300');return false;">
-    <span class="hidden">豆瓣</span>
-  </a>
-</section>
-
-
-
-    
-
-<div id="disqus_thread"></div>
-<script type="text/javascript">
-  var disqus_config = function () {
-    this.page.url = "https:\/\/icyleaf.com\/2013\/12\/activerecord-tips\/";  
-    this.page.identifier = "https:\/\/icyleaf.com\/2013\/12\/activerecord-tips\/"; 
-  };
-
-  (function() {
-    var d = document, s = d.createElement('script');
-    s.src = 'https://icyleaf.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-  })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
-
-
-
-  </footer>
-</article>
-
-</main>
-
-
-  <aside class="read-next">
-  
-      <a class="read-next-story" style="no-cover" href="https://icyleaf.com/2013/12/learning-ansible-and-vagrant/">
-          <section class="post">
-              <h2>学习 Ansible &#43; Vagrant</h2>
-              
-          </section>
-      </a>
-  
-  
-      <a class="read-next-story prev" style="no-cover" href="https://icyleaf.com/2013/10/about-pager-on-git/">
-          <section class="post">
-              <h2>Git 和 Pager 的那点事</h2>
-          </section>
-      </a>
-  
-</aside>
-
-
-
-    <footer class="site-footer clearfix">
-        <section class="copyright"><a href="">icyleaf</a> All rights reserved - 2019</section>
-        
-        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
-        
-    </footer>
-  </div>
-  <script type="text/javascript" src="https://icyleaf.com/js/jquery.js"></script>
-  <script type="text/javascript" src="https://icyleaf.com/js/jquery.fitvids.js"></script>
-  <script type="text/javascript" src="https://icyleaf.com/js/index.js"></script>
-  
-</body>
-</html>
-
+</code></pre></section><footer class=post-footer><figure class=author-image><a class=img href=https://icyleaf.com/ style=background-image:url(/images/icyleaf-icon.png)><span class=hidden>icyleaf's Picture</span></a></figure><section class=author><h4><a href=https://icyleaf.com/>icyleaf</a></h4><p>热爱户外的码农、下厨初心者<div class=author-meta><span class="author-location icon-location">Beijing, China</span>
+<span class="author-link icon-link"><a href=https://icyleaf.com>https://icyleaf.com</a></span></div></section><section class=share><h4>Share this post</h4><a class=icon-twitter href="https://twitter.com/share?text=ActiveRecord%20%e4%bd%bf%e7%94%a8%e7%a7%98%e7%ac%88&nbsp;-&nbsp;icyleaf&amp;url=https%3a%2f%2ficyleaf.com%2f2013%2f12%2factiverecord-tips%2f" onclick="window.open(this.href,'twitter-share','width=550,height=235');return false;"><span class=hidden>Twitter</span></a>
+<a class=icon-facebook href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ficyleaf.com%2f2013%2f12%2factiverecord-tips%2f" onclick="window.open(this.href,'facebook-share','width=580,height=296');return false;"><span class=hidden>Facebook</span></a>
+<a class=icon-weibo href="http://service.weibo.com/share/share.php?url=https%3a%2f%2ficyleaf.com%2f2013%2f12%2factiverecord-tips%2f&amp;title=ActiveRecord%20%e4%bd%bf%e7%94%a8%e7%a7%98%e7%ac%88&nbsp;-&nbsp;icyleaf" onclick="window.open(this.href,'weibo-share','width=580,height=296');return false;"><span class=hidden>新浪微博</span></a>
+<a class=icon-douban href="https://www.douban.com/recommend/?url=https%3a%2f%2ficyleaf.com%2f2013%2f12%2factiverecord-tips%2f&title=ActiveRecord%20%e4%bd%bf%e7%94%a8%e7%a7%98%e7%ac%88&v=1" onclick="window.open(this.href,'douban-share','width=580,height=300');return false;"><span class=hidden>豆瓣</span></a></section><div id=disqus_thread></div><script>var disqus_config=function(){this.page.url="https:\/\/icyleaf.com\/2013\/12\/activerecord-tips\/";this.page.identifier="https:\/\/icyleaf.com\/2013\/12\/activerecord-tips\/";};(function(){var d=document,s=d.createElement('script');s.src='https://icyleaf.disqus.com/embed.js';s.setAttribute('data-timestamp',+new Date());(d.head||d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript></footer></article></main><aside class=read-next><a class=read-next-story style=no-cover href=https://icyleaf.com/2013/12/learning-ansible-and-vagrant/><section class=post><h2>学习 Ansible &#43; Vagrant</h2></section></a><a class="read-next-story prev" style=no-cover href=https://icyleaf.com/2013/10/about-pager-on-git/><section class=post><h2>Git 和 Pager 的那点事</h2></section></a></aside><footer class="site-footer clearfix"><section class=copyright><a href>icyleaf</a> All rights reserved - 2019</section><section class=poweredby>Proudly generated by <a class=icon-hugo href=http://gohugo.io>HUGO</a>, with <a class=icon-theme href=https://github.com/vjeantet/hugo-theme-casper>Casper</a> theme</section></footer></div><script src=https://icyleaf.com/js/jquery.js></script><script src=https://icyleaf.com/js/jquery.fitvids.js></script><script src=https://icyleaf.com/js/index.js></script></body></html>

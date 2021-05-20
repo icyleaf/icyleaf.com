@@ -1,172 +1,8 @@
-<!DOCTYPE html>
-<html lang="zh">
-<head>
-
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
-    <meta property="og:title" content=" Cocoapods 新增 CDN 支持的源码解读 &middot;  icyleaf" />
-    <meta property="og:site_name" content="icyleaf" />
-    <meta property="og:url" content="https://icyleaf.com/2019/11/cocoapods-cdn-source-code-reading/" />
-
-    
-    <meta property="og:type" content="article" />
-
-    <meta property="og:article:published_time" content="2019-11-15T19:10:07&#43;08:00" />
-
-    
-    <meta property="og:article:tag" content="Ruby" />
-    
-    <meta property="og:article:tag" content="iOS" />
-    
-    
-
-    <title>
-         Cocoapods 新增 CDN 支持的源码解读 &middot;  icyleaf
-    </title>
-
-    <meta name="description" content="热爱户外的码农、下厨初心者" />
-
-    <meta name="HandheldFriendly" content="True" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <link rel="shortcut icon" href="https://icyleaf.com/images/favicon.ico">
-    <link rel="apple-touch-icon" href="https://icyleaf.com/images/apple-touch-icon.png" />
-
-    <link rel="stylesheet" type="text/css" href="https://icyleaf.com/css/screen.css" />
-    <link rel="stylesheet" type="text/css" href="https://icyleaf.com/css/nav.css" />
-
-    
-        <link rel="stylesheet" href="https://icyleaf.com/css/highlight/tomorrow-night.css">
-        <script src="https://icyleaf.com/js/highlight.pack.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script>
-    
-
-    
-        
-            <link href="https://icyleaf.com/index.xml" rel="alternate" type="application/rss+xml" title="icyleaf" />
-        
-        
-    
-    <meta name="generator" content="Hugo 0.47.1" />
-
-    <link rel="canonical" href="https://icyleaf.com/2019/11/cocoapods-cdn-source-code-reading/" />
-
-    
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-        ga('create', 'UA-2570916-5', 'auto');
-        ga('send', 'pageview');
-    </script>
-    
-
-    
-</head>
-<body class="nav-closed">
-    <div class="nav">
-  <h3 class="nav-title">Menu</h3>
-  <a href="#" class="nav-close">
-    <span class="hidden">Close</span>
-  </a>
-  <ul>
-    
-
-    
-      
-      <li class="nav-opened" role="presentation">
-      	<a href="https://icyleaf.com/">Home</a>
-      </li>
-    
-      
-      <li class="nav-opened" role="presentation">
-      	<a href="https://icyleaf.com/categories/technology">Technology</a>
-      </li>
-    
-      
-      <li class="nav-opened" role="presentation">
-      	<a href="https://icyleaf.com/tags">Tags</a>
-      </li>
-    
-      
-      <li class="nav-opened" role="presentation">
-      	<a href="https://icyleaf.com/about">About</a>
-      </li>
-    
-  </ul>
-
-  
-    <a class="subscribe-button icon-feed" href="https://icyleaf.com/2019/11/cocoapods-cdn-source-code-reading/">Subscribe</a>
-  
-</div>
-<span class="nav-cover"></span>
-
- <div class="site-wrapper">
-
-
-  <header class="main-header post-head no-cover">
-
-
-  <nav class="main-nav overlay clearfix">
-  
-    <a class="blog-logo" href="https://icyleaf.com/"><img src="https://icyleaf.com/images/icyleaf-icon.png" alt="Blog Logo" /></a>
-  
-
-  
-    <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
-  
-</nav>
-
-  
-</header>
-
-<main class="content" role="main">
-  <article class="post post">
-    <header class="post-header">
-      <h1 class="post-title">Cocoapods 新增 CDN 支持的源码解读</h1>
-      <small></small>
-
-      <section class="post-meta">
-      
-      
-        <time class="post-date" datetime="2019-11-15T19:10:07&#43;08:00">
-          Nov 15, 2019
-        </time>
-      
-       
-        <span class="post-tag small"><a href="https://icyleaf.com/tags/ruby/">#Ruby</a></span>
-       
-        <span class="post-tag small"><a href="https://icyleaf.com/tags/ios/">#iOS</a></span>
-       
-      </section>
-    </header>
-
-    <section class="post-content">
-      
-
-<p>Cocoapods <a href="https://blog.cocoapods.org/CocoaPods-1.7.2/">1.7.2</a> 版本开始增加 CDN 支持但默认没有启用，<a href="http://blog.cocoapods.org/CocoaPods-1.8.0-beta/">1.8</a> 版本的发布舍弃了原始完整克隆的 Specs 仓库改用 CDN 服务。CDN 利用的是免费且强大的 <a href="https://www.jsdelivr.com/">jsDelivr</a> CDN 服务，该 CDN 网络在国内是有备案因此速度和稳定性都会有很好的保证。该提案其实在去年已经有人使用 Cocoapods Plugin 的方式实现并向社区<a href="https://github.com/CocoaPods/CocoaPods/issues/8268">贡献 PR</a>。</p>
-
-<p>那么 CDN 支持相比之前的机制有啥优势呢？难道是把 Pods 的仓库和源码都托管到 CDN 网络了吗，其实并不是的。</p>
-
-<blockquote>
-<p>友情提醒：本文只重点分析 Pods 下载的机制，不展开其他方面，以下只是 <code>pod install</code> 执行顺序中的一部分，如果你想了解 Cocoapods 都干了什么可以前往<a href="https://www.jianshu.com/p/84936d9344ff">这篇文章</a>查阅。</p>
-</blockquote>
-
-<h3 id="老的机制">老的机制</h3>
-
-<p>第一步先检查本地 <code>~/.cocoapods/repo/master</code> 目录是否存在，没有直接克隆 <code>https://github.com/Cocoapods/Specs.git</code> 仓库，这步在国内来说特别费时间正常下载下来目录应该是 2G+，如果有其他 source 源（比如私有源）会重复刚才的操作。</p>
-
-<p>第二步安装 Podfile 每个 Pod 去在各个源中寻找对应的版本，从版本的 .podspec 文件解析获取组件的地址，这个可能是 http、git、svn、hg 中的<a href="https://guides.cocoapods.org/syntax/podspec.html#source">任意一个</a>，获取到之后开始下载（默认是在 <code>~/Library/Caches/CocoaPods</code> 做缓存目录）</p>
-
-<h3 id="新的机制">新的机制</h3>
-
-<p>第一步分析 Podfile 里面的 source ，如果没有走默认 Cocoapods 的配置（1.8 以上是 <a href="https://cdn.cocoapods.org">https://cdn.cocoapods.org</a> ，之前的还是 Cocoapods/Spec），
-如果本地不存在官方 cdn 的 repo 名字是 trunk 的保留字，自己无法创建。如果有自定义的 source 会追加上去 sources 列表。</p>
-
-<pre><code>$ http HEAD https://cdn.cocoapods.org/all_pods.txt
+<!doctype html><html lang=zh><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta property=og:title content="Cocoapods 新增 CDN 支持的源码解读 &middot;  icyleaf"><meta property=og:site_name content=icyleaf><meta property=og:url content=https://icyleaf.com/2019/11/cocoapods-cdn-source-code-reading/><meta property=og:type content=article><meta property=og:article:published_time content=2019-11-15T19:10:07&#43;08:00><meta property=og:article:tag content=Ruby><meta property=og:article:tag content=iOS><title>Cocoapods 新增 CDN 支持的源码解读 &middot; icyleaf</title><meta name=description content=热爱户外的码农、下厨初心者><meta name=HandheldFriendly content=True><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" href=https://icyleaf.com/images/favicon.ico><link rel=apple-touch-icon href=https://icyleaf.com/images/apple-touch-icon.png><link rel=stylesheet href=https://icyleaf.com/css/screen.css><link rel=stylesheet href=https://icyleaf.com/css/nav.css><link rel=stylesheet href=https://icyleaf.com/css/highlight/tomorrow-night.css><script src=https://icyleaf.com/js/highlight.pack.js></script><script>hljs.initHighlightingOnLoad();</script><link href=https://icyleaf.com/index.xml rel=alternate type=application/rss+xml title=icyleaf><meta name=generator content="Hugo 0.47.1"><link rel=canonical href=https://icyleaf.com/2019/11/cocoapods-cdn-source-code-reading/><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-2570916-5','auto');ga('send','pageview');</script></head><body class=nav-closed><div class=nav><h3 class=nav-title>Menu</h3><a href=# class=nav-close><span class=hidden>Close</span></a><ul><li class=nav-opened role=presentation><a href=https://icyleaf.com/>Home</a><li class=nav-opened role=presentation><a href=https://icyleaf.com/categories/technology>Technology</a><li class=nav-opened role=presentation><a href=https://icyleaf.com/tags>Tags</a><li class=nav-opened role=presentation><a href=https://icyleaf.com/about>About</a></ul><a class="subscribe-button icon-feed" href=https://icyleaf.com/2019/11/cocoapods-cdn-source-code-reading/>Subscribe</a></div><span class=nav-cover></span><div class=site-wrapper><header class="main-header post-head no-cover"><nav class="main-nav overlay clearfix"><a class=blog-logo href=https://icyleaf.com/><img src=https://icyleaf.com/images/icyleaf-icon.png alt="Blog Logo"></a>
+<a class=menu-button href=#><span class=burger>&#9776;</span><span class=word>Menu</span></a></nav></header><main class=content role=main><article class="post post"><header class=post-header><h1 class=post-title>Cocoapods 新增 CDN 支持的源码解读</h1><small></small><section class=post-meta><time class=post-date datetime=2019-11-15T19:10:07&#43;08:00>Nov 15, 2019</time>
+<span class="post-tag small"><a href=https://icyleaf.com/tags/ruby/>#Ruby</a></span>
+<span class="post-tag small"><a href=https://icyleaf.com/tags/ios/>#iOS</a></span></section></header><section class=post-content><p>Cocoapods <a href=https://blog.cocoapods.org/CocoaPods-1.7.2/>1.7.2</a> 版本开始增加 CDN 支持但默认没有启用，<a href=http://blog.cocoapods.org/CocoaPods-1.8.0-beta/>1.8</a> 版本的发布舍弃了原始完整克隆的 Specs 仓库改用 CDN 服务。CDN 利用的是免费且强大的 <a href=https://www.jsdelivr.com/>jsDelivr</a> CDN 服务，该 CDN 网络在国内是有备案因此速度和稳定性都会有很好的保证。该提案其实在去年已经有人使用 Cocoapods Plugin 的方式实现并向社区<a href=https://github.com/CocoaPods/CocoaPods/issues/8268>贡献 PR</a>。<p>那么 CDN 支持相比之前的机制有啥优势呢？难道是把 Pods 的仓库和源码都托管到 CDN 网络了吗，其实并不是的。<blockquote><p>友情提醒：本文只重点分析 Pods 下载的机制，不展开其他方面，以下只是 <code>pod install</code> 执行顺序中的一部分，如果你想了解 Cocoapods 都干了什么可以前往<a href=https://www.jianshu.com/p/84936d9344ff>这篇文章</a>查阅。</blockquote><h3 id=老的机制>老的机制</h3><p>第一步先检查本地 <code>~/.cocoapods/repo/master</code> 目录是否存在，没有直接克隆 <code>https://github.com/Cocoapods/Specs.git</code> 仓库，这步在国内来说特别费时间正常下载下来目录应该是 2G+，如果有其他 source 源（比如私有源）会重复刚才的操作。<p>第二步安装 Podfile 每个 Pod 去在各个源中寻找对应的版本，从版本的 .podspec 文件解析获取组件的地址，这个可能是 http、git、svn、hg 中的<a href=https://guides.cocoapods.org/syntax/podspec.html#source>任意一个</a>，获取到之后开始下载（默认是在 <code>~/Library/Caches/CocoaPods</code> 做缓存目录）<h3 id=新的机制>新的机制</h3><p>第一步分析 Podfile 里面的 source ，如果没有走默认 Cocoapods 的配置（1.8 以上是 <a href=https://cdn.cocoapods.org>https://cdn.cocoapods.org</a> ，之前的还是 Cocoapods/Spec），
+如果本地不存在官方 cdn 的 repo 名字是 trunk 的保留字，自己无法创建。如果有自定义的 source 会追加上去 sources 列表。<pre><code>$ http HEAD https://cdn.cocoapods.org/all_pods.txt
 HTTP/1.1 200 OK
 Accept-Ranges: bytes
 Age: 0
@@ -179,52 +15,25 @@ Etag: &quot;acf0d284f3a8e82e0d66ba1a91cd30b9-ssl&quot;
 Server: Netlify
 Strict-Transport-Security: max-age=31536000
 X-NF-Request-ID: 50b466cd-ce9e-4326-b5bb-0d29a193ae4b-7809449
-</code></pre>
-
-<p>第二步检查或下载每个 source，每个 source 会检查是否是 cdn 类型（使用 HEAD 请求检查是否包含 /all_pods.txt）文件：</p>
-
-<ul>
-<li>cdn 类型，下面详细解释</li>
-<li>其他类型，走原来的老的逻辑，不再赘述</li>
-</ul>
-
-<p>第三步，下载 <code>Cocoapods-version.yml</code> 并缓存 etag，下载 <code>/Cocoapods-version.yml</code> 并取 headers 的第一个 etag 的值存为 <code>/Cocoapods-version.yml.etag</code>，如果存在 etag 会比对一样就不需要下载， 链接支持根目录和其他目录，支持 301 跳转。</p>
-
-<p>Cocoapods-version.yml</p>
-
-<pre><code class="language-yaml">---
+</code></pre><p>第二步检查或下载每个 source，每个 source 会检查是否是 cdn 类型（使用 HEAD 请求检查是否包含 /all_pods.txt）文件：<ul><li>cdn 类型，下面详细解释<li>其他类型，走原来的老的逻辑，不再赘述</ul><p>第三步，下载 <code>Cocoapods-version.yml</code> 并缓存 etag，下载 <code>/Cocoapods-version.yml</code> 并取 headers 的第一个 etag 的值存为 <code>/Cocoapods-version.yml.etag</code>，如果存在 etag 会比对一样就不需要下载， 链接支持根目录和其他目录，支持 301 跳转。<p>Cocoapods-version.yml<pre><code class=language-yaml>---
 min: 1.0.0
 last: 1.8.4
 prefix_lengths:
 - 1
 - 1
 - 1
-</code></pre>
-
-<p>第四步，分析 Pod 并获取 pod 的版本信息，比如 Podfile 我增加了一个 <code>pod &quot;AFNetworking&quot;</code>，把 pod 名字做 MD5 后的值取 Cocoapods-version.yml 的 prefiex_length 数组长度的值单字母拆分用下划线分割按照规则拼成文件名 <code>all_pods_versions(_{fragment}).txt</code> (如果prefix_length 为 0 则只会去下载 <code>/all_pods_versions.txt</code>)</p>
-
-<p>比如：prefix_lengths 数组大小为 3，AFNetworking MD5 后 <code>a75d452377f396bdc4b623a5df25820</code> 则匹配前三位 a75 拆分后 a_7_5
-后查找 cdn url 路径的 <code>/all_pods_versions_a_7_5.txt</code> 下载下来后的内容：</p>
-
-<pre><code>Fuse/0.1.0/0.2.0/1.0.0/1.1.0/1.2.0
+</code></pre><p>第四步，分析 Pod 并获取 pod 的版本信息，比如 Podfile 我增加了一个 <code>pod &quot;AFNetworking&quot;</code>，把 pod 名字做 MD5 后的值取 Cocoapods-version.yml 的 prefiex_length 数组长度的值单字母拆分用下划线分割按照规则拼成文件名 <code>all_pods_versions(_{fragment}).txt</code> (如果prefix_length 为 0 则只会去下载 <code>/all_pods_versions.txt</code>)<p>比如：prefix_lengths 数组大小为 3，AFNetworking MD5 后 <code>a75d452377f396bdc4b623a5df25820</code> 则匹配前三位 a75 拆分后 a_7_5
+后查找 cdn url 路径的 <code>/all_pods_versions_a_7_5.txt</code> 下载下来后的内容：<pre><code>Fuse/0.1.0/0.2.0/1.0.0/1.1.0/1.2.0
 GXFlowView/1.0.0
 JFCountryPicker/0.0.1/0.0.2
 JVEmptyElement/0.1.0
-</code></pre>
-
-<p>第五步，下载 pod 的所有版本的 .podspec 文件，从上面的文件按照每行寻找第一段的名字，把后面的所有版本按照上面获取到的 prefix_lengths 的值（例如 AFNetworking 是 a, 7 , 5） <code>/Specs/a/7/5/AFNetworking/{version}/AFNetworking.podspec.json</code> 一次下载，并保存 etag 为 <code>/Specs/a/7/5/AFNetworking/{version}/AFNetworking.podspec.json.etag</code>，这个 etag 作用上面已经讲过，如果没有找到的话就会直接报错。</p>
-
-<pre><code>Adding spec repo `trunk` with CDN `https://cdn.cocoapods.org/`
+</code></pre><p>第五步，下载 pod 的所有版本的 .podspec 文件，从上面的文件按照每行寻找第一段的名字，把后面的所有版本按照上面获取到的 prefix_lengths 的值（例如 AFNetworking 是 a, 7 , 5） <code>/Specs/a/7/5/AFNetworking/{version}/AFNetworking.podspec.json</code> 一次下载，并保存 etag 为 <code>/Specs/a/7/5/AFNetworking/{version}/AFNetworking.podspec.json.etag</code>，这个 etag 作用上面已经讲过，如果没有找到的话就会直接报错。<pre><code>Adding spec repo `trunk` with CDN `https://cdn.cocoapods.org/`
   CDN: trunk Relative path downloaded: CocoaPods-version.yml, save ETag: &quot;031c25b97a0aca21900087e355dcf663-ssl&quot;
   CDN: trunk Relative path: CocoaPods-version.yml exists! Returning local because checking is only perfomed in repo update
   CDN: trunk Relative path downloaded: all_pods_versions_a_7_5.txt, save ETag: &quot;5b32718ecbe82b0ae71ab3c77120213f-ssl&quot;
   CDN: trunk Redirecting from https://cdn.cocoapods.org/Specs/a/7/5/AFNetworking/0.10.0/AFNetworking.podspec.json to https://raw.githubusercontent.com/CocoaPods/Specs/master/Specs/a/7/5/AFNetworking/0.10.0/AFNetworking.podspec.json
   CDN: trunk Relative path downloaded: Specs/a/7/5/AFNetworking/0.10.0/AFNetworking.podspec.json, save ETag: W/&quot;a5f00eb1fdfdcab00b89e96bb81d48c110f09220063fdcf0b269290bffc18cf5&quot;
-</code></pre>
-
-<p>Cocoapods trunk 源的目录结构：</p>
-
-<pre><code>.cocoapods
+</code></pre><p>Cocoapods trunk 源的目录结构：<pre><code>.cocoapods
   repo
     trunk
       .url   #=&gt; https://cdn.cocoapods.org/
@@ -232,118 +41,10 @@ JVEmptyElement/0.1.0
       Cocoapods-version.yml.etag  # 上一个请求的第一个 etag 值存下来
       all_pods_versions_a_7_5.txt  # 参考上面的备注
       all_pods_versions_a_7_5.txt.etag # 上一个请求的第一个 etag 值存下来
-</code></pre>
-
-<p>第六步和老的机制第二步一样同样最终还是会寻找 podspec 里面下载地址去下载，
-也就是说<strong>真正 CDN 缓存加速的只有原有 Specs 必要的 podspec 文件，而不会加速 Pod 真正源地址</strong>，改机制只是减轻了本地更新官方 Specs 源的麻烦以及维护一个巨大的本地文件存储，这也是中心化机制的一个心结。</p>
-
-<h3 id="结语">结语</h3>
-
-<p>这个机制大大减少了本地需要占一个较大存储的问题，尤其是初次 <code>pod install</code> 时间长的情况，但 Pod 库本身还是各自的
-地址本质上无法解决安装 Pod 消耗时间过长的问题。</p>
-
-    </section>
-
-  <footer class="post-footer">
-    
-    <figure class="author-image">
-        <a class="img" href="https://icyleaf.com/" style="background-image: url(/images/icyleaf-icon.png)"><span class="hidden">icyleaf's Picture</span></a>
-    </figure>
-    
-
-    
-
-
-
-
-
-<section class="author">
-  <h4><a href="https://icyleaf.com/">icyleaf</a></h4>
-  
-  <p>热爱户外的码农、下厨初心者</p>
-  
-  <div class="author-meta">
-    <span class="author-location icon-location">Beijing, China</span>
-    <span class="author-link icon-link"><a href="https://icyleaf.com">https://icyleaf.com</a></span>
-  </div>
-</section>
-
-
-
-    
-<section class="share">
-  <h4>Share this post</h4>
-  <a class="icon-twitter" href="https://twitter.com/share?text=Cocoapods%20%e6%96%b0%e5%a2%9e%20CDN%20%e6%94%af%e6%8c%81%e7%9a%84%e6%ba%90%e7%a0%81%e8%a7%a3%e8%af%bb&nbsp;-&nbsp;icyleaf&amp;url=https%3a%2f%2ficyleaf.com%2f2019%2f11%2fcocoapods-cdn-source-code-reading%2f"
-      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-      <span class="hidden">Twitter</span>
-  </a>
-  <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ficyleaf.com%2f2019%2f11%2fcocoapods-cdn-source-code-reading%2f"
-      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-      <span class="hidden">Facebook</span>
-  </a>
-  <a class="icon-weibo" href="http://service.weibo.com/share/share.php?url=https%3a%2f%2ficyleaf.com%2f2019%2f11%2fcocoapods-cdn-source-code-reading%2f&amp;title=Cocoapods%20%e6%96%b0%e5%a2%9e%20CDN%20%e6%94%af%e6%8c%81%e7%9a%84%e6%ba%90%e7%a0%81%e8%a7%a3%e8%af%bb&nbsp;-&nbsp;icyleaf"
-      onclick="window.open(this.href, 'weibo-share','width=580,height=296');return false;">
-      <span class="hidden">新浪微博</span>
-  </a>
-  <a class="icon-douban" href="https://www.douban.com/recommend/?url=https%3a%2f%2ficyleaf.com%2f2019%2f11%2fcocoapods-cdn-source-code-reading%2f&title=Cocoapods%20%e6%96%b0%e5%a2%9e%20CDN%20%e6%94%af%e6%8c%81%e7%9a%84%e6%ba%90%e7%a0%81%e8%a7%a3%e8%af%bb&v=1"
-      onclick="window.open(this.href, 'douban-share','width=580,height=300');return false;">
-    <span class="hidden">豆瓣</span>
-  </a>
-</section>
-
-
-
-    
-
-<div id="disqus_thread"></div>
-<script type="text/javascript">
-  var disqus_config = function () {
-    this.page.url = "https:\/\/icyleaf.com\/2019\/11\/cocoapods-cdn-source-code-reading\/";  
-    this.page.identifier = "https:\/\/icyleaf.com\/2019\/11\/cocoapods-cdn-source-code-reading\/"; 
-  };
-
-  (function() {
-    var d = document, s = d.createElement('script');
-    s.src = 'https://icyleaf.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-  })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
-
-
-
-  </footer>
-</article>
-
-</main>
-
-
-  <aside class="read-next">
-  
-  
-      <a class="read-next-story prev" style="no-cover" href="https://icyleaf.com/2019/05/create-macos-nswindow-without-storyboard/">
-          <section class="post">
-              <h2>创建无 Storyboard（xib） 的 macOS NSWindow</h2>
-          </section>
-      </a>
-  
-</aside>
-
-
-
-    <footer class="site-footer clearfix">
-        <section class="copyright"><a href="">icyleaf</a> All rights reserved - 2019</section>
-        
-        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
-        
-    </footer>
-  </div>
-  <script type="text/javascript" src="https://icyleaf.com/js/jquery.js"></script>
-  <script type="text/javascript" src="https://icyleaf.com/js/jquery.fitvids.js"></script>
-  <script type="text/javascript" src="https://icyleaf.com/js/index.js"></script>
-  
-</body>
-</html>
-
+</code></pre><p>第六步和老的机制第二步一样同样最终还是会寻找 podspec 里面下载地址去下载，
+也就是说<strong>真正 CDN 缓存加速的只有原有 Specs 必要的 podspec 文件，而不会加速 Pod 真正源地址</strong>，改机制只是减轻了本地更新官方 Specs 源的麻烦以及维护一个巨大的本地文件存储，这也是中心化机制的一个心结。<h3 id=结语>结语</h3><p>这个机制大大减少了本地需要占一个较大存储的问题，尤其是初次 <code>pod install</code> 时间长的情况，但 Pod 库本身还是各自的
+地址本质上无法解决安装 Pod 消耗时间过长的问题。</section><footer class=post-footer><figure class=author-image><a class=img href=https://icyleaf.com/ style=background-image:url(/images/icyleaf-icon.png)><span class=hidden>icyleaf's Picture</span></a></figure><section class=author><h4><a href=https://icyleaf.com/>icyleaf</a></h4><p>热爱户外的码农、下厨初心者<div class=author-meta><span class="author-location icon-location">Beijing, China</span>
+<span class="author-link icon-link"><a href=https://icyleaf.com>https://icyleaf.com</a></span></div></section><section class=share><h4>Share this post</h4><a class=icon-twitter href="https://twitter.com/share?text=Cocoapods%20%e6%96%b0%e5%a2%9e%20CDN%20%e6%94%af%e6%8c%81%e7%9a%84%e6%ba%90%e7%a0%81%e8%a7%a3%e8%af%bb&nbsp;-&nbsp;icyleaf&amp;url=https%3a%2f%2ficyleaf.com%2f2019%2f11%2fcocoapods-cdn-source-code-reading%2f" onclick="window.open(this.href,'twitter-share','width=550,height=235');return false;"><span class=hidden>Twitter</span></a>
+<a class=icon-facebook href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ficyleaf.com%2f2019%2f11%2fcocoapods-cdn-source-code-reading%2f" onclick="window.open(this.href,'facebook-share','width=580,height=296');return false;"><span class=hidden>Facebook</span></a>
+<a class=icon-weibo href="http://service.weibo.com/share/share.php?url=https%3a%2f%2ficyleaf.com%2f2019%2f11%2fcocoapods-cdn-source-code-reading%2f&amp;title=Cocoapods%20%e6%96%b0%e5%a2%9e%20CDN%20%e6%94%af%e6%8c%81%e7%9a%84%e6%ba%90%e7%a0%81%e8%a7%a3%e8%af%bb&nbsp;-&nbsp;icyleaf" onclick="window.open(this.href,'weibo-share','width=580,height=296');return false;"><span class=hidden>新浪微博</span></a>
+<a class=icon-douban href="https://www.douban.com/recommend/?url=https%3a%2f%2ficyleaf.com%2f2019%2f11%2fcocoapods-cdn-source-code-reading%2f&title=Cocoapods%20%e6%96%b0%e5%a2%9e%20CDN%20%e6%94%af%e6%8c%81%e7%9a%84%e6%ba%90%e7%a0%81%e8%a7%a3%e8%af%bb&v=1" onclick="window.open(this.href,'douban-share','width=580,height=300');return false;"><span class=hidden>豆瓣</span></a></section><div id=disqus_thread></div><script>var disqus_config=function(){this.page.url="https:\/\/icyleaf.com\/2019\/11\/cocoapods-cdn-source-code-reading\/";this.page.identifier="https:\/\/icyleaf.com\/2019\/11\/cocoapods-cdn-source-code-reading\/";};(function(){var d=document,s=d.createElement('script');s.src='https://icyleaf.disqus.com/embed.js';s.setAttribute('data-timestamp',+new Date());(d.head||d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript></footer></article></main><aside class=read-next><a class="read-next-story prev" style=no-cover href=https://icyleaf.com/2019/05/create-macos-nswindow-without-storyboard/><section class=post><h2>创建无 Storyboard（xib） 的 macOS NSWindow</h2></section></a></aside><footer class="site-footer clearfix"><section class=copyright><a href>icyleaf</a> All rights reserved - 2019</section><section class=poweredby>Proudly generated by <a class=icon-hugo href=http://gohugo.io>HUGO</a>, with <a class=icon-theme href=https://github.com/vjeantet/hugo-theme-casper>Casper</a> theme</section></footer></div><script src=https://icyleaf.com/js/jquery.js></script><script src=https://icyleaf.com/js/jquery.fitvids.js></script><script src=https://icyleaf.com/js/index.js></script></body></html>

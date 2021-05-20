@@ -1,212 +1,12 @@
-<!DOCTYPE html>
-<html lang="zh">
-<head>
-
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
-    <meta property="og:title" content=" Fastlane - iOS 和 Android 的自动化构建工具 &middot;  icyleaf" />
-    <meta property="og:site_name" content="icyleaf" />
-    <meta property="og:url" content="https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/" />
-
-    
-    <meta property="og:type" content="article" />
-
-    <meta property="og:article:published_time" content="2016-07-11T12:36:07&#43;08:00" />
-
-    
-    <meta property="og:article:tag" content="iOS" />
-    
-    <meta property="og:article:tag" content="Android" />
-    
-    <meta property="og:article:tag" content="CI" />
-    
-    <meta property="og:article:tag" content="CD" />
-    
-    <meta property="og:article:tag" content="Ruby" />
-    
-    <meta property="og:article:tag" content="Fastlane" />
-    
-    
-
-    <title>
-         Fastlane - iOS 和 Android 的自动化构建工具 &middot;  icyleaf
-    </title>
-
-    <meta name="description" content="热爱户外的码农、下厨初心者" />
-
-    <meta name="HandheldFriendly" content="True" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <link rel="shortcut icon" href="https://icyleaf.com/images/favicon.ico">
-    <link rel="apple-touch-icon" href="https://icyleaf.com/images/apple-touch-icon.png" />
-
-    <link rel="stylesheet" type="text/css" href="https://icyleaf.com/css/screen.css" />
-    <link rel="stylesheet" type="text/css" href="https://icyleaf.com/css/nav.css" />
-
-    
-        <link rel="stylesheet" href="https://icyleaf.com/css/highlight/tomorrow-night.css">
-        <script src="https://icyleaf.com/js/highlight.pack.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script>
-    
-
-    
-        
-            <link href="https://icyleaf.com/index.xml" rel="alternate" type="application/rss+xml" title="icyleaf" />
-        
-        
-    
-    <meta name="generator" content="Hugo 0.47.1" />
-
-    <link rel="canonical" href="https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/" />
-
-    
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-        ga('create', 'UA-2570916-5', 'auto');
-        ga('send', 'pageview');
-    </script>
-    
-
-    
-</head>
-<body class="nav-closed">
-    <div class="nav">
-  <h3 class="nav-title">Menu</h3>
-  <a href="#" class="nav-close">
-    <span class="hidden">Close</span>
-  </a>
-  <ul>
-    
-
-    
-      
-      <li class="nav-opened" role="presentation">
-      	<a href="https://icyleaf.com/">Home</a>
-      </li>
-    
-      
-      <li class="nav-opened" role="presentation">
-      	<a href="https://icyleaf.com/categories/technology">Technology</a>
-      </li>
-    
-      
-      <li class="nav-opened" role="presentation">
-      	<a href="https://icyleaf.com/tags">Tags</a>
-      </li>
-    
-      
-      <li class="nav-opened" role="presentation">
-      	<a href="https://icyleaf.com/about">About</a>
-      </li>
-    
-  </ul>
-
-  
-    <a class="subscribe-button icon-feed" href="https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/">Subscribe</a>
-  
-</div>
-<span class="nav-cover"></span>
-
- <div class="site-wrapper">
-
-
-  <header class="main-header post-head no-cover">
-
-
-  <nav class="main-nav overlay clearfix">
-  
-    <a class="blog-logo" href="https://icyleaf.com/"><img src="https://icyleaf.com/images/icyleaf-icon.png" alt="Blog Logo" /></a>
-  
-
-  
-    <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
-  
-</nav>
-
-  
-</header>
-
-<main class="content" role="main">
-  <article class="post post">
-    <header class="post-header">
-      <h1 class="post-title">Fastlane - iOS 和 Android 的自动化构建工具</h1>
-      <small></small>
-
-      <section class="post-meta">
-      
-      
-        <time class="post-date" datetime="2016-07-11T12:36:07&#43;08:00">
-          Jul 11, 2016
-        </time>
-      
-       
-        <span class="post-tag small"><a href="https://icyleaf.com/tags/ios/">#iOS</a></span>
-       
-        <span class="post-tag small"><a href="https://icyleaf.com/tags/android/">#Android</a></span>
-       
-        <span class="post-tag small"><a href="https://icyleaf.com/tags/ci/">#CI</a></span>
-       
-        <span class="post-tag small"><a href="https://icyleaf.com/tags/cd/">#CD</a></span>
-       
-        <span class="post-tag small"><a href="https://icyleaf.com/tags/ruby/">#Ruby</a></span>
-       
-        <span class="post-tag small"><a href="https://icyleaf.com/tags/fastlane/">#Fastlane</a></span>
-       
-      </section>
-    </header>
-
-    <section class="post-content">
-      
-
-<h3 id="系列索引">系列索引</h3>
-
-<ol>
-<li><a href="https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/">Fastlane - iOS 和 Android 的自动化构建工具</a></li>
-<li><a href="https://icyleaf.com/2016/07/fastlane-in-action/">深入浅出 Fastlane 一看你就懂</a></li>
-<li><a href="https://icyleaf.com/2017/03/fastlane-match-in-action/">你虐我千百遍，我待你如初恋，直到我遇到 match</a></li>
-</ol>
-
-<h2 id="前言">前言</h2>
-
-<p>这篇文章整理了很久，发现在一篇文章里无法一一讲述和全面的覆盖，初步打算是把这个做成一个系列，想到哪里就写到哪里，如果恰好有读者爱戴并有一些建议反馈，我也会根据大家的需要调整内容的方向和深度。论美剧的编剧的重要性(笑)。</p>
-
-<h2 id="初次邂逅">初次邂逅</h2>
-
-<p>初时 fastlane 的时候是去年的 11 月份，看到大就感觉遇到了神器一般的惊喜。它一个针对于 iOS 和 Android（后来才支持的）全方位自动化流程的工具，请看下图</p>
-
-<p><img src="https://fastlane.tools/assets/img/intro-fastlane-tree.png" alt="fastlane-flow" /></p>
-
-<p>流程图中每个环节都是独立的工具，每个工具只干一件事情，分工非常的明确。以下是我在团队项目中用到的：</p>
-
-<ul>
-<li><a href="https://github.com/fastlane/fastlane/tree/master/scan">scan</a> 自动化测试工具，很好的封装了 Unit Test</li>
-<li><a href="https://github.com/fastlane/fastlane/tree/master/sigh">sigh</a> 针对于 iOS 项目开发证书和 Provision file 的下载工具</li>
-<li><a href="https://github.com/fastlane/fastlane/tree/master/match">match</a> 同步团队每个人的证书和 Provision file 的超赞工具，规范<a href="https://codesigning.guide/">代码签名</a>（虽然里面有些设定比较损）</li>
-<li><a href="https://github.com/fastlane/fastlane/tree/master/gym">gym</a> 针对于 iOS 打包和签名的自动化工具，完爆 <code>xctool</code>，而 <code>shenzhen</code> 也放弃维护</li>
-<li><a href="https://github.com/icyleaf/fastlane-qyer">qyer</a> 团队定制的工具，用于检测包和上传到自己的内部分发平台</li>
-<li><a href="https://github.com/fastlane/fastlane">fastlane</a> 简单理解就是控制整体流程和实现的框架容器</li>
-</ul>
-
-<p>利用目前支持的工具可以做所有包含自动化和可持续化构建的每个环节，比如单元测试、截图、分发渠道、上传元数据和 ipa 包提交审核等等。看到这这些是不是很兴奋？
-反正我看到之后就像黑夜看到了光明，果断抛弃自己维护的脚本。</p>
-
-<h2 id="基本构成">基本构成</h2>
-
-<p>Fastlane 提供的流程的众多工具都是可以独立存在和使用（提供 cli 命令），也可以统一由 fastlane 来控制。它在使用中提出了两个概念：</p>
-
-<ul>
-<li><code>action</code>: Fastlane 的插件，截至当前内置 165 个至多，不过每个动作的颗粒度大小不一。<a href="https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Actions.md">查看详情</a></li>
-<li><code>lane</code>: Fastlane 的任务（或者可以理解为命令），一个可以包含多个 lanes，通过 <code>fastlane</code> cli 传入制定的 lane 来执行。</li>
-</ul>
-
-<p>光说不干假把式，看法宝：</p>
-
-<pre><code class="language-ruby">lane :adhoc do
+<!doctype html><html lang=zh><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta property=og:title content="Fastlane - iOS 和 Android 的自动化构建工具 &middot;  icyleaf"><meta property=og:site_name content=icyleaf><meta property=og:url content=https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/><meta property=og:type content=article><meta property=og:article:published_time content=2016-07-11T12:36:07&#43;08:00><meta property=og:article:tag content=iOS><meta property=og:article:tag content=Android><meta property=og:article:tag content=CI><meta property=og:article:tag content=CD><meta property=og:article:tag content=Ruby><meta property=og:article:tag content=Fastlane><title>Fastlane - iOS 和 Android 的自动化构建工具 &middot; icyleaf</title><meta name=description content=热爱户外的码农、下厨初心者><meta name=HandheldFriendly content=True><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" href=https://icyleaf.com/images/favicon.ico><link rel=apple-touch-icon href=https://icyleaf.com/images/apple-touch-icon.png><link rel=stylesheet href=https://icyleaf.com/css/screen.css><link rel=stylesheet href=https://icyleaf.com/css/nav.css><link rel=stylesheet href=https://icyleaf.com/css/highlight/tomorrow-night.css><script src=https://icyleaf.com/js/highlight.pack.js></script><script>hljs.initHighlightingOnLoad();</script><link href=https://icyleaf.com/index.xml rel=alternate type=application/rss+xml title=icyleaf><meta name=generator content="Hugo 0.47.1"><link rel=canonical href=https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-2570916-5','auto');ga('send','pageview');</script></head><body class=nav-closed><div class=nav><h3 class=nav-title>Menu</h3><a href=# class=nav-close><span class=hidden>Close</span></a><ul><li class=nav-opened role=presentation><a href=https://icyleaf.com/>Home</a><li class=nav-opened role=presentation><a href=https://icyleaf.com/categories/technology>Technology</a><li class=nav-opened role=presentation><a href=https://icyleaf.com/tags>Tags</a><li class=nav-opened role=presentation><a href=https://icyleaf.com/about>About</a></ul><a class="subscribe-button icon-feed" href=https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/>Subscribe</a></div><span class=nav-cover></span><div class=site-wrapper><header class="main-header post-head no-cover"><nav class="main-nav overlay clearfix"><a class=blog-logo href=https://icyleaf.com/><img src=https://icyleaf.com/images/icyleaf-icon.png alt="Blog Logo"></a>
+<a class=menu-button href=#><span class=burger>&#9776;</span><span class=word>Menu</span></a></nav></header><main class=content role=main><article class="post post"><header class=post-header><h1 class=post-title>Fastlane - iOS 和 Android 的自动化构建工具</h1><small></small><section class=post-meta><time class=post-date datetime=2016-07-11T12:36:07&#43;08:00>Jul 11, 2016</time>
+<span class="post-tag small"><a href=https://icyleaf.com/tags/ios/>#iOS</a></span>
+<span class="post-tag small"><a href=https://icyleaf.com/tags/android/>#Android</a></span>
+<span class="post-tag small"><a href=https://icyleaf.com/tags/ci/>#CI</a></span>
+<span class="post-tag small"><a href=https://icyleaf.com/tags/cd/>#CD</a></span>
+<span class="post-tag small"><a href=https://icyleaf.com/tags/ruby/>#Ruby</a></span>
+<span class="post-tag small"><a href=https://icyleaf.com/tags/fastlane/>#Fastlane</a></span></section></header><section class=post-content><h3 id=系列索引>系列索引</h3><ol><li><a href=https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/>Fastlane - iOS 和 Android 的自动化构建工具</a><li><a href=https://icyleaf.com/2016/07/fastlane-in-action/>深入浅出 Fastlane 一看你就懂</a><li><a href=https://icyleaf.com/2017/03/fastlane-match-in-action/>你虐我千百遍，我待你如初恋，直到我遇到 match</a></ol><h2 id=前言>前言</h2><p>这篇文章整理了很久，发现在一篇文章里无法一一讲述和全面的覆盖，初步打算是把这个做成一个系列，想到哪里就写到哪里，如果恰好有读者爱戴并有一些建议反馈，我也会根据大家的需要调整内容的方向和深度。论美剧的编剧的重要性(笑)。<h2 id=初次邂逅>初次邂逅</h2><p>初时 fastlane 的时候是去年的 11 月份，看到大就感觉遇到了神器一般的惊喜。它一个针对于 iOS 和 Android（后来才支持的）全方位自动化流程的工具，请看下图<p><img src=https://fastlane.tools/assets/img/intro-fastlane-tree.png alt=fastlane-flow><p>流程图中每个环节都是独立的工具，每个工具只干一件事情，分工非常的明确。以下是我在团队项目中用到的：<ul><li><a href=https://github.com/fastlane/fastlane/tree/master/scan>scan</a> 自动化测试工具，很好的封装了 Unit Test<li><a href=https://github.com/fastlane/fastlane/tree/master/sigh>sigh</a> 针对于 iOS 项目开发证书和 Provision file 的下载工具<li><a href=https://github.com/fastlane/fastlane/tree/master/match>match</a> 同步团队每个人的证书和 Provision file 的超赞工具，规范<a href=https://codesigning.guide/>代码签名</a>（虽然里面有些设定比较损）<li><a href=https://github.com/fastlane/fastlane/tree/master/gym>gym</a> 针对于 iOS 打包和签名的自动化工具，完爆 <code>xctool</code>，而 <code>shenzhen</code> 也放弃维护<li><a href=https://github.com/icyleaf/fastlane-qyer>qyer</a> 团队定制的工具，用于检测包和上传到自己的内部分发平台<li><a href=https://github.com/fastlane/fastlane>fastlane</a> 简单理解就是控制整体流程和实现的框架容器</ul><p>利用目前支持的工具可以做所有包含自动化和可持续化构建的每个环节，比如单元测试、截图、分发渠道、上传元数据和 ipa 包提交审核等等。看到这这些是不是很兴奋？
+反正我看到之后就像黑夜看到了光明，果断抛弃自己维护的脚本。<h2 id=基本构成>基本构成</h2><p>Fastlane 提供的流程的众多工具都是可以独立存在和使用（提供 cli 命令），也可以统一由 fastlane 来控制。它在使用中提出了两个概念：<ul><li><code>action</code>: Fastlane 的插件，截至当前内置 165 个至多，不过每个动作的颗粒度大小不一。<a href=https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Actions.md>查看详情</a><li><code>lane</code>: Fastlane 的任务（或者可以理解为命令），一个可以包含多个 lanes，通过 <code>fastlane</code> cli 传入制定的 lane 来执行。</ul><p>光说不干假把式，看法宝：<pre><code class=language-ruby>lane :adhoc do
   # build version 自动加一
   increment_build_number
   # 执行 pod install
@@ -226,30 +26,8 @@
   # 发消息到 slack
   slack
 end
-</code></pre>
-
-<h2 id="安装">安装</h2>
-
-<p>工具的起源本身是专门针对 iOS 项目，因此目前依赖于 macOS 10.9 以上系统，Ruby 是一个众所周知的轮子发明者，很多知名的工具都是它开发的，fastlane 也不例外。以下是依赖环境：</p>
-
-<ul>
-<li>macOS 10.9+</li>
-<li>Ruby 2.0+ (推荐 rvm 或 rbenv 安装)</li>
-<li>Xcode + command line tools</li>
-</ul>
-
-<p>以上依赖配置好之后就可以通过 rubygem 进行安装：</p>
-
-<pre><code class="language-bash">$ [sudo] gem install fastlane
-</code></pre>
-
-<p>fastlane 默认会把核心工具都会进行安装，需要大家耐心等待一会&hellip;</p>
-
-<h2 id="初始化">初始化</h2>
-
-<p>有两种方法可以初始化，一种是通过命令，一种是自己创建指定的（至少包含一个）约束文件 <code>Fastfile</code>。首先我先介绍大家使用命令初始化:</p>
-
-<pre><code class="language-bash"># 切换只你开发的 iOS 项目根目录
+</code></pre><h2 id=安装>安装</h2><p>工具的起源本身是专门针对 iOS 项目，因此目前依赖于 macOS 10.9 以上系统，Ruby 是一个众所周知的轮子发明者，很多知名的工具都是它开发的，fastlane 也不例外。以下是依赖环境：<ul><li>macOS 10.9+<li>Ruby 2.0+ (推荐 rvm 或 rbenv 安装)<li>Xcode + command line tools</ul><p>以上依赖配置好之后就可以通过 rubygem 进行安装：<pre><code class=language-bash>$ [sudo] gem install fastlane
+</code></pre><p>fastlane 默认会把核心工具都会进行安装，需要大家耐心等待一会&hellip;<h2 id=初始化>初始化</h2><p>有两种方法可以初始化，一种是通过命令，一种是自己创建指定的（至少包含一个）约束文件 <code>Fastfile</code>。首先我先介绍大家使用命令初始化:<pre><code class=language-bash># 切换只你开发的 iOS 项目根目录
 $ cd to/your/ios/project
 $ fastlane init
 [11:46:34]: Detected iOS/Mac project in current directory...
@@ -286,20 +64,8 @@ Optional: The scheme name of your app (If you don't need one, just hit Enter): A
 [11:50:40]: https://github.com/fastlane/enhancer to detect integration issues
 [11:50:40]: No sensitive/private information will be uploaded
 [11:50:40]: Successfully finished setting up fastlane
-</code></pre>
-
-<p>这部分会进行联网，并提示输入你的 Apple ID 来验证你的应用是否存在（没有也会帮你自动创建）并获取相应的关键信息，通过一系列的流程下来把获取的信息会创建一个 <code>fastlane</code> 目录
-并并写入相应的文件（如果某些信息没有填写会忽略某些文件的生成）：</p>
-
-<ul>
-<li><code>Fastfile</code>: 核心文件，主要用于 cli 调用和处理具体的流程，<a href="https://github.com/fastlane/fastlane/tree/master/fastlane/docs#fastfile">了解详情</a></li>
-<li><code>Appfile</code>: 从 Apple Developer Portal 获取和项目相关的信息，<a href="https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Appfile.md">了解详情</a></li>
-<li><code>Deliverfile</code>: 从 iTunes Connect 获取和项目相关的信息，<a href="https://github.com/fastlane/fastlane/blob/master/deliver/Deliverfile.md">了解详情</a></li>
-</ul>
-
-<p>抛开其他的几个文件先不说，大家先把注意力放到刚创建好的 <code>Fastfile</code> 文件上面（可能有变化，仅作参考），如果大家对 Ruby 有了解的话，它定义的 DSL 语言非常类似 <a href="https://github.com/ruby/rake">rake</a>，但流程上有参考的 <a href="https://github.com/rspec/rspec">rspec</a>，一旦不满足需求还可以使用 Ruby 代码来实现。单凭 DSL 语言来说就算对于 Ruby 没有基础的也能很快掌握，大多都是比较简单易懂的语法。</p>
-
-<pre><code class="language-ruby"># Customise this file, documentation can be found here:
+</code></pre><p>这部分会进行联网，并提示输入你的 Apple ID 来验证你的应用是否存在（没有也会帮你自动创建）并获取相应的关键信息，通过一系列的流程下来把获取的信息会创建一个 <code>fastlane</code> 目录
+并并写入相应的文件（如果某些信息没有填写会忽略某些文件的生成）：<ul><li><code>Fastfile</code>: 核心文件，主要用于 cli 调用和处理具体的流程，<a href=https://github.com/fastlane/fastlane/tree/master/fastlane/docs#fastfile>了解详情</a><li><code>Appfile</code>: 从 Apple Developer Portal 获取和项目相关的信息，<a href=https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Appfile.md>了解详情</a><li><code>Deliverfile</code>: 从 iTunes Connect 获取和项目相关的信息，<a href=https://github.com/fastlane/fastlane/blob/master/deliver/Deliverfile.md>了解详情</a></ul><p>抛开其他的几个文件先不说，大家先把注意力放到刚创建好的 <code>Fastfile</code> 文件上面（可能有变化，仅作参考），如果大家对 Ruby 有了解的话，它定义的 DSL 语言非常类似 <a href=https://github.com/ruby/rake>rake</a>，但流程上有参考的 <a href=https://github.com/rspec/rspec>rspec</a>，一旦不满足需求还可以使用 Ruby 代码来实现。单凭 DSL 语言来说就算对于 Ruby 没有基础的也能很快掌握，大多都是比较简单易懂的语法。<pre><code class=language-ruby># Customise this file, documentation can be found here:
 # https://github.com/fastlane/fastlane/tree/master/fastlane/docs
 # All available actions: https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Actions.md
 # can also be listed using the `fastlane actions` command
@@ -368,11 +134,7 @@ platform :ios do
     # )
   end
 end
-</code></pre>
-
-<p>通过上面的注解，我想大家对它已经有了初步的了解，那么定义完之后该如何执行呢？回到刚才的终端（关闭了？那再切换到刚才的 iOS 项目的根目录）：</p>
-
-<pre><code class="language-bash">$ fastlane ios hello
+</code></pre><p>通过上面的注解，我想大家对它已经有了初步的了解，那么定义完之后该如何执行呢？回到刚才的终端（关闭了？那再切换到刚才的 iOS 项目的根目录）：<pre><code class=language-bash>$ fastlane ios hello
 [11:56:24]: -------------------------------------------------
 [11:56:24]: --- Step: Verifying required fastlane version ---
 [11:56:24]: -------------------------------------------------
@@ -399,13 +161,7 @@ end
 +------+-------------------------------------+-------------+
 
 [11:56:28]: fastlane.tools finished successfully 🎉
-</code></pre>
-
-<p>哒哒！一个简单的任务执行完毕！</p>
-
-<p>如果大家注意观察上面的文件可能注意到一些小细节：</p>
-
-<pre><code class="language-ruby"># 自动更新 fastlane 工具，需要 rubygems &gt;= 2.1.0
+</code></pre><p>哒哒！一个简单的任务执行完毕！<p>如果大家注意观察上面的文件可能注意到一些小细节：<pre><code class=language-ruby># 自动更新 fastlane 工具，需要 rubygems &gt;= 2.1.0
 update_fastlane
 
 # 最低兼容版本，由于 fastlane 还是逐步健壮的阶段更新速度还是蛮快的，
@@ -417,124 +173,9 @@ fastlane_version &quot;1.95.0&quot;
 # 通过上述执行的命令也能看出来是执行的 ios 平台下面的 hello 任务。
 # 这个的作用是可以在执行 fastlane 的时候省略 ios，不信你执行 fastlane hello 试试。
 default_platform :ios
-</code></pre>
-
-<h2 id="android-的支持">Android 的支持</h2>
-
-<p>这个的支持我觉得关键是社区的呼声太大，加上贡献者的热情（我提交过许多 issues 和个别 PL，响应非常的迅速）很快就加上了其支持，
-但具体的特性不是特别多，主要是对于 <code>gradle</code> 的封装，我先不做展开介绍，大家可以先看看<a href="https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Android.md">官方文档</a>，如果后续有特别不明白的地方我在做具体的讲解。</p>
-
-<p>今天就先写到这里后续我会继续整理更多的使用指南和实战范例共大家参考，最后给大家附赠官方给大家的一些<a href="https://github.com/fastlane/examples">范例</a>。</p>
-
-    </section>
-
-  <footer class="post-footer">
-    
-    <figure class="author-image">
-        <a class="img" href="https://icyleaf.com/" style="background-image: url(/images/icyleaf-icon.png)"><span class="hidden">icyleaf's Picture</span></a>
-    </figure>
-    
-
-    
-
-
-
-
-
-<section class="author">
-  <h4><a href="https://icyleaf.com/">icyleaf</a></h4>
-  
-  <p>热爱户外的码农、下厨初心者</p>
-  
-  <div class="author-meta">
-    <span class="author-location icon-location">Beijing, China</span>
-    <span class="author-link icon-link"><a href="https://icyleaf.com">https://icyleaf.com</a></span>
-  </div>
-</section>
-
-
-
-    
-<section class="share">
-  <h4>Share this post</h4>
-  <a class="icon-twitter" href="https://twitter.com/share?text=Fastlane%20-%20iOS%20%e5%92%8c%20Android%20%e7%9a%84%e8%87%aa%e5%8a%a8%e5%8c%96%e6%9e%84%e5%bb%ba%e5%b7%a5%e5%85%b7&nbsp;-&nbsp;icyleaf&amp;url=https%3a%2f%2ficyleaf.com%2f2016%2f07%2fintro-fastlane-automation-for-ios-and-android%2f"
-      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-      <span class="hidden">Twitter</span>
-  </a>
-  <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ficyleaf.com%2f2016%2f07%2fintro-fastlane-automation-for-ios-and-android%2f"
-      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-      <span class="hidden">Facebook</span>
-  </a>
-  <a class="icon-weibo" href="http://service.weibo.com/share/share.php?url=https%3a%2f%2ficyleaf.com%2f2016%2f07%2fintro-fastlane-automation-for-ios-and-android%2f&amp;title=Fastlane%20-%20iOS%20%e5%92%8c%20Android%20%e7%9a%84%e8%87%aa%e5%8a%a8%e5%8c%96%e6%9e%84%e5%bb%ba%e5%b7%a5%e5%85%b7&nbsp;-&nbsp;icyleaf"
-      onclick="window.open(this.href, 'weibo-share','width=580,height=296');return false;">
-      <span class="hidden">新浪微博</span>
-  </a>
-  <a class="icon-douban" href="https://www.douban.com/recommend/?url=https%3a%2f%2ficyleaf.com%2f2016%2f07%2fintro-fastlane-automation-for-ios-and-android%2f&title=Fastlane%20-%20iOS%20%e5%92%8c%20Android%20%e7%9a%84%e8%87%aa%e5%8a%a8%e5%8c%96%e6%9e%84%e5%bb%ba%e5%b7%a5%e5%85%b7&v=1"
-      onclick="window.open(this.href, 'douban-share','width=580,height=300');return false;">
-    <span class="hidden">豆瓣</span>
-  </a>
-</section>
-
-
-
-    
-
-<div id="disqus_thread"></div>
-<script type="text/javascript">
-  var disqus_config = function () {
-    this.page.url = "https:\/\/icyleaf.com\/2016\/07\/intro-fastlane-automation-for-ios-and-android\/";  
-    this.page.identifier = "https:\/\/icyleaf.com\/2016\/07\/intro-fastlane-automation-for-ios-and-android\/"; 
-  };
-
-  (function() {
-    var d = document, s = d.createElement('script');
-    s.src = 'https://icyleaf.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-  })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
-
-
-
-  </footer>
-</article>
-
-</main>
-
-
-  <aside class="read-next">
-  
-      <a class="read-next-story" style="no-cover" href="https://icyleaf.com/2016/07/gitlab-api-wrapper-for-crystal/">
-          <section class="post">
-              <h2>Gitlab API Wrapper for Crystal</h2>
-              
-          </section>
-      </a>
-  
-  
-      <a class="read-next-story prev" style="no-cover" href="https://icyleaf.com/2015/12/a-history-of-my-blog/">
-          <section class="post">
-              <h2>博客迁徙记</h2>
-          </section>
-      </a>
-  
-</aside>
-
-
-
-    <footer class="site-footer clearfix">
-        <section class="copyright"><a href="">icyleaf</a> All rights reserved - 2019</section>
-        
-        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
-        
-    </footer>
-  </div>
-  <script type="text/javascript" src="https://icyleaf.com/js/jquery.js"></script>
-  <script type="text/javascript" src="https://icyleaf.com/js/jquery.fitvids.js"></script>
-  <script type="text/javascript" src="https://icyleaf.com/js/index.js"></script>
-  
-</body>
-</html>
-
+</code></pre><h2 id=android-的支持>Android 的支持</h2><p>这个的支持我觉得关键是社区的呼声太大，加上贡献者的热情（我提交过许多 issues 和个别 PL，响应非常的迅速）很快就加上了其支持，
+但具体的特性不是特别多，主要是对于 <code>gradle</code> 的封装，我先不做展开介绍，大家可以先看看<a href=https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Android.md>官方文档</a>，如果后续有特别不明白的地方我在做具体的讲解。<p>今天就先写到这里后续我会继续整理更多的使用指南和实战范例共大家参考，最后给大家附赠官方给大家的一些<a href=https://github.com/fastlane/examples>范例</a>。</section><footer class=post-footer><figure class=author-image><a class=img href=https://icyleaf.com/ style=background-image:url(/images/icyleaf-icon.png)><span class=hidden>icyleaf's Picture</span></a></figure><section class=author><h4><a href=https://icyleaf.com/>icyleaf</a></h4><p>热爱户外的码农、下厨初心者<div class=author-meta><span class="author-location icon-location">Beijing, China</span>
+<span class="author-link icon-link"><a href=https://icyleaf.com>https://icyleaf.com</a></span></div></section><section class=share><h4>Share this post</h4><a class=icon-twitter href="https://twitter.com/share?text=Fastlane%20-%20iOS%20%e5%92%8c%20Android%20%e7%9a%84%e8%87%aa%e5%8a%a8%e5%8c%96%e6%9e%84%e5%bb%ba%e5%b7%a5%e5%85%b7&nbsp;-&nbsp;icyleaf&amp;url=https%3a%2f%2ficyleaf.com%2f2016%2f07%2fintro-fastlane-automation-for-ios-and-android%2f" onclick="window.open(this.href,'twitter-share','width=550,height=235');return false;"><span class=hidden>Twitter</span></a>
+<a class=icon-facebook href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ficyleaf.com%2f2016%2f07%2fintro-fastlane-automation-for-ios-and-android%2f" onclick="window.open(this.href,'facebook-share','width=580,height=296');return false;"><span class=hidden>Facebook</span></a>
+<a class=icon-weibo href="http://service.weibo.com/share/share.php?url=https%3a%2f%2ficyleaf.com%2f2016%2f07%2fintro-fastlane-automation-for-ios-and-android%2f&amp;title=Fastlane%20-%20iOS%20%e5%92%8c%20Android%20%e7%9a%84%e8%87%aa%e5%8a%a8%e5%8c%96%e6%9e%84%e5%bb%ba%e5%b7%a5%e5%85%b7&nbsp;-&nbsp;icyleaf" onclick="window.open(this.href,'weibo-share','width=580,height=296');return false;"><span class=hidden>新浪微博</span></a>
+<a class=icon-douban href="https://www.douban.com/recommend/?url=https%3a%2f%2ficyleaf.com%2f2016%2f07%2fintro-fastlane-automation-for-ios-and-android%2f&title=Fastlane%20-%20iOS%20%e5%92%8c%20Android%20%e7%9a%84%e8%87%aa%e5%8a%a8%e5%8c%96%e6%9e%84%e5%bb%ba%e5%b7%a5%e5%85%b7&v=1" onclick="window.open(this.href,'douban-share','width=580,height=300');return false;"><span class=hidden>豆瓣</span></a></section><div id=disqus_thread></div><script>var disqus_config=function(){this.page.url="https:\/\/icyleaf.com\/2016\/07\/intro-fastlane-automation-for-ios-and-android\/";this.page.identifier="https:\/\/icyleaf.com\/2016\/07\/intro-fastlane-automation-for-ios-and-android\/";};(function(){var d=document,s=d.createElement('script');s.src='https://icyleaf.disqus.com/embed.js';s.setAttribute('data-timestamp',+new Date());(d.head||d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript></footer></article></main><aside class=read-next><a class=read-next-story style=no-cover href=https://icyleaf.com/2016/07/gitlab-api-wrapper-for-crystal/><section class=post><h2>Gitlab API Wrapper for Crystal</h2></section></a><a class="read-next-story prev" style=no-cover href=https://icyleaf.com/2015/12/a-history-of-my-blog/><section class=post><h2>博客迁徙记</h2></section></a></aside><footer class="site-footer clearfix"><section class=copyright><a href>icyleaf</a> All rights reserved - 2019</section><section class=poweredby>Proudly generated by <a class=icon-hugo href=http://gohugo.io>HUGO</a>, with <a class=icon-theme href=https://github.com/vjeantet/hugo-theme-casper>Casper</a> theme</section></footer></div><script src=https://icyleaf.com/js/jquery.js></script><script src=https://icyleaf.com/js/jquery.fitvids.js></script><script src=https://icyleaf.com/js/index.js></script></body></html>

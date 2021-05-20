@@ -1,198 +1,17 @@
-<!DOCTYPE html>
-<html lang="zh">
-<head>
-
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
-    <meta property="og:title" content=" Linux 101 系列：ssh OpenSSH 客户端工具 &middot;  icyleaf" />
-    <meta property="og:site_name" content="icyleaf" />
-    <meta property="og:url" content="https://icyleaf.com/2014/01/linux-101-ssh/" />
-
-    
-    <meta property="og:type" content="article" />
-
-    <meta property="og:article:published_time" content="2014-01-22T12:34:56&#43;08:00" />
-
-    
-    <meta property="og:article:tag" content="Linux" />
-    
-    
-
-    <title>
-         Linux 101 系列：ssh OpenSSH 客户端工具 &middot;  icyleaf
-    </title>
-
-    <meta name="description" content="热爱户外的码农、下厨初心者" />
-
-    <meta name="HandheldFriendly" content="True" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <link rel="shortcut icon" href="https://icyleaf.com/images/favicon.ico">
-    <link rel="apple-touch-icon" href="https://icyleaf.com/images/apple-touch-icon.png" />
-
-    <link rel="stylesheet" type="text/css" href="https://icyleaf.com/css/screen.css" />
-    <link rel="stylesheet" type="text/css" href="https://icyleaf.com/css/nav.css" />
-
-    
-        <link rel="stylesheet" href="https://icyleaf.com/css/highlight/tomorrow-night.css">
-        <script src="https://icyleaf.com/js/highlight.pack.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script>
-    
-
-    
-        
-            <link href="https://icyleaf.com/index.xml" rel="alternate" type="application/rss+xml" title="icyleaf" />
-        
-        
-    
-    <meta name="generator" content="Hugo 0.47.1" />
-
-    <link rel="canonical" href="https://icyleaf.com/2014/01/linux-101-ssh/" />
-
-    
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-        ga('create', 'UA-2570916-5', 'auto');
-        ga('send', 'pageview');
-    </script>
-    
-
-    
-</head>
-<body class="nav-closed">
-    <div class="nav">
-  <h3 class="nav-title">Menu</h3>
-  <a href="#" class="nav-close">
-    <span class="hidden">Close</span>
-  </a>
-  <ul>
-    
-
-    
-      
-      <li class="nav-opened" role="presentation">
-      	<a href="https://icyleaf.com/">Home</a>
-      </li>
-    
-      
-      <li class="nav-opened" role="presentation">
-      	<a href="https://icyleaf.com/categories/technology">Technology</a>
-      </li>
-    
-      
-      <li class="nav-opened" role="presentation">
-      	<a href="https://icyleaf.com/tags">Tags</a>
-      </li>
-    
-      
-      <li class="nav-opened" role="presentation">
-      	<a href="https://icyleaf.com/about">About</a>
-      </li>
-    
-  </ul>
-
-  
-    <a class="subscribe-button icon-feed" href="https://icyleaf.com/2014/01/linux-101-ssh/">Subscribe</a>
-  
-</div>
-<span class="nav-cover"></span>
-
- <div class="site-wrapper">
-
-
-  <header class="main-header post-head no-cover">
-
-
-  <nav class="main-nav overlay clearfix">
-  
-    <a class="blog-logo" href="https://icyleaf.com/"><img src="https://icyleaf.com/images/icyleaf-icon.png" alt="Blog Logo" /></a>
-  
-
-  
-    <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
-  
-</nav>
-
-  
-</header>
-
-<main class="content" role="main">
-  <article class="post post">
-    <header class="post-header">
-      <h1 class="post-title">Linux 101 系列：ssh OpenSSH 客户端工具</h1>
-      <small></small>
-
-      <section class="post-meta">
-      
-      
-        <time class="post-date" datetime="2014-01-22T12:34:56&#43;08:00">
-          Jan 22, 2014
-        </time>
-      
-       
-        <span class="post-tag small"><a href="https://icyleaf.com/tags/linux/">#Linux</a></span>
-       
-      </section>
-    </header>
-
-    <section class="post-content">
-      
-
-<blockquote>
-<p>使用 *nix 服务器肯定会用到 ssh，它是一个链接到远程服务器终端的工具。</p>
-</blockquote>
-
-<h2 id="基本常识">基本常识</h2>
-
-<h3 id="基本组成部分">基本组成部分</h3>
-
-<pre><code>$ man ssh
+<!doctype html><html lang=zh><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta property=og:title content="Linux 101 系列：ssh OpenSSH 客户端工具 &middot;  icyleaf"><meta property=og:site_name content=icyleaf><meta property=og:url content=https://icyleaf.com/2014/01/linux-101-ssh/><meta property=og:type content=article><meta property=og:article:published_time content=2014-01-22T12:34:56&#43;08:00><meta property=og:article:tag content=Linux><title>Linux 101 系列：ssh OpenSSH 客户端工具 &middot; icyleaf</title><meta name=description content=热爱户外的码农、下厨初心者><meta name=HandheldFriendly content=True><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" href=https://icyleaf.com/images/favicon.ico><link rel=apple-touch-icon href=https://icyleaf.com/images/apple-touch-icon.png><link rel=stylesheet href=https://icyleaf.com/css/screen.css><link rel=stylesheet href=https://icyleaf.com/css/nav.css><link rel=stylesheet href=https://icyleaf.com/css/highlight/tomorrow-night.css><script src=https://icyleaf.com/js/highlight.pack.js></script><script>hljs.initHighlightingOnLoad();</script><link href=https://icyleaf.com/index.xml rel=alternate type=application/rss+xml title=icyleaf><meta name=generator content="Hugo 0.47.1"><link rel=canonical href=https://icyleaf.com/2014/01/linux-101-ssh/><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-2570916-5','auto');ga('send','pageview');</script></head><body class=nav-closed><div class=nav><h3 class=nav-title>Menu</h3><a href=# class=nav-close><span class=hidden>Close</span></a><ul><li class=nav-opened role=presentation><a href=https://icyleaf.com/>Home</a><li class=nav-opened role=presentation><a href=https://icyleaf.com/categories/technology>Technology</a><li class=nav-opened role=presentation><a href=https://icyleaf.com/tags>Tags</a><li class=nav-opened role=presentation><a href=https://icyleaf.com/about>About</a></ul><a class="subscribe-button icon-feed" href=https://icyleaf.com/2014/01/linux-101-ssh/>Subscribe</a></div><span class=nav-cover></span><div class=site-wrapper><header class="main-header post-head no-cover"><nav class="main-nav overlay clearfix"><a class=blog-logo href=https://icyleaf.com/><img src=https://icyleaf.com/images/icyleaf-icon.png alt="Blog Logo"></a>
+<a class=menu-button href=#><span class=burger>&#9776;</span><span class=word>Menu</span></a></nav></header><main class=content role=main><article class="post post"><header class=post-header><h1 class=post-title>Linux 101 系列：ssh OpenSSH 客户端工具</h1><small></small><section class=post-meta><time class=post-date datetime=2014-01-22T12:34:56&#43;08:00>Jan 22, 2014</time>
+<span class="post-tag small"><a href=https://icyleaf.com/tags/linux/>#Linux</a></span></section></header><section class=post-content><blockquote><p>使用 *nix 服务器肯定会用到 ssh，它是一个链接到远程服务器终端的工具。</blockquote><h2 id=基本常识>基本常识</h2><h3 id=基本组成部分>基本组成部分</h3><pre><code>$ man ssh
 ssh [-1246AaCfgKkMNnqsTtVvXxYy] [-b bind_address] [-c cipher_spec]
      [-D [bind_address:]port] [-e escape_char] [-F configfile] [-I pkcs11]
      [-i identity_file] [-L [bind_address:]port:host:hostport]
      [-l login_name] [-m mac_spec] [-O ctl_cmd] [-o option] [-p port]
      [-R [bind_address:]port:host:hostport] [-S ctl_path] [-W host:port]
      [-w local_tun[:remote_tun]] [user@]hostname [command]
-</code></pre>
-
-<p>有没有被帮助手册的参数吓到，那我们精简一下：</p>
-
-<blockquote>
-<p>ssh [user@]hostname [-p port]</p>
-</blockquote>
-
-<p>登录到远程服务器和登录本地电脑系统没什么大的区别，都需要用户名，密码，除此之外我们还需要知道远程服务器的地址（IP 地址或域名均可）及允许的端口（默认 22 端口）。</p>
-
-<pre><code>$ ssh root@10.10.10.10 -p 22
-</code></pre>
-
-<p>有些时候大家发现一些教程没有提到用户，实际上 ssh 很聪明，默认会使用当前系统的用户名：</p>
-
-<pre><code>(icyleaf) $ ssh 10.10.10.10
-</code></pre>
-
-<p>这个就等同于</p>
-
-<pre><code>$ ssh icyleaf@10.10.10.10
-</code></pre>
-
-<p>有些服务器可能为了安全期间修改了默认的端口，比如 2020：</p>
-
-<pre><code>$ ssh icyleaf@10.10.10.10 -p 2020
-</code></pre>
-
-<h3 id="高级参数">高级参数</h3>
-
-<h4 id="socket-代理">Socket 代理</h4>
-
-<p>呐，你可能因为 GFW 的威力，尝试使用 ssh 的 socket 代理，实际上就是用到的 <code>-D</code> 参数：</p>
-
-<pre><code>-D [bind_address:]port
+</code></pre><p>有没有被帮助手册的参数吓到，那我们精简一下：<blockquote><p>ssh [user@]hostname [-p port]</blockquote><p>登录到远程服务器和登录本地电脑系统没什么大的区别，都需要用户名，密码，除此之外我们还需要知道远程服务器的地址（IP 地址或域名均可）及允许的端口（默认 22 端口）。<pre><code>$ ssh root@10.10.10.10 -p 22
+</code></pre><p>有些时候大家发现一些教程没有提到用户，实际上 ssh 很聪明，默认会使用当前系统的用户名：<pre><code>(icyleaf) $ ssh 10.10.10.10
+</code></pre><p>这个就等同于<pre><code>$ ssh icyleaf@10.10.10.10
+</code></pre><p>有些服务器可能为了安全期间修改了默认的端口，比如 2020：<pre><code>$ ssh icyleaf@10.10.10.10 -p 2020
+</code></pre><h3 id=高级参数>高级参数</h3><h4 id=socket-代理>Socket 代理</h4><p>呐，你可能因为 GFW 的威力，尝试使用 ssh 的 socket 代理，实际上就是用到的 <code>-D</code> 参数：<pre><code>-D [bind_address:]port
    Specifies a local ``dynamic application-level port forwarding.
    This works by allocating a socket to listen to port on the local
    side, optionally bound to the specified bind_address.  Whenever a
@@ -201,31 +20,15 @@ ssh [-1246AaCfgKkMNnqsTtVvXxYy] [-b bind_address] [-c cipher_spec]
    determine where to connect to from the remote machine.  Currently
    the SOCKS4 and SOCKS5 protocols are supported, and ssh will act
    as a SOCKS server.  Only root can forward privileged ports.
-</code></pre>
-
-<p>我们来简单画下它的工作流程：</p>
-
-<pre><code>|----client----|                    |-----server----|
+</code></pre><p>我们来简单画下它的工作流程：<pre><code>|----client----|                    |-----server----|
 |              |                    |               |
 |   local port&lt;|  &lt;incoming         |               |
 |    ssh port&lt;&gt;|  &lt;--------------&gt;  |&lt;&gt; ssh port    |
                                     |    forwarding&gt;|  &gt;outgoing connection
 
                                      &lt;&lt;&lt;------------local network-----------
-</code></pre>
-
-<p>它首先需要登录到远程服务器，并把本地的请求全部转发到服务器指定的端口上，然后通过由服务器再去请求。例如我们设置 8624 端口：</p>
-
-<pre><code>$ ssh -D8624 icyleaf@10.10.10.10 -p 22
-</code></pre>
-
-<p>这样保持这个连接，我们在设置浏览器或系统的 socket4/5 代理就能达到翻墙的目的。当前这个最大的前提是你的服务器在不手 GFW 的控制下（任意海外未被 GFW 服务器）</p>
-
-<h4 id="跳板代理">跳板代理</h4>
-
-<p>或许曾经你在看某本黑客杂志或电影出现过这样的片段，黑客使用肉鸡跳板不断的增加难度避开警察的追踪，实际上我们通过 ssh 也能非常简单又很酷的实现。</p>
-
-<pre><code>-L [bind_address:]port:host:hostport
+</code></pre><p>它首先需要登录到远程服务器，并把本地的请求全部转发到服务器指定的端口上，然后通过由服务器再去请求。例如我们设置 8624 端口：<pre><code>$ ssh -D8624 icyleaf@10.10.10.10 -p 22
+</code></pre><p>这样保持这个连接，我们在设置浏览器或系统的 socket4/5 代理就能达到翻墙的目的。当前这个最大的前提是你的服务器在不手 GFW 的控制下（任意海外未被 GFW 服务器）<h4 id=跳板代理>跳板代理</h4><p>或许曾经你在看某本黑客杂志或电影出现过这样的片段，黑客使用肉鸡跳板不断的增加难度避开警察的追踪，实际上我们通过 ssh 也能非常简单又很酷的实现。<pre><code>-L [bind_address:]port:host:hostport
    Specifies that the given port on the local (client) host is to be
    forwarded to the given host and port on the remote side.  This
    works by allocating a socket to listen to port on the local side,
@@ -233,39 +36,19 @@ ssh [-1246AaCfgKkMNnqsTtVvXxYy] [-b bind_address] [-c cipher_spec]
    nection is made to this port, the connection is forwarded over
    the secure channel, and a connection is made to host port
    hostport from the remote machine.
-</code></pre>
-
-<p>同样给出工作流程：</p>
-
-<pre><code>|----client----|                    |-----server----|                 |-----host-----|
+</code></pre><p>同样给出工作流程：<pre><code>|----client----|                    |-----server----|                 |-----host-----|
 |              |                    |               |                 |              |
 |   local port&lt;|  &lt;incoming         |               |                 |              |
 |    ssh port&lt;&gt;|  &lt;--------------&gt;  |&lt;&gt; ssh port    |                 |              |
                                     |    forwarding&gt;|  -------------&gt; |&gt;host port    |
 
                                      &lt;&lt;&lt;------------local network-------------------&gt;&gt;&gt;
-</code></pre>
-
-<p>实际上我只需要操作 <code>-L [bind_address:]port:host:hostport</code> 即可。这里假设我们想登录的目标服务器 target(10.10.10.10)，而我们希望在肉鸡 chicken(20.20.20.20) 上做成跳板：</p>
-
-<pre><code>$ ssh -L2020:20.20.20.20:22 10.10.10.10
-</code></pre>
-
-<h3 id="简化配置">简化配置</h3>
-
-<p>反复的输入这些繁琐的参数，甚是苦恼，能不能通过一种起个别名就能把上面的参数全部自动设置好呢？！没问题！</p>
-
-<p>创建 <code>~/.ssh/config</code> 文件：</p>
-
-<pre><code>Host linode
+</code></pre><p>实际上我只需要操作 <code>-L [bind_address:]port:host:hostport</code> 即可。这里假设我们想登录的目标服务器 target(10.10.10.10)，而我们希望在肉鸡 chicken(20.20.20.20) 上做成跳板：<pre><code>$ ssh -L2020:20.20.20.20:22 10.10.10.10
+</code></pre><h3 id=简化配置>简化配置</h3><p>反复的输入这些繁琐的参数，甚是苦恼，能不能通过一种起个别名就能把上面的参数全部自动设置好呢？！没问题！<p>创建 <code>~/.ssh/config</code> 文件：<pre><code>Host linode
 HostName 10.10.10.10
 Port 22
 User icyleaf
-</code></pre>
-
-<p>这个就是基本组成部分。如果你想配置更多，下面是完整的参数：</p>
-
-<pre><code>AddressFamily
+</code></pre><p>这个就是基本组成部分。如果你想配置更多，下面是完整的参数：<pre><code>AddressFamily
 BatchMode
 BindAddress
 ChallengeResponseAuthentication
@@ -335,13 +118,7 @@ UserKnownHostsFile
 VerifyHostKeyDNS
 VisualHostKey
 XAuthLocation
-</code></pre>
-
-<h3 id="配置文件">配置文件</h3>
-
-<p>刚才讲到的 <code>~/.ssh/config</code> 是配置 ssh 服务器的文件，其实除了这些还有好多，比如大家可能会经常见到的：</p>
-
-<pre><code>~/.ssh/config
+</code></pre><h3 id=配置文件>配置文件</h3><p>刚才讲到的 <code>~/.ssh/config</code> 是配置 ssh 服务器的文件，其实除了这些还有好多，比如大家可能会经常见到的：<pre><code>~/.ssh/config
   This is the per-user configuration file.  The file format and
   configuration options are described in ssh_config(5).  Because of
   the potential for abuse, this file must have strict permissions:
@@ -377,11 +154,7 @@ XAuthLocation
   into that are not already in the systemwide list of known host
   keys.  See sshd(8) for further details of the format of this
   file.
-</code></pre>
-
-<p>更多文件：</p>
-
-<pre><code>~/.rhosts
+</code></pre><p>更多文件：<pre><code>~/.rhosts
   This file is used for host-based authentication (see above).  On
   some machines this file may need to be world-readable if the
   user's home directory is on an NFS partition, because sshd(8)
@@ -446,124 +219,8 @@ XAuthLocation
   Commands in this file are executed by ssh when the user logs in,
   just before the user's shell (or command) is started.  See the
   sshd(8) manual page for more information.
-</code></pre>
-
-<p>资料参考：</p>
-
-<ol>
-<li>[Linux] man ssh</li>
-<li><a href="http://www.openfsg.com/index.php/Advanced_SSH_usage">Advanced SSH usage</a></li>
-</ol>
-
-    </section>
-
-  <footer class="post-footer">
-    
-    <figure class="author-image">
-        <a class="img" href="https://icyleaf.com/" style="background-image: url(/images/icyleaf-icon.png)"><span class="hidden">icyleaf's Picture</span></a>
-    </figure>
-    
-
-    
-
-
-
-
-
-<section class="author">
-  <h4><a href="https://icyleaf.com/">icyleaf</a></h4>
-  
-  <p>热爱户外的码农、下厨初心者</p>
-  
-  <div class="author-meta">
-    <span class="author-location icon-location">Beijing, China</span>
-    <span class="author-link icon-link"><a href="https://icyleaf.com">https://icyleaf.com</a></span>
-  </div>
-</section>
-
-
-
-    
-<section class="share">
-  <h4>Share this post</h4>
-  <a class="icon-twitter" href="https://twitter.com/share?text=Linux%20101%20%e7%b3%bb%e5%88%97%ef%bc%9assh%20OpenSSH%20%e5%ae%a2%e6%88%b7%e7%ab%af%e5%b7%a5%e5%85%b7&nbsp;-&nbsp;icyleaf&amp;url=https%3a%2f%2ficyleaf.com%2f2014%2f01%2flinux-101-ssh%2f"
-      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-      <span class="hidden">Twitter</span>
-  </a>
-  <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ficyleaf.com%2f2014%2f01%2flinux-101-ssh%2f"
-      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-      <span class="hidden">Facebook</span>
-  </a>
-  <a class="icon-weibo" href="http://service.weibo.com/share/share.php?url=https%3a%2f%2ficyleaf.com%2f2014%2f01%2flinux-101-ssh%2f&amp;title=Linux%20101%20%e7%b3%bb%e5%88%97%ef%bc%9assh%20OpenSSH%20%e5%ae%a2%e6%88%b7%e7%ab%af%e5%b7%a5%e5%85%b7&nbsp;-&nbsp;icyleaf"
-      onclick="window.open(this.href, 'weibo-share','width=580,height=296');return false;">
-      <span class="hidden">新浪微博</span>
-  </a>
-  <a class="icon-douban" href="https://www.douban.com/recommend/?url=https%3a%2f%2ficyleaf.com%2f2014%2f01%2flinux-101-ssh%2f&title=Linux%20101%20%e7%b3%bb%e5%88%97%ef%bc%9assh%20OpenSSH%20%e5%ae%a2%e6%88%b7%e7%ab%af%e5%b7%a5%e5%85%b7&v=1"
-      onclick="window.open(this.href, 'douban-share','width=580,height=300');return false;">
-    <span class="hidden">豆瓣</span>
-  </a>
-</section>
-
-
-
-    
-
-<div id="disqus_thread"></div>
-<script type="text/javascript">
-  var disqus_config = function () {
-    this.page.url = "https:\/\/icyleaf.com\/2014\/01\/linux-101-ssh\/";  
-    this.page.identifier = "https:\/\/icyleaf.com\/2014\/01\/linux-101-ssh\/"; 
-  };
-
-  (function() {
-    var d = document, s = d.createElement('script');
-    s.src = 'https://icyleaf.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-  })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
-
-
-
-  </footer>
-</article>
-
-</main>
-
-
-  <aside class="read-next">
-  
-      <a class="read-next-story" style="no-cover" href="https://icyleaf.com/2014/01/intro-ruby-gem-guard/">
-          <section class="post">
-              <h2>初识 Ruby Gem Guard</h2>
-              
-          </section>
-      </a>
-  
-  
-      <a class="read-next-story prev" style="no-cover" href="https://icyleaf.com/2013/12/2013-in-review/">
-          <section class="post">
-              <h2>2013 年终总结</h2>
-          </section>
-      </a>
-  
-</aside>
-
-
-
-    <footer class="site-footer clearfix">
-        <section class="copyright"><a href="">icyleaf</a> All rights reserved - 2019</section>
-        
-        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
-        
-    </footer>
-  </div>
-  <script type="text/javascript" src="https://icyleaf.com/js/jquery.js"></script>
-  <script type="text/javascript" src="https://icyleaf.com/js/jquery.fitvids.js"></script>
-  <script type="text/javascript" src="https://icyleaf.com/js/index.js"></script>
-  
-</body>
-</html>
-
+</code></pre><p>资料参考：<ol><li>[Linux] man ssh<li><a href=http://www.openfsg.com/index.php/Advanced_SSH_usage>Advanced SSH usage</a></ol></section><footer class=post-footer><figure class=author-image><a class=img href=https://icyleaf.com/ style=background-image:url(/images/icyleaf-icon.png)><span class=hidden>icyleaf's Picture</span></a></figure><section class=author><h4><a href=https://icyleaf.com/>icyleaf</a></h4><p>热爱户外的码农、下厨初心者<div class=author-meta><span class="author-location icon-location">Beijing, China</span>
+<span class="author-link icon-link"><a href=https://icyleaf.com>https://icyleaf.com</a></span></div></section><section class=share><h4>Share this post</h4><a class=icon-twitter href="https://twitter.com/share?text=Linux%20101%20%e7%b3%bb%e5%88%97%ef%bc%9assh%20OpenSSH%20%e5%ae%a2%e6%88%b7%e7%ab%af%e5%b7%a5%e5%85%b7&nbsp;-&nbsp;icyleaf&amp;url=https%3a%2f%2ficyleaf.com%2f2014%2f01%2flinux-101-ssh%2f" onclick="window.open(this.href,'twitter-share','width=550,height=235');return false;"><span class=hidden>Twitter</span></a>
+<a class=icon-facebook href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ficyleaf.com%2f2014%2f01%2flinux-101-ssh%2f" onclick="window.open(this.href,'facebook-share','width=580,height=296');return false;"><span class=hidden>Facebook</span></a>
+<a class=icon-weibo href="http://service.weibo.com/share/share.php?url=https%3a%2f%2ficyleaf.com%2f2014%2f01%2flinux-101-ssh%2f&amp;title=Linux%20101%20%e7%b3%bb%e5%88%97%ef%bc%9assh%20OpenSSH%20%e5%ae%a2%e6%88%b7%e7%ab%af%e5%b7%a5%e5%85%b7&nbsp;-&nbsp;icyleaf" onclick="window.open(this.href,'weibo-share','width=580,height=296');return false;"><span class=hidden>新浪微博</span></a>
+<a class=icon-douban href="https://www.douban.com/recommend/?url=https%3a%2f%2ficyleaf.com%2f2014%2f01%2flinux-101-ssh%2f&title=Linux%20101%20%e7%b3%bb%e5%88%97%ef%bc%9assh%20OpenSSH%20%e5%ae%a2%e6%88%b7%e7%ab%af%e5%b7%a5%e5%85%b7&v=1" onclick="window.open(this.href,'douban-share','width=580,height=300');return false;"><span class=hidden>豆瓣</span></a></section><div id=disqus_thread></div><script>var disqus_config=function(){this.page.url="https:\/\/icyleaf.com\/2014\/01\/linux-101-ssh\/";this.page.identifier="https:\/\/icyleaf.com\/2014\/01\/linux-101-ssh\/";};(function(){var d=document,s=d.createElement('script');s.src='https://icyleaf.disqus.com/embed.js';s.setAttribute('data-timestamp',+new Date());(d.head||d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript></footer></article></main><aside class=read-next><a class=read-next-story style=no-cover href=https://icyleaf.com/2014/01/intro-ruby-gem-guard/><section class=post><h2>初识 Ruby Gem Guard</h2></section></a><a class="read-next-story prev" style=no-cover href=https://icyleaf.com/2013/12/2013-in-review/><section class=post><h2>2013 年终总结</h2></section></a></aside><footer class="site-footer clearfix"><section class=copyright><a href>icyleaf</a> All rights reserved - 2019</section><section class=poweredby>Proudly generated by <a class=icon-hugo href=http://gohugo.io>HUGO</a>, with <a class=icon-theme href=https://github.com/vjeantet/hugo-theme-casper>Casper</a> theme</section></footer></div><script src=https://icyleaf.com/js/jquery.js></script><script src=https://icyleaf.com/js/jquery.fitvids.js></script><script src=https://icyleaf.com/js/index.js></script></body></html>
