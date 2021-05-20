@@ -1,0 +1,60 @@
+<nav class="navbar">
+    {{ if (and .IsPage (.Site.Params.contentProgress | default true)) }}
+        <progress class="content_progress" max="0" value="0"></progress>
+    {{ end }}
+    <div class="container">
+        {{ if (and (not .IsHome) (.Site.Params.Back2Home | default true)) }}
+            <div class="navbar-header header-back2home-logo">
+                <span class="logo_mark" >>$</span>
+                <a href="{{ .Site.BaseURL }}">
+                    <span class="logo_text" >cd /home/</span>
+                    <span class="logo_cursor" ></span>
+                </a>
+            </div>
+        {{ else }}
+            <div class="navbar-header header-logo">
+                <a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+            </div>
+        {{ end }}
+        <div class="navbar-right">
+                {{ $currentPage := . }}
+                <span class="menu">
+                {{ range .Site.Menus.main }}
+                <a class="menu-item{{if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }} active{{end}}" href="{{ .URL }}" title="{{ .Title }}">{{ .Name }}</a>
+                {{ end }}
+                <span class="divide"></span>
+                <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a>
+                </span>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+    {{ if (and .IsPage (.Site.Params.contentProgress | default true)) }}
+        <progress class="content_progress" max="0" value="0"></progress>
+    {{ end }}
+     <div class="container">
+        <div class="navbar">
+            <div class="navbar-header header-logo">
+                    <a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+            </div>
+            <div class="navbar-right">
+                <div><a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a></div>
+                <div class="menu-toggle">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                <nav class="mb-md">
+                    {{ $currentPage := . }}
+                    {{ range .Site.Menus.main }}
+                        <a class="menu-item{{if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }} active{{end}}" href="{{ .URL }}" title="{{ .Title }}">
+                            <h3>{{ .Name }}</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    {{ end }}
+                </nav>
+        </div>
+    </div>
+</nav>

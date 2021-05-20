@@ -1,0 +1,107 @@
+/** highlight.js**/
+@import url('https://cdn.jsdelivr.net/npm/highlight.js@10.0.3/styles/github-gist.min.css');
+
+/** Font **/
+/* iconfont */
+@import url('https://at.alicdn.com/t/font_1230224_omviwgy4rx.css');
+/* josefin-sans-regular && Lobster && pt-sans-regular */
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Lobster&family=PT+Sans&display=swap');
+/* FiraCode */
+@import url('https://cdn.jsdelivr.net/npm/firacode@3.1.0/distr/fira_code.min.css');
+
+html {
+  scroll-behavior: smooth;
+  &::-webkit-scrollbar {
+    height: $scrollbar-thickness;
+    width: $scrollbar-thickness;
+  }
+  &::-webkit-scrollbar-thumb {
+    height: 40px;
+    width: 40px;
+    border-radius: 2em;
+    background-color: $light-scrollbar-thumb-color;
+    &:hover {
+      background-color: $light-scrollbar-thumb-hover-color;
+    }
+  }
+}
+
+::selection {
+  background: rgba(0, 149, 255, 0.1);
+}
+
+html {
+  font-family: "Josefin Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft Yahei", "WenQuanYi Micro Hei", Arial, Verdana, sans-serif;
+}
+
+body {
+  font-size: 11pt;
+  font-weight: 400;
+  line-height: 2em;
+  background-color: $light-background-color;
+  color: $light-font-color;
+  &:before {
+    content: "";
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.05;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    filter: grayscale(100%);
+    filter: gray;
+  }
+
+  &.dark-theme {
+    background-color: $dark-background-color;
+    color: $dark-font-color;
+  }
+}
+
+a {
+  color: $light-global-link-color;
+  text-decoration: none;
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, opacity 0.2s ease;
+  &:hover {
+    color: $light-global-link-hover-color;
+    text-decoration: none;
+    transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, opacity 0.2s ease;
+  }
+
+  .dark-theme & {
+    color: $dark-global-link-color;
+    text-decoration: none;
+    transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, opacity 0.2s ease;
+
+    &:hover {
+      color: $dark-global-link-hover-color;
+      text-decoration: none;
+      transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, opacity 0.2s ease;
+    }
+  }
+}
+
+blockquote {
+  font: 14px/22px normal helvetica, sans-serif;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 2%;
+  margin-right: 0%;
+  padding-left: 15px;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  border-left: 3px solid #ccc;
+  background-color:#f1f1f1;
+
+  .dark-theme & {
+    background-color:$dark-blockquote-background-color;
+  }
+}

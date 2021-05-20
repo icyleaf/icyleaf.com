@@ -1,0 +1,190 @@
+  
+  /** Home **/
+  
+  .intro {
+    transform: translateY(25vh);
+    text-align: center;
+    .avatar {
+      padding: 10px;
+      img {
+        width: 128px;
+        height: auto;
+        display: inline-block;
+        -webkit-border-radius: 100%;
+        border-radius: 100%;
+        -webkit-box-shadow: 0 0 0 0.3618em rgba(0, 0, 0, 0.05);
+        box-shadow: 0 0 0 0.3618em rgba(0, 0, 0, 0.05);
+        margin: 0 auto;
+        -webkit-transition: all ease 0.4s;
+        -moz-transition: all ease 0.4s;
+        -o-transition: all ease 0.4s;
+        transition: all ease 0.4s;
+        cursor: pointer;
+        &:hover {
+          position: relative;
+          -webkit-transform: translateY(-0.75em);
+          -moz-transform: translateY(-0.75em);
+          -ms-transform: translateY(-0.75em);
+          -o-transform: translateY(-0.75em);
+          transform: translateY(-0.75em);
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  
+  h2.description {
+    font-size: 1em;
+    font-weight: normal;
+    padding: 5px;
+  }
+  
+  .social-links {
+    a {
+    
+      padding: 0 5px;
+      &:hover {
+       
+        background-color: transparent;
+      }
+    }
+    .iconfont {
+      font-size: 2em;
+    }
+  }
+
+  .post-toc {
+    position: absolute;
+    width: 200px;
+    margin-left: 780px;
+    padding: 10px;
+    word-wrap: break-word;
+    box-sizing: border-box;
+
+    .post-toc-title {
+      margin: 0;
+      font-weight: 400;
+      text-transform: uppercase;
+    }
+
+    .post-toc-content {
+      >nav>ul {
+        margin: 10px 0;
+      }
+
+      ul {
+        padding-left: 0;
+        list-style: none;
+
+        ul {
+          padding-left: 15px;
+
+          li {
+            opacity: 100%;
+            height: 0;
+            width: 0;
+
+            -webkit-transition: all 0.4s, width 20ms, opacity 820ms;
+            -moz-transition: all 0.4s, width 20ms, opacity 820ms;
+            -o-transition: all 0.4s, width 20ms, opacity 820ms;
+            transition: all 0.4s, width 20ms, opacity 820ms;
+          }
+        }
+
+        li.has-active>ul {
+          display: block;
+
+          li {
+            opacity: 100%;
+            height: 30px;
+            width: 100%;
+          }
+        }
+      }
+
+      &.always-active ul {
+        display: block;
+
+        ul li {
+          opacity: 100%;
+          height: 30px;
+          width: 100%;
+        }
+      }
+    }
+
+    a {
+      display: block;
+      line-height: 30px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+
+      -webkit-transition: ease-out 0.4s;
+      -moz-transition: ease-out 0.4s;
+      -o-transition: ease-out 0.4s;
+      transition: ease-out 0.4s;
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        bottom: 6px;
+
+        -webkit-transition: transform 0.4s;
+        -moz-transition: transform 0.4s;
+        -o-transition: transform 0.4s;
+        transition: transform 0.4s;
+        -webkit-transform-origin: right center;
+        -moz-transform-origin: right center;
+        -o-transform-origin: right center;
+        transform-origin: right center;
+        -webkit-transform: scaleX(0);
+        -moz-transform: scaleX(0);
+        -o-transform: scaleX(0);
+        transform: scaleX(0);
+
+        background: $light-global-link-hover-color;
+
+        .dark-theme & {
+          background: $dark-global-link-hover-color;
+        }
+      }
+
+      &:hover {
+        -webkit-transition: transform 0.4s;
+        -moz-transition: transform 0.4s;
+        -o-transition: transform 0.4s;
+        transition: transform 0.4s;
+        -webkit-transform: scale(1.1);
+        -moz-transform: scale(1.1);
+        -o-transform: scale(1.1);
+        transform: scale(1.1);
+
+        color: $light-global-link-hover-color;
+
+        .dark-theme & {
+          color: $dark-global-link-hover-color;
+        }
+
+        &::before {
+          -webkit-transform-origin: left center;
+          -moz-transform-origin: left center;
+          -o-transform-origin: left center;
+          transform-origin: left center;
+          -webkit-transform: scaleX(1);
+          -moz-transform: scaleX(1);
+          -o-transform: scaleX(1);
+          transform: scaleX(1);
+        }
+      }
+    }
+
+    @media only screen and (max-width: 1224px) {
+      & {
+        display: none;
+      }
+    }
+  }

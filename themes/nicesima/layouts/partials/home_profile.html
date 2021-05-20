@@ -1,0 +1,38 @@
+<div class="intro">
+    {{ with .Site.Params.avatar}}
+    {{ $avatar := .}}
+    <div class="avatar">
+        <a href="/posts/"> <img src="{{ (printf "%s" $avatar)}}"> </a>
+    </div>
+    {{ end }}
+    {{ with .Site.Params.subtitle}}
+    <div id="subtitle">
+    </div>
+    </body>
+    <script>
+      let divTyping = document.getElementById('subtitle')
+      let i = 0,
+        timer = 0,
+        str = '{{ . }}'
+    
+      function typing () {
+        if (i <= str.length) {
+          divTyping.innerHTML = str.slice(0, i++) + '_'
+          timer = setTimeout(typing, 24)
+        }
+        else {
+          divTyping.innerHTML = str//结束打字,移除 _ 光标
+          clearTimeout(timer)
+        }
+      }
+      typing()
+    </script>
+    {{ end }}
+    <div class="social-links">
+        {{ partial "social.html" . }}
+    </div>
+</div>
+
+{{ if .IsHome }}
+    {{ partial "wechat.html" . }}
+{{ end }}
