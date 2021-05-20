@@ -1,38 +1,39 @@
 <div class="intro">
-    {{ with .Site.Params.avatar}}
-    {{ $avatar := .}}
-    <div class="avatar">
-        <a href="/posts/"> <img src="{{ (printf "%s" $avatar)}}"> </a>
-    </div>
-    {{ end }}
-    {{ with .Site.Params.subtitle | default .Site.Params.Description | default .Site.Params.author }}
-    <div id="subtitle">
-    </div>
-    </body>
-    <script>
-      let divTyping = document.getElementById('subtitle')
-      let i = 0,
-        timer = 0,
-        str = '{{ . }}'
+  {{ if .Site.Params.Avatar }}
+  {{ $avatar := .Site.Params.Avatar }}
+  <div class="avatar">
+    <a href="{{ .Site.Params.DefaultLink | default "/posts" }}"> <img src="{{ (printf "%s" $avatar)}}"> </a>
+  </div>
+  {{ end }}
 
-      function typing () {
-        if (i <= str.length) {
-          divTyping.innerHTML = str.slice(0, i++) + '_'
-          timer = setTimeout(typing, 24)
-        }
-        else {
-          divTyping.innerHTML = str//结束打字,移除 _ 光标
-          clearTimeout(timer)
-        }
+  {{ with .Site.Params.Subtitle | default .Site.Params.Description | default .Site.Params.Author }}
+  <div id="subtitle"></div>
+  </body>
+  <script>
+    let divTyping = document.getElementById('subtitle')
+    let i = 0,
+      timer = 0,
+      str = '{{ . }}'
+
+    function typing () {
+      if (i <= str.length) {
+        divTyping.innerHTML = str.slice(0, i++) + '_'
+        timer = setTimeout(typing, 24)
       }
-      typing()
-    </script>
-    {{ end }}
-    <div class="social-links">
-        {{ partial "socials.html" . }}
-    </div>
+      else {
+        divTyping.innerHTML = str//结束打字,移除 _ 光标
+        clearTimeout(timer)
+      }
+    }
+    typing()
+  </script>
+  {{ end }}
+
+  <div class="social-links">
+    {{ partial "socials.html" . }}
+  </div>
 </div>
 
 {{ if .IsHome }}
-    {{ partial "wechat.html" . }}
+  {{ partial "wechat.html" . }}
 {{ end }}
