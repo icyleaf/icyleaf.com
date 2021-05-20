@@ -140,7 +140,7 @@
     {{ end }}
 
     <div class="post-comment">
-      {{ if ( $.Params.showComments | default true ) }}
+      {{ if ( $.Params.Comments | default true ) }}
         {{ if ne .Site.DisqusShortname "" }}
           {{ template "_internal/disqus.html" . }}
         {{ else if .Site.Params.enableGitalk }}

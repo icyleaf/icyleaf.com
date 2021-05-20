@@ -32,10 +32,10 @@ params:
   author: icyleaf
   avatar: images/icyleaf-icon.png
   description: 日常写代码热爱户外的梦想家
-  since: 2005
+  since: 2019
   mark: 🍺
   hideHUGOSupport: false
-  googleAnalyticsUserID: UA-2570916-5
+  googleAnalyticsUserID:
 
   socials:
     - name: github
