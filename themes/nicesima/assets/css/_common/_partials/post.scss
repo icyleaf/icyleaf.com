@@ -251,19 +251,8 @@
     content: " / ";
   }
 
-  .post-social {
-    margin-top: 3rem;
-    text-align: center;
-    padding: 1em 0;
-    border-top: 1px solid $light-border-color;
-    border-bottom: 1px solid $light-border-color;
-    .dark-theme & {
-      border-top: 1px solid $dark-border-color;
-      border-bottom: 1px solid $dark-border-color;
-    }
-  }
-
   .post-comment{
-    padding: 1em 0;
+    clear: both;
+    padding-top: 2rem;
   }
 }

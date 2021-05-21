@@ -131,14 +131,6 @@
       {{ end }}
     </div>
 
-    {{ if .Params.showPostSocialLinks | default true}}
-    <div class="post-social">
-      <div class="social-links">
-        {{ partial "socials.html" . }}
-      </div>
-    </div>
-    {{ end }}
-
     <div class="post-comment">
       {{ if ( $.Params.Comments | default true ) }}
         {{ if ne .Site.DisqusShortname "" }}
