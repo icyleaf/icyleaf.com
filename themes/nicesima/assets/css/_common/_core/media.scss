@@ -1,7 +1,7 @@
 // Phones
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
 
-  blockquote {
+  blockquote, code {
     word-break: break-word;
     word-wrap: break-word;
   }
@@ -11,6 +11,7 @@
   }
 
   .navbar-mobile {
+    height: 4rem;
     display: block !important;
     position: fixed;
     width: 100%;
@@ -171,9 +172,6 @@
     }
   }
 
-  #dynamic-to-top {
-    display: none !important;
-  }
   .footer {
     height: 3rem;
     width: 100%;
@@ -182,7 +180,16 @@
     padding-top: 2em;
   }
 
+  #dynamic-to-top {
+    display: none !important;
+  }
+
+  .main {
+    padding-top: 6em;
+  }
+
   .post-warp {
+    padding-top: 0rem;
     .archive-item-date {
       display: none;
     }
@@ -191,6 +198,10 @@
       .card-item {
         width: 95%;
       }
+    }
+
+    .post-content {
+      padding-top: 1rem;
     }
 
     .post-copyright {
