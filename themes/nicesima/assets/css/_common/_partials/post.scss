@@ -64,7 +64,7 @@
     del {
       text-decoration-thickness: 2px;
     }
-    
+
     h2,
     h3,
     h4,
@@ -239,18 +239,19 @@
     content: " / ";
   }
 
-  .post-social{
-    margin-top: 2.5em;
+  .post-social {
+    margin-top: 3rem;
     text-align: center;
     padding: 1em 0;
     border-top: 1px solid $light-border-color;
-
+    border-bottom: 1px solid $light-border-color;
     .dark-theme & {
       border-top: 1px solid $dark-border-color;
+      border-bottom: 1px solid $dark-border-color;
     }
   }
 
   .post-comment{
-    padding: 3em 0;
+    padding: 1em 0;
   }
 }

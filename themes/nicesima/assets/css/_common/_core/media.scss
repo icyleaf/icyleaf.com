@@ -1,4 +1,11 @@
+// Phones
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+
+  blockquote {
+    word-break: break-word;
+    word-wrap: break-word;
+  }
+
   .navbar {
     display: none;
   }
@@ -176,14 +183,26 @@
   }
 
   .post-warp {
-    padding-top: 6em;
     .archive-item-date {
       display: none;
     }
+
     .categories-card {
       .card-item {
         width: 95%;
       }
+    }
+
+    .post-copyright {
+      margin-top: 1rem;
+    }
+
+    .post-social {
+      margin-top: 4.5rem;
+    }
+
+    .post-comment {
+      padding: 1rem 0;
     }
   }
 }
@@ -191,13 +210,11 @@
 
 
 /* iPads (portrait and landscape) ----------- */
-
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {}
 
 
 
 /* Desktops and laptops ----------- */
-
 @media only screen and (min-width: 1224px) {
   .navbar-mobile {
     display: none;
@@ -207,7 +224,6 @@
 
 
 /* Large screens ----------- */
-
 @media only screen and (min-width: 1824px) {
   /* Styles */
 }
@@ -215,7 +231,6 @@
 
 
 /* Dark Mode */
-
 @media (prefers-color-scheme: dark) {
   body {
     background-color: $dark-background-color;
