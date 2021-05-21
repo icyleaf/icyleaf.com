@@ -65,16 +65,3 @@
     </div>
   </div>
 </nav>
-
-
-{{ if not .IsHome }}
-  {{ $cover := .Params.Image }}
-  {{ if $cover }}
-    {{ if or (eq (substr $cover 0 7) "http://") (eq (substr $cover 0 8) "https://") }}
-    <div class="main-header post-head" style="background-image: url({{ $cover }})">
-    {{ else }}
-    <div class="main-header post-head" style="background-image: url({{ .Site.BaseURL }}{{ $cover }})">
-    {{ end }}
-    </div>
-  {{ end }}
-{{ end }}

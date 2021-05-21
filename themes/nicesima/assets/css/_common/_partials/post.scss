@@ -1,5 +1,12 @@
 /** Post **/
 
+.post-cover img {
+  width: 100%;
+  object-fit: cover;
+  height: 40vh;
+  min-height: 180px;
+}
+
 .post-warp {
   position: relative;
   width: 100%;
@@ -14,6 +21,11 @@
   .post-title {
     font-size: 2em;
     line-height: 1.5em;
+  }
+
+  .section-title {
+    margin: 1.5rem 0 1rem 0;
+    text-align: center;
   }
 
   .post-meta {

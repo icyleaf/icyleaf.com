@@ -110,20 +110,3 @@
   50% { opacity: 1; }
   100% { opacity: 0; }
 }
-
-.main-header {
-  position: relative;
-  display: table;
-  width: 100%;
-  height: 100vh;
-  text-align: center;
-  background: #222 no-repeat center center;
-  background-size: cover;
-  overflow: hidden;
-}
-
-.post-head.main-header {
-  height: 40vh;
-  min-height: 180px;
-  background-color: #FFF;
-}
