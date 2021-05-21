@@ -14,12 +14,9 @@
 - [Alpine Linux][alpine-link]: 开源且超轻量级（Docker 镜像仅 5MB）还具备完整包管理工具的 Linux 发行版
 - [Let's Encrypt][let-encrypt-link]: 免费且好用的 HTTPS 证书
 
-### Docker 镜像
-
-- [icyleafcn/hugo][icyleaf-hugo-link]
-- [icyleafcn/caddy][icyleaf-caddy-link]
-
 ### 部署
+
+> 当前使用 Github Pages 服务部署，以下部署方式年久失修，慎用！
 
 ```bash
 $ git clone https://github.com/icyleaf/icyleaf.com.git blog
@@ -68,7 +65,5 @@ $ [sudo] docker-compose up -d
 [vultr-link]: https://www.vultr.com/
 [vultr-affiliate-link]: http://www.vultr.com/?ref=6863897
 [letsencrypt-post-link]: https://imququ.com/post/letsencrypt-certificate.html
-[icyleaf-hugo-link]: https://github.com/icyleaf/docker-images/tree/master/hugo
-[icyleaf-caddy-link]: https://github.com/icyleaf/docker-images/tree/master/caddy
 [ngix-proxy-ssl-link]: https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion
 [compose-production-link]: https://docs.docker.com/compose/production/
