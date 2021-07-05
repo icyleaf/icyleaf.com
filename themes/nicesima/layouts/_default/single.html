@@ -19,7 +19,11 @@
         {{ end }}
       </span>
       {{- end }}
-      <span class="post-word-count">{{ .WordCount }} words</span>
+
+      <span class="post-word-count">
+        {{- $readTime := mul (div .WordCount 220.0) 60 -}}
+        {{ .WordCount }} words {{ math.Floor (div $readTime 60) }} minutes reading
+      </span>
     </div>
   </header>
 
