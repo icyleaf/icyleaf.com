@@ -3,7 +3,6 @@ categories:
 - Technology
 comments: true
 date: 2016-12-30T17:52:30+08:00
-image: images/cover.jpg
 share: true
 slug: "docker-with-centos"
 tags:

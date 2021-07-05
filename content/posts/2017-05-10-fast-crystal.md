@@ -6,7 +6,6 @@ categories:
 - Technology
 tags:
 - Crystal
-image: images/cover.jpg
 index: ''
 comments: true
 share: true

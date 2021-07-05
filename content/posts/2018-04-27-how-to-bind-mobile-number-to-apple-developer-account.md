@@ -7,7 +7,6 @@ categories:
 tags:
   - Apple
   - iCloud
-image: images/cover.jpg
 menu: ""
 index: false
 draft: false

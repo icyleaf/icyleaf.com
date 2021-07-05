@@ -6,7 +6,6 @@ categories:
 - Technology
 tags:
 - macOS
-image: images/cover.jpg
 index: false
 comments: true
 isCJKLanguage: true

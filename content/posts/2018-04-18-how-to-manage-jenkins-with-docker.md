@@ -7,7 +7,6 @@ categories:
 tags:
 - Docker
 - Jenkins
-image: images/cover.jpg
 index: ''
 comments: true
 share: true
