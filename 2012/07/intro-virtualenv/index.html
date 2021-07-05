@@ -9,7 +9,7 @@
 in
 <i class="iconfont icon-folder"></i>
 <span class=post-category><a href=https://icyleaf.com/categories/technology/>Technology,</a></span>
-<span class=post-word-count>399 words</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title></h2><div class="post-toc-content always-active"><nav id=TableOfContents></nav></div></div><div class=post-content><p>python 的 virtualenv 功能看着类似于 Ruby 的 RVM，其实这两个东西我都没有用过，本身脚本语言用的最熟练的是 php，最近觉得 php 在处理一些多线程和终端繁琐的事情上有些局限性。决定熟悉下 python 并尝试用 django 做一个小应用。</p><p>由于本身 <a href=http://github.com/openparty/openparty>OpenParty</a> 的代码也是基于 django 开发的，加上最近也开始使用了 virtualenv，这样正好解决了不同项目在使用不同的环境造成的一些困扰。</p><p>OS X 本身已经安装了 easy_install 可以通过命令安装：</p><pre><code>$ easy_install pip
+<span class=post-word-count>399 words 1 minutes reading</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title></h2><div class="post-toc-content always-active"><nav id=TableOfContents></nav></div></div><div class=post-content><p>python 的 virtualenv 功能看着类似于 Ruby 的 RVM，其实这两个东西我都没有用过，本身脚本语言用的最熟练的是 php，最近觉得 php 在处理一些多线程和终端繁琐的事情上有些局限性。决定熟悉下 python 并尝试用 django 做一个小应用。</p><p>由于本身 <a href=http://github.com/openparty/openparty>OpenParty</a> 的代码也是基于 django 开发的，加上最近也开始使用了 virtualenv，这样正好解决了不同项目在使用不同的环境造成的一些困扰。</p><p>OS X 本身已经安装了 easy_install 可以通过命令安装：</p><pre><code>$ easy_install pip
 </code></pre><p>安装好之后，可以为每个项目创建一个专属的开发环境，这个环境可以单独存放在一个目录下面，比如：</p><pre><code>~/envs
       \
       |- env1

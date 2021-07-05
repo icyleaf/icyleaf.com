@@ -9,7 +9,7 @@
 in
 <i class="iconfont icon-folder"></i>
 <span class=post-category><a href=https://icyleaf.com/categories/technology/>Technology,</a></span>
-<span class=post-word-count>414 words</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title></h2><div class="post-toc-content always-active"><nav id=TableOfContents></nav></div></div><div class=post-content><blockquote><p>Git 几乎所有命令都提供分页器，即当命令输出超过一页时，自动在每页输出后暂停，可以按空格继续显示，按 q 退出。</p></blockquote><p>默认 git 的 <code>pager = less -FRSX</code>，这个可以通过两种方式更改：</p><p>命令：</p><pre><code>$ git config --global core.pager &quot;less -FRSX&quot;
+<span class=post-word-count>414 words 1 minutes reading</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title></h2><div class="post-toc-content always-active"><nav id=TableOfContents></nav></div></div><div class=post-content><blockquote><p>Git 几乎所有命令都提供分页器，即当命令输出超过一页时，自动在每页输出后暂停，可以按空格继续显示，按 q 退出。</p></blockquote><p>默认 git 的 <code>pager = less -FRSX</code>，这个可以通过两种方式更改：</p><p>命令：</p><pre><code>$ git config --global core.pager &quot;less -FRSX&quot;
 
 </code></pre><p>配置文件：</p><pre><code>$ vim ~/.gitconfig
 </code></pre><p>了不起了通过设置自动匹配的色彩来增强可读性</p><pre><code>$ git config --global color.ui on 	

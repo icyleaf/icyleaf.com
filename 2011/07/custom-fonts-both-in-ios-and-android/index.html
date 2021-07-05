@@ -9,7 +9,7 @@
 in
 <i class="iconfont icon-folder"></i>
 <span class=post-category><a href=https://icyleaf.com/categories/technology/>Technology,</a></span>
-<span class=post-word-count>905 words</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title></h2><div class="post-toc-content always-active"><nav id=TableOfContents></nav></div></div><div class=post-content><p>本篇教程的目前源于我们团队设计师一直询问，iOS(iPhone/iPad) 和 Android
+<span class=post-word-count>905 words 4 minutes reading</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title></h2><div class="post-toc-content always-active"><nav id=TableOfContents></nav></div></div><div class=post-content><p>本篇教程的目前源于我们团队设计师一直询问，iOS(iPhone/iPad) 和 Android
 两个平台是否支持自定义字体的问题，恰巧前不久<a href=http://www.v2ex.com/t/15220>唐茶计划</a>出了一个关于在中文阅读新体验的电子书应用：<a href="http://itunes.apple.com/cn/app/id446752200?mt=8">失控</a>。里面提到中文的显示采用了香港字体设计室的全新中文黑体字：<a href=http://www.typeisbeautiful.com/2011/07/4276>信黑体</a>。于是我就在想看来
 iOS 是可以支持自定义字体的。通过搜索和研究整理如下，供自己备份和大家参考</p><h1 id=ios>iOS</h1><p>iOS 对字体以样式的支持是非常有限的(内嵌<a href=http://iosfonts.com/>默认字库列表</a>)，尤其说对于用习惯了 HTML + CSS，就觉得 iOS 对字体的扩展真是逊到渣了，当然高人们已经准备为大众造福，出现了轻巧的
 <a href=https://github.com/zynga/FontLabel>FontLable</a>，<a href=https://github.com/mattt/TTTAttributedLabel>TTTAttributedLabel</a> 开源库到怪兽级别 <a href=https://github.com/facebook/three20>Three20</a> 开源框架。但假如仅仅是想加载自定义字体来说，对于 iOS 4 版本还是比较简单的：</p><ol><li>添加自定义字体文件做资源文件添加到 XCode 项目之中</li><li>在 info.plist 中新增一个名为 UIAppFonts 的 Key，类型是数组（array）</li><li>把新增的字体的文件名（包括后缀）依次填入 UIAppFonts 数组（注意区分大小写）</li><li>保存 info.plist（废话）。准备工作完毕，下面是编码部分</li></ol><pre><code>@implementation CustomFontLabel

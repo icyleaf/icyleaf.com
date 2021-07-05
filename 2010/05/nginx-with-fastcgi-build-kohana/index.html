@@ -9,7 +9,7 @@
 in
 <i class="iconfont icon-folder"></i>
 <span class=post-category><a href=https://icyleaf.com/categories/technology/>Technology,</a></span>
-<span class=post-word-count>1787 words</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title></h2><div class="post-toc-content always-active"><nav id=TableOfContents><ul><li><ul><li><a href=#1-安装-mysql>1. 安装 MySQL</a></li><li><a href=#2-安装-nginx>2. 安装 Nginx</a></li><li><a href=#3-安装-php5>3. 安装 PHP5</a></li><li><a href=#4-配置-nginx>4. 配置 Nginx</a></li><li><a href=#5-安装配置-kohana>5. 安装&配置 Kohana</a></li></ul></li></ul></nav></div></div><div class=post-content><p>Kohana 默认仅对 Apache 环境提供的部署支持，其实对于 Nginx+FastCGI
+<span class=post-word-count>1787 words 8 minutes reading</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title></h2><div class="post-toc-content always-active"><nav id=TableOfContents><ul><li><ul><li><a href=#1-安装-mysql>1. 安装 MySQL</a></li><li><a href=#2-安装-nginx>2. 安装 Nginx</a></li><li><a href=#3-安装-php5>3. 安装 PHP5</a></li><li><a href=#4-配置-nginx>4. 配置 Nginx</a></li><li><a href=#5-安装配置-kohana>5. 安装&配置 Kohana</a></li></ul></li></ul></nav></div></div><div class=post-content><p>Kohana 默认仅对 Apache 环境提供的部署支持，其实对于 Nginx+FastCGI
 也是很容易支持的。本文搭建环境是 Ubuntu 10.4 并采用 apt-get
 方式安装，喜爱编译的朋友可以自行解决 :)</p><h3 id=1-安装-mysql>1. 安装 MySQL</h3><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>$ sudo apt-get install mysql-server mysql-client
 </code></pre></div><p>安装过程在会提示设置 root 账户的密码，如果是本机测试开发可以留空后稍候设置。</p><h3 id=2-安装-nginx>2. 安装 Nginx</h3><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span><span class=c1># 安装 Nginx</span>

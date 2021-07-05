@@ -9,7 +9,7 @@
 in
 <i class="iconfont icon-folder"></i>
 <span class=post-category><a href=https://icyleaf.com/categories/technology/>Technology,</a></span>
-<span class=post-word-count>663 words</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title></h2><div class="post-toc-content always-active"><nav id=TableOfContents></nav></div></div><div class=post-content><p>ActiveRecord 是 Rails 内置的 ORM 框架，大多数人学习 Ruby 都是从 rails 开始，接触的也是这个 ORM，因此就有了这个使用秘笈。</p><h1 id=支持-rake-dbxxx-命令>支持 <code>rake db:xxx</code> 命令</h1><p>在非 rails 项目怎么让 rake 支持 db:xxx 命令呢？把如下代码放到 <code>Rakefile</code> 中:</p><pre><code>namespace :db do
+<span class=post-word-count>663 words 3 minutes reading</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title></h2><div class="post-toc-content always-active"><nav id=TableOfContents></nav></div></div><div class=post-content><p>ActiveRecord 是 Rails 内置的 ORM 框架，大多数人学习 Ruby 都是从 rails 开始，接触的也是这个 ORM，因此就有了这个使用秘笈。</p><h1 id=支持-rake-dbxxx-命令>支持 <code>rake db:xxx</code> 命令</h1><p>在非 rails 项目怎么让 rake 支持 db:xxx 命令呢？把如下代码放到 <code>Rakefile</code> 中:</p><pre><code>namespace :db do
   require 'activerecord'
   require 'yaml'
 
