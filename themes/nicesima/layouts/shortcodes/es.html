@@ -1,0 +1,26 @@
+<!-- Easy-searched -->
+{{ $searchEngine := .Get 1 | default .Site.Params.easySearchedEngine }}
+<a 
+
+  {{/* Bing */}}
+  {{ if (findRE "^bing$" (lower $searchEngine)) }} 
+    href="https://www.bing.com/search?q={{ .Get 0 }}" 
+          
+  {{/* GitHub */}}
+  {{ else if (findRE "^gh|github$" (lower $searchEngine)) }} 
+    href="https://github.com/search?q={{ .Get 0 }}&ref=opensearch" 
+
+  {{/* Bilibili */}}
+  {{ else if (findRE "^blbl|bilibili$" (lower $searchEngine)) }} 
+    href="https://search.bilibili.com/all?keyword={{ .Get 0 }}" 
+
+  {{/* Baidu */}}
+  {{ else if (findRE "^bd|baidu$" (lower $searchEngine)) }} 
+    href="https://www.baidu.com/s?wd={{ .Get 0 }}" 
+
+  {{/* default by Google */}}
+  {{ else }}
+    href="https://www.google.com/search?q={{ .Get 0 }}"
+  {{ end }} 
+
+target="_blank"><i class="iconfont icon-search">{{ .Get 0 }}</i></a>

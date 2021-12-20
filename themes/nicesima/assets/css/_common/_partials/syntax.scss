@@ -1,0 +1,547 @@
+.highlight {
+  position: relative;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-bottom: 2em;
+
+  .copy-code-button {
+    display: inline-block;
+    opacity: 0;
+    position: absolute;
+    top: 6px;
+    right: 7px;
+    border: 0;
+    border-radius: 4px;
+    padding: 1px;
+    font-size: .7em;
+    line-height: 1.8;
+    color: #fff;
+    background-color: #777;
+    min-width: 55px;
+    text-align: center;
+    transition: opacity 300ms;
+  }
+
+  &:hover .copy-code-button {
+    opacity: 1;
+    transition: opacity 300ms;
+  }
+
+  .copy-code-button:hover {
+    background-color: $light-post-link-hover-color;
+  }
+}
+
+code {
+  font-family: 'Cascadia Code', 'Fira Code', Consolas, Monaco, Menlo, Consolas, monospace;
+}
+
+.post-warp .post-content code:not([class]) {
+  padding: 2px 6px;
+  margin: 0 2px;
+  background: #e2e2e2;
+  border-radius: 5px;
+
+  .dark-theme & {
+    background: $dark-code-notclass-background-color;
+  }
+}
+
+/* Background */
+.chroma {
+  color: #f8f8f2;
+  background: $light-code-notclass-background-color;
+  overflow-x: scroll;
+
+  .dark-theme & {
+    background: $dark-code-notclass-background-color;
+  }
+
+  &::-webkit-scrollbar {
+    opacity: 0;
+    width: 11px;
+    height: $scrollbar-thickness;
+    transition: opacity 300ms;
+
+    .chroma:hover & {
+      opacity: 1;
+      transition: opacity 300ms;
+    }
+  }
+  
+  &::-webkit-scrollbar-track {
+    opacity: 1;
+    background-color: $light-background-color;
+
+    .dark-theme & {
+      background-color: $dark-background-color;
+    }
+  }
+
+  &:hover::-webkit-scrollbar-thumb {
+    background-color: $dark-scrollbar-thumb-color;
+    height: $scrollbar-thickness;
+
+    // .dark-theme & {
+    //   background-color: $dark-scrollbar-thumb-color;
+    // }
+
+    &:hover {
+      background-color: $light-scrollbar-thumb-hover-color;
+
+      .dark-theme & {
+        background-color: $dark-scrollbar-thumb-hover-color;
+      }
+    }
+
+    border-radius: 2em;
+  }
+
+  &::-webkit-scrollbar-corner {
+    background-color: transparent;
+  }
+}
+
+div.chroma {
+  border-radius: 18px;
+}
+
+/* Other */
+.chroma .x {}
+
+/* Error */
+.chroma .err {
+  color: #960050;
+  background-color: #1e0010
+}
+
+/* LineTableTD */
+.chroma .lntd {
+  vertical-align: top;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0;
+
+  pre.chroma > code {
+    border-radius: 0px;
+
+    // fix 首行高亮时，表格行号首行水平错位
+    margin-left: 0 !important;
+
+    // fix 表格行号首行垂直未对齐
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    
+    background-color: $light-code-notclass-background-color;
+    .dark-theme & {
+      background-color: $dark-code-notclass-background-color;
+    }
+  }
+
+  &:first-child {
+    width: 0;
+    left: 0px;
+    position: sticky;
+    z-index: 1;
+  
+    border-right: 1px dotted #7f7f7f !important;
+    background-color: $light-code-notclass-background-color;
+    .dark-theme & {
+      background-color: $dark-code-notclass-background-color;
+    }
+  }
+
+  &:last-child {
+    overflow-x: hidden;
+  }
+}
+
+/* LineTable */
+.chroma .lntable {
+  border-spacing: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  width: 100%;
+  overflow: auto;
+  display: table;
+  box-shadow: 0 0 0 rgba(0,0,0,.125) !important;
+
+  tr {
+    td {
+      border-width: 0px !important;
+
+      pre.chroma {
+        overflow: auto;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-right: 0;
+      }
+    }
+  }
+}
+
+/* LineHighlight */
+.chroma .hl {
+  display: block;
+  width: 100%;
+  background-color: #3d3d3c
+}
+
+/* LineNumbersTable */
+.chroma .lnt {
+  margin-right: 0.4em;
+  padding: 0 0.4em 0 0.4em;
+  color: #7f7f7f
+}
+
+/* LineNumbers */
+.chroma .ln {
+  -moz-user-select: none;
+  /*火狐*/
+  -webkit-user-select: none;
+  /*webkit浏览器*/
+  -ms-user-select: none;
+  /*IE10*/
+  -khtml-user-select: none;
+  /*早期浏览器*/
+  user-select: none;
+
+  left: 0;
+  position: sticky;
+  z-index: 1;
+  background-color: $light-code-notclass-background-color;
+  .dark-theme & {
+    background-color: $dark-code-notclass-background-color;
+  }
+
+  margin-right: 0.4em;
+  padding: 0 0.4em 0 0.4em;
+  color: #7f7f7f
+}
+
+/* Keyword */
+.chroma .k {
+  color: #66d9ef
+}
+
+/* KeywordConstant */
+.chroma .kc {
+  color: #66d9ef
+}
+
+/* KeywordDeclaration */
+.chroma .kd {
+  color: #66d9ef
+}
+
+/* KeywordNamespace */
+.chroma .kn {
+  color: #f92672
+}
+
+/* KeywordPseudo */
+.chroma .kp {
+  color: #66d9ef
+}
+
+/* KeywordReserved */
+.chroma .kr {
+  color: #66d9ef
+}
+
+/* KeywordType */
+.chroma .kt {
+  color: #66d9ef
+}
+
+/* Name */
+.chroma .n {}
+
+/* NameAttribute */
+.chroma .na {
+  color: #a6e22e
+}
+
+/* NameBuiltin */
+.chroma .nb {}
+
+/* NameBuiltinPseudo */
+.chroma .bp {}
+
+/* NameClass */
+.chroma .nc {
+  color: #a6e22e
+}
+
+/* NameConstant */
+.chroma .no {
+  color: #66d9ef
+}
+
+/* NameDecorator */
+.chroma .nd {
+  color: #a6e22e
+}
+
+/* NameEntity */
+.chroma .ni {}
+
+/* NameException */
+.chroma .ne {
+  color: #a6e22e
+}
+
+/* NameFunction */
+.chroma .nf {
+  color: #a6e22e
+}
+
+/* NameFunctionMagic */
+.chroma .fm {}
+
+/* NameLabel */
+.chroma .nl {}
+
+/* NameNamespace */
+.chroma .nn {}
+
+/* NameOther */
+.chroma .nx {
+  color: #a6e22e
+}
+
+/* NameProperty */
+.chroma .py {}
+
+/* NameTag */
+.chroma .nt {
+  color: #f92672
+}
+
+/* NameVariable */
+.chroma .nv {}
+
+/* NameVariableClass */
+.chroma .vc {}
+
+/* NameVariableGlobal */
+.chroma .vg {}
+
+/* NameVariableInstance */
+.chroma .vi {}
+
+/* NameVariableMagic */
+.chroma .vm {}
+
+/* Literal */
+.chroma .l {
+  color: #ae81ff
+}
+
+/* LiteralDate */
+.chroma .ld {
+  color: #e6db74
+}
+
+/* LiteralString */
+.chroma .s {
+  color: #e6db74
+}
+
+/* LiteralStringAffix */
+.chroma .sa {
+  color: #e6db74
+}
+
+/* LiteralStringBacktick */
+.chroma .sb {
+  color: #e6db74
+}
+
+/* LiteralStringChar */
+.chroma .sc {
+  color: #e6db74
+}
+
+/* LiteralStringDelimiter */
+.chroma .dl {
+  color: #e6db74
+}
+
+/* LiteralStringDoc */
+.chroma .sd {
+  color: #e6db74
+}
+
+/* LiteralStringDouble */
+.chroma .s2 {
+  color: #e6db74
+}
+
+/* LiteralStringEscape */
+.chroma .se {
+  color: #ae81ff
+}
+
+/* LiteralStringHeredoc */
+.chroma .sh {
+  color: #e6db74
+}
+
+/* LiteralStringInterpol */
+.chroma .si {
+  color: #e6db74
+}
+
+/* LiteralStringOther */
+.chroma .sx {
+  color: #e6db74
+}
+
+/* LiteralStringRegex */
+.chroma .sr {
+  color: #e6db74
+}
+
+/* LiteralStringSingle */
+.chroma .s1 {
+  color: #e6db74
+}
+
+/* LiteralStringSymbol */
+.chroma .ss {
+  color: #e6db74
+}
+
+/* LiteralNumber */
+.chroma .m {
+  color: #ae81ff
+}
+
+/* LiteralNumberBin */
+.chroma .mb {
+  color: #ae81ff
+}
+
+/* LiteralNumberFloat */
+.chroma .mf {
+  color: #ae81ff
+}
+
+/* LiteralNumberHex */
+.chroma .mh {
+  color: #ae81ff
+}
+
+/* LiteralNumberInteger */
+.chroma .mi {
+  color: #ae81ff
+}
+
+/* LiteralNumberIntegerLong */
+.chroma .il {
+  color: #ae81ff
+}
+
+/* LiteralNumberOct */
+.chroma .mo {
+  color: #ae81ff
+}
+
+/* Operator */
+.chroma .o {
+  color: #f92672
+}
+
+/* OperatorWord */
+.chroma .ow {
+  color: #f92672
+}
+
+/* Punctuation */
+.chroma .p {}
+
+/* Comment */
+.chroma .c {
+  color: #75715e
+}
+
+/* CommentHashbang */
+.chroma .ch {
+  color: #75715e
+}
+
+/* CommentMultiline */
+.chroma .cm {
+  color: #75715e
+}
+
+/* CommentSingle */
+.chroma .c1 {
+  color: #75715e
+}
+
+/* CommentSpecial */
+.chroma .cs {
+  color: #75715e
+}
+
+/* CommentPreproc */
+.chroma .cp {
+  color: #75715e
+}
+
+/* CommentPreprocFile */
+.chroma .cpf {
+  color: #75715e
+}
+
+/* Generic */
+.chroma .g {}
+
+/* GenericDeleted */
+.chroma .gd {
+  color: #f92672
+}
+
+/* GenericEmph */
+.chroma .ge {
+  font-style: italic
+}
+
+/* GenericError */
+.chroma .gr {}
+
+/* GenericHeading */
+.chroma .gh {}
+
+/* GenericInserted */
+.chroma .gi {
+  color: #a6e22e
+}
+
+/* GenericOutput */
+.chroma .go {}
+
+/* GenericPrompt */
+.chroma .gp {}
+
+/* GenericStrong */
+.chroma .gs {
+  font-weight: bold
+}
+
+/* GenericSubheading */
+.chroma .gu {
+  color: #75715e
+}
+
+/* GenericTraceback */
+.chroma .gt {}
+
+/* GenericUnderline */
+.chroma .gl {}
+
+/* TextWhitespace */
+.chroma .w {}

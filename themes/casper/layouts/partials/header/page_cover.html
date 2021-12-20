@@ -1,5 +1,0 @@
-{{ if or (eq (substr .Params.image 0 7) "http://") (eq (substr .Params.image 0 8) "https://") }}
-<header class="main-header {{ if eq .Type "post" }}post-head{{ else }}tag-head{{ end }}" style="background-image: url({{ .Params.image }})">
-{{ else }}
-<header class="main-header {{ if eq .Type "post" }}post-head{{ else }}tag-head{{ end }}" style="background-image: url({{ .Site.BaseURL }}{{ .Params.image }})">
-{{ end }}
