@@ -51,7 +51,10 @@ code {
 .chroma {
   color: #f8f8f2;
   background: $light-code-notclass-background-color;
-  overflow-x: scroll;
+  padding: 0.5rem 0;
+  // overflow-x: scroll;
+  overflow: auto;
+  overflow-y: hidden;
 
   .dark-theme & {
     background: $dark-code-notclass-background-color;
@@ -68,13 +71,13 @@ code {
       transition: opacity 300ms;
     }
   }
-  
+
   &::-webkit-scrollbar-track {
     opacity: 1;
     background-color: $light-background-color;
 
     .dark-theme & {
-      background-color: $dark-background-color;
+      background-color: $dark-scrollbar-track-color;
     }
   }
 
@@ -131,7 +134,7 @@ div.chroma {
     // fix 表格行号首行垂直未对齐
     padding-left: 0 !important;
     padding-right: 0 !important;
-    
+
     background-color: $light-code-notclass-background-color;
     .dark-theme & {
       background-color: $dark-code-notclass-background-color;
@@ -143,7 +146,7 @@ div.chroma {
     left: 0px;
     position: sticky;
     z-index: 1;
-  
+
     border-right: 1px dotted #7f7f7f !important;
     background-color: $light-code-notclass-background-color;
     .dark-theme & {

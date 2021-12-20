@@ -10,6 +10,10 @@
     word-wrap: break-word;
   }
 
+  pre {
+    font-size: .95rem;
+  }
+
   .navbar {
     display: none;
   }
@@ -212,8 +216,18 @@
       }
     }
 
+    .post-title {
+      font-size: 1.85em!important;
+    }
+
     .post-content {
       padding-top: 1rem;
+    }
+
+    p {
+      font-size: 1em;
+      margin: .5em 0;
+      line-height: 1.75;
     }
 
     .post-copyright {

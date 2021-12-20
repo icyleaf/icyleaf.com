@@ -10,7 +10,7 @@
 .post-warp {
   position: relative;
   width: 100%;
-  max-width: 780px;
+  max-width: 780px; //calc(100% - 4.4rem);
   margin: 0 auto;
   padding-top: 2rem;
 
@@ -19,8 +19,8 @@
   }
 
   .post-title {
-    font-size: 2em;
-    line-height: 1.5em;
+    font-size: 2.5em;
+    line-height: 1.3em;
   }
 
   .section-title {
@@ -182,8 +182,9 @@
   }
 
   p {
-    font-size: 1em;
-    margin: .5em 0 .5em 0;
+    font-size: 1.2em;
+    margin: .5em 0;
+    line-height: 1.75;
   }
 
   .post-copyright {
@@ -209,12 +210,9 @@
     padding: 1rem 0 1rem;
     display: flex;
     justify-content: space-between;
-
   }
 
-
   .post-nav {
-
     &:before,
     &:after {
       content: " ";

@@ -1,6 +1,6 @@
 /** common **/
 
-$scrollbar-thickness: 4px;
+$scrollbar-thickness: 7px;
 $scrollbar-bold-thickness: 12px;
 
 
@@ -33,28 +33,30 @@ $light-scrollbar-thumb-hover-color: #DDDDDD;
 
 /** dark theme **/
 
-$dark-background-color: #292a2d;
+$dark-background-color: #08090a;
 
-$dark-font-color: #a9a9b3;
+$dark-font-color: #acb1bf;
 $dark-font-secondary-color: #87878d;
 
 $dark-code-notclass-background-color: #3b3d42;
 
 $dark-navbar-active-color: #fff;
-$dark-navbar-background-color: #252627;
+$dark-navbar-background-color: #141618;
 
-$dark-global-link-color: #a9a9b3;
+$dark-global-link-color: #acb1bf;
 $dark-global-link-hover-color:#fff;
 
 $dark-post-link-color: #eee;
 $dark-post-link-hover-color:#fff;
 
-$dark-pagination-link-color : #a9a9b3;
+$dark-pagination-link-color : #acb1bf;
 $dark-pagination-link-active-color: #fff;
 
 $dark-border-color: #4a4b50;
 
 $dark-blockquote-background-color: #252529;
 
-$dark-scrollbar-thumb-color: #7F7F7F;
-$dark-scrollbar-thumb-hover-color: #6F6F6F;
+
+$dark-scrollbar-track-color: rgb(37, 37, 37);
+$dark-scrollbar-thumb-color: #666;
+$dark-scrollbar-thumb-hover-color: #666;

@@ -35,7 +35,7 @@ html {
 }
 
 body {
-  font-size: 11pt;
+  font-size: 1em;
   font-weight: 400;
   line-height: 2em;
   background-color: $light-background-color;
@@ -89,7 +89,7 @@ a {
 }
 
 blockquote {
-  font: 14px/22px normal helvetica, sans-serif;
+  // font: 14px/22px normal helvetica, sans-serif;
   margin-top: 10px;
   margin-bottom: 10px;
   margin-left: 2%;

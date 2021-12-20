@@ -18,6 +18,8 @@ _Blog.switchDarkMode = function () {
   const currentTheme = document.cookie.replace(/(?:(?:^|.*;\s*)dark\s*=\s*([^;]*).*$)|^.*$/, '$1') || '0'
   const isDark = currentTheme === '1'
   document.body.classList.toggle('dark-theme', isDark)
+  console.log('Default dark mode is ' + isDark);
+
   // 手动切换 Dark Mode
   const themeSwitcher = document.querySelectorAll('.theme-switch')
   themeSwitcher.forEach(function (themeSwitcherItem) {

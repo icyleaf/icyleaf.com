@@ -64,14 +64,6 @@ menu:
       weight: 10
       identifier: posts
       url: /posts
-    - name: Tags
-      weight: 20
-      identifier: tags
-      url: /tags
-    - name: Categories
-      weight: 20
-      identifier: categories
-      url: /categories
     - name: About
       weight: 100
       identifier: about
