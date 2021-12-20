@@ -16,23 +16,25 @@ function zip() {
 // Dark Mode
 _Blog.switchDarkMode = function () {
   const currentTheme = document.cookie.replace(/(?:(?:^|.*;\s*)dark\s*=\s*([^;]*).*$)|^.*$/, '$1') || '0'
-  const isDark = currentTheme === '1'
+  const isDark = currentTheme === '1' || window.matchMedia("(prefers-color-scheme: dark)").matches
+  document.cookie = 'dark=' + (isDark ? '1' : '0') + ';path=/'
   document.body.classList.toggle('dark-theme', isDark)
-  console.log('Default dark mode is ' + isDark);
+  console.log('Default dark mode is ' + isDark)
 
   // 手动切换 Dark Mode
   const themeSwitcher = document.querySelectorAll('.theme-switch')
   themeSwitcher.forEach(function (themeSwitcherItem) {
     themeSwitcherItem.addEventListener('click', () => {
       const currentTheme = document.cookie.replace(/(?:(?:^|.*;\s*)dark\s*=\s*([^;]*).*$)|^.*$/, '$1') || '0'
-      if (currentTheme === '0') {
-        document.body.classList.add('dark-theme')
-        document.cookie = 'dark=1;path=/'
-        console.log('Dark mode on')
-      } else {
+      const isDark = currentTheme === '1'
+      if (isDark) {
         document.body.classList.remove('dark-theme')
         document.cookie = 'dark=0;path=/'
         console.log('Dark mode off')
+      } else {
+        document.body.classList.add('dark-theme')
+        document.cookie = 'dark=1;path=/'
+        console.log('Dark mode on')
       }
     })
   })
