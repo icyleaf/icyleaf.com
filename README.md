@@ -14,19 +14,13 @@
 - [Alpine Linux][alpine-link]: 开源且超轻量级（Docker 镜像仅 5MB）还具备完整包管理工具的 Linux 发行版
 - [Let's Encrypt][let-encrypt-link]: 免费且好用的 HTTPS 证书
 
-### Docker 镜像
-
-- [icyleafcn/hugo][icyleaf-hugo-link]
-- [icyleafcn/caddy][icyleaf-caddy-link]
-
-### Hugo
-
-没错，我又移情别恋了！主题使用自改的 [Casper](http://github.com/icyleaf/hugo-theme-casper)
-
 ### 部署
 
+> 当前使用 Github Pages 服务部署，以下部署方式年久失修，慎用！
+
 ```bash
-$ git clone https://github.com/icyleaf/icyleaf.com.git blog && cd blog
+$ git clone https://github.com/icyleaf/icyleaf.com.git blog
+$ cd blog
 $ [sudo] docker-compose up -d
 ```
 
@@ -50,7 +44,7 @@ $ [sudo] docker-compose up -d
 ├── static
 │   └── images
 └── themes              # hugo 主题
-│   └── casper
+│   └── ...
 └── system              # Docker 容器所需的资源
     ├── site
     │   └── run.sh
@@ -71,7 +65,5 @@ $ [sudo] docker-compose up -d
 [vultr-link]: https://www.vultr.com/
 [vultr-affiliate-link]: http://www.vultr.com/?ref=6863897
 [letsencrypt-post-link]: https://imququ.com/post/letsencrypt-certificate.html
-[icyleaf-hugo-link]: https://github.com/icyleaf/docker-images/tree/master/hugo
-[icyleaf-caddy-link]: https://github.com/icyleaf/docker-images/tree/master/caddy
 [ngix-proxy-ssl-link]: https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion
 [compose-production-link]: https://docs.docker.com/compose/production/

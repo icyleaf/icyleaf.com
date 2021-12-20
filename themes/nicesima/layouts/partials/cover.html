@@ -1,0 +1,12 @@
+{{ if not .IsHome }}
+  {{ $cover := .Params.Image }}
+  {{ if $cover }}
+  <div class="post-cover">
+    {{ if or (eq (substr $cover 0 7) "http://") (eq (substr $cover 0 8) "https://") }}
+    <img src="{{ $cover }}">
+    {{ else }}
+    <img src="{{ .Site.BaseURL }}{{ $cover }}">
+    {{ end }}
+  </div>
+  {{ end }}
+{{ end }}
