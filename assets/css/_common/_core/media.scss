@@ -1,9 +1,21 @@
+// Phones
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+
+  blockquote, code, pre code {
+    white-space: pre-wrap;       /* css-3 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-break: break-word;       /* Internet Explorer 5.5+ */
+    word-wrap: break-word;
+  }
+
   .navbar {
     display: none;
   }
 
   .navbar-mobile {
+    height: 4rem;
     display: block !important;
     position: fixed;
     width: 100%;
@@ -36,7 +48,7 @@
     .container {
       padding: 0;
       margin: 0;
-      height: 5em;
+      height: 4em;
       line-height: 5.5em;
       background: $light-background-color;
       .header-logo {
@@ -164,9 +176,6 @@
     }
   }
 
-  #dynamic-to-top {
-    display: none !important;
-  }
   .footer {
     height: 3rem;
     width: 100%;
@@ -175,15 +184,44 @@
     padding-top: 2em;
   }
 
+  #dynamic-to-top {
+    display: none !important;
+  }
+
+  .main {
+    padding-top: 4.3em;
+  }
+
+  .post-cover img {
+    height: 20vh;
+  }
+
   .post-warp {
-    padding-top: 6em;
+    padding-top: 0rem;
     .archive-item-date {
       display: none;
     }
+
     .categories-card {
+      margin-top: 0rem;
+
       .card-item {
+        margin-top:0rem;
         width: 95%;
+        min-height: 0;
       }
+    }
+
+    .post-content {
+      padding-top: 1rem;
+    }
+
+    .post-copyright {
+      margin-top: 1rem;
+    }
+
+    .post-comment {
+      padding-top: 1rem;
     }
   }
 }
@@ -191,13 +229,11 @@
 
 
 /* iPads (portrait and landscape) ----------- */
-
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {}
 
 
 
 /* Desktops and laptops ----------- */
-
 @media only screen and (min-width: 1224px) {
   .navbar-mobile {
     display: none;
@@ -207,7 +243,6 @@
 
 
 /* Large screens ----------- */
-
 @media only screen and (min-width: 1824px) {
   /* Styles */
 }
@@ -215,7 +250,6 @@
 
 
 /* Dark Mode */
-
 @media (prefers-color-scheme: dark) {
   body {
     background-color: $dark-background-color;

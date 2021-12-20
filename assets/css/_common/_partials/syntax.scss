@@ -1,5 +1,8 @@
 .highlight {
   position: relative;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-bottom: 2em;
 
   .copy-code-button {
     display: inline-block;
@@ -76,12 +79,12 @@ code {
   }
 
   &:hover::-webkit-scrollbar-thumb {
-    background-color: $light-scrollbar-thumb-color;
+    background-color: $dark-scrollbar-thumb-color;
     height: $scrollbar-thickness;
 
-    .dark-theme & {
-      background-color: $dark-scrollbar-thumb-color;
-    }
+    // .dark-theme & {
+    //   background-color: $dark-scrollbar-thumb-color;
+    // }
 
     &:hover {
       background-color: $light-scrollbar-thumb-hover-color;
@@ -99,6 +102,10 @@ code {
   }
 }
 
+div.chroma {
+  border-radius: 18px;
+}
+
 /* Other */
 .chroma .x {}
 
@@ -111,9 +118,42 @@ code {
 /* LineTableTD */
 .chroma .lntd {
   vertical-align: top;
-  padding: 0;
-  margin: 0;
+  padding: 0 !important;
+  margin: 0 !important;
   border: 0;
+
+  pre.chroma > code {
+    border-radius: 0px;
+
+    // fix 首行高亮时，表格行号首行水平错位
+    margin-left: 0 !important;
+
+    // fix 表格行号首行垂直未对齐
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    
+    background-color: $light-code-notclass-background-color;
+    .dark-theme & {
+      background-color: $dark-code-notclass-background-color;
+    }
+  }
+
+  &:first-child {
+    width: 0;
+    left: 0px;
+    position: sticky;
+    z-index: 1;
+  
+    border-right: 1px dotted #7f7f7f !important;
+    background-color: $light-code-notclass-background-color;
+    .dark-theme & {
+      background-color: $dark-code-notclass-background-color;
+    }
+  }
+
+  &:last-child {
+    overflow-x: hidden;
+  }
 }
 
 /* LineTable */
@@ -122,9 +162,23 @@ code {
   padding: 0;
   margin: 0;
   border: 0;
-  width: auto;
+  width: 100%;
   overflow: auto;
-  display: block;
+  display: table;
+  box-shadow: 0 0 0 rgba(0,0,0,.125) !important;
+
+  tr {
+    td {
+      border-width: 0px !important;
+
+      pre.chroma {
+        overflow: auto;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-right: 0;
+      }
+    }
+  }
 }
 
 /* LineHighlight */
@@ -152,6 +206,14 @@ code {
   -khtml-user-select: none;
   /*早期浏览器*/
   user-select: none;
+
+  left: 0;
+  position: sticky;
+  z-index: 1;
+  background-color: $light-code-notclass-background-color;
+  .dark-theme & {
+    background-color: $dark-code-notclass-background-color;
+  }
 
   margin-right: 0.4em;
   padding: 0 0.4em 0 0.4em;
