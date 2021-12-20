@@ -97,23 +97,29 @@ _Blog.addCopyBottons = function () {
 
   function copyButtons (clipboard) {
     document.querySelectorAll('pre > code').forEach(function (codeBlock) {
-      var button = document.createElement('button')
-      button.className = 'copy-code-button'
-      button.type = 'button'
-      button.innerText = 'Copy'
+      let button = document.createElement('button');
+      button.className = 'copy-code-button';
+      button.type = 'button';
+      button.innerText = 'Copy';
+      let isLntable = codeBlock.parentNode.parentNode.classList.contains('lntd');
 
       button.addEventListener('click', function () {
-        // 20210303 fix #2,#4
-        codes = []
-        zip(
-          codeBlock.querySelectorAll('span.ln'),
-          codeBlock.innerText.split('\n'))
-          .forEach(codeMap => {
-            if (codeMap[0] && codeMap[1]) {
-              codes.push(codeMap[1].replace(codeMap[0].innerText, ''))
-            }
-          })
-        codeText = codes.join('\n')
+        if (isLntable) {
+          codeText = codeBlock.innerText;
+        } else {
+          // 20210303 fix #2,#4
+          // Fixme: 当代码框内有高亮代码是时，复制按钮的排除行号功能存在异常
+          codes = [];
+          zip(
+            codeBlock.querySelectorAll('span.ln'),
+            codeBlock.innerText.split('\n'))
+            .forEach(codeMap => {
+              if (codeMap[0] && codeMap[1]) {
+                codes.push(codeMap[1].replace(codeMap[0].innerText, ''))
+              }
+            });
+          codeText = codes.join('\n');
+        }
 
         clipboard.writeText(codeText).then(function () {
           /* Chrome doesn't seem to blur automatically,
@@ -130,9 +136,15 @@ _Blog.addCopyBottons = function () {
         })
       })
 
-      var pre = codeBlock.parentNode
+      let pre = codeBlock.parentNode;
+      let highlight = null;
+
       if (pre.parentNode.classList.contains('highlight')) {
-        var highlight = pre.parentNode
+        highlight = pre.parentNode
+      } else if (isLntable && !codeBlock.querySelectorAll('span.lnt').length) {
+        highlight = pre.parentNode.parentNode
+      }
+      if (highlight) {
         highlight.appendChild(button)
       }
     })
