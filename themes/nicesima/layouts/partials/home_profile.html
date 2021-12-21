@@ -1,14 +1,21 @@
 <div class="intro">
   {{ if .Site.Params.Avatar }}
+
   {{ $avatar := .Site.Params.Avatar }}
+  {{ if ne (or (eq (substr $avatar 0 7) "http://") (eq (substr $avatar 0 8) "https://")) }}
+  {{ $avatar = $avatar | relURL }}
+  {{ end }}
+
   <div class="avatar">
-    <a href="{{ .Site.Params.DefaultLink | default "/posts" }}"> <img src="{{ (printf "%s" $avatar) }}"> </a>
+    <a href="{{ .Site.Params.DefaultLink | default "/posts" }}">
+      <img src="{{ $avatar }}" alt="profile image">
+    </a>
   </div>
   {{ end }}
 
   {{ with .Site.Params.Subtitle | default .Site.Params.Description | default .Site.Params.Author }}
   <div id="subtitle"></div>
-  </body>
+
   <script>
     let divTyping = document.getElementById('subtitle')
     let i = 0,

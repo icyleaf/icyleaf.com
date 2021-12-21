@@ -1,7 +1,7 @@
 .post-warp {
   .intro {
     transform: translateY(0);
-    margin: 2em 0 5em 0;
+    margin: 2em 0;
 
     .avatar {
       img {
@@ -10,51 +10,91 @@
     }
   }
 
-  .post {
-    margin-bottom: 4em;
-    border-bottom: 1px dashed #ddd;
+  .post-block {
+    display: block;
+    position: relative;
+    margin: 1rem 0;
+    padding: 1.2rem;
+    background: $light-background-color;
+    border-radius: 6px;
+    transition: transform .1s;
+    border: 1px solid $light-border-color;
 
-    .post-content {
-      padding-top: .5em;
+    .dark-theme & {
+      background: $dark-background-color;
+      border-color: $dark-border-color;
     }
 
-    .post-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    &:hover {
+      cursor: pointer;
+      box-shadow: 0 3px 5px $light-box-shadow-color;
+      transition:transform .33s ease-out, box-shadow .33s ease-out;
 
-      .post-meta {
-        a {
-          color: rgba(85, 85, 85, 0.52941) !important;
-          .dark-theme & {
-            color: $dark-font-secondary-color !important;
-          }
-
-          &:hover {
-            color: $light-font-secondary-color !important;
-            .dark-theme & {
-              color: $dark-font-secondary-color !important;
-            }
-          }
-        }
+      .dark-theme & {
+        background: $dark-navbar-background-color;
+        box-shadow: 0 3px 5px $dark-box-shadow-color;
       }
-      .post-tags {
-        span {
+
+      .post-header {
+        h1 {
           a {
-            color: rgba(85, 85, 85, 0.52941) !important;
-            .dark-theme & {
-              color: $dark-font-secondary-color !important;
-            }
+            color: $light-post-link-hover-color;
 
-            &:hover {
-              color: $light-font-secondary-color !important;
-              .dark-theme & {
-                color: $dark-font-secondary-color !important;
-              }
+            .dark-theme & {
+              color: $dark-post-link-hover-color;
             }
           }
         }
       }
+    }
+
+    .post-header {
+      h1 {
+        font-size: 1.8em;
+        font-weight: 600;
+        margin: 0 0 0.33rem;
+      }
+
+      img.cover {
+        max-width: 100%;
+        width: 100%;
+        height: auto;
+        max-height: 450px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+    }
+
+    .post-content {
+      padding-top: 0.3rem;
+      color: $light-font-secondary-color;
+    }
+  }
+
+  .post-inline {
+    display: block;
+    padding: 1.2rem;
+    border-radius: 6px;
+    transition: transform .1s;
+    border: 0px;
+    margin-bottom: 0.5rem;
+
+    &:hover {
+      background-color: $light-border-color;
+      cursor: pointer;
+    }
+
+    .post-header {
+      h1 {
+        font-size: 1.2em;
+        font-weight: 600;
+        margin: 0 0 0.33rem;
+      }
+    }
+
+    .post-content {
+      padding-top: 0.3rem;
+      color: $light-font-secondary-color;
     }
   }
 }
