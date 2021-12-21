@@ -27,8 +27,13 @@ $light-pagination-link-active-color: #000;
 
 $light-border-color: #dcdcdc;
 
+$light-blockquote-board-color: #2d96bd;
+$light-blockquote-background-color: #f1f1f1;
+
 $light-scrollbar-thumb-color: #EEEEEE;
 $light-scrollbar-thumb-hover-color: #DDDDDD;
+
+$light-box-shadow-color: #ccc;
 
 
 /** dark theme **/
@@ -54,9 +59,11 @@ $dark-pagination-link-active-color: #fff;
 
 $dark-border-color: #4a4b50;
 
+$dark-blockquote-board-color: #4a4b50;
 $dark-blockquote-background-color: #252529;
-
 
 $dark-scrollbar-track-color: rgb(37, 37, 37);
 $dark-scrollbar-thumb-color: #666;
 $dark-scrollbar-thumb-hover-color: #666;
+
+$dark-box-shadow-color: rgb(71, 71, 71);

@@ -13,6 +13,7 @@
   max-width: 780px; //calc(100% - 4.4rem);
   margin: 0 auto;
   padding-top: 2rem;
+  font-size: 1.2em;
 
   .post-header h1 {
     margin: 0 !important;
@@ -51,6 +52,7 @@
 
   .post-content {
     padding-top: 2rem;
+    word-break: break-all;
 
     // 隐藏文字
     .spoiler {
@@ -180,7 +182,6 @@
   }
 
   p {
-    font-size: 1.2em;
     margin: .5em 0;
     line-height: 1.75;
   }
@@ -217,6 +218,8 @@
       display: table;
     }
 
+    padding: 1rem 0 1rem;
+
     & a.prev,
     & a.next {
       font-weight: 600;
@@ -250,5 +253,52 @@
   .post-comment{
     clear: both;
     padding-top: 2rem;
+  }
+
+  // updated shortcode
+  .updated {
+    position: relative;
+    -webkit-box-flex: 1;
+    min-width: 0;
+    border-radius: 10px;
+    border: 1px solid $light-border-color;
+    background-color: $light-background-color;
+    margin-top: 1.4rem;
+    margin-bottom: 1.4rem;
+
+    .dark-theme & {
+      border: 1px solid $dark-border-color;
+      background-color: $dark-background-color;
+    }
+
+    .updated-header {
+      background: $light-scrollbar-thumb-color;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      padding: 1em 1.5em;
+      position: relative;
+
+      .dark-theme & {
+        color: $dark-post-link-color;
+        background: $dark-code-notclass-background-color;
+      }
+
+      h4.updated-title {
+        padding: 0;
+        line-height: 1.5;
+        font-size: 2em;
+      }
+
+      .updated-meta {
+        margin: 0;
+        font-size: 1.2rem;
+        color: $light-font-secondary-color;
+        font-weight: 600;
+      }
+    }
+
+    .updated-body {
+      padding: 1.3em;
+    }
   }
 }

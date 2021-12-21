@@ -1,16 +1,15 @@
 baseurl: https://icyleaf.com/
 title: icyleaf
 theme: nicesima
-languageCode: zh-cn
+languageCode: zh
+defaultContentLanguage: zh
+disableHugoGeneratorInject: true
 hasCJKLanguage: true
 enableEmoji: true
 enableRobotsTXT: true
 paginate: 20
 
-MetaDataFormat: yaml
 canonifyURLs: true
-
-disqusShortname: icyleaf
 
 pygmentsUseClasses: true # 使用自定义的代码高亮样式
 markup:
@@ -27,14 +26,19 @@ markup:
     style: tomorrow-night
     tabWidth: 4
 
+
 params:
   # global settings
+  home_mode: posts
   author: icyleaf
   avatar: images/icyleaf-icon.png
   description: 日常写代码热爱户外的梦想家
+  subtitle: 你好，我是 icyleaf
   since: 2005
   mark: 🍺
+  disqusShortname: icyleaf
   hideHUGOSupport: true
+  hidePermalink: true
   googleAnalyticsUserID: UA-2570916-5
 
   socials:
@@ -58,13 +62,16 @@ permalinks:
   posts: /:year/:month/:slug
   page: /:filename
 
+# disable all taxnomies
+taxonomies:
+
 menu:
   main:
-    - name: Posts
-      weight: 10
-      identifier: posts
-      url: /posts
     - name: About
-      weight: 100
+      weight: 50
       identifier: about
       url: /about
+    - name: Feed
+      weight: 100
+      identifier: feed
+      url: /index.xml

@@ -7,11 +7,13 @@ tags:
 - Riding
 - 呼伦贝尔
 slug: "riding-to-hulunbeier"
-
+image: images/hulunbeier-riding-view.jpg
 ---
 
-> 完成于 2013 年端午节期间，成果和照片：http://www.douban.com/photos/album/107796607/
-
+{{< updated at="2013-07-01" >}}
+完成于 2013 年端午节期间，成果和照片：
+http://www.douban.com/photos/album/107796607/
+{{< /updated >}}
 
 # 呼伦贝尔骑行计划书
 
@@ -38,7 +40,7 @@ slug: "riding-to-hulunbeier"
 
 ## 地图
 
-![呼伦贝尔旅行地图](https://a248.e.akamai.net/camo.github.com/988c0672d95ae894e0e5b1fe4f08253203eea467/687474703a2f2f70686f746f322e626162616269616e2e636f6d2f75706c6f6164362f32303133303532322f36423134393433344242414132313139394435414631354642383130463344315f3830302e6a7067)
+![呼伦贝尔旅行地图](/images/hulunbeier-riding-roadmap.jpg)
 
 ## 计划修订
 

@@ -11,9 +11,11 @@ tags:
 title: Docker 摸爬滚打对抗 CentOS 6
 ---
 
-> 2018年10月18日更新：
+{{< updated at="2018-10-09" >}}
 
-国庆期间恰巧服务器硬盘故障且运维并没有做 raid 备份，给更换了一台新内部服务器，索性升级到了 CentOS 7，因此针对 CentOS 6 安装 Docker 的答疑不再更新。
+国庆期间恰巧服务器硬盘故障且运维并没有做 raid 备份，给更换了一台新内部服务器，索性升级到了 CentOS 7，因此针对 CentOS 6 安装 Docker 的答疑不再更新。
+
+{{< /updated >}}
 
 ## 前言
 
@@ -103,8 +105,6 @@ root     26873  0.0  0.0 103332   876 pts/2    S+   18:16   0:00 grep docker -d
 频次不高原因未知，因此还未重视。
 
 #### 2. Docker Web 管理工具
-
-> 2018年10月更新：
 
 推荐使用 [portainer](https://github.com/portainer/portainer) ，兼容 1.7 的部分功能可能会发生部分功能和参数无法显示但不影响使用。之前我有推荐 rancher（可参考前篇文章：[如何在 OS X 上安装 Rancher
 ](http://icyleaf.com/2016/08/how-to-install-rancher-on-osx/)），但 rancher 官方要求 docker 最低版本是 1.9+。

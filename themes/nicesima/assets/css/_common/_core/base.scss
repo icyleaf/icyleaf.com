@@ -90,18 +90,20 @@ a {
 
 blockquote {
   // font: 14px/22px normal helvetica, sans-serif;
+  font-size: 0.9em;
   margin-top: 10px;
   margin-bottom: 10px;
-  margin-left: 2%;
-  margin-right: 0%;
+  margin-left: 1%;
+  margin-right: 1.5%;
   padding-left: 15px;
   padding-top: 10px;
   padding-right: 10px;
   padding-bottom: 10px;
-  border-left: 3px solid #ccc;
-  background-color:#f1f1f1;
+  border-left: 6px solid $light-blockquote-board-color;
+  background-color: $light-blockquote-background-color;
 
   .dark-theme & {
-    background-color:$dark-blockquote-background-color;
+    background-color: $dark-blockquote-background-color;
+    border-color: $dark-blockquote-board-color;
   }
 }

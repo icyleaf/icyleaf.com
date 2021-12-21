@@ -2,7 +2,7 @@
 title: "如何在 OS X 上安装 Rancher"
 slug: "how-to-install-rancher-on-osx"
 date: "2016-08-05T17:21:08+08:00"
-image: http://docs.rancher.com/img/rancher/rancher_overview_2.png
+image: images/rancher_overview.png
 comments: true
 categories:
   - Technology

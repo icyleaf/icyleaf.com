@@ -38,9 +38,10 @@ Here is a table showing the similarities and differences between [nicesima](http
 | TeX Functions                   | inherit      | Yes                                                          |         |
 | PlantUML                        | inherit      | Yes                                                          |         |
 | BiliBili video (shortcodes)     | inherit      | Yes                                                          |         |
+| Updated (shortcodes)            | inherit      | Yes                                                          |         |
 | Hidden text (shortcodes)        | Optimization | Yes                                                          |         |
 | Easy-searched text (shortcodes) | Yes          |                                                              |         |
-| Social button                   | Optimization | Yes                                                          | Yes     |
+| Social button                   |              | Yes                                                          | Yes     |
 | TOC                             | Yes          |                                                              |         |
 | lightGallery                    |              |                                                              | Yes     |
 
@@ -331,15 +332,16 @@ Then edit in `config.toml`:
 There are few configuration options you can add to your `config.toml` file.
 
 ```toml
-baseURL = ""            # <head> 里面的 baseurl 信息，填你的博客地址
-title = ""              # 浏览器的标题
-languageCode = "zh-cn"  # 语言
-hasCJKLanguage = true   # 开启可以让「字数统计」统计汉字
-theme = "nicesima"      # 主题
+baseURL = ""                  # <head> 里面的 baseurl 信息，填你的博客地址
+title = ""                    # 浏览器的标题
+defaultContentLanguage: zh-cn # 文字语言
+languageCode = "zh-cn"        # HTML 标记语音
+hasCJKLanguage = true         # 开启可以让「字数统计」统计汉字
+theme = "nicesima"            # 主题
 
-paginate = 11           # 每页的文章数
-enableEmoji = true      # 支持 Emoji
-enableRobotsTXT = true  # 支持 robots.txt
+paginate = 15                 # 每页的文章数
+enableEmoji = true            # 支持 Emoji
+enableRobotsTXT = true        # 支持 robots.txt
 
 # Chroma 代码高亮 http://gohugo.io/content-management/syntax-highlighting/
 pygmentsUseClasses=true # 使用自定义的代码高亮样式
@@ -409,5 +411,4 @@ pygmentsUseClasses=true # 使用自定义的代码高亮样式
     createIssueManually = false # If it is 'false', it is auto to make a Github issue when the administrators login.
     distractionFreeMode = true # Enable hot key (cmd|ctrl + enter) submit comment.
     proxy = "" # the proxy built by cors-anywhere,.etc.
-
 ```
