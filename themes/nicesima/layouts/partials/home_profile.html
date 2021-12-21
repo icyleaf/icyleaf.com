@@ -2,7 +2,7 @@
   {{ if .Site.Params.Avatar }}
   {{ $avatar := .Site.Params.Avatar }}
   <div class="avatar">
-    <a href="{{ .Site.Params.DefaultLink | default "/posts" }}"> <img src="{{ (printf "%s" $avatar)}}"> </a>
+    <a href="{{ .Site.Params.DefaultLink | default "/posts" }}"> <img src="{{ (printf "%s" $avatar) }}"> </a>
   </div>
   {{ end }}
 

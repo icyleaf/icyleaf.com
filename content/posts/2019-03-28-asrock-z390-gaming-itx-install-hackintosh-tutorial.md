@@ -17,13 +17,13 @@ isCJKLanguage: true
 share: true
 
 ---
-> 2021-04-14 更新：
->
-> 系统升级至 Big Sur 之后已经从 Clover 该用 OpenCore 可从 [EFI 仓库](https://github.com/icyleaf/EFI-ASRock-Z390-Phantom-Gaming-ITX)查看历史变更。
->
-> 2019-04-01 更新：
->
-> 更新疑惑解答无线网络慢的解决方案。
+
+{{< updated at="2021-04-14" >}}
+
+- 系统升级至 Big Sur 之后已经从 Clover 该用 OpenCore 可从 [EFI 仓库](https://github.com/icyleaf/EFI-ASRock-Z390-Phantom-Gaming-ITX)查看历史变更。
+- 更新疑惑解答无线网络慢的解决方案。
+
+{{< /updated >}}
 
 春节前购入一台式机挖坑要写黑苹果安装教程，本来计划是 3 月初整理完毕期间赶上辞职彻底放飞自我，加上无法忍受编辑视频的龟毛速度购入一块 rx580 矿卡使用一周后良好，立马开始填坑。
 

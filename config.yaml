@@ -1,9 +1,9 @@
 baseurl: https://icyleaf.com/
 title: icyleaf
 theme: nicesima
-defaultContentLanguage: zh-cn
+languageCode: zh
+defaultContentLanguage: zh
 disableHugoGeneratorInject: true
-languageCode: zh-cn
 hasCJKLanguage: true
 enableEmoji: true
 enableRobotsTXT: true
@@ -29,6 +29,7 @@ markup:
 
 params:
   # global settings
+  # home_mode: posts
   author: icyleaf
   avatar: images/icyleaf-icon.png
   description: 日常写代码热爱户外的梦想家

@@ -3,7 +3,7 @@ title: "Kohana 官方 2.3，2.4，3.0 的最终裁决！"
 date: "2009-07-24T12:34:56+08:00"
 categories:
   - Technology
-tags: 
+tags:
 - PHP
 - Kohana
 slug: "official-2-3-2-4-3-0-decisions"
