@@ -38,9 +38,10 @@ Here is a table showing the similarities and differences between [nicesima](http
 | TeX Functions                   | inherit      | Yes                                                          |         |
 | PlantUML                        | inherit      | Yes                                                          |         |
 | BiliBili video (shortcodes)     | inherit      | Yes                                                          |         |
+| Updated (shortcodes)            | inherit      | Yes                                                          |         |
 | Hidden text (shortcodes)        | Optimization | Yes                                                          |         |
 | Easy-searched text (shortcodes) | Yes          |                                                              |         |
-| Social button                   | Optimization | Yes                                                          | Yes     |
+| Social button                   |              | Yes                                                          | Yes     |
 | TOC                             | Yes          |                                                              |         |
 | lightGallery                    |              |                                                              | Yes     |
 
