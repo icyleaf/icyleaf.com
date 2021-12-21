@@ -3,26 +3,15 @@
   <header class="post-header">
     <h1 class="post-title" itemprop="name headline">{{ .Title }}</h1>
     <div class="post-meta">
-      Written by <a itemprop="name" href="{{.Site.BaseURL }}" rel="author">{{ if isset .Params "author" }}{{ .Params.author }}{{ else }}{{ .Site.Params.author }}{{ end }}</a> with ♥
-      <span class="post-time">
-      on <time datetime={{.Date.Format (.Site.Params.dateFormatToUse | default "2006-01-02") }} itemprop="datePublished">{{ .Date.Format (.Site.Params.dateFormatToUse | default "January 2, 2006") }}</time>
-      </span>
-      in
-      {{ with .Params.categories }}
-      <i class="iconfont icon-folder"></i>
-      <span class="post-category">
-        {{ range . }}
-        {{ $name := . }}
-        {{ with $.Site.GetPage "taxonomy" (printf "categories/%s" $name) | default ($.Site.GetPage "taxonomy" (printf "categories/%s" ($name | urlize))) }}
-          <a href="{{ .Permalink }}"> {{ $name }}, </a>
-        {{ end }}
-        {{ end }}
-      </span>
-      {{- end }}
-
+      <time datetime={{.Date.Format (.Site.Params.dateFormatToUse | default "2006-01-02") }} itemprop="datePublished">{{ .Date.Format (.Site.Params.dateFormatToUse | default "January 2, 2006") }}</time>
+      ·
+      {{ with .Params.tags }}
+      <span class="tags">{{ range $index, $value := . }}{{ if gt $index 0 }}, {{ end }}{{ $value }}{{ end }}</span>
+      {{ end }}
+      ·
       <span class="post-word-count">
         {{- $readTime := mul (div .WordCount 220.0) 60 -}}
-        {{ .WordCount }} words {{ math.Floor (div $readTime 60) }} minutes reading
+        {{ .WordCount }} words · {{ math.Floor (div $readTime 60) }} minutes
       </span>
     </div>
   </header>
@@ -88,29 +77,15 @@
       {{ end }}
     </div>
 
+    {{ with .Site.Params.license }}
     <div class="post-copyright">
-      {{ with .Site.Params.author }}
-      <p class="copyright-item">
-        <span>Author:</span>
-        <span>{{ . }} </span>
-      </p>
-      {{ end }}
-
-      {{ with .Permalink }}
-      <p class="copyright-item">
-        <span>Link:</span>
-        <a href={{ . }}>{{ . }}</a>
-      </p>
-      {{ end }}
-
-      {{ with .Site.Params.license }}
       <p class="copyright-item lincese">
         {{ . | safeHTML}}
       </p>
-      {{ end }}
     </div>
+    {{ end }}
 
-    <div class="post-tags">
+    <!-- <div class="post-tags">
       {{ with .Params.tags }}
         <section>
         <i class="iconfont icon-tag"></i>Tag(s):
@@ -125,6 +100,7 @@
         <span><a href="{{ .Site.BaseURL }}">home</a></span>
       </section>
     </div>
+    -->
 
     <div class="post-nav">
       {{ if .PrevInSection }}
@@ -137,7 +113,7 @@
 
     <div class="post-comment">
       {{ if ( $.Params.Comments | default true ) }}
-        {{ if ne .Site.DisqusShortname "" }}
+        {{ if ne .Site.Params.DisqusShortname "" }}
           {{ template "_internal/disqus.html" . }}
         {{ else if .Site.Params.enableGitalk }}
           {{ partial "gitalk.html" . }}
