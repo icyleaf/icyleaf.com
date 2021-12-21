@@ -3,7 +3,7 @@ title: "新疆随笔之五"
 date: "2009-11-26T12:34:56+08:00"
 categories:
   - Life
-tags: 
+tags:
 - 旅行
 - 游记
 slug: "xinjiang-diary-5"
