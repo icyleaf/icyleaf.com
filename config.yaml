@@ -34,7 +34,7 @@ params:
   description: 日常写代码热爱户外的梦想家
   since: 2005
   mark: 🍺
-  hideHUGOSupport: false
+  hideHUGOSupport: true
   googleAnalyticsUserID: UA-2570916-5
 
   socials:
@@ -64,14 +64,6 @@ menu:
       weight: 10
       identifier: posts
       url: /posts
-    - name: Tags
-      weight: 20
-      identifier: tags
-      url: /tags
-    - name: Categories
-      weight: 20
-      identifier: categories
-      url: /categories
     - name: About
       weight: 100
       identifier: about
