@@ -37,12 +37,10 @@
 
       .post-header {
         h1 {
-          a {
-            color: $light-post-link-hover-color;
+          color: $light-post-link-hover-color;
 
-            .dark-theme & {
-              color: $dark-post-link-hover-color;
-            }
+          .dark-theme & {
+            color: $light-post-link-hover-color;
           }
         }
       }
@@ -81,7 +79,10 @@
 
     &:hover {
       background-color: $light-border-color;
-      cursor: pointer;
+
+      .dark-theme & {
+        background-color: $dark-navbar-background-color;
+      }
     }
 
     .post-header {
@@ -89,6 +90,11 @@
         font-size: 1.2em;
         font-weight: 600;
         margin: 0 0 0.33rem;
+        color: $light-font-color;
+
+        .dark-theme & {
+          color: $dark-post-link-color;
+        }
       }
     }
 

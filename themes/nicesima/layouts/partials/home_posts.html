@@ -13,28 +13,32 @@
     {{ if .Params.image }}
     {{ $img := .Params.image }}
     <article class="post-block">
-      <header class="post-header">
-        <img src="{{ printf "%s" $img }}" class="cover">
-        <h1 class="post-title" itemprop="name headline"><a href="{{ .Permalink }}">{{ .Title }}</a></h1>
-      </header>
-      <div class="post-content">
-        {{ .Summary }}
-        {{ if .Truncated }}
-        ...
-        {{ end }}
-      </div>
+      <a href="{{ .Permalink }}">
+        <header class="post-header">
+          <img src="{{ printf "%s" $img }}" class="cover">
+          <h1 class="post-title" itemprop="name headline">{{ .Title }}</h1>
+        </header>
+        <div class="post-content">
+          {{ .Summary }}
+          {{ if .Truncated }}
+          ...
+          {{ end }}
+        </div>
+      </a>
     </article>
     {{ else }}
     <article class="post-inline">
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline"><a href="{{ .Permalink }}">{{ .Title }}</a></h1>
-      </header>
-      <div class="post-content">
-        {{ .Summary }}
-        {{ if .Truncated }}
-        ...
-        {{ end }}
-      </div>
+      <a href="{{ .Permalink }}">
+        <header class="post-header">
+          <h1 class="post-title">{{ .Title }}</h1>
+        </header>
+        <div class="post-content">
+          {{ .Summary }}
+          {{ if .Truncated }}
+          ...
+          {{ end }}
+        </div>
+      </a>
     </article>
     {{ end }}
   {{ end }}
