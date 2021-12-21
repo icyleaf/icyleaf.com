@@ -12,6 +12,10 @@
   {{ range $index, $page := $paginator.Pages }}
     {{ if .Params.image }}
     {{ $img := .Params.image }}
+    {{ if ne (or (eq (substr $img 0 7) "http://") (eq (substr $img 0 8) "https://")) }}
+    {{ $img = $img | relURL }}
+    {{ end }}
+
     <article class="post-block">
       <a href="{{ .Permalink }}">
         <header class="post-header">
