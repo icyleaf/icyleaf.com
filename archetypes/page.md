@@ -1,8 +1,9 @@
 ---
-title: ""
-date: "2016-07-19T20:12:07+08:00"
+title: "{{ replace .Name "-" " " | title }}"
+date: {{ .Date }}
+slug: "{{ .Name }}"
 image: images/cover.jpg
-menu: ""
+draft: false
 index: false
 comments: false
 isCJKLanguage: true

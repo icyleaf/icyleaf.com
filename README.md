@@ -9,7 +9,7 @@
 
 ### 工具
 
-- [Vultr][vultr-link]: 高性价比且实时计算费用的 SSD VPS（本博客正在使用）
+- [Vultr][vultr-link]: 高性价比且实时计算费用的 SSD VPS
 - [Docker][docker-link]: 高性能、低开销并能够保存数据隔离的 OS 虚拟化解决方案
 - [Alpine Linux][alpine-link]: 开源且超轻量级（Docker 镜像仅 5MB）还具备完整包管理工具的 Linux 发行版
 - [Let's Encrypt][let-encrypt-link]: 免费且好用的 HTTPS 证书
@@ -24,41 +24,7 @@ $ cd blog
 $ [sudo] docker-compose up -d
 ```
 
-### 结构
-
-```
-.
-├── README.md
-├── Dockerfile
-├── docker-compose.yml
-├── archetypes
-│   ├── default.md
-│   └── page.md
-├── config.yaml
-├── content             # 文章内容
-│   ├── page
-│   └── post
-├── layouts
-├── logs                # Docker 生成的 http 日志
-├── public              # 生成的静态文件目录
-├── static
-│   └── images
-└── themes              # hugo 主题
-│   └── ...
-└── system              # Docker 容器所需的资源
-    ├── site
-    │   └── run.sh
-    └── etc
-        └── Caddyfile
-```
-
-关于更多 `docker-compose` 在生产环境下的用法，请看 [Using Compose in production][compose-production-link]
-
-## 支持一下
-
-如果你有兴趣尝试或更换 VPS 的话可以使用我的 [Vultr 推荐链接][vultr-affiliate-link] 你和我都可以获得 $20 美金。
-
-[blog-history-link]: http://icyleaf.com/2015/12/a-history-of-blog-migration/
+[blog-history-link]: https://icyleaf.com/2015/12/a-history-of-my-blog/
 [let-encrypt-link]: https://letsencrypt.org/
 [alpine-link]: http://www.alpinelinux.org/
 [docker-link]: https://www.docker.com/
