@@ -56,11 +56,21 @@
 
     // 隐藏文字
     .spoiler {
-      color: black;
-      background-color:black;
+      color: transparent;
+      text-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+
+      .dark-theme & {
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+      }
     }
+
     .spoiler:hover{
-      color: white;
+      color: $light-font-color;
+      text-shadow: none;
+
+      .dark-theme & {
+        color: $dark-font-color;
+      }
     }
 
     // 嵌入 BiliBili 视频
