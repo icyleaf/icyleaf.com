@@ -4,7 +4,7 @@
 {{ $image := resources.Get $imageUrl }}
 {{ $linkFile := resources.Get $linkUrl }}
 
-{{ $thumbnailSize := .Get "thumbnail-resize" | default "780x" }}
+{{ $thumbnailSize := .Get "thumbnail-resize" | default "800x" }}
 {{ $thumbnail := $image.Resize $thumbnailSize }}
 
 {{ $pswpWidth := .Get "pswp-width" | default $linkFile.Width }}
