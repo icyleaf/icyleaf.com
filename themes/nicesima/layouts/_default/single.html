@@ -21,60 +21,62 @@
   {{ end }}
 
     <div class="post-content">
-      <!--featured_image-->
-      {{ $images := findRE "<img src=\"[^\"|\\\"]*\"" .Content }}
-      {{ if ge (len $images) 1}}
-        {{ $.Scratch.Set "postHasImages" true }}
-      {{ end }}
+      <div id="post-gallery">
+        <!--featured_image-->
+        {{ $images := findRE "<img src=\"[^\"|\\\"]*\"" .Content }}
+        {{ if ge (len $images) 1}}
+          {{ $.Scratch.Set "postHasImages" true }}
+        {{ end }}
 
-      {{ with .Params.featured_image }}
-        {{ $img := . -}}
-        <img src="{{ printf "%s" $img }}" class="featured_image">
-      {{ end }}
-      <!-- end featured_image-->
+        {{ with .Params.featured_image }}
+          {{ $img := . -}}
+          <img src="{{ printf "%s" $img }}" class="featured_image">
+        {{ end }}
+        <!-- end featured_image-->
 
-      {{ $reImgIn := "<img src=\"([^\"]+)\" alt=\"([^\"]+)\">" }}
-      {{ $reImgOut := "<img src=\"$1\" alt=\"$2\" loading=\"lazy\" >" }}
-      {{ $tmpContent := .Content | replaceRE $reImgIn $reImgOut | safeHTML }}
+        {{ $reImgIn := "<img src=\"([^\"]+)\" alt=\"([^\"]+)\">" }}
+        {{ $reImgOut := "<img src=\"$1\" alt=\"$2\" loading=\"lazy\" >" }}
+        {{ $tmpContent := .Content | replaceRE $reImgIn $reImgOut | safeHTML }}
 
-      {{ $reImgTitleIn := "<img src=\"([^\"]+)\" alt=\"([^\"]+)\" title=\"([^\"]+)\">" }}
-      {{ $reImgTitleOut := "<figure><img src=\"$1\" alt=\"$2\" title=\"$3\" loading=\"lazy\" ><figcaption>$3</figcaption></figure>" }}
-      {{ $finalContent := $tmpContent | replaceRE $reImgTitleIn $reImgTitleOut | safeHTML }}
+        {{ $reImgTitleIn := "<img src=\"([^\"]+)\" alt=\"([^\"]+)\" title=\"([^\"]+)\">" }}
+        {{ $reImgTitleOut := "<figure><img src=\"$1\" alt=\"$2\" title=\"$3\" loading=\"lazy\" ><figcaption>$3</figcaption></figure>" }}
+        {{ $finalContent := $tmpContent | replaceRE $reImgTitleIn $reImgTitleOut | safeHTML }}
 
-      {{ $finalContent }}
+        {{ $finalContent }}
 
-      {{ $context := .}}
-      {{ with .Params.relations }}
-      <div class="post-rel">
-        <h2 id="相关文章">相关文章</h2>
-        <ul>
-          {{ range . }}
-            {{ $title := index . 0 | default (index . 1) }}
-            {{ $link := index . 1 }}
-          <li>
-            <a href="{{ ref $context $link }}">{{ $title }}</a>
-          </li>
-          {{ end }}
-        </ul>
+        {{ $context := .}}
+        {{ with .Params.relations }}
+        <div class="post-rel">
+          <h2 id="相关文章">相关文章</h2>
+          <ul>
+            {{ range . }}
+              {{ $title := index . 0 | default (index . 1) }}
+              {{ $link := index . 1 }}
+            <li>
+              <a href="{{ ref $context $link }}">{{ $title }}</a>
+            </li>
+            {{ end }}
+          </ul>
+        </div>
+        {{ end }}
+
+        {{ with .Params.references }}
+        <div class="post-ref">
+          <h2 id="参考链接">参考链接</h2>
+          <ul>
+            {{ range . }}
+              {{ $title := index . 0 | default (index . 1) }}
+              {{ $link := index . 1 }}
+              {{ $author := index . 2 | default nil }}
+            <li>
+              <a href="{{ $link }}">{{ $title }}</a>
+              {{ with $author }}, {{ . }} {{ end }}
+            </li>
+            {{ end }}
+          </ul>
+        </div>
+        {{ end }}
       </div>
-      {{ end }}
-
-      {{ with .Params.references }}
-      <div class="post-ref">
-        <h2 id="参考链接">参考链接</h2>
-        <ul>
-          {{ range . }}
-            {{ $title := index . 0 | default (index . 1) }}
-            {{ $link := index . 1 }}
-            {{ $author := index . 2 | default nil }}
-          <li>
-            <a href="{{ $link }}">{{ $title }}</a>
-            {{ with $author }}, {{ . }} {{ end }}
-          </li>
-          {{ end }}
-        </ul>
-      </div>
-      {{ end }}
     </div>
 
     {{ with .Site.Params.license }}

@@ -1,0 +1,45 @@
+{{ $imageUrl := .Get "src" }}
+{{ $linkUrl := .Get "link" | default $imageUrl }}
+
+{{ $image := resources.Get $imageUrl }}
+{{ $linkFile := resources.Get $linkUrl }}
+
+{{ $thumbnailSize := .Get "thumbnail-resize" | default "780x" }}
+{{ $thumbnail := $image.Resize $thumbnailSize }}
+
+{{ $pswpWidth := .Get "pswp-width" | default $linkFile.Width }}
+{{ $pswpHeight := .Get "pswp-height" | default $linkFile.Height }}
+
+<figure{{ with .Get "class" }} class="{{ . }}"{{ end }}>
+  {{- if $linkUrl -}}
+  <a href="{{ $linkUrl }}" class="gallery-item" target="{{ .Get "target" | default "_blank" }}"
+    {{ with .Get "rel" }} rel="{{ . }}"{{ end }}
+    {{- with $pswpWidth }} data-pswp-width="{{ . }}"{{ end -}}
+    {{- with $pswpHeight }} data-pswp-height="{{ . }}"{{ end -}}
+  >
+  {{- end -}}
+  <img src="{{ $thumbnail.Permalink }}"
+       {{- if or (.Get "alt") (.Get "caption") }}
+       alt="{{ with .Get "alt" }}{{ . }}{{ else }}{{ .Get "caption" | markdownify| plainify }}{{ end }}"
+       {{- end -}}
+       {{- with .Get "width" }} width="{{ . }}"{{ end -}}
+       {{- with .Get "height" }} height="{{ . }}"{{ end -}}
+  /><!-- Closing img tag -->
+  {{- if $linkUrl }}</a>{{ end -}}
+  {{- if or (or (.Get "title") (.Get "caption")) (.Get "attr") -}}
+  <figcaption>
+    {{ with (.Get "title") -}}
+      <h4>{{ . }}</h4>
+    {{- end -}}
+
+    {{- if or (.Get "caption") (.Get "attr") -}}<p>
+      {{- .Get "caption" | markdownify -}}
+      {{- with .Get "attrlink" }}
+          <a href="{{ . }}">
+      {{- end -}}
+      {{- .Get "attr" | markdownify -}}
+      {{- if .Get "attrlink" }}</a>{{ end }}</p>
+    {{- end }}
+  </figcaption>
+  {{- end }}
+</figure>

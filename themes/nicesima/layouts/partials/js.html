@@ -37,6 +37,20 @@
 <script> pangu.spacingPage();</script>
 {{ end }}
 
+{{ $photoswipeLightBox := resources.Get "/photoswipe/photoswipe-lightbox.esm.js" }}
+{{ $photoswipe := resources.Get "/photoswipe/photoswipe.esm.js" }}
+<script type="module">
+  // Include Lightbox
+  import PhotoSwipeLightbox from '{{ $photoswipeLightBox.RelPermalink }}';
+
+  const lightbox = new PhotoSwipeLightbox({
+    gallery: '#post-gallery',
+    children: 'a.gallery-item',
+    pswpModule: '{{ $photoswipe.RelPermalink }}',
+  });
+  lightbox.init();
+</script>
+
 {{ if .Site.Params.googleAnalyticsUserID }}
 {{ if .Site.Params.googleAnalyticsCloudflareWorker }}
   <script>

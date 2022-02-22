@@ -109,5 +109,8 @@ blockquote {
 }
 
 figure {
-  display: inline;
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 2em;
+  margin-inline-start: 0;
 }

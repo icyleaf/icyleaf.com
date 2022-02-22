@@ -66,6 +66,8 @@ permalinks:
 # disable all taxnomies
 taxonomies:
 
+assetDir: static
+
 menu:
   main:
     - name: About

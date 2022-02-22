@@ -2,14 +2,12 @@
 title: "防止电脑操作者患上职业病"
 categories:
   - Life
-tags: 
+tags:
 - 养生
 date: "2008-04-15T12:34:56+08:00"
 slug: "prevention-of-occupational-diseases-computer-operator"
 
 ---
-
-![健康饮食](http://pic.yupoo.com/301.my/9745755669cf/d1potjdt.jpg)
 
 早餐应吃好，营养充分，以保证旺盛的精力，并有足够的热量。
 中餐应多吃含蛋白质高的食物，如瘦猪肉、牛肉、羊肉、鸡鸭、动物内脏、各种鱼、豆类及豆制品。

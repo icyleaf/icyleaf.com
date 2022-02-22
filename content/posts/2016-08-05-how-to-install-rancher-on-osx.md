@@ -13,9 +13,11 @@ tags:
   - Rancher
 ---
 
-Rancher 是 Docker 编排解决方案的一种，好处在于可以做容器编排，网络，存储，负载均衡，还能够支持云服务器（比如 Amazon EC2/Azure/DigitalOcean）也能够兼容 Docker Swarm/Mesos/Kubernetes 等其他的解决方案。自它还没有发布 [1.0](http://rancher.com/announcing-rancher-1-0-ga/) 版本之前也有持续的关注。它自身还有个 [RancherOS](http://www.infoq.com/cn/news/2015/03/rancheros-docker-linux) 对于 CoreOS 也是一个不小的威胁。
+{{< updated at="2022-02-22" >}}
+以下内容写于 Rancker 0.x 版本，后续版本变更比较大本文不再有没有参考。
+{{< /updated >}}
 
-![rancher-intro](http://docs.rancher.com/img/rancher/rancher_overview_2.png)
+Rancher 是 Docker 编排解决方案的一种，好处在于可以做容器编排，网络，存储，负载均衡，还能够支持云服务器（比如 Amazon EC2/Azure/DigitalOcean）也能够兼容 Docker Swarm/Mesos/Kubernetes 等其他的解决方案。自它还没有发布 [1.0](http://rancher.com/announcing-rancher-1-0-ga/) 版本之前也有持续的关注。它自身还有个 [RancherOS](http://www.infoq.com/cn/news/2015/03/rancheros-docker-linux) 对于 CoreOS 也是一个不小的威胁。
 
 由于它提供非常优化的后台管理界面，同时也提供 REST API，日常开发使用中异常的方便。如果非要说出一点不好的，那可能就是它对内存有点小要求：**最小 1GB 内存**，因此如果想放在自己 VPS 上的童鞋需要评估下了。
 
