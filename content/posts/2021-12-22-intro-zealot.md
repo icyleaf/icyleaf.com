@@ -4,7 +4,10 @@ date: 2021-12-22T18:45:06+08:00
 draft: false
 slug: "Intro Zealot"
 categories:
+  - Technology
 tags:
+  - opensource
+  - projects
 image: images/zealot-cover.png
 
 ---
