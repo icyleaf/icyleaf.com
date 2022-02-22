@@ -150,7 +150,20 @@
     }
 
     figure {
-      text-align: center;
+      figcaption {
+        h4 {
+          font-size: 0.9rem;
+          font-weight: 400;
+          padding-top: 0.2em;
+          padding-bottom: 0;
+          color: $light-font-secondary-color;
+
+          .dark-theme & {
+            color: $dark-font-secondary-color;
+          }
+        }
+      }
+
       img:hover{
         cursor: zoom-in;
       }
@@ -188,6 +201,21 @@
       max-width: 100% !important;
       height: auto !important;
       margin: 0 !important;
+    }
+  }
+
+  figure {
+    p {
+      font-size: 0.9rem;
+      font-weight: 400;
+      line-height: normal;
+      padding: 0;
+      margin: 0;
+      color: $light-font-secondary-color;
+
+      .dark-theme & {
+        color: $dark-font-secondary-color;
+      }
     }
   }
 
