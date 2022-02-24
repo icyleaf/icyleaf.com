@@ -1,10 +1,6 @@
 <div class="intro">
   {{ if .Site.Params.Avatar }}
-
-  {{ $avatar := .Site.Params.Avatar }}
-  {{ if ne (or (eq (substr $avatar 0 7) "http://") (eq (substr $avatar 0 8) "https://")) }}
-  {{ $avatar = $avatar | relURL }}
-  {{ end }}
+  {{ $avatar := .Site.Params.Avatar | relURL }}
 
   <div class="avatar">
     <a href="{{ .Site.Params.DefaultLink | default "/posts" }}">
