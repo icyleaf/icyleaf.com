@@ -12,7 +12,6 @@
 {{ $image = resources.Get $imageUrl }}
 {{- end -}}
 
-
 <figure{{ with .Get "class" }} class="{{ . }}"{{ end }}>
 {{- with $image -}}
   {{ $pswpWidth := .Params.Get "pswp-width" | default .Width }}
