@@ -5,49 +5,51 @@
 {{ $imageUrl := .Get "src" }}
 {{ $linkUrl := .Get "link" }}
 
+{{ $pswpWidth := .Get "pswp-width" }}
+{{ $pswpHeight := .Get "pswp-height" }}
+
 {{ $image := resources.Get "404" }}
-{{- if or (hasPrefix $imageUrl "http://") (hasPrefix $imageUrl "https://") -}}
-{{ $image = resources.GetRemote $imageUrl }}
-{{- else -}}
-{{ $image = resources.Get $imageUrl }}
+
+{{- if not (strings.HasSuffix $imageUrl ".svg") }}
+  {{- if or (hasPrefix $imageUrl "http://") (hasPrefix $imageUrl "https://") -}}
+  {{ $image = resources.GetRemote $imageUrl }}
+  {{- else -}}
+  {{ $image = resources.Get $imageUrl }}
+  {{- end -}}
 {{- end -}}
 
-<figure{{ with .Get "class" }} class="{{ . }}"{{ end }}>
-{{- with $image -}}
-  {{ $pswpWidth := .Params.Get "pswp-width" | default .Width }}
-  {{ $pswpHeight := .Params.Get "pswp-height" | default .Height }}
-  {{ $cropped := .Params.Get "cropped" }}
+{{- if $image }}
+  {{ $pswpWidth = .Get "pswp-width" | default $image.Width }}
+  {{ $pswpHeight = .Get "pswp-height" | default $image.Height }}
+  {{ $cropped := .Get "cropped" }}
 
   {{- if le $thumbMinWidth $pswpWidth -}}
     {{ $linkUrl = $imageUrl }}
 
     {{- if eq $thumbMethod "fit" -}}
-    {{ $imageUrl = (.Fit $thumbSize).RelPermalink | relURL }}
+    {{ $imageUrl = ($image.Fit $thumbSize).RelPermalink | relURL }}
     {{- else if eq $thumbMethod "fill" -}}
-    {{ $imageUrl = (.Fill $thumbSize).RelPermalink | relURL }}
+    {{ $imageUrl = ($image.Fill $thumbSize).RelPermalink | relURL }}
     {{- else -}}
-    {{ $imageUrl = (.Resize $thumbSize).RelPermalink | relURL }}
+    {{ $imageUrl = ($image.Resize $thumbSize).RelPermalink | relURL }}
     {{- end -}}
   {{- end -}}
+{{- end -}}
 
-  {{- if $linkUrl -}}
-  <a href="{{ $linkUrl }}" class="gallery-item" target="{{ .Params.Get "target" | default "_blank" }}"
-    {{- with .Params.Get "rel" }} rel="{{ . }}"{{ end -}}
+<figure{{ with .Get "class" }} class="{{ . }}"{{ end }}>
+{{- if $linkUrl -}}
+  <a href="{{ $linkUrl }}" class="gallery-item" target="{{ .Get "target" | default "_blank" }}"
+    {{- with .Get "rel" }} rel="{{ . }}"{{ end -}}
     {{- with $pswpWidth }} data-pswp-width="{{ . }}"{{ end -}}
     {{- with $pswpHeight }} data-pswp-height="{{ . }}"{{ end -}}
   >
   {{- end -}}
   <img src="{{ $imageUrl }}"
-      {{- if or (.Params.Get "alt") (.Params.Get "caption") }}
-      alt="{{ with .Params.Get "alt" }}{{ . }}{{ else }}{{ .Params.Get "caption" | markdownify| plainify }}{{ end }}"
+      {{- if or (.Get "alt") (.Get "caption") }}
+      alt="{{ with .Get "alt" }}{{ . }}{{ else }}{{ .Get "caption" | markdownify| plainify }}{{ end }}"
       {{- end -}}
   /><!-- Closing img tag -->
   {{- if $linkUrl }}</a>{{ end -}}
-{{- else -}}
-<div class="error-image">
-  <p>Can not load image which it was not exist: {{ $imageUrl }}</p>
-</div>
-{{- end -}}
 
 {{- if or (or (.Get "title") (.Get "caption")) (.Get "attr") -}}
 <figcaption>
