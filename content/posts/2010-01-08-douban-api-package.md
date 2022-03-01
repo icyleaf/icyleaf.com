@@ -22,8 +22,8 @@ Douban API Package 是一个使用 PHP 开发且基于 Kohana v3 开发的一个
 
 **安装需求**
 
--   PHP 5.2+ with curl module
--   [Kohana v3][] - 一款纯 PHP 5 框架，它的特点就是**高安全性**，**轻量级代码**，**容易使用**。
+- PHP 5.2+ with curl module
+- [Kohana v3][] - 一款纯 PHP 5 框架，它的特点就是**高安全性**，**轻量级代码**，**容易使用**。
 
 **安装步骤**
 
@@ -59,7 +59,6 @@ $ git submodule add git://github.com/icyleaf/douban.git modules/douban
 	'codebench',  // Benchmarking tool
 ));
 ```
-
 
 **目录结构**
 

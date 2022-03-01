@@ -165,10 +165,12 @@ _Blog.initToc = function () {
   var fixHeight = fix.height();
   var endTop, miss;
   var offsetTop = fix[0].offsetTop;
+
   $('.post-toc-content:not(.always-active) a').click(function (e) {
-   $('.post-toc-content li').removeClass('has-active');
-   $(e.target).parents('.post-toc-content li').addClass('has-active');
+    $('.post-toc-content li').removeClass('has-active');
+    $(e.target).parents('.post-toc-content li').addClass('has-active');
   })
+
   $(window).scroll(function () {
     var docTop = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
     if (end.length > 0) {

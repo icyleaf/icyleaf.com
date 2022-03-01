@@ -111,7 +111,9 @@ share: true
 
 避免广告的嫌疑，淘宝自行搜 `BCM94360CS2 NGFF M.2 转接卡`，买回来的博通网卡 + 转接卡可能是固定好的，我们需要把它拆开。转接卡要固定在框架上面后再把博通网卡插上拧上螺丝，框架上的两个天线随便接博通顶部两侧的插口上。转接卡高度超出框架最初拆下来的金属遮蔽盒不能再装回去。最好把框架固定到主板上就完成了。
 
-![](http://icyleaf.com/images/install-boardcom-module-to-motherboard.jpg)
+{{< figure src="/images/install-boardcom-module-to-motherboard.jpg"
+    title="博通网卡更换步骤图"
+>}}
 
 ### BIOS
 

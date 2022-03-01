@@ -3,7 +3,7 @@ title: "如何制定免费短信提醒新邮件"
 date: "2008-06-16T12:34:56+08:00"
 categories:
   - Technology
-tags: 
+tags:
 - Google
 slug: "how-to-prepare-for-free-sms-alerts-for-new-mail"
 
@@ -16,16 +16,13 @@ slug: "how-to-prepare-for-free-sms-alerts-for-new-mail"
 
 **如果你要设定转发所有的邮件请按照这个步骤：**
 
-这里我拿Gmail做例子，点击设置（settings）-\>
-转发和POP/IMAP（Forwarding and
-POP/IMAP）。勾选“转发邮件副本到（Forward a copy
-of incoming mail
-to）”再在后面填写上你的手机邮箱填上，在保存即可。
+这里我拿Gmail做例子，点击设置（settings）-\> 转发和POP/IMAP（Forwarding and POP/IMAP）。
+勾选“转发邮件副本到（Forward a copy of incoming mail to）”再在后面填写上你的手机邮箱填上，在保存即可。
 
 **如果你要设定转发符合条件的邮件请按照这个步骤：**
 
-同样以Gmail为例子，点击设置（settings）-\>关铝其（Filters），点击新建过滤器（Create
-a new filter)，然后根据提示的配置框填写你指定的参数即可，填写完成后，点击”测试搜索"可以预览你的设置是否符合你的要求，如果没有达到，请重新设置，再测试，直到达成你的要求后点击下一步，然后勾选倒数第二项，“转发到（Forward it to）”然后再在后面填写上你的手机邮箱填上，在保存即可。
+同样以Gmail为例子，点击设置（settings）-\>过滤器（Filters），点击新建过滤器（Create a new filter)，
+然后根据提示的配置框填写你指定的参数即可，填写完成后，点击”测试搜索"可以预览你的设置是否符合你的要求，如果没有达到，请重新设置，再测试，直到达成你的要求后点击下一步，然后勾选倒数第二项，“转发到（Forward it to）”然后再在后面填写上你的手机邮箱填上，在保存即可。
 
 注意：**这两个方法不能同时实现，任选其一**。
 

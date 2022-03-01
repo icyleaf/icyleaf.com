@@ -3,7 +3,7 @@ title: "如何降低胆固醇"
 date: "2007-10-29T12:34:56+08:00"
 categories:
   - Life
-tags: 
+tags:
   - 养生
 slug: "how-to-reduce-cholesterol"
 
@@ -26,12 +26,12 @@ slug: "how-to-reduce-cholesterol"
 
 下面在摘录一些搜索到的信息，给自己同时也给大家做参考。
 
--   [十种食物能吃掉胆固醇][]
--   [27种保持低胆固醇的方法][]
--   [你应该如何降低胆固醇][27种保持低胆固醇的方法]
--   [4类食物能降低胆固醇29%][]
+- [十种食物能吃掉胆固醇][]
+- [27种保持低胆固醇的方法][]
+- [你应该如何降低胆固醇][27种保持低胆固醇的方法]
+- [4类食物能降低胆固醇29%][]
 
-  [详细说明]: http://baike.baidu.com/view/24827.htm
-  [十种食物能吃掉胆固醇]: http://news.xinhuanet.com/health/2006-07/16/content_4840049.htm
-  [27种保持低胆固醇的方法]: http://www.china.com.cn/chinese/health/85030.htm
-  [4类食物能降低胆固醇29%]: http://www.china.com.cn/chinese/health/373873.htm
+[详细说明]: http://baike.baidu.com/view/24827.htm
+[十种食物能吃掉胆固醇]: http://news.xinhuanet.com/health/2006-07/16/content_4840049.htm
+[27种保持低胆固醇的方法]: http://www.china.com.cn/chinese/health/85030.htm
+[4类食物能降低胆固醇29%]: http://www.china.com.cn/chinese/health/373873.htm

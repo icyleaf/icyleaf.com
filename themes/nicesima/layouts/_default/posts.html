@@ -1,5 +1,7 @@
 {{ define "content" }}
 <div class="post-warp archive">
+  自  年共生产 {{ len .Pages }} 篇文章。
+
   {{ range (.Paginate (.Pages.GroupByDate "2006")).PageGroups }}
   <h3>{{ .Key }}</h3>
 

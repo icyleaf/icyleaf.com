@@ -4,12 +4,17 @@ date: 2021-12-22T18:45:06+08:00
 draft: false
 slug: "Intro Zealot"
 categories:
+  - Technology
 tags:
+  - opensource
+  - projects
 image: images/zealot-cover.png
 
 ---
 
-![截图](/images/zealot-showcase.png)
+{{< figure src="/images/zealot-showcase.png"
+    title="Zealot 服务样图"
+>}}
 
 Zealot 是一个为开发者提供快速测试应用核心的应用分发平台，可通过网页、接口（ CI 、CD 服务）上传 iOS 、Android 甚至是 macOS 的应用文件，甚至是连微软 AppCenter 2021 年底还都不支持的 Android aab 格式，全网独一份，撒花！服务会自动解析应用的元数据等信息，上传版本还可以显示丰富的变更日志、甚至是提供给内部看的自定义字段。针对 iOS 测试者提供除了基本获取设备 UDID 的基础上还会提示测试者是否已经有关联的应用可以安装。
 

@@ -36,10 +36,13 @@ params:
   subtitle: 你好，我是 icyleaf
   since: 2005
   mark: 🍺
-  disqusShortname: icyleaf
   hideHUGOSupport: true
   hidePermalink: true
   googleAnalyticsUserID: UA-2570916-5
+  googleAnalyticsCloudflareWorker: https://cfga.icyleaf.com
+
+  # comment system
+  disqusShortname: icyleaf
 
   socials:
     - name: github
@@ -64,6 +67,9 @@ permalinks:
 
 # disable all taxnomies
 taxonomies:
+
+# using process image in figure shortcode
+assetDir: static
 
 menu:
   main:
