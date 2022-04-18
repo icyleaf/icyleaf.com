@@ -1,0 +1,78 @@
+baseurl: https://icyleaf.com/
+title: icyleaf
+theme: nicesima
+languageCode: zh-cn
+hasCJKLanguage: true
+enableEmoji: true
+enableRobotsTXT: true
+paginate: 12
+
+MetaDataFormat: yaml
+canonifyURLs: true
+
+disqusShortname: icyleaf
+
+pygmentsUseClasses: true # 使用自定义的代码高亮样式
+markup:
+  highlight:
+    codeFences: true
+    anchorLineNos: false
+    guessSyntax: false
+    hl_Lines:
+    lineAnchors:
+    lineNoStart: 1
+    lineNos: true
+    lineNumbersInTable: false
+    noClasses: true
+    style: tomorrow-night
+    tabWidth: 4
+
+params:
+  # global settings
+  author: icyleaf
+  avatar: images/icyleaf-icon.png
+  description: 日常写代码热爱户外的梦想家
+  since: 2019
+  mark: 🍺
+  hideHUGOSupport: false
+  googleAnalyticsUserID:
+
+  socials:
+    - name: github
+      link: https://github.com/icyleaf
+    - name: twitter
+      link: https://twitter.com/icyleaf
+    - name: facebook
+      link: https://www.facebook.com/icyleaf
+    - name: linkedin
+      link: https://www.linkedin.com/in/icyleaf
+    - name: instagram
+      link: https://www.instagram.com/icyleaf/
+    - name: douban
+      link: https://www.douban.com/people/icyleaf
+
+  # posts settings
+  toc: true # 是否开启目录
+
+permalinks:
+  posts: /:year/:month/:slug
+  page: /:filename
+
+menu:
+  main:
+    - name: Posts
+      weight: 10
+      identifier: posts
+      url: /posts
+    - name: Tags
+      weight: 20
+      identifier: tags
+      url: /tags
+    - name: Categories
+      weight: 20
+      identifier: categories
+      url: /categories
+    - name: About
+      weight: 100
+      identifier: about
+      url: /about

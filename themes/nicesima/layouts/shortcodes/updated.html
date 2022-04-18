@@ -1,0 +1,16 @@
+{{ $date := .Get "at" }}
+{{ $body := .Inner }}
+
+{{ with $body }}
+<div class="updated">
+  <header class="updated-header">
+    <h4 class="updated-title">{{ i18n "update" }}</h4>
+    {{ with $date }}
+    <p class="updated-meta">{{ time.Format "Jan 2, 2006" $date }}</p>
+    {{ end }}
+  </header>
+  <article class="updated-body">
+    {{ $body | markdownify }}
+  </article>
+</div>
+{{ end }}

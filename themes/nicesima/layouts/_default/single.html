@@ -1,0 +1,128 @@
+{{ define "content" }}
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">{{ .Title }}</h1>
+    <div class="post-meta">
+      <time datetime={{.Date.Format (.Site.Params.dateFormatToUse | default "2006-01-02") }} itemprop="datePublished">{{ .Date.Format (.Site.Params.dateFormatToUse | default "January 2, 2006") }}</time>
+      ·
+      {{ with .Params.tags }}
+      <span class="tags">{{ range $index, $value := . }}{{ if gt $index 0 }}, {{ end }}{{ $value }}{{ end }}</span>
+      {{ end }}
+      ·
+      <span class="post-word-count">
+        {{- $readTime := mul (div .WordCount 220.0) 60 -}}
+        {{ .WordCount }} words · {{ math.Floor (div $readTime 60) }} minutes
+      </span>
+    </div>
+  </header>
+
+  {{ if ( .Site.Params.toc | default true ) }}
+    {{ partial "toc.html" . }}
+  {{ end }}
+
+    <div class="post-content">
+      <div id="post-gallery">
+        <!--featured_image-->
+        {{ $images := findRE "<img src=\"[^\"|\\\"]*\"" .Content }}
+        {{ if ge (len $images) 1}}
+          {{ $.Scratch.Set "postHasImages" true }}
+        {{ end }}
+
+        {{ with .Params.featured_image }}
+          {{ $img := . -}}
+          <img src="{{ printf "%s" $img }}" class="featured_image">
+        {{ end }}
+        <!-- end featured_image-->
+
+        {{ $reImgIn := "<img src=\"([^\"]+)\" alt=\"([^\"]+)\">" }}
+        {{ $reImgOut := "<img src=\"$1\" alt=\"$2\" loading=\"lazy\" >" }}
+        {{ $tmpContent := .Content | replaceRE $reImgIn $reImgOut | safeHTML }}
+
+        {{ $reImgTitleIn := "<img src=\"([^\"]+)\" alt=\"([^\"]+)\" title=\"([^\"]+)\">" }}
+        {{ $reImgTitleOut := "<figure><img src=\"$1\" alt=\"$2\" title=\"$3\" loading=\"lazy\" ><figcaption>$3</figcaption></figure>" }}
+        {{ $finalContent := $tmpContent | replaceRE $reImgTitleIn $reImgTitleOut | safeHTML }}
+
+        {{ $finalContent }}
+
+        {{ $context := .}}
+        {{ with .Params.relations }}
+        <div class="post-rel">
+          <h2 id="相关文章">相关文章</h2>
+          <ul>
+            {{ range . }}
+              {{ $title := index . 0 | default (index . 1) }}
+              {{ $link := index . 1 }}
+            <li>
+              <a href="{{ ref $context $link }}">{{ $title }}</a>
+            </li>
+            {{ end }}
+          </ul>
+        </div>
+        {{ end }}
+
+        {{ with .Params.references }}
+        <div class="post-ref">
+          <h2 id="参考链接">参考链接</h2>
+          <ul>
+            {{ range . }}
+              {{ $title := index . 0 | default (index . 1) }}
+              {{ $link := index . 1 }}
+              {{ $author := index . 2 | default nil }}
+            <li>
+              <a href="{{ $link }}">{{ $title }}</a>
+              {{ with $author }}, {{ . }} {{ end }}
+            </li>
+            {{ end }}
+          </ul>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+
+    {{ with .Site.Params.license }}
+    <div class="post-copyright">
+      <p class="copyright-item lincese">
+        {{ . | safeHTML}}
+      </p>
+    </div>
+    {{ end }}
+
+    <!-- <div class="post-tags">
+      {{ with .Params.tags }}
+        <section>
+        <i class="iconfont icon-tag"></i>Tag(s):
+        {{ range . }}
+        <span class="tag"><a href="{{ "tags/" | absURL }}{{ . | urlize }}/">
+                #{{.}}</a></span>
+        {{ end }}
+        </section>
+      {{ end }}
+      <section>
+        <a href="javascript:window.history.back();">back</a></span> ·
+        <span><a href="{{ .Site.BaseURL }}">home</a></span>
+      </section>
+    </div>
+    -->
+
+    <div class="post-nav">
+      {{ if .PrevInSection }}
+      <a href="{{.PrevInSection.Permalink}}" class="prev" rel="prev" title="{{ .PrevInSection.Title}}"><i class="iconfont icon-left"></i>&nbsp;{{ .PrevInSection.Title}}</a>
+      {{ end }}
+      {{ if .NextInSection }}
+      <a href="{{.NextInSection.Permalink}}" class="next" rel="next" title="{{.NextInSection.Title}}">{{.NextInSection.Title}}&nbsp;<i class="iconfont icon-right"></i></a>
+      {{ end }}
+    </div>
+
+    <div class="post-comment">
+      {{ if ( $.Params.Comments | default true ) }}
+        {{ if ne .Site.Params.DisqusShortname "" }}
+          {{ template "_internal/disqus.html" . }}
+        {{ else if .Site.Params.enableGitalk }}
+          {{ partial "gitalk.html" . }}
+        {{ else if .Site.Params.enableUtteranc }}
+          {{ partial "utteranc.html" . }}
+        {{ end }}
+      {{ end }}
+    </div>
+</article>
+{{ end }}

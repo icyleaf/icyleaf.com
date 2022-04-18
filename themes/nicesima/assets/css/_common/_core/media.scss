@@ -1,0 +1,276 @@
+// Phones
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+
+  blockquote, code, pre code {
+    white-space: pre-wrap;       /* css-3 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-break: break-word;       /* Internet Explorer 5.5+ */
+    word-wrap: break-word;
+  }
+
+  pre {
+    font-size: .95rem;
+  }
+
+  .navbar {
+    display: none;
+  }
+
+  .navbar-mobile {
+    height: 4rem;
+    display: block !important;
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+    transition: all 0.6s ease 0s;
+    // 顶部阅读进度条
+    .content_progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 9999;
+      width: 100%;
+      height: 3px;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      border: none;
+      background-color: transparent;
+      color: #ef3982;
+    }
+    .content_progress::-webkit-progress-bar {
+      background-color: transparent;
+    }
+    .content_progress::-webkit-progress-value {
+      background-color: #ef3982;
+    }
+    .content_progress::-moz-progress-bar {
+      background-color: #ef3982;
+    }
+    .container {
+      padding: 0;
+      margin: 0;
+      height: 4em;
+      line-height: 5.5em;
+      background: $light-background-color;
+      .header-logo {
+        font-weight: bold;
+        font-size: x-large;
+        font-family: 'Lobster', cursive;
+      }
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding-right: 1em;
+        padding-left: 1em;
+        box-sizing: border-box;
+        position: fixed;
+        z-index: 10;
+
+        .navbar-right {
+          display: flex;
+          align-items: center;
+          i {
+            padding: 0 8px;
+            float: left;
+            font-size: 30px;
+          }
+        }
+
+        .menu-toggle {
+          cursor: pointer;
+          line-height: 5.5em;
+
+          span {
+            display: block;
+            background: #000;
+            width: 36px;
+            height: 2px;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            -webkit-transition: .25s margin .25s, .25s transform;
+            -moz-transition: .25s margin .25s, .25s transform;
+            transition: .25s margin .25s, .25s transform;
+
+            .dark-theme & {
+              background: $dark-font-color;
+            }
+          }
+
+          span:nth-child(1) {
+            margin-bottom: 8px;
+          }
+          span:nth-child(3) {
+            margin-top: 8px;
+          }
+
+          &.active {
+            span {
+              -webkit-transition: .25s margin, .25s transform .25s;
+              -moz-transition: .25s margin, .25s transform .25s;
+              transition: .25s margin, .25s transform .25s;
+            }
+            span:nth-child(1) {
+              -moz-transform: rotate(45deg) translate(4px, 6px);
+              -ms-transform: rotate(45deg) translate(4px, 6px);
+              -webkit-transform: rotate(45deg) translate(4px, 6px);
+              transform: rotate(45deg) translate(4px, 6px);
+            }
+
+            span:nth-child(2) {
+              opacity: 0
+            }
+
+            span:nth-child(3) {
+              -moz-transform: rotate(-45deg) translate(8px, -10px);
+              -ms-transform: rotate(-45deg) translate(8px, -10px);
+              -webkit-transform: rotate(-45deg) translate(8px, -10px);
+              transform: rotate(-45deg) translate(8px, -10px);
+            }
+          }
+        }
+      }
+
+      .menu {
+        text-align: center;
+        background: #ffffff;
+        width: 100%;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        z-index: 9;
+        position: fixed;
+        display: none;
+        .mb-md {
+          padding-top: 150px;
+          padding-right: 15px;
+          padding-left: 15px;
+          margin-right: auto;
+          margin-left: auto;
+          a {
+            display: block;
+            line-height: 2.5em;
+            font-size: 2em;
+            margin: auto;
+            width: min-content;
+            &.active .menu-active {
+                position: relative;
+                top: -1.25em;
+                height: 4px;
+                background-color: #dd1912;
+            }
+          }
+        }
+        &.active {
+          display: block;
+        }
+        .dark-theme & {
+          background: $dark-background-color;
+          border-top: 2px solid $dark-font-secondary-color;
+        }
+      }
+      .dark-theme & {
+        background: $dark-background-color !important;
+      }
+    }
+  }
+
+  .footer {
+    height: 3rem;
+    width: 100%;
+    text-align: center;
+    line-height: 1.5rem;
+    padding-top: 2em;
+  }
+
+  .copyright {
+    font-size: 1em;
+  }
+
+  #dynamic-to-top {
+    display: none !important;
+  }
+
+  .main {
+    padding-top: 4.3em;
+  }
+
+  .post-cover img {
+    height: 20vh;
+  }
+
+  .post-warp {
+    font-size: 1em;
+
+    h3 {
+      font-size: 1.17em;
+      margin: 0;
+    }
+
+    .archive-item {
+      font-size: 1em;
+    }
+
+    padding-top: 0rem;
+    .archive-item-date {
+      display: none;
+    }
+
+    .categories-card {
+      margin-top: 0rem;
+
+      .card-item {
+        margin-top:0rem;
+        width: 95%;
+        min-height: 0;
+      }
+    }
+
+    .post-title {
+      font-size: 1.85em!important;
+    }
+
+    .post-content {
+      padding-top: 1rem;
+    }
+
+    p {
+      margin: .5em 0;
+      line-height: 1.75;
+    }
+
+    .post-copyright {
+      margin-top: 1rem;
+    }
+
+    .post-comment {
+      padding-top: 1rem;
+    }
+  }
+}
+
+
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {}
+
+
+
+/* Desktops and laptops ----------- */
+@media only screen and (min-width: 1224px) {
+  .navbar-mobile {
+    display: none;
+  }
+}
+
+
+
+/* Large screens ----------- */
+@media only screen and (min-width: 1824px) {
+  /* Styles */
+}

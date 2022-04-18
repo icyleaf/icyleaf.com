@@ -1,0 +1,69 @@
+/** common **/
+
+$scrollbar-thickness: 7px;
+$scrollbar-bold-thickness: 12px;
+
+
+/** light theme **/
+
+$light-background-color: #fff;
+
+$light-font-color: #161209;
+$light-font-secondary-color: #94989b;
+
+$light-code-notclass-background-color: #272822;
+
+$light-navbar-active-color: #161209;
+$light-navbar-background-color: #fafafa;
+
+$light-global-link-color: #161209;
+$light-global-link-hover-color:#2d96bd;
+
+$light-post-link-color: #2d96bd;
+$light-post-link-hover-color:#ef3982;
+
+$light-pagination-link-color : #2d96bd;
+$light-pagination-link-active-color: #000;
+
+$light-border-color: #dcdcdc;
+
+$light-blockquote-board-color: #2d96bd;
+$light-blockquote-background-color: #f1f1f1;
+
+$light-scrollbar-thumb-color: #EEEEEE;
+$light-scrollbar-thumb-hover-color: #DDDDDD;
+
+$light-box-shadow-color: #ccc;
+
+
+/** dark theme **/
+
+$dark-background-color: #08090a;
+
+$dark-font-color: #acb1bf;
+$dark-font-secondary-color: #87878d;
+
+$dark-code-notclass-background-color: #3b3d42;
+
+$dark-navbar-active-color: #fff;
+$dark-navbar-background-color: #141618;
+
+$dark-global-link-color: #acb1bf;
+$dark-global-link-hover-color:#fff;
+
+$dark-post-link-color: #eee;
+$dark-post-link-hover-color:#fff;
+
+$dark-pagination-link-color : #acb1bf;
+$dark-pagination-link-active-color: #fff;
+
+$dark-border-color: #4a4b50;
+
+$dark-blockquote-board-color: #4a4b50;
+$dark-blockquote-background-color: #252529;
+
+$dark-scrollbar-track-color: rgb(37, 37, 37);
+$dark-scrollbar-thumb-color: #666;
+$dark-scrollbar-thumb-hover-color: #666;
+
+$dark-box-shadow-color: rgb(71, 71, 71);

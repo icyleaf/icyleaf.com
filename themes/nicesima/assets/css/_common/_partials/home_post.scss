@@ -1,0 +1,110 @@
+.post-warp {
+  .intro {
+    transform: translateY(0);
+    margin: 2em 0;
+
+    .avatar {
+      img {
+        width: 96px;
+      }
+    }
+  }
+
+  .post-block {
+    display: block;
+    position: relative;
+    margin: 1rem 0;
+    padding: 1.2rem;
+    background: $light-background-color;
+    border-radius: 6px;
+    transition: transform .1s;
+    border: 1px solid $light-border-color;
+
+    .dark-theme & {
+      background: $dark-background-color;
+      border-color: $dark-border-color;
+    }
+
+    &:hover {
+      cursor: pointer;
+      box-shadow: 0 3px 5px $light-box-shadow-color;
+      transition:transform .33s ease-out, box-shadow .33s ease-out;
+
+      .dark-theme & {
+        background: $dark-navbar-background-color;
+        box-shadow: 0 3px 5px $dark-box-shadow-color;
+      }
+
+      .post-header {
+        h1 {
+          color: $light-post-link-hover-color;
+
+          .dark-theme & {
+            color: $light-post-link-hover-color;
+          }
+        }
+      }
+    }
+
+    .post-header {
+      h1 {
+        font-size: 1.4em;
+        font-weight: 600;
+        margin: 0 0 0.33rem;
+        word-break: break-all;
+      }
+
+      img.cover {
+        max-width: 100%;
+        width: 100%;
+        height: auto;
+        max-height: 450px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+    }
+
+    .post-content {
+      padding-top: 0.3rem;
+      word-break: break-all;
+      color: $light-font-secondary-color;
+    }
+  }
+
+  .post-inline {
+    display: block;
+    padding: 1.2rem;
+    border-radius: 6px;
+    transition: transform .1s;
+    border: 0px;
+    margin-bottom: 0.5rem;
+
+    &:hover {
+      background-color: $light-border-color;
+
+      .dark-theme & {
+        background-color: $dark-navbar-background-color;
+      }
+    }
+
+    .post-header {
+      h1 {
+        font-size: 1.2em;
+        font-weight: 600;
+        margin: 0 0 0.33rem;
+        word-break: break-all;
+        color: $light-font-color;
+
+        .dark-theme & {
+          color: $dark-post-link-color;
+        }
+      }
+    }
+
+    .post-content {
+      padding-top: 0.3rem;
+      word-break: break-all;
+      color: $light-font-secondary-color;
+    }
+  }
+}

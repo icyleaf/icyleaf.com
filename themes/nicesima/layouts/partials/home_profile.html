@@ -1,0 +1,38 @@
+<div class="intro">
+  {{ if .Site.Params.Avatar }}
+  {{ $avatar := .Site.Params.Avatar | relURL }}
+
+  <div class="avatar">
+    <a href="{{ .Site.Params.DefaultLink | default "/posts" }}">
+      <img src="{{ $avatar }}" alt="profile image">
+    </a>
+  </div>
+  {{ end }}
+
+  {{ with .Site.Params.Subtitle | default .Site.Params.Description | default .Site.Params.Author }}
+  <div id="subtitle"></div>
+
+  <script>
+    let divTyping = document.getElementById('subtitle')
+    let i = 0,
+      timer = 0,
+      str = '{{ . }}'
+
+    function typing () {
+      if (i <= str.length) {
+        divTyping.innerHTML = str.slice(0, i++) + '_'
+        timer = setTimeout(typing, 24)
+      }
+      else {
+        divTyping.innerHTML = str//结束打字,移除 _ 光标
+        clearTimeout(timer)
+      }
+    }
+    typing()
+  </script>
+  {{ end }}
+
+  <div class="social-links">
+    {{ partial "socials.html" . }}
+  </div>
+</div>
