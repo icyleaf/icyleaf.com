@@ -78,6 +78,11 @@ pod 'Mantle'
 配置不做详细描述，这里比官方多了两个文件 `Rakefile` 和 `Gemfile` 都是 rake 所需的文件，这个后面会讲到。
 再者就是配置 [gitlab-mirrors](https://github.com/samrocketman/gitlab-mirrors#three-easy-steps)，教程很详细不再重复。
 
+{{< updated at="2022-04-18" >}}
+
+gitlab-mirrors 的机制问题再使用其他会有很大的限制，我重新造了一个新轮子 [hpr](https://icyleaf.com/2018/04/intro-hpr/) 通过 HTTP REST API + Docker 部署的方式更好的解决了这个问题。
+
+{{< /updated >}}
 
 #### 偷梁换柱
 
