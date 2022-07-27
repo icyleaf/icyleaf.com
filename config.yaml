@@ -39,7 +39,7 @@ params:
   hideHUGOSupport: true
   hidePermalink: true
   googleAnalyticsUserID: UA-2570916-5
-  googleAnalyticsCloudflareWorker: https://cfga.icyleaf.com
+  # googleAnalyticsCloudflareWorker: https://cfga.icyleaf.com
 
   # comment system
   disqusShortname: icyleaf
