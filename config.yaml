@@ -77,6 +77,10 @@ menu:
       weight: 50
       identifier: about
       url: /about
+    - name: Projects
+      weight: 60
+      identifier: projects
+      url: /projects
     - name: Feed
       weight: 100
       identifier: feed
