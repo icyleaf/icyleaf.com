@@ -1,234 +1,238 @@
 <!doctype html><html lang=zh><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="chrome=1"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><title>Linux 101 系列：ssh OpenSSH 客户端工具 | icyleaf</title><link rel=prev href=https://icyleaf.com/2013/12/2013-in-review/><link rel=next href=https://icyleaf.com/2014/01/intro-ruby-gem-guard/><link rel=canonical href=https://icyleaf.com/2014/01/linux-101-ssh/><link rel=apple-touch-icon sizes=180x180 href=https://icyleaf.com/images/icyleaf-icon.png><link rel=icon type=image/png sizes=32x32 href=https://icyleaf.com/images/icyleaf-icon.png><link rel=icon type=image/png sizes=16x16 href=https://icyleaf.com/images/icyleaf-icon.png><link rel=stylesheet href=https://icyleaf.com/css/main.min.css><link rel=stylesheet href=https://icyleaf.com/font/iconfont.css><link rel=stylesheet href=https://icyleaf.com/font-ali/iconfont.css><link rel=stylesheet href=https://icyleaf.com/photoswipe/photoswipe.css><meta name=title content="Linux 101 系列：ssh OpenSSH 客户端工具 | icyleaf"><meta name=author content="icyleaf"><meta name=description content="日常写代码热爱户外的梦想家"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/icyleaf.com\/"},"articleSection":"posts","name":"Linux 101 系列：ssh OpenSSH 客户端工具","headline":"Linux 101 系列：ssh OpenSSH 客户端工具","description":"使用 *nix 服务器肯定会用到 ssh，它是一个链接到远程服务器终端的工具。 基本常识 基本组成部分 1$ man ssh 2ssh [-1246AaCfgKkMNnqsTtVvXxYy] [-b bind_address] [-c cipher_spec] 3 [-D [bind_address:]port] [-e escape_char] [-F configfile] [-I pkcs11] 4 [-i identity_file] [-L [bind_address:]port:host:hostport] 5 [-l login_name] [-m","inLanguage":"zh","author":"icyleaf","creator":"icyleaf","publisher":"icyleaf","accountablePerson":"icyleaf","copyrightHolder":"icyleaf","copyrightYear":"2014","datePublished":"2014-01-22 12:34:56 \u002b0800 \u002b0800","dateModified":"2014-01-22 12:34:56 \u002b0800 \u002b0800","url":"https:\/\/icyleaf.com\/2014\/01\/linux-101-ssh\/","wordCount":"1762","keywords":["Linux","icyleaf"]}</script></head><body><div class=wrapper><nav class=navbar><progress class=content_progress max=0 value=0></progress><div class=container><div class="navbar-header header-logo"><a href=https://icyleaf.com/>icyleaf</a></div><div class=navbar-right><span class=menu><a class=menu-item href=https://icyleaf.com/about title>About</a>
 <a class=menu-item href=https://icyleaf.com/projects title>Projects</a>
 <a class=menu-item href=https://icyleaf.com/index.xml title>Feed</a>
-<span class=divide></span><a href=javascript:void(0); class=theme-switch><i class="iconfont icon-dark-mode"></i></a></span></div></div></nav><nav class=navbar-mobile id=nav-mobile style=display:none><progress class=content_progress max=0 value=0></progress><div class=container><div class=navbar><div class="navbar-header header-logo"><a href=https://icyleaf.com/>icyleaf</a></div><div class=navbar-right><div><a href=javascript:void(0); class=theme-switch><i class="iconfont icon-dark-mode"></i></a></div><div class=menu-toggle><span></span><span></span><span></span></div></div></div><div class=menu id=mobile-menu><nav class=mb-md><a class=menu-item href=https://icyleaf.com/about title><h3>About</h3><div class=menu-active></div></a><a class=menu-item href=https://icyleaf.com/projects title><h3>Projects</h3><div class=menu-active></div></a><a class=menu-item href=https://icyleaf.com/index.xml title><h3>Feed</h3><div class=menu-active></div></a></nav></div></div></nav><main class=main><div class=container><article class=post-warp itemscope itemtype=http://schema.org/Article><header class=post-header><h1 class=post-title itemprop="name headline">Linux 101 系列：ssh OpenSSH 客户端工具</h1><div class=post-meta><time datetime=2014-01-22 itemprop=datePublished>January 22, 2014</time>
+<span class=divide></span>
+<a href=javascript:void(0); class=theme-switch><i class="iconfont icon-dark-mode"></i></a></span></div></div></nav><nav class=navbar-mobile id=nav-mobile style=display:none><progress class=content_progress max=0 value=0></progress><div class=container><div class=navbar><div class="navbar-header header-logo"><a href=https://icyleaf.com/>icyleaf</a></div><div class=navbar-right><div><a href=javascript:void(0); class=theme-switch><i class="iconfont icon-dark-mode"></i></a></div><div class=menu-toggle><span></span><span></span><span></span></div></div></div><div class=menu id=mobile-menu><nav class=mb-md><a class=menu-item href=https://icyleaf.com/about title><h3>About</h3><div class=menu-active></div></a><a class=menu-item href=https://icyleaf.com/projects title><h3>Projects</h3><div class=menu-active></div></a><a class=menu-item href=https://icyleaf.com/index.xml title><h3>Feed</h3><div class=menu-active></div></a></nav></div></div></nav><main class=main><div class=container><article class=post-warp itemscope itemtype=http://schema.org/Article><header class=post-header><h1 class=post-title itemprop="name headline">Linux 101 系列：ssh OpenSSH 客户端工具</h1><div class=post-meta><time datetime=2014-01-22 itemprop=datePublished>January 22, 2014</time>
 ·
 <span class=tags>Linux</span>
 ·
-<span class=post-word-count>1762 words · 8 minutes</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title></h2><div class="post-toc-content always-active"><nav id=TableOfContents><ul><li><a href=#基本常识>基本常识</a><ul><li><a href=#基本组成部分>基本组成部分</a></li><li><a href=#高级参数>高级参数</a></li><li><a href=#简化配置>简化配置</a></li><li><a href=#配置文件>配置文件</a></li></ul></li></ul></nav></div></div><div class=post-content><div id=post-gallery><blockquote><p>使用 *nix 服务器肯定会用到 ssh，它是一个链接到远程服务器终端的工具。</p></blockquote><h2 id=基本常识>基本常识</h2><h3 id=基本组成部分>基本组成部分</h3><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>$ man ssh
-<span class=ln>2</span>ssh <span class=o>[</span>-1246AaCfgKkMNnqsTtVvXxYy<span class=o>]</span> <span class=o>[</span>-b bind_address<span class=o>]</span> <span class=o>[</span>-c cipher_spec<span class=o>]</span>
-<span class=ln>3</span>     <span class=o>[</span>-D <span class=o>[</span>bind_address:<span class=o>]</span>port<span class=o>]</span> <span class=o>[</span>-e escape_char<span class=o>]</span> <span class=o>[</span>-F configfile<span class=o>]</span> <span class=o>[</span>-I pkcs11<span class=o>]</span>
-<span class=ln>4</span>     <span class=o>[</span>-i identity_file<span class=o>]</span> <span class=o>[</span>-L <span class=o>[</span>bind_address:<span class=o>]</span>port:host:hostport<span class=o>]</span>
-<span class=ln>5</span>     <span class=o>[</span>-l login_name<span class=o>]</span> <span class=o>[</span>-m mac_spec<span class=o>]</span> <span class=o>[</span>-O ctl_cmd<span class=o>]</span> <span class=o>[</span>-o option<span class=o>]</span> <span class=o>[</span>-p port<span class=o>]</span>
-<span class=ln>6</span>     <span class=o>[</span>-R <span class=o>[</span>bind_address:<span class=o>]</span>port:host:hostport<span class=o>]</span> <span class=o>[</span>-S ctl_path<span class=o>]</span> <span class=o>[</span>-W host:port<span class=o>]</span>
-<span class=ln>7</span>     <span class=o>[</span>-w local_tun<span class=o>[</span>:remote_tun<span class=o>]]</span> <span class=o>[</span>user@<span class=o>]</span>hostname <span class=o>[</span>command<span class=o>]</span>
-</code></pre></div><p>有没有被帮助手册的参数吓到，那我们精简一下：</p><blockquote><p>ssh [user@]hostname [-p port]</p></blockquote><p>登录到远程服务器和登录本地电脑系统没什么大的区别，都需要用户名，密码，除此之外我们还需要知道远程服务器的地址（IP 地址或域名均可）及允许的端口（默认 22 端口）。</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>$ ssh root@10.10.10.10 -p <span class=m>22</span>
-</code></pre></div><p>有些时候大家发现一些教程没有提到用户，实际上 ssh 很聪明，默认会使用当前系统的用户名：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span><span class=o>(</span>icyleaf<span class=o>)</span> $ ssh 10.10.10.10
-</code></pre></div><p>这个就等同于</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>$ ssh icyleaf@10.10.10.10
-</code></pre></div><p>有些服务器可能为了安全期间修改了默认的端口，比如 2020：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>$ ssh icyleaf@10.10.10.10 -p <span class=m>2020</span>
-</code></pre></div><h3 id=高级参数>高级参数</h3><h4 id=socket-代理>Socket 代理</h4><p>呐，你可能因为 GFW 的威力，尝试使用 ssh 的 socket 代理，实际上就是用到的 <code>-D</code> 参数：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>-D <span class=o>[</span>bind_address:<span class=o>]</span>port
-<span class=ln>2</span>   Specifies a <span class=nb>local</span> <span class=sb>``</span>dynamic application-level port forwarding.
-<span class=ln>3</span>   This works by allocating a socket to listen to port on the <span class=nb>local</span>
-<span class=ln>4</span>   side, optionally bound to the specified bind_address.  Whenever a
-<span class=ln>5</span>   connection is made to this port, the connection is forwarded over
-<span class=ln>6</span>   the secure channel, and the application protocol is <span class=k>then</span> used to
-<span class=ln>7</span>   determine where to connect to from the remote machine.  Currently
-<span class=ln>8</span>   the SOCKS4 and SOCKS5 protocols are supported, and ssh will act
-<span class=ln>9</span>   as a SOCKS server.  Only root can forward privileged ports.
-</code></pre></div><p>我们来简单画下它的工作流程：</p><div class=highlight><pre class=chroma><code class=language-txt data-lang=txt><span class=ln>1</span>|----client----|                    |-----server----|
-<span class=ln>2</span>|              |                    |               |
-<span class=ln>3</span>|   local port&lt;|  &lt;incoming         |               |
-<span class=ln>4</span>|    ssh port&lt;&gt;|  &lt;--------------&gt;  |&lt;&gt; ssh port    |
-<span class=ln>5</span>                                    |    forwarding&gt;|  &gt;outgoing connection
-<span class=ln>6</span>
-<span class=ln>7</span>                                     &lt;&lt;&lt;------------local network-----------
-</code></pre></div><p>它首先需要登录到远程服务器，并把本地的请求全部转发到服务器指定的端口上，然后通过由服务器再去请求。例如我们设置 8624 端口：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>$ ssh -D8624 icyleaf@10.10.10.10 -p <span class=m>22</span>
-</code></pre></div><p>这样保持这个连接，我们在设置浏览器或系统的 socket4/5 代理就能达到翻墙的目的。当前这个最大的前提是你的服务器在不手 GFW 的控制下（任意海外未被 GFW 服务器）</p><h4 id=跳板代理>跳板代理</h4><p>或许曾经你在看某本黑客杂志或电影出现过这样的片段，黑客使用肉鸡跳板不断的增加难度避开警察的追踪，实际上我们通过 ssh 也能非常简单又很酷的实现。</p><div class=highlight><pre class=chroma><code class=language-txt data-lang=txt><span class=ln>1</span>-L [bind_address:]port:host:hostport
-<span class=ln>2</span>   Specifies that the given port on the local (client) host is to be
-<span class=ln>3</span>   forwarded to the given host and port on the remote side.  This
-<span class=ln>4</span>   works by allocating a socket to listen to port on the local side,
-<span class=ln>5</span>   optionally bound to the specified bind_address.  Whenever a con-
-<span class=ln>6</span>   nection is made to this port, the connection is forwarded over
-<span class=ln>7</span>   the secure channel, and a connection is made to host port
-<span class=ln>8</span>   hostport from the remote machine.
-</code></pre></div><p>同样给出工作流程：</p><div class=highlight><pre class=chroma><code class=language-txt data-lang=txt><span class=ln>1</span>|----client----|                    |-----server----|                 |-----host-----|
-<span class=ln>2</span>|              |                    |               |                 |              |
-<span class=ln>3</span>|   local port&lt;|  &lt;incoming         |               |                 |              |
-<span class=ln>4</span>|    ssh port&lt;&gt;|  &lt;--------------&gt;  |&lt;&gt; ssh port    |                 |              |
-<span class=ln>5</span>                                    |    forwarding&gt;|  -------------&gt; |&gt;host port    |
-<span class=ln>6</span>
-<span class=ln>7</span>                                     &lt;&lt;&lt;------------local network-------------------&gt;&gt;&gt;
-</code></pre></div><p>实际上我只需要操作 <code>-L [bind_address:]port:host:hostport</code> 即可。这里假设我们想登录的目标服务器 target(10.10.10.10)，而我们希望在肉鸡 chicken(20.20.20.20) 上做成跳板：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>$ ssh -L2020:20.20.20.20:22 10.10.10.10
-</code></pre></div><h3 id=简化配置>简化配置</h3><p>反复的输入这些繁琐的参数，甚是苦恼，能不能通过一种起个别名就能把上面的参数全部自动设置好呢？！没问题！</p><p>创建 <code>~/.ssh/config</code> 文件：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=ln>1</span>Host linode
-<span class=ln>2</span>HostName 10.10.10.10
-<span class=ln>3</span>Port <span class=m>22</span>
-<span class=ln>4</span>User icyleaf
-</code></pre></div><p>这个就是基本组成部分。如果你想配置更多，下面是完整的参数：</p><div class=highlight><pre class=chroma><code class=language-txt data-lang=txt><span class=ln> 1</span>AddressFamily
-<span class=ln> 2</span>BatchMode
-<span class=ln> 3</span>BindAddress
-<span class=ln> 4</span>ChallengeResponseAuthentication
-<span class=ln> 5</span>CheckHostIP
-<span class=ln> 6</span>Cipher
-<span class=ln> 7</span>Ciphers
-<span class=ln> 8</span>ClearAllForwardings
-<span class=ln> 9</span>Compression
-<span class=ln>10</span>CompressionLevel
-<span class=ln>11</span>ConnectionAttempts
-<span class=ln>12</span>ConnectTimeout
-<span class=ln>13</span>ControlMaster
-<span class=ln>14</span>ControlPath
-<span class=ln>15</span>ControlPersist
-<span class=ln>16</span>DynamicForward
-<span class=ln>17</span>EscapeChar
-<span class=ln>18</span>ExitOnForwardFailure
-<span class=ln>19</span>ForwardAgent
-<span class=ln>20</span>ForwardX11
-<span class=ln>21</span>ForwardX11Timeout
-<span class=ln>22</span>ForwardX11Trusted
-<span class=ln>23</span>GatewayPorts
-<span class=ln>24</span>GlobalKnownHostsFile
-<span class=ln>25</span>GSSAPIAuthentication
-<span class=ln>26</span>GSSAPIDelegateCredentials
-<span class=ln>27</span>HashKnownHosts
-<span class=ln>28</span>Host
-<span class=ln>29</span>HostbasedAuthentication
-<span class=ln>30</span>HostKeyAlgorithms
-<span class=ln>31</span>HostKeyAlias
-<span class=ln>32</span>HostName
-<span class=ln>33</span>IdentityFile
-<span class=ln>34</span>IdentitiesOnly
-<span class=ln>35</span>IPQoS
-<span class=ln>36</span>KbdInteractiveAuthentication
-<span class=ln>37</span>KbdInteractiveDevices
-<span class=ln>38</span>KexAlgorithms
-<span class=ln>39</span>LocalCommand
-<span class=ln>40</span>LocalForward
-<span class=ln>41</span>LogLevel
-<span class=ln>42</span>MACs
-<span class=ln>43</span>NoHostAuthenticationForLocalhost
-<span class=ln>44</span>NumberOfPasswordPrompts
-<span class=ln>45</span>PasswordAuthentication
-<span class=ln>46</span>PermitLocalCommand
-<span class=ln>47</span>PKCS11Provider
-<span class=ln>48</span>Port
-<span class=ln>49</span>PreferredAuthentications
-<span class=ln>50</span>Protocol
-<span class=ln>51</span>ProxyCommand
-<span class=ln>52</span>PubkeyAuthentication
-<span class=ln>53</span>RekeyLimit
-<span class=ln>54</span>RemoteForward
-<span class=ln>55</span>RequestTTY
-<span class=ln>56</span>RhostsRSAAuthentication
-<span class=ln>57</span>RSAAuthentication
-<span class=ln>58</span>SendEnv
-<span class=ln>59</span>ServerAliveInterval
-<span class=ln>60</span>ServerAliveCountMax
-<span class=ln>61</span>StrictHostKeyChecking
-<span class=ln>62</span>TCPKeepAlive
-<span class=ln>63</span>Tunnel
-<span class=ln>64</span>TunnelDevice
-<span class=ln>65</span>UsePrivilegedPort
-<span class=ln>66</span>User
-<span class=ln>67</span>UserKnownHostsFile
-<span class=ln>68</span>VerifyHostKeyDNS
-<span class=ln>69</span>VisualHostKey
-<span class=ln>70</span>XAuthLocation
-</code></pre></div><h3 id=配置文件>配置文件</h3><p>刚才讲到的 <code>~/.ssh/config</code> 是配置 ssh 服务器的文件，其实除了这些还有好多，比如大家可能会经常见到的：</p><div class=highlight><pre class=chroma><code class=language-txt data-lang=txt><span class=ln> 1</span>~/.ssh/config
-<span class=ln> 2</span>  This is the per-user configuration file.  The file format and
-<span class=ln> 3</span>  configuration options are described in ssh_config(5).  Because of
-<span class=ln> 4</span>  the potential for abuse, this file must have strict permissions:
-<span class=ln> 5</span>  read/write for the user, and not accessible by others.
-<span class=ln> 6</span>
-<span class=ln> 7</span>~/.ssh/authorized_keys
-<span class=ln> 8</span>  Lists the public keys (DSA/ECDSA/RSA) that can be used for log-
-<span class=ln> 9</span>  ging in as this user.  The format of this file is described in
-<span class=ln>10</span>  the sshd(8) manual page.  This file is not highly sensitive, but
-<span class=ln>11</span>  the recommended permissions are read/write for the user, and not
-<span class=ln>12</span>  accessible by others.
-<span class=ln>13</span>
-<span class=ln>14</span>~/.ssh/identity
-<span class=ln>15</span>~/.ssh/id_dsa
-<span class=ln>16</span>~/.ssh/id_ecdsa
-<span class=ln>17</span>~/.ssh/id_rsa
-<span class=ln>18</span>  Contains the private key for authentication.  These files contain
-<span class=ln>19</span>  sensitive data and should be readable by the user but not acces-
-<span class=ln>20</span>  sible by others (read/write/execute).  ssh will simply ignore a
-<span class=ln>21</span>  private key file if it is accessible by others.  It is possible
-<span class=ln>22</span>  to specify a passphrase when generating the key which will be
-<span class=ln>23</span>  used to encrypt the sensitive part of this file using 3DES.
-<span class=ln>24</span>
-<span class=ln>25</span>~/.ssh/identity.pub
-<span class=ln>26</span>~/.ssh/id_dsa.pub
-<span class=ln>27</span>~/.ssh/id_ecdsa.pub
-<span class=ln>28</span>~/.ssh/id_rsa.pub
-<span class=ln>29</span>  Contains the public key for authentication.  These files are not
-<span class=ln>30</span>  sensitive and can (but need not) be readable by anyone.
-<span class=ln>31</span>
-<span class=ln>32</span>~/.ssh/known_hosts
-<span class=ln>33</span>  Contains a list of host keys for all hosts the user has logged
-<span class=ln>34</span>  into that are not already in the systemwide list of known host
-<span class=ln>35</span>  keys.  See sshd(8) for further details of the format of this
-<span class=ln>36</span>  file.
-</code></pre></div><p>更多文件：</p><div class=highlight><pre class=chroma><code class=language-txt data-lang=txt><span class=ln> 1</span>~/.rhosts
-<span class=ln> 2</span>  This file is used for host-based authentication (see above).  On
-<span class=ln> 3</span>  some machines this file may need to be world-readable if the
-<span class=ln> 4</span>  user&#39;s home directory is on an NFS partition, because sshd(8)
-<span class=ln> 5</span>  reads it as root.  Additionally, this file must be owned by the
-<span class=ln> 6</span>  user, and must not have write permissions for anyone else.  The
-<span class=ln> 7</span>  recommended permission for most machines is read/write for the
-<span class=ln> 8</span>  user, and not accessible by others.
-<span class=ln> 9</span>
-<span class=ln>10</span>~/.shosts
-<span class=ln>11</span>  This file is used in exactly the same way as .rhosts, but allows
-<span class=ln>12</span>  host-based authentication without permitting login with
-<span class=ln>13</span>  rlogin/rsh.
-<span class=ln>14</span>
-<span class=ln>15</span>~/.ssh/
-<span class=ln>16</span>  This directory is the default location for all user-specific con-
-<span class=ln>17</span>  figuration and authentication information.  There is no general
-<span class=ln>18</span>  requirement to keep the entire contents of this directory secret,
-<span class=ln>19</span>  but the recommended permissions are read/write/execute for the
-<span class=ln>20</span>  user, and not accessible by others.
-<span class=ln>21</span>
-<span class=ln>22</span>~/.ssh/environment
-<span class=ln>23</span>  Contains additional definitions for environment variables; see
-<span class=ln>24</span>  ENVIRONMENT, above.
-<span class=ln>25</span>
-<span class=ln>26</span>~/.ssh/rc
-<span class=ln>27</span>  Commands in this file are executed by ssh when the user logs in,
-<span class=ln>28</span>  just before the user&#39;s shell (or command) is started.  See the
-<span class=ln>29</span>  sshd(8) manual page for more information.
-<span class=ln>30</span>
-<span class=ln>31</span>/etc/hosts.equiv
-<span class=ln>32</span>  This file is for host-based authentication (see above).  It
-<span class=ln>33</span>  should only be writable by root.
-<span class=ln>34</span>
-<span class=ln>35</span>/etc/shosts.equiv
-<span class=ln>36</span>  This file is used in exactly the same way as hosts.equiv, but
-<span class=ln>37</span>  allows host-based authentication without permitting login with
-<span class=ln>38</span>  rlogin/rsh.
-<span class=ln>39</span>
-<span class=ln>40</span>/etc/ssh/ssh_config
-<span class=ln>41</span>  Systemwide configuration file.  The file format and configuration
-<span class=ln>42</span>  options are described in ssh_config(5).
-<span class=ln>43</span>
-<span class=ln>44</span>/etc/ssh/ssh_host_key
-<span class=ln>45</span>/etc/ssh/ssh_host_dsa_key
-<span class=ln>46</span>/etc/ssh/ssh_host_ecdsa_key
-<span class=ln>47</span>/etc/ssh/ssh_host_rsa_key
-<span class=ln>48</span>  These files contain the private parts of the host keys and are
-<span class=ln>49</span>  used for host-based authentication.  If protocol version 1 is
-<span class=ln>50</span>  used, ssh must be setuid root, since the host key is readable
-<span class=ln>51</span>  only by root.  For protocol version 2, ssh uses ssh-keysign(8) to
-<span class=ln>52</span>  access the host keys, eliminating the requirement that ssh be
-<span class=ln>53</span>  setuid root when host-based authentication is used.  By default
-<span class=ln>54</span>  ssh is not setuid root.
-<span class=ln>55</span>
-<span class=ln>56</span>/etc/ssh/ssh_known_hosts
-<span class=ln>57</span>  Systemwide list of known host keys.  This file should be prepared
-<span class=ln>58</span>  by the system administrator to contain the public host keys of
-<span class=ln>59</span>  all machines in the organization.  It should be world-readable.
-<span class=ln>60</span>  See sshd(8) for further details of the format of this file.
-<span class=ln>61</span>
-<span class=ln>62</span>/etc/ssh/sshrc
-<span class=ln>63</span>  Commands in this file are executed by ssh when the user logs in,
-<span class=ln>64</span>  just before the user&#39;s shell (or command) is started.  See the
-<span class=ln>65</span>  sshd(8) manual page for more information.
-</code></pre></div><p>资料参考：</p><ol><li>[Linux] man ssh</li><li><a href=http://www.openfsg.com/index.php/Advanced_SSH_usage>Advanced SSH usage</a></li></ol></div></div><div class=post-nav><a href=https://icyleaf.com/2013/12/2013-in-review/ class=prev rel=prev title="2013 年终总结"><i class="iconfont icon-left"></i>&nbsp;2013 年终总结</a>
+<span class=post-word-count>1762 words · 8 minutes</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title></h2><div class="post-toc-content always-active"><nav id=TableOfContents><ul><li><a href=#基本常识>基本常识</a><ul><li><a href=#基本组成部分>基本组成部分</a></li><li><a href=#高级参数>高级参数</a></li><li><a href=#简化配置>简化配置</a></li><li><a href=#配置文件>配置文件</a></li></ul></li></ul></nav></div></div><div class=post-content><div id=post-gallery><blockquote><p>使用 *nix 服务器肯定会用到 ssh，它是一个链接到远程服务器终端的工具。</p></blockquote><h2 id=基本常识>基本常识</h2><h3 id=基本组成部分>基本组成部分</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln>1</span><span class=cl>$ man ssh
+</span></span><span class=line><span class=ln>2</span><span class=cl>ssh <span class=o>[</span>-1246AaCfgKkMNnqsTtVvXxYy<span class=o>]</span> <span class=o>[</span>-b bind_address<span class=o>]</span> <span class=o>[</span>-c cipher_spec<span class=o>]</span>
+</span></span><span class=line><span class=ln>3</span><span class=cl>     <span class=o>[</span>-D <span class=o>[</span>bind_address:<span class=o>]</span>port<span class=o>]</span> <span class=o>[</span>-e escape_char<span class=o>]</span> <span class=o>[</span>-F configfile<span class=o>]</span> <span class=o>[</span>-I pkcs11<span class=o>]</span>
+</span></span><span class=line><span class=ln>4</span><span class=cl>     <span class=o>[</span>-i identity_file<span class=o>]</span> <span class=o>[</span>-L <span class=o>[</span>bind_address:<span class=o>]</span>port:host:hostport<span class=o>]</span>
+</span></span><span class=line><span class=ln>5</span><span class=cl>     <span class=o>[</span>-l login_name<span class=o>]</span> <span class=o>[</span>-m mac_spec<span class=o>]</span> <span class=o>[</span>-O ctl_cmd<span class=o>]</span> <span class=o>[</span>-o option<span class=o>]</span> <span class=o>[</span>-p port<span class=o>]</span>
+</span></span><span class=line><span class=ln>6</span><span class=cl>     <span class=o>[</span>-R <span class=o>[</span>bind_address:<span class=o>]</span>port:host:hostport<span class=o>]</span> <span class=o>[</span>-S ctl_path<span class=o>]</span> <span class=o>[</span>-W host:port<span class=o>]</span>
+</span></span><span class=line><span class=ln>7</span><span class=cl>     <span class=o>[</span>-w local_tun<span class=o>[</span>:remote_tun<span class=o>]]</span> <span class=o>[</span>user@<span class=o>]</span>hostname <span class=o>[</span>command<span class=o>]</span>
+</span></span></code></pre></div><p>有没有被帮助手册的参数吓到，那我们精简一下：</p><blockquote><p>ssh [user@]hostname [-p port]</p></blockquote><p>登录到远程服务器和登录本地电脑系统没什么大的区别，都需要用户名，密码，除此之外我们还需要知道远程服务器的地址（IP 地址或域名均可）及允许的端口（默认 22 端口）。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln>1</span><span class=cl>$ ssh root@10.10.10.10 -p <span class=m>22</span>
+</span></span></code></pre></div><p>有些时候大家发现一些教程没有提到用户，实际上 ssh 很聪明，默认会使用当前系统的用户名：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln>1</span><span class=cl><span class=o>(</span>icyleaf<span class=o>)</span> $ ssh 10.10.10.10
+</span></span></code></pre></div><p>这个就等同于</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln>1</span><span class=cl>$ ssh icyleaf@10.10.10.10
+</span></span></code></pre></div><p>有些服务器可能为了安全期间修改了默认的端口，比如 2020：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln>1</span><span class=cl>$ ssh icyleaf@10.10.10.10 -p <span class=m>2020</span>
+</span></span></code></pre></div><h3 id=高级参数>高级参数</h3><h4 id=socket-代理>Socket 代理</h4><p>呐，你可能因为 GFW 的威力，尝试使用 ssh 的 socket 代理，实际上就是用到的 <code>-D</code> 参数：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln>1</span><span class=cl>-D <span class=o>[</span>bind_address:<span class=o>]</span>port
+</span></span><span class=line><span class=ln>2</span><span class=cl>   Specifies a <span class=nb>local</span> <span class=sb>``</span>dynamic application-level port forwarding.
+</span></span><span class=line><span class=ln>3</span><span class=cl>   This works by allocating a socket to listen to port on the <span class=nb>local</span>
+</span></span><span class=line><span class=ln>4</span><span class=cl>   side, optionally bound to the specified bind_address.  Whenever a
+</span></span><span class=line><span class=ln>5</span><span class=cl>   connection is made to this port, the connection is forwarded over
+</span></span><span class=line><span class=ln>6</span><span class=cl>   the secure channel, and the application protocol is <span class=k>then</span> used to
+</span></span><span class=line><span class=ln>7</span><span class=cl>   determine where to connect to from the remote machine.  Currently
+</span></span><span class=line><span class=ln>8</span><span class=cl>   the SOCKS4 and SOCKS5 protocols are supported, and ssh will act
+</span></span><span class=line><span class=ln>9</span><span class=cl>   as a SOCKS server.  Only root can forward privileged ports.
+</span></span></code></pre></div><p>我们来简单画下它的工作流程：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-txt data-lang=txt><span class=line><span class=ln>1</span><span class=cl>|----client----|                    |-----server----|
+</span></span><span class=line><span class=ln>2</span><span class=cl>|              |                    |               |
+</span></span><span class=line><span class=ln>3</span><span class=cl>|   local port&lt;|  &lt;incoming         |               |
+</span></span><span class=line><span class=ln>4</span><span class=cl>|    ssh port&lt;&gt;|  &lt;--------------&gt;  |&lt;&gt; ssh port    |
+</span></span><span class=line><span class=ln>5</span><span class=cl>                                    |    forwarding&gt;|  &gt;outgoing connection
+</span></span><span class=line><span class=ln>6</span><span class=cl>
+</span></span><span class=line><span class=ln>7</span><span class=cl>                                     &lt;&lt;&lt;------------local network-----------
+</span></span></code></pre></div><p>它首先需要登录到远程服务器，并把本地的请求全部转发到服务器指定的端口上，然后通过由服务器再去请求。例如我们设置 8624 端口：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln>1</span><span class=cl>$ ssh -D8624 icyleaf@10.10.10.10 -p <span class=m>22</span>
+</span></span></code></pre></div><p>这样保持这个连接，我们在设置浏览器或系统的 socket4/5 代理就能达到翻墙的目的。当前这个最大的前提是你的服务器在不手 GFW 的控制下（任意海外未被 GFW 服务器）</p><h4 id=跳板代理>跳板代理</h4><p>或许曾经你在看某本黑客杂志或电影出现过这样的片段，黑客使用肉鸡跳板不断的增加难度避开警察的追踪，实际上我们通过 ssh 也能非常简单又很酷的实现。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-txt data-lang=txt><span class=line><span class=ln>1</span><span class=cl>-L [bind_address:]port:host:hostport
+</span></span><span class=line><span class=ln>2</span><span class=cl>   Specifies that the given port on the local (client) host is to be
+</span></span><span class=line><span class=ln>3</span><span class=cl>   forwarded to the given host and port on the remote side.  This
+</span></span><span class=line><span class=ln>4</span><span class=cl>   works by allocating a socket to listen to port on the local side,
+</span></span><span class=line><span class=ln>5</span><span class=cl>   optionally bound to the specified bind_address.  Whenever a con-
+</span></span><span class=line><span class=ln>6</span><span class=cl>   nection is made to this port, the connection is forwarded over
+</span></span><span class=line><span class=ln>7</span><span class=cl>   the secure channel, and a connection is made to host port
+</span></span><span class=line><span class=ln>8</span><span class=cl>   hostport from the remote machine.
+</span></span></code></pre></div><p>同样给出工作流程：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-txt data-lang=txt><span class=line><span class=ln>1</span><span class=cl>|----client----|                    |-----server----|                 |-----host-----|
+</span></span><span class=line><span class=ln>2</span><span class=cl>|              |                    |               |                 |              |
+</span></span><span class=line><span class=ln>3</span><span class=cl>|   local port&lt;|  &lt;incoming         |               |                 |              |
+</span></span><span class=line><span class=ln>4</span><span class=cl>|    ssh port&lt;&gt;|  &lt;--------------&gt;  |&lt;&gt; ssh port    |                 |              |
+</span></span><span class=line><span class=ln>5</span><span class=cl>                                    |    forwarding&gt;|  -------------&gt; |&gt;host port    |
+</span></span><span class=line><span class=ln>6</span><span class=cl>
+</span></span><span class=line><span class=ln>7</span><span class=cl>                                     &lt;&lt;&lt;------------local network-------------------&gt;&gt;&gt;
+</span></span></code></pre></div><p>实际上我只需要操作 <code>-L [bind_address:]port:host:hostport</code> 即可。这里假设我们想登录的目标服务器 target(10.10.10.10)，而我们希望在肉鸡 chicken(20.20.20.20) 上做成跳板：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln>1</span><span class=cl>$ ssh -L2020:20.20.20.20:22 10.10.10.10
+</span></span></code></pre></div><h3 id=简化配置>简化配置</h3><p>反复的输入这些繁琐的参数，甚是苦恼，能不能通过一种起个别名就能把上面的参数全部自动设置好呢？！没问题！</p><p>创建 <code>~/.ssh/config</code> 文件：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln>1</span><span class=cl>Host linode
+</span></span><span class=line><span class=ln>2</span><span class=cl>HostName 10.10.10.10
+</span></span><span class=line><span class=ln>3</span><span class=cl>Port <span class=m>22</span>
+</span></span><span class=line><span class=ln>4</span><span class=cl>User icyleaf
+</span></span></code></pre></div><p>这个就是基本组成部分。如果你想配置更多，下面是完整的参数：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-txt data-lang=txt><span class=line><span class=ln> 1</span><span class=cl>AddressFamily
+</span></span><span class=line><span class=ln> 2</span><span class=cl>BatchMode
+</span></span><span class=line><span class=ln> 3</span><span class=cl>BindAddress
+</span></span><span class=line><span class=ln> 4</span><span class=cl>ChallengeResponseAuthentication
+</span></span><span class=line><span class=ln> 5</span><span class=cl>CheckHostIP
+</span></span><span class=line><span class=ln> 6</span><span class=cl>Cipher
+</span></span><span class=line><span class=ln> 7</span><span class=cl>Ciphers
+</span></span><span class=line><span class=ln> 8</span><span class=cl>ClearAllForwardings
+</span></span><span class=line><span class=ln> 9</span><span class=cl>Compression
+</span></span><span class=line><span class=ln>10</span><span class=cl>CompressionLevel
+</span></span><span class=line><span class=ln>11</span><span class=cl>ConnectionAttempts
+</span></span><span class=line><span class=ln>12</span><span class=cl>ConnectTimeout
+</span></span><span class=line><span class=ln>13</span><span class=cl>ControlMaster
+</span></span><span class=line><span class=ln>14</span><span class=cl>ControlPath
+</span></span><span class=line><span class=ln>15</span><span class=cl>ControlPersist
+</span></span><span class=line><span class=ln>16</span><span class=cl>DynamicForward
+</span></span><span class=line><span class=ln>17</span><span class=cl>EscapeChar
+</span></span><span class=line><span class=ln>18</span><span class=cl>ExitOnForwardFailure
+</span></span><span class=line><span class=ln>19</span><span class=cl>ForwardAgent
+</span></span><span class=line><span class=ln>20</span><span class=cl>ForwardX11
+</span></span><span class=line><span class=ln>21</span><span class=cl>ForwardX11Timeout
+</span></span><span class=line><span class=ln>22</span><span class=cl>ForwardX11Trusted
+</span></span><span class=line><span class=ln>23</span><span class=cl>GatewayPorts
+</span></span><span class=line><span class=ln>24</span><span class=cl>GlobalKnownHostsFile
+</span></span><span class=line><span class=ln>25</span><span class=cl>GSSAPIAuthentication
+</span></span><span class=line><span class=ln>26</span><span class=cl>GSSAPIDelegateCredentials
+</span></span><span class=line><span class=ln>27</span><span class=cl>HashKnownHosts
+</span></span><span class=line><span class=ln>28</span><span class=cl>Host
+</span></span><span class=line><span class=ln>29</span><span class=cl>HostbasedAuthentication
+</span></span><span class=line><span class=ln>30</span><span class=cl>HostKeyAlgorithms
+</span></span><span class=line><span class=ln>31</span><span class=cl>HostKeyAlias
+</span></span><span class=line><span class=ln>32</span><span class=cl>HostName
+</span></span><span class=line><span class=ln>33</span><span class=cl>IdentityFile
+</span></span><span class=line><span class=ln>34</span><span class=cl>IdentitiesOnly
+</span></span><span class=line><span class=ln>35</span><span class=cl>IPQoS
+</span></span><span class=line><span class=ln>36</span><span class=cl>KbdInteractiveAuthentication
+</span></span><span class=line><span class=ln>37</span><span class=cl>KbdInteractiveDevices
+</span></span><span class=line><span class=ln>38</span><span class=cl>KexAlgorithms
+</span></span><span class=line><span class=ln>39</span><span class=cl>LocalCommand
+</span></span><span class=line><span class=ln>40</span><span class=cl>LocalForward
+</span></span><span class=line><span class=ln>41</span><span class=cl>LogLevel
+</span></span><span class=line><span class=ln>42</span><span class=cl>MACs
+</span></span><span class=line><span class=ln>43</span><span class=cl>NoHostAuthenticationForLocalhost
+</span></span><span class=line><span class=ln>44</span><span class=cl>NumberOfPasswordPrompts
+</span></span><span class=line><span class=ln>45</span><span class=cl>PasswordAuthentication
+</span></span><span class=line><span class=ln>46</span><span class=cl>PermitLocalCommand
+</span></span><span class=line><span class=ln>47</span><span class=cl>PKCS11Provider
+</span></span><span class=line><span class=ln>48</span><span class=cl>Port
+</span></span><span class=line><span class=ln>49</span><span class=cl>PreferredAuthentications
+</span></span><span class=line><span class=ln>50</span><span class=cl>Protocol
+</span></span><span class=line><span class=ln>51</span><span class=cl>ProxyCommand
+</span></span><span class=line><span class=ln>52</span><span class=cl>PubkeyAuthentication
+</span></span><span class=line><span class=ln>53</span><span class=cl>RekeyLimit
+</span></span><span class=line><span class=ln>54</span><span class=cl>RemoteForward
+</span></span><span class=line><span class=ln>55</span><span class=cl>RequestTTY
+</span></span><span class=line><span class=ln>56</span><span class=cl>RhostsRSAAuthentication
+</span></span><span class=line><span class=ln>57</span><span class=cl>RSAAuthentication
+</span></span><span class=line><span class=ln>58</span><span class=cl>SendEnv
+</span></span><span class=line><span class=ln>59</span><span class=cl>ServerAliveInterval
+</span></span><span class=line><span class=ln>60</span><span class=cl>ServerAliveCountMax
+</span></span><span class=line><span class=ln>61</span><span class=cl>StrictHostKeyChecking
+</span></span><span class=line><span class=ln>62</span><span class=cl>TCPKeepAlive
+</span></span><span class=line><span class=ln>63</span><span class=cl>Tunnel
+</span></span><span class=line><span class=ln>64</span><span class=cl>TunnelDevice
+</span></span><span class=line><span class=ln>65</span><span class=cl>UsePrivilegedPort
+</span></span><span class=line><span class=ln>66</span><span class=cl>User
+</span></span><span class=line><span class=ln>67</span><span class=cl>UserKnownHostsFile
+</span></span><span class=line><span class=ln>68</span><span class=cl>VerifyHostKeyDNS
+</span></span><span class=line><span class=ln>69</span><span class=cl>VisualHostKey
+</span></span><span class=line><span class=ln>70</span><span class=cl>XAuthLocation
+</span></span></code></pre></div><h3 id=配置文件>配置文件</h3><p>刚才讲到的 <code>~/.ssh/config</code> 是配置 ssh 服务器的文件，其实除了这些还有好多，比如大家可能会经常见到的：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-txt data-lang=txt><span class=line><span class=ln> 1</span><span class=cl>~/.ssh/config
+</span></span><span class=line><span class=ln> 2</span><span class=cl>  This is the per-user configuration file.  The file format and
+</span></span><span class=line><span class=ln> 3</span><span class=cl>  configuration options are described in ssh_config(5).  Because of
+</span></span><span class=line><span class=ln> 4</span><span class=cl>  the potential for abuse, this file must have strict permissions:
+</span></span><span class=line><span class=ln> 5</span><span class=cl>  read/write for the user, and not accessible by others.
+</span></span><span class=line><span class=ln> 6</span><span class=cl>
+</span></span><span class=line><span class=ln> 7</span><span class=cl>~/.ssh/authorized_keys
+</span></span><span class=line><span class=ln> 8</span><span class=cl>  Lists the public keys (DSA/ECDSA/RSA) that can be used for log-
+</span></span><span class=line><span class=ln> 9</span><span class=cl>  ging in as this user.  The format of this file is described in
+</span></span><span class=line><span class=ln>10</span><span class=cl>  the sshd(8) manual page.  This file is not highly sensitive, but
+</span></span><span class=line><span class=ln>11</span><span class=cl>  the recommended permissions are read/write for the user, and not
+</span></span><span class=line><span class=ln>12</span><span class=cl>  accessible by others.
+</span></span><span class=line><span class=ln>13</span><span class=cl>
+</span></span><span class=line><span class=ln>14</span><span class=cl>~/.ssh/identity
+</span></span><span class=line><span class=ln>15</span><span class=cl>~/.ssh/id_dsa
+</span></span><span class=line><span class=ln>16</span><span class=cl>~/.ssh/id_ecdsa
+</span></span><span class=line><span class=ln>17</span><span class=cl>~/.ssh/id_rsa
+</span></span><span class=line><span class=ln>18</span><span class=cl>  Contains the private key for authentication.  These files contain
+</span></span><span class=line><span class=ln>19</span><span class=cl>  sensitive data and should be readable by the user but not acces-
+</span></span><span class=line><span class=ln>20</span><span class=cl>  sible by others (read/write/execute).  ssh will simply ignore a
+</span></span><span class=line><span class=ln>21</span><span class=cl>  private key file if it is accessible by others.  It is possible
+</span></span><span class=line><span class=ln>22</span><span class=cl>  to specify a passphrase when generating the key which will be
+</span></span><span class=line><span class=ln>23</span><span class=cl>  used to encrypt the sensitive part of this file using 3DES.
+</span></span><span class=line><span class=ln>24</span><span class=cl>
+</span></span><span class=line><span class=ln>25</span><span class=cl>~/.ssh/identity.pub
+</span></span><span class=line><span class=ln>26</span><span class=cl>~/.ssh/id_dsa.pub
+</span></span><span class=line><span class=ln>27</span><span class=cl>~/.ssh/id_ecdsa.pub
+</span></span><span class=line><span class=ln>28</span><span class=cl>~/.ssh/id_rsa.pub
+</span></span><span class=line><span class=ln>29</span><span class=cl>  Contains the public key for authentication.  These files are not
+</span></span><span class=line><span class=ln>30</span><span class=cl>  sensitive and can (but need not) be readable by anyone.
+</span></span><span class=line><span class=ln>31</span><span class=cl>
+</span></span><span class=line><span class=ln>32</span><span class=cl>~/.ssh/known_hosts
+</span></span><span class=line><span class=ln>33</span><span class=cl>  Contains a list of host keys for all hosts the user has logged
+</span></span><span class=line><span class=ln>34</span><span class=cl>  into that are not already in the systemwide list of known host
+</span></span><span class=line><span class=ln>35</span><span class=cl>  keys.  See sshd(8) for further details of the format of this
+</span></span><span class=line><span class=ln>36</span><span class=cl>  file.
+</span></span></code></pre></div><p>更多文件：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-txt data-lang=txt><span class=line><span class=ln> 1</span><span class=cl>~/.rhosts
+</span></span><span class=line><span class=ln> 2</span><span class=cl>  This file is used for host-based authentication (see above).  On
+</span></span><span class=line><span class=ln> 3</span><span class=cl>  some machines this file may need to be world-readable if the
+</span></span><span class=line><span class=ln> 4</span><span class=cl>  user&#39;s home directory is on an NFS partition, because sshd(8)
+</span></span><span class=line><span class=ln> 5</span><span class=cl>  reads it as root.  Additionally, this file must be owned by the
+</span></span><span class=line><span class=ln> 6</span><span class=cl>  user, and must not have write permissions for anyone else.  The
+</span></span><span class=line><span class=ln> 7</span><span class=cl>  recommended permission for most machines is read/write for the
+</span></span><span class=line><span class=ln> 8</span><span class=cl>  user, and not accessible by others.
+</span></span><span class=line><span class=ln> 9</span><span class=cl>
+</span></span><span class=line><span class=ln>10</span><span class=cl>~/.shosts
+</span></span><span class=line><span class=ln>11</span><span class=cl>  This file is used in exactly the same way as .rhosts, but allows
+</span></span><span class=line><span class=ln>12</span><span class=cl>  host-based authentication without permitting login with
+</span></span><span class=line><span class=ln>13</span><span class=cl>  rlogin/rsh.
+</span></span><span class=line><span class=ln>14</span><span class=cl>
+</span></span><span class=line><span class=ln>15</span><span class=cl>~/.ssh/
+</span></span><span class=line><span class=ln>16</span><span class=cl>  This directory is the default location for all user-specific con-
+</span></span><span class=line><span class=ln>17</span><span class=cl>  figuration and authentication information.  There is no general
+</span></span><span class=line><span class=ln>18</span><span class=cl>  requirement to keep the entire contents of this directory secret,
+</span></span><span class=line><span class=ln>19</span><span class=cl>  but the recommended permissions are read/write/execute for the
+</span></span><span class=line><span class=ln>20</span><span class=cl>  user, and not accessible by others.
+</span></span><span class=line><span class=ln>21</span><span class=cl>
+</span></span><span class=line><span class=ln>22</span><span class=cl>~/.ssh/environment
+</span></span><span class=line><span class=ln>23</span><span class=cl>  Contains additional definitions for environment variables; see
+</span></span><span class=line><span class=ln>24</span><span class=cl>  ENVIRONMENT, above.
+</span></span><span class=line><span class=ln>25</span><span class=cl>
+</span></span><span class=line><span class=ln>26</span><span class=cl>~/.ssh/rc
+</span></span><span class=line><span class=ln>27</span><span class=cl>  Commands in this file are executed by ssh when the user logs in,
+</span></span><span class=line><span class=ln>28</span><span class=cl>  just before the user&#39;s shell (or command) is started.  See the
+</span></span><span class=line><span class=ln>29</span><span class=cl>  sshd(8) manual page for more information.
+</span></span><span class=line><span class=ln>30</span><span class=cl>
+</span></span><span class=line><span class=ln>31</span><span class=cl>/etc/hosts.equiv
+</span></span><span class=line><span class=ln>32</span><span class=cl>  This file is for host-based authentication (see above).  It
+</span></span><span class=line><span class=ln>33</span><span class=cl>  should only be writable by root.
+</span></span><span class=line><span class=ln>34</span><span class=cl>
+</span></span><span class=line><span class=ln>35</span><span class=cl>/etc/shosts.equiv
+</span></span><span class=line><span class=ln>36</span><span class=cl>  This file is used in exactly the same way as hosts.equiv, but
+</span></span><span class=line><span class=ln>37</span><span class=cl>  allows host-based authentication without permitting login with
+</span></span><span class=line><span class=ln>38</span><span class=cl>  rlogin/rsh.
+</span></span><span class=line><span class=ln>39</span><span class=cl>
+</span></span><span class=line><span class=ln>40</span><span class=cl>/etc/ssh/ssh_config
+</span></span><span class=line><span class=ln>41</span><span class=cl>  Systemwide configuration file.  The file format and configuration
+</span></span><span class=line><span class=ln>42</span><span class=cl>  options are described in ssh_config(5).
+</span></span><span class=line><span class=ln>43</span><span class=cl>
+</span></span><span class=line><span class=ln>44</span><span class=cl>/etc/ssh/ssh_host_key
+</span></span><span class=line><span class=ln>45</span><span class=cl>/etc/ssh/ssh_host_dsa_key
+</span></span><span class=line><span class=ln>46</span><span class=cl>/etc/ssh/ssh_host_ecdsa_key
+</span></span><span class=line><span class=ln>47</span><span class=cl>/etc/ssh/ssh_host_rsa_key
+</span></span><span class=line><span class=ln>48</span><span class=cl>  These files contain the private parts of the host keys and are
+</span></span><span class=line><span class=ln>49</span><span class=cl>  used for host-based authentication.  If protocol version 1 is
+</span></span><span class=line><span class=ln>50</span><span class=cl>  used, ssh must be setuid root, since the host key is readable
+</span></span><span class=line><span class=ln>51</span><span class=cl>  only by root.  For protocol version 2, ssh uses ssh-keysign(8) to
+</span></span><span class=line><span class=ln>52</span><span class=cl>  access the host keys, eliminating the requirement that ssh be
+</span></span><span class=line><span class=ln>53</span><span class=cl>  setuid root when host-based authentication is used.  By default
+</span></span><span class=line><span class=ln>54</span><span class=cl>  ssh is not setuid root.
+</span></span><span class=line><span class=ln>55</span><span class=cl>
+</span></span><span class=line><span class=ln>56</span><span class=cl>/etc/ssh/ssh_known_hosts
+</span></span><span class=line><span class=ln>57</span><span class=cl>  Systemwide list of known host keys.  This file should be prepared
+</span></span><span class=line><span class=ln>58</span><span class=cl>  by the system administrator to contain the public host keys of
+</span></span><span class=line><span class=ln>59</span><span class=cl>  all machines in the organization.  It should be world-readable.
+</span></span><span class=line><span class=ln>60</span><span class=cl>  See sshd(8) for further details of the format of this file.
+</span></span><span class=line><span class=ln>61</span><span class=cl>
+</span></span><span class=line><span class=ln>62</span><span class=cl>/etc/ssh/sshrc
+</span></span><span class=line><span class=ln>63</span><span class=cl>  Commands in this file are executed by ssh when the user logs in,
+</span></span><span class=line><span class=ln>64</span><span class=cl>  just before the user&#39;s shell (or command) is started.  See the
+</span></span><span class=line><span class=ln>65</span><span class=cl>  sshd(8) manual page for more information.
+</span></span></code></pre></div><p>资料参考：</p><ol><li>[Linux] man ssh</li><li><a href=http://www.openfsg.com/index.php/Advanced_SSH_usage>Advanced SSH usage</a></li></ol></div></div><div class=post-nav><a href=https://icyleaf.com/2013/12/2013-in-review/ class=prev rel=prev title="2013 年终总结"><i class="iconfont icon-left"></i>&nbsp;2013 年终总结</a>
 <a href=https://icyleaf.com/2014/01/intro-ruby-gem-guard/ class=next rel=next title="初识 Ruby Gem Guard">初识 Ruby Gem Guard&nbsp;<i class="iconfont icon-right"></i></a></div><div class=post-comment></div></article></div></main><footer class=footer><div class=copyright>&copy;
 <span itemprop=copyrightYear>2005 - 2022</span>
 <span>🍺</span>
-<span class=author itemprop=copyrightHolder><a href=https://icyleaf.com/>icyleaf</a></span></div></footer><script src=https://fastly.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js crossorigin=anonymous></script><script defer src=https://icyleaf.com/js/vendor_main.min.js></script><script src=https://fastly.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin=anonymous></script><script>pangu.spacingPage()</script><script type=module>
+<span class=author itemprop=copyrightHolder><a href=https://icyleaf.com/>icyleaf</a></span></div></footer><script src=https://fastly.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js crossorigin=anonymous></script>
+<script defer src=https://icyleaf.com/js/vendor_main.min.js></script>
+<script src=https://fastly.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin=anonymous></script>
+<script>pangu.spacingPage()</script><script type=module>
   
   import PhotoSwipeLightbox from '\/photoswipe\/photoswipe-lightbox.esm.js';
 
@@ -238,4 +242,5 @@
     pswpModule: '\/photoswipe\/photoswipe.esm.js',
   });
   lightbox.init();
-</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-TKQBZ7R259"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-TKQBZ7R259')</script></div></body></html>
+</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-TKQBZ7R259"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-TKQBZ7R259")</script></div></body></html>

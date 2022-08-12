@@ -1,78 +1,79 @@
 <!doctype html><html lang=zh><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="chrome=1"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><title>ActiveRecord 使用秘笈 | icyleaf</title><link rel=prev href=https://icyleaf.com/2013/10/about-pager-on-git/><link rel=next href=https://icyleaf.com/2013/12/learning-ansible-and-vagrant/><link rel=canonical href=https://icyleaf.com/2013/12/activerecord-tips/><link rel=apple-touch-icon sizes=180x180 href=https://icyleaf.com/images/icyleaf-icon.png><link rel=icon type=image/png sizes=32x32 href=https://icyleaf.com/images/icyleaf-icon.png><link rel=icon type=image/png sizes=16x16 href=https://icyleaf.com/images/icyleaf-icon.png><link rel=stylesheet href=https://icyleaf.com/css/main.min.css><link rel=stylesheet href=https://icyleaf.com/font/iconfont.css><link rel=stylesheet href=https://icyleaf.com/font-ali/iconfont.css><link rel=stylesheet href=https://icyleaf.com/photoswipe/photoswipe.css><meta name=title content="ActiveRecord 使用秘笈 | icyleaf"><meta name=author content="icyleaf"><meta name=description content="日常写代码热爱户外的梦想家"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/icyleaf.com\/"},"articleSection":"posts","name":"ActiveRecord 使用秘笈","headline":"ActiveRecord 使用秘笈","description":"ActiveRecord 是 Rails 内置的 ORM 框架，大多数人学习 Ruby 都是从 rails 开始，接触的也是这个 ORM，因此就有了这个使用秘笈。 支持 rake db:xxx 命令 在非 rails 项目怎么让 rake 支持 db:xxx 命令呢？把","inLanguage":"zh","author":"icyleaf","creator":"icyleaf","publisher":"icyleaf","accountablePerson":"icyleaf","copyrightHolder":"icyleaf","copyrightYear":"2013","datePublished":"2013-12-03 12:34:56 \u002b0800 \u002b0800","dateModified":"2013-12-03 12:34:56 \u002b0800 \u002b0800","url":"https:\/\/icyleaf.com\/2013\/12\/activerecord-tips\/","wordCount":"663","keywords":["Ruby","ActiveRecord","Rails","icyleaf"]}</script></head><body><div class=wrapper><nav class=navbar><progress class=content_progress max=0 value=0></progress><div class=container><div class="navbar-header header-logo"><a href=https://icyleaf.com/>icyleaf</a></div><div class=navbar-right><span class=menu><a class=menu-item href=https://icyleaf.com/about title>About</a>
 <a class=menu-item href=https://icyleaf.com/projects title>Projects</a>
 <a class=menu-item href=https://icyleaf.com/index.xml title>Feed</a>
-<span class=divide></span><a href=javascript:void(0); class=theme-switch><i class="iconfont icon-dark-mode"></i></a></span></div></div></nav><nav class=navbar-mobile id=nav-mobile style=display:none><progress class=content_progress max=0 value=0></progress><div class=container><div class=navbar><div class="navbar-header header-logo"><a href=https://icyleaf.com/>icyleaf</a></div><div class=navbar-right><div><a href=javascript:void(0); class=theme-switch><i class="iconfont icon-dark-mode"></i></a></div><div class=menu-toggle><span></span><span></span><span></span></div></div></div><div class=menu id=mobile-menu><nav class=mb-md><a class=menu-item href=https://icyleaf.com/about title><h3>About</h3><div class=menu-active></div></a><a class=menu-item href=https://icyleaf.com/projects title><h3>Projects</h3><div class=menu-active></div></a><a class=menu-item href=https://icyleaf.com/index.xml title><h3>Feed</h3><div class=menu-active></div></a></nav></div></div></nav><main class=main><div class=container><article class=post-warp itemscope itemtype=http://schema.org/Article><header class=post-header><h1 class=post-title itemprop="name headline">ActiveRecord 使用秘笈</h1><div class=post-meta><time datetime=2013-12-03 itemprop=datePublished>December 3, 2013</time>
+<span class=divide></span>
+<a href=javascript:void(0); class=theme-switch><i class="iconfont icon-dark-mode"></i></a></span></div></div></nav><nav class=navbar-mobile id=nav-mobile style=display:none><progress class=content_progress max=0 value=0></progress><div class=container><div class=navbar><div class="navbar-header header-logo"><a href=https://icyleaf.com/>icyleaf</a></div><div class=navbar-right><div><a href=javascript:void(0); class=theme-switch><i class="iconfont icon-dark-mode"></i></a></div><div class=menu-toggle><span></span><span></span><span></span></div></div></div><div class=menu id=mobile-menu><nav class=mb-md><a class=menu-item href=https://icyleaf.com/about title><h3>About</h3><div class=menu-active></div></a><a class=menu-item href=https://icyleaf.com/projects title><h3>Projects</h3><div class=menu-active></div></a><a class=menu-item href=https://icyleaf.com/index.xml title><h3>Feed</h3><div class=menu-active></div></a></nav></div></div></nav><main class=main><div class=container><article class=post-warp itemscope itemtype=http://schema.org/Article><header class=post-header><h1 class=post-title itemprop="name headline">ActiveRecord 使用秘笈</h1><div class=post-meta><time datetime=2013-12-03 itemprop=datePublished>December 3, 2013</time>
 ·
 <span class=tags>Ruby, ActiveRecord, Rails</span>
 ·
-<span class=post-word-count>663 words · 3 minutes</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title></h2><div class="post-toc-content always-active"><nav id=TableOfContents></nav></div></div><div class=post-content><div id=post-gallery><p>ActiveRecord 是 Rails 内置的 ORM 框架，大多数人学习 Ruby 都是从 rails 开始，接触的也是这个 ORM，因此就有了这个使用秘笈。</p><h1 id=支持-rake-dbxxx-命令>支持 <code>rake db:xxx</code> 命令</h1><p>在非 rails 项目怎么让 rake 支持 db:xxx 命令呢？把如下代码放到 <code>Rakefile</code> 中:</p><pre><code>namespace :db do
-  require 'activerecord'
-  require 'yaml'
+<span class=post-word-count>663 words · 3 minutes</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title></h2><div class="post-toc-content always-active"><nav id=TableOfContents></nav></div></div><div class=post-content><div id=post-gallery><p>ActiveRecord 是 Rails 内置的 ORM 框架，大多数人学习 Ruby 都是从 rails 开始，接触的也是这个 ORM，因此就有了这个使用秘笈。</p><h1 id=支持-rake-dbxxx-命令>支持 <code>rake db:xxx</code> 命令</h1><p>在非 rails 项目怎么让 rake 支持 db:xxx 命令呢？把如下代码放到 <code>Rakefile</code> 中:</p><pre tabindex=0><code>namespace :db do
+  require &#39;activerecord&#39;
+  require &#39;yaml&#39;
 
-  desc &quot;加载项目表数据到数据库&quot;
+  desc &#34;加载项目表数据到数据库&#34;
   task :init =&gt; :dbenv do
-    file = &quot;db/schema.rb&quot;
+    file = &#34;db/schema.rb&#34;
     load(file) # 参考 rails 文件结构
   end
 
-  desc &quot;创建数据库初始化数据&quot;
+  desc &#34;创建数据库初始化数据&#34;
   task :seed =&gt; :dbenv do
-    seed_file = File.join(File.dirname(__FILE__), 'db', 'seeds.rb')
+    seed_file = File.join(File.dirname(__FILE__), &#39;db&#39;, &#39;seeds.rb&#39;)
     load(seed_file) if File.exist?(seed_file)
   end
 
-  desc &quot;合并 db/migrate 目录下的数据库文件&quot;
+  desc &#34;合并 db/migrate 目录下的数据库文件&#34;
   task :migrate =&gt; :dbenv do
-    ActiveRecord::Migration.verbose = ENV[&quot;VERBOSE&quot;] ? ENV[&quot;VERBOSE&quot;] == &quot;true&quot; : true
-    ActiveRecord::Migrator.migrate(&quot;db/migrate/&quot;, ENV[&quot;VERSION&quot;] ? ENV[&quot;VERSION&quot;].to_i : nil)
-    Rake::Task[&quot;db:schema:dump&quot;].invoke if ActiveRecord::Base.schema_format == :ruby
+    ActiveRecord::Migration.verbose = ENV[&#34;VERBOSE&#34;] ? ENV[&#34;VERBOSE&#34;] == &#34;true&#34; : true
+    ActiveRecord::Migrator.migrate(&#34;db/migrate/&#34;, ENV[&#34;VERSION&#34;] ? ENV[&#34;VERSION&#34;].to_i : nil)
+    Rake::Task[&#34;db:schema:dump&#34;].invoke if ActiveRecord::Base.schema_format == :ruby
   end
 
-  desc '设定 STEP=n 回滚之前版本的数据库结构'
+  desc &#39;设定 STEP=n 回滚之前版本的数据库结构&#39;
   task :rollback =&gt; :dbenv do
-    step = ENV['STEP'] ? ENV['STEP'].to_i : 1
-    ActiveRecord::Migrator.rollback('db/migrate/', step)
-    Rake::Task[&quot;db:schema:dump&quot;].invoke if ActiveRecord::Base.schema_format == :ruby
+    step = ENV[&#39;STEP&#39;] ? ENV[&#39;STEP&#39;].to_i : 1
+    ActiveRecord::Migrator.rollback(&#39;db/migrate/&#39;, step)
+    Rake::Task[&#34;db:schema:dump&#34;].invoke if ActiveRecord::Base.schema_format == :ruby
   end
 
   task :dbenv do
-    dbname = ENV['db'] || 'development'
-  	$dbconfig = YAML::load('db/database.yml')
+    dbname = ENV[&#39;db&#39;] || &#39;development&#39;
+  	$dbconfig = YAML::load(&#39;db/database.yml&#39;)
     ActiveRecord::Base.establish_connection($dbconfig[dbname])
   end
 
   namespace :schema do
-    desc &quot;把数据库结构写入 db/schema.rb 文件&quot;
+    desc &#34;把数据库结构写入 db/schema.rb 文件&#34;
     task :dump =&gt; :dbenv do
-      require 'active_record/schema_dumper'
-      File.open(ENV['SCHEMA'] || &quot;db/schema.rb&quot;, &quot;w&quot;) do |file|
+      require &#39;active_record/schema_dumper&#39;
+      File.open(ENV[&#39;SCHEMA&#39;] || &#34;db/schema.rb&#34;, &#34;w&#34;) do |file|
         ActiveRecord::SchemaDumper.dump(ActiveRecord::Base.connection, file)
       end
     end
   end
 end
-</code></pre><p>初始化数据库结构</p><pre><code>$ rake db:init
-</code></pre><h1 id=支持-sql-server>支持 SQL Server</h1><p>只针对 *nix 系统：</p><ol><li>安装 freetds</li></ol><pre><code>* Mac OS: `brew install freetds`
+</code></pre><p>初始化数据库结构</p><pre tabindex=0><code>$ rake db:init
+</code></pre><h1 id=支持-sql-server>支持 SQL Server</h1><p>只针对 *nix 系统：</p><ol><li>安装 freetds</li></ol><pre tabindex=0><code>* Mac OS: `brew install freetds`
 * CentOS: `yum install -y freetds`
-</code></pre><ol start=2><li><code>gem install tiny_tds</code></li><li><code>gem install activerecord-sqlserver-adapter</code></li></ol><p>引用如下：</p><pre><code>require 'tiny_tds'
-require 'activerecord-sqlserver-adapter'
-require 'active_record'
+</code></pre><ol start=2><li><code>gem install tiny_tds</code></li><li><code>gem install activerecord-sqlserver-adapter</code></li></ol><p>引用如下：</p><pre tabindex=0><code>require &#39;tiny_tds&#39;
+require &#39;activerecord-sqlserver-adapter&#39;
+require &#39;active_record&#39;
 
 ActiveRecord::Base.establish_connection({
-  :adapter =&gt; 'sqlserver'
- :host =&gt; '10.10.10.10',
- :username =&gt; 'sa',
-  :password =&gt; 'p@ssword',
-  :database =&gt; 'development',
+  :adapter =&gt; &#39;sqlserver&#39;
+ :host =&gt; &#39;10.10.10.10&#39;,
+ :username =&gt; &#39;sa&#39;,
+  :password =&gt; &#39;p@ssword&#39;,
+  :database =&gt; &#39;development&#39;,
   :timeout =&gt; 10,
   :port =&gt; 1433,
 })
 
 class Users &lt; ActiveRecord::Base
-	self.table_name = 'User'
-	default_scope { lock('WITH (NOLOCK)') }
+	self.table_name = &#39;User&#39;
+	default_scope { lock(&#39;WITH (NOLOCK)&#39;) }
 end
-</code></pre><h1 id=多数据库支持>多数据库支持</h1><p>创建 <code>config/database.yml</code> 文件:</p><pre><code>development:
+</code></pre><h1 id=多数据库支持>多数据库支持</h1><p>创建 <code>config/database.yml</code> 文件:</p><pre tabindex=0><code>development:
   adapter: mysql2
   host: localhost
   username: root
@@ -94,28 +95,28 @@ production:
   username: root
   password: p@ssword
   database: production
-</code></pre><p>创建 <code>lib/model.rb</code> 文件:</p><pre><code>$dbconfig = YAML::load(File::open('config/database.yml'))
+</code></pre><p>创建 <code>lib/model.rb</code> 文件:</p><pre tabindex=0><code>$dbconfig = YAML::load(File::open(&#39;config/database.yml&#39;))
 
 class User &lt; ActiveRecord::Base
-  establish_connection $dbconfig['development']
+  establish_connection $dbconfig[&#39;development&#39;]
 end
 
 class Post &lt; ActiveRecord::Base
-  establish_connection $dbconfig['test']
+  establish_connection $dbconfig[&#39;test&#39;]
 end
 
 class Tag &lt; ActiveRecord::Base
-  establish_connection $dbconfig['production']
+  establish_connection $dbconfig[&#39;production&#39;]
 end
-</code></pre><h1 id=动态创建表名>动态创建表名</h1><p>假若有个需求需要按照每月分表（当然也可以安装业务分表什么的），我们可以通过下面方式调用：</p><pre><code># 插入 post，如果表不存在则创建后插入
-post = Post.date('201312').get_or_create_table.create(
-  title:'test',
-  content:'body'
+</code></pre><h1 id=动态创建表名>动态创建表名</h1><p>假若有个需求需要按照每月分表（当然也可以安装业务分表什么的），我们可以通过下面方式调用：</p><pre tabindex=0><code># 插入 post，如果表不存在则创建后插入
+post = Post.date(&#39;201312&#39;).get_or_create_table.create(
+  title:&#39;test&#39;,
+  content:&#39;body&#39;
 )
 
 # Model 实现代码
 class Post &lt; ActiveRecord::Base
-  @date = Time.now.strftime(&quot;%Y%02m&quot;)
+  @date = Time.now.strftime(&#34;%Y%02m&#34;)
 
   def self.date(date)
   	@date = date
@@ -143,20 +144,23 @@ class Post &lt; ActiveRecord::Base
 
   def self.table_exists?
     # 如果你设置了多数据库请取消下行注解并更改配置名（参考上个技巧）
-    # ActiveRecord::Base.establish_connection($dbconfig['development'])
+    # ActiveRecord::Base.establish_connection($dbconfig[&#39;development&#39;])
 
     ActiveRecord::Base.connection.tables.include?(self.table_name)
   end
 
   def table_name
-    &quot;#{@date_users}&quot;
+    &#34;#{@date_users}&#34;
   end
 end
 </code></pre></div></div><div class=post-nav><a href=https://icyleaf.com/2013/10/about-pager-on-git/ class=prev rel=prev title="Git 和 Pager 的那点事"><i class="iconfont icon-left"></i>&nbsp;Git 和 Pager 的那点事</a>
 <a href=https://icyleaf.com/2013/12/learning-ansible-and-vagrant/ class=next rel=next title="学习 Ansible + Vagrant">学习 Ansible + Vagrant&nbsp;<i class="iconfont icon-right"></i></a></div><div class=post-comment></div></article></div></main><footer class=footer><div class=copyright>&copy;
 <span itemprop=copyrightYear>2005 - 2022</span>
 <span>🍺</span>
-<span class=author itemprop=copyrightHolder><a href=https://icyleaf.com/>icyleaf</a></span></div></footer><script src=https://fastly.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js crossorigin=anonymous></script><script defer src=https://icyleaf.com/js/vendor_main.min.js></script><script src=https://fastly.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin=anonymous></script><script>pangu.spacingPage()</script><script type=module>
+<span class=author itemprop=copyrightHolder><a href=https://icyleaf.com/>icyleaf</a></span></div></footer><script src=https://fastly.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js crossorigin=anonymous></script>
+<script defer src=https://icyleaf.com/js/vendor_main.min.js></script>
+<script src=https://fastly.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin=anonymous></script>
+<script>pangu.spacingPage()</script><script type=module>
   
   import PhotoSwipeLightbox from '\/photoswipe\/photoswipe-lightbox.esm.js';
 
@@ -166,4 +170,5 @@ end
     pswpModule: '\/photoswipe\/photoswipe.esm.js',
   });
   lightbox.init();
-</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-TKQBZ7R259"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-TKQBZ7R259')</script></div></body></html>
+</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-TKQBZ7R259"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-TKQBZ7R259")</script></div></body></html>

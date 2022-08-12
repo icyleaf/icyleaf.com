@@ -1,16 +1,17 @@
 <!doctype html><html lang=zh><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="chrome=1"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><title>利用 argparse 写的脚本命令：测试 URL 响应时间 | icyleaf</title><link rel=prev href=https://icyleaf.com/2012/07/how-to-fix-dropbox-with-apache-about-acces-permission/><link rel=next href=https://icyleaf.com/2012/08/how-to-keep-public-and-private-versions-of-a-git-submodule-repo-in-sync/><link rel=canonical href=https://icyleaf.com/2012/08/url-request-time-test-using-python-with-argparse/><link rel=apple-touch-icon sizes=180x180 href=https://icyleaf.com/images/icyleaf-icon.png><link rel=icon type=image/png sizes=32x32 href=https://icyleaf.com/images/icyleaf-icon.png><link rel=icon type=image/png sizes=16x16 href=https://icyleaf.com/images/icyleaf-icon.png><link rel=stylesheet href=https://icyleaf.com/css/main.min.css><link rel=stylesheet href=https://icyleaf.com/font/iconfont.css><link rel=stylesheet href=https://icyleaf.com/font-ali/iconfont.css><link rel=stylesheet href=https://icyleaf.com/photoswipe/photoswipe.css><meta name=title content="利用 argparse 写的脚本命令：测试 URL 响应时间 | icyleaf"><meta name=author content="icyleaf"><meta name=description content="日常写代码热爱户外的梦想家"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/icyleaf.com\/"},"articleSection":"posts","name":"利用 argparse 写的脚本命令：测试 URL 响应时间","headline":"利用 argparse 写的脚本命令：测试 URL 响应时间","description":"前几天看完《Python简明教程》，预想练手，想起同事的一个 ruby 代码，尝试改写成 python，顺便看看两个语言的简练程度。下面是原始的 ruby 代码：","inLanguage":"zh","author":"icyleaf","creator":"icyleaf","publisher":"icyleaf","accountablePerson":"icyleaf","copyrightHolder":"icyleaf","copyrightYear":"2012","datePublished":"2012-08-02 12:34:56 \u002b0800 \u002b0800","dateModified":"2012-08-02 12:34:56 \u002b0800 \u002b0800","url":"https:\/\/icyleaf.com\/2012\/08\/url-request-time-test-using-python-with-argparse\/","wordCount":"377","keywords":["Python","Ruby","icyleaf"]}</script></head><body><div class=wrapper><nav class=navbar><progress class=content_progress max=0 value=0></progress><div class=container><div class="navbar-header header-logo"><a href=https://icyleaf.com/>icyleaf</a></div><div class=navbar-right><span class=menu><a class=menu-item href=https://icyleaf.com/about title>About</a>
 <a class=menu-item href=https://icyleaf.com/projects title>Projects</a>
 <a class=menu-item href=https://icyleaf.com/index.xml title>Feed</a>
-<span class=divide></span><a href=javascript:void(0); class=theme-switch><i class="iconfont icon-dark-mode"></i></a></span></div></div></nav><nav class=navbar-mobile id=nav-mobile style=display:none><progress class=content_progress max=0 value=0></progress><div class=container><div class=navbar><div class="navbar-header header-logo"><a href=https://icyleaf.com/>icyleaf</a></div><div class=navbar-right><div><a href=javascript:void(0); class=theme-switch><i class="iconfont icon-dark-mode"></i></a></div><div class=menu-toggle><span></span><span></span><span></span></div></div></div><div class=menu id=mobile-menu><nav class=mb-md><a class=menu-item href=https://icyleaf.com/about title><h3>About</h3><div class=menu-active></div></a><a class=menu-item href=https://icyleaf.com/projects title><h3>Projects</h3><div class=menu-active></div></a><a class=menu-item href=https://icyleaf.com/index.xml title><h3>Feed</h3><div class=menu-active></div></a></nav></div></div></nav><main class=main><div class=container><article class=post-warp itemscope itemtype=http://schema.org/Article><header class=post-header><h1 class=post-title itemprop="name headline">利用 argparse 写的脚本命令：测试 URL 响应时间</h1><div class=post-meta><time datetime=2012-08-02 itemprop=datePublished>August 2, 2012</time>
+<span class=divide></span>
+<a href=javascript:void(0); class=theme-switch><i class="iconfont icon-dark-mode"></i></a></span></div></div></nav><nav class=navbar-mobile id=nav-mobile style=display:none><progress class=content_progress max=0 value=0></progress><div class=container><div class=navbar><div class="navbar-header header-logo"><a href=https://icyleaf.com/>icyleaf</a></div><div class=navbar-right><div><a href=javascript:void(0); class=theme-switch><i class="iconfont icon-dark-mode"></i></a></div><div class=menu-toggle><span></span><span></span><span></span></div></div></div><div class=menu id=mobile-menu><nav class=mb-md><a class=menu-item href=https://icyleaf.com/about title><h3>About</h3><div class=menu-active></div></a><a class=menu-item href=https://icyleaf.com/projects title><h3>Projects</h3><div class=menu-active></div></a><a class=menu-item href=https://icyleaf.com/index.xml title><h3>Feed</h3><div class=menu-active></div></a></nav></div></div></nav><main class=main><div class=container><article class=post-warp itemscope itemtype=http://schema.org/Article><header class=post-header><h1 class=post-title itemprop="name headline">利用 argparse 写的脚本命令：测试 URL 响应时间</h1><div class=post-meta><time datetime=2012-08-02 itemprop=datePublished>August 2, 2012</time>
 ·
 <span class=tags>Python, Ruby</span>
 ·
-<span class=post-word-count>377 words · 1 minutes</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title></h2><div class="post-toc-content always-active"><nav id=TableOfContents></nav></div></div><div class=post-content><div id=post-gallery><p>前几天看完《<a href=http://woodpecker.org.cn/abyteofpython_cn/chinese/>Python简明教程</a>》，预想练手，想起同事的一个 ruby 代码，尝试改写成 python，顺便看看两个语言的简练程度。下面是原始的 ruby 代码：</p><pre><code>#!/usr/bin/env ruby
+<span class=post-word-count>377 words · 1 minutes</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title></h2><div class="post-toc-content always-active"><nav id=TableOfContents></nav></div></div><div class=post-content><div id=post-gallery><p>前几天看完《<a href=http://woodpecker.org.cn/abyteofpython_cn/chinese/>Python简明教程</a>》，预想练手，想起同事的一个 ruby 代码，尝试改写成 python，顺便看看两个语言的简练程度。下面是原始的 ruby 代码：</p><pre tabindex=0><code>#!/usr/bin/env ruby
 
-require 'rubygems'
-require 'net/http'
+require &#39;rubygems&#39;
+require &#39;net/http&#39;
 
-urls = [&quot;http://icyleaf.com&quot;]
+urls = [&#34;http://icyleaf.com&#34;]
 50.times do
   urls.each do |url|
     start_at = Time.now
@@ -24,10 +25,10 @@ urls = [&quot;http://icyleaf.com&quot;]
     else
       color_code = 33
     end
-    puts &quot;#{url}\n time: \033[#{color_code}m#{diff}\033[0m seconds&quot;
+    puts &#34;#{url}\n time: \033[#{color_code}m#{diff}\033[0m seconds&#34;
   end
 end
-</code></pre><p>改写 python 的同时，考虑脚本的灵活性准备增加两个参数，第一个是请求测试次数，第二个是请求测试的 URL，而 python 默认提供了 <a href=http://docs.python.org/dev/library/argparse.html>argparse</a> 库，可以很方便的生成 &ndash;help 的帮助和解析传递的参数：</p><pre><code>#!/usr/bin/env python
+</code></pre><p>改写 python 的同时，考虑脚本的灵活性准备增加两个参数，第一个是请求测试次数，第二个是请求测试的 URL，而 python 默认提供了 <a href=http://docs.python.org/dev/library/argparse.html>argparse</a> 库，可以很方便的生成 &ndash;help 的帮助和解析传递的参数：</p><pre tabindex=0><code>#!/usr/bin/env python
 
 import urllib2
 import time
@@ -48,28 +49,31 @@ def benchmark(url, count):
 		else:
 			color_code = 33
 
-		print '# %d' % (i + 1)
-		print '\tStauts: %s' % r.getcode()
-		print '\tTime: \033[%dm%f\033[0m second(s)' % (color_code, diff)
+		print &#39;# %d&#39; % (i + 1)
+		print &#39;\tStauts: %s&#39; % r.getcode()
+		print &#39;\tTime: \033[%dm%f\033[0m second(s)&#39; % (color_code, diff)
 
 
 def main(argv):
-	parser = argparse.ArgumentParser(description='url request time test')
+	parser = argparse.ArgumentParser(description=&#39;url request time test&#39;)
 
-	parser.add_argument('URL', help='request url')
-	parser.add_argument('-t', '--time', action='store', dest='count', type=int, default=10, help='request times')
+	parser.add_argument(&#39;URL&#39;, help=&#39;request url&#39;)
+	parser.add_argument(&#39;-t&#39;, &#39;--time&#39;, action=&#39;store&#39;, dest=&#39;count&#39;, type=int, default=10, help=&#39;request times&#39;)
 	args = parser.parse_args(argv)
 
 	benchmark(args.URL, args.count)
 
 
-if __name__ == '__main__':
+if __name__ == &#39;__main__&#39;:
 	main(sys.argv[1:])
 </code></pre><p>当然，我主要是为了练手 python 才去写的，ruby 本身也有 <a href=http://ruby-doc.org/stdlib-1.9.3/libdoc/optparse/rdoc/OptionParser.html>optparse</a> 库用于解析参数，但是需要自己手写生成 &ndash;help 的输出，而且需要对每个参数做相应的 callback。</p><p>效果如下：</p><p><img src=http://ww3.sinaimg.cn/large/65d1d65bgw1dvi5nsc4sdj.jpg alt=screenshot loading=lazy></p></div></div><div class=post-nav><a href=https://icyleaf.com/2012/07/how-to-fix-dropbox-with-apache-about-acces-permission/ class=prev rel=prev title=Dropbox和Apache关于权限的问题><i class="iconfont icon-left"></i>&nbsp;Dropbox和Apache关于权限的问题</a>
 <a href=https://icyleaf.com/2012/08/how-to-keep-public-and-private-versions-of-a-git-submodule-repo-in-sync/ class=next rel=next title="如何保持在 Git Submodule 代码的开放和私有共存">如何保持在 Git Submodule 代码的开放和私有共存&nbsp;<i class="iconfont icon-right"></i></a></div><div class=post-comment></div></article></div></main><footer class=footer><div class=copyright>&copy;
 <span itemprop=copyrightYear>2005 - 2022</span>
 <span>🍺</span>
-<span class=author itemprop=copyrightHolder><a href=https://icyleaf.com/>icyleaf</a></span></div></footer><script src=https://fastly.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js crossorigin=anonymous></script><script defer src=https://icyleaf.com/js/vendor_main.min.js></script><script src=https://fastly.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin=anonymous></script><script>pangu.spacingPage()</script><script type=module>
+<span class=author itemprop=copyrightHolder><a href=https://icyleaf.com/>icyleaf</a></span></div></footer><script src=https://fastly.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js crossorigin=anonymous></script>
+<script defer src=https://icyleaf.com/js/vendor_main.min.js></script>
+<script src=https://fastly.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin=anonymous></script>
+<script>pangu.spacingPage()</script><script type=module>
   
   import PhotoSwipeLightbox from '\/photoswipe\/photoswipe-lightbox.esm.js';
 
@@ -79,4 +83,5 @@ if __name__ == '__main__':
     pswpModule: '\/photoswipe\/photoswipe.esm.js',
   });
   lightbox.init();
-</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-TKQBZ7R259"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-TKQBZ7R259')</script></div></body></html>
+</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-TKQBZ7R259"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-TKQBZ7R259")</script></div></body></html>
