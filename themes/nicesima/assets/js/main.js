@@ -176,9 +176,9 @@ _Blog.initToc = function () {
   var endTop, miss;
   var offsetTop = fix[0].offsetTop;
 
-  $('.post-toc-content:not(.always-active) a').click(function (e) {
-    $('.post-toc-content li').removeClass('has-active');
-    $(e.target).parents('.post-toc-content li').addClass('has-active');
+  $('.post-toc-content a').click(function (e) {
+    $('.post-toc-content li a').removeClass('has-active');
+    $(e.target).addClass('has-active');
   })
 
   $(window).scroll(function () {
