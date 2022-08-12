@@ -21,6 +21,10 @@
 
     svg {
       vertical-align: text-bottom;
+
+      .dark-theme & {
+        fill: #768390;
+      }
     }
   }
 }
