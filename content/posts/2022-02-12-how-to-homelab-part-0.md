@@ -1,7 +1,8 @@
 ---
 title: "如何搭建家用 homelab: 先导篇"
-date: 2022-08-12T20:00:00+08:00
+date: 2022-02-12T20:00:00+08:00
 slug: "how-to-homelab-part-0"
+draft: false
 categories:
   - Technology
 tags:
