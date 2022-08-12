@@ -1,12 +1,9 @@
 ---
 title: About
 image: images/about.jpg
-type: ''
 comments: false
-date:
 index: false
-menu: ''
-
+hide_title: true
 ---
 
 日常👨🏻‍💻写代码热爱🏕户外的泛手工领域梦想家。

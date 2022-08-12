@@ -1,6 +1,8 @@
 {{ define "content" }}
 <div class="post-warp archive">
+  {{ if ne .Params.hide_title true }}
   <h2 class="post-title section-title">{{ .Title }}</h2>
+  {{ end }}
   <div class="post-content">
     {{ .Content }}
   </div>
