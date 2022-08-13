@@ -325,7 +325,8 @@
     }
 
     // 隐藏文字
-    .spoiler {
+    .spoiler,
+    .spoiler a {
       color: transparent;
       text-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
 
@@ -334,7 +335,8 @@
       }
     }
 
-    .spoiler:hover{
+    .spoiler:hover,
+    .spoiler a:hover {
       color: $light-font-color;
       text-shadow: none;
 
