@@ -10,6 +10,9 @@ tags:
   - docker
   - traefik
 image: tutorials/how-to-homelab/part-0/cover.png
+comments: true
+isCJKLanguage: true
+share: true
 ---
 
 ## 前言
@@ -88,8 +91,8 @@ image: tutorials/how-to-homelab/part-0/cover.png
 - 虚拟化部署（Virutalization Deployment）
 - 容器化部署（Containerd Deployment）
 
-{{< figure src="https://d33wubrfki0l68.cloudfront.net/26a177ede4d7b032362289c6fccd448fc4a91174/eb693/images/docs/container_evolution.svg"
-    link="https://d33wubrfki0l68.cloudfront.net/26a177ede4d7b032362289c6fccd448fc4a91174/eb693/images/docs/container_evolution.svg"
+{{< figure src="/tutorials/how-to-homelab/part-0/container-evolution.svg"
+    link="/tutorials/how-to-homelab/part-0/container-evolution.svg"
     title="部署方式的演变"
     pswp-width="1800"
     pswp-height="650"
@@ -147,7 +150,7 @@ image: tutorials/how-to-homelab/part-0/cover.png
 #### 网关
 
 - [nginx](https://www.nginx.com/): 老牌传统网关，用于托管或反向代理网站服务
-- [caddy v2](https://caddyserver.com/): 现代化设计的 HTTP/2 且支持 Let's encrty 的网关
+- [caddy v2](https://caddyserver.com/): 现代化设计的 HTTP/2 且支持 [Let’s encrypt](https://letsencrypt.org/) 的网关
 
 #### DNS
 
@@ -169,7 +172,7 @@ image: tutorials/how-to-homelab/part-0/cover.png
 
 #### 服务部署
 
-- [portianer](https://www.openmediavault.org/): 简单容易上手的容器化部署解决方案
+- [portainer](https://www.portainer.io/): 简单容易上手的容器化部署解决方案
 
 #### 影音
 

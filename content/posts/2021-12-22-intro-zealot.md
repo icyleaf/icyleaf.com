@@ -9,7 +9,9 @@ tags:
   - opensource
   - projects
 image: images/zealot-cover.png
-
+comments: true
+isCJKLanguage: true
+share: true
 ---
 
 {{< figure src="/images/zealot-showcase.png"
