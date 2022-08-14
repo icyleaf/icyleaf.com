@@ -8,7 +8,7 @@ hasCJKLanguage: true
 enableEmoji: true
 enableRobotsTXT: true
 paginate: 20
-
+disqusShortname: icyleaf
 canonifyURLs: true
 
 pygmentsUseClasses: true # 使用自定义的代码高亮样式
@@ -39,9 +39,6 @@ params:
   hidePermalink: true
   googleAnalyticsUserID: G-TKQBZ7R259
   # googleAnalyticsCloudflareWorker: https://cfga.icyleaf.com
-
-  # comment system
-  disqusShortname: icyleaf
 
   socials:
     - name: github

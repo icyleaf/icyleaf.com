@@ -115,7 +115,7 @@
 
     <div class="post-comment">
       {{ if ( $.Params.Comments | default true ) }}
-        {{ if ne .Site.Params.DisqusShortname "" }}
+        {{ if ne .Site.DisqusShortname "" }}
           {{ template "_internal/disqus.html" . }}
         {{ else if .Site.Params.enableGitalk }}
           {{ partial "gitalk.html" . }}
