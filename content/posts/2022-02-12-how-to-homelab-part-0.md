@@ -147,7 +147,7 @@ share: true
 #### 软路由
 
 - [openwrt](https://github.com/openwrt/openwrt): 国内最近今年非常主流的解决方案，国内有个 [immortalwrt](https://github.com/immortalwrt/immortalwrt) 分支版本
-- [梅林](https://www.asuswrt-merlin.net/): 华硕开源的路由器固件
+- [梅林](https://www.asuswrt-merlin.net/): 华硕开源的路由器固件，同样国内有个 [koolcenter](https://www.koolcenter.com/) 改版
 - [dd-wrt](https://dd-wrt.com/): 在流行刷路由器初期的懵懂的固件，受限于硬件支持度和更新频率渐行渐远，当时支持多 wan 的 tomato
 
 #### 网关
@@ -180,6 +180,13 @@ share: true
 #### 影音
 
 - [Jellyfin](https://jellyfin.org/): 影视剧、电影等媒体播放服务，支持片源资料搜刮和看过数据同步服务
+
+#### 应用
+
+- [Bitwarden](https://bitwarden.com/): 开源且完全可代替 1 Password 的全平台密码生成管理服务，推荐使用开发者用 Rust 重写的 [vaultwarden](https://github.com/dani-garcia/vaultwarden)
+- [ZoneMinder](https://zoneminder.com/): 开源多路摄像头&录像管理服务
+
+更多的应用可以关注我的[自建服务集合](https://github.com/stars/icyleaf/lists/self-host-services)
 
 ### 高级进阶
 
