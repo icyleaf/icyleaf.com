@@ -21,6 +21,9 @@ share: true
 
 {{< figure src="/tutorials/how-to-homelab/part-0/diagram.png"
     title="镇楼用的网络拓扑图"
+    caption="图片来源"
+    attr="icyleaf"
+    attrlink="https://twitter.com/icyleaf/status/1472036769742745603"
 >}}
 
 ## 搭建 homelab 起因
