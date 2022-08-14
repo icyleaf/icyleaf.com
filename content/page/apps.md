@@ -2,9 +2,10 @@
 title: "Apps"
 date: 2022-01-03T11:26:53+08:00
 type: page
-comments: false
-index: false
-menu: ""
+index: true
+comments: true
+hideTitle: true
+isCJKLanguage: true
 ---
 
 ![Open-Source Software][OSS Icon]图标代表**开源项目**\

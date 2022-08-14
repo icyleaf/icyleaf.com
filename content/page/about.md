@@ -1,9 +1,11 @@
 ---
 title: About
 image: images/about.jpg
-comments: false
+type: page
 index: false
-hide_title: true
+comments: true
+hideTitle: true
+isCJKLanguage: true
 ---
 
 日常👨🏻‍💻写代码热爱🏕户外的泛手工领域梦想家。

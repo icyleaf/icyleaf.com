@@ -2,10 +2,12 @@
 title: "Projects"
 date: 2022-08-12T14:06:44+08:00
 slug: "projects"
+type: page
 image: false
-draft: false
-index: false
-comments: false
+draft: true
+index: true
+comments: true
+hideTitle: true
 isCJKLanguage: true
 ---
 
