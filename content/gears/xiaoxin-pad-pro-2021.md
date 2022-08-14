@@ -26,9 +26,40 @@ tags:
 - 看视频有更好的分辨率和外放音箱效果最佳
 - 可作为一些开发、修图的生产力辅助工具为佳
 
+[Youtuber 在上面画画](https://www.youtube.com/watch?v=LjlYQIAUV1Y) 看着也没什么大问题
+
 ## 使用体验
 
 {{<twitter user="icyleaf" id="1537444436874887171">}}
+
+参数：
+
+- 骁龙 870
+- 6GB + 128G (支持外接最高 1TB Micro SD 卡)
+- 11.5寸/2560x1600/OLED/90Hz
+- 4 扬声器
+- Type-C 3.1
+- 485g
+- 8600毫安电池
+
+优点：
+
+- 2K OLED，90Hz 刷新率够用
+- 4 扬声器
+- 支持外接最高 1TB Micro SD 卡
+- 可刷国际版（还未尝试）
+
+不足：
+
+- ZUI 12.5 系统太渣，也可能是习惯了 MIUI
+- 无障碍功能功能总会被关闭，造成李跳跳、Bitwarden 无法正常工作
+- 访问所有文件的系统权限逻辑有问题，总是需要授权
+- Netflix 没有官方授权，最高只有 1080p HD 画质
+
+以上点在看其他文章评测也有提到:
+- https://mclub.lenovo.com.cn/thread-7842613-1-1.html
+- https://www.hkepc.com/forum/viewthread.php?fid=199&tid=2622369&page=1
+- https://www.mobile01.com/topicdetail.php?f=605&t=6394705
 
 ### 推荐应用 [^3]
 
@@ -64,8 +95,6 @@ tags:
 > 再写本文时在最新的 iOS 15.5 上面测试自带 File 应用已经会显示速率，复制大文件的时候还是会卡几秒。
 
 ### Linux 平板
-
-
 
 {{<twitter user="icyleaf" id="1421738652523134978">}}
 

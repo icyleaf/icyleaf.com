@@ -26,7 +26,6 @@ markup:
     style: tomorrow-night
     tabWidth: 4
 
-
 params:
   # global settings
   home_mode: posts
