@@ -1,9 +1,8 @@
-<div id="utteranc-container">
-  <script src='https://utteranc.es/client.js'
-    repo='{{ .Site.Params.Utteranc.repo }}'
-    issue-term='{{ .Site.Params.Utteranc.issueTerm | default "title" }}'
-    theme='{{ .Site.Params.Utteranc.theme | default "github-light" }}'
-    crossorigin='{{ .Site.Params.Utteranc.crossorigin | default "anonymous" }}'
-    async>
-  </script>
-</div>
+<script src='https://utteranc.es/client.js'
+  repo='{{ .Site.Params.Utteranc.Repo }}'
+  issue-term='{{ .Site.Params.Utteranc.IssueTerm | default "pathname" }}'
+  theme='{{ .Site.Params.Utteranc.Theme | default "github-light" }}'
+  {{ with .Site.Params.Utteranc.Label }}label='{{ . }}'{{ end }}
+  crossorigin='{{ .Site.Params.Utteranc.CrossOrigin | default "anonymous" }}'
+  {{ if eq .Site.Params.Utteranc.Async true }}async{{ end }}>
+</script>

@@ -115,11 +115,11 @@
 
     <div class="post-comment">
       {{ if ( $.Params.Comments | default true ) }}
-        {{ if ne .Site.DisqusShortname "" }}
+        {{ if eq .Site.Params.EnableComment "disqus" }}
           {{ template "_internal/disqus.html" . }}
-        {{ else if .Site.Params.Giscus.Enabled }}
+        {{ else if eq .Site.Params.EnableComment "giscus" }}
           {{ partial "giscus.html" . }}
-        {{ else if .Site.Params.enableUtteranc }}
+        {{ else if eq .Site.Params.EnableComment "utteranc" }}
           {{ partial "utteranc.html" . }}
         {{ end }}
       {{ end }}

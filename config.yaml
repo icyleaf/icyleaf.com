@@ -35,13 +35,21 @@ params:
   subtitle: 你好，我是 icyleaf
   since: 2005
   mark: 🍺
+  enableComment: disqus
   hideHUGOSupport: true
   hidePermalink: true
   googleAnalyticsUserID: G-TKQBZ7R259
   # googleAnalyticsCloudflareWorker: https://cfga.icyleaf.com
 
+  # utteranc:
+  #   repo: "icyleaf/icyleaf.com" # The repo to store comments
+  #   issueTerm: "pathname"
+  #   label: "✨💬✨"
+  #   theme: "github-light"
+  #   CrossOrigin: "anonymous"
+  #   async: true
+
   # giscus:
-  #   enabled: false
   #   repo: icyleaf/icyleaf.com
   #   repoId: MDEwOlJlcG9zaXRvcnk1NDg4MDA5Mg==
   #   categoryId: DIC_kwDOA0VnXM4CQ0mG

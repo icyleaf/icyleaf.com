@@ -238,7 +238,7 @@ And you can fold inactive TOC automatically:
 autoCollapseToc = true
 ```
 
-## utteranc comment system
+## Utteranc comment system
 
 This blog supports the [utteranc](https://utteranc.es) comment system.
 
@@ -251,7 +251,7 @@ Then enable utteranc in config.toml
 
 ```toml
 [params]
-    enableUtteranc = true
+  enableComment = "utteranc"
 ```
 
 Then Configuration: (For more settings, please refer to
@@ -259,47 +259,32 @@ Then Configuration: (For more settings, please refer to
 
 ```toml
 [params.utteranc] # Homepage: https://utteranc.es
-    repo = "" # The repo to store comments
-    issueTerm = "title" # the mapping between blog posts and GitHub issues.
-    theme = "preferred-color-scheme" # Theme
-    crossorigin = "anonymous" # default: anonymous
+  repo = "icyleaf/icyleaf.com" # The repo to store comments
+  issueTerm = "title" # the mapping between blog posts and GitHub issues.
+  theme = "preferred-color-scheme" # Theme
+  crossOrigin = "anonymous" # default: anonymous
+  label = "✨💬✨"
+  async = true
 ```
 
-## Gitalk comment system
+## Giscus comment system
 
-This blog supports the [gitalk](https://github.com/gitalk/gitalk) comment
-system. To use gitalk, you need to apply for a Github Application. For details,
-please refer to
-[here](https://mogeko.me/2018/024/#%E5%88%9B%E5%BB%BA-github-application).
+This blog supports the [giscus](https://giscus.app) comment
+system.
 
-Then enable gitalk in config.toml
+Then enable giscus in config.toml
 
 ```toml
 [params]
-    enableGitalk = true
+  enableComment = "giscus"
 ```
 
-> **Notice**: [The demo server of CORS Anywhere](cors-anywhere.herokuapp.com) has been very limited by January 2021, 31st.
-> If you'd like to enable Gitalk, you should build a personal proxy server by [cors-anywhere](https://github.com/Rob--W/cors-anywhere),
-> then set the url in ```proxy``` like the following.
-
-Then provide your `Client ID` and `Client Secret` from Github Application in
-config.toml
-
 ```toml
-[params.gitalk] # Github: https://github.com/gitalk/gitalk
-    clientID = "[Client ID]" # Your client ID
-    clientSecret = "[Client Secret]" # Your client secret
-    repo = "" # The repo to store comments
-    owner = "" # Your GitHub ID
-    admin = "" # Required. Github repository owner and collaborators. (Users who having write access to this repository)
-    id = "location.pathname" # The unique id of the page.
-    labels = "gitalk" # Github issue labels. If you used to use Gitment, you can change it
-    perPage = 15 # Pagination size, with maximum 100.
-    pagerDirection = "last" # Comment sorting direction, available values are 'last' and 'first'.
-    createIssueManually = true # If it is 'false', it is auto to make a Github issue when the administrators login.
-    distractionFreeMode = false # Enable hot key (cmd|ctrl + enter) submit comment.
-    proxy = "" # the proxy built by cors-anywhere,.etc.
+[params.giscus] # Github: https://github.com/gitalk/gitalk
+  repo = "icyleaf/icyleaf.com"
+  repoId = ""
+  categoryId = ""
+  localPreview: true
 ```
 
 ## Custom CSS/JavaScript
@@ -389,7 +374,7 @@ pygmentsUseClasses=true # 使用自定义的代码高亮样式
   avatar = "/images/me/avatar.jpg"    # Author's avatar
   subtitle = ""                       # Subtitle
   home_mode = ""                      # post or other
-  enableGitalk = true                 # gitalk 评论系统
+  enableComment = "giscus"            # giscus 评论系统
 
   description = ""                    # (Meta) 描述
   keywords = ""                       # site keywords
@@ -398,17 +383,9 @@ pygmentsUseClasses=true # 使用自定义的代码高亮样式
   toc = true                          # switch catalog
   autoCollapseToc = false             # auto expand and collapse toc
 
-  [params.gitalk] # Github: https://github.com/gitalk/gitalk
-    clientId = "" # Your client ID
-    clientSecret = "" # Your client secret
-    repo = "" # The repo to store comments
-    owner = "" # Your GitHub ID
-    admin = "" # Required. Github repository owner and collaborators. (Users who having write access to this repository)
-    id = "location.pathname" # The unique id of the page.
-    labels = "gitalk" # Github issue labels. If you used to use Gitment, you can change it
-    perPage = 15 # Pagination size, with maximum 100.
-    pagerDirection = "last" # Comment sorting direction, available values are 'last' and 'first'.
-    createIssueManually = false # If it is 'false', it is auto to make a Github issue when the administrators login.
-    distractionFreeMode = true # Enable hot key (cmd|ctrl + enter) submit comment.
-    proxy = "" # the proxy built by cors-anywhere,.etc.
+  [params.giscus]
+    repo = "icyleaf/icyleaf.com"
+    repoId = ""
+    categoryId = ""
+    localPreview: true
 ```

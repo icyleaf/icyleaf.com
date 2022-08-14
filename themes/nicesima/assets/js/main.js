@@ -13,13 +13,6 @@ function zip() {
   });
 }
 
-function cookieValue(key) {
-  return document.cookie
-    .split("; ")
-    .find(row => row.startsWith(`${key}=`))
-    ?.split("=")[1];
-}
-
 // Dark Mode
 _Blog.switchDarkMode = function () {
   const darkModeKey = 'blog-dark-mode'
@@ -28,6 +21,7 @@ _Blog.switchDarkMode = function () {
   if (currentTheme !== undefined) {
     document.cookie = darkModeKey + '=' + (isDark ? '1' : '0') + ';path=/'
   }
+  utterancesTheme(isDark)
   document.body.classList.toggle('dark-theme', isDark)
   console.log('Default dark mode is ' + isDark)
 
@@ -46,8 +40,29 @@ _Blog.switchDarkMode = function () {
         document.cookie = darkModeKey + '=1;path=/'
         console.log('Dark mode on')
       }
+
+      utterancesTheme(isDark)
     })
   })
+
+  function cookieValue(key) {
+    return document.cookie
+      .split("; ")
+      .find(row => row.startsWith(`${key}=`))
+      ?.split("=")[1];
+  }
+
+  function utterancesTheme(isDark) {
+    const iframe = document.querySelector('.utterances-frame');
+    if (!iframe) { return; }
+
+    const theme = isDark ? 'github-dark' : 'github-light'
+    const message = {
+      type: 'set-theme',
+      theme: theme
+    };
+    iframe.contentWindow.postMessage(message, 'https://utteranc.es');
+  }
 }
 
 // 开关移动端菜单
