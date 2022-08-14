@@ -40,6 +40,14 @@ params:
   googleAnalyticsUserID: G-TKQBZ7R259
   # googleAnalyticsCloudflareWorker: https://cfga.icyleaf.com
 
+  # giscus:
+  #   enabled: false
+  #   repo: icyleaf/icyleaf.com
+  #   repoId: MDEwOlJlcG9zaXRvcnk1NDg4MDA5Mg==
+  #   categoryId: DIC_kwDOA0VnXM4CQ0mG
+  #   # theme: /css/themes/giscus.css
+  #   localPreview: true
+
   socials:
     - name: github
       link: https://github.com/icyleaf
