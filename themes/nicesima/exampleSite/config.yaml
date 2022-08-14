@@ -6,10 +6,8 @@ hasCJKLanguage: true
 enableEmoji: true
 enableRobotsTXT: true
 paginate: 12
-
 MetaDataFormat: yaml
 canonifyURLs: true
-
 disqusShortname: icyleaf
 
 pygmentsUseClasses: true # 使用自定义的代码高亮样式
@@ -36,6 +34,14 @@ params:
   mark: 🍺
   hideHUGOSupport: false
   googleAnalyticsUserID:
+
+  # giscus:
+  #   enabled: true
+  #   repo: icyleaf/icyleaf.com
+  #   repoId: MDEwOlJlcG9zaXRvcnk1NDg4MDA5Mg==
+  #   categoryId: DIC_kwDOA0VnXM4CQ0mG
+  #   # theme: /css/themes/giscus.css
+  #   localPreview: true
 
   socials:
     - name: github

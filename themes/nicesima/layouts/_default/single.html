@@ -117,8 +117,8 @@
       {{ if ( $.Params.Comments | default true ) }}
         {{ if ne .Site.DisqusShortname "" }}
           {{ template "_internal/disqus.html" . }}
-        {{ else if .Site.Params.enableGitalk }}
-          {{ partial "gitalk.html" . }}
+        {{ else if .Site.Params.Giscus.Enabled }}
+          {{ partial "giscus.html" . }}
         {{ else if .Site.Params.enableUtteranc }}
           {{ partial "utteranc.html" . }}
         {{ end }}

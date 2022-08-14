@@ -242,7 +242,7 @@ autoCollapseToc = true
 
 This blog supports the [utteranc](https://utteranc.es) comment system.
 
-It is lighter and more powerful than Gitalk.
+It is lighter and more powerful than Giscus.
 
 To use utteranc, you need make sure the [utterances app](https://github.com/apps/utterances) is
 installed on the repo, otherwise users will not be able to post comments.

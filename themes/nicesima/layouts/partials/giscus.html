@@ -1,0 +1,20 @@
+{{ if ne (or (in .Site.BaseURL "localhost") (in .Site.BaseURL "127.0.0.1")) .Site.Params.Giscus.LocalPreview }}
+Giscus comments not available by default when the website is previewed locally.
+{{ else }}
+<script src="https://giscus.app/client.js"
+        data-repo="{{ .Site.Params.Giscus.Repo }}"
+        data-repo-id="{{ .Site.Params.Giscus.RepoId }}"
+        data-category="{{ .Site.Params.Giscus.Category | default "Announcements" }}"
+        data-category-id="{{ .Site.Params.Giscus.CategoryId }}"
+        data-mapping="{{ .Site.Params.Giscus.Mapping | default "pathname" }}"
+        data-strict="{{ .Site.Params.Giscus.Strict | default 0 }}"
+        data-reactions-enabled="{{ .Site.Params.Giscus.RepoId | default 1}}"
+        data-emit-metadata="{{ .Site.Params.Giscus.EmitMetadata | default 0 }}"
+        data-input-position="{{ .Site.Params.Giscus.InputPosition  | default "top" }}"
+        data-theme="{{ .Site.Params.Giscus.Theme | default "preferred_color_scheme" }}"
+        data-lang="{{ .Site.Params.Giscus.Lang | default "zh-CN" }}"
+        data-loading="{{ .Site.Params.Giscus.Loading | default "lazy" }}"
+        crossorigin="{{ .Site.Params.Giscus.CrossOrigin | default "anonymous" }}"
+        async>
+</script>
+{{ end }}
