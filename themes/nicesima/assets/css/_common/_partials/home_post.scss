@@ -107,4 +107,11 @@
       color: $light-font-secondary-color;
     }
   }
+
+  .post-updated {
+    color: $light-post-link-hover-color;
+    font-weight: 400;
+    font-size: 0.95rem;
+    padding: 0.2em 0;
+  }
 }

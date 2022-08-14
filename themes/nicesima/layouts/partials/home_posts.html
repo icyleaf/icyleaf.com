@@ -10,28 +10,22 @@
   {{ $paginator := .Paginate $pages }}
 
   {{ range $index, $page := $paginator.Pages }}
-    {{ if .Params.image }}
-    {{ $img := .Params.image | relURL }}
-
-    <article class="post-block">
+    {{ $postClass := cond (isset .Params "image") "post-block" "post-inline" }}
+    <article class="{{ $postClass }}">
       <a href="{{ .Permalink }}">
         <header class="post-header">
-          <img src="{{ printf "%s" $img }}" class="cover">
+          {{ if .Params.image }}
+          <img src="{{ .Params.image | relURL }}" class="cover">
+          {{ if in .Content "updated-header" }}
+          <div class="post-updated">新更新</div>
+          {{ end }}
           <h1 class="post-title" itemprop="name headline">{{ .Title }}</h1>
-        </header>
-        <div class="post-content">
-          {{ .Summary }}
-          {{ if .Truncated }}
-          ...
-          {{ end }}
-        </div>
-      </a>
-    </article>
-    {{ else }}
-    <article class="post-inline">
-      <a href="{{ .Permalink }}">
-        <header class="post-header">
+          {{ else }}
           <h1 class="post-title">{{ .Title }}</h1>
+          {{ if in .Content "updated-header" }}
+          <div class="post-updated">新更新</div>
+          {{ end }}
+          {{ end }}
         </header>
         <div class="post-content">
           {{ .Summary }}
@@ -41,7 +35,6 @@
         </div>
       </a>
     </article>
-    {{ end }}
   {{ end }}
 
   {{ partial "paginator.html" . }}
