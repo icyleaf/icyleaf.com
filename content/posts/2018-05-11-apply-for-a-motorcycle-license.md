@@ -7,7 +7,7 @@ categories:
 tags:
   - 摩托车
   - 海淀驾校
-image: images/apply-for-a-motorcycle-license-cover.jpg
+image: uploads/2018/05/14/apply-for-a-motorcycle-license-cover.jpg
 menu: ""
 index: false
 comments: true

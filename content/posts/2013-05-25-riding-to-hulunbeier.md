@@ -7,7 +7,7 @@ tags:
 - Riding
 - 呼伦贝尔
 slug: "riding-to-hulunbeier"
-image: images/hulunbeier-riding-view.jpg
+image: /uploads/2013/05/25/hulunbeier-riding-view.jpg
 ---
 
 {{< updated at="2013-07-01" >}}
@@ -29,7 +29,7 @@ http://www.douban.com/photos/album/107796607/
 
 ## 路线地图
 
-{{< figure src="/images/hulunbeier-riding-roadmap.jpg"
+{{< figure src="/uploads/2013/05/25/hulunbeier-riding-roadmap.jpg"
     title="呼伦贝尔旅行地图"
 >}}
 

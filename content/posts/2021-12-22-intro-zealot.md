@@ -8,30 +8,39 @@ categories:
 tags:
   - opensource
   - projects
-image: images/zealot-cover.png
+image: /uploads/2021/12/22/zealot-cover.png
 comments: true
 isCJKLanguage: true
 share: true
 ---
 
-{{< figure src="/images/zealot-showcase.png"
-    title="Zealot 服务样图"
->}}
+{{< updated at="2022-08-15" >}}
+
+自 2021 年 12 月 22 日发布本篇基于 Zealot 4.3.1 一个稳定版本后到现在服务包含了新特性的上线，正文部分做了对应的更新。
+
+{{< /updated >}}
 
 Zealot 是一个为开发者提供快速测试应用核心的应用分发平台，可通过网页、接口（ CI 、CD 服务）上传 iOS 、Android 甚至是 macOS 的应用文件，甚至是连微软 AppCenter 2021 年底还都不支持的 Android aab 格式，全网独一份，撒花！服务会自动解析应用的元数据等信息，上传版本还可以显示丰富的变更日志、甚至是提供给内部看的自定义字段。针对 iOS 测试者提供除了基本获取设备 UDID 的基础上还会提示测试者是否已经有关联的应用可以安装。
+
+{{< figure src="/uploads/2021/12/22/zealot-showcase.png"
+    title="Zealot 服务样图"
+>}}
 
 ## 特性
 
 - Docker 一键部署
-- 自由解析、托管 iOS 、Android 、甚至是 macOS 的应用
+- 自由解析、托管 iOS/Android 甚至是 macOS 的应用
 - 自定义网络钩子适配所有 InCome Webhook 通知服务（钉钉、企业微信、飞书、Slack 等）
+- 应用解包（甚至 mobileprovision 文件）轻松查看应用包本身的秘密
 - 开发者友好的客户端 SDKs 、REST APIs 及 DevOps 插件
-- 服务和文档提供中英文语言包
+- 相对全面的文档，服务和文档包含中英文语言支持
+- 托管苹果开发者智能注册 iOS 测试设备
 - 基于 MIT 协议的开源项目
+- 没有什么卵用的黑暗模式
 
 ## 开发者的自言自语
 
-Zealot 虽然可能最近半年才慢慢有少部分人接触并使用，实际上历时 6 年的磨练，吸取了多家公司内的场景和经验的演变，专注于应用的托管和分发服务，是目前国内外唯一一个支持几乎全平台（ Windows/Linux 除外）的应用分发托管平台；唯一支持 Android aab 格式解析的平台；唯一提供 iOS/Android SDK ，fastlane 插件等为开发者、测试者友好的开源项目，好啦，flag 立了那么多，不要介意，希望大家用的开心！ En Taro Adun! 🖖
+Zealot 虽然可能最近半年才慢慢有少部分人接触并使用，实际上历时 7 年的磨练，吸取了多家公司内场景和经验地演变，专注于应用的托管和分发服务，是目前国内外唯一一个支持几乎全平台（Windows/Linux 除外）的应用分发托管平台；唯一支持 Android aab 格式解析的平台；唯一提供 iOS/Android SDK ，fastlane 插件等为开发者、测试者友好的开源项目，希望大家用的开心！ En Taro Adun! 🖖
 
 ## 项目地址
 

@@ -1,6 +1,6 @@
 ---
 title: About
-image: images/about.jpg
+image: /aboutme/cover.jpg
 type: page
 index: false
 comments: true
@@ -16,7 +16,7 @@ isCJKLanguage: true
 * 曾是 Windows 用户。
 * 现在是 macOS 死忠用户。
 * 热爱开源，也喜爱[贡献自己的代码](https://github.com/icyleaf)。
-* 曾经作为国内黑客类杂志（均已停刊）的自由撰稿人。
+* 曾经作为国内黑客类杂志[^1]自由撰稿人。
 * 和团队一起生产出数枚 Android 和 iOS 产品。
 * 负责移动研发管理，更专注团队和项目的管理。
 * 使用 OCI 标准来部署一切服务开箱即用。
@@ -30,3 +30,6 @@ isCJKLanguage: true
 * 自使用 iPod Touch 成为~~轻微~~重度苹果用户。
 * PlayStation 和 Nintendo Switch 游戏主机爱好者。
 * 出生于七朝古都 KFC，被老爹一脚踢到哏都求学，混迹于帝都。
+
+
+[^1]: [黑客 X 档案](/aboutme/hacker-x-files-cover.jpg)及 [NoHack](/aboutme/nohack-cover.jpg) 均已停刊
