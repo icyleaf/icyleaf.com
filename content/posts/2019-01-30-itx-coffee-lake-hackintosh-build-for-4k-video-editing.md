@@ -15,6 +15,7 @@ index: false
 comments: true
 isCJKLanguage: true
 share: true
+description: 台式机还是生产力工具吗？
 ---
 
 ## 装机清单

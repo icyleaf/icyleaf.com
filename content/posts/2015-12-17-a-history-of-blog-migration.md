@@ -9,6 +9,7 @@ categories:
   - Life
 date: "2015-12-17T15:01:56+08:00"
 slug: "a-history-of-my-blog"
+description: 文章没写几篇，博客系统换了到挺勤
 ---
 
 {{< updated at="2022-08-15" >}}

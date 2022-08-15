@@ -7,7 +7,7 @@ tags:
 - Python
 - Virtualenv
 slug: "intro-virtualenvwrapper"
-
+description: 多 Python 版本环境的管理工具
 ---
 
 上回说到 [virtualenv](http://icyleaf.com/2012/07/intro-virtualenv) 的基本使用，这会为了提高工作效率，再次介绍针对于它增强的一个扩展 [virtualenvwrapper](http://www.doughellmann.com/projects/virtualenvwrapper/)。

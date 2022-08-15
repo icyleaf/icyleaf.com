@@ -11,6 +11,7 @@ tags:
   - OSX
   - Docker
   - Rancher
+description: Rancher 0.x 版本部署指南
 ---
 
 {{< updated at="2022-02-22" >}}

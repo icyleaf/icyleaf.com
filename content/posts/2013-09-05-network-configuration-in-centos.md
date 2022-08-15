@@ -7,7 +7,7 @@ tags:
 - Linux
 - CentOS
 slug: "network-configuration-in-centos"
-
+description: 一篇很基础的配网知识点
 ---
 
 安装完毕 CentOS 6 Server 开始配置网络设置，网上有很多的教程，用的方法要么不全，要么操作方式比较早期，花点时间整理了下方法：

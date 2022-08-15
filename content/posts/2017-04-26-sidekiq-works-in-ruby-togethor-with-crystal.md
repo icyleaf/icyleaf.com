@@ -11,7 +11,7 @@ tags:
 image: "/uploads/2017/04/26/sidekiq-web-ui.png"
 comments: true
 share: true
-
+description: Crystal 和 Ruby 如何相互通讯
 ---
 
 自从开始研究 Crystal 这门语言（之前也有[介绍](http://icyleaf.com/2016/07/gitlab-api-wrapper-for-crystal/)过），基本上每隔一段时间都会看看它的近况，去年 sidekiq 的作者用该语言重新实现了 sidekiq 项目而且给出了特别竟然的[对比数据](http://www.mikeperham.com/2016/05/25/sidekiq-for-crystal/)。

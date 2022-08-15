@@ -13,6 +13,7 @@ index: false
 comments: true
 isCJKLanguage: true
 share: true
+description: 在北京考摩托车驾照 14 天拿本流程
 ---
 
 去年差不多这个时候也有过学摩托的念头顺便去了好几家摩托专卖店，当时有的店提供花钱买本的服务可惜一是担心假本二是没下定决心，

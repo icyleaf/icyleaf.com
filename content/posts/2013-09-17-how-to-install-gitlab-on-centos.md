@@ -8,7 +8,7 @@ tags:
 - CentOS
 - Git
 slug: "how-to-install-gitlab-on-centos"
-
+description: Barl Metal 安装服务依赖还是很痛苦的，CentOS 上是痛苦面具
 ---
 
 2013 年 08 月的 OpenParty "[花事如期](http://www.beijing-open-party.org/event/25)" 活动上，[晓东](https://github.com/vecio)在他的机器上演示了自建 Gitlab 的项目，看到 Gitlab 目前已经比较成熟，而不像早期寒碜的界面，这个时候看安装一下也是不错的事情，不过他们的项目文档只提供了 Ubuntu 系统的[安装文档](https://github.com/gitlabhq/gitlabhq#installation)，对于 CentOS 没有提到，非官方的文档有比较老久，凭着之前熟悉 Ubuntu 和学习 CentOS，那就开始安装吧：
@@ -135,7 +135,7 @@ $ useradd -c 'GitLab' git
 CentOS 的命令没有办法直接禁止用户的访问的参数，需要用下面命令：
 
 ```
-$ passwd -l git 	
+$ passwd -l git
 ```
 
 ## 安装 Gitlab-shell
@@ -241,7 +241,7 @@ $ git config --global user.email "gitlab@localhost"
 $ git config --global core.autocrlf input
 ```
 
-配置 gitlab 数据库设置    
+配置 gitlab 数据库设置
 
 ```
 $ cp config/database.yml{.mysql,}

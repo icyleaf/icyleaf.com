@@ -1,5 +1,5 @@
 ---
-title: "Fastlane - iOS 和 Android 的自动化构建工具"
+title: "Fastlane"
 tags:
   - iOS
   - Android
@@ -11,6 +11,7 @@ categories:
   - Technology
 slug: "intro-fastlane-automation-for-ios-and-android"
 date: "2016-07-11T12:36:07+08:00"
+description: 系列文章的第一篇，iOS 和 Android 的自动化构建工具
 ---
 
 ### 系列索引

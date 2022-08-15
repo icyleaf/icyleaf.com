@@ -10,7 +10,7 @@ tags:
 index: ''
 comments: true
 share: true
-menu: ''
+description: 让人几多愁的 Jenkins 该如何管理才能省心
 ---
 
 官方的 [jenkins](https://hub.docker.com/_/jenkins) 镜像已经不再维护管理而是由 Jenkins Community 进行更新，鉴于 Jenkins 的更新频率特别快社区版本会提供两个版本：

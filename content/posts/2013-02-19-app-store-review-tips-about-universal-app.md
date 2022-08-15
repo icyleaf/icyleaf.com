@@ -3,12 +3,12 @@ title: "针对 Universal 应用上线 App Store 的提示"
 date: "2013-02-19T12:34:56+08:00"
 categories:
   - Technology
-tags: 
+tags:
 - iOS
 - Xcode
 - Universal
 slug: "app-store-review-tips-about-universal-app"
-
+description: 上线 Universal 被拒后的想法和思考
 ---
 
 ## 官方禁止新版本支持的设备小余旧版本

@@ -8,6 +8,7 @@ tags:
 - 呼伦贝尔
 slug: "riding-to-hulunbeier"
 image: /uploads/2013/05/25/hulunbeier-riding-view.jpg
+description: 一星期几个基友们的骑行规划
 ---
 
 {{< updated at="2013-07-01" >}}

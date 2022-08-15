@@ -7,7 +7,7 @@ tags:
 - CocoaPods
 - iOS
 slug: "speed-up-cocoapods"
-
+description: iOS 组件仓库超时，网络环境不畅通该如何解，我来指点一二
 ---
 
 [Cocopods](http://cocoapods.org/) 本身是一个优秀的 iOS 开发的包管理工具，涵盖了 7k+ 的开源组件，包管理库是托管在 Github。

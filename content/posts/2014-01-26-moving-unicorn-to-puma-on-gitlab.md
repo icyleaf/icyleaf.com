@@ -10,7 +10,7 @@ categories:
   - Technology
 slug: "moving-unicorn-to-puma-on-gitlab"
 date: "2014-01-26T12:34:56+08:00"
-
+description: 用 Ruby 编写的 Puma 网关才是未来
 ---
 
 前篇介绍到如何在《[CentoOS 上面安装 Gitlab](http://icyleaf.com/2013/09/how-to-install-gitlab-on-centos/)》一文，gitlab 默认使用的是 `unicorn` 作为内部的 app server，再用 `nginx` 做代理转发。之前是在公司内部搭建了一个平台，用着还算可以。有打算在 [Linode 购买的 VPS](https://www.linode.com/?r=66b0730eca572d3e45f083e29b1b3f8781b2a009) 上面，使用 `unicorn` 跑服务的时候 `ruby` 的进程居然占了 400-500M 左右，对于 Linode 刚刚免费升级之后才有 1G 内存的环境上，我还真有点放弃安装它的欲望。于是在想是否可以使用 `puma` 替换掉原先的。

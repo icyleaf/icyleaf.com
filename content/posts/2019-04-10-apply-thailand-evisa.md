@@ -12,7 +12,7 @@ index: false
 comments: true
 isCJKLanguage: true
 share: true
-
+description: 电子签证期间入境神速（大家还未意识到时）
 ---
 
 {{< updated at="2019-03-28" >}}

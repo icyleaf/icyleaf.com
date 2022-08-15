@@ -6,8 +6,8 @@ tags:
 - Mac
 - brew
 slug: "homebrew-hidden-commands"
-
 date: "2014-01-25T12:34:56+08:00"
+description: 适用于 macOS 服务下的小秘密
 ---
 
 [Homebrew](http://brew.sh) 可谓是 Mac 开发者必备的工具之一，它承载在各种包管理的特性以及拥有一票热情高涨的社区提供强大支持。今天我就给大家解密一下 brew 内部的隐藏命令都有哪些。

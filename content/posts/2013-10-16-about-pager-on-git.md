@@ -7,7 +7,7 @@ tags:
 - Git
 - Linux
 slug: "about-pager-on-git"
-
+description: tig 是一个代替 Git Pager 的好工具
 ---
 
  > Git 几乎所有命令都提供分页器，即当命令输出超过一页时，自动在每页输出后暂停，可以按空格继续显示，按 q 退出。
@@ -29,7 +29,7 @@ $ vim ~/.gitconfig
 了不起了通过设置自动匹配的色彩来增强可读性
 
 ```
-$ git config --global color.ui on 	
+$ git config --global color.ui on
 ```
 
 随着 [tig](http://jonas.nitro.dk/tig) 的出现，给 git 的增加了一个强大武装武器。（不明观众看这里先对它有个感官概念：[tig, the ncurses front-end to Git](http://gitready.com/advanced/2009/07/31/tig-the-ncurses-front-end-to-git.html)）

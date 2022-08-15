@@ -7,7 +7,7 @@ tags:
 - Ruby
 - Crystal
 slug: "gitlab-api-wrapper-for-crystal"
-
+description: 学习新语音最好的途径就是造轮子
 ---
 
 ## Gitlab.cr

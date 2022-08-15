@@ -2,12 +2,12 @@
 title: "个人 Mac OS 常用应用清单【2013年版】"
 categories:
   - Technology
-tags: 
+tags:
 - Mac
 - App
 date: "2013-07-22T12:34:56+08:00"
 slug: "my-mac-os-apps-list-2013"
-
+description: 日常使用、开发、娱乐全方面整理
 ---
 
 

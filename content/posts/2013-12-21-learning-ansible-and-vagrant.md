@@ -7,7 +7,7 @@ tags:
 - Vagrant
 - Ruby
 slug: "learning-ansible-and-vagrant"
-
+description: Vagrant 可能会让人忘记但你不应该不学 Ansible
 ---
 
  > Ansible is a radically simple IT orchestration engine that makes your applications and systems easier to deploy. Avoid writing scripts or custom code to deploy and update your applications— automate in a language that approaches plain English, using SSH, with no agents to install on remote systems.

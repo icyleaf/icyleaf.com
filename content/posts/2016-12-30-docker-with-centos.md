@@ -9,6 +9,7 @@ tags:
 - docker
 - centos
 title: Docker 摸爬滚打对抗 CentOS 6
+description: 能不用 CentOS 就别了吧，啊不行？那就点进来看看吧
 ---
 
 {{< updated at="2018-10-09" >}}

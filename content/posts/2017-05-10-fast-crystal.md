@@ -9,10 +9,10 @@ tags:
 index: ''
 comments: true
 share: true
-menu: ''
-
+description: 灵感来自 fast-ruby 项目的延展性能测试
 ---
-起初是自己写了一个小测试来看看 crystal 下连接字符串几种实现方式的性能情况，结果还真能区分出来
+
+起初是自己写了一个小测试来看看 Crystal 下连接字符串几种实现方式的性能情况，结果还真能区分出来
 
 ```
 $ crystal build --release code/string/concatenation.cr -o bin/string/concatenation

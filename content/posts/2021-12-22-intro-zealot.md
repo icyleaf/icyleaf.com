@@ -1,5 +1,5 @@
 ---
-title: "Zealot：一个为开发者提供快速测试应用核心的应用分发平台"
+title: Zealot
 date: 2021-12-22T18:45:06+08:00
 draft: false
 slug: "Intro Zealot"
@@ -12,6 +12,7 @@ image: /uploads/2021/12/22/zealot-cover.png
 comments: true
 isCJKLanguage: true
 share: true
+description: 一个为开发者提供快速测试应用核心的应用分发平台
 ---
 
 {{< updated at="2022-08-15" >}}

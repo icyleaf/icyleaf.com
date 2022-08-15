@@ -11,7 +11,7 @@ categories:
   - Technology
 slug: "fastlane-in-action"
 date: "2016-07-19T20:12:07+08:00"
-
+description: 系列文章的第二篇，带你了解 fastlane 使用流程
 ---
 
 这是《 [Fastlane - iOS 和 Android 的自动化构建工具](https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/)》系列的第二篇。

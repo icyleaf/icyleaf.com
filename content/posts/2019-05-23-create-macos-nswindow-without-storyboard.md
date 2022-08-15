@@ -12,6 +12,7 @@ draft: false
 comments: true
 isCJKLanguage: true
 share: true
+description: macOS 开发和 iOS 差异真的很大
 ---
 
 ### 前言

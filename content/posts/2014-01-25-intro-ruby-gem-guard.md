@@ -7,6 +7,7 @@ tags:
 - Gem
 slug: "intro-ruby-gem-guard"
 date: "2014-01-25T12:34:56+08:00"
+description: 撰写规则帮你监听文件系统变更做出对应的行动
 ---
 
 [Guard](http://guardgem.org) 是一个很好的 Web 辅助开发工具，因为看了 tutsplus 网站的介绍视频：[Guard is your best firend](http://net.tutsplus.com/tutorials/tools-and-tips/guard-is-your-best-friend/)。这里把视频的东西提取出来自我消化：

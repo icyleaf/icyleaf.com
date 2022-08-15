@@ -14,6 +14,7 @@ date: '2017-03-28T20:12:07+08:00'
 image: https://github.com/fastlane/fastlane/raw/master/match/assets/match.png
 share: true
 comments: true
+description: 系列文章的第三篇，教你如何使用 match 管理名词都分不清的苹果各自开发者证书
 ---
 
 

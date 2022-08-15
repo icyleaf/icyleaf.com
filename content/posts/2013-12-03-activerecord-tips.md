@@ -8,6 +8,7 @@ tags:
 - ActiveRecord
 - Rails
 slug: "activerecord-tips"
+description: 作为 Rails 生态之一的 ORM 一定要好好学习
 ---
 
 ActiveRecord 是 Rails 内置的 ORM 框架，大多数人学习 Ruby 都是从 rails 开始，接触的也是这个 ORM，因此就有了这个使用秘笈。

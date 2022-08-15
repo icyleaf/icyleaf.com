@@ -14,6 +14,7 @@ draft: false
 comments: true
 isCJKLanguage: true
 share: true
+description: 服务器硬件提供 iLO 让你不再困扰外接屏幕和键鼠
 ---
 
 几年前听取网络上的建议德淘了一台 HP MicroServer Gen8 服务器作为家用的 NAS 服务器，德淘的原因除了便宜以外电源的功率比国内版的更大，内存也比国内版的大（4G）。
