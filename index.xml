@@ -218,8 +218,8 @@
 <h2 id="macos-apps">macOS Apps</h2>
 <h2 id="ios-apps">iOS Apps</h2>
 <h2 id="android-apps">Android Apps</h2>
-]]></content:encoded></item><item><title>Zealot：一个为开发者提供快速测试应用核心的应用分发平台</title><link>https://icyleaf.com/2021/12/intro-zealot/</link><pubDate>Wed, 22 Dec 2021 18:45:06 +0800</pubDate><guid>https://icyleaf.com/2021/12/intro-zealot/</guid><description>
-更新 8月 15, 2022 自 2021 年 12 月 22 日发布本篇基于 Zealot 4.3.1 一个稳定版本后到现在服务包含了新特性的上线，正文部分做了对应的更新。 Zealot 是一个为开发者提供快速测试应...</description><content:encoded><![CDATA[
+]]></content:encoded></item><item><title>Zealot</title><link>https://icyleaf.com/2021/12/intro-zealot/</link><pubDate>Wed, 22 Dec 2021 18:45:06 +0800</pubDate><guid>https://icyleaf.com/2021/12/intro-zealot/</guid><description>
+一个为开发者提供快速测试应用核心的应用分发平台</description><content:encoded><![CDATA[
 
 
 
@@ -280,8 +280,8 @@
 <li>登录密码: <span class="spoiler">ze@l0t</span>
 </li>
 </ul>
-]]></content:encoded></item><item><title>Cocoapods 新增 CDN 支持的源码解读</title><link>https://icyleaf.com/2019/11/cocoapods-cdn-source-code-reading/</link><pubDate>Fri, 15 Nov 2019 19:10:07 +0800</pubDate><guid>https://icyleaf.com/2019/11/cocoapods-cdn-source-code-reading/</guid><description>
-Cocoapods 1.7.2 版本开始增加 CDN 支持但默认没有启用，1.8 版本的发布舍弃了原始完整克隆的 Specs 仓库改用 CDN 服务。CDN 利用的是免费且强大的 jsDelivr CDN 服务，该 CDN 网络在国...</description><content:encoded><![CDATA[<p>Cocoapods <a href="https://blog.cocoapods.org/CocoaPods-1.7.2/">1.7.2</a> 版本开始增加 CDN 支持但默认没有启用，<a href="http://blog.cocoapods.org/CocoaPods-1.8.0-beta/">1.8</a> 版本的发布舍弃了原始完整克隆的 Specs 仓库改用 CDN 服务。CDN 利用的是免费且强大的 <a href="https://www.jsdelivr.com/">jsDelivr</a> CDN 服务，该 CDN 网络在国内是有备案因此速度和稳定性都会有很好的保证。该提案其实在去年已经有人使用 Cocoapods Plugin 的方式实现并向社区<a href="https://github.com/CocoaPods/CocoaPods/issues/8268">贡献 PR</a>。</p>
+]]></content:encoded></item><item><title>Cocoapods 新增 CDN 加速镜像源码解读</title><link>https://icyleaf.com/2019/11/cocoapods-cdn-source-code-reading/</link><pubDate>Fri, 15 Nov 2019 19:10:07 +0800</pubDate><guid>https://icyleaf.com/2019/11/cocoapods-cdn-source-code-reading/</guid><description>
+通过代码剖析对比前后都发生了什么变化</description><content:encoded><![CDATA[<p>Cocoapods <a href="https://blog.cocoapods.org/CocoaPods-1.7.2/">1.7.2</a> 版本开始增加 CDN 支持但默认没有启用，<a href="http://blog.cocoapods.org/CocoaPods-1.8.0-beta/">1.8</a> 版本的发布舍弃了原始完整克隆的 Specs 仓库改用 CDN 服务。CDN 利用的是免费且强大的 <a href="https://www.jsdelivr.com/">jsDelivr</a> CDN 服务，该 CDN 网络在国内是有备案因此速度和稳定性都会有很好的保证。该提案其实在去年已经有人使用 Cocoapods Plugin 的方式实现并向社区<a href="https://github.com/CocoaPods/CocoaPods/issues/8268">贡献 PR</a>。</p>
 <p>那么 CDN 支持相比之前的机制有啥优势呢？难道是把 Pods 的仓库和源码都托管到 CDN 网络了吗，其实并不是的。</p>
 <blockquote>
 <p>友情提醒：本文只重点分析 Pods 下载的机制，不展开其他方面，以下只是 <code>pod install</code> 执行顺序中的一部分，如果你想了解 Cocoapods 都干了什么可以前往<a href="https://www.jianshu.com/p/84936d9344ff">这篇文章</a>查阅。</p>
@@ -348,7 +348,7 @@ Cocoapods 1.7.2 版本开始增加 CDN 支持但默认没有启用，1.8 版本�
 <p>这个机制大大减少了本地需要占一个较大存储的问题，尤其是初次 <code>pod install</code> 时间长的情况，但 Pod 库本身还是各自的
 地址本质上无法解决安装 Pod 消耗时间过长的问题。</p>
 ]]></content:encoded></item><item><title>创建无 Storyboard（xib） 的 macOS NSWindow</title><link>https://icyleaf.com/2019/05/create-macos-nswindow-without-storyboard/</link><pubDate>Thu, 23 May 2019 22:45:07 +0800</pubDate><guid>https://icyleaf.com/2019/05/create-macos-nswindow-without-storyboard/</guid><description>
-前言 历届 WWDC 众多和 macOS 开发相关的视频中只要涉及到 UI 部分必会牵扯上 Storyboard，它能帮你辅助画 UI，使用 Auto Layout 进行布局，甚至你可以不用写一行...</description><content:encoded><![CDATA[<h3 id="前言">前言</h3>
+macOS 开发和 iOS 差异真的很大</description><content:encoded><![CDATA[<h3 id="前言">前言</h3>
 <p>历届 WWDC 众多和 macOS 开发相关的视频中只要涉及到 UI 部分必会牵扯上 Storyboard，它能帮你辅助画 UI，使用 Auto Layout 进行布局，甚至你可以不用写一行代码仅仅使用它和 Core Data 就能完成一个 CURD 的功能。苹果总是极力的推荐所有的开发者（尤其是初学者）使用 Storyboard，它给人最直观的感受，配置参数也都做了调教（有时候开启一个参数需要手敲好多行代码）。</p>
 <p>但总有那么一群人就是不爱使用 Storyboard（比如我），尤其 App 涉及比较多的界面和交互的时候感觉还是代码更可控，团队开发在代码仓库管理上也更为方便。</p>
 <p>何奈在网络上存在的绝大多数的教程和视频都是以 Storyboard 为主，稍不留神可能就忘记设置了哪里，再或者过段时间举一反三的时候总会忘记在 Storyboard 设置了什么而无法实现同样的效果。</p>
@@ -508,7 +508,7 @@ Cocoapods 1.7.2 版本开始增加 CDN 支持但默认没有启用，1.8 版本�
 <h3 id="结语">结语</h3>
 <p>这算是一个开篇，后续还会再继续整理，尽请期待。</p>
 ]]></content:encoded></item><item><title>申请泰国电子落地签答疑解惑</title><link>https://icyleaf.com/2019/04/apply-thailand-evisa/</link><pubDate>Wed, 10 Apr 2019 13:12:07 +0800</pubDate><guid>https://icyleaf.com/2019/04/apply-thailand-evisa/</guid><description>
-更新 3月 28, 2019 拿着打印的 eVISA 到达曼谷机场后填写玩出入境申请表去专门的 eVISA 通道（可能有路障，工作人员知道是办理 eVISA 会放行）到那边几乎没有人在排队，我们...</description><content:encoded><![CDATA[
+电子签证期间入境神速（大家还未意识到时）</description><content:encoded><![CDATA[
 
 
 
@@ -601,7 +601,7 @@ Cocoapods 1.7.2 版本开始增加 CDN 支持但默认没有启用，1.8 版本�
 <p>办理电子签除了便宜以外，我另外看中的据说是 24 - 48 小时下签，然而我太年轻&hellip;</p>
 <p>我是 3 月 28 日晚上申请，真正下签是 4 月 10 日，耗时 13 天，期间我尝试了三种咨询渠道，只有最后一种最有效，资料审核后递交泰国出入境管理局后端状态是不可催的，我是从他们审查后递交泰国出入境管理局又花了 3 天才拿到 evisa，不过他们客服给我的答复是只要我这递交泰国出入境管理局了肯定在你出发前给你下签。</p>
 ]]></content:encoded></item><item><title>华擎 Z390 Gaming ITX 黑苹果安装教程</title><link>https://icyleaf.com/2019/03/asrock-z390-gaming-itx-install-hackintosh-tutorial/</link><pubDate>Thu, 28 Mar 2019 17:12:07 +0800</pubDate><guid>https://icyleaf.com/2019/03/asrock-z390-gaming-itx-install-hackintosh-tutorial/</guid><description>
-更新 4月 14, 2021 系统升级至 Big Sur 之后已经从 Clover 该用 OpenCore 可从 EFI 仓库查看历史变更。 更新疑惑解答无线网络慢的解决方案。 春节前购入一台式机挖坑要写黑苹果安装教...</description><content:encoded><![CDATA[
+安装黑苹果只需要注意那几步</description><content:encoded><![CDATA[
 
 
 
@@ -856,7 +856,7 @@ USB3 端口</li>
 <li><a href="https://www.hackintosh-forum.de/forum/thread/40613-1st-hackintosh-beginner-asrock-z390-phantom-gaming-itx-ac/">ASROCK Z390 PHANTOM GAMING-ITX/AC</a></li>
 </ul>
 ]]></content:encoded></item><item><title>攒了一台 4K 视频剪辑黑苹果</title><link>https://icyleaf.com/2019/01/itx-coffee-lake-hackintosh-build-for-4k-video-editing/</link><pubDate>Wed, 30 Jan 2019 10:30:07 +0800</pubDate><guid>https://icyleaf.com/2019/01/itx-coffee-lake-hackintosh-build-for-4k-video-editing/</guid><description>
-装机清单 台式机借鉴国外 $1000k 攒机思路在不考虑显示器预算为 6000 元人民币。 名称 品牌型号 价格 备注 CPU Intel i7 9700k 2550 主板 华擎 Z390 Phantom Gaming itx/ac 1399 散热器 九州风神 船长 240 EX White RGB 453...</description><content:encoded><![CDATA[<h2 id="装机清单">装机清单</h2>
+台式机还是生产力工具吗？</description><content:encoded><![CDATA[<h2 id="装机清单">装机清单</h2>
 <blockquote>
 <p>台式机借鉴国外 $1000k 攒机思路在不考虑显示器预算为 6000 元人民币。</p>
 </blockquote>
@@ -1143,7 +1143,7 @@ USB3 端口</li>
 <p><del>等我装好了测试没问题就写，还是说你愿意看到一个没有实践过的版本？</del></p>
 <p>好啦好啦，不用催更了，<a href="https://icyleaf.com/2019/03/asrock-z390-gaming-itx-install-hackintosh-tutorial/">教程链接</a>。</p>
 ]]></content:encoded></item><item><title>升级 HP MicroServer Gen8 iLO 秘笈</title><link>https://icyleaf.com/2018/11/upgrade-hp-microerver-gen8-ilo/</link><pubDate>Tue, 27 Nov 2018 10:43:07 +0800</pubDate><guid>https://icyleaf.com/2018/11/upgrade-hp-microerver-gen8-ilo/</guid><description>
-几年前听取网络上的建议德淘了一台 HP MicroServer Gen8 服务器作为家用的 NAS 服务器，德淘的原因除了便宜以外电源的功率比国内版的更大，内存也比国内版的大（4G）。...</description><content:encoded><![CDATA[<p>几年前听取网络上的建议德淘了一台 HP MicroServer Gen8 服务器作为家用的 NAS 服务器，德淘的原因除了便宜以外电源的功率比国内版的更大，内存也比国内版的大（4G）。
+服务器硬件提供 iLO 让你不再困扰外接屏幕和键鼠</description><content:encoded><![CDATA[<p>几年前听取网络上的建议德淘了一台 HP MicroServer Gen8 服务器作为家用的 NAS 服务器，德淘的原因除了便宜以外电源的功率比国内版的更大，内存也比国内版的大（4G）。
 Gen 8 自带 iLO 这是一个很强大的功能，新出的 Gen10 虽然硬件各方面有不错的表现但却阉割了 iLO，打算入坑谨慎选择。</p>
 <h2 id="给你鱼">给你鱼</h2>
 <p><a href="https://pan.baidu.com/s/1wSMlqg-iVO80U-5Z-kNdQA">https://pan.baidu.com/s/1wSMlqg-iVO80U-5Z-kNdQA</a> 提取码: w8mq</p>
@@ -1168,7 +1168,7 @@ Gen 8 自带 iLO 这是一个很强大的功能，新出的 Gen10 虽然硬件�
 <p>解压缩文件后只需要里面的 lpk 文件。</p>
 <p>操作路径：Administrator -&gt; Access Settings -&gt; Language</p>
 ]]></content:encoded></item><item><title>如何解决 macOS 编译丢失 C Header 文件</title><link>https://icyleaf.com/2018/10/apply-for-a-motorcycle-license/</link><pubDate>Wed, 24 Oct 2018 14:30:07 +0800</pubDate><guid>https://icyleaf.com/2018/10/apply-for-a-motorcycle-license/</guid><description>
-今天在 macOS 10.14 通过 brew 安装 libgit2 之后调用时提示提示 fatal error: 'time.h' file not found，本以为是 brew 的问题自己去编译问题依然。确认了 Xcode Command Line Tools 并且再次确认了 xcode-select -s /Applications/Xcode.app 之后还是...</description><content:encoded><![CDATA[<p>今天在 macOS 10.14 通过 brew 安装 libgit2 之后调用时提示提示 <code>fatal error: 'time.h' file not found</code>，本以为是 brew 的问题自己去编译问题依然。确认了 Xcode Command Line Tools 并且再次确认了 <code>xcode-select -s /Applications/Xcode.app</code> 之后还是这样，就连重启大法也不用之后，在 Google 上检索换了好些关键词也没找到问题出在哪，索性把关键词继续模糊放大扩大范围，看到了 github 一个不知道是啥的项目看到有 <code>'stdio.h.h' file not found</code>
+macOS 系统小升级带了兼容困扰怎么办</description><content:encoded><![CDATA[<p>今天在 macOS 10.14 通过 brew 安装 libgit2 之后调用时提示提示 <code>fatal error: 'time.h' file not found</code>，本以为是 brew 的问题自己去编译问题依然。确认了 Xcode Command Line Tools 并且再次确认了 <code>xcode-select -s /Applications/Xcode.app</code> 之后还是这样，就连重启大法也不用之后，在 Google 上检索换了好些关键词也没找到问题出在哪，索性把关键词继续模糊放大扩大范围，看到了 github 一个不知道是啥的项目看到有 <code>'stdio.h.h' file not found</code>
 类似的 issue 终于找到了<a href="https://github.com/frida/frida/issues/338#issuecomment-424595668">解决答案</a>：</p>
 <blockquote>
 <p>关键原因是在于找不到 /usr/include 目录，然而安装 command-line tools 也不会自动帮你解决，而是需要在安装后再手动安装 /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg 才行。</p>
@@ -1179,7 +1179,7 @@ Gen 8 自带 iLO 这是一个很强大的功能，新出的 Gen10 虽然硬件�
 <p>The Command Line Tools package installs the macOS system headers inside the macOS SDK. Software that compiles with the installed tools will search for macOS headers at the standard include path: /Applications/Xcodebeta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.1 4.sdk/usr/include For legacy software that looks for the macOS headers in the base system under /usr/include, please install the package file located at: /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg</p>
 </blockquote>
 ]]></content:encoded></item><item><title>海淀驾校增驾摩托车驾照</title><link>https://icyleaf.com/2018/05/apply-for-a-motorcycle-license/</link><pubDate>Mon, 14 May 2018 20:00:43 +0800</pubDate><guid>https://icyleaf.com/2018/05/apply-for-a-motorcycle-license/</guid><description>
-去年差不多这个时候也有过学摩托的念头顺便去了好几家摩托专卖店，当时有的店提供花钱买本的服务可惜一是担心假本二是没下定决心， 没过多久北京爆出来...</description><content:encoded><![CDATA[<p>去年差不多这个时候也有过学摩托的念头顺便去了好几家摩托专卖店，当时有的店提供花钱买本的服务可惜一是担心假本二是没下定决心，
+在北京考摩托车驾照 14 天拿本流程</description><content:encoded><![CDATA[<p>去年差不多这个时候也有过学摩托的念头顺便去了好几家摩托专卖店，当时有的店提供花钱买本的服务可惜一是担心假本二是没下定决心，
 没过多久北京爆出来相关买本的灰色买卖这事我估计也就黄了也没在继续下去。时隔一年后的今天再次够了每天搬电池充电的电动车通勤，
 上周鼓起勇气（家人的鼓励也很重要）报名了摩托车增驾 D 本。</p>
 <p>北京可以学摩托车的驾校其实也不少，还是找了北边地区比较靠谱的海淀驾校。直接在官方微信公众号报名挂了电话不到一分钟就有工作人员
@@ -1275,8 +1275,8 @@ Gen 8 自带 iLO 这是一个很强大的功能，新出的 Gen10 虽然硬件�
 <li><a href="https://meixg.cn/2017/04/09/learn-motocycle/">2017年3月海淀驾校增驾摩托车D本流程</a></li>
 <li><a href="http://blog.sina.com.cn/s/blog_6d56a57d0102x0dz.html">2017海淀驾校考摩托车驾照流程</a></li>
 </ul>
-]]></content:encoded></item><item><title>ḫpr - 最好用的 git 仓库镜像同步工具</title><link>https://icyleaf.com/2018/04/intro-hpr/</link><pubDate>Fri, 27 Apr 2018 18:12:23 +0800</pubDate><guid>https://icyleaf.com/2018/04/intro-hpr/</guid><description>
-ḫpr 是一个把任意 git 仓库的镜像到 gitlab 服务的同步工具，还支持定期同步的功能。 特性: 支持 Web API 接口，可用于远程控制不仅限于终端使用 支持终端命令控制，...</description><content:encoded><![CDATA[<p><img src="https://github.com/icyleaf/hpr/raw/master/docs/_media/icon.png" alt="icon"></p>
+]]></content:encoded></item><item><title>ḫpr</title><link>https://icyleaf.com/2018/04/intro-hpr/</link><pubDate>Fri, 27 Apr 2018 18:12:23 +0800</pubDate><guid>https://icyleaf.com/2018/04/intro-hpr/</guid><description>
+最好用的 git 仓库镜像同步工具</description><content:encoded><![CDATA[<p><img src="https://github.com/icyleaf/hpr/raw/master/docs/_media/icon.png" alt="icon"></p>
 <p><a href="https://icyleaf.github.io/hpr/">ḫpr</a> 是一个把任意 git 仓库的镜像到 gitlab 服务的同步工具，还支持定期同步的功能。</p>
 <p>特性:</p>
 <ul>
@@ -1398,10 +1398,9 @@ Go 来比打包还没有那么高的集成度但完成核心功能已经完全�
 <h2 id="更多资源">更多资源</h2>
 <p>再多的内容我已经整理到文档中，欢迎移步浏览：https://icyleaf.github.io/hpr/</p>
 ]]></content:encoded></item><item><title>一招解决苹果账户因忘记安全问题绑定手机号</title><link>https://icyleaf.com/2018/04/how-to-bind-mobile-number-to-apple-developer-account/</link><pubDate>Fri, 27 Apr 2018 18:00:07 +0800</pubDate><guid>https://icyleaf.com/2018/04/how-to-bind-mobile-number-to-apple-developer-account/</guid><description>
-前言 2018 年 4 月初的某天，苹果针对于开发者账户抛出了一个看似只有在中国实施的政策：账户需绑定手机号。 但如果你记得账户登录密码却忘记了安全问题的答...</description><content:encoded><![CDATA[<h2 id="前言">前言</h2>
+亲身经历和几招解决办法</description><content:encoded><![CDATA[<h2 id="前言">前言</h2>
 <p>2018 年 4 月初的某天，苹果针对于开发者账户抛出了一个看似只有在中国实施的政策：账户需绑定手机号。
-但如果你记得账户登录密码却忘记了安全问题的答案，那你就不能绑定手机号和后续操作。我是亲身经历这个事件且过程都发在了 twitter
-上面，期间也有很多朋友帮忙跟进和给出不少建议。我希望国内的用户通过搜索引擎找到这里来解决问题。</p>
+但如果你记得账户登录密码却忘记了安全问题的答案，那你就不能绑定手机号和后续操作。我是亲身经历这个事件且过程都发在了 twitter 上面，期间也有很多朋友帮忙跟进和给出不少建议。我希望国内的用户通过搜索引擎找到这里来解决问题。</p>
 <blockquote>
 <p>如果你只想看到最有效的解决方案请拉到文章的尾部的<strong>一招解决</strong>，中间提到的一些解决方案可能在你那边也会适用。</p>
 </blockquote>
@@ -1449,7 +1448,7 @@ iCloud 更新联系方式的方式可以添加绑定手机号。在本机新建�
 <p>对于绑定的手机号必须是没有绑定过其他 Apple Id 账户的才行，于是我通过阿里小号 App 和我另外一个大王卡小号绑定了公司的开发者帐号。蛋疼！</p>
 <p>感谢在这个事件中给予帮助的推友也希望本文能够帮助你解决问题。完整的时间线都在我的 twitter 上面记录，欢迎 <a href="https://twitter.com/icyleaf">follow</a>。</p>
 ]]></content:encoded></item><item><title>如何使用 Docker 管理 Jenkins</title><link>https://icyleaf.com/2018/04/how-to-manage-jenkins-with-docker/</link><pubDate>Wed, 18 Apr 2018 14:44:32 +0800</pubDate><guid>https://icyleaf.com/2018/04/how-to-manage-jenkins-with-docker/</guid><description>
-官方的 jenkins 镜像已经不再维护管理而是由 Jenkins Community 进行更新，鉴于 Jenkins 的更新频率特别快社区版本会提供两个版本： lts 长期稳定版本，但还是会有新版提醒 latest 每周更新版...</description><content:encoded><![CDATA[<p>官方的 <a href="https://hub.docker.com/_/jenkins">jenkins</a> 镜像已经不再维护管理而是由 Jenkins Community 进行更新，鉴于 Jenkins 的更新频率特别快社区版本会提供两个版本：</p>
+让人几多愁的 Jenkins 该如何管理才能省心</description><content:encoded><![CDATA[<p>官方的 <a href="https://hub.docker.com/_/jenkins">jenkins</a> 镜像已经不再维护管理而是由 Jenkins Community 进行更新，鉴于 Jenkins 的更新频率特别快社区版本会提供两个版本：</p>
 <ul>
 <li><code>lts</code> 长期稳定版本，但还是会有新版提醒</li>
 <li><code>latest</code> 每周更新版本</li>
@@ -1502,7 +1501,7 @@ iCloud 更新联系方式的方式可以添加绑定手机号。在本机新建�
 <h2 id="官方文档">官方文档</h2>
 <p><a href="https://github.com/jenkinsci/docker/blob/master/README.md">https://github.com/jenkinsci/docker/blob/master/README.md</a></p>
 ]]></content:encoded></item><item><title>Fast Crystal</title><link>https://icyleaf.com/2017/05/fast-crystal/</link><pubDate>Wed, 10 May 2017 11:57:58 +0000</pubDate><guid>https://icyleaf.com/2017/05/fast-crystal/</guid><description>
-起初是自己写了一个小测试来看看 crystal 下连接字符串几种实现方式的性能情况，结果还真能区分出来 $ crystal build --release code/string/concatenation.cr -o bin/string/concatenation $ ./bin/string/concatenation Crystal 0.22.0 (2017-04-22) LLVM 4.0.0 String#+ 32.98M ( 30.32ns) (±11.62%)...</description><content:encoded><![CDATA[<p>起初是自己写了一个小测试来看看 crystal 下连接字符串几种实现方式的性能情况，结果还真能区分出来</p>
+灵感来自 fast-ruby 项目的延展性能测试</description><content:encoded><![CDATA[<p>起初是自己写了一个小测试来看看 Crystal 下连接字符串几种实现方式的性能情况，结果还真能区分出来</p>
 <pre tabindex="0"><code>$ crystal build --release code/string/concatenation.cr -o bin/string/concatenation
 $ ./bin/string/concatenation
 
@@ -1514,7 +1513,7 @@ String#{}   9.51M (105.16ns) (± 6.12%)  3.47× slower
 </code></pre><p>于是就仿照 <a href="https://github.com/JuanitoFatas/fast-ruby">fast-ruby</a> 在周末花了时间 fork 了 crystal 版本，其实结果挺让人吃惊的，因为是编译性语言在大多数情况下一些小的语法糖在编译器优化阶段会做一致性处理最终的结果其实是一样的，但也有一些例外。</p>
 <p><a href="https://github.com/icyleaf/fast-crystal">https://github.com/icyleaf/fast-crystal</a></p>
 ]]></content:encoded></item><item><title>打通 Sidekiq 的任督二脉 Ruby 和 Crystal</title><link>https://icyleaf.com/2017/04/sidekiq-works-in-ruby-togethor-with-crystal/</link><pubDate>Wed, 26 Apr 2017 16:00:49 +0000</pubDate><guid>https://icyleaf.com/2017/04/sidekiq-works-in-ruby-togethor-with-crystal/</guid><description>
-自从开始研究 Crystal 这门语言（之前也有介绍过），基本上每隔一段时间都会看看它的近况，去年 sidekiq 的作者用该语言重新实现了 sidekiq 项目而且给出了特别竟然的对比数...</description><content:encoded><![CDATA[<p>自从开始研究 Crystal 这门语言（之前也有<a href="http://icyleaf.com/2016/07/gitlab-api-wrapper-for-crystal/">介绍</a>过），基本上每隔一段时间都会看看它的近况，去年 sidekiq 的作者用该语言重新实现了 sidekiq 项目而且给出了特别竟然的<a href="http://www.mikeperham.com/2016/05/25/sidekiq-for-crystal/">对比数据</a>。</p>
+Crystal 和 Ruby 如何相互通讯</description><content:encoded><![CDATA[<p>自从开始研究 Crystal 这门语言（之前也有<a href="http://icyleaf.com/2016/07/gitlab-api-wrapper-for-crystal/">介绍</a>过），基本上每隔一段时间都会看看它的近况，去年 sidekiq 的作者用该语言重新实现了 sidekiq 项目而且给出了特别竟然的<a href="http://www.mikeperham.com/2016/05/25/sidekiq-for-crystal/">对比数据</a>。</p>
 <p><img src="/uploads/2017/04/26/sidekiq-benchmarks.png" alt="IMAGE"></p>
 <p>相对比 Gitlab 采用 go 语言重新 gitlab_ci_runner 而学习一门新的语言达到高效率低内存的方法之外 Crystal 就像是新的希望。使用 Crystal 重新的 sidekiq 的代码也非常的简单但已经实现了核心功能和 Web UI。</p>
 <p>本篇就给大家介绍下如果在 Ruby on Rails 的框架下调度和执行 Crystal 写的 Workers。测试环境是在 macOS 下，其他版本信息如下：</p>
@@ -1810,7 +1809,7 @@ String#{}   9.51M (105.16ns) (± 6.12%)  3.47× slower
 <p>对于 Crystal 语言本身的评价，大家也可看下 RubyChina 站长的心得<a href="https://ruby-china.org/topics/32771">Crystal 说我最近关注 Crystal 的感受</a>，编译语言有编译语言的坑，入坑需谨慎。</p>
 <p>本文演示的代码已经整理并放到了 <a href="https://github.com/icyleaf/sidekiq-with-ruby-and-crystal">Github</a>，对于不明白的地方可配合代码更好服用。</p>
 ]]></content:encoded></item><item><title>你虐我千百遍，我待你如初恋，直到我遇到 match</title><link>https://icyleaf.com/2017/03/fastlane-match-in-action/</link><pubDate>Tue, 28 Mar 2017 20:12:07 +0800</pubDate><guid>https://icyleaf.com/2017/03/fastlane-match-in-action/</guid><description>
-系列目录 Fastlane - iOS 和 Android 的自动化构建工具 深入浅出 Fastlane 一看你就懂 你虐我千百遍，我待你如初恋，直到我遇到 match 前言 通过前两篇的文章大家已经对 fastlane 的概念和基本使...</description><content:encoded><![CDATA[<h2 id="系列目录">系列目录</h2>
+系列文章的第三篇，教你如何使用 match 管理名词都分不清的苹果各自开发者证书</description><content:encoded><![CDATA[<h2 id="系列目录">系列目录</h2>
 <ol>
 <li><a href="https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/">Fastlane - iOS 和 Android 的自动化构建工具</a></li>
 <li><a href="http://icyleaf.com/2016/07/fastlane-in-action/">深入浅出 Fastlane 一看你就懂</a></li>
@@ -1906,8 +1905,8 @@ String#{}   9.51M (105.16ns) (± 6.12%)  3.47× slower
 <li><a href="https://github.com/fastlane/fastlane/issues/2007">https://github.com/fastlane/fastlane/issues/2007</a></li>
 </ul>
 ]]></content:encoded></item><item><title>北京上临时牌照流程</title><link>https://icyleaf.com/2017/03/how-to-get-temporary-car-license-in-beijing/</link><pubDate>Thu, 23 Mar 2017 00:00:00 +0800</pubDate><guid>https://icyleaf.com/2017/03/how-to-get-temporary-car-license-in-beijing/</guid><description>
-不在 4s 店购买一点精品的后果就是自己需要办理北京上临牌，准备如下资料备忘 办理所需资料 身份证 北京居住卡或居住证或工作居住证（非北京户口需要） 购车...</description><content:encoded><![CDATA[<p>不在 4s 店购买一点精品的后果就是自己需要办理北京上临牌，准备如下资料备忘</p>
-<p>办理所需资料</p>
+北京太堵，少走弯路</description><content:encoded><![CDATA[<p>汽车没有 4s 店购买“额外”的精品车饰的的后果，店里不提供免费上临牌服务需要自己办，还好自己早有准备。</p>
+<h2 id="办理所需资料">办理所需资料</h2>
 <ul>
 <li>身份证</li>
 <li>北京居住卡或居住证或工作居住证（非北京户口需要）</li>
@@ -1920,15 +1919,15 @@ String#{}   9.51M (105.16ns) (± 6.12%)  3.47× slower
 <li>以上资料均需要原件及复印件一份</li>
 <li>办理临时牌照不需要指标确认书。</li>
 </ol>
-<p><strong>办理过程</strong></p>
+<h2 id="办理过程">办理过程</h2>
 <p>进门按键领号排队，等叫到的时候去柜台将上述资料给工作人员。然后在一边等待制作完成即可。不需要填写任何单子，我去的时候人比较多，大概等了30分钟。</p>
-<p><strong>办理时限</strong></p>
+<h2 id="办理时限">办理时限</h2>
 <p>周一至周五：8：30 - 18：00</p>
 <p>周六、日：9：00 - 16：00（法定节假日除外）</p>
 <p>自受理申请之日起一个工作日内办理完毕。</p>
-<p><strong>收费问题</strong></p>
+<h2 id="收费问题">收费问题</h2>
 <p>收费10块（两张临牌纸，5块一张），在领临牌的时候给工作人员即可。</p>
-<p><strong>办理地点</strong></p>
+<h2 id="办理地点">办理地点</h2>
 <p>（一）跨辖区临时行驶车号牌：</p>
 <ul>
 <li>车辆管理所：朝阳区南四环东路18号</li>
@@ -1970,20 +1969,20 @@ String#{}   9.51M (105.16ns) (± 6.12%)  3.47× slower
 <li>亦庄车管站：北京市经济技术开发区科创四街1号，88313933</li>
 </ul>
 <p>有效期 7 天，可以申请办理 3 次</p>
-<p><strong>临时牌照有效期</strong></p>
+<h2 id="临时牌照有效期">临时牌照有效期</h2>
 <p>临时号牌有效期为15天，最长期限不超过45天。
 每辆车最多能办理3张临时牌照。</p>
 <blockquote>
 <p>据 4S 店告知出京的临牌只能办一次且办完之后不能再办区域内临牌。</p>
 </blockquote>
-<p><strong>临时牌照如何悬挂</strong></p>
+<h2 id="临时牌照如何悬挂">临时牌照如何悬挂</h2>
 <p>机动车临时号牌为两张，正面为车牌号码和有效期，背面为机动车详细信息，所以机动车临时号牌是不能借给他人使用。使用临时号牌上路时，应该在机动车前后挡风玻璃处各张贴一张机动车号牌，将机动车号牌号码侧朝外，如果不按照规定悬挂号牌，将被处以200元罚款和12分违章。</p>
-<p><strong>咨询电话</strong></p>
+<h2 id="咨询电话">咨询电话</h2>
 <p>车管业务咨询电话：12122</p>
 <blockquote>
 <p>根据其他网站的反馈咨询的情况可能和实际有出入。</p>
 </blockquote>
-<p><strong>资料参考</strong></p>
+<h2 id="资料参考">资料参考</h2>
 <p>北京市公安局 -  机动车临时通行牌证核发
 <a href="http://www.bjgaj.gov.cn/web/detail_getZwgkInfo_279416.html">http://www.bjgaj.gov.cn/web/detail_getZwgkInfo_279416.html</a></p>
 <p>北京市公安局公安交通管理局 - 申请机动车临时行驶车号牌
@@ -1995,7 +1994,7 @@ String#{}   9.51M (105.16ns) (± 6.12%)  3.47× slower
 <p>百度经验 - 机动车办理北京市内临时牌照流程
 <a href="http://jingyan.baidu.com/article/86fae34689365e3c48121a50.html">http://jingyan.baidu.com/article/86fae34689365e3c48121a50.html</a></p>
 ]]></content:encoded></item><item><title>Docker 摸爬滚打对抗 CentOS 6</title><link>https://icyleaf.com/2016/12/docker-with-centos/</link><pubDate>Fri, 30 Dec 2016 17:52:30 +0800</pubDate><guid>https://icyleaf.com/2016/12/docker-with-centos/</guid><description>
-更新 10月 9, 2018 国庆期间恰巧服务器硬盘故障且运维并没有做 raid 备份，给更换了一台新内部服务器，索性升级到了 CentOS 7，因此针对 CentOS 6 安装 Docker 的答疑不再更新。...</description><content:encoded><![CDATA[
+能不用 CentOS 就别了吧，啊不行？那就点进来看看吧</description><content:encoded><![CDATA[
 
 
 
@@ -2098,7 +2097,7 @@ String#{}   9.51M (105.16ns) (± 6.12%)  3.47× slower
 </span></span></code></pre></div><h4 id="6-宿主机-cst-时间会造成-docker-实例时间不准">6. 宿主机 CST 时间会造成 docker 实例时间不准</h4>
 <p>这个真没办法，只能在 Dockerfile 或者进实例里面进行修改时区，这个我就不过多赘述了。</p>
 ]]></content:encoded></item><item><title>如何在 OS X 上安装 Rancher</title><link>https://icyleaf.com/2016/08/how-to-install-rancher-on-osx/</link><pubDate>Fri, 05 Aug 2016 17:21:08 +0800</pubDate><guid>https://icyleaf.com/2016/08/how-to-install-rancher-on-osx/</guid><description>
-更新 2月 22, 2022 以下内容写于 Rancker 0.x 版本，后续版本变更比较大本文不再有没有参考。 Rancher 是 Docker 编排解决方案的一种，好处在于可以做容器编排，网络，存储，负载均...</description><content:encoded><![CDATA[
+Rancher 0.x 版本部署指南</description><content:encoded><![CDATA[
 
 
 
@@ -2155,7 +2154,7 @@ String#{}   9.51M (105.16ns) (± 6.12%)  3.47× slower
 <h2 id="结尾">结尾</h2>
 <p>本篇只先解决这一个问题，更多使用的资料请看<a href="http://rancher.hidocker.io/">Rancher 实战红宝书</a>。</p>
 ]]></content:encoded></item><item><title>深入浅出 Fastlane 一看你就懂</title><link>https://icyleaf.com/2016/07/fastlane-in-action/</link><pubDate>Tue, 19 Jul 2016 20:12:07 +0800</pubDate><guid>https://icyleaf.com/2016/07/fastlane-in-action/</guid><description>
-这是《 Fastlane - iOS 和 Android 的自动化构建工具》系列的第二篇。 本篇我想着重介绍 fastlane 本身的基本使用，这里使用 fastlane v1.98.0 作为演示版本。 系列索引 Fastlane - iOS 和 Android 的自动化构建工...</description><content:encoded><![CDATA[<p>这是《 <a href="https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/">Fastlane - iOS 和 Android 的自动化构建工具</a>》系列的第二篇。</p>
+系列文章的第二篇，带你了解 fastlane 使用流程</description><content:encoded><![CDATA[<p>这是《 <a href="https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/">Fastlane - iOS 和 Android 的自动化构建工具</a>》系列的第二篇。</p>
 <p>本篇我想着重介绍 <code>fastlane</code> 本身的基本使用，这里使用 fastlane v1.98.0 作为演示版本。</p>
 <h3 id="系列索引">系列索引</h3>
 <ol>
@@ -2600,7 +2599,7 @@ String#{}   9.51M (105.16ns) (± 6.12%)  3.47× slower
 </tbody>
 </table>
 ]]></content:encoded></item><item><title>Gitlab API Wrapper for Crystal</title><link>https://icyleaf.com/2016/07/gitlab-api-wrapper-for-crystal/</link><pubDate>Mon, 11 Jul 2016 20:41:26 +0800</pubDate><guid>https://icyleaf.com/2016/07/gitlab-api-wrapper-for-crystal/</guid><description>
-Gitlab.cr gitlab.cr 是我最近课下练习的新语言 Crystal 写的 gitlab 包，方法和功能和 gitlab ruby 版本基本类似。 目前已经完成了大部分 API 的封装，在一边熟悉 crystal 的同时一边补充，其中肯定有一...</description><content:encoded><![CDATA[<h2 id="gitlabcr">Gitlab.cr</h2>
+学习新语音最好的途径就是造轮子</description><content:encoded><![CDATA[<h2 id="gitlabcr">Gitlab.cr</h2>
 <p><a href="https://github.com/icyleaf/gitlab.cr">gitlab.cr</a> 是我最近课下练习的新语言 <a href="http://crystal-lang.org/">Crystal</a> 写的 gitlab 包，方法和功能和 <a href="https://github.com/NARKOZ/gitlab">gitlab ruby 版本</a>基本类似。</p>
 <p>目前已经完成了大部分 API 的封装，在一边熟悉 crystal 的同时一边补充，其中肯定有一些性能问题和坑，毕竟没有任何依赖都是自己实现的。比较坑爹的是官方手册太简单，也没有实时跟进，能够好好翻阅的其实也就是官方的 API 文档和源码。不过 crystal 还算比较人性化的一面，默认集成了类似 rspce 的单元测试（简化版）和依赖库管理 shards（类似 bundler）和生成文档的工具。通过 <a href="https://travis-ci.org/%60%60">travis-ci</a> 会自动生成每次 git push 的变化。</p>
 <p>API 文档：http://icyleaf.github.io/gitlab.cr/</p>
@@ -2687,8 +2686,8 @@ Gitlab.cr gitlab.cr 是我最近课下练习的新语言 Crystal 写的 gitlab �
 <li>Test Driving Sidekiq and Crystal: <a href="http://www.mikeperham.com/2016/06/14/test-driving-sidekiq-and-crystal/">http://www.mikeperham.com/2016/06/14/test-driving-sidekiq-and-crystal/</a></li>
 <li>Flirting with Crystal, a Rubyist Perspective: <a href="http://www.akitaonrails.com/2016/05/31/flirting-with-crystal-a-rubyist-perspective">http://www.akitaonrails.com/2016/05/31/flirting-with-crystal-a-rubyist-perspective</a></li>
 </ul>
-]]></content:encoded></item><item><title>Fastlane - iOS 和 Android 的自动化构建工具</title><link>https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/</link><pubDate>Mon, 11 Jul 2016 12:36:07 +0800</pubDate><guid>https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/</guid><description>
-系列索引 Fastlane - iOS 和 Android 的自动化构建工具 深入浅出 Fastlane 一看你就懂 你虐我千百遍，我待你如初恋，直到我遇到 match 前言 这篇文章整理了很久，发现在一篇文章里无法一...</description><content:encoded><![CDATA[<h3 id="系列索引">系列索引</h3>
+]]></content:encoded></item><item><title>Fastlane</title><link>https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/</link><pubDate>Mon, 11 Jul 2016 12:36:07 +0800</pubDate><guid>https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/</guid><description>
+系列文章的第一篇，iOS 和 Android 的自动化构建工具</description><content:encoded><![CDATA[<h3 id="系列索引">系列索引</h3>
 <ol>
 <li><a href="https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/">Fastlane - iOS 和 Android 的自动化构建工具</a></li>
 <li><a href="https://icyleaf.com/2016/07/fastlane-in-action/">深入浅出 Fastlane 一看你就懂</a></li>
@@ -2910,7 +2909,7 @@ Gitlab.cr gitlab.cr 是我最近课下练习的新语言 Crystal 写的 gitlab �
 但具体的特性不是特别多，主要是对于 <code>gradle</code> 的封装，我先不做展开介绍，大家可以先看看<a href="https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Android.md">官方文档</a>，如果后续有特别不明白的地方我在做具体的讲解。</p>
 <p>今天就先写到这里后续我会继续整理更多的使用指南和实战范例共大家参考，最后给大家附赠官方给大家的一些<a href="https://github.com/fastlane/examples">范例</a>。</p>
 ]]></content:encoded></item><item><title>博客迁徙记</title><link>https://icyleaf.com/2015/12/a-history-of-my-blog/</link><pubDate>Thu, 17 Dec 2015 15:01:56 +0800</pubDate><guid>https://icyleaf.com/2015/12/a-history-of-my-blog/</guid><description>
-更新 8月 15, 2022 博客系统的迁移变更改为时间倒序排列，没想到这次坚持的时间还挺长，没有关停这里实属幸运吧。 这次借助于撰写如何搭建家用 homelab: 先导篇难得有...</description><content:encoded><![CDATA[
+文章没写几篇，博客系统换了到挺勤</description><content:encoded><![CDATA[
 
 
 
@@ -3017,14 +3016,13 @@ Gitlab.cr gitlab.cr 是我最近课下练习的新语言 Crystal 写的 gitlab �
 <li>2021 年总文章数量 1 篇</li>
 </ul>
 ]]></content:encoded></item><item><title>Hexo 主题推荐 NexT</title><link>https://icyleaf.com/2015/12/hexo-theme-next/</link><pubDate>Thu, 17 Dec 2015 14:41:00 +0800</pubDate><guid>https://icyleaf.com/2015/12/hexo-theme-next/</guid><description>
-这是我见过配备最完善的 hexo 主题，支持丰富的配置，和 hexo 一样完善的文档。兼容国内外的扩展服务，最重要的主题作者还是国人。 文档：http://the...</description><content:encoded><![CDATA[<p><img src="https://camo.githubusercontent.com/2e2c5c6d351ebe899fcebed0f56a5b72b2660b06/687474703a2f2f696973736e616e2e636f6d2f6e657875732f6e6578742f6e6578742d736368656d65732e6a7067" alt="Snapshot"></p>
-<p>这是我见过配备最完善的 hexo 主题，支持丰富的配置，和 hexo 一样完善的文档。兼容国内外的扩展服务，最重要的主题作者还是国人。</p>
+或许是最近几年非常流行的主题之一</description><content:encoded><![CDATA[<p>这是我见过配备最完善的 hexo 主题，支持丰富的配置，和 hexo 一样完善的文档。兼容国内外的扩展服务，最重要的主题作者还是国人。</p>
 <ul>
 <li>文档：http://theme-next.iissnan.com/</li>
 <li>源码：https://github.com/iissnan/hexo-theme-next</li>
 </ul>
 ]]></content:encoded></item><item><title>极速化 CocoaPods</title><link>https://icyleaf.com/2015/01/speed-up-cocoapods/</link><pubDate>Tue, 20 Jan 2015 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2015/01/speed-up-cocoapods/</guid><description>
-Cocopods 本身是一个优秀的 iOS 开发的包管理工具，涵盖了 7k+ 的开源组件，包管理库是托管在 Github。 众所周知的原因它的速度日渐缓慢，有时会频繁报如下错误...</description><content:encoded><![CDATA[<p><a href="http://cocoapods.org/">Cocopods</a> 本身是一个优秀的 iOS 开发的包管理工具，涵盖了 7k+ 的开源组件，包管理库是托管在 Github。
+iOS 组件仓库超时，网络环境不畅通该如何解，我来指点一二</description><content:encoded><![CDATA[<p><a href="http://cocoapods.org/">Cocopods</a> 本身是一个优秀的 iOS 开发的包管理工具，涵盖了 7k+ 的开源组件，包管理库是托管在 Github。
 众所周知的原因它的速度日渐缓慢，有时会频繁报如下错误：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ pod install
 </span></span><span class="line"><span class="ln">2</span><span class="cl">
@@ -3196,7 +3194,7 @@ Cocopods 本身是一个优秀的 iOS 开发的包管理工具，涵盖了 7k+ �
 </span></span></code></pre></div><h5 id="f-我还有问题">F: 我还有问题！</h5>
 <p>A: 麻烦请留言，谢谢！</p>
 ]]></content:encoded></item><item><title>Puma 替换 Unicorn 跑 Gitlab</title><link>https://icyleaf.com/2014/01/moving-unicorn-to-puma-on-gitlab/</link><pubDate>Sun, 26 Jan 2014 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2014/01/moving-unicorn-to-puma-on-gitlab/</guid><description>
-前篇介绍到如何在《CentoOS 上面安装 Gitlab》一文，gitlab 默认使用的是 unicorn 作为内部的 app server，再用 nginx 做代理转发。之前是在公...</description><content:encoded><![CDATA[<p>前篇介绍到如何在《<a href="http://icyleaf.com/2013/09/how-to-install-gitlab-on-centos/">CentoOS 上面安装 Gitlab</a>》一文，gitlab 默认使用的是 <code>unicorn</code> 作为内部的 app server，再用 <code>nginx</code> 做代理转发。之前是在公司内部搭建了一个平台，用着还算可以。有打算在 <a href="https://www.linode.com/?r=66b0730eca572d3e45f083e29b1b3f8781b2a009">Linode 购买的 VPS</a> 上面，使用 <code>unicorn</code> 跑服务的时候 <code>ruby</code> 的进程居然占了 400-500M 左右，对于 Linode 刚刚免费升级之后才有 1G 内存的环境上，我还真有点放弃安装它的欲望。于是在想是否可以使用 <code>puma</code> 替换掉原先的。</p>
+用 Ruby 编写的 Puma 网关才是未来</description><content:encoded><![CDATA[<p>前篇介绍到如何在《<a href="http://icyleaf.com/2013/09/how-to-install-gitlab-on-centos/">CentoOS 上面安装 Gitlab</a>》一文，gitlab 默认使用的是 <code>unicorn</code> 作为内部的 app server，再用 <code>nginx</code> 做代理转发。之前是在公司内部搭建了一个平台，用着还算可以。有打算在 <a href="https://www.linode.com/?r=66b0730eca572d3e45f083e29b1b3f8781b2a009">Linode 购买的 VPS</a> 上面，使用 <code>unicorn</code> 跑服务的时候 <code>ruby</code> 的进程居然占了 400-500M 左右，对于 Linode 刚刚免费升级之后才有 1G 内存的环境上，我还真有点放弃安装它的欲望。于是在想是否可以使用 <code>puma</code> 替换掉原先的。</p>
 <h2 id="puma">puma</h2>
 <p>简单介绍下 <a href="http://puma.io/"><code>puma</code></a>，它是一个由 ruby 编写的转为 <a href="http://rack.github.io/"><code>rack</code></a> 设计的 app server，在性能和资源占有上却有极大的优势（下表数据来自官方）</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">PUMA - 78 Mb
@@ -3243,7 +3241,7 @@ Cocopods 本身是一个优秀的 iOS 开发的包管理工具，涵盖了 7k+ �
 </span></span></code></pre></div><h2 id="我想用-apache-怎么办">我想用 Apache 怎么办？</h2>
 <p>嗯，我没尝试过，官方有提供收集的资料，<a href="https://gitlab.com/gitlab-org/gitlab-recipes/tree/master/web-server">自己查看下吧</a>，记得要活学活用，直接套肯定会出问题的。</p>
 ]]></content:encoded></item><item><title>Homebrew 隐藏命令</title><link>https://icyleaf.com/2014/01/homebrew-hidden-commands/</link><pubDate>Sat, 25 Jan 2014 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2014/01/homebrew-hidden-commands/</guid><description>
-Homebrew 可谓是 Mac 开发者必备的工具之一，它承载在各种包管理的特性以及拥有一票热情高涨的社区提供强大支持。今天我就给大家解密一下 brew 内部的隐藏命令都有哪...</description><content:encoded><![CDATA[<p><a href="http://brew.sh">Homebrew</a> 可谓是 Mac 开发者必备的工具之一，它承载在各种包管理的特性以及拥有一票热情高涨的社区提供强大支持。今天我就给大家解密一下 brew 内部的隐藏命令都有哪些。</p>
+适用于 macOS 服务下的小秘密</description><content:encoded><![CDATA[<p><a href="http://brew.sh">Homebrew</a> 可谓是 Mac 开发者必备的工具之一，它承载在各种包管理的特性以及拥有一票热情高涨的社区提供强大支持。今天我就给大家解密一下 brew 内部的隐藏命令都有哪些。</p>
 <h2 id="服务管理">服务管理</h2>
 <p>当我们安装了众多需要挂载的服务，需要重启或停止的时候，都特别希望 Mac 可以有个统一的命令可以管理服务的状态，比如 <code>services</code> 命令甚至说 <code>/etc/init.d/</code> 也可以啊！</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln"> 1</span><span class="cl">$ brew services <span class="nb">command</span> <span class="o">[</span>formula<span class="o">]</span>
@@ -3300,7 +3298,7 @@ Homebrew 可谓是 Mac 开发者必备的工具之一，它承载在各种包管
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ brew commands
 </span></span></code></pre></div><p>其实这些命令可以在<a href="https://github.com/Homebrew/homebrew/tree/master/Library/Contributions/cmd">官方源代码</a>看到。</p>
 ]]></content:encoded></item><item><title>初识 Ruby Gem Guard</title><link>https://icyleaf.com/2014/01/intro-ruby-gem-guard/</link><pubDate>Sat, 25 Jan 2014 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2014/01/intro-ruby-gem-guard/</guid><description>
-Guard 是一个很好的 Web 辅助开发工具，因为看了 tutsplus 网站的介绍视频：Guard is your best firend。这里把视频的东西提取出来自我消化： 1$ gem install guard 它实际的工作...</description><content:encoded><![CDATA[<p><a href="http://guardgem.org">Guard</a> 是一个很好的 Web 辅助开发工具，因为看了 tutsplus 网站的介绍视频：<a href="http://net.tutsplus.com/tutorials/tools-and-tips/guard-is-your-best-friend/">Guard is your best firend</a>。这里把视频的东西提取出来自我消化：</p>
+撰写规则帮你监听文件系统变更做出对应的行动</description><content:encoded><![CDATA[<p><a href="http://guardgem.org">Guard</a> 是一个很好的 Web 辅助开发工具，因为看了 tutsplus 网站的介绍视频：<a href="http://net.tutsplus.com/tutorials/tools-and-tips/guard-is-your-best-friend/">Guard is your best firend</a>。这里把视频的东西提取出来自我消化：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ gem install guard
 </span></span></code></pre></div><p>它实际的工作就像名字那样，实时守卫这某些文件并做出对应的操作，本质上相当于一个有这个思想的禁卫兵，通过指派命令（安装扩展 gem）而负责守卫和执行，比如视频中提到的：</p>
 <p>上面是概念的理解，实际上的流程是，设定一系列的规则，让他监控文件内容（修改时间）的动态，一旦发生变化则根据不同的命令执行不同的操作。</p>
@@ -3319,7 +3317,7 @@ Guard 是一个很好的 Web 辅助开发工具，因为看了 tutsplus 网站�
 <p><a href="http://puma.io">puma</a> 是目前比较新的一个 web 服务器，这个扩展可以监听配置变化从而自动重启服务器。</p>
 <p>官方列举的所有扩展：<a href="https://github.com/guard/guard/wiki/List-of-available-Guards">List of available Guards</a></p>
 ]]></content:encoded></item><item><title>Linux 101 系列：ssh OpenSSH 客户端工具</title><link>https://icyleaf.com/2014/01/linux-101-ssh/</link><pubDate>Wed, 22 Jan 2014 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2014/01/linux-101-ssh/</guid><description>
-使用 *nix 服务器肯定会用到 ssh，它是一个链接到远程服务器终端的工具。 基本常识 基本组成部分 1$ man ssh 2ssh [-1246AaCfgKkMNnqsTtVvXxYy] [-b bind_address] [-c cipher_spec] 3 [-D [bind_address:]port] [-e escape_char] [-F configfile] [-I pkcs11] 4 [-i identity_file] [-L [bind_address:]port:host:hostport] 5 [-l login_name] [-m...</description><content:encoded><![CDATA[<blockquote>
+当你敲下 ssh 为什么没连接成功到远程服务器</description><content:encoded><![CDATA[<blockquote>
 <p>使用 *nix 服务器肯定会用到 ssh，它是一个链接到远程服务器终端的工具。</p>
 </blockquote>
 <h2 id="基本常识">基本常识</h2>
@@ -3574,7 +3572,7 @@ Guard 是一个很好的 Web 辅助开发工具，因为看了 tutsplus 网站�
 <li><a href="http://www.openfsg.com/index.php/Advanced_SSH_usage">Advanced SSH usage</a></li>
 </ol>
 ]]></content:encoded></item><item><title>2013 年终总结</title><link>https://icyleaf.com/2013/12/2013-in-review/</link><pubDate>Mon, 30 Dec 2013 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2013/12/2013-in-review/</guid><description>
-人生能够走过几次 1314 新旧年的交替，都有些忘记过去的一年做了些什么事情，翻看日历和一些零碎的笔记在努力把之前的事情慢慢回忆起来。 工作 工作算得上又...</description><content:encoded><![CDATA[<p>人生能够走过几次 1314 新旧年的交替，都有些忘记过去的一年做了些什么事情，翻看日历和一些零碎的笔记在努力把之前的事情慢慢回忆起来。</p>
+有得有失的一年，跳出舒适圈才能破局</description><content:encoded><![CDATA[<p>人生能够走过几次 1314 新旧年的交替，都有些忘记过去的一年做了些什么事情，翻看日历和一些零碎的笔记在努力把之前的事情慢慢回忆起来。</p>
 <h2 id="工作">工作</h2>
 <p>工作算得上又失落也有少许沉淀。</p>
 <p>首先结束了人生第二家干了大约三年半的公司。当职位慢慢爬升，周围的环境已不再是曾经那么单纯程序员思维，在<a href="http://icyleaf.com/2013/01/2011-2012-in-review/">去年年终总结</a>也提到过爬升所带来的宝贵经验，但今年却尝到了不一样的教训：</p>
@@ -3634,7 +3632,7 @@ Guard 是一个很好的 Web 辅助开发工具，因为看了 tutsplus 网站�
 <!-- raw HTML omitted -->
 <p>新的一年我想尝试写写日记，就像《和时间做朋友》里面提到的，我想对于时间和事情的归档更加的精确，未来还有更多的事情要去做！</p>
 ]]></content:encoded></item><item><title>学习 Ansible + Vagrant</title><link>https://icyleaf.com/2013/12/learning-ansible-and-vagrant/</link><pubDate>Sat, 21 Dec 2013 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2013/12/learning-ansible-and-vagrant/</guid><description>
-Ansible is a radically simple IT orchestration engine that makes your applications and systems easier to deploy. Avoid writing scripts or custom code to deploy and update your applications— automate in a language that approaches plain English, using SSH, with no agents to install on remote systems. 简单来说 Ansible 是一个极简化...</description><content:encoded><![CDATA[<blockquote>
+Vagrant 可能会让人忘记但你不应该不学 Ansible</description><content:encoded><![CDATA[<blockquote>
 <p>Ansible is a radically simple IT orchestration engine that makes your applications and systems easier to deploy. Avoid writing scripts or custom code to deploy and update your applications— automate in a language that approaches plain English, using SSH, with no agents to install on remote systems.</p>
 </blockquote>
 <p>简单来说 <a href="https://github.com/ansible/ansible">Ansible</a> 是一个极简化的应用和系统部署工具，类似 <a href="https://github.com/puppetlabs/puppet">Puppet</a>、<a href="https://github.com/opscode/chef">Chef</a>、<a href="https://github.com/saltstack/salt">SaltStack</a>。由于默认使用 <code>ssh</code> 管理服务器（集群），配置文件采用 yaml 而不是某一种特定语言制定。方便至极。</p>
@@ -3715,7 +3713,7 @@ yum: name=nginx state=present</li>
 
 今天初探就到此结束，希望通过本篇文字大家对它有个大概的了解。
 </code></pre>]]></content:encoded></item><item><title>ActiveRecord 使用秘笈</title><link>https://icyleaf.com/2013/12/activerecord-tips/</link><pubDate>Tue, 03 Dec 2013 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2013/12/activerecord-tips/</guid><description>
-ActiveRecord 是 Rails 内置的 ORM 框架，大多数人学习 Ruby 都是从 rails 开始，接触的也是这个 ORM，因此就有了这个使用秘笈。 支持 rake db:xxx 命令 在非 rails 项目怎么让 rake 支持 db:xxx 命令呢？把...</description><content:encoded><![CDATA[<p>ActiveRecord 是 Rails 内置的 ORM 框架，大多数人学习 Ruby 都是从 rails 开始，接触的也是这个 ORM，因此就有了这个使用秘笈。</p>
+作为 Rails 生态之一的 ORM 一定要好好学习</description><content:encoded><![CDATA[<p>ActiveRecord 是 Rails 内置的 ORM 框架，大多数人学习 Ruby 都是从 rails 开始，接触的也是这个 ORM，因此就有了这个使用秘笈。</p>
 <h1 id="支持-rake-dbxxx-命令">支持 <code>rake db:xxx</code> 命令</h1>
 <p>在非 rails 项目怎么让 rake 支持 db:xxx 命令呢？把如下代码放到 <code>Rakefile</code> 中:</p>
 <pre tabindex="0"><code>namespace :db do
@@ -3882,7 +3880,7 @@ class Post &lt; ActiveRecord::Base
   end
 end
 </code></pre>]]></content:encoded></item><item><title>Git 和 Pager 的那点事</title><link>https://icyleaf.com/2013/10/about-pager-on-git/</link><pubDate>Wed, 16 Oct 2013 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2013/10/about-pager-on-git/</guid><description>
-Git 几乎所有命令都提供分页器，即当命令输出超过一页时，自动在每页输出后暂停，可以按空格继续显示，按 q 退出。 默认 git 的 pager = less -FRSX，这个可以通...</description><content:encoded><![CDATA[<blockquote>
+tig 是一个代替 Git Pager 的好工具</description><content:encoded><![CDATA[<blockquote>
 <p>Git 几乎所有命令都提供分页器，即当命令输出超过一页时，自动在每页输出后暂停，可以按空格继续显示，按 q 退出。</p>
 </blockquote>
 <p>默认 git 的 <code>pager = less -FRSX</code>，这个可以通过两种方式更改：</p>
@@ -3891,7 +3889,7 @@ Git 几乎所有命令都提供分页器，即当命令输出超过一页时，�
 </code></pre><p>配置文件：</p>
 <pre tabindex="0"><code>$ vim ~/.gitconfig
 </code></pre><p>了不起了通过设置自动匹配的色彩来增强可读性</p>
-<pre tabindex="0"><code>$ git config --global color.ui on 	
+<pre tabindex="0"><code>$ git config --global color.ui on
 </code></pre><p>随着 <a href="http://jonas.nitro.dk/tig">tig</a> 的出现，给 git 的增加了一个强大武装武器。（不明观众看这里先对它有个感官概念：<a href="http://gitready.com/advanced/2009/07/31/tig-the-ncurses-front-end-to-git.html">tig, the ncurses front-end to Git</a>）</p>
 <p>可能大家不知道 tig 本身就可以也是一个 pager，因此我们可以在 git config 默认替换之：</p>
 <pre tabindex="0"><code>$ git config --global core.pager tig
@@ -3899,7 +3897,7 @@ Git 几乎所有命令都提供分页器，即当命令输出超过一页时，�
 <pre tabindex="0"><code>$ git config --global color.ui off
 </code></pre><p>我的个人 <code>.gitconfig</code> 等配置文件：https://gist.github.com/icyleaf/868866</p>
 ]]></content:encoded></item><item><title>如何在 CentOS 上安装 Gitlab</title><link>https://icyleaf.com/2013/09/how-to-install-gitlab-on-centos/</link><pubDate>Tue, 17 Sep 2013 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2013/09/how-to-install-gitlab-on-centos/</guid><description>
-2013 年 08 月的 OpenParty &amp;ldquo;花事如期&amp;rdquo; 活动上，晓东在他的机器上演示了自建 Gitlab 的项目，看到 Gitlab 目前已经比较成熟，而不像早期寒碜的界面，这...</description><content:encoded><![CDATA[<p>2013 年 08 月的 OpenParty &ldquo;<a href="http://www.beijing-open-party.org/event/25">花事如期</a>&rdquo; 活动上，<a href="https://github.com/vecio">晓东</a>在他的机器上演示了自建 Gitlab 的项目，看到 Gitlab 目前已经比较成熟，而不像早期寒碜的界面，这个时候看安装一下也是不错的事情，不过他们的项目文档只提供了 Ubuntu 系统的<a href="https://github.com/gitlabhq/gitlabhq#installation">安装文档</a>，对于 CentOS 没有提到，非官方的文档有比较老久，凭着之前熟悉 Ubuntu 和学习 CentOS，那就开始安装吧：</p>
+Barl Metal 安装服务依赖还是很痛苦的，CentOS 上是痛苦面具</description><content:encoded><![CDATA[<p>2013 年 08 月的 OpenParty &ldquo;<a href="http://www.beijing-open-party.org/event/25">花事如期</a>&rdquo; 活动上，<a href="https://github.com/vecio">晓东</a>在他的机器上演示了自建 Gitlab 的项目，看到 Gitlab 目前已经比较成熟，而不像早期寒碜的界面，这个时候看安装一下也是不错的事情，不过他们的项目文档只提供了 Ubuntu 系统的<a href="https://github.com/gitlabhq/gitlabhq#installation">安装文档</a>，对于 CentOS 没有提到，非官方的文档有比较老久，凭着之前熟悉 Ubuntu 和学习 CentOS，那就开始安装吧：</p>
 <p>以下教程在 <code>CentOS 6 x86_64</code> 版本下操作。</p>
 <h2 id="首先安装-epel-和编译依赖库">首先安装 EPEL 和编译依赖库</h2>
 <pre tabindex="0"><code>$ rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
@@ -3965,7 +3963,7 @@ $ mysql&gt; \q
 </code></pre><h2 id="添加-gitlab-用户">添加 Gitlab 用户</h2>
 <pre tabindex="0"><code>$ useradd -c &#39;GitLab&#39; git
 </code></pre><p>CentOS 的命令没有办法直接禁止用户的访问的参数，需要用下面命令：</p>
-<pre tabindex="0"><code>$ passwd -l git 	
+<pre tabindex="0"><code>$ passwd -l git
 </code></pre><h2 id="安装-gitlab-shell">安装 Gitlab-shell</h2>
 <p>使用 root 账户切换到 git 账户下操作，可以比官方教程省去一些麻烦的输入</p>
 <pre tabindex="0"><code>$ su git &amp;&amp; cd /home/git
@@ -4077,7 +4075,7 @@ $ sudo service gitlab restart
 <pre tabindex="0"><code>$ vim /home/git/gitlab/config/unicorn.rb
 </code></pre><p>找到 <code>listen &quot;127.0.0.1:8080&quot;, :tcp_nopush =&gt; true</code> 修改成其他未占用的端口号即可。</p>
 ]]></content:encoded></item><item><title>配置 CentOS 的网络联网设置</title><link>https://icyleaf.com/2013/09/network-configuration-in-centos/</link><pubDate>Thu, 05 Sep 2013 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2013/09/network-configuration-in-centos/</guid><description>
-安装完毕 CentOS 6 Server 开始配置网络设置，网上有很多的教程，用的方法要么不全，要么操作方式比较早期，花点时间整理了下方法： DHCP 设定 CentOS 默认使用了 dhcp 但是可恨...</description><content:encoded><![CDATA[<p>安装完毕 CentOS 6 Server 开始配置网络设置，网上有很多的教程，用的方法要么不全，要么操作方式比较早期，花点时间整理了下方法：</p>
+一篇很基础的配网知识点</description><content:encoded><![CDATA[<p>安装完毕 CentOS 6 Server 开始配置网络设置，网上有很多的教程，用的方法要么不全，要么操作方式比较早期，花点时间整理了下方法：</p>
 <h2 id="dhcp-设定">DHCP 设定</h2>
 <p>CentOS 默认使用了 <code>dhcp</code> 但是可恨的是没有开启。首先我们先看看本机的网卡信息</p>
 <pre tabindex="0"><code>$ ip a
@@ -4124,7 +4122,7 @@ GATEWAY=192.168.1.1 	# 设定网关 ip
 nameserver 8.8.8.8 # 主 DNS
 nameserver 8.8.4.4 # 备选 DNS
 </code></pre>]]></content:encoded></item><item><title>Linux 101 系列：chmod 文件权限工具</title><link>https://icyleaf.com/2013/08/linux-101-chmod/</link><pubDate>Wed, 28 Aug 2013 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2013/08/linux-101-chmod/</guid><description>
-chmod 是用来管理文件访问权限的命令，大家是使用 *nix 系统的时候经常跟它打交道。 基本常识 用户和用户组 参数 英文 说明 u Use 当前用户 g Group 所属用户组 o Others 其他人（...</description><content:encoded><![CDATA[<blockquote>
+640, 755, +X, -rw 这都是什么暗号</description><content:encoded><![CDATA[<blockquote>
 <p>chmod 是用来管理文件访问权限的命令，大家是使用 *nix 系统的时候经常跟它打交道。</p>
 </blockquote>
 <h2 id="基本常识">基本常识</h2>
@@ -4275,7 +4273,7 @@ chmod 是用来管理文件访问权限的命令，大家是使用 *nix 系统�
 </code></pre><h4 id="5-设置当前用户所有权限所属用户组和其他人保留读权限">5. 设置当前用户所有权限，所属用户组和其他人保留读权限</h4>
 <pre tabindex="0"><code>$ chmod u=rwx,g=r,o=r [file]
 </code></pre>]]></content:encoded></item><item><title>个人 Mac OS 常用应用清单【2013年版】</title><link>https://icyleaf.com/2013/07/my-mac-os-apps-list-2013/</link><pubDate>Mon, 22 Jul 2013 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2013/07/my-mac-os-apps-list-2013/</guid><description>
-特别提醒：没有标注【收费】的应用均为免费应用。【增强付费】代表可以免费使用，但是需要付费开启扩展功能。 最近有些朋友从 Windows 转到了 Mac 上面，发现之前...</description><content:encoded><![CDATA[<blockquote>
+日常使用、开发、娱乐全方面整理</description><content:encoded><![CDATA[<blockquote>
 <p>特别提醒：没有标注【收费】的应用均为免费应用。【增强付费】代表可以免费使用，但是需要付费开启扩展功能。</p>
 </blockquote>
 <p>最近有些朋友从 Windows 转到了 Mac 上面，发现之前写的清单有些老久了，重新更新一番，然后简单分个类整理：</p>
@@ -4368,7 +4366,7 @@ chmod 是用来管理文件访问权限的命令，大家是使用 *nix 系统�
 <li>brew： Mac OS 下最佳包管理工具，以上所述命令行应用都可以通过它来安装</li>
 </ul>
 ]]></content:encoded></item><item><title>呼伦贝尔骑行计划书</title><link>https://icyleaf.com/2013/05/riding-to-hulunbeier/</link><pubDate>Sat, 25 May 2013 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2013/05/riding-to-hulunbeier/</guid><description>
-更新 7月 1, 2013 完成于 2013 年端午节期间，成果和照片： http://www.douban.com/photos/album/107796607/ 呼伦贝尔骑行计划书 出行时间 2013.6.9 ~ 6.16 (端午+请两天假+周末) 计划安排 16 日到达北京，不影响 17 日正常...</description><content:encoded><![CDATA[
+一星期几个基友们的骑行规划</description><content:encoded><![CDATA[
 
 
 
@@ -4547,7 +4545,7 @@ chmod 是用来管理文件访问权限的命令，大家是使用 *nix 系统�
 </table>
 <h4 id="day-7-到达北京">Day 7 到达北京</h4>
 ]]></content:encoded></item><item><title>针对 Universal 应用上线 App Store 的提示</title><link>https://icyleaf.com/2013/02/app-store-review-tips-about-universal-app/</link><pubDate>Tue, 19 Feb 2013 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2013/02/app-store-review-tips-about-universal-app/</guid><description>
-官方禁止新版本支持的设备小余旧版本 乐居计算器是我们的第一款 Universal 应用，这次做了重要变化，但仅限于 iPhone 的修改，本想改本次上线仅支持 iPhone 来赶 deadli...</description><content:encoded><![CDATA[<h2 id="官方禁止新版本支持的设备小余旧版本">官方禁止新版本支持的设备小余旧版本</h2>
+上线 Universal 被拒后的想法和思考</description><content:encoded><![CDATA[<h2 id="官方禁止新版本支持的设备小余旧版本">官方禁止新版本支持的设备小余旧版本</h2>
 <p><a href="https://itunes.apple.com/cn/app/le-ju-ji-suan-qi-zui-gei-li/id397735649?mt=8">乐居计算器</a>是我们的第一款 Universal 应用，这次做了重要变化，但仅限于 iPhone 的修改，本想改本次上线仅支持 iPhone 来赶 deadline，临到上线的时候却被 Xcode 报错：</p>
 <blockquote>
 <p>&ldquo;This bundle does not support one or more of the devices that were supported in the previous bundle for this app. Bundles must continue to support any devices previously supported.&rdquo;</p>
@@ -4572,8 +4570,8 @@ chmod 是用来管理文件访问权限的命令，大家是使用 *nix 系统�
 <li><a href="http://www.cocoanetics.com/2011/05/to-universal-or-not/">To Universal or Not</a></li>
 <li><a href="http://blog.iteleportmobile.com/the-case-for-universal-apps">The Case for Universal Apps</a></li>
 </ul>
-]]></content:encoded></item><item><title>Dash 你值得拥有的文档管理工具</title><link>https://icyleaf.com/2013/02/dash/</link><pubDate>Wed, 06 Feb 2013 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2013/02/dash/</guid><description>
-Dash 是 Mac OS 的一个文档管理工具，从它第一版发布用到现在，绝对是一个你值得拥有的文档管理工具，因为它还是免费的，你可以从 Mac App Store 购买。但是全功能需要...</description><content:encoded><![CDATA[<p>Dash 是 Mac OS 的一个文档管理工具，从它第一版发布用到现在，绝对是一个你值得拥有的文档管理工具，因为它还是免费的，你可以从 <a href="https://itunes.apple.com/cn/app/dash-docs-snippets/id458034879?mt=12">Mac App Store</a> 购买。但是全功能需要应用内付费，否则有些“小骚扰”。</p>
+]]></content:encoded></item><item><title>Dash</title><link>https://icyleaf.com/2013/02/dash/</link><pubDate>Wed, 06 Feb 2013 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2013/02/dash/</guid><description>
+你值得拥有的文档管理工具</description><content:encoded><![CDATA[<p>Dash 是 Mac OS 的一个文档管理工具，从它第一版发布用到现在，绝对是一个你值得拥有的文档管理工具，因为它还是免费的，你可以从 <a href="https://itunes.apple.com/cn/app/dash-docs-snippets/id458034879?mt=12">Mac App Store</a> 购买。但是全功能需要应用内付费，否则有些“小骚扰”。</p>
 <blockquote>
 <p>建议购买 Full Version，目前是半价，人民币 30 元</p>
 </blockquote>
@@ -4649,7 +4647,7 @@ Dash 是 Mac OS 的一个文档管理工具，从它第一版发布用到现在�
 <li>支持 tgz 格式的打包</li>
 </ul>
 ]]></content:encoded></item><item><title>介绍 virtualenvwrapper</title><link>https://icyleaf.com/2013/01/intro-virtualenvwrapper/</link><pubDate>Wed, 16 Jan 2013 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2013/01/intro-virtualenvwrapper/</guid><description>
-上回说到 virtualenv 的基本使用，这会为了提高工作效率，再次介绍针对于它增强的一个扩展 virtualenvwrapper。 安装配置 $ pip install virtualenvwrapper 安装好之后需要...</description><content:encoded><![CDATA[<p>上回说到 <a href="http://icyleaf.com/2012/07/intro-virtualenv">virtualenv</a> 的基本使用，这会为了提高工作效率，再次介绍针对于它增强的一个扩展 <a href="http://www.doughellmann.com/projects/virtualenvwrapper/">virtualenvwrapper</a>。</p>
+多 Python 版本环境的管理工具</description><content:encoded><![CDATA[<p>上回说到 <a href="http://icyleaf.com/2012/07/intro-virtualenv">virtualenv</a> 的基本使用，这会为了提高工作效率，再次介绍针对于它增强的一个扩展 <a href="http://www.doughellmann.com/projects/virtualenvwrapper/">virtualenvwrapper</a>。</p>
 <h2 id="安装配置">安装配置</h2>
 <pre tabindex="0"><code>$ pip install virtualenvwrapper
 </code></pre><p>安装好之后需要简单配置下，主要是设置独立环境的保存路径：</p>
@@ -4675,7 +4673,7 @@ $ mkvirtualenv -r requirements.txt &lt;env_name&gt;
 <pre tabindex="0"><code>$ mktmpenv
 </code></pre><p>查看更详细的<a href="http://virtualenvwrapper.readthedocs.org/en/latest/command_ref.html">命令描述文档</a>。</p>
 ]]></content:encoded></item><item><title>面粉的种类说明</title><link>https://icyleaf.com/2013/01/types-of-flour/</link><pubDate>Mon, 14 Jan 2013 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2013/01/types-of-flour/</guid><description>
-以下资源收集于网络。 面粉为何物 小麦是世界上栽种最广的粮食。与其它谷物去壳后直接食用不同，小麦表面麸皮坚韧，内部胚乳易碎，难以加工成整粒，所以...</description><content:encoded><![CDATA[<blockquote>
+饺子，面包，馒头的面粉有区别吗</description><content:encoded><![CDATA[<blockquote>
 <p>以下资源收集于网络。</p>
 </blockquote>
 <h2 id="面粉为何物">面粉为何物</h2>
@@ -4701,7 +4699,7 @@ $ mkvirtualenv -r requirements.txt &lt;env_name&gt;
 <p><code>饺子粉</code> 是中筋面粉，<code>面包粉</code> 是高筋面粉。</p>
 </blockquote>
 ]]></content:encoded></item><item><title>2011-2012 两年总结</title><link>https://icyleaf.com/2013/01/2011-2012-in-review/</link><pubDate>Tue, 01 Jan 2013 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2013/01/2011-2012-in-review/</guid><description>
-从 2011 年忙碌到 2012 年，这两年的时间经历的很多事物，让我感受颇多，而我惊讶的是 2011 的年终总结居然缺失了。这两年工作上专注了一个领域，也是当前最火热移...</description><content:encoded><![CDATA[<p>从 2011 年忙碌到 2012 年，这两年的时间经历的很多事物，让我感受颇多，而我惊讶的是 2011 的年终总结居然缺失了。这两年工作上专注了一个领域，也是当前最火热移动互联网。两年放在一起总结也算是比较完整的。</p>
+回忆两年的事情是一件痛苦的事情，幸好赶上了新浪潮</description><content:encoded><![CDATA[<p>从 2011 年忙碌到 2012 年，这两年的时间经历的很多事物，让我感受颇多，而我惊讶的是 2011 的年终总结居然缺失了。这两年工作上专注了一个领域，也是当前最火热移动互联网。两年放在一起总结也算是比较完整的。</p>
 <p>总结从已下几大方面分别详细描述：</p>
 <ul>
 <li>移动互联网</li>
@@ -4841,37 +4839,23 @@ $ mkvirtualenv -r requirements.txt &lt;env_name&gt;
 <h2 id="2013">2013？</h2>
 <p>说好的世界末日没有到来，日子还有继续生活下去。该奋斗的东西也不能丢，相信自己的信念，勇往直前吧！少年!</p>
 ]]></content:encoded></item><item><title>打绳结</title><link>https://icyleaf.com/2012/11/how-to-bends-and-hitches/</link><pubDate>Fri, 30 Nov 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/11/how-to-bends-and-hitches/</guid><description>
-收集磨房微博上面 #主页君教你打绳结# 步骤： Alpine Butterfly Bend（阿尔卑斯蝴蝶结） 这个绳结强度大可靠性高，登山的时候很实用，平时绑鞋带什么的就别这样弄...</description><content:encoded><![CDATA[<p>收集磨房微博上面
-<a href="http://huati.weibo.com/k/%E4%B8%BB%E9%A1%B5%E5%90%9B%E6%95%99%E4%BD%A0%E6%89%93%E7%BB%B3%E7%BB%93?from=510&amp;order=time">#主页君教你打绳结#</a>
-步骤：</p>
+人在户外混还是要有点安全意识</description><content:encoded><![CDATA[<p>收集<a href="https://weibo.com/1819732165">磨房</a>微博上面主页君教你打绳结的一些知识点：</p>
 <h1 id="alpine-butterfly-bend阿尔卑斯蝴蝶结">Alpine Butterfly Bend（阿尔卑斯蝴蝶结）</h1>
-<blockquote>
 <p>这个绳结强度大可靠性高，登山的时候很实用，平时绑鞋带什么的就别这样弄了</p>
-</blockquote>
 <p><img src="http://ww2.sinaimg.cn/bmiddle/6c76e8c5jw1dyvsxbmdbjg.gif" alt="Alpine ButterflyBend"></p>
 <h1 id="linemans-loop-中间结或工程蝴蝶结">lineman&rsquo;s loop (中间结或工程蝴蝶结)</h1>
-<blockquote>
-</blockquote>
 <p>这种结经常用在登山时绑在中间的人身上；此时只要作个大绳圈套在中间人的身上即可。只要两头的人不想松开，中间的人就跑不掉啦.</p>
 <p><img src="http://ww2.sinaimg.cn/bmiddle/6c76e8c5jw1dz1crmzgl5g.gif" alt="lineman&amp;rsquo;sloop"></p>
 <h1 id="blakes-hitch-抓结或移动结">blake&rsquo;s hitch (抓结或移动结)</h1>
-<blockquote>
-</blockquote>
 <p>用于行进，上升过程中的保护，此结不受力时可滑动，受力时在主绳上卡住不动。晚归不想在门外过夜，被迫从楼顶爬回自家阳台的汉子必备</p>
 <p><img src="http://ww4.sinaimg.cn/bmiddle/6c76e8c5jw1dz2oxc2g6ag.gif" alt="blake&amp;rsquo;shitch"></p>
 <h1 id="双渔人结">双渔人结</h1>
-<blockquote>
-</blockquote>
 <p>它是连接两根绳子的常用结法，这个结比较容易打，但是很难拆开，大家练习的时候注意不要打的太紧了。</p>
 <p><img src="http://ww2.sinaimg.cn/bmiddle/6c76e8c5jw1dz3mi2ddkzg.gif" alt="双渔人结"></p>
 <h1 id="双绳八字结">双绳八字结</h1>
-<blockquote>
-</blockquote>
 <p>今儿个教大家的是另外一种实用的连接两根绳子的结法。大家打的时候要把两端的绳子留长一点，才不容易滑脱<del>这种结法的优势在于：即使拉力很大，用过之后绳结都能够轻松解开。试过解不开绳子的同学就知道这个结的好了</del>（实际使用时不要用两根大小型号差异太大的绳子）</p>
 <p><img src="http://ww4.sinaimg.cn/bmiddle/6c76e8c5jw1dz52enzvd7g.gif" alt="双绳八字结"></p>
 <h1 id="bowline-bend-单套结">bowline bend (单套结)</h1>
-<blockquote>
-</blockquote>
 <p>绳结中间留出来的那个圈可用于绳与绳、绳与环之间的临时连接，常用于户外宿营或者是户外运动中进行固定的临时安全带。非要用听起来那么高级的结来绑鞋带的人你就绑吧</p>
 <p><img src="http://ww1.sinaimg.cn/bmiddle/6c76e8c5gw1dz68igt76pg.gif" alt="bowlinebend"></p>
 ]]></content:encoded></item><item><title>修复 OS X 打开方式的重复项</title><link>https://icyleaf.com/2012/11/%E4%BF%AE%E5%A4%8D-os-x-%E6%89%93%E5%BC%80%E6%96%B9%E5%BC%8F%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9/</link><pubDate>Tue, 06 Nov 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/11/%E4%BF%AE%E5%A4%8D-os-x-%E6%89%93%E5%BC%80%E6%96%B9%E5%BC%8F%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9/</guid><description>
