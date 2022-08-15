@@ -13,6 +13,7 @@ image: tutorials/how-to-homelab/part-0/cover.png
 comments: true
 isCJKLanguage: true
 share: true
+description: 系列文章会涉及家庭网络、路由器、Linux、数据储存、NAS、服务化
 ---
 
 ## 前言

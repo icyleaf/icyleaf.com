@@ -32,4 +32,4 @@ isCJKLanguage: true
 * 出生于七朝古都 KFC，被老爹一脚踢到哏都求学，混迹于帝都。
 
 
-[^1]: [黑客 X 档案](/aboutme/hacker-x-files-cover.jpg)及 [NoHack](/aboutme/nohack-cover.jpg) 均已停刊
+[^1]: [黑客 X 档案](/aboutme/hacker-x-files-cover.jpg)及 [黑客手册](/aboutme/nohack-cover.jpg) 均已停刊

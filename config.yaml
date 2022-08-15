@@ -38,6 +38,7 @@ params:
   enableComment: disqus
   hideHUGOSupport: true
   hidePermalink: true
+  showFullTextinRSS: true
   googleAnalyticsUserID: G-TKQBZ7R259
   # googleAnalyticsCloudflareWorker: https://cfga.icyleaf.com
 

@@ -28,10 +28,11 @@
           {{ end }}
         </header>
         <div class="post-content">
-          {{ .Summary }}
-          {{ if .Truncated }}
-          ...
-          {{ end }}
+          {{ with .Description | html }}
+          {{ . }}
+          {{ else }}
+          {{ .Summary | html }}{{ if .Truncated }}...{{ end }}
+          {{ end -}}
         </div>
       </a>
     </article>
