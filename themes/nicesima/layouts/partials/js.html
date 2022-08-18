@@ -46,7 +46,7 @@
   const lightbox = new PhotoSwipeLightbox({
     gallery: '#post-gallery',
     children: 'a.gallery-item',
-    pswpModule: '{{ $photoswipe.RelPermalink }}',
+    pswpModule: () => import('{{ $photoswipe.RelPermalink }}'),
   });
   lightbox.init();
 </script>
