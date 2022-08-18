@@ -1,6 +1,8 @@
-{{ $thumbMinWidth := int (.Get "thumb-min-width" | default "800") }}
-{{ $thumbSize := .Get "thumb-size" | default (printf "%dx" $thumbMinWidth) }}
 {{ $thumbMethod := .Get "thumb-method" | default "resize" }}
+{{ $thumbSize := .Get "thumb-size" | default "0x0" }}
+{{ $thumbSizeArray := split $thumbSize "x" }}
+{{ $thumbWidth := int (.Get "thumb-width" | default (index $thumbSizeArray 0)) }}
+{{ $thumbHeight := int (.Get "thumb-height" | default (index $thumbSizeArray 1)) }}
 
 {{ $imageUrl := .Get "src" }}
 {{ $linkUrl := .Get "link" }}
@@ -21,15 +23,17 @@
 {{- if $image }}
   {{ $pswpWidth = .Get "pswp-width" | default $image.Width }}
   {{ $pswpHeight = .Get "pswp-height" | default $image.Height }}
-  {{ $cropped := .Get "cropped" }}
 
-  {{- if le $thumbMinWidth $pswpWidth -}}
+  {{- if and (and (ne $thumbWidth 0) (ne $thumbHeight 0)) (or (lt $thumbWidth $pswpWidth) (lt $thumbHeight $pswpHeight)) -}}
     {{ $linkUrl = $imageUrl }}
+    {{ $thumbSize = printf "%dx%d" $thumbWidth $thumbHeight }}
 
     {{- if eq $thumbMethod "fit" -}}
     {{ $imageUrl = ($image.Fit $thumbSize).RelPermalink | relURL }}
     {{- else if eq $thumbMethod "fill" -}}
     {{ $imageUrl = ($image.Fill $thumbSize).RelPermalink | relURL }}
+    {{- else if eq $thumbMethod "crop" -}}
+    {{ $imageUrl = ($image.Crop $thumbSize).RelPermalink | relURL }}
     {{- else -}}
     {{ $imageUrl = ($image.Resize $thumbSize).RelPermalink | relURL }}
     {{- end -}}
@@ -46,7 +50,7 @@
   {{- end -}}
   <img src="{{ $imageUrl }}"
       {{- if or (.Get "alt") (.Get "caption") }}
-      alt="{{ with .Get "alt" }}{{ . }}{{ else }}{{ .Get "caption" | markdownify| plainify }}{{ end }}"
+      alt="{{ with .Get "alt" }}{{ . }}{{ else }}{{ .Get "caption" | markdownify | plainify }}{{ end }}"
       {{- end -}}
   /><!-- Closing img tag -->
   {{- if $linkUrl }}</a>{{ end -}}
