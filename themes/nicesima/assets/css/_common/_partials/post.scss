@@ -63,7 +63,7 @@
     h4,
     h5,
     h6 {
-      padding-top: .8em;
+      padding-top: .5em;
       padding-bottom: .3em;
     }
     h2::before {
@@ -128,7 +128,8 @@
         h4 {
           font-size: 0.9rem;
           font-weight: 400;
-          padding-top: 0.2em;
+          line-height: 1.5em;
+          padding-top: 0;
           padding-bottom: 0;
           color: $light-font-secondary-color;
 
@@ -151,6 +152,11 @@
           display: inline-block;
           vertical-align: middle;
         }
+      }
+
+      .source {
+        float: right;
+        padding-top: 0;
       }
     }
 
@@ -375,8 +381,8 @@
   }
 
   p {
-    margin: .5em 0 1.25em 0;
-    line-height: 1.75;
+    margin: .5em 0 1.2em 0;
+    line-height: 1.7;
   }
 
   blockquote {
