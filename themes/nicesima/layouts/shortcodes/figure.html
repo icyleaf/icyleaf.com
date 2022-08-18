@@ -41,7 +41,7 @@
 {{- end -}}
 
 <figure{{ with .Get "class" }} class="{{ . }}"{{ end }}>
-{{- if $linkUrl -}}
+  {{- if $linkUrl -}}
   <a href="{{ $linkUrl }}" class="gallery-item" target="{{ .Get "target" | default "_blank" }}"
     {{- with .Get "rel" }} rel="{{ . }}"{{ end -}}
     {{- with $pswpWidth }} data-pswp-width="{{ . }}"{{ end -}}
@@ -55,23 +55,22 @@
   /><!-- Closing img tag -->
   {{- if $linkUrl }}</a>{{ end -}}
 
-{{- if or (or (.Get "title") (.Get "caption")) (.Get "attr") -}}
-<figcaption>
-  {{- if or (.Get "caption") (.Get "attr") -}}
-  <p class="source">
-    {{- .Get "caption" | markdownify -}}
-    {{- with .Get "attrlink" }}<a href="{{ . }}">{{- end -}}
-    {{- .Get "attr" | markdownify -}}
-    {{- if .Get "attrlink" }}</a>{{ end }}
-  </p>
-  {{- end }}
+  {{- if or (or (.Get "title") (.Get "caption")) (.Get "attr") -}}
+  <figcaption>
+    {{- if or (.Get "caption") (.Get "attr") -}}
+    <p class="source">
+      {{- .Get "caption" | markdownify -}}
+      {{- with .Get "attrlink" }}<a href="{{ . }}">{{- end -}}
+      {{- .Get "attr" | markdownify -}}
+      {{- if .Get "attrlink" }}</a>{{ end }}
+    </p>
+    {{- end }}
 
-  {{ with (.Get "title") -}}
-    <h4>{{ . }}</h4>
+    {{ with (.Get "title") -}}
+      <h4>{{ . }}</h4>
+    {{- end -}}
+
+    <div style="clear: both"></div>
+  </figcaption>
   {{- end -}}
-
-  <div style="clear: both"></div>
-</figcaption>
-{{- end -}}
-
 </figure>
