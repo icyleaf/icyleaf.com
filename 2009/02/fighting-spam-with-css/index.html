@@ -38,7 +38,7 @@ display 属性，哈哈，是不是明白了？好吧，看代码吧。</p><p><s
   const lightbox = new PhotoSwipeLightbox({
     gallery: '#post-gallery',
     children: 'a.gallery-item',
-    pswpModule: '\/photoswipe\/photoswipe.esm.js',
+    pswpModule: () => import('\/photoswipe\/photoswipe.esm.js'),
   });
   lightbox.init();
 </script><script async src="https://www.googletagmanager.com/gtag/js?id=G-TKQBZ7R259"></script>

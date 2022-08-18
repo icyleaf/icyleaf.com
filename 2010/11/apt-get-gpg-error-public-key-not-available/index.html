@@ -24,7 +24,7 @@ key，详情请看[这里][]。第二种则相对于比较简单：命令行流�
   const lightbox = new PhotoSwipeLightbox({
     gallery: '#post-gallery',
     children: 'a.gallery-item',
-    pswpModule: '\/photoswipe\/photoswipe.esm.js',
+    pswpModule: () => import('\/photoswipe\/photoswipe.esm.js'),
   });
   lightbox.init();
 </script><script async src="https://www.googletagmanager.com/gtag/js?id=G-TKQBZ7R259"></script>

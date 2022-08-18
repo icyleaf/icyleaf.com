@@ -66,7 +66,7 @@ def main(argv):
 
 if __name__ == &#39;__main__&#39;:
 	main(sys.argv[1:])
-</code></pre><p>当然，我主要是为了练手 python 才去写的，ruby 本身也有 <a href=http://ruby-doc.org/stdlib-1.9.3/libdoc/optparse/rdoc/OptionParser.html>optparse</a> 库用于解析参数，但是需要自己手写生成 &ndash;help 的输出，而且需要对每个参数做相应的 callback。</p><p>效果如下：</p><p><img src=http://ww3.sinaimg.cn/large/65d1d65bgw1dvi5nsc4sdj.jpg alt=screenshot loading=lazy></p></div></div><div class=post-nav><a href=https://icyleaf.com/2012/07/how-to-fix-dropbox-with-apache-about-acces-permission/ class=prev rel=prev title=Dropbox和Apache关于权限的问题><i class="iconfont icon-left"></i>&nbsp;Dropbox和Apache关于权限的问题</a>
+</code></pre><p>当然，我主要是为了练手 python 才去写的，ruby 本身也有 <a href=http://ruby-doc.org/stdlib-1.9.3/libdoc/optparse/rdoc/OptionParser.html>optparse</a> 库用于解析参数，但是需要自己手写生成 &ndash;help 的输出，而且需要对每个参数做相应的 callback。</p><p>效果如下：</p><p><img src=http://ww3.sinaimg.cn/large/65d1d65bgw1dvi5nsc4sdj.jpg alt=screenshot></img></p></div></div><div class=post-nav><a href=https://icyleaf.com/2012/07/how-to-fix-dropbox-with-apache-about-acces-permission/ class=prev rel=prev title=Dropbox和Apache关于权限的问题><i class="iconfont icon-left"></i>&nbsp;Dropbox和Apache关于权限的问题</a>
 <a href=https://icyleaf.com/2012/08/how-to-keep-public-and-private-versions-of-a-git-submodule-repo-in-sync/ class=next rel=next title="如何保持在 Git Submodule 代码的开放和私有共存">如何保持在 Git Submodule 代码的开放和私有共存&nbsp;<i class="iconfont icon-right"></i></a></div><div class=post-comment><div id=disqus_thread></div><script type=application/javascript>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//icyleaf.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div></article></div></main><footer class=footer><div class=copyright>&copy;
 <span itemprop=copyrightYear>2005 - 2022</span>
 <span>🍺</span>
@@ -80,7 +80,7 @@ if __name__ == &#39;__main__&#39;:
   const lightbox = new PhotoSwipeLightbox({
     gallery: '#post-gallery',
     children: 'a.gallery-item',
-    pswpModule: '\/photoswipe\/photoswipe.esm.js',
+    pswpModule: () => import('\/photoswipe\/photoswipe.esm.js'),
   });
   lightbox.init();
 </script><script async src="https://www.googletagmanager.com/gtag/js?id=G-TKQBZ7R259"></script>

@@ -22,7 +22,7 @@ update</strong>：娃哈哈，从买了一个相机，已经会有很多作品�
   const lightbox = new PhotoSwipeLightbox({
     gallery: '#post-gallery',
     children: 'a.gallery-item',
-    pswpModule: '\/photoswipe\/photoswipe.esm.js',
+    pswpModule: () => import('\/photoswipe\/photoswipe.esm.js'),
   });
   lightbox.init();
 </script><script async src="https://www.googletagmanager.com/gtag/js?id=G-TKQBZ7R259"></script>

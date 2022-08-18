@@ -7,7 +7,7 @@
 <span class=tags>Android</span>
 ·
 <span class=post-word-count>504 words · 2 minutes</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title></h2><div class="post-toc-content always-active"><nav id=TableOfContents></nav></div></div><div class=post-content><div id=post-gallery><p>曾几何时，自 Android 发布之后一直以来就被管以 Geek 的玩具，而不太注重界面设计和用户交互设计，这让 Android 开发者也顺其自然的接受了这个不好的头衔，但我一度认为这只是不思进取的行为，谁说 Android 就不能像 iPhone 的界面那样设计，我认为只有用心，没神马不能实现的。说回正题，第一次看到 Android 有这项功能的莫过于改版后的 Twitter，我认为它绝对是一个标榜性的 App（同时也包括已开源许久的 <a href=http://code.google.com/p/foursquared/>Foursquare</a>）。于是全世界的开发者就开始寻思这个效果 Twitter
-是如何实现的，于是就有了&mldr;</p><p><img src=https://github.com/johannilsson/android-pulltorefresh/raw/master/android-pull-to-refresh.png alt></p><p>这是由 <a href=http://johannilsson.com/2011/03/13/android-pull-to-refresh-update.html>johannilsson</a> 以及众位其好友的研究成果，并已 Apache 2.0 协议开源托管在 Github：<a href=https://github.com/johannilsson/android-pulltorefresh>https://github.com/johannilsson/android-pulltorefresh</a></p><p>大概看了一下源码，发现和我初步的想法类似，除了需要集成系统的 ListView 之外，只能在 HeaderView 上面做文章，外加配合 onTouchEvent， onScroll
+是如何实现的，于是就有了&mldr;</p><p><img src=https://github.com/johannilsson/android-pulltorefresh/raw/master/android-pull-to-refresh.png alt></img></p><p>这是由 <a href=http://johannilsson.com/2011/03/13/android-pull-to-refresh-update.html>johannilsson</a> 以及众位其好友的研究成果，并已 Apache 2.0 协议开源托管在 Github：<a href=https://github.com/johannilsson/android-pulltorefresh>https://github.com/johannilsson/android-pulltorefresh</a></p><p>大概看了一下源码，发现和我初步的想法类似，除了需要集成系统的 ListView 之外，只能在 HeaderView 上面做文章，外加配合 onTouchEvent， onScroll
 事件可以捕捉用户下拉和上滑的事件监听。</p><p>用法：</p><p>Layout</p><pre tabindex=0><code>// The PullToRefreshListView replaces a standard ListView widget.
 
 &lt;com.markupartist.android.widget.pulltorefreshlistview
@@ -58,7 +58,7 @@ protected void onPostExecute(String[] result) {
   const lightbox = new PhotoSwipeLightbox({
     gallery: '#post-gallery',
     children: 'a.gallery-item',
-    pswpModule: '\/photoswipe\/photoswipe.esm.js',
+    pswpModule: () => import('\/photoswipe\/photoswipe.esm.js'),
   });
   lightbox.init();
 </script><script async src="https://www.googletagmanager.com/gtag/js?id=G-TKQBZ7R259"></script>
