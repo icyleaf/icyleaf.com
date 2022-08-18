@@ -12,12 +12,14 @@
 
 
 
+
+
   
-  
-  <figure><a href="/tutorials/how-to-homelab/part-0/diagram.png" class="gallery-item" target="_blank" data-pswp-width="4644" data-pswp-height="3004"><img src="/tutorials/how-to-homelab/part-0/diagram_hud6b13e642cdec1b76e4883675cc1f0da_933051_800x0_resize_box_3.png"
-      alt="图片来源"/></a><figcaption>
-  <h4>镇楼用的网络拓扑图</h4><p>图片来源<a href="https://twitter.com/icyleaf/status/1472036769742745603">icyleaf</a>
+  <figure><img src="/tutorials/how-to-homelab/part-0/diagram.png"
+      alt="图片来源"/><figcaption><p class="source">图片来源<a href="https://twitter.com/icyleaf/status/1472036769742745603">icyleaf</a>
   </p>
+
+  <h4>镇楼用的网络拓扑图</h4><div style="clear: both"></div>
 </figcaption></figure>
 
 <h2 id="搭建-homelab-起因">搭建 homelab 起因</h2>
@@ -87,10 +89,13 @@
 
 
 
+
+
 <figure><a href="/tutorials/how-to-homelab/part-0/container-evolution.svg" class="gallery-item" target="_blank" data-pswp-width="1800" data-pswp-height="650"><img src="/tutorials/how-to-homelab/part-0/container-evolution.svg"
-      alt="图片来源"/></a><figcaption>
-  <h4>部署方式的演变</h4><p>图片来源<a href="https://kubernetes.io/zh/docs/concepts/overview/what-is-kubernetes/">Kubernetes 是什么？</a>
+      alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://kubernetes.io/zh/docs/concepts/overview/what-is-kubernetes/">Kubernetes 是什么？</a>
   </p>
+
+  <h4>部署方式的演变</h4><div style="clear: both"></div>
 </figcaption></figure>
 
 <p>通常在硬件性能还算不错情况下都不会采用传统部署的方案，单主机的优先级：容器化 &gt; 虚拟化 &gt; 传统部署，机器性能不错且有技术兴趣度的优先级：虚拟化 &gt; 容器化 &gt; 传统部署。</p>
@@ -108,12 +113,14 @@
 
 
 
+
+
   
-  
-  <figure><a href="/tutorials/how-to-homelab/part-0/bare-metal.jpg" class="gallery-item" target="_blank" data-pswp-width="1920" data-pswp-height="1080"><img src="/tutorials/how-to-homelab/part-0/bare-metal_hu4b369ced3c986b922f395ae6ff16aca0_920504_800x0_resize_q75_box.jpg"
-      alt="图片来源"/></a><figcaption>
-  <h4>Bare metal 方案</h4><p>图片来源<a href="https://thecloudgirl.dev/BareMetal.html">The Cloud Girl</a>
+  <figure><img src="/tutorials/how-to-homelab/part-0/bare-metal.jpg"
+      alt="图片来源"/><figcaption><p class="source">图片来源<a href="https://thecloudgirl.dev/BareMetal.html">The Cloud Girl</a>
   </p>
+
+  <h4>Bare metal 方案</h4><div style="clear: both"></div>
 </figcaption></figure>
 
 <h3 id="虚拟化部署">虚拟化部署</h3>
@@ -238,10 +245,12 @@
 
 
 
+
+
   
-  
-  <figure><a href="/uploads/2021/12/22/zealot-showcase.png" class="gallery-item" target="_blank" data-pswp-width="2882" data-pswp-height="1785"><img src="/uploads/2021/12/22/zealot-showcase_hu4d34d0bf474f11f59091cada8701794e_262680_800x0_resize_box_3.png"/></a><figcaption>
-  <h4>Zealot 服务样图</h4>
+  <figure><img src="/uploads/2021/12/22/zealot-showcase.png"/><figcaption>
+
+  <h4>Zealot 服务样图</h4><div style="clear: both"></div>
 </figcaption></figure>
 
 <h2 id="特性">特性</h2>
@@ -718,10 +727,12 @@ USB3 端口</li>
 
 
 
-  
+
+
   
   <figure><img src="/uploads/2019/03/28/m2-vs-boardcom-vs-dadapter.jpg"/><figcaption>
-  <h4>M2 VS 博通 VS 转换器</h4>
+
+  <h4>M2 VS 博通 VS 转换器</h4><div style="clear: both"></div>
 </figcaption></figure>
 
 <p>避免广告的嫌疑，淘宝自行搜 <code>BCM94360CS2 NGFF M.2 转接卡</code>，买回来的博通网卡 + 转接卡可能是固定好的，我们需要把它拆开。转接卡要固定在框架上面后再把博通网卡插上拧上螺丝，框架上的两个天线随便接博通顶部两侧的插口上。转接卡高度超出框架最初拆下来的金属遮蔽盒不能再装回去。最好把框架固定到主板上就完成了。</p>
@@ -736,10 +747,12 @@ USB3 端口</li>
 
 
 
+
+
   
-  
-  <figure><a href="/uploads/2019/03/28/install-boardcom-module-to-motherboard.jpg" class="gallery-item" target="_blank" data-pswp-width="1920" data-pswp-height="1920"><img src="/uploads/2019/03/28/install-boardcom-module-to-motherboard_hu3990a80f62d04c441c56fcf5f23b96d1_903689_800x0_resize_q75_box.jpg"/></a><figcaption>
-  <h4>博通网卡更换步骤图</h4>
+  <figure><img src="/uploads/2019/03/28/install-boardcom-module-to-motherboard.jpg"/><figcaption>
+
+  <h4>博通网卡更换步骤图</h4><div style="clear: both"></div>
 </figcaption></figure>
 
 <h2 id="bios">BIOS</h2>
@@ -1116,10 +1129,12 @@ USB3 端口</li>
 
 
 
+
+
   
-  
-  <figure><a href="/uploads/2020/04/02/m2-key-list.jpeg" class="gallery-item" target="_blank" data-pswp-width="900" data-pswp-height="2048"><img src="/uploads/2020/04/02/m2-key-list_hue303cdd9ec1c456e7c7b209fdb90df78_216428_800x0_resize_q75_box.jpeg"/></a><figcaption>
-  <h4>M2 规格图</h4>
+  <figure><img src="/uploads/2020/04/02/m2-key-list.jpeg"/><figcaption>
+
+  <h4>M2 规格图</h4><div style="clear: both"></div>
 </figcaption></figure>
 
 <p><strong>特别提醒</strong>：主板自带 M.2 Key E 插口的无线模块需要<a href="https://bbs.nga.cn/read.php?tid=16399773&amp;page=1">支持非 CNVi 网卡才能使用</a>，如果有白名单请参考上面删除线内的方法。</p>
@@ -4392,10 +4407,12 @@ nameserver 8.8.4.4 # 备选 DNS
 
 
 
+
+
   
-  
-  <figure><a href="/uploads/2013/05/25/hulunbeier-riding-roadmap.jpg" class="gallery-item" target="_blank" data-pswp-width="1034" data-pswp-height="835"><img src="/uploads/2013/05/25/hulunbeier-riding-roadmap_hu6dcac0a8d491935924faf69d0f5e89b1_202439_800x0_resize_q75_box.jpg"/></a><figcaption>
-  <h4>呼伦贝尔旅行地图</h4>
+  <figure><img src="/uploads/2013/05/25/hulunbeier-riding-roadmap.jpg"/><figcaption>
+
+  <h4>呼伦贝尔旅行地图</h4><div style="clear: both"></div>
 </figcaption></figure>
 
 <h2 id="预计费用">预计费用</h2>
