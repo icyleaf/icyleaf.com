@@ -4,7 +4,7 @@ image: /uploads/2022/08/12/xiaoxin-pad-pro-2021.jpg
 date: 2022-08-12T19:29:06+08:00
 slug: "xiaoxin-pad-pro-2021"
 type: posts
-draft: true
+draft: false
 index: true
 comments: true
 isCJKLanguage: true
