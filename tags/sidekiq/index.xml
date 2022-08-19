@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Sidekiq on icyleaf</title><link>https://icyleaf.com/tags/sidekiq/</link><description>Recent content in Sidekiq on icyleaf</description><language>zh</language><lastBuildDate>Wed, 26 Apr 2017 16:00:49 +0000</lastBuildDate><atom:link href="https://icyleaf.com/tags/sidekiq/index.xml" rel="self" type="application/rss+xml"/><item><title>打通 Sidekiq 的任督二脉 Ruby 和 Crystal</title><link>https://icyleaf.com/2017/04/sidekiq-works-in-ruby-togethor-with-crystal/</link><pubDate>Wed, 26 Apr 2017 16:00:49 +0000</pubDate><guid>https://icyleaf.com/2017/04/sidekiq-works-in-ruby-togethor-with-crystal/</guid><description>
+Crystal 和 Ruby 如何相互通讯</description><content:encoded><![CDATA[<p>自从开始研究 Crystal 这门语言（之前也有<a href="http://icyleaf.com/2016/07/gitlab-api-wrapper-for-crystal/">介绍</a>过），基本上每隔一段时间都会看看它的近况，去年 sidekiq 的作者用该语言重新实现了 sidekiq 项目而且给出了特别竟然的<a href="http://www.mikeperham.com/2016/05/25/sidekiq-for-crystal/">对比数据</a>。</p>
+<p><img src="/uploads/2017/04/26/sidekiq-benchmarks.png"
+  
+  
+  alt="IMAGE"></img>
+</p>
+<p>相对比 Gitlab 采用 go 语言重新 gitlab_ci_runner 而学习一门新的语言达到高效率低内存的方法之外 Crystal 就像是新的希望。使用 Crystal 重新的 sidekiq 的代码也非常的简单但已经实现了核心功能和 Web UI。</p>
+<p>本篇就给大家介绍下如果在 Ruby on Rails 的框架下调度和执行 Crystal 写的 Workers。测试环境是在 macOS 下，其他版本信息如下：</p>
+<ul>
+<li>Ruby 2.0+
+<ul>
+<li>Rails 5.0</li>
+<li>Sidekiq 5.0</li>
+</ul>
+</li>
+<li>Crystal 0.22.0+
+<ul>
+<li>Sidekiq.cr 0.7.0</li>
+</ul>
+</li>
+</ul>
+<h2 id="配置-rails-环境">配置 Rails 环境</h2>
+<p>如何配置 Ruby、Rails、Bundler、Redis 就不在赘述，只讲核心，首先新建一个最基础的 rails 项目，不用额外的第三方辅助工具，数据库用 sqlite 减少外部依赖：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ rails new ruby_on_rails -B -T -S -C -M  -d sqlite3
+</span></span></code></pre></div><p>进入项目 <code>ruby_on_rails</code> 编辑 <code>Gemfile</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1"># 修改源地址</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="n">source</span> <span class="s1">&#39;https://gems.ruby-china.org&#39;</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="c1"># 新增 sidekiq 的支持</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="n">gem</span> <span class="s1">&#39;redis-rails&#39;</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="n">gem</span> <span class="s1">&#39;sidekiq&#39;</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="c1"># 其余的不用修改</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="c1"># Bundle edge Rails instead: gem &#39;rails&#39;, github: &#39;rails/rails&#39;</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="n">gem</span> <span class="s1">&#39;rails&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 5.0.2&#39;</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="c1"># Use sqlite3 as the database for Active Record</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="n">gem</span> <span class="s1">&#39;sqlite3&#39;</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="c1"># Use Puma as the app server</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="n">gem</span> <span class="s1">&#39;puma&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 3.0&#39;</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">
+</span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="n">gem</span> <span class="s1">&#39;redis-rails&#39;</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="n">gem</span> <span class="s1">&#39;sidekiq&#39;</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl">
+</span></span><span class="line"><span class="ln">19</span><span class="cl"><span class="n">group</span> <span class="ss">:development</span><span class="p">,</span> <span class="ss">:test</span> <span class="k">do</span>
+</span></span><span class="line"><span class="ln">20</span><span class="cl">  <span class="c1"># Call &#39;byebug&#39; anywhere in the code to stop execution and get a debugger console</span>
+</span></span><span class="line"><span class="ln">21</span><span class="cl">  <span class="n">gem</span> <span class="s1">&#39;byebug&#39;</span><span class="p">,</span> <span class="ss">platform</span><span class="p">:</span> <span class="ss">:mri</span>
+</span></span><span class="line"><span class="ln">22</span><span class="cl"><span class="k">end</span>
+</span></span><span class="line"><span class="ln">23</span><span class="cl">
+</span></span><span class="line"><span class="ln">24</span><span class="cl"><span class="n">group</span> <span class="ss">:development</span> <span class="k">do</span>
+</span></span><span class="line"><span class="ln">25</span><span class="cl">  <span class="c1"># Access an IRB console on exception pages or by using &lt;%= console %&gt; anywhere in the code.</span>
+</span></span><span class="line"><span class="ln">26</span><span class="cl">  <span class="n">gem</span> <span class="s1">&#39;web-console&#39;</span><span class="p">,</span> <span class="s1">&#39;&gt;= 3.3.0&#39;</span>
+</span></span><span class="line"><span class="ln">27</span><span class="cl">  <span class="n">gem</span> <span class="s1">&#39;listen&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 3.0.5&#39;</span>
+</span></span><span class="line"><span class="ln">28</span><span class="cl">  <span class="c1"># Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring</span>
+</span></span><span class="line"><span class="ln">29</span><span class="cl">  <span class="n">gem</span> <span class="s1">&#39;spring&#39;</span>
+</span></span><span class="line"><span class="ln">30</span><span class="cl">  <span class="n">gem</span> <span class="s1">&#39;spring-watcher-listen&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 2.0.0&#39;</span>
+</span></span><span class="line"><span class="ln">31</span><span class="cl"><span class="k">end</span>
+</span></span><span class="line"><span class="ln">32</span><span class="cl">
+</span></span><span class="line"><span class="ln">33</span><span class="cl"><span class="c1"># Windows does not include zoneinfo files, so bundle the tzinfo-data gem</span>
+</span></span><span class="line"><span class="ln">34</span><span class="cl"><span class="n">gem</span> <span class="s1">&#39;tzinfo-data&#39;</span><span class="p">,</span> <span class="ss">platforms</span><span class="p">:</span> <span class="o">[</span><span class="ss">:mingw</span><span class="p">,</span> <span class="ss">:mswin</span><span class="p">,</span> <span class="ss">:x64_mingw</span><span class="p">,</span> <span class="ss">:jruby</span><span class="o">]</span>
+</span></span></code></pre></div><p>配置好之后执行 <code>bundle insall</code> 安装好 Gem 的依赖，再创建文件 <code>config/initializers/sidekiq.rb</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">redis_config</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">url</span><span class="p">:</span> <span class="s1">&#39;redis://localhost:6379/8&#39;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="no">Sidekiq</span><span class="o">.</span><span class="n">configure_server</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">  <span class="n">config</span><span class="o">.</span><span class="n">redis</span> <span class="o">=</span> <span class="n">redis_config</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="k">end</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">
+</span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="no">Sidekiq</span><span class="o">.</span><span class="n">configure_client</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+</span></span><span class="line"><span class="ln">8</span><span class="cl">  <span class="n">config</span><span class="o">.</span><span class="n">redis</span> <span class="o">=</span> <span class="n">redis_config</span>
+</span></span><span class="line"><span class="ln">9</span><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><p>Sidekiq 的配置就完事了。</p>
+<h2 id="配置-crystal-环境">配置 Crystal 环境</h2>
+<p>Crystal 是基于 LLVM 开发，除了 Windows 以外其他绝大数系统基本上都支持（最新支持的 ARM 架构，可在树莓派上安装），<a href="https://crystal-lang.org/docs/installation/">安装步骤</a>同样不再赘述。</p>
+<p>安装好之后首先创建一个新项目：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ crystal init app crystal
+</span></span></code></pre></div><p>进入项目 <code>crystal</code> 编辑 <code>Shard.yml</code> 这是一个类似于 Gemfile 的功能，但实现的去中心化，在文件末尾新增如下依赖：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nt">dependencies</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w">  </span><span class="nt">sidekiq</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="w">    </span><span class="nt">github</span><span class="p">:</span><span class="w"> </span><span class="l">mperham/sidekiq.cr</span><span class="w">
+</span></span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="w">    </span><span class="nt">branch</span><span class="p">:</span><span class="w"> </span><span class="l">master</span><span class="w">
+</span></span></span></code></pre></div><p>执行 <code>shards update</code> 或 <code>crystal deps</code> 安装依赖即可。</p>
+<h2 id="编写-workers">编写 Workers</h2>
+<p>Worker 的功能很简单，就是做一个类似 Redis ping 的功能，Worker 在日志输出 PONG。</p>
+<h3 id="ruby-版本">Ruby 版本</h3>
+<p>安装 sidekiq 后会在 rails 内置命令可生成基础模板，切换到 <code>ruby_on_rails</code> 目录：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ rails g sidekiq:worker ping1
+</span></span><span class="line"><span class="ln">2</span><span class="cl">      create  app/workers/ping1_worker.rb
+</span></span><span class="line"><span class="ln">3</span><span class="cl">$ rails g sidekiq:worker ping2
+</span></span><span class="line"><span class="ln">4</span><span class="cl">      create  app/workers/ping2_worker.rb
+</span></span></code></pre></div><p>worker 的内容也很简单，我在日志输出增加了 <code>[Ruby]</code> 作为 Ruby 版本的标识便于后面的辨识</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1"># app/workers/ping1_worker.rb</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="k">class</span> <span class="nc">Ping1Worker</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="kp">include</span> <span class="no">Sidekiq</span><span class="o">::</span><span class="no">Worker</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  <span class="k">def</span> <span class="nf">perform</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">    <span class="n">logger</span><span class="o">.</span><span class="n">info</span> <span class="s2">&#34;[Ruby] PONG !&#34;</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="k">end</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">
+</span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="c1"># app/workers/ping2_worker.rb</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="k">class</span> <span class="nc">Ping2Worker</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">  <span class="kp">include</span> <span class="no">Sidekiq</span><span class="o">::</span><span class="no">Worker</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">
+</span></span><span class="line"><span class="ln">14</span><span class="cl">  <span class="k">def</span> <span class="nf">perform</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">    <span class="n">logger</span><span class="o">.</span><span class="n">info</span> <span class="s2">&#34;[Ruby] PONG PONG !!&#34;</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><h3 id="crystal-版本">Crystal 版本</h3>
+<p>切换到 <code>crystal</code> 目录下和 Ruby 不同的是它的源码是存放在 src 目录下面，我们稍微调整下结构：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln"> 1</span><span class="cl">.
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">├── LICENSE
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">├── README.md
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">├── lib
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">├── shard.lock
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">├── shard.yml
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">├── spec
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">└── src
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">    ├── crystal_server.cr
+</span></span><span class="line"><span class="ln">10</span><span class="cl">    └── workers
+</span></span><span class="line"><span class="ln">11</span><span class="cl">        ├── ping1_worker.cr
+</span></span><span class="line"><span class="ln">12</span><span class="cl">        └── ping2_worker.cr
+</span></span></code></pre></div><p>worker 的内容如下，并设置 queue 为 <code>crystal</code> 用于指派使用:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-crystal" data-lang="crystal"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1"># src/workers/ping1_worker.cr</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="k">class</span> <span class="nc">Ping1Worker</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="k">include</span> <span class="n">Sidekiq</span><span class="o">::</span><span class="n">Worker</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  <span class="n">sidekiq_options</span> <span class="k">do</span> <span class="o">|</span><span class="n">job</span><span class="o">|</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">    <span class="n">job</span><span class="o">.</span><span class="n">queue</span> <span class="o">=</span> <span class="s2">&#34;crystal&#34;</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">  <span class="k">def</span> <span class="nf">perform</span><span class="p">()</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">    <span class="n">logger</span><span class="o">.</span><span class="n">info</span> <span class="s2">&#34;[Crystal] PONG !&#34;</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="k">end</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">
+</span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="c1"># src/workers/ping2_worker.cr</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="k">class</span> <span class="nc">Ping2Worker</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">  <span class="k">include</span> <span class="n">Sidekiq</span><span class="o">::</span><span class="n">Worker</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">  <span class="n">sidekiq_options</span> <span class="k">do</span> <span class="o">|</span><span class="n">job</span><span class="o">|</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl">    <span class="n">job</span><span class="o">.</span><span class="n">queue</span> <span class="o">=</span> <span class="s2">&#34;crystal&#34;</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">
+</span></span><span class="line"><span class="ln">20</span><span class="cl">  <span class="k">def</span> <span class="nf">perform</span><span class="p">()</span>
+</span></span><span class="line"><span class="ln">21</span><span class="cl">    <span class="n">logger</span><span class="o">.</span><span class="n">info</span> <span class="s2">&#34;[Crystal] PONG PONG !!&#34;</span>
+</span></span><span class="line"><span class="ln">22</span><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="ln">23</span><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><p>通过代码可以看出 Ruby 和 Crystal 的代码基本上是完全一样的。</p>
+<h2 id="任督二脉">任督二脉</h2>
+<p>对于使用 Sidekiq 的童鞋都知道，如果我想执行一个队列任务，只需要调用下 Worker 本身的 <code>perform_*</code> 方法，这样的话根本无法调用一个不同语言版本的 Worker 否则 sidekiq 会报类似如下错误：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">2017-04-26T06:19:14.187Z <span class="m">50690</span> TID-ox4qa1k8o WARN: <span class="o">{</span><span class="s2">&#34;context&#34;</span>:<span class="s2">&#34;Job raised exception&#34;</span>,<span class="s2">&#34;job&#34;</span>:<span class="o">{</span><span class="s2">&#34;class&#34;</span>:<span class="s2">&#34;Crystal::Ping1Worker&#34;</span>,<span class="s2">&#34;args&#34;</span>:<span class="o">[]</span>,<span class="s2">&#34;retry&#34;</span>:true,<span class="s2">&#34;queue&#34;</span>:<span class="s2">&#34;default&#34;</span>,<span class="s2">&#34;jid&#34;</span>:<span class="s2">&#34;42ce106d79
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="s2">01a274f3db2d54&#34;</span>,<span class="s2">&#34;created_at&#34;</span>:1493187554.181674,<span class="s2">&#34;enqueued_at&#34;</span>:1493187554.1820428<span class="o">}</span>,<span class="s2">&#34;jobstr&#34;</span>:<span class="s2">&#34;{\&#34;class\&#34;:\&#34;Crystal::Ping1Worker\&#34;,\&#34;args\&#34;:[],\&#34;retry\&#34;:true,\&#34;queue\&#34;:\&#34;default\&#34;,\&#34;jid
+</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="s2">\&#34;:\&#34;42ce106d7901a274f3db2d54\&#34;,\&#34;created_at\&#34;:1493187554.181674,\&#34;enqueued_at\&#34;:1493187554.1820428}&#34;</span><span class="o">}</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">2017-04-26T06:19:14.187Z <span class="m">50690</span> TID-ox4qa1k8o WARN: NameError: uninitialized constant Crystal
+</span></span></code></pre></div><p>打通任督二脉的关键在于两个版本都提供一个 low-level 的 API 可用于定制化调用：</p>
+<h3 id="ruby-版本-1">Ruby 版本</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">job_id</span> <span class="o">=</span> <span class="no">Sidekiq</span><span class="o">::</span><span class="no">Client</span><span class="o">.</span><span class="n">push</span><span class="p">(</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="s1">&#39;queue&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>  <span class="c1"># 指派特定的队列名，默认是 default</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="s1">&#39;class&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>  <span class="c1"># Worker 的类名，可以是实例化类型或字符串类型</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">  <span class="s1">&#39;args&#39;</span> <span class="o">=&gt;[]</span>     <span class="c1"># Worker 接收的参数，以数组形式传递</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><h3 id="crystal-版本-1">Crystal 版本</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-crystal" data-lang="crystal"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">job</span> <span class="o">=</span> <span class="n">Sidekiq</span><span class="o">::</span><span class="n">Job</span><span class="o">.</span><span class="n">new</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="n">job</span><span class="o">.</span><span class="n">queue</span> <span class="o">=</span> <span class="s2">&#34;default&#34;</span>   <span class="c1"># 指派特定的队列名，默认是 default</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="n">job</span><span class="o">.</span><span class="n">klass</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>          <span class="c1"># Worker 的类名，可以是实例化类型或字符串类型</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="n">job</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="o">[].</span><span class="n">to_json</span>   <span class="c1"># Worker 接收的参数，以数组形式传递</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">
+</span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="n">client</span> <span class="o">=</span> <span class="n">Sidekiq</span><span class="o">::</span><span class="n">Client</span><span class="o">.</span><span class="n">new</span>
+</span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="n">job_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">job</span><span class="p">)</span>
+</span></span></code></pre></div><h2 id="打通任督二脉">打通任督二脉</h2>
+<p>准备工作就绪，打通任督二脉的关键就只差一个了！那就是对于 redis 数据共享，细心的童鞋可能留意了上面只配置了 Ruby 版本的 redis 连接，但对于 Crystal 我故意留白没有说明。因为这个是最关键的一步，对于当前 sidekiq.cr 版本来说。</p>
+<p>sidekiq.cr 对于作者来说是一次试水并没有话特别大的精力，Crystal 本身还处在开发阶段在未到达 1.0 之前会有各种 Break Changes。而且作者是非常照顾 Heroku 的开发者，默认仅支持该服务平台 Redis-to-Go 服务，因此想设置 Redis 连接信息必须通过系统的环境变量：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl"><span class="nv">REDISTOGO_URL</span><span class="o">=</span>redis://localhost:6379/8
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="nv">REDIS_PROVIDER</span><span class="o">=</span><span class="nv">$REDISTOGO_URL</span>
+</span></span></code></pre></div><p>上面的配置是不可省略的，因为我个人不懂 Heroku 给作者乱提了 PL 还被作者狠批了一顿 :(</p>
+<p>回到话题本身，我们来继续写上 <code>src/crystal_server.cr</code> 关键的代码：</p>
+<blockquote>
+<p>注意：redis 连接信息无比保证和 rails 配置的是一致的！</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-crystal" data-lang="crystal"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="k">require</span> <span class="s2">&#34;sidekiq&#34;</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="k">require</span> <span class="s2">&#34;sidekiq/cli&#34;</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="k">require</span> <span class="s2">&#34;./workers/*&#34;</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="no">ENV</span><span class="o">[</span><span class="s2">&#34;LOCAL_REDIS&#34;</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&#34;redis://localhost:6379/8&#34;</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="no">ENV</span><span class="o">[</span><span class="s2">&#34;REDIS_PROVIDER&#34;</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&#34;LOCAL_REDIS&#34;</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="n">cli</span> <span class="o">=</span> <span class="n">Sidekiq</span><span class="o">::</span><span class="no">CLI</span><span class="o">.</span><span class="n">new</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="n">server</span> <span class="o">=</span> <span class="n">cli</span><span class="o">.</span><span class="n">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">  <span class="c1"># 支持中间件，默认留空即可</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="k">end</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">
+</span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="n">cli</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">server</span><span class="p">)</span>
+</span></span></code></pre></div><p>代码需要编译执行，因为不编译是无法给 sidekiq cli 传递它接受的参数（当然也有方法，我放在末尾范例源码中自己寻找）</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ crystal build src/crystal_server.cr -o crystal_server
+</span></span></code></pre></div><p>通过上面命令把源码编译成可执行文件到项目根目录的 <code>crystal_server</code> 文件。</p>
+<p>打开终端一：启动 ruby 的 sidekiq server</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln"> 1</span><span class="cl">$ <span class="nb">cd</span> ruby_on_rails
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">$ sidekiq -q default
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">2017-04-26T06:47:19.299Z <span class="m">76282</span> TID-owewdljsc INFO: Booting Sidekiq 4.2.10 with redis options <span class="o">{</span>:url<span class="o">=</span>&gt;<span class="s2">&#34;redis://localhost:6379/8&#34;</span><span class="o">}</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">         m,
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">         <span class="sb">`</span><span class="nv">$b</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">    .ss,  <span class="nv">$$</span>:         .,d$
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">    <span class="sb">`</span><span class="nv">$$</span>P,d<span class="nv">$P</span><span class="s1">&#39;    .,md$P&#34;&#39;</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">     ,<span class="nv">$$$$$bmmd$$$P</span>^<span class="s1">&#39;
+</span></span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="s1">   .d$$$$$$$$$$P&#39;</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">   <span class="nv">$$</span>^<span class="s1">&#39; `&#34;^$$$&#39;</span>       ____  _     _      _    _
+</span></span><span class="line"><span class="ln">13</span><span class="cl">   $:     ,<span class="nv">$$</span>:       / ___<span class="p">|</span><span class="o">(</span>_<span class="o">)</span> __<span class="p">|</span> <span class="p">|</span> ___<span class="p">|</span> <span class="p">|</span> _<span class="o">(</span>_<span class="o">)</span> __ _
+</span></span><span class="line"><span class="ln">14</span><span class="cl">   <span class="sb">`</span>b     :<span class="nv">$$</span>        <span class="se">\_</span>__ <span class="se">\|</span> <span class="p">|</span>/ _<span class="sb">`</span> <span class="p">|</span>/ _ <span class="se">\ </span><span class="p">|</span>/ / <span class="p">|</span>/ _<span class="sb">`</span> <span class="p">|</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">          <span class="nv">$$</span>:         ___<span class="o">)</span> <span class="p">|</span> <span class="p">|</span> <span class="o">(</span>_<span class="p">|</span> <span class="p">|</span>  __/   &lt;<span class="p">|</span> <span class="p">|</span> <span class="o">(</span>_<span class="p">|</span> <span class="p">|</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">          <span class="nv">$$</span>         <span class="p">|</span>____/<span class="p">|</span>_<span class="p">|</span><span class="se">\_</span>_,_<span class="p">|</span><span class="se">\_</span>__<span class="p">|</span>_<span class="p">|</span><span class="se">\_\_</span><span class="p">|</span><span class="se">\_</span>_, <span class="p">|</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl">        .d<span class="nv">$$</span>                                       <span class="p">|</span>_<span class="p">|</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl">
+</span></span><span class="line"><span class="ln">19</span><span class="cl">2017-04-26T06:47:19.433Z <span class="m">76282</span> TID-owewdljsc INFO: Running in ruby 2.4.0p0 <span class="o">(</span>2016-12-24 revision 57164<span class="o">)</span> <span class="o">[</span>x86_64-darwin16<span class="o">]</span>
+</span></span><span class="line"><span class="ln">20</span><span class="cl">2017-04-26T06:47:19.433Z <span class="m">76282</span> TID-owewdljsc INFO: See LICENSE and the LGPL-3.0 <span class="k">for</span> licensing details.
+</span></span><span class="line"><span class="ln">21</span><span class="cl">2017-04-26T06:47:19.433Z <span class="m">76282</span> TID-owewdljsc INFO: Upgrade to Sidekiq Pro <span class="k">for</span> more features and support: http://sidekiq.org
+</span></span><span class="line"><span class="ln">22</span><span class="cl">2017-04-26T06:47:19.442Z <span class="m">76282</span> TID-owewdljsc INFO: Starting processing, hit Ctrl-C to stop
+</span></span></code></pre></div><p>打开终端二：启动 crystal 的 sidekiq server</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln"> 1</span><span class="cl">$ <span class="nb">cd</span> crystal
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">$ ./crystal_server -q crystal
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">         m,
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">         <span class="sb">`</span><span class="nv">$b</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">    .ss,  <span class="nv">$$</span>:         .,d$
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">    <span class="sb">`</span><span class="nv">$$</span>P,d<span class="nv">$P</span><span class="s1">&#39;    .,md$P&#34;&#39;</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">     ,<span class="nv">$$$$$bmmd$$$P</span>^<span class="s1">&#39;
+</span></span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="s1">   .d$$$$$$$$$$P&#39;</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">   <span class="nv">$$</span>^<span class="s1">&#39; `&#34;^$$$&#39;</span>       ____  _     _      _    _
+</span></span><span class="line"><span class="ln">11</span><span class="cl">   $:     ,<span class="nv">$$</span>:       / ___<span class="p">|</span><span class="o">(</span>_<span class="o">)</span> __<span class="p">|</span> <span class="p">|</span> ___<span class="p">|</span> <span class="p">|</span> _<span class="o">(</span>_<span class="o">)</span> __ _
+</span></span><span class="line"><span class="ln">12</span><span class="cl">   <span class="sb">`</span>b     :<span class="nv">$$</span>        <span class="se">\_</span>__ <span class="se">\|</span> <span class="p">|</span>/ _<span class="sb">`</span> <span class="p">|</span>/ _ <span class="se">\ </span><span class="p">|</span>/ / <span class="p">|</span>/ _<span class="sb">`</span> <span class="p">|</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">          <span class="nv">$$</span>:         ___<span class="o">)</span> <span class="p">|</span> <span class="p">|</span> <span class="o">(</span>_<span class="p">|</span> <span class="p">|</span>  __/   &lt;<span class="p">|</span> <span class="p">|</span> <span class="o">(</span>_<span class="p">|</span> <span class="p">|</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">          <span class="nv">$$</span>         <span class="p">|</span>____/<span class="p">|</span>_<span class="p">|</span><span class="se">\_</span>_,_<span class="p">|</span><span class="se">\_</span>__<span class="p">|</span>_<span class="p">|</span><span class="se">\_\_</span><span class="p">|</span><span class="se">\_</span>_, <span class="p">|</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">        .d<span class="nv">$$</span>                                       <span class="p">|</span>_<span class="p">|</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">
+</span></span><span class="line"><span class="ln">17</span><span class="cl">2017-04-26T06:48:42.755Z <span class="m">83552</span> TID-21ybwjk  INFO: Sidekiq v0.7.0 in Crystal 0.22.0
+</span></span><span class="line"><span class="ln">18</span><span class="cl">2017-04-26T06:48:42.755Z <span class="m">83552</span> TID-21ybwjk  INFO: Licensed <span class="k">for</span> use under the terms of the GNU LGPL-3.0 license.
+</span></span><span class="line"><span class="ln">19</span><span class="cl">2017-04-26T06:48:42.755Z <span class="m">83552</span> TID-21ybwjk  INFO: Upgrade to Sidekiq Enterprise <span class="k">for</span> more features and support: http://sidekiq.org
+</span></span><span class="line"><span class="ln">20</span><span class="cl">2017-04-26T06:48:42.755Z <span class="m">83552</span> TID-21ybwjk  INFO: Starting processing with <span class="m">25</span> workers
+</span></span><span class="line"><span class="ln">21</span><span class="cl">2017-04-26T06:48:42.756Z <span class="m">83552</span> TID-21ybwjk  INFO: Press Ctrl-C to stop
+</span></span></code></pre></div><h2 id="验证功力效果">验证功力效果</h2>
+<p>两边的 sidekiq server 都已经跑起来了，我们先从 rails 启动 console 验证，注意留意两个 sidekiq 终端日志的输出：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ rails console
+</span></span><span class="line"><span class="ln">2</span><span class="cl">Loading development environment <span class="o">(</span>Rails 5.0.2<span class="o">)</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="c1"># 调用 rails 本身的 ping1 和 ping2 worker</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">2.4.0 :001 &gt; Sidekiq::Client.push<span class="o">(</span><span class="s1">&#39;class&#39;</span> <span class="o">=</span>&gt; <span class="s1">&#39;Ping1Worker&#39;</span>, <span class="s1">&#39;args&#39;</span> <span class="o">=</span>&gt;<span class="o">[])</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl"> <span class="o">=</span>&gt; <span class="s2">&#34;961500753aa127b73ac50851&#34;</span>
+</span></span><span class="line"><span class="ln">7</span><span class="cl">2.4.0 :002 &gt; Sidekiq::Client.push<span class="o">(</span><span class="s1">&#39;class&#39;</span> <span class="o">=</span>&gt; <span class="s1">&#39;Ping2Worker&#39;</span>, <span class="s1">&#39;args&#39;</span> <span class="o">=</span>&gt;<span class="o">[])</span>
+</span></span><span class="line"><span class="ln">8</span><span class="cl"> <span class="o">=</span>&gt; <span class="s2">&#34;be366d2e5f44adf367853d82&#34;</span>
+</span></span></code></pre></div><p>对应 rails 的 sidekiq server 会同时输出：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">2017-04-26T06:53:01.722Z <span class="m">76282</span> TID-owex58ag8 Ping1Worker JID-961500753aa127b73ac50851 INFO: start
+</span></span><span class="line"><span class="ln">2</span><span class="cl">2017-04-26T06:53:01.722Z <span class="m">76282</span> TID-owex58ag8 Ping1Worker JID-961500753aa127b73ac50851 INFO: <span class="o">[</span>Ruby<span class="o">]</span> PONG !
+</span></span><span class="line"><span class="ln">3</span><span class="cl">2017-04-26T06:53:01.722Z <span class="m">76282</span> TID-owex58ag8 Ping1Worker JID-961500753aa127b73ac50851 INFO: <span class="k">done</span>: 0.0 sec
+</span></span><span class="line"><span class="ln">4</span><span class="cl">2017-04-26T06:53:52.681Z <span class="m">76282</span> TID-owex58bs0 Ping2Worker JID-be366d2e5f44adf367853d82 INFO: start
+</span></span><span class="line"><span class="ln">5</span><span class="cl">2017-04-26T06:53:52.681Z <span class="m">76282</span> TID-owex58bs0 Ping2Worker JID-be366d2e5f44adf367853d82 INFO: <span class="o">[</span>Ruby<span class="o">]</span> PONG PONG !!
+</span></span><span class="line"><span class="ln">6</span><span class="cl">2017-04-26T06:53:52.681Z <span class="m">76282</span> TID-owex58bs0 Ping2Worker JID-be366d2e5f44adf367853d82 INFO: <span class="k">done</span>: 0.0 sec
+</span></span></code></pre></div><p>自身一脉本来就是通的没什么好稀奇的，验证另外一脉：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ rails console
+</span></span><span class="line"><span class="ln">2</span><span class="cl">Loading development environment <span class="o">(</span>Rails 5.0.2<span class="o">)</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="c1"># 调用 crystal 的 ping1 和 ping2 worker</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">2.4.0 :001 &gt; Sidekiq::Client.push<span class="o">(</span><span class="s1">&#39;class&#39;</span> <span class="o">=</span>&gt; <span class="s1">&#39;Ping1Worker&#39;</span>, <span class="s1">&#39;args&#39;</span> <span class="o">=</span>&gt;<span class="o">[]</span>, <span class="s1">&#39;queue&#39;</span> <span class="o">=</span>&gt; <span class="s1">&#39;crystal&#39;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl"> <span class="o">=</span>&gt; <span class="s2">&#34;324cf5e07b5e2999b0a45565&#34;</span>
+</span></span><span class="line"><span class="ln">7</span><span class="cl">2.4.0 :002 &gt; Sidekiq::Client.push<span class="o">(</span><span class="s1">&#39;class&#39;</span> <span class="o">=</span>&gt; <span class="s1">&#39;Ping2Worker&#39;</span>, <span class="s1">&#39;args&#39;</span> <span class="o">=</span>&gt;<span class="o">[]</span>, <span class="s1">&#39;queue&#39;</span> <span class="o">=</span>&gt; <span class="s1">&#39;crystal&#39;</span><span class="o">)</span>
+</span></span><span class="line"><span class="ln">8</span><span class="cl"> <span class="o">=</span>&gt; <span class="s2">&#34;06c60bb9d52d9a31d48d2fdc&#34;</span>
+</span></span></code></pre></div><p>看看 crystal 的 sidekiq server 的日志：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">2017-04-26T06:57:11.846Z <span class="m">21253</span> TID-1z8q4cg  <span class="nv">JID</span><span class="o">=</span>324cf5e07b5e2999b0a45565 INFO: Start
+</span></span><span class="line"><span class="ln">2</span><span class="cl">2017-04-26T06:57:11.846Z <span class="m">21253</span> TID-1z8q4cg  <span class="nv">JID</span><span class="o">=</span>324cf5e07b5e2999b0a45565 INFO: <span class="o">[</span>Crystal<span class="o">]</span> PONG !
+</span></span><span class="line"><span class="ln">3</span><span class="cl">2017-04-26T06:57:11.846Z <span class="m">21253</span> TID-1z8q4cg  <span class="nv">JID</span><span class="o">=</span>324cf5e07b5e2999b0a45565 INFO: Done: 0.000046 sec
+</span></span><span class="line"><span class="ln">4</span><span class="cl">2017-04-26T06:57:20.785Z <span class="m">21253</span> TID-1z8q3y8  <span class="nv">JID</span><span class="o">=</span>06c60bb9d52d9a31d48d2fdc INFO: Start
+</span></span><span class="line"><span class="ln">5</span><span class="cl">2017-04-26T06:57:20.785Z <span class="m">21253</span> TID-1z8q3y8  <span class="nv">JID</span><span class="o">=</span>06c60bb9d52d9a31d48d2fdc INFO: <span class="o">[</span>Crystal<span class="o">]</span> PONG PONG !!
+</span></span><span class="line"><span class="ln">6</span><span class="cl">2017-04-26T06:57:20.785Z <span class="m">21253</span> TID-1z8q3y8  <span class="nv">JID</span><span class="o">=</span>06c60bb9d52d9a31d48d2fdc INFO: Done: 0.000049 sec
+</span></span></code></pre></div><p>验证通过！打通了！</p>
+<p>Crystal 这边向 Ruby 调用也可行，但只有通过如下代码，有个别时候自身调用也没有日志输出，不过在 Web UI 却发现已处理的数字已正常更新，该问题我再调查下。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-crystal" data-lang="crystal"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="k">require</span> <span class="s2">&#34;sidekiq&#34;</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="no">ENV</span><span class="o">[</span><span class="s2">&#34;LOCAL_REDIS&#34;</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&#34;redis://localhost:6379/8&#34;</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="no">ENV</span><span class="o">[</span><span class="s2">&#34;REDIS_PROVIDER&#34;</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&#34;LOCAL_REDIS&#34;</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="n">workers</span> <span class="o">=</span> <span class="sx">%w(Ping1Worker Ping2Worker)</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="n">workers</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">wk_class</span><span class="o">|</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">  <span class="n">job</span> <span class="o">=</span> <span class="n">Sidekiq</span><span class="o">::</span><span class="n">Job</span><span class="o">.</span><span class="n">new</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">  <span class="n">job</span><span class="o">.</span><span class="n">queue</span> <span class="o">=</span> <span class="s2">&#34;default&#34;</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">  <span class="n">job</span><span class="o">.</span><span class="n">klass</span> <span class="o">=</span> <span class="n">wk_class</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">
+</span></span><span class="line"><span class="ln">12</span><span class="cl">  <span class="n">Sidekiq</span><span class="o">::</span><span class="n">Client</span><span class="o">.</span><span class="n">default_context</span> <span class="o">=</span> <span class="n">Sidekiq</span><span class="o">::</span><span class="n">Client</span><span class="o">::</span><span class="n">Context</span><span class="o">.</span><span class="n">new</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">
+</span></span><span class="line"><span class="ln">14</span><span class="cl">  <span class="n">client</span> <span class="o">=</span> <span class="n">Sidekiq</span><span class="o">::</span><span class="n">Client</span><span class="o">.</span><span class="n">new</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">  <span class="n">job_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">job</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">  <span class="nb">puts</span> <span class="s2">&#34;[</span><span class="si">#{</span><span class="n">wk_class</span><span class="si">}</span><span class="s2">] job id: </span><span class="si">#{</span><span class="n">job_id</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">2017-04-26T07:20:58.754Z <span class="m">62256</span> TID-oukzi7jck Ping1Worker JID-1fee81b35052cba1f6525de5 INFO: start
+</span></span><span class="line"><span class="ln">2</span><span class="cl">2017-04-26T07:20:58.754Z <span class="m">62256</span> TID-oukzi7jck Ping1Worker JID-1fee81b35052cba1f6525de5 INFO: <span class="o">[</span>Ruby<span class="o">]</span> PONG !
+</span></span><span class="line"><span class="ln">3</span><span class="cl">2017-04-26T07:20:58.755Z <span class="m">62256</span> TID-oukzi7jck Ping1Worker JID-1fee81b35052cba1f6525de5 INFO: <span class="k">done</span>: 0.0 sec
+</span></span><span class="line"><span class="ln">4</span><span class="cl">2017-04-26T07:20:58.756Z <span class="m">62256</span> TID-oul02vzfw Ping2Worker JID-0bb7eef097447784fb48d943 INFO: start
+</span></span><span class="line"><span class="ln">5</span><span class="cl">2017-04-26T07:20:58.756Z <span class="m">62256</span> TID-oul02vzfw Ping2Worker JID-0bb7eef097447784fb48d943 INFO: <span class="o">[</span>Ruby<span class="o">]</span> PONG PONG !!
+</span></span><span class="line"><span class="ln">6</span><span class="cl">2017-04-26T07:20:58.756Z <span class="m">62256</span> TID-oul02vzfw Ping2Worker JID-0bb7eef097447784fb48d943 INFO: <span class="k">done</span>: 0.0 sec
+</span></span></code></pre></div><h2 id="结语">结语</h2>
+<p>本篇只是通过一个最简单的例子让大家知道互通的方法，实际使用中对于数据交互等还有更多需要考虑的地方，这里就暂时不做展开。非常期待 Crystal 今年立的 <a href="https://crystal-lang.org/2016/12/29/crystal-new-year-resolutions-for-2017-1-0.html">1.0 的目标</a>。</p>
+<p>对于 Crystal 语言本身的评价，大家也可看下 RubyChina 站长的心得<a href="https://ruby-china.org/topics/32771">Crystal 说我最近关注 Crystal 的感受</a>，编译语言有编译语言的坑，入坑需谨慎。</p>
+<p>本文演示的代码已经整理并放到了 <a href="https://github.com/icyleaf/sidekiq-with-ruby-and-crystal">Github</a>，对于不明白的地方可配合代码更好服用。</p>
+]]></content:encoded></item></channel></rss>

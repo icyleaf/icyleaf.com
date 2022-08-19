@@ -1,0 +1,1196 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Android on icyleaf</title><link>https://icyleaf.com/tags/android/</link><description>Recent content in Android on icyleaf</description><language>zh</language><lastBuildDate>Fri, 12 Aug 2022 19:29:06 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/android/index.xml" rel="self" type="application/rss+xml"/><item><title>小新 Pad Pro 2021</title><link>https://icyleaf.com/gears/xiaoxin-pad-pro-2021/</link><pubDate>Fri, 12 Aug 2022 19:29:06 +0800</pubDate><guid>https://icyleaf.com/gears/xiaoxin-pad-pro-2021/</guid><description>
+Android 平板到底是生产力工具还是沦为看视频的最终归宿</description><content:encoded><![CDATA[<blockquote>
+<p>不说需求无脑采购耍流氓，绝对不要没有需求创造需求。</p>
+</blockquote>
+<p>我曾经拥有过 2 台 iPad 2 <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>，1 台 iPad Air 1 代，相继淘汰给了父母之后就再也没有考虑过购买任何平板，最核心的原因吃灰率太高，没法真正作为一个生产力工具，况且作为 iPhone 和 Android 双机型用户日常搭配使用基本覆盖 80% 的场景。</p>
+<p>真正发生转变在每次外出游玩都要带很多的摄影器材，大量的素材需要备份，在那么重的情况下还要再背负一台很沉的 2015 年 Macbook Pro ，我急需一个便携外带方便，支持高速读写外部存储设备，还能快速预览素材、修修图的解决方案，还能看漫画或作为一些开发等生产力辅助工具。</p>
+<p>在我写完本篇的那一刻联想刚刚发布了 2022 款，还是一样的骁龙 870 只是多了 120Hz 和快充，心安了。</p>
+<h2 id="ipad-不是首选">iPad 不是首选？</h2>
+<p>自己也没想到我最终入手了一台 Android 平板，竟然还是联想小新平板。</p>
+<p>家里只有一台 iPad Pro M1 版口头上是给娃开发智力和娱乐使用实际上长期被妈妈霸占。硬件性能满足需求再经过测试<a href="https://twitter.com/icyleaf/status/1542320229568483328">无情淘汰</a>。iOS 14 自带的 File 文件管理工具太弱鸡，拷贝外部设备连个速率都没有还经常会断，只有一个第三方 <a href="https://www.youtube.com/watch?v=UtQ2Ymcp-zk">FE File Explorer</a> 应用还能打一些，但再入手一台 M1 说实话我舍不得，后来又出的 iPad Mini 6 和 iPad Air 5 都不是雷电 4 接口。</p>
+<blockquote>
+<p>再写本文时在最新的 iOS 15.5 上面测试自带 File 应用已经会显示速率，复制大文件的时候依然会卡几秒，但真正进入拷贝过程速度非常快！</p>
+</blockquote>
+<p>iPad 被排除后依次考虑过 Linux 平板<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>、Surface 和 Android 平板，时隔多年小米平板 5 <a href="https://twitter.com/icyleaf/status/1446034323136679939">不但沉</a> USB 还是 2.0，联想小新 Pad 有稍微关注过，我把重心放到了 2022 年新平板（<a href="https://weibo.com/1642632024/Lf64Y3kYH?refer_flag=1001030103_">爆料</a>），年初刷到<a href="https://twitter.com/oasisfeng/status/1481541399359389696">推友分享小新 Pad Pro</a>让我有点心动，可直接安装 Google 全家桶、USB 3.1、90Hz，可刷国际版，决定 4 月份新平板出来不合适就入手它。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <figure><a href="/uploads/2022/08/12/xiaoxin-pads-compare.jpg" class="gallery-item" target="_blank" data-pswp-width="1973" data-pswp-height="1015"><img src="/uploads/2022/08/12/xiaoxin-pads-compare.jpg"
+      alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://www.ithome.com/0/584/056.htm">IT 之家</a>
+    </p>
+
+    <h4>小新 Pad 各个版本对比图</h4><div style="clear: both"></div>
+  </figcaption></figure>
+
+<h2 id="选择它的理由">选择它的理由</h2>
+<p>2021 年是国内 Android 平板重新回归的一年，也是<a href="https://www.qualcomm.com/products/application/smartphones/snapdragon-8-series-mobile-platforms/snapdragon-870-5g-mobile-platform">骁龙 870</a> 霸占 Android 平板最多的一年，直到 2022 年无论是 4 月份新出的 VIVO 平板，还是雷军良心发现小米平板 5 的硬件太过于吝啬 8 月赶紧补出的<a href="https://twitter.com/icyleaf/status/1558408826889519105">小米平板 5 Pro</a> 都是用的它。</p>
+<p>综合分析下来小新 Pad Pro 2021 最最抗打的一个选择：USB 3.1 的接口协议；仅次于 MiniLED 的最好屏幕材质，配合 2K 分辨率，日常 420 尼特，峰值 600 尼特在一些非强光环境下画面是非常优秀的，看视频配合 4 扬声器能提高观看体验；它最牛皮的是支持外接最高 1TB Micro SD 卡；8600 的电池容量看着也不高，日常使用看视频下来 2 天还是没什么问题的。</p>
+<blockquote class="twitter-tweet"><p lang="zh" dir="ltr">出去一下午3个小时的续航很抗打 <a href="https://t.co/1aFjg0O3bg">pic.twitter.com/1aFjg0O3bg</a></p>&mdash; icyleaf 🍺 (@icyleaf) <a href="https://twitter.com/icyleaf/status/1538545947608723457?ref_src=twsrc%5Etfw">June 19, 2022</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>配套键盘和笔我没买没资格讲这款，网上有很多说触控笔延迟有多高从 <a href="https://www.youtube.com/watch?v=LjlYQIAUV1Y">Youtuber 画画</a>好像也没什么太大问题，键盘后面会考虑入。</p>
+<h2 id="喜欢的原因">喜欢的原因</h2>
+<p>发布 1 年多来官方价格从来没有跳水，我在 2022 年 618 期间找了 PDD 在全网最低 1639 购入，比去年双 11 价格的价格竟然还要高一点。疫情让所有的硬件疯狂的涨价。当我拿到它的第一印象 11.5 寸屏幕果然还是有一点点大，背部有点丑需要一个保护壳把它遮挡住。</p>
+<h3 id="满意的屏幕音响">满意的屏幕音响</h3>
+<p>OLED 是仅次于 MiniLED 的最好屏幕材质，在配合 2K 分辨率和日常 420 尼特，峰值 600 尼特加持下，看漫画真的爽歪歪：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <figure><a href="/uploads/2022/08/12/tachiyomi-on-xiaoxin-pad-pro-2021.jpg" class="gallery-item" target="_blank" data-pswp-width="1536" data-pswp-height="2048"><img src="/uploads/2022/08/12/tachiyomi-on-xiaoxin-pad-pro-2021_hucbc89598ac49f5f0f14f62fb5b24d87e_411181_1920x1080_crop_q75_box_smart1.jpg"/></a><figcaption>
+
+    <h4>小新 Pad Pro 2021 上看漫画</h4><div style="clear: both"></div>
+  </figcaption></figure>
+
+<p>在一些非强光环境下画面是非常优秀的，看视频配合 JBL 4 扬声器能提高观看体验，看视频我主要用到的是 Youtube、Bilibili、Jellyfin 和 Netflix 这四个 App，</p>
+<p>平板支持 Dolby Vision 用 Youtube 和 B 站在大会员加持下最高画质，Jellyfin 升级 10.8 看片源和转码效率通常情况下不会太差，唯独 Netflix 因没有认证只有最高 1080p HD 画质，联想认证 HDR 的只有 Tab P11-12 Pro 和 Yoga Tab 13。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <figure><a href="/uploads/2022/08/12/xiaoxin-video-encoder.jpg" class="gallery-item" target="_blank" data-pswp-width="2560" data-pswp-height="1600"><img src="/uploads/2022/08/12/xiaoxin-video-encoder.jpg"
+      alt="视频来源"/></a><figcaption><p class="source">视频来源<a href="https://www.bilibili.com/video/BV1tY4y1w7GQ">Linksphotograph</a>
+    </p>
+
+    <h4>B 站的杜比视界和 Netflix 解码信息</h4><div style="clear: both"></div>
+  </figcaption></figure>
+
+<p>骁龙 870 支持的视频解码器有 <code>Dolby Vision, HDR10+, HDR10, HLG, H.264 (AVC), H.265 (HEVC), VP8, VP9</code>。Netflix 媒体信息显示不支持 HDR 应该就是没有去认证的原因。</p>
+<h3 id="开放的系统">开放的系统</h3>
+<p>开源的 Android 系统在过去是一把双刃剑，趋于现在 Android 和 iOS 系统相互借鉴也越来越成熟，
+它们直接的差距除了原生系统的交互体验外，更多的需要考察开发者及应用生态。通常情况下一个成熟的商业应用会同时考虑跨端赚取用户群体，以下我会在双端安装：</p>
+<ul>
+<li>Chrome: 浏览器</li>
+<li>Lightroom: 修图必备</li>
+<li>Kiwi: 人类知识离线大全</li>
+<li>Jellyfin: 配合服务器 Jellyfin 的客户端版本</li>
+<li>Network Tools: 网管专用</li>
+<li>Pocket Casts: 个人喜爱的泛用型播客客户端</li>
+<li>Spark: 邮件客户端</li>
+<li>kubenav: Kubernetes 管理工具</li>
+<li>Termius: 服务器 SSH/Mosh 管理工具</li>
+<li>Brewfater: 家酿啤酒必备</li>
+</ul>
+<p>如果 iOS 生态有独占的优势，Android 在生产力方面有独特的优势<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>：</p>
+<ul>
+<li><a href="https://github.com/tachiyomiorg/tachiyomi">Tachiyomi</a>: 开源的看漫画神器，支持多图源聚合，还有很多<span class="spoiler">绅士图源</span>
+ <img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg"
+  
+  
+  alt="Open-Source Software"></img>
+</li>
+<li><a href="https://play.google.com/store/apps/details?id=pl.solidexplorer2&amp;hl=zh&amp;gl=US">Solid Explorer</a>: 最好用的文件管理器，没有之一 <img src="/images/icons/playstore.png"
+  
+  
+  alt="Play Store"></img>
+ <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg"
+  
+  
+  alt="Freeware"></img>
+</li>
+<li><a href="https://github.com/devgianlu/Aria2App">Aria2App</a>: 支持本机和远程的 Aria2 下载管理客户端 <img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg"
+  
+  
+  alt="Open-Source Software"></img>
+</li>
+<li><a href="https://play.google.com/store/apps/details?id=dev.reimu.proxmon&amp;hl=zh&amp;gl=US">ProxMon</a>: Proxmox (PVE) 客户端管理工具 <img src="/images/icons/playstore.png"
+  
+  
+  alt="Play Store"></img>
+ <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg"
+  
+  
+  alt="Freeware"></img>
+</li>
+<li><span class="spoiler"><a href="https://cn.pornhub.com/apps/android">Pornhub</a></span>
+: 知名 P 站 <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg"
+  
+  
+  alt="Freeware"></img>
+</li>
+<li><span class="spoiler"><a href="https://github.com/bdvajstudio/javdb">JavDB</a></span>
+: 番号资源和磁力资源，配合 Aria2App 无敌 <img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg"
+  
+  
+  alt="Open-Source Software"></img>
+</li>
+<li><span class="spoiler"><a href="https://play.google.com/store/apps/details?id=com.github.kr328.clash">Clash for Android</a></span>
+: 一个会挖洞的可爱猫咪 <img src="/images/icons/playstore.png"
+  
+  
+  alt="Play Store"></img>
+ <img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg"
+  
+  
+  alt="Open-Source Software"></img>
+</li>
+</ul>
+<h3 id="外接数据备份">外接数据备份</h3>
+<p>接口 3.1 协议允许外接扩展坞用于连接显示器，鼠标键盘开启电脑模式，这也是这个产品的卖点我一点也不看好，实际测试中系统反应迟钝，应用窗口显示比例不对，尽可能忘记这个功能。</p>
+<p>外接设备对数据备份才是我的核心需求，我做过两次尝试：</p>
+<ol>
+<li>双 Type-C 直插平板和 SSD 移动硬盘，支持两者之间的数据拷贝</li>
+<li>扩展坞连接 SD、micro SD 卡，支持两者之间的数据拷贝</li>
+<li>扩展坞连接 SD 卡和 SSD 移动硬盘，支持三者之间的数据拷贝</li>
+</ol>
+<p>功能上确实满足我的需求，可惜这有几个致命的缺陷且很大几率我还没法正常工作，首先是外接设备识别成功率很低，经常性直插去都没有提示或是有提示没有任何后续反应，在 Solid Explorer 和系统文件应用都看不到外接设备，看到设备打开应用会闪退，这一点让我很沮丧。</p>
+<p>就算是成功连接了，外部设备的访问权限反复提醒，我不确定这是 Android 11 的问题还是 ZUI 移植后的适配问题。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <figure><a href="/uploads/2022/08/12/xiaoxin-pad-filesystem-role.jpg" class="gallery-item" target="_blank" data-pswp-width="1280" data-pswp-height="800"><img src="/uploads/2022/08/12/xiaoxin-pad-filesystem-role.jpg"/></a><figcaption>
+
+    <h4>令人烦恼的外部设备访问权限</h4><div style="clear: both"></div>
+  </figcaption></figure>
+
+<p>终于能操作了，数据拷贝的速度如果不是双 Type-C，尽管扩展坞支持 USB 3.0 但速度上限只有 70MB/s 这还是瞬时整个拷贝过程 IO 非常不稳定。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <figure><a href="/uploads/2022/08/12/xiaoxin-pad-copy-tf-photo.jpg" class="gallery-item" target="_blank" data-pswp-width="1280" data-pswp-height="800"><img src="/uploads/2022/08/12/xiaoxin-pad-copy-tf-photo.jpg"/></a><figcaption>
+
+    <h4>使用 Solid Explorer 拷贝 TF 卡到平板</h4><div style="clear: both"></div>
+  </figcaption></figure>
+
+<h3 id="zui-的问题">ZUI 的问题</h3>
+<p>小新 Pad 使用的是自研的 ZUI，截至目前 13 版本只能说堪用，系统提供自由浮窗，分屏功能，但应用支不支持又是另外一回事，偶尔用一下看到应用不分屏肯定会暗地不爽。系统级别的应用几乎不怎么使用，都由上面我说的代替了，输入法需要说下 <a href="https://play.google.com/store/apps/details?id=com.google.android.inputmethod.latin">Gboard</a> 在 99% 的情况下都是非常好用的，剩下的 1% 是它不支持隐藏键盘的功能。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <figure><a href="/uploads/2022/08/12/xiaoxin-pad-dual-screens.jpg" class="gallery-item" target="_blank" data-pswp-width="1280" data-pswp-height="800"><img src="/uploads/2022/08/12/xiaoxin-pad-dual-screens.jpg"/></a><figcaption>
+
+    <h4>分屏模式</h4><div style="clear: both"></div>
+  </figcaption></figure>
+
+<p>我基本上把它的个人安全功能设置了关闭，在安装一些被认为是有风险的应用都非常顺畅，不像 MIUI 时不时就让你登录小米账号来验证。在这样的情况下无障碍功能功能总会被关闭，造成李跳跳、Bitwarden 无法长期保持开启的状态。不杀后台应用也会触发关闭，非常的莫名其妙。</p>
+<p>我只希望今年年低要发布的 ZUI 14 能够解决我上面说的问题， <del>让我拭目以待吧</del>没有预期就没有失望，放低心态。</p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p><a href="https://twitter.com/icyleaf/status/123008427495657473">第一台丢在了下飞机的座位上</a>，<a href="https://twitter.com/icyleaf/status/166714788649504769">第二台至今还会被母上拿出来凑合用一下</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>也有刷到推友入手 chromebook duet 咨询和搜索后都没了解到 USB 接口协议版本，没敢入手&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p>部分图标版权均来自<a href="https://github.com/jaywcjlove/awesome-mac">awesome-mac</a>:<br>
+<img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg"
+  
+  
+  alt="Open-Source Software"></img>
+意思是<strong>代码开源</strong>;<br>
+<img src="https://jaywcjlove.github.io/sb/ico/min-free.svg"
+  
+  
+  alt="Freeware"></img>
+意思是免费使用或个人免费授权;<br>
+<img src="/images/icons/playstore.png"
+  
+  
+  alt="Play Store"></img>
+意思是谷歌应用商店的应用&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+]]></content:encoded></item><item><title>你虐我千百遍，我待你如初恋，直到我遇到 match</title><link>https://icyleaf.com/2017/03/fastlane-match-in-action/</link><pubDate>Tue, 28 Mar 2017 20:12:07 +0800</pubDate><guid>https://icyleaf.com/2017/03/fastlane-match-in-action/</guid><description>
+系列文章的第三篇，教你如何使用 match 管理名词都分不清的苹果各自开发者证书</description><content:encoded><![CDATA[<h2 id="前言">前言</h2>
+<p>通过前两篇的文章大家已经对 fastlane 的概念和基本使用已经有了初步的掌握，在第二篇中也有提到 fastlane 实现的各种功能其实都是基于独立封装设计的各个工具实现。它们即可以单独成为一个体系同时也会被吸纳到 fastlane 的 action 系统之中。<code>match</code> 是在 iOS 开发和持续测试和构建中最重中之重的环节，它维护和管理着 iOS 的各种证书和 profile 的创建、更新工作。想必很多用户听到 iOS 证书和 profile 都会头大脑涨，恨不得要手撕鬼子的技能点来对付他们（如图）</p>
+<p><img src="https://codesigning.guide/assets/img/cs-the-problem.png"
+  
+  
+  alt="code-signing-problem"></img>
+</p>
+<p>上图来源于作者专门整理的网站 <a href="https://codesigning.guide/">https://codesigning.guide/</a>，对于 iOS App 签名原理感兴趣的可以参见 JSPatch 作者的分析：http://blog.cnbang.net/tech/3386/</p>
+<h2 id="功能特性">功能特性</h2>
+<ol>
+<li>主动/被动创建、更新、Xcode 所需的各种证书和打包所需的 Profiles</li>
+<li>托管 Xcode 所需的各种证书和打包所需的 Profiles</li>
+<li>统一并共享团队成员统一使用</li>
+<li>证书具有密码加密保护（openssl）</li>
+<li>支持多团队（账户）</li>
+<li>支持单 App 多 Target(identifier)</li>
+<li>内测支持企业账户（v0.11.0 还在测试可用，并没有正式支持）</li>
+</ol>
+<h2 id="原理">原理</h2>
+<p>match 其实是在 fastlane 基础包 cert、sign、spaceship、credentials_manager 之上把 iOS 开发者证书流程化的工具。为了实现团队内共享项目的开发者证书，它使用 git 仓库对证书进行托管，首先需要进行初始化，配置 git 仓库、项目的 iDP 信息之后，下载 Development、AppStore、AdHoc 的开发者证书和项目的 Profile files，并通过 openssl 的方式进行安全加密后提交并推送到 git 仓库，其他成员（或自动化构建系统）使用时需要输入密钥后才能把证书解密并导入到 keychain 和 Profiles 目录。</p>
+<p>如果对于证书加密策略感兴趣的可以在本文底部资料参考的第一个链接查看详情。</p>
+<h2 id="使用">使用</h2>
+<blockquote>
+<p>最新 fastlane 已经包含了所有的子模块，独立的 match 不在更新，请直接安装 fastlane，使用 fastlane match 代替 match 命令。</p>
+</blockquote>
+<p>安装就很简单通过 <code>gem install fastlane</code> 会把它的全家桶一并下载安装，首先可以看下帮助：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln"> 1</span><span class="cl">$ fastlane match --help
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  match
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  Easily sync your certificates and profiles across your team using git
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  Commands:
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">    adhoc             Run match <span class="k">for</span> a adhoc provisioning profile
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">    appstore          Run match <span class="k">for</span> a appstore provisioning profile
+</span></span><span class="line"><span class="ln">10</span><span class="cl">    change_password   Re-encrypt all files with a different password
+</span></span><span class="line"><span class="ln">11</span><span class="cl">    decrypt           Decrypts the repository and keeps it on the filesystem
+</span></span><span class="line"><span class="ln">12</span><span class="cl">    development       Run match <span class="k">for</span> a development provisioning profile
+</span></span><span class="line"><span class="ln">13</span><span class="cl">    <span class="nb">help</span>              Display global or <span class="o">[</span>command<span class="o">]</span> <span class="nb">help</span> documentation
+</span></span><span class="line"><span class="ln">14</span><span class="cl">    init              Create the Matchfile <span class="k">for</span> you
+</span></span><span class="line"><span class="ln">15</span><span class="cl">    nuke              Delete all certificates and provisioning profiles from the Apple Dev Portal
+</span></span><span class="line"><span class="ln">16</span><span class="cl">    nuke development  Delete all certificates and provisioning profiles from the Apple Dev Portal of the <span class="nb">type</span> development
+</span></span><span class="line"><span class="ln">17</span><span class="cl">    nuke distribution Delete all certificates and provisioning profiles from the Apple Dev Portal of the <span class="nb">type</span> distribution
+</span></span><span class="line"><span class="ln">18</span><span class="cl">    run               Easily sync your certificates and profiles across your team using git
+</span></span><span class="line"><span class="ln">19</span><span class="cl">
+</span></span><span class="line"><span class="ln">20</span><span class="cl">  Global Options:
+</span></span><span class="line"><span class="ln">21</span><span class="cl">    --verbose
+</span></span><span class="line"><span class="ln">22</span><span class="cl">    -r, --git_url STRING URL to the git repo containing all the certificates <span class="o">(</span>MATCH_GIT_URL<span class="o">)</span>
+</span></span><span class="line"><span class="ln">23</span><span class="cl">    --git_branch STRING  Specific git branch to use <span class="o">(</span>MATCH_GIT_BRANCH<span class="o">)</span>
+</span></span><span class="line"><span class="ln">24</span><span class="cl">    -y, --type STRING    Create a development certificate instead of a distribution one <span class="o">(</span>MATCH_TYPE<span class="o">)</span>
+</span></span><span class="line"><span class="ln">25</span><span class="cl">    -a, --app_identifier <span class="o">[</span>VALUE<span class="o">]</span> The bundle identifier<span class="o">(</span>s<span class="o">)</span> of your app <span class="o">(</span>comma-separated<span class="o">)</span> <span class="o">(</span>MATCH_APP_IDENTIFIER<span class="o">)</span>
+</span></span><span class="line"><span class="ln">26</span><span class="cl">    -u, --username STRING Your Apple ID Username <span class="o">(</span>MATCH_USERNAME<span class="o">)</span>
+</span></span><span class="line"><span class="ln">27</span><span class="cl">    -s, --keychain_name STRING Keychain the items should be imported to <span class="o">(</span>MATCH_KEYCHAIN_NAME<span class="o">)</span>
+</span></span><span class="line"><span class="ln">28</span><span class="cl">    -p, --keychain_password STRING This might be required the first <span class="nb">time</span> you access certificates on a new mac. For the login/default keychain this is your account password <span class="o">(</span>MATCH_KEYCHAIN_PASSWORD<span class="o">)</span>
+</span></span><span class="line"><span class="ln">29</span><span class="cl">    --readonly <span class="o">[</span>VALUE<span class="o">]</span>   Only fetch existing certificates and profiles, don<span class="s1">&#39;t generate new ones (MATCH_READONLY)
+</span></span></span><span class="line"><span class="ln">30</span><span class="cl"><span class="s1">    -b, --team_id STRING The ID of your Developer Portal team if you&#39;</span>re in multiple teams <span class="o">(</span>FASTLANE_TEAM_ID<span class="o">)</span>
+</span></span><span class="line"><span class="ln">31</span><span class="cl">    -l, --team_name STRING The name of your Developer Portal team <span class="k">if</span> you<span class="err">&#39;</span>re in multiple teams <span class="o">(</span>FASTLANE_TEAM_NAME<span class="o">)</span>
+</span></span><span class="line"><span class="ln">32</span><span class="cl">    --verbose <span class="o">[</span>VALUE<span class="o">]</span>    Print out extra information and all commands <span class="o">(</span>MATCH_VERBOSE<span class="o">)</span>
+</span></span><span class="line"><span class="ln">33</span><span class="cl">    --force <span class="o">[</span>VALUE<span class="o">]</span>      Renew the provisioning profiles every <span class="nb">time</span> you run match <span class="o">(</span>MATCH_FORCE<span class="o">)</span>
+</span></span><span class="line"><span class="ln">34</span><span class="cl">    --skip_confirmation <span class="o">[</span>VALUE<span class="o">]</span> Disables confirmation prompts during nuke, answering them with yes <span class="o">(</span>MATCH_SKIP_CONFIRMATION<span class="o">)</span>
+</span></span><span class="line"><span class="ln">35</span><span class="cl">    --shallow_clone <span class="o">[</span>VALUE<span class="o">]</span> Make a shallow clone of the repository <span class="o">(</span>truncate the <span class="nb">history</span> to <span class="m">1</span> revision<span class="o">)</span> <span class="o">(</span>MATCH_SHALLOW_CLONE<span class="o">)</span>
+</span></span><span class="line"><span class="ln">36</span><span class="cl">    --force_for_new_devices <span class="o">[</span>VALUE<span class="o">]</span> Renew the provisioning profiles <span class="k">if</span> the device count on the developer portal has changed <span class="o">(</span>MATCH_FORCE_FOR_NEW_DEVICES<span class="o">)</span>
+</span></span><span class="line"><span class="ln">37</span><span class="cl">    --skip_docs <span class="o">[</span>VALUE<span class="o">]</span>  Skip generation of a README.md <span class="k">for</span> the created git repository <span class="o">(</span>MATCH_SKIP_DOCS<span class="o">)</span>
+</span></span><span class="line"><span class="ln">38</span><span class="cl">    -h, --help           Display <span class="nb">help</span> documentation
+</span></span><span class="line"><span class="ln">39</span><span class="cl">    -v, --version        Display version information
+</span></span></code></pre></div><p>建议大家在项目中创建并配置 <code>fastlane/Matchfile</code> 文件可以把命令需要的参数省略：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ fastlane match init
+</span></span></code></pre></div><p>设置好 git_url(git 仓库地址）、type（默认同步证书类型）、app_identifier、username（iDP 的账户名）即可。</p>
+<h2 id="生成和同步证书">生成和同步证书</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># 开发环境证书</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">$ fastlane match development
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="c1"># 产品环境证书</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">$ fastlane match appstore
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="c1"># 内测环境证书</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">$ fastlane match adhoc
+</span></span></code></pre></div><p>初次使用的时候会提示需要输入 iDP 的账户密码，校验成功后可以保存到 keychain 中后续可以不在重复输入（好贴心）密码（也可通过设置变量 FASTLANE_PASSWORD），该密码就是上面提到的证书加密的密钥，请妥善保存。</p>
+<blockquote>
+<p>提示：如果担心密码泄露可设置 FASTLANE_DONT_STORE_PASSWORD = true 不进行密码保存至 keychain，在 keychain 可通过关键词 &ldquo;deliver.&rdquo; 检索。</p>
+</blockquote>
+<p>有的童鞋说我们有 299 的企业证书，为什么不做支持呢？起初作者并没有打算进行支持是担心滥用以及代码结构需要较大的变更，随着开发者呼声太高，其实还是做了支持，只不过并没有正式的纳入，需要通过配置环境变量支持：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># 企业环境证书</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">$ ENV<span class="o">[</span><span class="s1">&#39;MATCH_FORCE_ENTERPRISE&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="s1">&#39;1&#39;</span> <span class="o">&amp;&amp;</span> fastlane match enterprise
+</span></span></code></pre></div><h2 id="修改密钥">修改密钥</h2>
+<p>建议密码定期更换或再人员发生变更之后进行密码变更：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ fastlane match change_password
+</span></span></code></pre></div><h2 id="重新生成">重新生成</h2>
+<p><strong>慎用</strong>：match 提供一个命令允许把当前的证书撤销后并全新的重新生成一份，这个事项是会把证书和 Profiles 全部包含在内，如果单纯的想只重设 Profles 并同步是不支持的。我想这也是为什么该命名叫做 <code>nuke</code></p>
+<p>我这里可给大家提供一种只同步 profile 的方法：首先在 git 仓库中找到你要重设的 profile 文件，并把它从仓库中删除提交，然后在执行该类型的命令即可，命令发现没有 profile 会自动再生成一个 profile 并下载同步至 git 仓库。</p>
+<h2 id="资料参考">资料参考</h2>
+<ul>
+<li><a href="http://macoscope.com/blog/simplify-your-life-with-fastlane-match/">http://macoscope.com/blog/simplify-your-life-with-fastlane-match/</a></li>
+<li><a href="https://github.com/fastlane/fastlane/issues/2007">https://github.com/fastlane/fastlane/issues/2007</a></li>
+</ul>
+]]></content:encoded></item><item><title>深入浅出 Fastlane 一看你就懂</title><link>https://icyleaf.com/2016/07/fastlane-in-action/</link><pubDate>Tue, 19 Jul 2016 20:12:07 +0800</pubDate><guid>https://icyleaf.com/2016/07/fastlane-in-action/</guid><description>
+系列文章的第二篇，带你了解 fastlane 使用流程</description><content:encoded><![CDATA[<p>本篇我想着重介绍 <code>fastlane</code> 本身的基本使用，这里使用 fastlane v1.98.0 作为演示版本。</p>
+<h2 id="命令行工具">命令行工具</h2>
+<p>安装之后默认会安装一个命令行工具 <code>fastlane</code>，利用它可以初始化、执行任务、查看任务定义、查看可用的动作和动作的详细定义，甚至可以用它来创建自定义的动作、插件以及一些辅助功能。想了解的话可以先看看它的帮助：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln"> 1</span><span class="cl">$ fastlane --help
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  fastlane
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  CLI <span class="k">for</span> <span class="s1">&#39;fastlane&#39;</span> - The easiest way to automate building and releasing your iOS and Android apps
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">        Run using <span class="sb">`</span>fastlane <span class="o">[</span>platform<span class="o">]</span> <span class="o">[</span>lane_name<span class="o">]</span><span class="sb">`</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">        To pass values to the lanes use <span class="sb">`</span>fastlane <span class="o">[</span>platform<span class="o">]</span> <span class="o">[</span>lane_name<span class="o">]</span> key:value key2:value2<span class="sb">`</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">
+</span></span><span class="line"><span class="ln">10</span><span class="cl">  Commands:
+</span></span><span class="line"><span class="ln">11</span><span class="cl">    action                  Shows more information <span class="k">for</span> a specific <span class="nb">command</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">    actions                 Lists all available fastlane actions
+</span></span><span class="line"><span class="ln">13</span><span class="cl">    add_plugin              Add a new plugin to your fastlane setup
+</span></span><span class="line"><span class="ln">14</span><span class="cl">    disable_crash_reporting Deprecated: fastlane doesn<span class="s1">&#39;t use a crash reporter any more
+</span></span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="s1">    docs                    Generate a markdown based documentation based on the Fastfile
+</span></span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="s1">    enable_auto_complete    Enable tab auto completion
+</span></span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="s1">    enable_crash_reporting  Deprecated: fastlane doesn&#39;</span>t use a crash reporter any more
+</span></span><span class="line"><span class="ln">18</span><span class="cl">    <span class="nb">help</span>                    Display global or <span class="o">[</span>command<span class="o">]</span> <span class="nb">help</span> documentation
+</span></span><span class="line"><span class="ln">19</span><span class="cl">    init                    Helps you with your initial fastlane setup
+</span></span><span class="line"><span class="ln">20</span><span class="cl">    install_plugins         Install all plugins <span class="k">for</span> this project
+</span></span><span class="line"><span class="ln">21</span><span class="cl">    lanes                   Lists all available lanes and shows their description
+</span></span><span class="line"><span class="ln">22</span><span class="cl">    list                    Lists all available lanes without description
+</span></span><span class="line"><span class="ln">23</span><span class="cl">    new_action              Create a new custom action <span class="k">for</span> fastlane.
+</span></span><span class="line"><span class="ln">24</span><span class="cl">    new_plugin              Create a new plugin that can be used with fastlane
+</span></span><span class="line"><span class="ln">25</span><span class="cl">    run                     Run a fastlane one-off action without a full lane
+</span></span><span class="line"><span class="ln">26</span><span class="cl">    search_plugins          Search <span class="k">for</span> plugins, search query is optional
+</span></span><span class="line"><span class="ln">27</span><span class="cl">    trigger                 Run a sepcific lane. Pass the lane name and optionally the platform first.
+</span></span><span class="line"><span class="ln">28</span><span class="cl">    update_plugins          Update all plugin dependencies
+</span></span><span class="line"><span class="ln">29</span><span class="cl">
+</span></span><span class="line"><span class="ln">30</span><span class="cl">  Global Options:
+</span></span><span class="line"><span class="ln">31</span><span class="cl">    --verbose
+</span></span><span class="line"><span class="ln">32</span><span class="cl">    -h, --help           Display <span class="nb">help</span> documentation
+</span></span><span class="line"><span class="ln">33</span><span class="cl">    -v, --version        Display version information
+</span></span><span class="line"><span class="ln">34</span><span class="cl">
+</span></span><span class="line"><span class="ln">35</span><span class="cl">  Author:
+</span></span><span class="line"><span class="ln">36</span><span class="cl">    Felix Krause &lt;fastlane@krausefx.com&gt;
+</span></span><span class="line"><span class="ln">37</span><span class="cl">
+</span></span><span class="line"><span class="ln">38</span><span class="cl">  Website:
+</span></span><span class="line"><span class="ln">39</span><span class="cl">    https://fastlane.tools
+</span></span><span class="line"><span class="ln">40</span><span class="cl">
+</span></span><span class="line"><span class="ln">41</span><span class="cl">  GitHub:
+</span></span><span class="line"><span class="ln">42</span><span class="cl">    https://github.com/fastlane/fastlane
+</span></span></code></pre></div><p>我会随着下面每个概念的解释和展开来配合上面的命令一起讲解。</p>
+<h2 id="生命周期">生命周期</h2>
+<table>
+<thead>
+<tr>
+<th>执行顺序</th>
+<th>方法名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>before_all</td>
+<td>在执行 lane 之前只执行一次</td>
+</tr>
+<tr>
+<td>2</td>
+<td>before_each</td>
+<td>每次执行 lane 之前都会执行一次</td>
+</tr>
+<tr>
+<td>3</td>
+<td>lane</td>
+<td>自定义的任务</td>
+</tr>
+<tr>
+<td>4</td>
+<td>after_each</td>
+<td>每次执行 lane 之后都会执行一次</td>
+</tr>
+<tr>
+<td>5</td>
+<td>after_all</td>
+<td>在执行 lane 成功结束之后执行一次</td>
+</tr>
+<tr>
+<td>6</td>
+<td>error</td>
+<td>在执行上述情况任意环境报错都会中止并执行一次</td>
+</tr>
+</tbody>
+</table>
+<p>以上的部分大家在上一篇已经见识过了，有些还没接触到，不用着急都会一一说明。</p>
+<h2 id="任务lane">任务（lane）</h2>
+<p>正常情况下你可能只会是用到一种任务方法 <code>lane</code> 但其实它会包含很多中高级用法。在文章的末尾会详细描述。</p>
+<h3 id="任务定义">任务定义</h3>
+<p>定义任务的方法类似于 rake 的 task，但使用上缺比前者要好用很多，见下表：</p>
+<table>
+<thead>
+<tr>
+<th>定义</th>
+<th>是否必须</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>desc</td>
+<td><code>false</code></td>
+<td>方法描述</td>
+<td>可多次使用打到换行的目的</td>
+</tr>
+<tr>
+<td>name</td>
+<td><code>true</code></td>
+<td>方法名</td>
+<td>符号化的方法名</td>
+</tr>
+<tr>
+<td>options</td>
+<td><code>false</code></td>
+<td>方法参数</td>
+<td>返回 Hash 类型</td>
+</tr>
+<tr>
+<td>task</td>
+<td><code>true</code></td>
+<td>方法主体</td>
+<td>参考 ruby 的方法代码且支持 ruby 代码</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="n">desc</span> <span class="s1">&#39;定义一个 build 方法&#39;</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="n">desc</span> <span class="s1">&#39;参数 adhoc 判断是否为内测版本, 默认为 false&#39;</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="n">desc</span> <span class="s1">&#39;fastlane build&#39;</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="n">desc</span> <span class="s1">&#39;fastlane build adhoc:true&#39;</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="n">lane</span> <span class="ss">:build</span> <span class="k">do</span> <span class="o">|</span><span class="n">options</span><span class="o">|</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  <span class="c1"># task to do something</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  <span class="n">adhoc</span> <span class="o">=</span> <span class="n">options</span><span class="o">[</span><span class="ss">:adhoc</span><span class="o">]</span> <span class="o">||</span> <span class="kp">false</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">  <span class="nb">puts</span> <span class="s2">&#34;adhoc: </span><span class="si">#{</span><span class="n">adhoc</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">
+</span></span><span class="line"><span class="ln">10</span><span class="cl">  <span class="n">gym</span><span class="p">(</span><span class="ss">type</span><span class="p">:</span> <span class="n">adhoc</span> <span class="p">?</span> <span class="s1">&#39;adhoc&#39;</span> <span class="p">:</span> <span class="s1">&#39;appstore&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><h3 id="任务执行">任务执行</h3>
+<p>一般情况下它需要配合定义好的 lane 才能使用，刚刚我们定义的一个 build 方法，我们这里就试着执行一下吧。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># 默认执行</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">$ fastlane build
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="c1"># 传递参数</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">$ fastlane build adhoc:true
+</span></span></code></pre></div><h3 id="任务互调">任务互调</h3>
+<p><code>lane</code> 其实可以理解为 <code>def</code> 的别名，因此多个 lane 的话实际上是可以相互调用的，这个其实特别实用，这样其实我就可以把 cocoapods 的执行放到单独的 lane 里面而不是 <code>before_all</code>，这样执行非构建的任务就不会执行不相关的任务或动作，因此 fastlane 而产生了一个私有任务用内部使用 <code>private_lane</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="ln"> 1</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="n">default_platform</span> <span class="ss">:ios</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="n">platform</span> <span class="ss">:ios</span> <span class="k">do</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  <span class="n">desc</span> <span class="s1">&#39;构建前的准备工作&#39;</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  <span class="n">desc</span> <span class="s1">&#39;这是一个私有任务，仅供 Fastfile 内部 lane 调用使用&#39;</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  <span class="n">lane</span> <span class="ss">:prepare</span> <span class="k">do</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">    <span class="n">cocoapods</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">    <span class="n">match</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">
+</span></span><span class="line"><span class="ln">12</span><span class="cl">  <span class="n">desc</span> <span class="s1">&#39;通用的构建任务&#39;</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">  <span class="n">desc</span> <span class="s1">&#39;fastlane build&#39;</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">  <span class="n">desc</span> <span class="s1">&#39;fastlane build type:adhoc&#39;</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">  <span class="n">lane</span> <span class="ss">:build</span> <span class="k">do</span> <span class="o">|</span><span class="n">options</span><span class="o">|</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">    <span class="c1"># 调用上面 prepare 私有任务</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl">    <span class="n">prepare</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl">
+</span></span><span class="line"><span class="ln">19</span><span class="cl">    <span class="k">case</span> <span class="n">options</span><span class="o">[</span><span class="ss">:type</span><span class="o">]</span>
+</span></span><span class="line"><span class="ln">20</span><span class="cl">    <span class="k">when</span> <span class="s1">&#39;adhoc&#39;</span>
+</span></span><span class="line"><span class="ln">21</span><span class="cl">      <span class="c1"># 调用 下面 adhoc 任务</span>
+</span></span><span class="line"><span class="ln">22</span><span class="cl">      <span class="n">adhoc</span>
+</span></span><span class="line"><span class="ln">23</span><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="ln">24</span><span class="cl">      <span class="c1"># 调用下面 appstore 任务</span>
+</span></span><span class="line"><span class="ln">25</span><span class="cl">      <span class="n">appstore</span>
+</span></span><span class="line"><span class="ln">26</span><span class="cl">    <span class="k">end</span>
+</span></span><span class="line"><span class="ln">27</span><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="ln">28</span><span class="cl">
+</span></span><span class="line"><span class="ln">29</span><span class="cl">  <span class="n">desc</span> <span class="s1">&#39;构建 adhoc 任务&#39;</span>
+</span></span><span class="line"><span class="ln">30</span><span class="cl">  <span class="n">desc</span> <span class="s1">&#39;fastlane adhoc&#39;</span>
+</span></span><span class="line"><span class="ln">31</span><span class="cl">  <span class="n">lane</span> <span class="ss">:adhoc</span> <span class="k">do</span>
+</span></span><span class="line"><span class="ln">32</span><span class="cl">    <span class="n">gym</span><span class="p">(</span><span class="ss">type</span><span class="p">:</span> <span class="s1">&#39;adhoc&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">33</span><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="ln">34</span><span class="cl">
+</span></span><span class="line"><span class="ln">35</span><span class="cl">  <span class="n">desc</span> <span class="s1">&#39;构建 appstore 任务&#39;</span>
+</span></span><span class="line"><span class="ln">36</span><span class="cl">  <span class="n">desc</span> <span class="s1">&#39;fastlane appstore&#39;</span>
+</span></span><span class="line"><span class="ln">37</span><span class="cl">  <span class="n">lane</span> <span class="ss">:appstore</span> <span class="k">do</span>
+</span></span><span class="line"><span class="ln">38</span><span class="cl">    <span class="n">gym</span><span class="p">(</span><span class="ss">type</span><span class="p">:</span> <span class="s1">&#39;appstore&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">39</span><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="ln">40</span><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><p>上面的任务中，<code>build</code>/<code>adhoc</code>/<code>appstore</code> 都可以执行，只有 <code>prepare</code> 是无法通过命令行外部执行，如果执行会直接报错：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ fastlane prepare
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="o">[</span>19:17:42<span class="o">]</span>: You can<span class="s1">&#39;t call the private lane &#39;</span>prepare<span class="err">&#39;</span> directly
+</span></span></code></pre></div><h3 id="任务返回值">任务返回值</h3>
+<p>和 ruby 的方法一致，每个 lane 最后一行会默认作为返回值（无需 <a href="http://learnrubythehardway.org/book/ex21.html">return</a>）。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="ln">1</span><span class="cl">
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="n">lane</span> <span class="ss">:sum</span> <span class="k">do</span> <span class="o">|</span><span class="n">options</span><span class="o">|</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="n">options</span><span class="o">[</span><span class="ss">:a</span><span class="o">]</span> <span class="o">+</span> <span class="n">optiona</span><span class="o">[</span><span class="ss">:b</span><span class="o">]</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="k">end</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">
+</span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="n">lane</span> <span class="ss">:calculate</span> <span class="k">do</span>
+</span></span><span class="line"><span class="ln">7</span><span class="cl">  <span class="n">value</span> <span class="o">=</span> <span class="n">sum</span><span class="p">(</span><span class="ss">a</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="ss">b</span><span class="p">:</span> <span class="mi">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">8</span><span class="cl">  <span class="nb">puts</span> <span class="n">value</span> <span class="c1">#=&gt; 8</span>
+</span></span><span class="line"><span class="ln">9</span><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><h3 id="引入外部任务文件">引入外部任务文件</h3>
+<p><code>Fastfile</code> 除了自身以外还能够引入外部其他的 <code>Fastfile</code> 并调用任务，只需要导入外部文件并使用特殊的方法标识即可：</p>
+<h4 id="1-import---导入本地文件">1. import - 导入本地文件</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># 导入 lanes 目录的 AndroidFastfile</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="n">import</span> <span class="s2">&#34;lanes/AndroidFastfile&#34;</span>
+</span></span></code></pre></div><h4 id="2-import_from_git---导入-git-仓库文件">2. import_from_git - 导入 git 仓库文件</h4>
+<p>可以直接引入 git 仓库的 Fastfile 文件是一个非常赞的功能，通过使用发现其实现原理是先把 git 仓库克隆下来后在引入相对于的文件，因此建议国内在没有网络加速（翻墙）的情况下尽量不用引入比较大的 git 仓库，否则使用会需要漫长的等待&hellip;</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># 导入 mozilla/firefox-ios 项目下 fastlane 下面 Fastfile 文件</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="n">import_from_git</span><span class="p">(</span><span class="ss">url</span><span class="p">:</span> <span class="s1">&#39;https://github.com/mozilla/firefox-ios&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="c1"># 或者</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="n">import_from_git</span><span class="p">(</span><span class="ss">url</span><span class="p">:</span> <span class="s1">&#39;git@github.com:mozilla/firefox-ios.git&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">               <span class="ss">path</span><span class="p">:</span> <span class="s1">&#39;fastlane/Fastfile&#39;</span><span class="p">)</span>
+</span></span></code></pre></div><p>假若外部引入的 <code>Fastfile</code> 有个方法是 <strong>build</strong>，在命令行工具直接执行即可，如果外部和内部都有相同的任务名，执行会直接报错：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ fastlane ios build
+</span></span><span class="line"><span class="ln">2</span><span class="cl">
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="o">[</span>!<span class="o">]</span> Lane <span class="s1">&#39;gradle&#39;</span> was defined multiple times!
+</span></span></code></pre></div><p>如果发生这样的事情且你希望在主体 <code>Fastfile</code> 也调用的话需要使用特殊的方法定义：<code>override_lane</code></p>
+<blockquote>
+<p>注意：此方法只会覆盖外部的相同方法名的代码执行，目前暂时无法使用类似 ruby 的 <code>super</code> 继承原由方法！</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">override_lane</span> <span class="ss">:build</span> <span class="k">do</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="o">...</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><h3 id="任务查看">任务查看</h3>
+<p>只需执行下面这行命令就可以看到非私有任务的可用列表信息</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln"> 1</span><span class="cl">$ fastlane lanes
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">--------- ios---------
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">----- fastlane ios build
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">通用的构建任务
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">fastlane build
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">fastlane build type:adhoc
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">----- fastlane ios adhoc
+</span></span><span class="line"><span class="ln">10</span><span class="cl">构建 adhoc 任务
+</span></span><span class="line"><span class="ln">11</span><span class="cl">
+</span></span><span class="line"><span class="ln">12</span><span class="cl">----- fastlane ios appstore
+</span></span><span class="line"><span class="ln">13</span><span class="cl">构建 appstore 任务
+</span></span><span class="line"><span class="ln">14</span><span class="cl">
+</span></span><span class="line"><span class="ln">15</span><span class="cl">Execute using <span class="sb">`</span>fastlane <span class="o">[</span>lane_name<span class="o">]</span><span class="sb">`</span>
+</span></span></code></pre></div><h2 id="扩展action">扩展（Action）</h2>
+<p>扩展是 fastlane 的杀手锏，重在集成了众多非常优秀好用的方法供 lane 内部使用，截至 fastlane v<code>1.98.0</code> 版本以包含 175 个扩展，这个数量还在陆续增加中。扩展初期是由发起人一个人完成，后续的大部分都是社区共享，如果你发现没有你想要的扩展，可以先去 <a href="https://github.com/fastlane/fastlane/issues?q=is%3Aopen+is%3Aissue+label%3Aaction">issues</a> 搜索下没有要么自己动手提交要么只有等待了.</p>
+<h3 id="扩展列表">扩展列表</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln"> 1</span><span class="cl">$ fastlane actions
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">+--------------------+-------------------------------------------------------------+------------------+
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="p">|</span>                                   Available fastlane actions                                        <span class="p">|</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">+--------------------+-------------------------------------------------------------+------------------+
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="p">|</span> Action             <span class="p">|</span> Description                                                 <span class="p">|</span> Author           <span class="p">|</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">+--------------------+-------------------------------------------------------------+------------------+
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="p">|</span> adb                <span class="p">|</span> Run ADB Actions                                             <span class="p">|</span> hjanuschka       <span class="p">|</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="p">|</span> adb_devices        <span class="p">|</span> Get an Array of Connected android device serials            <span class="p">|</span> hjanuschka       <span class="p">|</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="p">|</span> add_git_tag        <span class="p">|</span> This will add an annotated git tag to the current branch    <span class="p">|</span> Multiple         <span class="p">|</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">...
+</span></span><span class="line"><span class="ln">11</span><span class="cl">+--------------------+-------------------------------------------------------------+------------------+
+</span></span><span class="line"><span class="ln">12</span><span class="cl">  Total of <span class="m">175</span> actions
+</span></span><span class="line"><span class="ln">13</span><span class="cl">
+</span></span><span class="line"><span class="ln">14</span><span class="cl">Get more information <span class="k">for</span> one specific action using <span class="sb">`</span>fastlane action <span class="o">[</span>name<span class="o">]</span><span class="sb">`</span>
+</span></span></code></pre></div><h3 id="扩展使用帮助">扩展使用帮助</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1"># 查看 adb 扩展的使用帮助</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">$ fastlane action adb
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">Loading documentation <span class="k">for</span> adb:
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">+---------------------------------+
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="p">|</span>               adb               <span class="p">|</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">+---------------------------------+
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="p">|</span> Run ADB Actions                 <span class="p">|</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="p">|</span>                                 <span class="p">|</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="p">|</span> see adb --help <span class="k">for</span> more details <span class="p">|</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="p">|</span>                                 <span class="p">|</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="p">|</span> Created by hjanuschka           <span class="p">|</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">+---------------------------------+
+</span></span><span class="line"><span class="ln">14</span><span class="cl">
+</span></span><span class="line"><span class="ln">15</span><span class="cl">+----------+----------------------------------------------------------------------+-------------------+---------+
+</span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="p">|</span>                                                  adb Options                                                  <span class="p">|</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl">+----------+----------------------------------------------------------------------+-------------------+---------+
+</span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="p">|</span> Key      <span class="p">|</span> Description                                                          <span class="p">|</span> Env Var           <span class="p">|</span> Default <span class="p">|</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">+----------+----------------------------------------------------------------------+-------------------+---------+
+</span></span><span class="line"><span class="ln">20</span><span class="cl"><span class="p">|</span> serial   <span class="p">|</span> Android serial, which device should be used <span class="k">for</span> this <span class="nb">command</span>         <span class="p">|</span> FL_ANDROID_SERIAL <span class="p">|</span>         <span class="p">|</span>
+</span></span><span class="line"><span class="ln">21</span><span class="cl"><span class="p">|</span> <span class="nb">command</span>  <span class="p">|</span> All commands you want to pass to the adb command, e.g. <span class="sb">`</span>kill-server<span class="sb">`</span> <span class="p">|</span> FL_ADB_COMMAND    <span class="p">|</span>         <span class="p">|</span>
+</span></span><span class="line"><span class="ln">22</span><span class="cl"><span class="p">|</span> adb_path <span class="p">|</span> The path to your <span class="sb">`</span>adb<span class="sb">`</span> binary                                        <span class="p">|</span> FL_ADB_PATH       <span class="p">|</span> adb     <span class="p">|</span>
+</span></span><span class="line"><span class="ln">23</span><span class="cl">+----------+----------------------------------------------------------------------+-------------------+---------+
+</span></span><span class="line"><span class="ln">24</span><span class="cl">
+</span></span><span class="line"><span class="ln">25</span><span class="cl">+-------------------------------+
+</span></span><span class="line"><span class="ln">26</span><span class="cl"><span class="p">|</span>       adb Return Value        <span class="p">|</span>
+</span></span><span class="line"><span class="ln">27</span><span class="cl">+-------------------------------+
+</span></span><span class="line"><span class="ln">28</span><span class="cl"><span class="p">|</span> The output of the adb <span class="nb">command</span> <span class="p">|</span>
+</span></span><span class="line"><span class="ln">29</span><span class="cl">+-------------------------------+
+</span></span><span class="line"><span class="ln">30</span><span class="cl">
+</span></span><span class="line"><span class="ln">31</span><span class="cl">More information can be found on https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Actions.md
+</span></span></code></pre></div><h3 id="创建自定义扩展">创建自定义扩展</h3>
+<p>通过内置的命令创建你需要的扩展，扩展名必须是全部小写且只能使用下划线分割词组，生成好的扩展文件会在 <code>fastlane/actions</code> 目录找到:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ fastlane new_action
+</span></span><span class="line"><span class="ln">2</span><span class="cl">Must be lower <span class="k">case</span>, and use a <span class="s1">&#39;_&#39;</span> between words. Do not use <span class="s1">&#39;.&#39;</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">examples: <span class="s1">&#39;testflight&#39;</span>, <span class="s1">&#39;upload_to_s3&#39;</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">Name of your action: hello
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="o">[</span>15:33:15<span class="o">]</span>: Created new action file <span class="s1">&#39;./fastlane/actions/hello.rb&#39;</span>. Edit it to implement your custom action.
+</span></span></code></pre></div><p>这块会占比较大的篇幅，尽情期待后续的展开。</p>
+<h3 id="引入外部扩展">引入外部扩展</h3>
+<p>这块其实也有两种方法可以引入，文件引入是官方教程提供的方法，第二种是我个人尝试出来的，第三种是最近版本才官方支持的。</p>
+<h4 id="1-本地文件引入">1. 本地文件引入</h4>
+<p>自定义的扩展其实也算是本地文件引入的一种形式，当然位于其他路径的通过指定方法也能做到</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># 引入项目根目录 script/share_actions 路径</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="n">actions_path</span> <span class="s1">&#39;../script/share_actions&#39;</span>
+</span></span></code></pre></div><h4 id="2-rubygem-引入">2. rubygem 引入</h4>
+<blockquote>
+<p>不再建议使用本方法，请看第三种插件引入。</p>
+</blockquote>
+<p>我在团队内部创建了一个自定义的扩展，仅限于团队内部使用而无法贡献社区，我只能采取封装成 ruby gem 包，通过 ruby 的 <code>require</code> 方式引入，最终可以完美支持，目前已在项目中使用大半年之久。最重要的是我是开源的：<a href="https://github.com/icyleaf/fastlane-qyer">fastlane-qyer</a></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># 首先安装需要的 rubygem: gem install fastlane-qyer</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="nb">require</span> <span class="s1">&#39;fastlane-qyer&#39;</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="n">lane</span> <span class="ss">:upload</span> <span class="k">do</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">  <span class="n">qyer</span><span class="p">(</span><span class="ss">api_key</span><span class="p">:</span> <span class="s1">&#39;[token]&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><p>注意，使用 rubygem 引入的无法在 fastlane actions 中显示出来，也无法使用 fastlane action [name] 查看使用帮助。我猜想一是官方没有这样提供思路，二是就算你引入了 gem 也不是特别好判断里面的文件结构。</p>
+<h4 id="3-插件引入">3. 插件引入</h4>
+<p>我注意到 <a href="https://github.com/fastlane/fastlane/releases/tag/1.93.0">1.93.0</a> 增加了插件机制，很好的解决第二种出现的一些问题。大概看了一下主要是采用 <code>Gemfile</code> 的方式使用 <code>Pluginfile</code> 维护了引入第三方插件列表。实现原理还是属于第二种方法。</p>
+<p>通过 <code>fastlane search_plugins</code> 查看当前支持的插件，并使用 <code>fastlane add_plugins [name]</code> 引入。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln"> 1</span><span class="cl">$ fastlane search_plugins
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="o">[</span>16:04:33<span class="o">]</span>: Listing all available fastlane plugins
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">+--------------------------+---------------------------------------------------+-----------+
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="p">|</span>                                Available fastlane plugins                                <span class="p">|</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">+--------------------------+---------------------------------------------------+-----------+
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="p">|</span> Name                     <span class="p">|</span> Description                                       <span class="p">|</span> Downloads <span class="p">|</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">+--------------------------+---------------------------------------------------+-----------+
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="p">|</span> ruby                     <span class="p">|</span> Useful fastlane actions <span class="k">for</span> Ruby projects         <span class="p">|</span> <span class="m">782</span>       <span class="p">|</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="p">|</span> versioning               <span class="p">|</span> Allows to work set/get app version directly       <span class="p">|</span> <span class="m">758</span>       <span class="p">|</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="p">|</span>                          <span class="p">|</span> to/from Info.plist                                <span class="p">|</span>           <span class="p">|</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="p">|</span> branding                 <span class="p">|</span> Add some branding to your fastlane output         <span class="p">|</span> <span class="m">716</span>       <span class="p">|</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="p">|</span> instrumented_tests       <span class="p">|</span> New action to run instrumented tests <span class="k">for</span> android. <span class="p">|</span> <span class="m">590</span>       <span class="p">|</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="p">|</span>                          <span class="p">|</span> This basically creates and boots an emulator      <span class="p">|</span>           <span class="p">|</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="p">|</span>                          <span class="p">|</span> before running an gradle commands so that you can <span class="p">|</span>           <span class="p">|</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="p">|</span>                          <span class="p">|</span> run instrumented tests against that emulator.     <span class="p">|</span>           <span class="p">|</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="p">|</span>                          <span class="p">|</span> After the gradle <span class="nb">command</span> is executed, the avd     <span class="p">|</span>           <span class="p">|</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="p">|</span>                          <span class="p">|</span> gets shut down and deleted. This is really        <span class="p">|</span>           <span class="p">|</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl"><span class="p">|</span>                          <span class="p">|</span> helpful on CI services, keeping them clean and    <span class="p">|</span>           <span class="p">|</span>
+</span></span><span class="line"><span class="ln">20</span><span class="cl"><span class="p">|</span>                          <span class="p">|</span> always having a fresh avd <span class="k">for</span> testing.            <span class="p">|</span>           <span class="p">|</span>
+</span></span><span class="line"><span class="ln">21</span><span class="cl"><span class="p">|</span> xamarin_build            <span class="p">|</span> Build xamarin android<span class="se">\i</span>os projects                <span class="p">|</span> <span class="m">582</span>       <span class="p">|</span>
+</span></span><span class="line"><span class="ln">22</span><span class="cl"><span class="p">|</span> appicon                  <span class="p">|</span> Generate required icon sizes and iconset from a   <span class="p">|</span> <span class="m">509</span>       <span class="p">|</span>
+</span></span><span class="line"><span class="ln">23</span><span class="cl"><span class="p">|</span>                          <span class="p">|</span> master application icon.                          <span class="p">|</span>           <span class="p">|</span>
+</span></span><span class="line"><span class="ln">24</span><span class="cl">...
+</span></span><span class="line"><span class="ln">25</span><span class="cl"><span class="p">|</span> download_file            <span class="p">|</span> This action downloads a file from an HTTP/HTTPS   <span class="p">|</span> <span class="m">171</span>       <span class="p">|</span>
+</span></span><span class="line"><span class="ln">26</span><span class="cl"><span class="p">|</span>                          <span class="p">|</span> url <span class="o">(</span>e.g. ZIP file<span class="o">)</span> and puts it in a destination  <span class="p">|</span>           <span class="p">|</span>
+</span></span><span class="line"><span class="ln">27</span><span class="cl"><span class="p">|</span>                          <span class="p">|</span> path                                              <span class="p">|</span>           <span class="p">|</span>
+</span></span><span class="line"><span class="ln">28</span><span class="cl">+--------------------------+---------------------------------------------------+-----------+
+</span></span><span class="line"><span class="ln">29</span><span class="cl">
+</span></span><span class="line"><span class="ln">30</span><span class="cl"><span class="c1"># 添加 sentry 插件</span>
+</span></span><span class="line"><span class="ln">31</span><span class="cl">$ fastlane add_plugin sentry
+</span></span><span class="line"><span class="ln">32</span><span class="cl"><span class="o">[</span>16:16:23<span class="o">]</span>: Plugin <span class="s1">&#39;fastlane-plugin-sentry&#39;</span> was added to <span class="s1">&#39;./fastlane/Pluginfile&#39;</span>
+</span></span><span class="line"><span class="ln">33</span><span class="cl"><span class="o">[</span>16:16:23<span class="o">]</span>: It looks like fastlane plugins are not yet <span class="nb">set</span> up <span class="k">for</span> this project.
+</span></span><span class="line"><span class="ln">34</span><span class="cl"><span class="o">[</span>16:16:23<span class="o">]</span>: fastlane will create a new Gemfile at path <span class="s1">&#39;Gemfile&#39;</span>
+</span></span><span class="line"><span class="ln">35</span><span class="cl"><span class="o">[</span>16:16:23<span class="o">]</span>: This change is neccessary <span class="k">for</span> fastlane plugins to work
+</span></span><span class="line"><span class="ln">36</span><span class="cl">Should fastlane modify the Gemfile at path <span class="s1">&#39;Gemfile&#39;</span> <span class="k">for</span> you? <span class="o">(</span>y/n<span class="o">)</span>
+</span></span><span class="line"><span class="ln">37</span><span class="cl">y
+</span></span><span class="line"><span class="ln">38</span><span class="cl"><span class="o">[</span>16:16:29<span class="o">]</span>: Successfully modified <span class="s1">&#39;Gemfile&#39;</span>
+</span></span><span class="line"><span class="ln">39</span><span class="cl"><span class="o">[</span>16:16:29<span class="o">]</span>: Make sure to commit your Gemfile, Gemfile.lock and Pluginfile to version control
+</span></span><span class="line"><span class="ln">40</span><span class="cl">Installing plugin dependencies...
+</span></span><span class="line"><span class="ln">41</span><span class="cl">Successfully installed plugins
+</span></span><span class="line"><span class="ln">42</span><span class="cl">
+</span></span><span class="line"><span class="ln">43</span><span class="cl">$ cat fastlane/Pluginfile
+</span></span><span class="line"><span class="ln">44</span><span class="cl"><span class="c1"># Autogenerated by fastlane</span>
+</span></span><span class="line"><span class="ln">45</span><span class="cl"><span class="c1">#</span>
+</span></span><span class="line"><span class="ln">46</span><span class="cl"><span class="c1"># Ensure this file is checked in to source control!</span>
+</span></span><span class="line"><span class="ln">47</span><span class="cl">
+</span></span><span class="line"><span class="ln">48</span><span class="cl">gem <span class="s1">&#39;fastlane-plugin-sentry&#39;</span>
+</span></span></code></pre></div><p>更详细的继续期待后续报道，我要挖坑无数。</p>
+<h3 id="扩展的命令行调用">扩展的命令行调用</h3>
+<p>社区的力量果然是很强大的，陆续添加了那么多功能，早期用户表示不开心！嗯，由于社区的呼声和贡献目前可以通过命令调用扩展：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># 使用 notification 扩展发送一个通知消息</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">$ fastlane run notification message:<span class="s2">&#34;Hi macOS&#34;</span> title:<span class="s2">&#34;Fastlane Notification&#34;</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="o">[</span>15:58:05<span class="o">]</span>: --------------------------
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="o">[</span>15:58:05<span class="o">]</span>: --- Step: notification ---
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="o">[</span>15:58:05<span class="o">]</span>: --------------------------
+</span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="o">[</span>15:58:05<span class="o">]</span>: Result: <span class="nb">true</span>
+</span></span></code></pre></div><h2 id="辅助功能">辅助功能</h2>
+<h3 id="自动更新">自动更新</h3>
+<p>fastlane 提供一个方法 <code>update_fastlane</code> 用于对于自身的版本检查和更新，这个第一篇文章我也有提到过。它其实一个是一个扩展，使用 <code>fastlane action update_fastlane</code> 能够看到使用帮助。它有一个参数是可以指定检查特定的 fastlane 工具并进行更新，但其实它是使用 rubygems 进行对 gem 的更新，因此这块其实可以传入任何需要检查并更新的 gem：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">update_fastlane</span><span class="p">(</span><span class="ss">tools</span><span class="p">:</span><span class="s1">&#39;fastlane,gym,match,cocoapods,rest-client&#39;</span><span class="p">)</span>
+</span></span></code></pre></div><h3 id="环境变量">环境变量</h3>
+<p>从 fastlane 的设计体系上在各个地方都加入了环境变量的支持，每个扩展的参数、以及扩展需要共享给其他扩展和任务读取的数据都是通过环境变量获取，如下是我收集的比较常用的列表：</p>
+<table>
+<thead>
+<tr>
+<th>环境变量</th>
+<th>来源</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FASTLANE_USER</td>
+<td>credentials_manager</td>
+<td>Apple 开发者账户名</td>
+<td>验证通过后会保存 Keychain</td>
+</tr>
+<tr>
+<td>FASTLANE_PASSWORD</td>
+<td>credentials_manager</td>
+<td>Apple 开发者账户密码</td>
+<td>验证通过后会保存 Keychain</td>
+</tr>
+<tr>
+<td>FASTLANE_TEAM_ID<!-- raw HTML omitted -->CERT_TEAM_ID</td>
+<td>produce<!-- raw HTML omitted -->sigh</td>
+<td>Apple 团队 ID</td>
+<td></td>
+</tr>
+<tr>
+<td>DELIVER_USER&lt;br &gt;PRODUCE_USERNAME</td>
+<td>deliver<!-- raw HTML omitted -->produce</td>
+<td>iTunesConnect 账户名</td>
+<td></td>
+</tr>
+<tr>
+<td>DELIVER_PASSWORD</td>
+<td>deliver</td>
+<td>iTunesConnect 账户密码</td>
+<td></td>
+</tr>
+<tr>
+<td>MATCH_PASSWORD</td>
+<td>match</td>
+<td>证书加/解密密码</td>
+<td></td>
+</tr>
+<tr>
+<td>FASTLANE_XCODE_LIST_TIMEOUT</td>
+<td>fastlane_core</td>
+<td>获取 iOS Scheme 的超时时间</td>
+<td>默认 10s</td>
+</tr>
+</tbody>
+</table>
+]]></content:encoded></item><item><title>Fastlane</title><link>https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/</link><pubDate>Mon, 11 Jul 2016 12:36:07 +0800</pubDate><guid>https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/</guid><description>
+系列文章的第一篇，iOS 和 Android 的自动化构建工具</description><content:encoded><![CDATA[<h3 id="系列索引">系列索引</h3>
+<ol>
+<li><a href="https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/">Fastlane - iOS 和 Android 的自动化构建工具</a></li>
+<li><a href="https://icyleaf.com/2016/07/fastlane-in-action/">深入浅出 Fastlane 一看你就懂</a></li>
+<li><a href="https://icyleaf.com/2017/03/fastlane-match-in-action/">你虐我千百遍，我待你如初恋，直到我遇到 match</a></li>
+</ol>
+<h2 id="前言">前言</h2>
+<p>这篇文章整理了很久，发现在一篇文章里无法一一讲述和全面的覆盖，初步打算是把这个做成一个系列，想到哪里就写到哪里，如果恰好有读者爱戴并有一些建议反馈，我也会根据大家的需要调整内容的方向和深度。论美剧的编剧的重要性(笑)。</p>
+<h2 id="初次邂逅">初次邂逅</h2>
+<p>初时 fastlane 的时候是去年的 11 月份，看到大就感觉遇到了神器一般的惊喜。它一个针对于 iOS 和 Android（后来才支持的）全方位自动化流程的工具，请看下图</p>
+<p><img src="https://fastlane.tools/assets/img/intro-fastlane-tree.png"
+  
+  
+  alt="fastlane-flow"></img>
+</p>
+<p>流程图中每个环节都是独立的工具，每个工具只干一件事情，分工非常的明确。以下是我在团队项目中用到的：</p>
+<ul>
+<li><a href="https://github.com/fastlane/fastlane/tree/master/scan">scan</a> 自动化测试工具，很好的封装了 Unit Test</li>
+<li><a href="https://github.com/fastlane/fastlane/tree/master/sigh">sigh</a> 针对于 iOS 项目开发证书和 Provision file 的下载工具</li>
+<li><a href="https://github.com/fastlane/fastlane/tree/master/match">match</a> 同步团队每个人的证书和 Provision file 的超赞工具，规范<a href="https://codesigning.guide/">代码签名</a>（虽然里面有些设定比较损）</li>
+<li><a href="https://github.com/fastlane/fastlane/tree/master/gym">gym</a> 针对于 iOS 打包和签名的自动化工具，完爆 <code>xctool</code>，而 <code>shenzhen</code> 也放弃维护</li>
+<li><a href="https://github.com/icyleaf/fastlane-qyer">qyer</a> 团队定制的工具，用于检测包和上传到自己的内部分发平台</li>
+<li><a href="https://github.com/fastlane/fastlane">fastlane</a> 简单理解就是控制整体流程和实现的框架容器</li>
+</ul>
+<p>利用目前支持的工具可以做所有包含自动化和可持续化构建的每个环节，比如单元测试、截图、分发渠道、上传元数据和 ipa 包提交审核等等。看到这这些是不是很兴奋？
+反正我看到之后就像黑夜看到了光明，果断抛弃自己维护的脚本。</p>
+<h2 id="基本构成">基本构成</h2>
+<p>Fastlane 提供的流程的众多工具都是可以独立存在和使用（提供 cli 命令），也可以统一由 fastlane 来控制。它在使用中提出了两个概念：</p>
+<ul>
+<li><code>action</code>: Fastlane 的插件，截至当前内置 165 个至多，不过每个动作的颗粒度大小不一。<a href="https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Actions.md">查看详情</a></li>
+<li><code>lane</code>: Fastlane 的任务（或者可以理解为命令），一个可以包含多个 lanes，通过 <code>fastlane</code> cli 传入制定的 lane 来执行。</li>
+</ul>
+<p>光说不干假把式，看法宝：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="n">lane</span> <span class="ss">:adhoc</span> <span class="k">do</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="c1"># build version 自动加一</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="n">increment_build_number</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  <span class="c1"># 执行 pod install</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  <span class="n">cocoapods</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  <span class="c1"># 调用 facebook 的 xctool 进行单元测试</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  <span class="n">xctool</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">  <span class="c1"># 对模拟器运行的 App 进行截图</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">  <span class="n">snapshot</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">  <span class="c1"># 安装团队证书和 profiles</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">  <span class="n">match</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">  <span class="c1"># 上传 App 元数据和签名的 ipa 到 iTunes Conneects</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">  <span class="n">deliver</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">  <span class="c1"># 把截图套进一个设备外壳</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">  <span class="n">frameit</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">  <span class="c1"># 允许自定义的脚本文件</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl">  <span class="n">sh</span> <span class="s2">&#34;./customScript.sh&#34;</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl">  <span class="c1"># 发消息到 slack</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">  <span class="n">slack</span>
+</span></span><span class="line"><span class="ln">20</span><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><h2 id="安装">安装</h2>
+<p>工具的起源本身是专门针对 iOS 项目，因此目前依赖于 macOS 10.9 以上系统，Ruby 是一个众所周知的轮子发明者，很多知名的工具都是它开发的，fastlane 也不例外。以下是依赖环境：</p>
+<ul>
+<li>macOS 10.9+</li>
+<li>Ruby 2.0+ (推荐 rvm 或 rbenv 安装)</li>
+<li>Xcode + command line tools</li>
+</ul>
+<p>以上依赖配置好之后就可以通过 rubygem 进行安装：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ <span class="o">[</span>sudo<span class="o">]</span> gem install fastlane
+</span></span></code></pre></div><p>fastlane 默认会把核心工具都会进行安装，需要大家耐心等待一会&hellip;</p>
+<h2 id="初始化">初始化</h2>
+<p>有两种方法可以初始化，一种是通过命令，一种是自己创建指定的（至少包含一个）约束文件 <code>Fastfile</code>。首先我先介绍大家使用命令初始化:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1"># 切换只你开发的 iOS 项目根目录</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">$ <span class="nb">cd</span> to/your/ios/project
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">$ fastlane init
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="o">[</span>11:46:34<span class="o">]</span>: Detected iOS/Mac project in current directory...
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="o">[</span>11:46:34<span class="o">]</span>: This setup will <span class="nb">help</span> you get up and running in no time.
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="o">[</span>11:46:34<span class="o">]</span>: fastlane will check what tools you<span class="s1">&#39;re already using and set up
+</span></span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="s1">[11:46:34]: the tool automatically for you. Have fun!
+</span></span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="s1">[11:46:34]: Created new folder &#39;</span>./fastlane<span class="s1">&#39;.
+</span></span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="s1">...
+</span></span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="s1">Your Apple ID (e.g. fastlane@krausefx.com): xxx@gmail.com
+</span></span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="s1">[11:46:59]: Verifying if app is available on the Apple Developer Portal and iTunes Connect...
+</span></span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="s1">[11:46:59]: Starting login with user &#39;</span>xxx@gmail.com<span class="s1">&#39;
+</span></span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="s1">Multiple teams found on the Developer Portal, please enter the number of the team you want to use:
+</span></span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="s1">1) XXXXXXXXXX &#34;XXXXXXXXXX&#34; (In-House)
+</span></span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="s1">2) YYYYYYYYYY &#34;YYYYYYYYYY&#34; (Company/Organization)
+</span></span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="s1">+----------------+----------------------------------------------------------------------------+
+</span></span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="s1">|                                       Detected Values                                       |
+</span></span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="s1">+----------------+----------------------------------------------------------------------------+
+</span></span></span><span class="line"><span class="ln">19</span><span class="cl"><span class="s1">| Apple ID       | xxx@gmail.com                                                              |
+</span></span></span><span class="line"><span class="ln">20</span><span class="cl"><span class="s1">| App Name       | Hello Fastlane                                                             |
+</span></span></span><span class="line"><span class="ln">21</span><span class="cl"><span class="s1">| App Identifier | com.icyleaf.demo.HelloFastlane                                             |
+</span></span></span><span class="line"><span class="ln">22</span><span class="cl"><span class="s1">| Workspace      | /Users/icyleaf/Development/iOS/HelloFastlane.xcworkspace                   |
+</span></span></span><span class="line"><span class="ln">23</span><span class="cl"><span class="s1">+----------------+----------------------------------------------------------------------------+
+</span></span></span><span class="line"><span class="ln">24</span><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="ln">25</span><span class="cl"><span class="s1">[11:48:36]: This app identifier doesn&#39;</span>t exist on iTunes Connect yet, it will be created <span class="k">for</span> you
+</span></span><span class="line"><span class="ln">26</span><span class="cl">Please confirm the above values <span class="o">(</span>y/n<span class="o">)</span> n
+</span></span><span class="line"><span class="ln">27</span><span class="cl">App Identifier <span class="o">(</span>com.krausefx.app<span class="o">)</span>: com.icyleaf.demo.HelloFastlane
+</span></span><span class="line"><span class="ln">28</span><span class="cl"><span class="o">[</span>11:50:04<span class="o">]</span>: Created new file <span class="s1">&#39;./fastlane/Appfile&#39;</span>. Edit it to manage your preferred app metadata information.
+</span></span><span class="line"><span class="ln">29</span><span class="cl">Optional: The scheme name of your app <span class="o">(</span>If you don<span class="s1">&#39;t need one, just hit Enter): AppDemo
+</span></span></span><span class="line"><span class="ln">30</span><span class="cl"><span class="s1">[11:50:40]: &#39;</span>snapshot<span class="s1">&#39; not enabled.
+</span></span></span><span class="line"><span class="ln">31</span><span class="cl"><span class="s1">[11:50:40]: &#39;</span>cocoapods<span class="s1">&#39; enabled.
+</span></span></span><span class="line"><span class="ln">32</span><span class="cl"><span class="s1">[11:50:40]: &#39;</span>carthage<span class="s1">&#39; not enabled.
+</span></span></span><span class="line"><span class="ln">33</span><span class="cl"><span class="s1">[11:50:40]: Created new file &#39;</span>./fastlane/Fastfile<span class="err">&#39;</span>. Edit it to manage your own deployment lanes.
+</span></span><span class="line"><span class="ln">34</span><span class="cl"><span class="o">[</span>11:50:40<span class="o">]</span>: fastlane will send the number of errors <span class="k">for</span> each action to
+</span></span><span class="line"><span class="ln">35</span><span class="cl"><span class="o">[</span>11:50:40<span class="o">]</span>: https://github.com/fastlane/enhancer to detect integration issues
+</span></span><span class="line"><span class="ln">36</span><span class="cl"><span class="o">[</span>11:50:40<span class="o">]</span>: No sensitive/private information will be uploaded
+</span></span><span class="line"><span class="ln">37</span><span class="cl"><span class="o">[</span>11:50:40<span class="o">]</span>: Successfully finished setting up fastlane
+</span></span></code></pre></div><p>这部分会进行联网，并提示输入你的 Apple ID 来验证你的应用是否存在（没有也会帮你自动创建）并获取相应的关键信息，通过一系列的流程下来把获取的信息会创建一个 <code>fastlane</code> 目录
+并并写入相应的文件（如果某些信息没有填写会忽略某些文件的生成）：</p>
+<ul>
+<li><code>Fastfile</code>: 核心文件，主要用于 cli 调用和处理具体的流程，<a href="https://github.com/fastlane/fastlane/tree/master/fastlane/docs#fastfile">了解详情</a></li>
+<li><code>Appfile</code>: 从 Apple Developer Portal 获取和项目相关的信息，<a href="https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Appfile.md">了解详情</a></li>
+<li><code>Deliverfile</code>: 从 iTunes Connect 获取和项目相关的信息，<a href="https://github.com/fastlane/fastlane/blob/master/deliver/Deliverfile.md">了解详情</a></li>
+</ul>
+<p>抛开其他的几个文件先不说，大家先把注意力放到刚创建好的 <code>Fastfile</code> 文件上面（可能有变化，仅作参考），如果大家对 Ruby 有了解的话，它定义的 DSL 语言非常类似 <a href="https://github.com/ruby/rake">rake</a>，但流程上有参考的 <a href="https://github.com/rspec/rspec">rspec</a>，一旦不满足需求还可以使用 Ruby 代码来实现。单凭 DSL 语言来说就算对于 Ruby 没有基础的也能很快掌握，大多都是比较简单易懂的语法。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1"># Customise this file, documentation can be found here:</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="c1"># https://github.com/fastlane/fastlane/tree/master/fastlane/docs</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="c1"># All available actions: https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Actions.md</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="c1"># can also be listed using the `fastlane actions` command</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="c1"># Change the syntax highlighting to Ruby</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="c1"># All lines starting with a # are ignored when running `fastlane`</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="c1"># If you want to automatically update fastlane if a new version is available:</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="c1"># update_fastlane</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">
+</span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="c1"># This is the minimum version number required.</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="c1"># Update this, if you use features of a newer version</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="n">fastlane_version</span> <span class="s2">&#34;1.95.0&#34;</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">
+</span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="n">default_platform</span> <span class="ss">:ios</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl">
+</span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="n">platform</span> <span class="ss">:ios</span> <span class="k">do</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">  <span class="c1"># 执行所有命令前都会先执行这里</span>
+</span></span><span class="line"><span class="ln">20</span><span class="cl">  <span class="n">before_all</span> <span class="k">do</span>
+</span></span><span class="line"><span class="ln">21</span><span class="cl">    <span class="c1"># ENV[&#34;SLACK_URL&#34;] = &#34;https://hooks.slack.com/services/...&#34;</span>
+</span></span><span class="line"><span class="ln">22</span><span class="cl">    <span class="n">cocoapods</span>
+</span></span><span class="line"><span class="ln">23</span><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="ln">24</span><span class="cl">
+</span></span><span class="line"><span class="ln">25</span><span class="cl">  <span class="n">desc</span> <span class="s2">&#34;Runs all the tests&#34;</span>
+</span></span><span class="line"><span class="ln">26</span><span class="cl">  <span class="n">lane</span> <span class="ss">:test</span> <span class="k">do</span>
+</span></span><span class="line"><span class="ln">27</span><span class="cl">    <span class="nb">scan</span>
+</span></span><span class="line"><span class="ln">28</span><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="ln">29</span><span class="cl">
+</span></span><span class="line"><span class="ln">30</span><span class="cl">  <span class="n">desc</span> <span class="s2">&#34;Submit a new Beta Build to Apple TestFlight&#34;</span>
+</span></span><span class="line"><span class="ln">31</span><span class="cl">  <span class="n">desc</span> <span class="s2">&#34;This will also make sure the profile is up to date&#34;</span>
+</span></span><span class="line"><span class="ln">32</span><span class="cl">  <span class="n">lane</span> <span class="ss">:beta</span> <span class="k">do</span>
+</span></span><span class="line"><span class="ln">33</span><span class="cl">    <span class="c1"># match(type: &#34;appstore&#34;) # more information: https://codesigning.guide</span>
+</span></span><span class="line"><span class="ln">34</span><span class="cl">    <span class="n">gym</span><span class="p">(</span><span class="ss">scheme</span><span class="p">:</span> <span class="s2">&#34;AppDemo&#34;</span><span class="p">)</span> <span class="c1"># Build your app - more options available</span>
+</span></span><span class="line"><span class="ln">35</span><span class="cl">    <span class="n">pilot</span>
+</span></span><span class="line"><span class="ln">36</span><span class="cl">
+</span></span><span class="line"><span class="ln">37</span><span class="cl">    <span class="c1"># sh &#34;your_script.sh&#34;</span>
+</span></span><span class="line"><span class="ln">38</span><span class="cl">    <span class="c1"># You can also use other beta testing services here (run `fastlane actions`)</span>
+</span></span><span class="line"><span class="ln">39</span><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="ln">40</span><span class="cl">
+</span></span><span class="line"><span class="ln">41</span><span class="cl">  <span class="n">desc</span> <span class="s2">&#34;Deploy a new version to the App Store&#34;</span>
+</span></span><span class="line"><span class="ln">42</span><span class="cl">  <span class="n">lane</span> <span class="ss">:appstore</span> <span class="k">do</span>
+</span></span><span class="line"><span class="ln">43</span><span class="cl">    <span class="c1"># match(type: &#34;appstore&#34;)</span>
+</span></span><span class="line"><span class="ln">44</span><span class="cl">    <span class="c1"># snapshot</span>
+</span></span><span class="line"><span class="ln">45</span><span class="cl">    <span class="n">gym</span><span class="p">(</span><span class="ss">scheme</span><span class="p">:</span> <span class="s2">&#34;AppDemo&#34;</span><span class="p">)</span> <span class="c1"># Build your app - more options available</span>
+</span></span><span class="line"><span class="ln">46</span><span class="cl">    <span class="n">deliver</span><span class="p">(</span><span class="ss">force</span><span class="p">:</span> <span class="kp">true</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">47</span><span class="cl">    <span class="c1"># frameit</span>
+</span></span><span class="line"><span class="ln">48</span><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="ln">49</span><span class="cl">
+</span></span><span class="line"><span class="ln">50</span><span class="cl">  <span class="c1"># 你可以定义属于自己的 lane（任务）</span>
+</span></span><span class="line"><span class="ln">51</span><span class="cl">  <span class="n">lane</span> <span class="ss">:hello</span> <span class="k">do</span>
+</span></span><span class="line"><span class="ln">52</span><span class="cl">    <span class="nb">puts</span> <span class="s2">&#34;hello world&#34;</span>
+</span></span><span class="line"><span class="ln">53</span><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="ln">54</span><span class="cl">
+</span></span><span class="line"><span class="ln">55</span><span class="cl">  <span class="c1"># 仅当上述流程全部执行成功后才会走这里。其实应该定义为 after_success</span>
+</span></span><span class="line"><span class="ln">56</span><span class="cl">  <span class="n">after_all</span> <span class="k">do</span> <span class="o">|</span><span class="n">lane</span><span class="o">|</span>
+</span></span><span class="line"><span class="ln">57</span><span class="cl">    <span class="c1"># slack(</span>
+</span></span><span class="line"><span class="ln">58</span><span class="cl">    <span class="c1">#   message: &#34;Successfully deployed new App Update.&#34;</span>
+</span></span><span class="line"><span class="ln">59</span><span class="cl">    <span class="c1"># )</span>
+</span></span><span class="line"><span class="ln">60</span><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="ln">61</span><span class="cl">
+</span></span><span class="line"><span class="ln">62</span><span class="cl">  <span class="c1"># 如果流程发生异常会走这里并终止</span>
+</span></span><span class="line"><span class="ln">63</span><span class="cl">  <span class="n">error</span> <span class="k">do</span> <span class="o">|</span><span class="n">lane</span><span class="p">,</span> <span class="n">exception</span><span class="o">|</span>
+</span></span><span class="line"><span class="ln">64</span><span class="cl">    <span class="c1"># slack(</span>
+</span></span><span class="line"><span class="ln">65</span><span class="cl">    <span class="c1">#   message: exception.message,</span>
+</span></span><span class="line"><span class="ln">66</span><span class="cl">    <span class="c1">#   success: false</span>
+</span></span><span class="line"><span class="ln">67</span><span class="cl">    <span class="c1"># )</span>
+</span></span><span class="line"><span class="ln">68</span><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="ln">69</span><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><p>通过上面的注解，我想大家对它已经有了初步的了解，那么定义完之后该如何执行呢？回到刚才的终端（关闭了？那再切换到刚才的 iOS 项目的根目录）：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln"> 1</span><span class="cl">$ fastlane ios hello
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="o">[</span>11:56:24<span class="o">]</span>: -------------------------------------------------
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="o">[</span>11:56:24<span class="o">]</span>: --- Step: Verifying required fastlane version ---
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="o">[</span>11:56:24<span class="o">]</span>: -------------------------------------------------
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="o">[</span>11:56:24<span class="o">]</span>: fastlane version valid
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="o">[</span>11:56:24<span class="o">]</span>: ------------------------------
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="o">[</span>11:56:24<span class="o">]</span>: --- Step: default_platform ---
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="o">[</span>11:56:24<span class="o">]</span>: ------------------------------
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="o">[</span>11:56:24<span class="o">]</span>: Driving the lane <span class="s1">&#39;ios hello&#39;</span> 🚀
+</span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="o">[</span>11:56:24<span class="o">]</span>: -----------------------
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="o">[</span>11:56:24<span class="o">]</span>: --- Step: cocoapods ---
+</span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="o">[</span>11:56:24<span class="o">]</span>: -----------------------
+</span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="o">[</span>11:56:24<span class="o">]</span>: $ pod install
+</span></span><span class="line"><span class="ln">14</span><span class="cl">...
+</span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="o">[</span>11:56:28<span class="o">]</span>: hello world
+</span></span><span class="line"><span class="ln">16</span><span class="cl">
+</span></span><span class="line"><span class="ln">17</span><span class="cl">+------+-------------------------------------+-------------+
+</span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="p">|</span>                     fastlane summary                     <span class="p">|</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">+------+-------------------------------------+-------------+
+</span></span><span class="line"><span class="ln">20</span><span class="cl"><span class="p">|</span> Step <span class="p">|</span> Action                              <span class="p">|</span> Time <span class="o">(</span>in s<span class="o">)</span> <span class="p">|</span>
+</span></span><span class="line"><span class="ln">21</span><span class="cl">+------+-------------------------------------+-------------+
+</span></span><span class="line"><span class="ln">22</span><span class="cl"><span class="p">|</span> <span class="m">1</span>    <span class="p">|</span> Verifying required fastlane version <span class="p">|</span> <span class="m">0</span>           <span class="p">|</span>
+</span></span><span class="line"><span class="ln">23</span><span class="cl"><span class="p">|</span> <span class="m">2</span>    <span class="p">|</span> default_platform                    <span class="p">|</span> <span class="m">0</span>           <span class="p">|</span>
+</span></span><span class="line"><span class="ln">24</span><span class="cl"><span class="p">|</span> <span class="m">3</span>    <span class="p">|</span> cocoapods                           <span class="p">|</span> <span class="m">4</span>           <span class="p">|</span>
+</span></span><span class="line"><span class="ln">25</span><span class="cl">+------+-------------------------------------+-------------+
+</span></span><span class="line"><span class="ln">26</span><span class="cl">
+</span></span><span class="line"><span class="ln">27</span><span class="cl"><span class="o">[</span>11:56:28<span class="o">]</span>: fastlane.tools finished successfully 🎉
+</span></span></code></pre></div><p>哒哒！一个简单的任务执行完毕！</p>
+<p>如果大家注意观察上面的文件可能注意到一些小细节：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1"># 自动更新 fastlane 工具，需要 rubygems &gt;= 2.1.0</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="n">update_fastlane</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="c1"># 最低兼容版本，由于 fastlane 还是逐步健壮的阶段更新速度还是蛮快的，</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="c1"># 为了防止新特性在旧版本的不支持会强制设置一个最低兼容版本</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="c1"># 不过工具特别贴心的会在每次执行之后会检查是否有新版本，如果有会在最后末尾追加新版本提醒</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="n">fastlane_version</span> <span class="s2">&#34;1.95.0&#34;</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="c1"># 默认使用平台是 ios，也就是说文件可以定义多个平台，</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="c1"># 通过上述执行的命令也能看出来是执行的 ios 平台下面的 hello 任务。</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="c1"># 这个的作用是可以在执行 fastlane 的时候省略 ios，不信你执行 fastlane hello 试试。</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="n">default_platform</span> <span class="ss">:ios</span>
+</span></span></code></pre></div><h2 id="android-的支持">Android 的支持</h2>
+<p>这个的支持我觉得关键是社区的呼声太大，加上贡献者的热情（我提交过许多 issues 和个别 PL，响应非常的迅速）很快就加上了其支持，
+但具体的特性不是特别多，主要是对于 <code>gradle</code> 的封装，我先不做展开介绍，大家可以先看看<a href="https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Android.md">官方文档</a>，如果后续有特别不明白的地方我在做具体的讲解。</p>
+<p>今天就先写到这里后续我会继续整理更多的使用指南和实战范例共大家参考，最后给大家附赠官方给大家的一些<a href="https://github.com/fastlane/examples">范例</a>。</p>
+]]></content:encoded></item><item><title>“java.lang.NoClassDefFoundError” in Android</title><link>https://icyleaf.com/2012/05/how-to-salvation-android-import-jar-exception-during-running/</link><pubDate>Mon, 14 May 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/05/how-to-salvation-android-import-jar-exception-during-running/</guid><description>
+最近 Eclipse 的 ADT 升级至了 18 版本，结果运行的时候发现导入的第三方 jar 包总是报错 java.lang.NoClassDefFoundError 可气的是 Eclipse 不会给工程同时在编译的时候也不会报错。 后来发现此版本，第三方...</description><content:encoded><![CDATA[<p>最近 Eclipse 的 ADT 升级至了 18 版本，结果运行的时候发现导入的第三方 jar
+包总是报错</p>
+<blockquote>
+<p>java.lang.NoClassDefFoundError</p>
+</blockquote>
+<p>可气的是 Eclipse 不会给工程同时在编译的时候也不会报错。</p>
+<p>后来发现此版本，第三方的 <code>jar</code> 包必须放在项目的 <code>libs</code>
+目录下面，而且仅能放在 <code>libs</code> 根目录下面，即不能在 <code>libs</code>
+下面在建立子目录存放，也不能改名 <code>lib</code> 目录&hellip;.</p>
+<p>更无奈的是， Eclipse 的 User Library 也是出现同样的问题，目前无解 &gt;.&lt;</p>
+]]></content:encoded></item><item><title>让 Android 支持下拉刷新(Pull Refresh)</title><link>https://icyleaf.com/2012/02/pull-refresh-for-android/</link><pubDate>Wed, 29 Feb 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/02/pull-refresh-for-android/</guid><description>
+曾几何时，自 Android 发布之后一直以来就被管以 Geek 的玩具，而不太注重界面设计和用户交互设计，这让 Android 开发者也顺其自然的接受了这个不好的头衔，但我一度认为...</description><content:encoded><![CDATA[<p>曾几何时，自 Android 发布之后一直以来就被管以 Geek 的玩具，而不太注重界面设计和用户交互设计，这让 Android 开发者也顺其自然的接受了这个不好的头衔，但我一度认为这只是不思进取的行为，谁说 Android 就不能像 iPhone 的界面那样设计，我认为只有用心，没神马不能实现的。说回正题，第一次看到 Android 有这项功能的莫过于改版后的 Twitter，我认为它绝对是一个标榜性的 App（同时也包括已开源许久的 <a href="http://code.google.com/p/foursquared/">Foursquare</a>）。于是全世界的开发者就开始寻思这个效果 Twitter
+是如何实现的，于是就有了&hellip;</p>
+<p><img src="https://github.com/johannilsson/android-pulltorefresh/raw/master/android-pull-to-refresh.png"
+  
+  
+  alt=""></img>
+</p>
+<p>这是由 <a href="http://johannilsson.com/2011/03/13/android-pull-to-refresh-update.html">johannilsson</a> 以及众位其好友的研究成果，并已 Apache 2.0 协议开源托管在 Github：<a href="https://github.com/johannilsson/android-pulltorefresh">https://github.com/johannilsson/android-pulltorefresh</a></p>
+<p>大概看了一下源码，发现和我初步的想法类似，除了需要集成系统的 ListView 之外，只能在 HeaderView 上面做文章，外加配合 onTouchEvent， onScroll
+事件可以捕捉用户下拉和上滑的事件监听。</p>
+<p>用法：</p>
+<p>Layout</p>
+<pre tabindex="0"><code>// The PullToRefreshListView replaces a standard ListView widget.
+
+&lt;com.markupartist.android.widget.pulltorefreshlistview
+android:id=&#34;@+id/android:list&#34;
+android:layout\_height=&#34;fill\_parent&#34;
+android:layout\_width=&#34;fill\_parent&#34;
+/\&gt;
+</code></pre><p>Activity</p>
+<pre tabindex="0"><code>// Set a listener to be invoked when the list should be refreshed.
+
+((PullToRefreshListView) getListView()).setOnRefreshListener(new
+OnRefreshListener() {
+
+	@Override
+	public void onRefresh() {
+		// Do work to refresh the list here.
+		new GetDataTask().execute();
+
+	}
+
+});
+
+private class GetDataTask extends AsyncTask&lt;void, void, string[]&gt; {
+
+...
+
+@Override
+protected void onPostExecute(String[] result) {
+	mListItems.addFirst(&#34;Added after refresh...&#34;);
+
+	// Call onRefreshComplete when the list has been refreshed.
+	((PullToRefreshListView) getListView()).onRefreshComplete();
+		super.onPostExecute(result);
+
+	}
+
+}
+</code></pre><p>仓库里除了实现类外，还有<a href="https://github.com/johannilsson/android-pulltorefresh/tree/master/pulltorefreshexample">一个实例</a>，看看人家够意思吧。</p>
+]]></content:encoded></item><item><title>如何让 iOS 和 Android 支持自定义字体</title><link>https://icyleaf.com/2011/07/custom-fonts-both-in-ios-and-android/</link><pubDate>Wed, 06 Jul 2011 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2011/07/custom-fonts-both-in-ios-and-android/</guid><description>
+本篇教程的目前源于我们团队设计师一直询问，iOS(iPhone/iPad) 和 Android 两个平台是否支持自定义字体的问题，恰巧前不久唐茶计划出了一个关...</description><content:encoded><![CDATA[<p>本篇教程的目前源于我们团队设计师一直询问，iOS(iPhone/iPad) 和 Android
+两个平台是否支持自定义字体的问题，恰巧前不久<a href="http://www.v2ex.com/t/15220">唐茶计划</a>出了一个关于在中文阅读新体验的电子书应用：<a href="http://itunes.apple.com/cn/app/id446752200?mt=8">失控</a>。里面提到中文的显示采用了香港字体设计室的全新中文黑体字：<a href="http://www.typeisbeautiful.com/2011/07/4276">信黑体</a>。于是我就在想看来
+iOS 是可以支持自定义字体的。通过搜索和研究整理如下，供自己备份和大家参考</p>
+<h1 id="ios">iOS</h1>
+<p>iOS 对字体以样式的支持是非常有限的(内嵌<a href="http://iosfonts.com/">默认字库列表</a>)，尤其说对于用习惯了 HTML + CSS，就觉得 iOS 对字体的扩展真是逊到渣了，当然高人们已经准备为大众造福，出现了轻巧的
+<a href="https://github.com/zynga/FontLabel">FontLable</a>，<a href="https://github.com/mattt/TTTAttributedLabel">TTTAttributedLabel</a> 开源库到怪兽级别 <a href="https://github.com/facebook/three20">Three20</a> 开源框架。但假如仅仅是想加载自定义字体来说，对于 iOS 4 版本还是比较简单的：</p>
+<ol>
+<li>添加自定义字体文件做资源文件添加到 XCode 项目之中</li>
+<li>在 info.plist 中新增一个名为 UIAppFonts 的 Key，类型是数组（array）</li>
+<li>把新增的字体的文件名（包括后缀）依次填入 UIAppFonts 数组（注意区分大小写）</li>
+<li>保存 info.plist（废话）。准备工作完毕，下面是编码部分</li>
+</ol>
+<pre tabindex="0"><code>@implementation CustomFontLabel
+
+- (id)initWithCoder:(NSCoder *)decoder
+{
+    if (self = [super initWithCoder: decoder])
+    {
+        [self setFont: [UIFont fontWithName: @&#34;Custom Font Name&#34; size: self.font.pointSize]];
+        // 这里 Custom Font Name 并不是字体的文件名，而且系统注册显示的字体标准名称，比如
+        // 比如，微软雅黑，最好就用 Microsoft YaHei （不过这个会存在版权问题把 XD）
+        // 另外，注意区分大小写
+    }
+    return self;
+}
+
+@end
+</code></pre><p>这里还有更完整的<a href="http://stackoverflow.com/questions/360751/can-i-embed-a-custom-font-in-an-iphone-application">关于 iOS 不同平台支持自定义字体</a>的问答。</p>
+<h1 id="android">Android</h1>
+<p>Android 默认支持  Droid Sans，Droid Sans Mono 和 Droid Serif 三种字体，其实对于中文的显示还是很不错的，有些类似于微软雅黑字体（<a href="http://www.cnbeta.com/articles/114854.htm">区别</a>）。假如只是对默认的字体进行更换，最简单的方法就是配置 layout 文件：</p>
+<pre tabindex="0"><code>&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;
+&lt;LinearLayout xmlns:android=&#34;http://schemas.android.com/apk/res/android&#34;
+              android:orientation=&#34;vertical&#34;
+              android:layout_width=&#34;fill_parent&#34;
+              android:layout_height=&#34;fill_parent&#34;
+        &gt;
+    &lt;TextView
+            android:layout_width=&#34;fill_parent&#34;
+            android:layout_height=&#34;wrap_content&#34;
+            android:text=&#34;This is a &#39;sans&#39; demo!&#34;
+            android:typeface=&#34;sans&#34;
+            /&gt;
+     &lt;TextView
+            android:layout_width=&#34;fill_parent&#34;
+            android:layout_height=&#34;wrap_content&#34;
+            android:text=&#34;This is a &#39;serif&#39; demo!&#34;
+            android:typeface=&#34;serif&#34;
+            android:textStyle=&#34;italic&#34;
+            /&gt;
+     &lt;TextView
+            android:layout_width=&#34;fill_parent&#34;
+            android:layout_height=&#34;wrap_content&#34;
+            android:text=&#34;This is a &#39;monospace&#39; demo!&#34;
+            android:typeface=&#34;monospace&#34;
+            android:textStyle=&#34;bold&#34;
+            /&gt;
+&lt;/LinearLayout&gt;
+</code></pre><p>但是这样肯定不能满足大家对于字体排版高一级的要求，下面是支持自定义字体的步骤：</p>
+<p>首先，添加自定义字体文件放在项目的 <code>assets/fonts</code> 目录下面（目录可能需要自己创建）。</p>
+<p>其次，编辑 layout 文件（这里做一个示范）</p>
+<pre tabindex="0"><code>&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;
+&lt;LinearLayout xmlns:android=&#34;http://schemas.android.com/apk/res/android&#34;
+              android:orientation=&#34;vertical&#34;
+              android:layout_width=&#34;fill_parent&#34;
+              android:layout_height=&#34;fill_parent&#34;
+        &gt;
+    &lt;TextView android:id=&#34;@+id/textview&#34;
+            android:layout_width=&#34;fill_parent&#34;
+            android:layout_height=&#34;wrap_content&#34;
+            android:text=&#34;This is a &#39;Microsoft YaHei&#39; demo!&#34;
+            /&gt;
+    &lt;Button android:id=&#34;@+id/button&#34;
+            android:layout_width=&#34;fill_parent&#34;
+            android:layout_height=&#34;wrap_content&#34;
+            android:text=&#34;This is a &#39;Microsoft YaHei&#39; button!&#34;
+            /&gt;
+&lt;/LinearLayout&gt;
+</code></pre><p>最后，在代码部分实现自定义字体（和 iOS 类似）</p>
+<pre tabindex="0"><code>public void onCreate(Bundle savedInstanceState)
+{
+       super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+
+        TextView textView = null;
+        Button button = null;
+
+        setFont(textView, &#34;fonts/YaHei.ttf&#34;, R.id.text_view);
+        setFont(button, &#34;fonts/YaHei.ttf&#34;, R.id.button);
+}
+
+void setFont(TextView name, String path, int res)
+{
+    	name = (TextView) findViewById(res);
+        Typeface font = Typeface.createFromAsset(this.getAssets(), path);
+        name.setTypeface(font);
+}
+</code></pre><p>扩展阅读 [<a href="http://mobile.tutsplus.com/tutorials/android/customize-android-fonts/">1</a>] [<a href="http://russenreaktor.wordpress.com/2010/04/29/solved-android-using-custom-fonts/">2</a>]</p>
+<p>话说，为什么 Android 到现在都没有更多的开源的库和框架呢？</p>
+]]></content:encoded></item><item><title>如何在开发和发布环境使用 Android Map Key</title><link>https://icyleaf.com/2011/05/how-to-using-android-map-key-both-in-development-and-production/</link><pubDate>Mon, 02 May 2011 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2011/05/how-to-using-android-map-key-both-in-development-and-production/</guid><description>
+在项目中第一次使用并涉及 Google Map 的功能，而由于 Google 的限制，Google Map 模块出来需要单独下载模块之外，对于每一个应用还都必须具有一个 Google Map Key，这...</description><content:encoded><![CDATA[<p>在项目中第一次使用并涉及 Google Map 的功能，而由于 Google 的限制，Google Map 模块出来需要单独下载模块之外，对于每一个应用还都必须具有一个 Google Map Key，这点和使用 Web 开发调用 Google Map API 是一致的。</p>
+<p>对于 Android 采用的 Google Map Key 来说，是由一串 MD5 值（类似这样：94:1E:43:49:87:73:BB:E6:A6:88:D7:20:F1:8E:B5:98）生成的。那么这个 MD5 是哪来的呢？</p>
+<p>​1. 开发环境的 Google Map Key</p>
+<p>这个比较简单，网上大面积教程所采用的 android 系统默认带有一个 debug.keystore。假如开发使用 Eclipse，在其 windows -&gt; Preference -&gt; Android -&gt; Build 下，其中 Default debug keystore 的值便是 debug.keystore 的路径。</p>
+<p>在命令行或者终端执行下面命令（注意指明 debug.keystore 的路径）即可获取到 MD5 值。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ keytool -list -keystore debug.keystore
+</span></span></code></pre></div><p>​2. 发布环境的 Google Map Key</p>
+<p>假如你的应用需要上线到官方的 Google Market 上面，则需要根据其 apk 的签名证书（keystore）的 MD5 值去生成，方法也很简单，发布的签名同样可以使用 Eclipse 的 Export 工具制作。制作完毕后（或许这个生成的签名没有 .keystore 后缀，不用在意）。同样也使用上面的命令获取其 MD5 值。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># 比如，证书路径 /home/icyleaf/android/ews</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">$ keytool -list -keystore /home/icyleaf/android/ews...
+</span></span><span class="line"><span class="ln">3</span><span class="cl">
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="c1">#  查询到了 MD5 值</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">Certificate fingerprint <span class="o">(</span>MD5<span class="o">)</span>: 94:1E43:49:87:73:BB:E6:A6:88:D7:20:F1:8E:B5:98
+</span></span></code></pre></div><p>使用其 MD5 值在 <a href="http://code.google.com/android/maps-api-signup.html">Sign Up for the Android Maps API</a> 页面填写生成即可。</p>
+<p>接下来的步骤就没什么了，又是搜索出千篇一律的教程，大家 Google 之。</p>
+]]></content:encoded></item></channel></rss>

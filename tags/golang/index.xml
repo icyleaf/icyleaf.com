@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>golang on icyleaf</title><link>https://icyleaf.com/tags/golang/</link><description>Recent content in golang on icyleaf</description><language>zh</language><lastBuildDate>Mon, 30 Jul 2012 12:34:56 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/golang/index.xml" rel="self" type="application/rss+xml"/><item><title>Sublime Text 2 + GoSublime + ZSH 的配置</title><link>https://icyleaf.com/2012/07/sublime-text-2-and-gosublime-with-zsh/</link><pubDate>Mon, 30 Jul 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/07/sublime-text-2-and-gosublime-with-zsh/</guid><description>
+Sublime Text 2（下面简称 Subl） 通过 PCIP（Package Control: Install Package）安装各式各样的插件，其中还包括 Google 刚刚发布 1.0+ 的 golang 语言也有相应的插件 G...</description><content:encoded><![CDATA[<p><a href="http://www.sublimetext.com/2">Sublime Text 2</a>（下面简称 Subl） 通过 PCIP（Package Control: Install Package）安装各式各样的插件，其中还包括 Google 刚刚发布 1.0+ 的 golang 语言也有相应的插件 <a href="https://github.com/DisposaBoy/GoSublime">GoSublime</a>，其实本来用 tmux + vim 也能解决编写和执行命令之间切换的工作。但是 tmux 的快捷键有时候重复多了会很不爽&hellip;</p>
+<p>于是今天开始尝试使用 Subl 来编写 golang，安装完毕插件之后，编写还是比较方便的，有语法高亮，代码提示，错误提示，快速编译执行等，但是我在编译执行的时候总是会报如下错误:</p>
+<blockquote>
+<p>/bin/sh: go: command not found</p>
+</blockquote>
+<p>由于插件默认是安装 sh shell 去搜索路径的，肯定是因为在 <code>.bash_profile</code> 里面没有找到 go 命令，而我已经切换了 zsh shell （.zshrc）因此才会报此错误。</p>
+<p>最后翻找了半天资料，发现通过 Preferencs -&gt; Brower Packages -&gt; Gosublime 下面有一个 <a href="https://github.com/DisposaBoy/GoSublime/blob/master/USAGE.md">USAGE.md</a> 的文档，原来修改 <code>GoSublime.sublime-settings</code> 下面的 <code>env</code> 的 $PATH 解决了此问题：</p>
+<blockquote>
+<p>&ldquo;env&rdquo;: { &ldquo;PATH&rdquo;: &ldquo;/usr/local/sbin:/usr/local/bin:$PATH&rdquo;}</p>
+</blockquote>
+<p>再次编译运行，搞定！</p>
+]]></content:encoded></item></channel></rss>

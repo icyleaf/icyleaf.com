@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>CSS on icyleaf</title><link>https://icyleaf.com/tags/css/</link><description>Recent content in CSS on icyleaf</description><language>zh</language><lastBuildDate>Sun, 08 Feb 2009 12:34:56 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/css/index.xml" rel="self" type="application/rss+xml"/><item><title>与SPAM战斗到底：CSS篇</title><link>https://icyleaf.com/2009/02/fighting-spam-with-css/</link><pubDate>Sun, 08 Feb 2009 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2009/02/fighting-spam-with-css/</guid><description>
+SPAM，现在还没有一个非常严格的定义。一般来说，凡是未经用户许可就强行发送到用户的邮箱中的任何电子邮件。现在应该已经广泛各种网络应用上面。...</description><content:encoded><![CDATA[<p>SPAM，现在还没有一个非常严格的定义。一般来说，凡是未经用户许可就强行发送到用户的邮箱中的任何电子邮件。现在应该已经广泛各种网络应用上面。对于网站来说，网站知名度小的时候或许还可以免于“侵犯”，可是一旦在搜索引擎收录的数量做出一些成绩，SPAM 就会主动找上门来，各种垃圾信息就会扑面而来，然而对SPAM 的战斗一起在进行，这是一场没有硝烟的战争，为了防范
+SPAM，大家各显其能，招招新颖，当然还有一些专门为 SPAM 创建防御服务的网站，比如说 WordPress 自带的 <a href="http://akismet.com/">Akismet</a>。对于各种防御方法，我想应该可以写成一个系列，这个系列的内容或许是从网络上搜集或许是自己突发奇想想出来的奇招（目前应该还不可能哈）。</p>
+<p>今天我带给大家的是方法另辟其境：<strong>CSS</strong>。总所周知，CSS 是一种层样式表，只是为了网站界面的展现做出重要贡献的角色。那么它怎么实现防御 SPAM 的呢？ok，接着下看。</p>
+<p><strong>原理</strong></p>
+<p>为了不上了就代码让大家感到迷惑，先讲一下原理：首先在创建表单的时候，添加一个对
+SPAM 校验的 input
+标签，然后再提交的时候进行对这个标签进行判断其值是否为空，因判断是否为
+SPAM（如果你不明白 SPAM 的实现原理请看<a href="http://www.codewall.cn/blog/?p=7">这里</a>）。（看官：不就是设置成
+hidden 类型吗，这谁都知道）错！我承认这是一个最常见的判断 SPAM
+的流程，但这里添加的 input 类型使用的是 text 类型，这是为了防止 SPAM
+在进行抓取页面进行对 input 类型判断是否有 hidden
+类型为设置的，那么怎么隐藏这个 input 标签呢？那么就可以利用到 CSS 的
+display 属性，哈哈，是不是明白了？好吧，看代码吧。</p>
+<p><strong>代码</strong></p>
+<p>HTML 代码：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">Name:&lt;input name=&#34;name&#34; /&gt;&lt;br /&gt;
+</span></span><span class="line"><span class="ln">2</span><span class="cl">Email:&lt;input name=&#34;email&#34; /&gt;&lt;br /&gt;
+</span></span><span class="line"><span class="ln">3</span><span class="cl">Comment:&lt;input name=&#34;comment&#34; /&gt;&lt;br /&gt;
+</span></span><span class="line"><span class="ln">4</span><span class="cl">&lt;input type=&#34;hidden&#34; class=&#34;special&#34; /&gt;
+</span></span><span class="line"><span class="ln">5</span><span class="cl">&lt;input type=&#34;submit&#34; value=&#34;Post it&#34; /&gt;
+</span></span></code></pre></div><p>CSS 代码：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">body {line-height:35px;font-family:Arial, Helvetica, sans-serif;color:#333;font-size:14px;}
+</span></span><span class="line"><span class="ln">2</span><span class="cl">.special {display:none;}
+</span></span></code></pre></div><p>上述代码中 class 为 special 的 input 标签即为判断 SPAM 的标志。使用 CSS
+对其隐藏，就在提交表单后进行对这个 input 进行判断是否为空即可。这样就简单避免 SPAM 对 input 的 hidden 判断的避免而轻松达到防御的目的。</p>
+<p><strong>声明</strong></p>
+<p>CSS 防御 SPAM 的实现方法来自<a href="http://www.modernblue.com/web-design-blog/fighting-spam-with-css/">Modernblue</a>
+网站发布的文章。本人只是做翻译工作，特此声明。</p>
+]]></content:encoded></item><item><title>CSS 中 background-image 的另类使用</title><link>https://icyleaf.com/2008/05/css-background-image-in-the-use-of-alternative/</link><pubDate>Sat, 10 May 2008 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2008/05/css-background-image-in-the-use-of-alternative/</guid><description>
+在CSS众多的样式当中，background可以说是扮演着重要的角色，它可以设置对象的背景样式。如颜色或者使用一张图片代替，今天我要多说两句...</description><content:encoded><![CDATA[<p>在CSS众多的样式当中，background可以说是扮演着重要的角色，它可以设置对象的背景样式。如颜色或者使用一张图片代替，今天我要多说两句的就是使用一张图片的参数：image。准确的来说应该是background-image。我们可以这样用它：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">body{background-image: url(http://www.icyleaf.cn/logo.jpg);
+</span></span></code></pre></div><p>这都是可以的，所以说css的自由度很高，这点我很喜欢。其实css显示图片分3种，第一种是单纯的显示一个图片；第二种称之为<strong>CSS Sprites</strong>，也就是说把若干小图片合成一个大图片，然后通过background的postion参数实现效果，第三种就是我们今天说的另类用法，它也有学名称之为<strong>Inline images</strong>。实现声明一点，这个方法不适用于IE浏览器，恩，没错，IE，我们都遗弃你了。（关于CSS Sprites 的描述信息来自<a href="http://7career.org/2008/02/hpws-1.html">7career.org</a>）</p>
+<p>CSS Sprites是一种把所有的图片都以base64编码以源代码的形式写在CSS文件里，格式是这样的：<strong>data:[&lt;mediatype&gt;][;base64],<!-- raw HTML omitted --></strong></p>
+<p><code>data:URL</code> 标签是在1995年第一次提出，按<a href="http://tools.ietf.org/html/rfc2397">RFC2397规范的描述</a>：它是&quot;allows
+inclusion of small data items as &lsquo;immediate&rsquo; data.（允许在页面中包含一些小的即时数据）&quot;。如一个内嵌的的图片可以这样引用：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">body{background-image:url(data:image/gif;base64,R0lGODlhCAAIAJEAAOnp6eTk5O7m8AAAACH5BAEAAAIALAAAAAAIAAgAAAINjAMJh2q6DnxOVsqmLQA7);}
+</span></span></code></pre></div><p>这段代码可以在firefox浏览器运行，恩，图片是我取自[mg12][]当前模板的背景图，呵呵(^___^)</p>
+<p>base64编码简单的说是，Base64内容传送编码被设计用来把任意序列的8位字节描述为一种不易被人直接识别的形式。最早使用在windows系统的电子邮件传输的，主要是附件的传输。在那个时候的黑客们也流行过一段base64编码版的木马和病毒。为了简单篇幅，想了解的看<a href="http://www.5dmail.net/html/2004-1-30/200413084348.htm">这里</a>。</p>
+<p>第一次我也是通过这个方法获取的图片的base64编码，主要原因是网上没有现成的转换这种编码的工具，估计已经被大家所遗忘掉了。我这里简单的写了个PHP代码，实现了图片编码的转换：</p>
+<p>这个在线转换的背景就是上面那段代码，大家可以通过查看网页源码看到。图片的代码转换原理也很简单，通过读取图片的文件并把图片储存在一个数组（或字符串）里面，然后使用base64_encode转换即可～ok，讲解完毕。</p>
+]]></content:encoded></item></channel></rss>

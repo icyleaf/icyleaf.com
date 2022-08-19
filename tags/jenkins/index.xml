@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Jenkins on icyleaf</title><link>https://icyleaf.com/tags/jenkins/</link><description>Recent content in Jenkins on icyleaf</description><language>zh</language><lastBuildDate>Wed, 18 Apr 2018 14:44:32 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/jenkins/index.xml" rel="self" type="application/rss+xml"/><item><title>如何使用 Docker 管理 Jenkins</title><link>https://icyleaf.com/2018/04/how-to-manage-jenkins-with-docker/</link><pubDate>Wed, 18 Apr 2018 14:44:32 +0800</pubDate><guid>https://icyleaf.com/2018/04/how-to-manage-jenkins-with-docker/</guid><description>
+让人几多愁的 Jenkins 该如何管理才能省心</description><content:encoded><![CDATA[<p>官方的 <a href="https://hub.docker.com/_/jenkins">jenkins</a> 镜像已经不再维护管理而是由 Jenkins Community 进行更新，鉴于 Jenkins 的更新频率特别快社区版本会提供两个版本：</p>
+<ul>
+<li><code>lts</code> 长期稳定版本，但还是会有新版提醒</li>
+<li><code>latest</code> 每周更新版本</li>
+</ul>
+<p>都是基于 alpine 系统封装因此镜像的体积会大大减小很多。如果你是内网使用可以不用在意更新问题长期使用一个版本也没太大问题。</p>
+<h2 id="安装">安装</h2>
+<p>创建镜像时需要注意几个地方：</p>
+<ol>
+<li>关联本地 volumes</li>
+<li>设置时区（默认是 UTC 时间）</li>
+<li>映射 50000 端口（这个是 master 和 slave 的通讯端口）和 8000 端口（Web）</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">docker run -d --restart<span class="o">=</span>always
+</span></span><span class="line"><span class="ln">2</span><span class="cl">    -p 8000:8080 -p 50000:50000
+</span></span><span class="line"><span class="ln">3</span><span class="cl">    -v /var/lib/docker/jenkins:/var/jenkins_home
+</span></span><span class="line"><span class="ln">4</span><span class="cl">    -e <span class="nv">JAVA_OPTS</span><span class="o">=</span>-Duser.timezone<span class="o">=</span>Asia/Shanghai
+</span></span><span class="line"><span class="ln">5</span><span class="cl">    jenkins/jenkins:lts
+</span></span></code></pre></div><p>对于进行设置 JAVA 的参数可以参考：https://github.com/jenkinsci/docker/issues/45</p>
+<h2 id="配置-jenkins-的插件源">配置 Jenkins 的插件源</h2>
+<p>使用过它的人都知道管理和安装插件是一个奇慢无比的事情，虽然提供了代理服务器但我这还有一个更好的方案。</p>
+<p>我在翻阅国内镜像源网站的时候发现清华大学开源软件镜像站其实提供了国内 Jenkins 插件的镜像源但一直很低调的没有公布，通过进入<code>管理插件 -&gt; 高级</code>页面拉到最底部有个升级站点的自定义框，填入</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.json
+</span></span></code></pre></div><p>安装插件的时候系统默认会测试网络就是 ping 下 Google 的网站，它会提示失败但不用担心它会继续尝试下载和安装插件。</p>
+<h2 id="升级">升级</h2>
+<p>此方法适用于所有的容器的升级步骤。</p>
+<p>首先需要找到容器的名字，这里我想会有不少人会问为什么你在创建一个容器的时候不指定一个名字，
+那是因为后面还需要创建一个新版本的容器而名字不能一样，因此我现在创建都让 docker 随机分配。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ docker ps
+</span></span><span class="line"><span class="ln">2</span><span class="cl">CONTAINER ID  ...   NAMES
+</span></span><span class="line"><span class="ln">3</span><span class="cl">8f48718fdd07  ...   naughty_pasteur
+</span></span></code></pre></div><p>拿到之后先停止运行后，创建一个数据备份容器再进行拉取最新版本</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ docker stop naughty_pasteur
+</span></span><span class="line"><span class="ln">2</span><span class="cl">$ docker docker create --volumes-from naughty_pasteur --name jenkins-data jenkins/jenkins:lts
+</span></span></code></pre></div><p>拉取最新版本后恢复数据：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ docker pull jenkins/jenkins:lts
+</span></span><span class="line"><span class="ln">2</span><span class="cl">$ docker run -d --restart<span class="o">=</span>always
+</span></span><span class="line"><span class="ln">3</span><span class="cl">    --volumes-from jenkins-data
+</span></span><span class="line"><span class="ln">4</span><span class="cl">    -p 8000:8080 -p 50000:50000
+</span></span><span class="line"><span class="ln">5</span><span class="cl">    -v /var/lib/docker/jenkins:/var/jenkins_home
+</span></span><span class="line"><span class="ln">6</span><span class="cl">    -e <span class="nv">JAVA_OPTS</span><span class="o">=</span>-Duser.timezone<span class="o">=</span>Asia/Shanghai
+</span></span><span class="line"><span class="ln">7</span><span class="cl">    jenkins/jenkins:lts
+</span></span></code></pre></div><p>确保通过 web 访问和 build 正常后删除老的和数据备份的容器</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ docker rm naughty_pasteur
+</span></span><span class="line"><span class="ln">2</span><span class="cl">$ docker rm jenkins-data
+</span></span></code></pre></div><h2 id="疑惑解答">疑惑解答</h2>
+<h3 id="1-我忘记设置时区但我进实例修改了时区在-jenkins-里不生效">1. 我忘记设置时区但我进实例修改了时区在 Jenkins 里不生效</h3>
+<p>在 Jenkins 的系统设置页面找到脚本命令行运行：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="err">&#39;</span><span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">commons</span><span class="o">.</span><span class="na">jelly</span><span class="o">.</span><span class="na">tags</span><span class="o">.</span><span class="na">fmt</span><span class="o">.</span><span class="na">timeZone</span><span class="err">&#39;</span><span class="o">,</span> <span class="err">&#39;</span><span class="n">Asia</span><span class="o">/</span><span class="n">Shanghai</span><span class="err">&#39;</span><span class="o">)</span>
+</span></span></code></pre></div><p>执行后即时生效无需重启，方法来自<a href="https://wiki.jenkins.io/display/JENKINS/Change+time+zone">官方文档</a></p>
+<h2 id="官方文档">官方文档</h2>
+<p><a href="https://github.com/jenkinsci/docker/blob/master/README.md">https://github.com/jenkinsci/docker/blob/master/README.md</a></p>
+]]></content:encoded></item></channel></rss>

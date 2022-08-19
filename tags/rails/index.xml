@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Rails on icyleaf</title><link>https://icyleaf.com/tags/rails/</link><description>Recent content in Rails on icyleaf</description><language>zh</language><lastBuildDate>Tue, 03 Dec 2013 12:34:56 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/rails/index.xml" rel="self" type="application/rss+xml"/><item><title>ActiveRecord 使用秘笈</title><link>https://icyleaf.com/2013/12/activerecord-tips/</link><pubDate>Tue, 03 Dec 2013 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2013/12/activerecord-tips/</guid><description>
+作为 Rails 生态之一的 ORM 一定要好好学习</description><content:encoded><![CDATA[<p>ActiveRecord 是 Rails 内置的 ORM 框架，大多数人学习 Ruby 都是从 rails 开始，接触的也是这个 ORM，因此就有了这个使用秘笈。</p>
+<h1 id="支持-rake-dbxxx-命令">支持 <code>rake db:xxx</code> 命令</h1>
+<p>在非 rails 项目怎么让 rake 支持 db:xxx 命令呢？把如下代码放到 <code>Rakefile</code> 中:</p>
+<pre tabindex="0"><code>namespace :db do
+  require &#39;activerecord&#39;
+  require &#39;yaml&#39;
+
+  desc &#34;加载项目表数据到数据库&#34;
+  task :init =&gt; :dbenv do
+    file = &#34;db/schema.rb&#34;
+    load(file) # 参考 rails 文件结构
+  end
+
+  desc &#34;创建数据库初始化数据&#34;
+  task :seed =&gt; :dbenv do
+    seed_file = File.join(File.dirname(__FILE__), &#39;db&#39;, &#39;seeds.rb&#39;)
+    load(seed_file) if File.exist?(seed_file)
+  end
+
+  desc &#34;合并 db/migrate 目录下的数据库文件&#34;
+  task :migrate =&gt; :dbenv do
+    ActiveRecord::Migration.verbose = ENV[&#34;VERBOSE&#34;] ? ENV[&#34;VERBOSE&#34;] == &#34;true&#34; : true
+    ActiveRecord::Migrator.migrate(&#34;db/migrate/&#34;, ENV[&#34;VERSION&#34;] ? ENV[&#34;VERSION&#34;].to_i : nil)
+    Rake::Task[&#34;db:schema:dump&#34;].invoke if ActiveRecord::Base.schema_format == :ruby
+  end
+
+  desc &#39;设定 STEP=n 回滚之前版本的数据库结构&#39;
+  task :rollback =&gt; :dbenv do
+    step = ENV[&#39;STEP&#39;] ? ENV[&#39;STEP&#39;].to_i : 1
+    ActiveRecord::Migrator.rollback(&#39;db/migrate/&#39;, step)
+    Rake::Task[&#34;db:schema:dump&#34;].invoke if ActiveRecord::Base.schema_format == :ruby
+  end
+
+  task :dbenv do
+    dbname = ENV[&#39;db&#39;] || &#39;development&#39;
+  	$dbconfig = YAML::load(&#39;db/database.yml&#39;)
+    ActiveRecord::Base.establish_connection($dbconfig[dbname])
+  end
+
+  namespace :schema do
+    desc &#34;把数据库结构写入 db/schema.rb 文件&#34;
+    task :dump =&gt; :dbenv do
+      require &#39;active_record/schema_dumper&#39;
+      File.open(ENV[&#39;SCHEMA&#39;] || &#34;db/schema.rb&#34;, &#34;w&#34;) do |file|
+        ActiveRecord::SchemaDumper.dump(ActiveRecord::Base.connection, file)
+      end
+    end
+  end
+end
+</code></pre><p>初始化数据库结构</p>
+<pre tabindex="0"><code>$ rake db:init
+</code></pre><h1 id="支持-sql-server">支持 SQL Server</h1>
+<p>只针对 *nix 系统：</p>
+<ol>
+<li>安装 freetds</li>
+</ol>
+<pre tabindex="0"><code>* Mac OS: `brew install freetds`
+* CentOS: `yum install -y freetds`
+</code></pre><ol start="2">
+<li><code>gem install tiny_tds</code></li>
+<li><code>gem install activerecord-sqlserver-adapter</code></li>
+</ol>
+<p>引用如下：</p>
+<pre tabindex="0"><code>require &#39;tiny_tds&#39;
+require &#39;activerecord-sqlserver-adapter&#39;
+require &#39;active_record&#39;
+
+ActiveRecord::Base.establish_connection({
+  :adapter =&gt; &#39;sqlserver&#39;
+ :host =&gt; &#39;10.10.10.10&#39;,
+ :username =&gt; &#39;sa&#39;,
+  :password =&gt; &#39;p@ssword&#39;,
+  :database =&gt; &#39;development&#39;,
+  :timeout =&gt; 10,
+  :port =&gt; 1433,
+})
+
+class Users &lt; ActiveRecord::Base
+	self.table_name = &#39;User&#39;
+	default_scope { lock(&#39;WITH (NOLOCK)&#39;) }
+end
+</code></pre><h1 id="多数据库支持">多数据库支持</h1>
+<p>创建 <code>config/database.yml</code> 文件:</p>
+<pre tabindex="0"><code>development:
+  adapter: mysql2
+  host: localhost
+  username: root
+  password:
+  database: development
+  timeout: 10
+  port: 3306
+test:
+  adapter: mysql2
+  host: 10.10.10.10
+  username: root
+  password: p@ssword
+  database: test
+  timeout: 10
+  port: 1433
+production:
+  adapter: mysql2
+  host: 33.33.33.33
+  username: root
+  password: p@ssword
+  database: production
+</code></pre><p>创建 <code>lib/model.rb</code> 文件:</p>
+<pre tabindex="0"><code>$dbconfig = YAML::load(File::open(&#39;config/database.yml&#39;))
+
+class User &lt; ActiveRecord::Base
+  establish_connection $dbconfig[&#39;development&#39;]
+end
+
+class Post &lt; ActiveRecord::Base
+  establish_connection $dbconfig[&#39;test&#39;]
+end
+
+class Tag &lt; ActiveRecord::Base
+  establish_connection $dbconfig[&#39;production&#39;]
+end
+</code></pre><h1 id="动态创建表名">动态创建表名</h1>
+<p>假若有个需求需要按照每月分表（当然也可以安装业务分表什么的），我们可以通过下面方式调用：</p>
+<pre tabindex="0"><code># 插入 post，如果表不存在则创建后插入
+post = Post.date(&#39;201312&#39;).get_or_create_table.create(
+  title:&#39;test&#39;,
+  content:&#39;body&#39;
+)
+
+# Model 实现代码
+class Post &lt; ActiveRecord::Base
+  @date = Time.now.strftime(&#34;%Y%02m&#34;)
+
+  def self.date(date)
+  	@date = date
+  end
+
+  def self.get_or_create_table(params={})
+    self.date(params[:date]) if params[:date]
+    self.create_table(params) if !self.exists?
+  end
+
+  def self.create_table(params={})
+    self.date(params[:date]) if params[:date]
+    table_name = self.table_name
+    ActiveRecord::Schema.define do
+      create_table table_name do |table|
+        table.column :title, :string
+        table.column :content, :text
+        table.column :created_at, :datetime
+        table.column :updated_at, :datetime
+      end
+    end
+
+    return self
+  end
+
+  def self.table_exists?
+    # 如果你设置了多数据库请取消下行注解并更改配置名（参考上个技巧）
+    # ActiveRecord::Base.establish_connection($dbconfig[&#39;development&#39;])
+
+    ActiveRecord::Base.connection.tables.include?(self.table_name)
+  end
+
+  def table_name
+    &#34;#{@date_users}&#34;
+  end
+end
+</code></pre>]]></content:encoded></item></channel></rss>

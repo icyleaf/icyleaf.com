@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>macOS on icyleaf</title><link>https://icyleaf.com/tags/macos/</link><description>Recent content in macOS on icyleaf</description><language>zh</language><lastBuildDate>Thu, 23 May 2019 22:45:07 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/macos/index.xml" rel="self" type="application/rss+xml"/><item><title>创建无 Storyboard（xib） 的 macOS NSWindow</title><link>https://icyleaf.com/2019/05/create-macos-nswindow-without-storyboard/</link><pubDate>Thu, 23 May 2019 22:45:07 +0800</pubDate><guid>https://icyleaf.com/2019/05/create-macos-nswindow-without-storyboard/</guid><description>
+macOS 开发和 iOS 差异真的很大</description><content:encoded><![CDATA[<h3 id="前言">前言</h3>
+<p>历届 WWDC 众多和 macOS 开发相关的视频中只要涉及到 UI 部分必会牵扯上 Storyboard，它能帮你辅助画 UI，使用 Auto Layout 进行布局，甚至你可以不用写一行代码仅仅使用它和 Core Data 就能完成一个 CURD 的功能。苹果总是极力的推荐所有的开发者（尤其是初学者）使用 Storyboard，它给人最直观的感受，配置参数也都做了调教（有时候开启一个参数需要手敲好多行代码）。</p>
+<p>但总有那么一群人就是不爱使用 Storyboard（比如我），尤其 App 涉及比较多的界面和交互的时候感觉还是代码更可控，团队开发在代码仓库管理上也更为方便。</p>
+<p>何奈在网络上存在的绝大多数的教程和视频都是以 Storyboard 为主，稍不留神可能就忘记设置了哪里，再或者过段时间举一反三的时候总会忘记在 Storyboard 设置了什么而无法实现同样的效果。</p>
+<p>恰好我最近比较闲花了点时间在写 macOS App，过程中体会到了 macOS 和 iOS 两个体系存在了巨大的差异，可能是习惯了 iOS 框架的编码方式就感觉到 macOS 格格不入，想要完成一个在 iOS 上简单的界面但 macOS 上就要想尽各种办法来去实现，迫切期待在马上来临的 WWDC 2019 上宣布新的解决方案。</p>
+<h3 id="开始教学">开始教学</h3>
+<p>打开 Xcode 选择 macOS 下面的 Cocoa App 进行下一步，填写好项目名称后勾不勾选 <strong>Use Storyboard</strong> 都没有关系，勾选就会创建一个 <code>Main.storyboard</code> 的文件，不勾选也会创建一个 <code>MainMenu.xib</code> 的文件，选择项目保存的路径就创建好第一个项目了。</p>
+<p>无论默认的是 <code>Main.storyboard</code> 或 <code>MainMenu.xib</code> 都会一个 Main Menu 控件这里咱们先不管它，除此之外还会有一个 Window 控件，一个 macOS App 基础的层级关系是这样的</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="ln">1</span><span class="cl">+--------------------------------------------------------------+
+</span></span><span class="line"><span class="ln">2</span><span class="cl">|                           NSWindow                           |
+</span></span><span class="line"><span class="ln">3</span><span class="cl">|  +--------------------------------------------------------+  |
+</span></span><span class="line"><span class="ln">4</span><span class="cl">|  |                    NSViewController                    |  |
+</span></span><span class="line"><span class="ln">5</span><span class="cl">|  |  +--------------------------------------------------+  |  |
+</span></span><span class="line"><span class="ln">6</span><span class="cl">|  |  |                      NSView                      |  |  |
+</span></span><span class="line"><span class="ln">7</span><span class="cl">|  |  +--------------------------------------------------+  |  |
+</span></span><span class="line"><span class="ln">8</span><span class="cl">|  +--------------------------------------------------------+  |
+</span></span><span class="line"><span class="ln">9</span><span class="cl">+--------------------------------------------------------------+
+</span></span></code></pre></div><p>选中 Window 控件后后选择删除（<code>Main.storyboard</code> 还需要再删除默认生成的 ViewController 控件），删除后样子是这样的</p>
+<p><img src="/tutorials/macos-app-without-storyboard/001/shot001-xcode-storyboard.png"
+  
+  
+  alt="Storyboard and xib in Xcode"></img>
+</p>
+<p>由于我们删除了默认的 NSWindow 因此需要在 <code>Appdelegate.swift</code> 文件创建一个：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">import</span> <span class="nc">Cocoa</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="kr">@NSApplicationMain</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="kd">class</span> <span class="nc">AppDelegate</span><span class="p">:</span> <span class="n">NSObject</span><span class="p">,</span> <span class="n">NSApplicationDelegate</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">    <span class="c1">// 创建默认的 Window</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">    <span class="kr">lazy</span> <span class="kd">var</span> <span class="nv">window</span><span class="p">:</span> <span class="n">NSWindow</span> <span class="p">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">       <span class="kd">let</span> <span class="nv">w</span> <span class="p">=</span> <span class="n">NSWindow</span><span class="p">(</span><span class="n">contentRect</span><span class="p">:</span> <span class="n">NSMakeRect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">640</span><span class="p">,</span> <span class="mi">480</span><span class="p">),</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">                        <span class="n">styleMask</span><span class="p">:</span> <span class="p">[.</span><span class="n">titled</span><span class="p">,</span> <span class="p">.</span><span class="n">resizable</span><span class="p">,</span> <span class="p">.</span><span class="n">miniaturizable</span><span class="p">,</span> <span class="p">.</span><span class="n">closable</span><span class="p">,</span> <span class="p">.</span><span class="n">fullSizeContentView</span><span class="p">],</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">                        <span class="n">backing</span><span class="p">:</span> <span class="p">.</span><span class="n">buffered</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">                        <span class="k">defer</span><span class="p">:</span> <span class="kc">false</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">
+</span></span><span class="line"><span class="ln">13</span><span class="cl">        <span class="c1">// 设置最小尺寸</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">        <span class="n">w</span><span class="p">.</span><span class="n">minSize</span> <span class="p">=</span> <span class="n">NSMakeSize</span><span class="p">(</span><span class="mi">320</span><span class="p">,</span> <span class="mi">240</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">
+</span></span><span class="line"><span class="ln">16</span><span class="cl">        <span class="c1">// 打开显示在屏幕的中心位置</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl">        <span class="n">w</span><span class="p">.</span><span class="n">center</span><span class="p">()</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl">
+</span></span><span class="line"><span class="ln">19</span><span class="cl">        <span class="k">return</span> <span class="n">w</span>
+</span></span><span class="line"><span class="ln">20</span><span class="cl">    <span class="p">}()</span>
+</span></span><span class="line"><span class="ln">21</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>默认的 window 设置好了，我们让他赶紧显示出来吧，在 <code>applicationDidFinishLaunching</code> 方法添加如下代码:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="ln">1</span><span class="cl"><span class="kd">func</span> <span class="nf">applicationDidFinishLaunching</span><span class="p">(</span><span class="kc">_</span> <span class="n">aNotification</span><span class="p">:</span> <span class="n">Notification</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">    <span class="c1">// 设置为 mainWindow 这样我们才能通过下面的代码调用</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">    <span class="n">window</span><span class="p">.</span><span class="n">makeKeyAndOrderFront</span><span class="p">(</span><span class="kc">nil</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">
+</span></span><span class="line"><span class="ln">5</span><span class="cl">    <span class="c1">// 设置 mainWindow 的标题</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">    <span class="n">NSApplication</span><span class="p">.</span><span class="n">shared</span><span class="p">.</span><span class="n">mainWindow</span><span class="p">?.</span><span class="n">title</span> <span class="p">=</span> <span class="s">&#34;Hello world&#34;</span>
+</span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>注意看上面代码块的备注，这两行代码不能颠倒，否则 <code>NSApplication.shared.mainWindow</code> 返回的是 <code>nil</code>，我们来运行一下看看，是不是就能看到一个 640x480 的窗口，标题显示的 hello world</p>
+<p><img src="/tutorials/macos-app-without-storyboard/001/shot002-nswindow.png"
+  
+  
+  alt="NSWindow App"></img>
+</p>
+<p>用鼠标拖拽缩放大小看看是不是到一个保留尺寸就无法再缩小了，这个就是通过代码设置的最小尺寸。虽然 App 可以运行了内容还是空空的，根据上面画出来的层级关系还需要一个 NSViewController 充当 contentViewController，它相当于 iOS 的 rootViewController 这样说应该就很容易理解了吧。</p>
+<p>假设 App 需要完成这样一个功能，界面有一个 Label 和 Button，点击 Button 可以改变 Label 的文字内容：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="ln">1</span><span class="cl">+----------------------+          +----------------------+
+</span></span><span class="line"><span class="ln">2</span><span class="cl">|                      |          |                      |
+</span></span><span class="line"><span class="ln">3</span><span class="cl">|   Click the button   |          |         Yeah!        |
+</span></span><span class="line"><span class="ln">4</span><span class="cl">|                      |          |                      |
+</span></span><span class="line"><span class="ln">5</span><span class="cl">| +------------------+ | -------&gt; | +------------------+ |
+</span></span><span class="line"><span class="ln">6</span><span class="cl">| |     Click me     | |          | |     Click me     | |
+</span></span><span class="line"><span class="ln">7</span><span class="cl">| +------------------+ |          | +------------------+ |
+</span></span><span class="line"><span class="ln">8</span><span class="cl">|                      |          |                      |
+</span></span><span class="line"><span class="ln">9</span><span class="cl">+----------------------+          +----------------------+
+</span></span></code></pre></div><p>我们用原生 Auto Layout 布局后的代码是这样的</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">import</span> <span class="nc">Cocoa</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="kd">class</span> <span class="nc">ViewController</span><span class="p">:</span> <span class="n">NSViewController</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">    <span class="kr">lazy</span> <span class="kd">var</span> <span class="nv">label</span><span class="p">:</span> <span class="n">NSTextField</span> <span class="p">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">        <span class="kd">let</span> <span class="nv">v</span> <span class="p">=</span> <span class="n">NSTextField</span><span class="p">(</span><span class="n">labelWithString</span><span class="p">:</span> <span class="s">&#34;Press the button&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">        <span class="n">v</span><span class="p">.</span><span class="n">translatesAutoresizingMaskIntoConstraints</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">        <span class="k">return</span> <span class="n">v</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">    <span class="p">}()</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">
+</span></span><span class="line"><span class="ln">12</span><span class="cl">
+</span></span><span class="line"><span class="ln">13</span><span class="cl">    <span class="kr">lazy</span> <span class="kd">var</span> <span class="nv">button</span><span class="p">:</span> <span class="n">NSButton</span> <span class="p">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">        <span class="kd">let</span> <span class="nv">v</span> <span class="p">=</span> <span class="n">NSButton</span><span class="p">(</span><span class="n">frame</span><span class="p">:</span> <span class="p">.</span><span class="n">zero</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">        <span class="n">v</span><span class="p">.</span><span class="n">translatesAutoresizingMaskIntoConstraints</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">
+</span></span><span class="line"><span class="ln">17</span><span class="cl">        <span class="k">return</span> <span class="n">v</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl">    <span class="p">}()</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">
+</span></span><span class="line"><span class="ln">20</span><span class="cl">    <span class="kr">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">21</span><span class="cl">        <span class="kc">super</span><span class="p">.</span><span class="n">viewDidLoad</span><span class="p">()</span>
+</span></span><span class="line"><span class="ln">22</span><span class="cl">
+</span></span><span class="line"><span class="ln">23</span><span class="cl">        <span class="n">view</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">24</span><span class="cl">        <span class="n">view</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">button</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">25</span><span class="cl">
+</span></span><span class="line"><span class="ln">26</span><span class="cl">        <span class="n">NSLayoutConstraint</span><span class="p">.</span><span class="n">activate</span><span class="p">([</span>
+</span></span><span class="line"><span class="ln">27</span><span class="cl">            <span class="n">label</span><span class="p">.</span><span class="n">centerXAnchor</span><span class="p">.</span><span class="n">constraint</span><span class="p">(</span><span class="n">equalTo</span><span class="p">:</span> <span class="n">view</span><span class="p">.</span><span class="n">centerXAnchor</span><span class="p">),</span>
+</span></span><span class="line"><span class="ln">28</span><span class="cl">            <span class="n">label</span><span class="p">.</span><span class="n">centerYAnchor</span><span class="p">.</span><span class="n">constraint</span><span class="p">(</span><span class="n">equalTo</span><span class="p">:</span> <span class="n">view</span><span class="p">.</span><span class="n">centerYAnchor</span><span class="p">,</span> <span class="n">constant</span><span class="p">:</span> <span class="o">-</span><span class="mi">20</span><span class="p">),</span>
+</span></span><span class="line"><span class="ln">29</span><span class="cl">
+</span></span><span class="line"><span class="ln">30</span><span class="cl">            <span class="n">button</span><span class="p">.</span><span class="n">centerXAnchor</span><span class="p">.</span><span class="n">constraint</span><span class="p">(</span><span class="n">equalTo</span><span class="p">:</span> <span class="n">view</span><span class="p">.</span><span class="n">centerXAnchor</span><span class="p">),</span>
+</span></span><span class="line"><span class="ln">31</span><span class="cl">            <span class="n">button</span><span class="p">.</span><span class="n">topAnchor</span><span class="p">.</span><span class="n">constraint</span><span class="p">(</span><span class="n">equalTo</span><span class="p">:</span> <span class="n">label</span><span class="p">.</span><span class="n">bottomAnchor</span><span class="p">,</span> <span class="n">constant</span><span class="p">:</span> <span class="mi">20</span><span class="p">),</span>
+</span></span><span class="line"><span class="ln">32</span><span class="cl">            <span class="n">button</span><span class="p">.</span><span class="n">heightAnchor</span><span class="p">.</span><span class="n">constraint</span><span class="p">(</span><span class="n">equalToConstant</span><span class="p">:</span> <span class="mi">30</span><span class="p">),</span>
+</span></span><span class="line"><span class="ln">33</span><span class="cl">            <span class="n">button</span><span class="p">.</span><span class="n">widthAnchor</span><span class="p">.</span><span class="n">constraint</span><span class="p">(</span><span class="n">equalToConstant</span><span class="p">:</span> <span class="mi">100</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">34</span><span class="cl">            <span class="p">])</span>
+</span></span><span class="line"><span class="ln">35</span><span class="cl">
+</span></span><span class="line"><span class="ln">36</span><span class="cl">        <span class="n">button</span><span class="p">.</span><span class="n">title</span> <span class="p">=</span> <span class="s">&#34;Click me&#34;</span>
+</span></span><span class="line"><span class="ln">37</span><span class="cl">        <span class="n">button</span><span class="p">.</span><span class="n">target</span> <span class="p">=</span> <span class="kc">self</span>
+</span></span><span class="line"><span class="ln">38</span><span class="cl">        <span class="n">button</span><span class="p">.</span><span class="n">action</span> <span class="p">=</span> <span class="k">#selector</span><span class="p">(</span><span class="n">onClickme</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">39</span><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="ln">40</span><span class="cl">
+</span></span><span class="line"><span class="ln">41</span><span class="cl">    <span class="kr">@objc</span> <span class="kd">func</span> <span class="nf">onClickme</span><span class="p">(</span><span class="kc">_</span> <span class="n">sender</span><span class="p">:</span> <span class="n">NSButton</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">42</span><span class="cl">        <span class="n">label</span><span class="p">.</span><span class="n">textColor</span> <span class="p">=</span> <span class="p">.</span><span class="n">red</span>
+</span></span><span class="line"><span class="ln">43</span><span class="cl">        <span class="n">label</span><span class="p">.</span><span class="n">stringValue</span> <span class="p">=</span> <span class="s">&#34;Yeah!&#34;</span>
+</span></span><span class="line"><span class="ln">44</span><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="ln">45</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>代码看着不错的样子，还差最后一步把 ViewController 添加到 NSWindow 里吧，返回 <code>AppDelegate.swift</code> 文件找到上次编辑的 <code>applicationDidFinishLaunching</code> 方法里面在代码的末尾添加最后的代码：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">func</span> <span class="nf">applicationDidFinishLaunching</span><span class="p">(</span><span class="kc">_</span> <span class="n">aNotification</span><span class="p">:</span> <span class="n">Notification</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">    <span class="c1">// 设置为 mainWindow 这样我们才能通过下面的代码调用</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">    <span class="n">window</span><span class="p">.</span><span class="n">makeKeyAndOrderFront</span><span class="p">(</span><span class="kc">nil</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">    <span class="c1">// 设置 mainWindow 的标题</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">    <span class="n">NSApplication</span><span class="p">.</span><span class="n">shared</span><span class="p">.</span><span class="n">mainWindow</span><span class="p">?.</span><span class="n">title</span> <span class="p">=</span> <span class="s">&#34;Hello world&#34;</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">    <span class="c1">// 设置 contentViewController</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">    <span class="kd">let</span> <span class="nv">contentViewController</span> <span class="p">=</span> <span class="n">ViewController</span><span class="p">()</span> <span class="c1">// or ViewController(nibName:nil, bundle: nil)</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">    <span class="n">window</span><span class="p">.</span><span class="n">contentViewController</span> <span class="p">=</span> <span class="n">contentViewController</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><blockquote>
+<p>咦？！你这不对啊，<code>NSViewController</code> 代码在初始化的时候是不能这样的，必须通过 <code>init(coder:)</code> 或 <code>init(nibName:bundle:)</code> 这两种方法才行，这样写运行会提示 &ldquo;could not load the nibName: WithoutStoryboard.ViewController in bundle (null).&rdquo; 错误的！</p>
+</blockquote>
+<p>观察的不错嘛，这点小细节都你发现了，NSViewController 类通常都是通过 <code>init(nibName:bundle:)</code> 进行初始化来关联 xib 界面，既然我们抛弃了 Storyboard（xib) 那怎么办呢，这里理解 NSViewController 的<a href="https://developer.apple.com/documentation/appkit/nsviewcontroller">生命周期</a> （macOS 10.10 之后版本)</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="ln"> 1</span><span class="cl">+----------------------------------+   +------------------------------+
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">|               init               +--&gt;+           loadView()         |
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">+-----------------+----------------+   +---------------+--------------+
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">| Storyboard(xib) |      code      |                   |
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">+----------------------------------+                   v
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">|  init(coder:)   | init(nibName:  |   +---------------+--------------+
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">|                 |      bundle:)  |   |          viewDidLoad()       |
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">+-----------------+----------------+   +---------------+--------------+
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">                                                       |
+</span></span><span class="line"><span class="ln">10</span><span class="cl">                                                       v
+</span></span><span class="line"><span class="ln">11</span><span class="cl">+----------------------------------+   +---------------+--------------+
+</span></span><span class="line"><span class="ln">12</span><span class="cl">|        viewWillDisappear()       +&lt;--+         viewWillAppear()     |
+</span></span><span class="line"><span class="ln">13</span><span class="cl">+-----------------+----------------+   +------------------------------+
+</span></span><span class="line"><span class="ln">14</span><span class="cl">                  |                    |    updateViewConstraints()   |
+</span></span><span class="line"><span class="ln">15</span><span class="cl">                  |                    |                              |
+</span></span><span class="line"><span class="ln">16</span><span class="cl">                  v                    |       viewWillLayout()       |
+</span></span><span class="line"><span class="ln">17</span><span class="cl">+-----------------+----------------+   |                              |
+</span></span><span class="line"><span class="ln">18</span><span class="cl">|         viewDidDisappear()       |   |        viewDidLayout()       |
+</span></span><span class="line"><span class="ln">19</span><span class="cl">+----------------------------------+   +------------------------------+
+</span></span></code></pre></div><p>生命周期和 iOS 的 UIViewController 也差不多，从上面的生命周期来看只能覆写 loadView 方法才行：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="ln">1</span><span class="cl"><span class="kd">class</span> <span class="nc">ViewController</span><span class="p">:</span> <span class="n">NSViewController</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">
+</span></span><span class="line"><span class="ln">3</span><span class="cl">    <span class="kr">override</span> <span class="kd">func</span> <span class="nf">loadView</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">        <span class="c1">// 设置 ViewController 大小同 mainWindow</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">        <span class="k">guard</span> <span class="kd">let</span> <span class="nv">windowRect</span> <span class="p">=</span> <span class="n">NSApplication</span><span class="p">.</span><span class="n">shared</span><span class="p">.</span><span class="n">mainWindow</span><span class="p">?.</span><span class="n">frame</span> <span class="k">else</span> <span class="p">{</span> <span class="k">return</span> <span class="p">}</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">        <span class="n">view</span> <span class="p">=</span> <span class="n">NSView</span><span class="p">(</span><span class="n">frame</span><span class="p">:</span> <span class="n">windowRect</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">7</span><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="ln">8</span><span class="cl">
+</span></span><span class="line"><span class="ln">9</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>看了上面代码也就明白了为什么在 <code>AppDelegate.swift</code> 设置 contentViewController 需要在代码块的末尾添加了吧，如果在最开始添加那就无法获取到 mainWindow 也就无法设置 ViewController 的 frame。这里还有个小提醒 macOS 10.10 之后版本在覆写该方法如果调用了 <code>super.loadView()</code> 方法就会自动加载同名的 xib 文件<strong>绝对不能填写</strong>。</p>
+<p>让我们在运行一次看看？</p>
+<p><img src="/tutorials/macos-app-without-storyboard/001/shot003-final-app.png"
+  
+  
+  alt="Final App"></img>
+</p>
+<p>Ta-Da! 完成了！</p>
+<h3 id="结语">结语</h3>
+<p>这算是一个开篇，后续还会再继续整理，尽请期待。</p>
+]]></content:encoded></item><item><title>如何解决 macOS 编译丢失 C Header 文件</title><link>https://icyleaf.com/2018/10/apply-for-a-motorcycle-license/</link><pubDate>Wed, 24 Oct 2018 14:30:07 +0800</pubDate><guid>https://icyleaf.com/2018/10/apply-for-a-motorcycle-license/</guid><description>
+macOS 系统小升级带了兼容困扰怎么办</description><content:encoded><![CDATA[<p>今天在 macOS 10.14 通过 brew 安装 libgit2 之后调用时提示提示 <code>fatal error: 'time.h' file not found</code>，本以为是 brew 的问题自己去编译问题依然。确认了 Xcode Command Line Tools 并且再次确认了 <code>xcode-select -s /Applications/Xcode.app</code> 之后还是这样，就连重启大法也不用之后，在 Google 上检索换了好些关键词也没找到问题出在哪，索性把关键词继续模糊放大扩大范围，看到了 github 一个不知道是啥的项目看到有 <code>'stdio.h.h' file not found</code>
+类似的 issue 终于找到了<a href="https://github.com/frida/frida/issues/338#issuecomment-424595668">解决答案</a>：</p>
+<blockquote>
+<p>关键原因是在于找不到 /usr/include 目录，然而安装 command-line tools 也不会自动帮你解决，而是需要在安装后再手动安装 /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg 才行。</p>
+</blockquote>
+<p>跟随这个解决方案也附带了<a href="https://forums.developer.apple.com/thread/104296">解释</a>：</p>
+<blockquote>
+<p>From the latest Xcode 10 Beta 2 release notes.</p>
+<p>The Command Line Tools package installs the macOS system headers inside the macOS SDK. Software that compiles with the installed tools will search for macOS headers at the standard include path: /Applications/Xcodebeta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.1 4.sdk/usr/include For legacy software that looks for the macOS headers in the base system under /usr/include, please install the package file located at: /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg</p>
+</blockquote>
+]]></content:encoded></item></channel></rss>

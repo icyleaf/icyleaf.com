@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Unicorn on icyleaf</title><link>https://icyleaf.com/tags/unicorn/</link><description>Recent content in Unicorn on icyleaf</description><language>zh</language><lastBuildDate>Sun, 26 Jan 2014 12:34:56 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/unicorn/index.xml" rel="self" type="application/rss+xml"/><item><title>Puma 替换 Unicorn 跑 Gitlab</title><link>https://icyleaf.com/2014/01/moving-unicorn-to-puma-on-gitlab/</link><pubDate>Sun, 26 Jan 2014 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2014/01/moving-unicorn-to-puma-on-gitlab/</guid><description>
+用 Ruby 编写的 Puma 网关才是未来</description><content:encoded><![CDATA[<p>前篇介绍到如何在《<a href="http://icyleaf.com/2013/09/how-to-install-gitlab-on-centos/">CentoOS 上面安装 Gitlab</a>》一文，gitlab 默认使用的是 <code>unicorn</code> 作为内部的 app server，再用 <code>nginx</code> 做代理转发。之前是在公司内部搭建了一个平台，用着还算可以。有打算在 <a href="https://www.linode.com/?r=66b0730eca572d3e45f083e29b1b3f8781b2a009">Linode 购买的 VPS</a> 上面，使用 <code>unicorn</code> 跑服务的时候 <code>ruby</code> 的进程居然占了 400-500M 左右，对于 Linode 刚刚免费升级之后才有 1G 内存的环境上，我还真有点放弃安装它的欲望。于是在想是否可以使用 <code>puma</code> 替换掉原先的。</p>
+<h2 id="puma">puma</h2>
+<p>简单介绍下 <a href="http://puma.io/"><code>puma</code></a>，它是一个由 ruby 编写的转为 <a href="http://rack.github.io/"><code>rack</code></a> 设计的 app server，在性能和资源占有上却有极大的优势（下表数据来自官方）</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">PUMA - 78 Mb
+</span></span><span class="line"><span class="ln">2</span><span class="cl">RAINBOWS! (1X16) - 120 Mb
+</span></span><span class="line"><span class="ln">3</span><span class="cl">UNICORN - 1076 Mb
+</span></span><span class="line"><span class="ln">4</span><span class="cl">RAINBOWS! (16X32) - 1138 Mb
+</span></span></code></pre></div><p>而且集成也非常的简单，若使用 rails 或者 sinatra（及 padrino）都已经支持，直接 <code>gem install puma</code>，然后跑默认的 <code>rails/padrino server</code> 会自动加载。</p>
+<h2 id="教程">教程</h2>
+<p>Okay，经过一番查找，官方在收集的 <a href="https://gitlab.com/gitlab-org/gitlab-recipes/tree/master">repices</a> 里面有关于 <code>puma</code> 的一些配置。他们也是收集的非官方资料，里面的资料只有借鉴意义，真正拿来用的时候各种问题，所以才有了本篇文字。</p>
+<p>首先是关闭启动的 <code>gitlab</code> 服务</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ <span class="o">(</span>sudo<span class="o">)</span> service gitlab stop
+</span></span></code></pre></div><p>关闭之后，添加 puma gem，打开 <code>Gemfile</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">group</span> <span class="ss">:unicorn</span> <span class="k">do</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="n">gem</span> <span class="s1">&#39;unicorn&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 4.6.3&#39;</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">	<span class="n">gem</span> <span class="s1">&#39;unicorn-worker-killer&#39;</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><p>找到上面的这段 group 替换成：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">gem</span> <span class="s1">&#39;puma&#39;</span>
+</span></span></code></pre></div><p>再者修改 <code>config.ru</code>，把下面这段代码做下替换，删除 unicorn 的代码，加载 puma：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="ln">1</span><span class="cl"><span class="k">unless</span> <span class="n">defined?</span><span class="p">(</span><span class="no">PhusionPassenger</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nb">require</span> <span class="s1">&#39;unicorn&#39;</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="c1"># Unicorn self-process killer</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">  <span class="nb">require</span> <span class="s1">&#39;unicorn/worker_killer&#39;</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">  <span class="c1"># Max memory size (RSS) per worker</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">  <span class="n">use</span> <span class="no">Unicorn</span><span class="o">::</span><span class="no">WorkerKiller</span><span class="o">::</span><span class="no">Oom</span><span class="p">,</span> <span class="p">(</span><span class="mi">200</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">20</span><span class="p">)),</span> <span class="p">(</span><span class="mi">250</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">20</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><p>更新成</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="ln">1</span><span class="cl"><span class="k">unless</span> <span class="n">defined?</span><span class="p">(</span><span class="no">PhusionPassenger</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nb">require</span> <span class="s1">&#39;puma&#39;</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><p>替换完毕更新 <code>gem</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># mysql 数据库</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">bundle install --without development <span class="nb">test</span> postgres --path vendor/bundle --no-deployment
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="c1"># postgres 数据库</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">bundle install --without development <span class="nb">test</span> mysql --path vendor/bundle --no-deployment
+</span></span></code></pre></div><p>最后还有两处需要修改，添加 <code>config/puma.rb</code>（替代 <code>config/unicorn.rb</code>） 以及替换 <code>/etc/init.d/gitlab</code> 服务脚本代码。</p>
+<p><code>config/puma.rb</code>的代码在<a href="https://gitlab.com/gitlab-org/gitlab-recipes/blob/master/app-server/puma/puma.rb">这里可以下载</a>，无需做任何的修改。</p>
+<p><code>/etc/init.d/gitlab</code> 服务脚本：<a href="https://gitlab.com/gitlab-org/gitlab-recipes/tree/master/init/sysvinit/centos">CentOS</a> | <a href="https://gitlab.com/gitlab-org/gitlab-recipes/tree/master/init/sysvinit/debian">Debian(Ubuntu)</a></p>
+<blockquote>
+<p>服务脚本需要设置下执行权限： chmod +x /etc/init.d/gitlab</p>
+</blockquote>
+<p>最后开启服务应该就完美了</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ <span class="o">(</span>sudo<span class="o">)</span> service gitlab start
+</span></span></code></pre></div><h2 id="我想用-apache-怎么办">我想用 Apache 怎么办？</h2>
+<p>嗯，我没尝试过，官方有提供收集的资料，<a href="https://gitlab.com/gitlab-org/gitlab-recipes/tree/master/web-server">自己查看下吧</a>，记得要活学活用，直接套肯定会出问题的。</p>
+]]></content:encoded></item></channel></rss>

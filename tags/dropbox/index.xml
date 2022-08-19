@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Dropbox on icyleaf</title><link>https://icyleaf.com/tags/dropbox/</link><description>Recent content in Dropbox on icyleaf</description><language>zh</language><lastBuildDate>Mon, 30 Jul 2012 12:34:56 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/dropbox/index.xml" rel="self" type="application/rss+xml"/><item><title>Dropbox和Apache关于权限的问题</title><link>https://icyleaf.com/2012/07/how-to-fix-dropbox-with-apache-about-acces-permission/</link><pubDate>Mon, 30 Jul 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/07/how-to-fix-dropbox-with-apache-about-acces-permission/</guid><description>
+自从上次 SSD 硬盘不小心挂了之后，就算是返厂检修，一旦是算坏只能更换新的无法提供维修服务。这次我对待一些数据就更加小心了。尤其是代码，其实这次代...</description><content:encoded><![CDATA[<p>自从上次 SSD 硬盘不小心挂了之后，就算是返厂检修，一旦是算坏只能更换新的无法提供维修服务。这次我对待一些数据就更加小心了。尤其是代码，其实这次代码也并没有损失多少，丢失了一些平时的练习的项目。但为了保证代码的完整性和整体的同步性，我决定使用 Dropbox 同步我的代码。这样平时练习的代码也不必丢到 Github 或者花麻烦自建的服务器上面，什么都不需要操作就可以同步与无形之中。</p>
+<p>移动用户目录的 src 至 Dropbox 目录并创建软链接：</p>
+<pre tabindex="0"><code>$ mv ~/src ~/Dropbox/src
+</code></pre><pre tabindex="0"><code>$ ln -s ~/Dropbox/src ~/src
+</code></pre><p>如果这是写 Dropbox 同步代码的事情，那到这里就结束了，后来发现 apache
+无法访问 php 的目录，报如下错误：</p>
+<blockquote>
+<p>Symbolic link not allowed or link target not accessible:
+/Users/icyleaf/src</p>
+</blockquote>
+<p>这个问题是因为我 VirtualHost 是这样配置的，使用的是经过处理的软链接的方式访问，而 apache 默认不允许这种行为：</p>
+<pre tabindex="0"><code>&lt;directory &#34; users icyleaf src php&#34;&gt;
+
+	Options Indexes FollowSymLinks MultiViews Includes
+
+	AllowOverride All
+
+	Order allow,deny
+
+	Allow from all
+
+&lt;/directory&gt;
+</code></pre><p>但是我 Directory 已经配置了 <code>Options FollowSymLinks</code> 但还是报如下错误，经过反复的检查 <code>/Users/icyleaf/src</code> 目录的权限也没有问题，最后只能在配置里把软链接替换成原始路径：</p>
+<pre tabindex="0"><code>&lt;directory &#34; users icyleaf dropbox src php&#34;&gt;
+
+	Options Indexes FollowSymLinks MultiViews Includes
+
+	AllowOverride All
+
+	Order allow,deny
+
+	Allow from all
+
+&lt;/directory&gt;
+</code></pre><p>发现还是无法访问，但是报了的是另外一个错误：</p>
+<blockquote>
+<p>Permission denied: access to / denied</p>
+</blockquote>
+<p>又是一番折腾，最终发现居然是坑爹的 Dropbox 的访问权限居然是：</p>
+<pre tabindex="0"><code>drwx------@ 21 icyleaf staff 714 7 30 06:07 Dropbox
+</code></pre><p>调整权限：</p>
+<pre tabindex="0"><code>$ chmod o+w ~/Dropbox
+</code></pre><p>再次查看权限:</p>
+<pre tabindex="0"><code>drwxr-xr-x@ 21 icyleaf staff 714 7 30 06:07 Dropbox
+</code></pre><p>再次访问权限没有问题，替换为原来的软链接方式访问，一切搞定！</p>
+]]></content:encoded></item></channel></rss>

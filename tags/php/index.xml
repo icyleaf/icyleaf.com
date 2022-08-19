@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>PHP on icyleaf</title><link>https://icyleaf.com/tags/php/</link><description>Recent content in PHP on icyleaf</description><language>zh</language><lastBuildDate>Mon, 02 May 2011 12:34:56 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/php/index.xml" rel="self" type="application/rss+xml"/><item><title>魔豆及其豆瓣 API 测试平台开源咯</title><link>https://icyleaf.com/2011/05/modou-and-douban-api-console-is-open-source-now/</link><pubDate>Mon, 02 May 2011 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2011/05/modou-and-douban-api-console-is-open-source-now/</guid><description>
+这是作为 2011 年 5 月 1 日劳动节的福利发放，欢迎各位 Kohana 开发者及其爱好者围观领取，领取内容及其使用方式请前往本人 Github 的项目地址：https://git...</description><content:encoded>&lt;p>这是作为 2011 年 5 月 1 日劳动节的福利发放，欢迎各位 Kohana 开发者及其爱好者围观领取，领取内容及其使用方式请前往本人 Github 的项目地址：https://github.com/icyleaf/modou&lt;/p></content:encoded></item><item><title>Nginx+FastCGI 环境搭建 Kohana</title><link>https://icyleaf.com/2010/05/nginx-with-fastcgi-build-kohana/</link><pubDate>Mon, 31 May 2010 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2010/05/nginx-with-fastcgi-build-kohana/</guid><description>
+Kohana 默认仅对 Apache 环境提供的部署支持，其实对于 Nginx+FastCGI 也是很容易支持的。本文搭建环境是 Ubuntu 10.4 并采用 apt-get 方式安装，喜爱编译的朋友可以自行解决 :) 1. 安装 MySQL 1$ sudo apt-get install...</description><content:encoded><![CDATA[<p>Kohana 默认仅对 Apache 环境提供的部署支持，其实对于 Nginx+FastCGI
+也是很容易支持的。本文搭建环境是 Ubuntu 10.4 并采用 apt-get
+方式安装，喜爱编译的朋友可以自行解决 :)</p>
+<h3 id="1-安装-mysql">1. 安装 MySQL</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ sudo apt-get install mysql-server mysql-client
+</span></span></code></pre></div><p>安装过程在会提示设置 root 账户的密码，如果是本机测试开发可以留空后稍候设置。</p>
+<h3 id="2-安装-nginx">2. 安装 Nginx</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># 安装 Nginx</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">$ sudo apt-get install nginx
+</span></span><span class="line"><span class="ln">3</span><span class="cl">
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="c1"># 启动 Nginx</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">$ sudo /etc/init.d/nginx start
+</span></span></code></pre></div><p>完成上面两步之后，打开浏览器，输入 localhost 或 127.0.0.1 如果看到 <strong>Welcome to Nginx!</strong> 字样就说明安装成功了，是不是很简单 :)</p>
+<p>注意，如果你的机器上面如果安装了其他 web 容器（比如 Apache，Lighttd等），启动
+ngnix 的时候肯定会报错，因为这些 web 容器启动均占用的 80
+端口，更改的方法如下：</p>
+<p>编辑 <code>/etc/nginx/sites-available/default</code> 文件，修改 server 段中的 listen
+为 localhost:8080，其中 8080 是更改的监听端口：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">server {
+</span></span><span class="line"><span class="ln">2</span><span class="cl">listen   localhost:8080;
+</span></span><span class="line"><span class="ln">3</span><span class="cl">server_name  localhost;
+</span></span><span class="line"><span class="ln">4</span><span class="cl"># [...]
+</span></span></code></pre></div><p>保存后重启 Nginx：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ sudo /etc/init.d/nginx restart
+</span></span></code></pre></div><h3 id="3-安装-php5">3. 安装 PHP5</h3>
+<p>PHP 在 Nginx 下是通过 FastCGI 模式运行的，使用 Debain 的包管理可以安装
+PHP5 和一些必须的（比如，php5-mysql）和可选的扩展（比如，Kohana 要求的
+php5-curl，php5-gd，php5-mcrypt），下面前 5
+个是必须的，其他可以依据个人需求添加或减少：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ sudo apt-get install php5-cgi php5-mysql php5-curl php5-gd php5-mcrypt php5-idn php-pear php5-imagick php5-imap php5-memcache php5-mhash php5-ming php5-pspell php5-recode php5-snmp php5-tidy php5-xmlrpc php5-xsl
+</span></span></code></pre></div><p>安装完毕后，需要编辑 php 的配置：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># 编辑 /etc/php5/cgi/php.ini 文件</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="c1"># 修改 cgi.fix_pathinfo 的值为 1（如果此项被注解掉了，请删除前面的 # 符号）	cgi.fix_pathinfo = 1</span>
+</span></span></code></pre></div><p>至此 PHP5 已经安装完毕，但是还没有结束，因为我们还没有让它支持 FastCGI
+嗯，由于 Debain 包并没有提供单独的 FastCGI 守护程序，因此我们可以使用其他的方式实现，通常使用的是 lighttpd 项目提供的 spawn-fcgi（本文也用的这个，但是它总会出现小毛病，导致 Nginx 服务 Down 掉，稍候也会给出一点解决方案）或者是 <a href="http://php-fpm.org/">PHP-FPM</a>（专门为 PHP 提供 FastCGI 进程管理的软件）</p>
+<p>好吧，让我们在安装 lighttpd：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ sudo apt-get install lighttpd
+</span></span></code></pre></div><p>安装完毕后会你发现一些错误信息：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">Starting web server: lighttpd
+</span></span><span class="line"><span class="ln">2</span><span class="cl">2010-05-31 10:44:51: <span class="o">(</span>network.c.300<span class="o">)</span> can not <span class="nb">bind</span> to port: <span class="m">80</span> Address already in use failed!
+</span></span></code></pre></div><p>还是上面提到的重复占用端口的问题，不过由于我们只是使用它的 spawn-fcgi 因此我们可以不让它当作服务启动：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ sudo update-rc.d -f lighttpd remove
+</span></span></code></pre></div><p>好了，让我们开启 FastCGI 守护进程：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ /usr/bin/spawn-fcgi -a 127.0.0.1 -p <span class="m">9000</span> -u www-data -g www-data -f /usr/bin/php5-cgi -P /var/run/fastcgi-php.pid
+</span></span></code></pre></div><p>其中 -a 代表 ip 地址， -p 是进程的端口， -u 是用户， -g 是用户组，-f 是 <code>php5-cgi</code> 的执行路径，-P 是进程的 pid，可以适当的在后面在加一个 -C 参数，这个数创建的进程数，本机开发的话一般设置在 3 - 5 左右即可（也可以使用 ab 测试以设置适当的进程数，这样可以防止 Nginx 的无辜 Down 掉）</p>
+<p>提示：spawn-fcgi 必须在运行的状况下才能使得 Nginx 支持 PHP
+运行，因此可以把上面的启动代码追加到 /etc/rc.local 文件的尾部保存（在 exit
+命令之前）。</p>
+<h3 id="4-配置-nginx">4. 配置 Nginx</h3>
+<p>Nginx 的配置相对比较简单，语法很像 PHP 代码，如果不了解的可以参考这个：<a href="http://wiki.nginx.org/NginxFullExample">范例1</a>和<a href="http://wiki.nginx.org/NginxFullExample2">范例2</a></p>
+<p>编辑 <strong>/etc/nginx/nginx.conf</strong> 文件并作如下修改：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">[...]
+</span></span><span class="line"><span class="ln">2</span><span class="cl">worker_processes  5;
+</span></span><span class="line"><span class="ln">3</span><span class="cl">[...]
+</span></span><span class="line"><span class="ln">4</span><span class="cl">keepalive_timeout   2;
+</span></span><span class="line"><span class="ln">5</span><span class="cl">[...]
+</span></span></code></pre></div><p>定义虚拟主机的配置项存放在 <code>/etc/nginx/conf.d/</code> 目录下面，每个虚拟主机配置一个文件并以 .conf 为文件后缀即可，默认是 default，也就是上面修改 Nginx 默认监听端口的文件，这里还要进一步对它配（点击右侧展开）：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln"> 1</span><span class="cl">[...]
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">server {
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">listen   80;
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">server_name  _;
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">access_log  /var/log/nginx/localhost.access.log;
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">location / {
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">root   /var/www/nginx-default;
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">index  index.php index.html index.htm;
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">}
+</span></span><span class="line"><span class="ln">10</span><span class="cl">
+</span></span><span class="line"><span class="ln">11</span><span class="cl">location /doc {
+</span></span><span class="line"><span class="ln">12</span><span class="cl">root   /usr/share;
+</span></span><span class="line"><span class="ln">13</span><span class="cl">autoindex on;
+</span></span><span class="line"><span class="ln">14</span><span class="cl">allow 127.0.0.1;
+</span></span><span class="line"><span class="ln">15</span><span class="cl">deny all;
+</span></span><span class="line"><span class="ln">16</span><span class="cl">}        l
+</span></span><span class="line"><span class="ln">17</span><span class="cl">
+</span></span><span class="line"><span class="ln">18</span><span class="cl">ocation /images {
+</span></span><span class="line"><span class="ln">19</span><span class="cl">root   /usr/share;
+</span></span><span class="line"><span class="ln">20</span><span class="cl">autoindex on;
+</span></span><span class="line"><span class="ln">21</span><span class="cl">}
+</span></span><span class="line"><span class="ln">22</span><span class="cl">
+</span></span><span class="line"><span class="ln">23</span><span class="cl"># error_page  404  /404.html;
+</span></span><span class="line"><span class="ln">24</span><span class="cl"># redirect server error pages to the static page /50x.html
+</span></span><span class="line"><span class="ln">25</span><span class="cl"># error_page   500 502 503 504  /50x.html;
+</span></span><span class="line"><span class="ln">26</span><span class="cl">location = /50x.html {
+</span></span><span class="line"><span class="ln">27</span><span class="cl">root   /var/www/nginx-default;
+</span></span><span class="line"><span class="ln">28</span><span class="cl">}
+</span></span><span class="line"><span class="ln">29</span><span class="cl">
+</span></span><span class="line"><span class="ln">30</span><span class="cl"># proxy the PHP scripts to Apache listening on 127.0.0.1:80
+</span></span><span class="line"><span class="ln">31</span><span class="cl">#location ~ \.php$ {
+</span></span><span class="line"><span class="ln">32</span><span class="cl">#proxy_pass   http://127.0.0.1;
+</span></span><span class="line"><span class="ln">33</span><span class="cl">#}
+</span></span><span class="line"><span class="ln">34</span><span class="cl">
+</span></span><span class="line"><span class="ln">35</span><span class="cl"># pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+</span></span><span class="line"><span class="ln">36</span><span class="cl">location ~ \.php$ {
+</span></span><span class="line"><span class="ln">37</span><span class="cl">fastcgi_pass   127.0.0.1:9000;
+</span></span><span class="line"><span class="ln">38</span><span class="cl">fastcgi_index  index.php;
+</span></span><span class="line"><span class="ln">39</span><span class="cl">fastcgi_param  SCRIPT_FILENAME  /var/www/nginx-default$fastcgi_script_name;
+</span></span><span class="line"><span class="ln">40</span><span class="cl">include        fastcgi_params;
+</span></span><span class="line"><span class="ln">41</span><span class="cl">}
+</span></span><span class="line"><span class="ln">42</span><span class="cl">
+</span></span><span class="line"><span class="ln">43</span><span class="cl"># deny access to .htaccess files, if Apache&#39;s document root        # concurs with nginx&#39;s one
+</span></span><span class="line"><span class="ln">44</span><span class="cl"># location ~ /\.ht {
+</span></span><span class="line"><span class="ln">45</span><span class="cl">deny  all;
+</span></span><span class="line"><span class="ln">46</span><span class="cl">}
+</span></span><span class="line"><span class="ln">47</span><span class="cl">}
+</span></span><span class="line"><span class="ln">48</span><span class="cl">
+</span></span><span class="line"><span class="ln">49</span><span class="cl">[...]
+</span></span></code></pre></div><p>说明下里面的个别参数：</p>
+<p><strong>server_name</strong> 是虚拟主机的服务器入口名称，可以是 IP 也可以是域名。</p>
+<p><strong>location</strong> 段，我在 index 追加了 index.php， root 路径是 <code>/var/www/nginx-default</code> 说明该虚拟主机的根目录在这里。</p>
+<p>最重要的是关于 PHP 部分的 location 段：<strong>~ \.php$ {}</strong>，Nginx 默认没有开启，我们要确保它开启并在 fastcgi_param 一行更改了参数（因为浏览器调用的默认 PHP 解析器无法找到 PHP 脚本）：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">fastcgi_param SCRIPT_FILENAME /var/www/nginx-default$fastcgi_script_name;
+</span></span></code></pre></div><p>最后确保在 include 和 fastcgi_params 之间隔出几个空格（BUG）</p>
+<p>重启 Nginx，然后编辑一个 info.php 文件：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">// 创建 /var/www/nginx-default/info.php 文件
+</span></span></code></pre></div><p>保存后在浏览器访问（比如：http://localhost/info.php 或
+http://localhost:8080/info.php)，如看到 phpinfo
+的参数页面说明配置安装成功 :)</p>
+<h3 id="5-安装配置-kohana">5. 安装&amp;配置 Kohana</h3>
+<p>Kohana 采用的 v3 版本，<a href="http://v3.kohana.cn/guide/tutorials.git">安装步骤</a>（本文把 kohana 存放在 <code>/home/icyleaf/php/kohana</code> 目录）</p>
+<p>添加 Nginx 虚拟主机配置文件：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln"> 1</span><span class="cl"># 创建 /etc/nginx/conf.d/kohana.conf 文件
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">server {
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">listen   kohana.local:8080;
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">server_name  kohana.local;
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">access_log  /var/log/nginx/kohana.access.log;
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"># define server root path
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">set $root_path /home/icyleaf/php/kohana;
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">
+</span></span><span class="line"><span class="ln">10</span><span class="cl">location / {
+</span></span><span class="line"><span class="ln">11</span><span class="cl">root   $root_path;       index  index.php index.html index.htm;
+</span></span><span class="line"><span class="ln">12</span><span class="cl">if (!-e $request_filename) {
+</span></span><span class="line"><span class="ln">13</span><span class="cl">rewrite ^/(.*)$ /index.php?kohana_uri=/$1 last;
+</span></span><span class="line"><span class="ln">14</span><span class="cl">}
+</span></span><span class="line"><span class="ln">15</span><span class="cl">}
+</span></span><span class="line"><span class="ln">16</span><span class="cl">
+</span></span><span class="line"><span class="ln">17</span><span class="cl"># pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+</span></span><span class="line"><span class="ln">18</span><span class="cl">location ~ \.php$ {
+</span></span><span class="line"><span class="ln">19</span><span class="cl">root   $root_path;
+</span></span><span class="line"><span class="ln">20</span><span class="cl">fastcgi_pass   127.0.0.1:9000;
+</span></span><span class="line"><span class="ln">21</span><span class="cl">fastcgi_index  index.php;
+</span></span><span class="line"><span class="ln">22</span><span class="cl">fastcgi_param  SCRIPT_FILENAME  $root_path$fastcgi_script_name;      include fastcgi_params;
+</span></span><span class="line"><span class="ln">23</span><span class="cl">}
+</span></span><span class="line"><span class="ln">24</span><span class="cl">}
+</span></span></code></pre></div><p>配置中首先定义了一个变量 $root_path 指定 Kohana 的源码的路径，对于
+Kohana 的 URL rewrite url 重点是 location 段的：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">if (!-e $request_filename) {
+</span></span><span class="line"><span class="ln">2</span><span class="cl">rewrite ^/(.*)$ /index.php?kohana_uri=/$1 last;
+</span></span><span class="line"><span class="ln">3</span><span class="cl">}
+</span></span></code></pre></div><p>编辑完成后重载 Nginx 配置：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ sudo /etc/init.d/nginx reload
+</span></span></code></pre></div><p>至此教程结束，额外说明的是 Kohana 默认的 .htaccess 对 Nginx 无效可有可无
+:)</p>
+]]></content:encoded></item><item><title>如何获取 Element 的 XPath [PHP/Javascript]</title><link>https://icyleaf.com/2010/04/how-to-get-xpath-of-an-element-for-php-and-javascript/</link><pubDate>Fri, 02 Apr 2010 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2010/04/how-to-get-xpath-of-an-element-for-php-and-javascript/</guid><description>
+这两天研究 HTML 的 DOM 需要寻找某个 Element 元素的完整 XPath 路径，由于使用的是 PHP Simple HTML DOM Parser 开源库，这个库类的使用方法几乎兼容 Javascript 的 DOM 语法并附带 DOM 选择器。虽然功能强...</description><content:encoded><![CDATA[<p>这两天研究 HTML 的 DOM 需要寻找某个 Element 元素的完整 XPath 路径，由于使用的是 <a href="http://simplehtmldom.sourceforge.net/manual.htm">PHP Simple HTML DOM Parser</a> 开源库，这个库类的使用方法几乎兼容 Javascript 的 DOM 语法并附带 DOM 选择器。虽然功能强大但是并不能直接获取 Element 的 XPath。这个怎么办呢，依稀记得 Firebug 有一个功能，选择某个元素在它的控制台可以显示 XPath。嗯，着手实践一下发现不仅可以显示而且还可以复制 XPath。</p>
+<p>于是想，如果可以找到 Javascript 版的相关代码就一定可以改成 PHP 版本的，结果在 Google 搜索找到了&hellip;</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">var</span> <span class="nx">elt</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;table&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="kd">var</span> <span class="nx">xpath</span> <span class="o">=</span> <span class="nx">getElementXPath</span><span class="p">(</span><span class="nx">elt</span><span class="p">);</span><span class="nx">alert</span><span class="p">(</span><span class="nx">xpath</span><span class="p">);</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="c1">// Get full XPath of an element
+</span></span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="c1"></span><span class="kd">function</span> <span class="nx">getElementXPath</span><span class="p">(</span><span class="nx">elt</span><span class="p">){</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">	<span class="kd">var</span> <span class="nx">path</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">	<span class="k">for</span> <span class="p">(;</span> <span class="nx">elt</span> <span class="o">&amp;&amp;</span> <span class="nx">elt</span><span class="p">.</span><span class="nx">nodeType</span> <span class="o">==</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">elt</span> <span class="o">=</span> <span class="nx">elt</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">		<span class="nx">idx</span> <span class="o">=</span> <span class="nx">getElementIdx</span><span class="p">(</span><span class="nx">elt</span><span class="p">);</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">		<span class="nx">xname</span> <span class="o">=</span> <span class="nx">elt</span><span class="p">.</span><span class="nx">tagName</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">		<span class="k">if</span> <span class="p">(</span><span class="nx">idx</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="nx">xname</span> <span class="o">+=</span> <span class="s2">&#34;[&#34;</span> <span class="o">+</span> <span class="nx">idx</span> <span class="o">+</span> <span class="s2">&#34;]&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">		<span class="nx">path</span> <span class="o">=</span> <span class="s2">&#34;/&#34;</span> <span class="o">+</span> <span class="nx">xname</span> <span class="o">+</span> <span class="nx">path</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">	<span class="k">return</span> <span class="nx">path</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">
+</span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="c1">// Get Idx of an element
+</span></span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="c1"></span><span class="kd">function</span> <span class="nx">getElementIdx</span><span class="p">(</span><span class="nx">elt</span><span class="p">){</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">	<span class="kd">var</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">20</span><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">sib</span> <span class="o">=</span> <span class="nx">elt</span><span class="p">.</span><span class="nx">previousSibling</span><span class="p">;</span> <span class="nx">sib</span> <span class="p">;</span> <span class="nx">sib</span> <span class="o">=</span> <span class="nx">sib</span><span class="p">.</span><span class="nx">previousSibling</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">21</span><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="ln">22</span><span class="cl">		<span class="k">if</span><span class="p">(</span><span class="nx">sib</span><span class="p">.</span><span class="nx">nodeType</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="nx">sib</span><span class="p">.</span><span class="nx">tagName</span> <span class="o">==</span> <span class="nx">elt</span><span class="p">.</span><span class="nx">tagName</span><span class="p">)</span>  <span class="nx">count</span><span class="o">++</span>
+</span></span><span class="line"><span class="ln">23</span><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="ln">24</span><span class="cl">	<span class="k">return</span> <span class="nx">count</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">25</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>PHP 改进版：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1">// Use it before import PHP Simple HTML DOM Parser
+</span></span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="c1"></span><span class="nv">$html</span> <span class="o">=</span> <span class="nx">file_get_html</span><span class="p">(</span><span class="s1">&#39;http://www.google.com/&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="c1">// find a sample element by id
+</span></span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="c1"></span><span class="nv">$elt1</span> <span class="o">=</span> <span class="nv">$html</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;#footer&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="c1">// find a sample element by tag name
+</span></span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="c1"></span><span class="nv">$elt2</span><span class="o">=</span> <span class="nv">$html</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">
+</span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="c1">// it will return if found it: [@id=&#34;footer&#34;]
+</span></span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="c1"></span><span class="nv">$xpath</span> <span class="o">=</span> <span class="nx">getElementXPath</span><span class="p">(</span><span class="nv">$elt1</span><span class="p">);</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">
+</span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="c1">// it will return if found it: html/body/div[10]
+</span></span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="c1"></span><span class="nv">$xpath</span> <span class="o">=</span> <span class="nx">getElementXPath</span><span class="p">(</span><span class="nv">$elt2</span><span class="p">);</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">
+</span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="k">function</span> <span class="nf">getElementXPath</span><span class="p">(</span><span class="nv">$elt</span><span class="p">){</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl">	<span class="nv">$path</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl">	<span class="nv">$first</span> <span class="o">=</span> <span class="k">TRUE</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">	<span class="k">for</span><span class="p">(;</span> <span class="p">(</span><span class="nv">$elt</span> <span class="k">AND</span> <span class="nv">$elt</span><span class="o">-&gt;</span><span class="na">nodetype</span> <span class="o">==</span> <span class="mi">1</span><span class="p">);</span> <span class="nv">$elt</span> <span class="o">=</span> <span class="nv">$elt</span><span class="o">-&gt;</span><span class="na">parent</span><span class="p">())</span>
+</span></span><span class="line"><span class="ln">20</span><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="ln">21</span><span class="cl">		<span class="nv">$xname</span> <span class="o">=</span> <span class="nv">$elt</span><span class="o">-&gt;</span><span class="na">tag</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">22</span><span class="cl">		<span class="nv">$idx</span> <span class="o">=</span> <span class="nx">getElementIdx</span><span class="p">(</span><span class="nv">$elt</span><span class="p">);</span>
+</span></span><span class="line"><span class="ln">23</span><span class="cl">		<span class="k">if</span> <span class="p">(</span><span class="nv">$first</span> <span class="k">AND</span> <span class="nx">isset</span><span class="p">(</span><span class="nv">$elt</span><span class="o">-&gt;</span><span class="na">attr</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]))</span>
+</span></span><span class="line"><span class="ln">24</span><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="ln">25</span><span class="cl">			<span class="nv">$path</span> <span class="o">=</span> <span class="s1">&#39;//*[@id=&#34;&#39;</span> <span class="o">.</span> <span class="nv">$elt</span><span class="o">-&gt;</span><span class="na">attr</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="o">.</span> <span class="s1">&#39;&#34;]&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">26</span><span class="cl">			<span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">27</span><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="ln">28</span><span class="cl">
+</span></span><span class="line"><span class="ln">29</span><span class="cl">		<span class="k">if</span> <span class="p">(</span><span class="nv">$idx</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">30</span><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="ln">31</span><span class="cl">			<span class="o">%</span><span class="nx">xname</span> <span class="o">.=</span> <span class="s1">&#39;[&#39;</span> <span class="o">.</span> <span class="nv">$idx</span> <span class="o">.</span> <span class="s1">&#39;]&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">32</span><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="ln">33</span><span class="cl">
+</span></span><span class="line"><span class="ln">34</span><span class="cl">		<span class="nv">$path</span> <span class="o">=</span> <span class="s1">&#39;/&#39;</span><span class="o">.</span><span class="nv">$xname</span><span class="o">.</span><span class="nv">$path</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">35</span><span class="cl">		<span class="nv">$first</span> <span class="o">=</span> <span class="k">FALSE</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">36</span><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="ln">37</span><span class="cl">
+</span></span><span class="line"><span class="ln">38</span><span class="cl">	<span class="k">return</span> <span class="nv">$path</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">39</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln">40</span><span class="cl">
+</span></span><span class="line"><span class="ln">41</span><span class="cl"><span class="k">function</span> <span class="nf">getElementIdx</span><span class="p">(</span><span class="nv">$elt</span><span class="p">){</span>
+</span></span><span class="line"><span class="ln">42</span><span class="cl">	<span class="nv">$count</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">43</span><span class="cl">	<span class="k">for</span><span class="p">(</span><span class="nv">$sib</span> <span class="o">=</span> <span class="nv">$elt</span><span class="o">-&gt;</span><span class="na">prev_sibling</span><span class="p">();</span> <span class="nv">$sib</span> <span class="p">;</span> <span class="nv">$sib</span> <span class="o">=</span> <span class="nv">$sib</span><span class="o">-&gt;</span><span class="na">prev_sibling</span><span class="p">())</span>
+</span></span><span class="line"><span class="ln">44</span><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="ln">45</span><span class="cl">		<span class="k">if</span><span class="p">(</span><span class="nv">$sib</span><span class="o">-&gt;</span><span class="na">nodetype</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="nv">$sib</span><span class="o">-&gt;</span><span class="na">tag</span> <span class="o">==</span> <span class="nv">$elt</span><span class="o">-&gt;</span><span class="na">tag</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">46</span><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="ln">47</span><span class="cl">			<span class="nv">$count</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">48</span><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="ln">49</span><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="ln">50</span><span class="cl">	<span class="k">return</span> <span class="nv">$count</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">51</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>大家同样可以把上面的代码直接 crack 到 PHP Simple HTML DOM Parser 库中。</p>
+]]></content:encoded></item><item><title>Douban API Package 发布！</title><link>https://icyleaf.com/2010/01/douban-api-package/</link><pubDate>Fri, 08 Jan 2010 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2010/01/douban-api-package/</guid><description>
+Douban API Package 是一个使用 PHP 开发且基于 Kohana v3 开发的一个扩展（Module）。 它对豆瓣 API 进行重新封包。它使用起来非常方便，可以快速开发一个 web 应用。 为什么要...</description><content:encoded><![CDATA[<p>Douban API Package 是一个使用 PHP 开发且基于 Kohana v3 开发的一个扩展（Module）。</p>
+<p>它对<a href="http://www.douban.com/">豆瓣</a> <a href="http://www.douban.com/service/apidoc/">API</a> 进行重新封包。它使用起来非常方便，可以快速开发一个 web 应用。</p>
+<p><strong>为什么要另外封包？</strong></p>
+<p>对，豆瓣官方提供了一种 PHP 的解决方案，可是需要庞大的支持库：GData（20M左右）以及可能无法修改的环境配置（租用的空间主机会遇到这样的问题）。虽说 Douban API Package 也是基于框架开发，不过 Kohana 是一个纯 PHP5 模式且体积小巧（仅有 478KB），优秀迅捷的框架。<strong>最重要的是</strong>，Douban API Package 提供了目前官方所有功能的支持。并有线上网站：<a href="http://modou.us/">魔豆</a> 和<a href="http://modou.us/console">豆瓣 API 控制台</a>长期运营。</p>
+<p><em>虽然它是基于 Kohana 框架开发，但是并没有使用太多的依赖，稍微熟悉可以轻松分离出来！</em></p>
+<p><strong>安装需求</strong></p>
+<ul>
+<li>PHP 5.2+ with curl module</li>
+<li><a href="http://github.com/kohana/kohana">Kohana v3</a> - 一款纯 PHP 5 框架，它的特点就是<strong>高安全性</strong>，<strong>轻量级代码</strong>，<strong>容易使用</strong>。</li>
+</ul>
+<p><strong>安装步骤</strong></p>
+<p>步骤 0: 部署 Kohana v3</p>
+<p>下载并安装 Kohana v3 的过程，请大家参考此教程：<a href="http://kohanaphp.cn/guide/tutorials.git">使用 Git 部署 Kohana 系统</a></p>
+<p>步骤 1: 下载本扩展!</p>
+<p>你可以在部署完毕的 Kohana 系统的根目录执行下面操作：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">$ git submodule add git://github.com/icyleaf/douban.git modules/douban
+</span></span></code></pre></div><p>完成！</p>
+<p>或者你也可以从本<a href="http://github.com/icyleaf/douban">github 项目</a> 下载压缩包放置在 modules 文件夹下面。</p>
+<p>步骤 2: 在 <code>bootstrap.php</code> 文件中启用该模块(默认情况下，存储在 <code>application</code> 文件夹)</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln"> 1</span><span class="cl">/** * Enable modules. Modules are referenced by a relative or absolute path. *
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">/Kohana::modules(array(
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">	&#39;douban&#39;        =&gt; MODPATH.&#39;douban&#39;,     // Douban API Module    //
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">	&#39;database&#39;   =&gt; MODPATH.&#39;database&#39;,   // Database access    //
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">	&#39;image&#39;      =&gt; MODPATH.&#39;image&#39;,      // Image manipulation    //
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">	&#39;orm&#39;        =&gt; MODPATH.&#39;orm&#39;,        // Object Relationship Mapping (not complete)    //
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">	&#39;pagination&#39; =&gt; MODPATH.&#39;pagination&#39;, // Paging of results    //
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">	&#39;paypal&#39;     =&gt; MODPATH.&#39;paypal&#39;,     // PayPal integration (not complete)    //
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">	&#39;todoist&#39;    =&gt; MODPATH.&#39;todoist&#39;,    // Todoist integration    //
+</span></span><span class="line"><span class="ln">10</span><span class="cl">	&#39;unittest&#39;   =&gt; MODPATH.&#39;unittest&#39;,   // Unit testing    // &#39;codebench&#39;  =&gt; MODPATH.
+</span></span><span class="line"><span class="ln">11</span><span class="cl">	&#39;codebench&#39;,  // Benchmarking tool
+</span></span><span class="line"><span class="ln">12</span><span class="cl">));
+</span></span></code></pre></div><p><strong>目录结构</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln"> 1</span><span class="cl">douban
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">   +--- classes
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">   			+--- controller               # 豆瓣样例
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">   					+--- douban                   # Douban API Package
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">   							+--- api               # Douban API
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">   							+--- core.php          # Douban Core
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">   							+--- oauth.php         # Douban OAuth
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">   							+--- request.php       # Douban Requset
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">						   	+--- response.php      # Douban Response
+</span></span><span class="line"><span class="ln">10</span><span class="cl">					+--- douban.php               # Douban API Class
+</span></span><span class="line"><span class="ln">11</span><span class="cl">   +--- config
+</span></span><span class="line"><span class="ln">12</span><span class="cl">   			+--- douban.php               # 豆瓣 API 配置文件
+</span></span><span class="line"><span class="ln">13</span><span class="cl">   			+--- user_agents.php          # 奉送给大家一些手机 User agent 配置文件
+</span></span><span class="line"><span class="ln">14</span><span class="cl">   +--- media
+</span></span><span class="line"><span class="ln">15</span><span class="cl">   			+--- images                   # 奉送给大家豆瓣 API 用到的图像
+</span></span><span class="line"><span class="ln">16</span><span class="cl">   +--- vendor
+</span></span><span class="line"><span class="ln">17</span><span class="cl">   			+--- OAuth.php                # OAuth 官方推荐 PHP 库
+</span></span><span class="line"><span class="ln">18</span><span class="cl">   			+--- LICENSE
+</span></span><span class="line"><span class="ln">19</span><span class="cl">   +--- README.markdown
+</span></span></code></pre></div><p><strong>快速上手</strong></p>
+<p>Douban API Package 提供一些演示用例，系统部署完毕后可以通过<code>http://host/demo_douban</code> 访问。</p>
+<p>文件路径：<code>classes/controller/douban_demo.php</code></p>
+<p>源码库：<a href="http://github.com/icyleaf/douban">http://github.com/icyleaf/douban</a></p>
+<p>祝你开发顺利！</p>
+<p>如果任何疑问或者 Bugs 反馈，即可以在本项目中提交 Issue
+或者给我发邮件：icyleaf.cn囧gmail.com （请替换 &ldquo;囧&rdquo; 为 @）</p>
+]]></content:encoded></item><item><title>Kohana 官方 2.3，2.4，3.0 的最终裁决！</title><link>https://icyleaf.com/2009/07/official-2-3-2-4-3-0-decisions/</link><pubDate>Fri, 24 Jul 2009 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2009/07/official-2-3-2-4-3-0-decisions/</guid><description>
+更新：Kohana 官方已经做出最终裁决！ 两天前我(Shadowhand)曾经说过关于 2.4 和 3.0 版本的问题和它们之间的关系已经做出的解答。之后的今...</description><content:encoded><![CDATA[<blockquote>
+<p>更新：Kohana 官方已经做出<a href="http://forum.khnfans.cn/topic/view/167/1.html">最终裁决</a>！</p>
+</blockquote>
+<p>两天前我(Shadowhand)曾经<a href="http://forum.kohanaphp.com/comments.php?DiscussionID=2835&amp;page=6#Item_12">说过</a>关于 2.4 和 3.0 版本的问题和它们之间的关系已经做出的解答。之后的今天和其他开发者见面（with more of the devs），这似乎是错误的。所以长话短说，我们现在有两个选择：</p>
+<p>​1. 我们在一个月内分别发布 2.4 和 3.0。 2.4 将会经可能的兼容 2.3.x 版本但是其中 Database 和 i18n 是全新的不同于 2.3 的系统。 3.0 也将不同于 2.4 的 Database，但是 i18n 系统还是和 2.4 一致。</p>
+<p>​2. 完全抛弃 2.4 而专攻 3.0 版本，它将会有一个全新的类似 2.4 版本的 Database 特性，但是语法和更多的特性稍有些不同。 3.0 在发布的同时，新的网站和用户手册也会同步完成。</p>
+<p>2.4 和 3.0 版本大约将会在同一天发布（2009年的8月下旬或9月上旬）。两个版本都不会去兼容
+2.3.4 版本。虽然升级至 2.4 版本将会少于升级至 3.0 的兼容工作。（请记住，我们从来没有建议和要求用户升级到哪个核心版本）</p>
+<p>我本可以行使 <a href="http://lmgtfy.com/?q=bdfl">BDFL</a>（Benevolent Dictator For Life，代表少数开源软件开发者的领头人）权利做个强制决定，但是我觉得还是听一听社区的声音。你们认为哪个是 Kohana 在未来长期（至少 6 个月以上）开发基础的最好选择呢?</p>
+<p><strong>更新</strong>： 选择第二项，将会抛弃 2.3.x 版本公开发布的版本修复</p>
+<hr>
+<p>原文：<a href="http://forum.kohanaphp.com/comments.php?DiscussionID=3043&amp;page=1">Official 2.3, 2.4, 3.0 Decisions - We need your feedback!</a></p>
+<p>&mdash;&mdash;&mdash;我是华丽的分割线&mdash;&mdash;&mdash;&mdash;&ndash;</p>
+<p>KO3 RC1 目前已经发布，详情请看<a href="http://forum.khnfans.cn/topic/view/168.html">这里</a>，希望大家喜欢 Kohana，关注
+Kohana，使用 Kohana
+的朋友留下你的看法，这对Kohana自身和社区用户都是有益的！</p>
+<p>&mdash;&mdash;&ndash;关于 E-TextEditor  的分割线&mdash;&mdash;&mdash;&mdash;&mdash;</p>
+<p>今天前去 Textmate clone 的软件 Intype论坛瞅了一眼，惊奇的发现同样是
+Textmate clone 的 E-TextEditor 居然在今年3月份宣布开源，而5月份就在
+Github 放出了源码！而且声称会开发 Linux 版本并且弘扬 Linux 的精神，Linux
+版本统统免费！详情请看 <a href="http://intype.info/forums/discussion/827/eeditor-going-open-source-open-company/#Item_0">Intype 论坛</a></p>
+<p>而且已经有Linux用户编译运行了 E-TextEditor 详情请看：<a href="http://fixnum.org/blog/2009/e_on_fedora">Building the E text
+editor on Fedora 10</a></p>
+<p>不知道身为 Textmate clone 的 Intype
+会做何打算，它们目前正在全力开发新的版本（貌似内核和界面全部重新），拭目以待！</p>
+]]></content:encoded></item><item><title>豆瓣API测试控制台</title><link>https://icyleaf.com/2009/07/douban-api-console/</link><pubDate>Mon, 06 Jul 2009 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2009/07/douban-api-console/</guid><description>
+项目已开源: http://github.com/icyleaf/modou 豆瓣 API 测试控制台的创造灵感来源于 Facebook Developers Tools 中的Facebook API Console， 或许大家知道，魔豆是我的另外一个豆瓣 API 应用，由于是...</description><content:encoded><![CDATA[<blockquote>
+<p>项目已开源: <a href="http://github.com/icyleaf/modou">http://github.com/icyleaf/modou</a></p>
+</blockquote>
+<p>豆瓣 API 测试控制台的创造灵感来源于 Facebook Developers Tools 中的<a href="http://developers.facebook.com/tools.php">Facebook API Console</a>， 或许大家知道，魔豆是我的另外一个豆瓣 API 应用，由于是自己封装的 Douban
+API（官方提供的库类要求太多，安装繁琐，这不属于我喜爱简洁，轻便的风格），每次想查看某个
+API 接口返回的数据都要写一个 test 跑一下。麻烦不说，还容易出错，于是，使用自己封装的 Douban API，借鉴 Facebook API Console
+的界面和类似的功能显示，终于小有所成，其中为了实现此控制台，封包的库类经过两次大改，虽然改的很辛苦，但从中学到了很多开发经验。</p>
+<p>测试用户必须先进行用户验证才能进行测试，这主要是为了：</p>
+<ol>
+<li>避免提交查询中出现错误，并让测试者使用到全部API方法</li>
+<li>防止恶意用户利用它做二次api调用，由于测试控制台的传输很简单，提交参数即可查询。</li>
+</ol>
+<p>查询方法：</p>
+<ol>
+<li>进行用户的登录验证</li>
+<li>选择返回的数据类型（支持官方提供的 XML 和 JSON格式）</li>
+<li>选择需要查询的API方法（这里我做了分类）</li>
+<li>如果查询的方法存在参数，会在方法下面显示。</li>
+<li>设置完毕参数后，点击“调用此方法”，稍等片刻即可。</li>
+</ol>
+<p>返回的数据结果会在右侧显示出来，其中，右上部分是调用相关 API 的 URL 地址；右下部分是返回的数据结果。</p>
+<p>如果，参数设置错误，或者其他问题，返回的结果会以 [CODE] Content
+的格式返回，其中 <strong>CODE</strong>代码返回的状态码，<strong>Content</strong> 是返回的信息。</p>
+<p>通用参数解释：</p>
+<ul>
+<li>id  - 查询方法涉及到的 id 值（人，书影音，日记，广播，豆邮，同城等）</li>
+<li>message - 广播发送的内容</li>
+<li>title - 日记，豆邮的标题</li>
+<li>content - 主题内容</li>
+<li>city - 同城活动的城市代号（根据我判断，应该是中文的拼音，详细请看<a href="http://www.douban.com/location/world/">官方同城列表</a>中各个城市的url）</li>
+<li>query - 搜索的关键字</li>
+<li>index - 返回多个元素时，起始元素的下标（相当于豆瓣 api 文档中的start-index）</li>
+<li>max - 返回多个entry时，每页最多的结果数（相当于豆瓣 api 文档中的max-results）</li>
+</ul>
+<p>其中某些方法（涉及到自身的数据，比如我的信息，我的广播，我的同城）在进行查询的时候可以把
+id 留空或者设置为 ‘me’ （不带引号），这样调用结果显示的是自己的信息。</p>
+<p>如果长时间(大于1分钟)处于“调用中”，可能是由于程序问题，请刷新后重试。</p>
+<p>已知存在的问题：</p>
+<ol>
+<li>界面和方法列表在 Chrome 浏览器有不兼容的问题出现</li>
+<li>返回数据结果头一行多出一个类似水平制表符的转义符似的</li>
+</ol>
+<p>由于目前为止豆瓣 API 还没有封装完成，现只提供用户，广播，书影音，豆邮和日记的不完全功能测试查询。
+其余的 API 会尽快添加进去 :)</p>
+<p>测试地址：<a href="http://ews.im/douban_console">http://ews.im/douban_console</a></p>
+]]></content:encoded></item><item><title>魔豆：豆瓣网非官方移动版本</title><link>https://icyleaf.com/2009/06/modou/</link><pubDate>Mon, 22 Jun 2009 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2009/06/modou/</guid><description>
+项目已开源: http://github.com/icyleaf/modou 但不再维护。 魔豆，一个豆瓣网非官方移动版本，基于豆瓣 API开发的专门为移动终端（手持设备）定制的豆瓣移动版本。魔豆专注于豆瓣网...</description><content:encoded><![CDATA[<blockquote>
+<p>项目已开源: <a href="http://github.com/icyleaf/modou">http://github.com/icyleaf/modou</a> 但不再维护。</p>
+</blockquote>
+<p><a href="http://modou.us" title="魔豆：豆瓣网非官方移动版本">魔豆</a>，一个<a href="http://douban.com">豆瓣网</a>非官方移动版本，基于<a href="http://www.douban.com/service/apidoc/" title="豆瓣 API">豆瓣
+API</a>开发的专门为移动终端（手持设备）定制的豆瓣移动版本。魔豆专注于豆瓣网的<strong>广播</strong>及<strong>同城活动</strong>。</p>
+<p>魔豆的来历：豆瓣移动版 -&gt; Douban mobile -&gt; moDouban -&gt; moDou -&gt;魔豆</p>
+<p>目前魔豆发布的功能：</p>
+<ol>
+<li>友邻广播：支持显示广播，回复发起人和重播（重复发布其他发起者的广播）</li>
+<li>同城活动：查看自己参与（包含参加/感兴趣）的活动以及用户所在城市的同城活动（需提前在豆瓣设置）</li>
+<li>查看用户相册以及同城活动相册（仅限于从友邻广播）</li>
+<li>搜索用户/书影音/同城活动</li>
+<li>查看用户/书影音/同城活动信息</li>
+<li>显示和查阅豆邮</li>
+</ol>
+<p>我，是一个重度豆瓣使用者，也许这和身在北京这所繁华的帝都有很大的关系。虽然豆瓣网直到现在为其定位在书影音这三大模块，但不可否认的，豆瓣小组，豆瓣广播，豆瓣同城甚至豆邮都起着重要的标志性作用。</p>
+<p>或许和大家一样，一直期待着豆瓣网能够推出移动版本，可以用手机或其他移动设备查查书影音，看看友邻广播和未读豆邮，浏览下所在城市的同城活动，
+光想想都是这么的惬意，于是我们在等，一直在等，几乎使我望穿秋水的时候，还是杳无音讯。平时在有 WIFI 网络的情况下，
+使用 iTouch 访问一下豆瓣网还是可以，如果离开了它，以为这必须使用较昂贵的 GPRS 网络，经过漫长的 loading 才能看到自己感兴趣或自己想看的一点点信息&hellip;</p>
+<p>于是，自己何不使用豆瓣API开发一个呢？紧接着通过查阅大量的文档和官方提供的演示代码，抛弃
+Zend Framework 和 Gdata，使用自己维护中文化的 <a href="http://khnfans.cn" title="Kohana 中文爱好者">Kohana</a>框架，一点一点的搭建起了基础库，通过一个星期多的时间，开始一边做页面的展现，另一边继续完善基础库，直到目前为止，大体的框架已经完成，下面需要考虑如何对细节做修改和完善。</p>
+<p>另外，由于 PHP 没有低耦合的 HTTP requset class，自己使用 curl 函数一点点抠出来的一个 RESTFul requset class，在进行提交 POST，PUT，DELETE 方法还存在一些技术问题，所以魔豆目前还不支持对书影音，同城活动进行操作（包含，想读/听/看，感兴趣，我要参加等等），我会尽快完善。</p>
+<p>开发环境： <strong>Windows XP + XAMPP + E-texteditor</strong> (Office work) AND
+<strong>Ubuntu 9.04 + XAMPP + Aptana</strong> (Laptop)</p>
+<p>调试设备：iPod Touch + Blackberry 8310 + Nokia N-GAGE QD</p>
+<p>由于设备有限，可能在其他设备上会出现设备误判或UI上的问题（大家可以在本日志下面留下误判设备型号），敬请谅解。后期会对不同设备进行专门的优化
+:)</p>
+<p>网站：<a href="http://modou.us">http://modou.us</a></p>
+<p>开发进度：<a href="http://modou.us/timeline">http://modou.us/timeline</a></p>
+<p>相关截图：<a href="http://www.getdropbox.com/gallery/45081/1/modou?h=b26d7e">http://www.getdropbox.com/gallery/45081/1/modou?h=b26d7e</a></p>
+<p>欢迎大家前来测试和使用，心情愉快。</p>
+<blockquote>
+<p>更新于 2009年06月22日：由于 China Mobile 的原因，黑莓手机默认浏览器无法判别，请黑莓用户使用 Opera Mini 或其他浏览器访问，原因请看<a href="http://www.douban.com/group/topic/6946152/">这里</a>。</p>
+</blockquote>
+]]></content:encoded></item><item><title>Modules Library 和 DBManager Module</title><link>https://icyleaf.com/2009/03/modules-helper-and-dbmanager-module/</link><pubDate>Thu, 05 Mar 2009 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2009/03/modules-helper-and-dbmanager-module/</guid><description>
+Hi, Don&amp;rsquo;t understand Chinese? ok, No problem. Here to view Modules Library and DBManager Module 或许大家可能有了解到，本人目前一直在对 Kohana这个纯 PHP5 框架进行文档翻译和维护，同时也建立一个站点：Koha...</description><content:encoded><![CDATA[<blockquote>
+<p>Hi, Don&rsquo;t understand Chinese? ok, No problem. Here to view <a href="http://forum.kohanaphp.com/comments.php?DiscussionID=2117&amp;page=1">Modules Library</a> and <a href="http://forum.kohanaphp.com/comments.php?DiscussionID=2156&amp;page=1">DBManager Module</a></p>
+</blockquote>
+<p>或许大家可能有了解到，本人目前一直在对 <a href="http://kohanaphp.com">Kohana</a>这个纯 PHP5
+框架进行文档翻译和维护，同时也建立一个站点：<a href="http://khnfans.cn/" title="Kohana爱好者">Kohana爱好者</a>。
+站点提供中文化的文档，包含中文语言包的中文镜像下载支持以及中文化论坛。Kohana 
+凭借着基于 CodeIgniter
+框架+PHP5，赢得了一群使用者，我也希望无论是国外的还是国内的使用者都能共享自己的力量。</p>
+<p>恩&hellip;以上算是给自己打个广告。Modules Library 和 DBManager Module 均是为
+Kohana 框架编写的，以后会根据自己和大家的寻求做适当的更新。</p>
+<p><strong>Modules Library</strong>，中文译为 扩展管理库，是一个方便管理 Kohana
+系统自身扩展配置的库类，通过它使用代码就可以轻松实现获取当前所有 Modules
+信息，已激活的 Moduels， 未激活的 Modules，最重要的是还可以添加
+Modules，激活和关闭 Module。</p>
+<p>范例代码：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1">// Instance Module library
+</span></span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="c1"></span><span class="nv">$module</span> <span class="o">=</span> <span class="nx">Module</span><span class="o">::</span><span class="na">instance</span><span class="p">();</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="c1">// list all modules of application in application/config/config.php
+</span></span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="c1"></span><span class="k">echo</span> <span class="nx">Kohana</span><span class="o">::</span><span class="na">debug</span><span class="p">(</span><span class="nv">$module</span><span class="o">-&gt;</span><span class="na">list_all</span><span class="p">());</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="c1">// list active modules of application in application/config/config.php
+</span></span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="c1"></span><span class="k">echo</span> <span class="nx">Kohana</span><span class="o">::</span><span class="na">debug</span><span class="p">(</span><span class="nv">$module</span><span class="o">-&gt;</span><span class="na">list_active</span><span class="p">());</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">
+</span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="c1">// list inactive modules of application in application/config/config.ph	p
+</span></span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="c1"></span><span class="k">echo</span> <span class="nx">Kohana</span><span class="o">::</span><span class="na">debug</span><span class="p">(</span><span class="nv">$module</span><span class="o">-&gt;</span><span class="na">list_inactive</span><span class="p">());</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">
+</span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="c1">// active &#39;auth&#39; module
+</span></span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="c1"></span><span class="nv">$module</span><span class="o">-&gt;</span><span class="na">active</span><span class="p">(</span><span class="s1">&#39;auth&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">
+</span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="c1">// inactive &#39;auth&#39; module
+</span></span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="c1"></span><span class="nv">$module</span><span class="o">-&gt;</span><span class="na">inactive</span><span class="p">(</span><span class="s1">&#39;auth&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl">
+</span></span><span class="line"><span class="ln">19</span><span class="cl"><span class="c1">// add &#39;sample_module&#39; module with description.
+</span></span></span><span class="line"><span class="ln">20</span><span class="cl"><span class="c1"></span><span class="nv">$module</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;sample_module&#39;</span><span class="p">,</span> <span class="s1">&#39;Just a sample module&#39;</span><span class="p">);</span>
+</span></span></code></pre></div><p><strong>DBManager Module</strong>灵感来自 WordPress 插件 WP_DBManager，就连名字都很类似，其实对于其功能也是按照它实现。哈哈～～</p>
+<p>目前对于此扩展实现的功能如下：</p>
+<ul>
+<li>获得当前 Mysql 版本以及 Kohana 连接数据库等信息</li>
+<li>获取当前所有表数据</li>
+<li>备份数据库（支持Gzip压缩和自动备份）</li>
+<li>优化数据库（支持自动优化）</li>
+<li>修复数据库</li>
+<li>获得，下载，删除数据库备份文件</li>
+</ul>
+<p>此扩展支持配置和 i18n，以及对目前来说一个简易的演示页面。</p>
+<p>目前还没有对实现自动备份后进行 Email 通知的功能，以及以后会对多种数据库支持。和限制最大化数据库备份文件。至于是否可以在进行数据库表数据的操作（比如查询，删除表，修改表等）是否还需要支持？</p>
+<p>以后对自己发布的 Kohana 相关的代码都会托管在 Google Code 上面，地址：<a href="http://code.google.com/p/kohana-fans-cn/">http://code.google.com/p/kohana-fans-cn/</a></p>
+]]></content:encoded></item><item><title>校内网，海内网，开心网用户隐私查看器</title><link>https://icyleaf.com/2008/10/the-school-network-network-happy-at-home-and-network-user-privacy-viewer/</link><pubDate>Fri, 10 Oct 2008 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2008/10/the-school-network-network-happy-at-home-and-network-user-privacy-viewer/</guid><description>
+更新：目前校内网已经修补了此漏洞，所以大家可以放弃了，除非你想抓住那 1% 的机会 你想查看他或她的私隐信息吗？如果你说的他或她是校内网，海内网，开...</description><content:encoded><![CDATA[<blockquote>
+<p><strong>更新</strong>：目前校内网已经修补了此漏洞，所以大家可以放弃了，除非你想抓住那 1% 的机会</p>
+</blockquote>
+<p>你想查看他或她的私隐信息吗？如果你说的他或她是校内网，海内网，开心网的用户，那么请你尝试一下，校内网，海内网，开心网用户隐私查看器。通过这个工具，你可以轻松的获得用户的相册照片，日志文章以及状态（迷你博客）的内容。恩&hellip;趁着目前都还没有打补丁之前。不要做坏事哦～</p>
+<p><strong>工具</strong></p>
+<p><a href="http://labs.icyleaf.com/tools/sns_user_informations.php">校内网，海内网，开心网用户隐私查看器</a></p>
+<p>此工具重点做的是校内网的功能模块，对于海内网和开心网的用户，只是显示了用户的相关链接。</p>
+<p><strong>使用说明</strong></p>
+<p>首先！必须先登录网站系统之后才进行操作！
+无论是校内网，海内网还是开心网的用户，首先都需要获得用户的ID，那么怎么获得呢，很简单，只要打开用户的个人界面，查看地址的末尾的数字。一般会以下列的方式出现：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">http://xiaonei.com/profile.do?id=123456
+</span></span><span class="line"><span class="ln">2</span><span class="cl">http://www.hainei.com/user?r=123456
+</span></span><span class="line"><span class="ln">3</span><span class="cl">http://www.kaixin001.com/home/?uid=123456
+</span></span></code></pre></div><p>数字前面的就可以看出来是用户ID。获得用户ID之后，只要把用户ID填入到校内网，海内网，开心网用户隐私查看器的相应输入框，并选择是哪个网站的用户，点击”Get it!“，稍等片刻就会获得用户的相关链接。</p>
+<p><strong>原理</strong></p>
+<p>由于校内网和海内网均属于一个团队开发出来的，所以在系统但自身机制上的问题，可以通过地址绕过的方式查看用户的相册，日志，状态记录等等非用户资料信息。但是开心网可能考虑到用户的安全性，在默认选项上安全系数提高了一级。那么到底是哪里提供了呢，好的，我简单讲解一下，对于校内网和海内网，用户无论是创建相册还是添加日志和状态记录，默认的隐私属性（谁能浏览）为”全站用户可见”，这就导致了校内网，海内网，开心网用户隐私查看器的出现。而开心网除了日志之外，其相册，记录默认为“好友可见”。所以，可查看的资源只有日志，还有极少数的用户可能会把相册的隐私属性设置为”全站用户可见”。</p>
+<p><strong>补救方法</strong></p>
+<ol>
+<li>等待系统的修改，或者系统可能就是为了这样&hellip;</li>
+<li>手动修改&hellip;把隐私属性修改为“好友可见”或其他。</li>
+</ol>
+<p><strong>特别声明</strong></p>
+<p>本工具只为技术交流使用，请勿做非法事情，如有此事请自己承担法律责任！切记！切记！</p>
+]]></content:encoded></item></channel></rss>

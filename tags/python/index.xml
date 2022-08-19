@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Python on icyleaf</title><link>https://icyleaf.com/tags/python/</link><description>Recent content in Python on icyleaf</description><language>zh</language><lastBuildDate>Wed, 06 Feb 2013 12:34:56 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/python/index.xml" rel="self" type="application/rss+xml"/><item><title>Dash</title><link>https://icyleaf.com/2013/02/dash/</link><pubDate>Wed, 06 Feb 2013 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2013/02/dash/</guid><description>
+你值得拥有的文档管理工具</description><content:encoded><![CDATA[<p>Dash 是 Mac OS 的一个文档管理工具，从它第一版发布用到现在，绝对是一个你值得拥有的文档管理工具，因为它还是免费的，你可以从 <a href="https://itunes.apple.com/cn/app/dash-docs-snippets/id458034879?mt=12">Mac App Store</a> 购买。但是全功能需要应用内付费，否则有些“小骚扰”。</p>
+<blockquote>
+<p>建议购买 Full Version，目前是半价，人民币 30 元</p>
+</blockquote>
+<p><img src="http://a1.mzstatic.com/us/r1000/106/Purple/v4/14/50/16/14501624-f6fd-4dae-a2bf-187a5a6417de/icon.175x175-75.png"
+  
+  
+  alt="Dash"></img>
+</p>
+<h2 id="特性">特性</h2>
+<ul>
+<li>支持任何一个你想管理的文档（iOS/Mac/PHP/Python/Java/jQuery/Backbone.js 等等）</li>
+<li>支持自定义生成你想要的文档（AppleDoc/JavaDoc/RDoc/Doxygen/pydoctor/Sphinx/Scaladoc）</li>
+<li>自动升级文档版本</li>
+<li>快捷键搜索文档及 API</li>
+<li>管理和搜索 Code Snippets</li>
+<li>无缝插入众多第三方应用（Alfred，XCode，Terminal，Eclipse，甚至任意的 App）</li>
+</ul>
+<h2 id="功能介绍">功能介绍</h2>
+<p>这块已经有人介绍了，我就不多说了：<a href="http://scriptfans.iteye.com/blog/1543219">Dash：程序员的的好帮手</a></p>
+<h2 id="生成自己的文档">生成自己的文档</h2>
+<p>Dash 本身只支持 docsets 格式的文档，也就是由 <a href="http://gentlebytes.com/appledoc/">appledoc</a> 生成的。默认是让 XCode 的 Organizer 管理文档，但是针对这个庞然大物，只是做文档的管理和快速搜索有消受不起。因此 Dash 才诞生出来的。</p>
+<p>其实本篇日志主要是讲这块的内容，从上面的特性上面我也说到 Dash 支持生成任何的文档，因为它支持的文档类型涵盖了目前绝大多数的文档格式，针对这块官方已经写了<a href="http://kapeli.com/docsets">如何转换的说明</a>，这里简单说明下：</p>
+<table>
+<thead>
+<tr>
+<th>语言</th>
+<th>转换工具</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Objective-C 文档</td>
+<td><a href="http://gentlebytes.com/appledoc-docs-examples-basic/">appledoc</a></td>
+</tr>
+<tr>
+<td>Python, Sphinx, pydoctor</td>
+<td><a href="http://pypi.python.org/pypi/doc2dash/">doc2dash</a></td>
+</tr>
+<tr>
+<td>Javadoc</td>
+<td><a href="http://kapeli.com/JavaDocset.zip">java.docset</a></td>
+</tr>
+<tr>
+<td>RDoc</td>
+<td>使用 Dash 自身的 &ldquo;Ruby Installed Gems&rdquo;</td>
+</tr>
+<tr>
+<td>Scaladoc</td>
+<td><a href="https://bitbucket.org/inkytonik/mkscaladocset">mkscaldocset</a></td>
+</tr>
+<tr>
+<td>Doxygen(源码)</td>
+<td>修改参数生成</td>
+</tr>
+<tr>
+<td>docsetutil</td>
+<td>需要创建指定目录结构</td>
+</tr>
+<tr>
+<td>SQLite</td>
+<td>官方支持数据库索引，需要创建指定目录结构</td>
+</tr>
+</tbody>
+</table>
+<h3 id="生成-flask-文档">生成 Flask 文档</h3>
+<p>因为最近在学习 Flask，过年回家家里没有网络，因为我需要可以查询它的文档，虽然官方提供了 html 和 pdf 格式，但是没有办法快速搜索 API，没法发挥 Dash 的优势嘛，对吧！</p>
+<p>Flask 官方提供的 html 文档是 Sphinx 格式的，首先把<a href="http://flask.pocoo.org/docs/flask-docs.zip">文档</a>下载到本地，并安装好 doc2dash，另外备好一个 <a href="https://bitbucket-assetroot.s3.amazonaws.com/c/photos/2011/Sep/30/flask-logo-2523728525-3_avatar.png">flask icon</a>。</p>
+<pre tabindex="0"><code>$ pip install doc2dash
+</code></pre><p>因为 Dash 可以让每个文档都有自己的 Icon，否则默认只是 docset 的 Icon，下载完毕之后，执行代码：</p>
+<pre tabindex="0"><code>$ doc2dash --name Flask --icon flask-logo.png --add-to-dash /path/to/flask-docs
+</code></pre><p>其中 <code>--add-to-dash</code> 是生成完毕后自动添加到 Dash，默认生成好的 docset 文件在当前目录。</p>
+<p>好了，Dash 已经可以索引到所有的 Flask API 了，真是太 TMD 的酷了！</p>
+<h2 id="维护你的文档">维护你的文档</h2>
+<p>如果你希望把自己生成的文档分享出来，并提供后期的维护升级，你可以提供一个 feed 保持文档的自动更新，这里有<a href="http://kapeli.com/feeds/NodeJS.xml">一个关于 NodeJS 的例子</a>。</p>
+<ul>
+<li>你可以提供多个 url 多备份提供文档下载</li>
+<li>支持 tgz 格式的打包</li>
+</ul>
+]]></content:encoded></item><item><title>介绍 virtualenvwrapper</title><link>https://icyleaf.com/2013/01/intro-virtualenvwrapper/</link><pubDate>Wed, 16 Jan 2013 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2013/01/intro-virtualenvwrapper/</guid><description>
+多 Python 版本环境的管理工具</description><content:encoded><![CDATA[<p>上回说到 <a href="http://icyleaf.com/2012/07/intro-virtualenv">virtualenv</a> 的基本使用，这会为了提高工作效率，再次介绍针对于它增强的一个扩展 <a href="http://www.doughellmann.com/projects/virtualenvwrapper/">virtualenvwrapper</a>。</p>
+<h2 id="安装配置">安装配置</h2>
+<pre tabindex="0"><code>$ pip install virtualenvwrapper
+</code></pre><p>安装好之后需要简单配置下，主要是设置独立环境的保存路径：</p>
+<pre tabindex="0"><code>$ export WORKON_HOME=~/Envs
+$ mkdir -p $WORKON_HOME
+$ source /usr/local/bin/virtualenvwrapper.sh
+</code></pre><p>如果使用 oh-my-zsh 的可以开启对应的 virtualenvwrapper 插件， <code>WORKON_HOME</code> 会设置在 <code>~/.virtualenvs/</code></p>
+<h2 id="常用命令">常用命令</h2>
+<h1 id="查看已创建的环境">查看已创建的环境</h1>
+<pre tabindex="0"><code>$ lsvirtualenv
+</code></pre><h1 id="创建环境">创建环境</h1>
+<pre tabindex="0"><code>$ mkvirtualenv &lt;env_name&gt;
+$ mkvirtualenv -r requirements.txt &lt;env_name&gt;
+</code></pre><h1 id="切换到某个环境">切换到某个环境</h1>
+<pre tabindex="0"><code>$ workon &lt;env_name&gt;
+</code></pre><h1 id="设置当前环境的默认工作路径下次执行-workon-命令会自动切换路径">设置当前环境的默认工作路径(下次执行 workon 命令会自动切换路径)</h1>
+<pre tabindex="0"><code>(env_name) $ setvirtualenvproject
+</code></pre><h1 id="查看当前环境已安装的-packages">查看当前环境已安装的 packages</h1>
+<pre tabindex="0"><code>$ lssitepackages
+</code></pre><h1 id="删除环境">删除环境</h1>
+<pre tabindex="0"><code>$ rmvirtualenv &lt;env_name&gt;
+</code></pre><h1 id="创建临时环境-deactivate-之后自动销毁">创建临时环境 (deactivate 之后自动销毁)</h1>
+<pre tabindex="0"><code>$ mktmpenv
+</code></pre><p>查看更详细的<a href="http://virtualenvwrapper.readthedocs.org/en/latest/command_ref.html">命令描述文档</a>。</p>
+]]></content:encoded></item><item><title>升级 OS X 10.8 和 Python 第三方库那点事</title><link>https://icyleaf.com/2012/08/upgrade-osx-10-8-with-python-library/</link><pubDate>Fri, 24 Aug 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/08/upgrade-osx-10-8-with-python-library/</guid><description>
+今天把公司的机器升级到了 10.8 本来就觉得 OS X 的平滑升级做的非常的好，除了一些被乔帮主鄙视的 JDK 需要重新安装外，其他的一切都很平滑的迁移过来。中午的...</description><content:encoded><![CDATA[<p>今天把公司的机器升级到了 10.8 本来就觉得 OS X
+的平滑升级做的非常的好，除了一些被乔帮主鄙视的 JDK
+需要重新安装外，其他的一切都很平滑的迁移过来。中午的时候想用 django
+练手做个晓项目，熟练的在终端创建新项目，结果爆出如下错误：</p>
+<blockquote>
+<p>pkg_resources.DistributionNotFound: distribute==0.6.27</p>
+</blockquote>
+<p>顺是看了下 <code>/Library/Python/2.7/site-packages</code>
+竟然发现里面没有任何的库，心里想估计是升级的适合系统清理掉了，那只能重新安装下了，于是又输入：</p>
+<pre tabindex="0"><code>$ sudo pip install django
+</code></pre><p>再次报错：</p>
+<blockquote>
+<p>pkg_resources.DistributionNotFound: pip==1.1</p>
+</blockquote>
+<p>外头想想也对，python 的库都被清掉了，那只能使用 easy_install 了啊（犯2啊！）</p>
+<pre tabindex="0"><code>$ sudo easy_install pip
+</code></pre><p>继续报错 = =!</p>
+<blockquote>
+<p>pkg_resources.DistributionNotFound: distribute==0.6.27</p>
+</blockquote>
+<p>Ocz，肿么又报错了&hellip;迅速脑中确认几件事情：</p>
+<p>​1. Python 是否是调用的系统默认的 - √</p>
+<p>​2. 确认 easy_install 是否存在 - √ （不仅存在，连没有了的 pip 和
+virtualenv 还存在软链接）</p>
+<p>​3. distribute 是啥 - ˚∆˚ （Python 新手成长中）</p>
+<p>于是网上查询发现也有不少遇到升级 10.8 发现 pip
+不见了，但是他们提供的解决方案是：</p>
+<pre tabindex="0"><code>$ sudo easy_install -U pip
+</code></pre><p>但是在我本地执行还是报 <code>distribute</code>
+不存在，看了需要重新安装它了吧，既然不能通过包管理软件执行，那只有官方下载源码安装了：</p>
+<pre tabindex="0"><code>$ curl -O http://python-distribute.org/		$ distribute_setup.py &amp;&amp; python
+$ distribute_setup.py
+</code></pre><p>安装成功之后就有可以从本篇开头的操作继续重装下去了 T_T</p>
+<p>补习知识：</p>
+<blockquote>
+<p>distribute 0.6.28</p>
+</blockquote>
+<blockquote>
+<p>Easily download, build, install, upgrade, and uninstall Python
+packages</p>
+</blockquote>
+]]></content:encoded></item><item><title>利用 argparse 写的脚本命令：测试 URL 响应时间</title><link>https://icyleaf.com/2012/08/url-request-time-test-using-python-with-argparse/</link><pubDate>Thu, 02 Aug 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/08/url-request-time-test-using-python-with-argparse/</guid><description>
+前几天看完《Python简明教程》，预想练手，想起同事的一个 ruby 代码，尝试改写成 python，顺便看看两个语言的简练程度。下面是原始的 ruby 代码：...</description><content:encoded><![CDATA[<p>前几天看完《<a href="http://woodpecker.org.cn/abyteofpython_cn/chinese/">Python简明教程</a>》，预想练手，想起同事的一个 ruby 代码，尝试改写成 python，顺便看看两个语言的简练程度。下面是原始的 ruby 代码：</p>
+<pre tabindex="0"><code>#!/usr/bin/env ruby
+
+require &#39;rubygems&#39;
+require &#39;net/http&#39;
+
+urls = [&#34;http://icyleaf.com&#34;]
+50.times do
+  urls.each do |url|
+    start_at = Time.now
+    Net::HTTP.get URI.parse(url)
+    end_at = Time.now
+    diff = end_at - start_at
+    if diff &lt; 0.3 then
+      color_code = 32
+    elsif diff &gt; 0.8 then
+      color_code = 31
+    else
+      color_code = 33
+    end
+    puts &#34;#{url}\n time: \033[#{color_code}m#{diff}\033[0m seconds&#34;
+  end
+end
+</code></pre><p>改写 python 的同时，考虑脚本的灵活性准备增加两个参数，第一个是请求测试次数，第二个是请求测试的 URL，而 python 默认提供了 <a href="http://docs.python.org/dev/library/argparse.html">argparse</a> 库，可以很方便的生成 &ndash;help 的帮助和解析传递的参数：</p>
+<pre tabindex="0"><code>#!/usr/bin/env python
+
+import urllib2
+import time
+import sys
+import argparse
+
+def benchmark(url, count):
+	for i in range(count):
+		s = time.time()
+		r = urllib2.urlopen(urllib2.Request(url))
+		e = time.time()
+		diff = e - s
+
+		if diff &lt; 0.3:
+			color_code = 32
+		elif diff &gt; 0.8:
+			color_code = 31
+		else:
+			color_code = 33
+
+		print &#39;# %d&#39; % (i + 1)
+		print &#39;\tStauts: %s&#39; % r.getcode()
+		print &#39;\tTime: \033[%dm%f\033[0m second(s)&#39; % (color_code, diff)
+
+
+def main(argv):
+	parser = argparse.ArgumentParser(description=&#39;url request time test&#39;)
+
+	parser.add_argument(&#39;URL&#39;, help=&#39;request url&#39;)
+	parser.add_argument(&#39;-t&#39;, &#39;--time&#39;, action=&#39;store&#39;, dest=&#39;count&#39;, type=int, default=10, help=&#39;request times&#39;)
+	args = parser.parse_args(argv)
+
+	benchmark(args.URL, args.count)
+
+
+if __name__ == &#39;__main__&#39;:
+	main(sys.argv[1:])
+</code></pre><p>当然，我主要是为了练手 python 才去写的，ruby 本身也有 <a href="http://ruby-doc.org/stdlib-1.9.3/libdoc/optparse/rdoc/OptionParser.html">optparse</a> 库用于解析参数，但是需要自己手写生成 &ndash;help 的输出，而且需要对每个参数做相应的 callback。</p>
+<p>效果如下：</p>
+<p><img src="http://ww3.sinaimg.cn/large/65d1d65bgw1dvi5nsc4sdj.jpg"
+  
+  
+  alt="screenshot"></img>
+</p>
+]]></content:encoded></item><item><title>初次接触 virtualenv</title><link>https://icyleaf.com/2012/07/intro-virtualenv/</link><pubDate>Fri, 27 Jul 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/07/intro-virtualenv/</guid><description>
+python 的 virtualenv 功能看着类似于 Ruby 的 RVM，其实这两个东西我都没有用过，本身脚本语言用的最熟练的是 php，最近觉得 php 在处理一些多线程和终端繁琐的事情上有...</description><content:encoded><![CDATA[<p>python 的 virtualenv 功能看着类似于 Ruby 的 RVM，其实这两个东西我都没有用过，本身脚本语言用的最熟练的是 php，最近觉得 php 在处理一些多线程和终端繁琐的事情上有些局限性。决定熟悉下 python 并尝试用 django 做一个小应用。</p>
+<p>由于本身 <a href="http://github.com/openparty/openparty">OpenParty</a> 的代码也是基于 django 开发的，加上最近也开始使用了 virtualenv，这样正好解决了不同项目在使用不同的环境造成的一些困扰。</p>
+<p>OS X 本身已经安装了 easy_install 可以通过命令安装：</p>
+<pre tabindex="0"><code>$ easy_install pip
+</code></pre><p>安装好之后，可以为每个项目创建一个专属的开发环境，这个环境可以单独存放在一个目录下面，比如：</p>
+<pre tabindex="0"><code>~/envs
+      \
+      |- env1
+      |- env2
+      \- env3
+</code></pre><p>创建一个的纯净的开发环境:</p>
+<pre tabindex="0"><code>$ virtualenv --no-site-packages &lt;env_name&gt;
+</code></pre><p>进入专属的开发环境：</p>
+<pre tabindex="0"><code>$ source &lt;env_name&gt;/bin/activate
+</code></pre><p>你会发现 <code>(&lt;env_name&gt;)</code> 会出现在你终端提示的前面，这个时候就说明进入该环境，以后的任何和 python 相关的依赖都是在这个环境下面，和系统全局的不受任何影响。</p>
+<p>比如通过快速安装项目的依赖：</p>
+<pre tabindex="0"><code>(env_name)$ pip install -r requirements
+</code></pre><p>下载的依赖都会存放在这个路径：</p>
+<pre tabindex="0"><code>&lt;env_name&gt;/lib/python2.7/site-packages/
+</code></pre><p>退出当前的开发环境：</p>
+<pre tabindex="0"><code>$ deactivate
+</code></pre><p>资料参考：</p>
+<ol>
+<li><a href="http://github.com/openparty/openparty">OpenParty README</a></li>
+<li><a href="http://www.virtualenv.org/">virtualenv</a></li>
+<li><a href="http://jsome.net/blog/2010/06/11/start-to-use-virtualenv">开始使用Virtualenv</a></li>
+</ol>
+]]></content:encoded></item></channel></rss>

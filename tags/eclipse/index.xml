@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>eclipse on icyleaf</title><link>https://icyleaf.com/tags/eclipse/</link><description>Recent content in eclipse on icyleaf</description><language>zh</language><lastBuildDate>Mon, 14 May 2012 12:34:56 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/eclipse/index.xml" rel="self" type="application/rss+xml"/><item><title>“java.lang.NoClassDefFoundError” in Android</title><link>https://icyleaf.com/2012/05/how-to-salvation-android-import-jar-exception-during-running/</link><pubDate>Mon, 14 May 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/05/how-to-salvation-android-import-jar-exception-during-running/</guid><description>
+最近 Eclipse 的 ADT 升级至了 18 版本，结果运行的时候发现导入的第三方 jar 包总是报错 java.lang.NoClassDefFoundError 可气的是 Eclipse 不会给工程同时在编译的时候也不会报错。 后来发现此版本，第三方...</description><content:encoded><![CDATA[<p>最近 Eclipse 的 ADT 升级至了 18 版本，结果运行的时候发现导入的第三方 jar
+包总是报错</p>
+<blockquote>
+<p>java.lang.NoClassDefFoundError</p>
+</blockquote>
+<p>可气的是 Eclipse 不会给工程同时在编译的时候也不会报错。</p>
+<p>后来发现此版本，第三方的 <code>jar</code> 包必须放在项目的 <code>libs</code>
+目录下面，而且仅能放在 <code>libs</code> 根目录下面，即不能在 <code>libs</code>
+下面在建立子目录存放，也不能改名 <code>lib</code> 目录&hellip;.</p>
+<p>更无奈的是， Eclipse 的 User Library 也是出现同样的问题，目前无解 &gt;.&lt;</p>
+]]></content:encoded></item></channel></rss>

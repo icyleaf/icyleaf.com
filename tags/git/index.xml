@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Git on icyleaf</title><link>https://icyleaf.com/tags/git/</link><description>Recent content in Git on icyleaf</description><language>zh</language><lastBuildDate>Fri, 27 Apr 2018 18:12:23 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/git/index.xml" rel="self" type="application/rss+xml"/><item><title>ḫpr</title><link>https://icyleaf.com/2018/04/intro-hpr/</link><pubDate>Fri, 27 Apr 2018 18:12:23 +0800</pubDate><guid>https://icyleaf.com/2018/04/intro-hpr/</guid><description>
+最好用的 git 仓库镜像同步工具</description><content:encoded><![CDATA[<p><img src="https://github.com/icyleaf/hpr/raw/master/docs/_media/icon.png"
+  
+  
+  alt="icon"></img>
+</p>
+<p><a href="https://icyleaf.github.io/hpr/">ḫpr</a> 是一个把任意 git 仓库的镜像到 gitlab 服务的同步工具，还支持定期同步的功能。</p>
+<p>特性:</p>
+<ul>
+<li>支持 Web API 接口，可用于远程控制不仅限于终端使用</li>
+<li>支持终端命令控制，方便临时使用</li>
+<li>定时更新镜像的仓库，时间可调，告别不靠谱的 crontab</li>
+<li>几乎支持所有的 git 托管的仓库</li>
+<li>使用可独立部署的 Gitlab 作为镜像平台</li>
+</ul>
+<p>本工具可以用到的地方:</p>
+<ul>
+<li>任意 git 仓库源码的定期同步</li>
+<li>Cocoapods 的境内加速和同步</li>
+</ul>
+<h2 id="契子">契子</h2>
+<p>如果关注我博客的用户或者曾经看到过另外一篇文章<a href="http://icyleaf.com/2015/01/speed-up-cocoapods/">极速化 CocoaPods</a>的话且实践的用户会明白为什么会有它的产生。
+在我发布那篇文章的时候那套体系已经在我们公司的服务器上运行且截至目前已经持续运行了 3 年多！</p>
+<p>那个方案并不完美，除了调用必须通过脚本的蹩脚的方案外出问题最多的主要是 gitlab-mirrors
+只能使用 crontab 做定时任务这样会因多个镜像在同步未完成的情况下重复开启新的同步任务，一个任务不明显一旦积攒多了起来还会慢慢的蚕食内存因此又不得不 ssh 到服务器
+开始杀进程相当于重置。</p>
+<p><del>当时想重新做一个的想法其实 2017 年就产生了用 ruby 写了个头当时项目命名为 nightwing 但 ruby 的问题在部署上面有比较麻烦需要各种依赖环境，
+当时也考虑过 Go 但由于在断断续续学习没有持续，这个时候就开始将注意力转移到了类 Ruby 语法的 Crystal 语言，通过业余时间慢慢的了解和确定其性能后虽然和
+Go 来比打包还没有那么高的集成度但完成核心功能已经完全足够，也就开始了封装 <a href="https://github.com/icyleaf/gitlab.cr">gitlab</a>、
+<a href="https://github.com/icyleaf/halite">halite</a> 网络库直到最近基本完成了核心功能。</del></p>
+<p><code>ḫpr</code> 就这样诞生了。项目名和 Logo 出处来源于<a href="https://zh.wikipedia.org/wiki/%E8%81%96%E7%94%B2%E8%9F%B2">圣甲虫</a>。</p>
+
+
+
+
+<div class="updated">
+  <header class="updated-header">
+    <h4 class="updated-title">更新</h4>
+    
+    <p class="updated-meta">4月 18, 2022</p>
+    
+  </header>
+  <article class="updated-body">
+    第一版确实用的 Crystal 语言发布了 hpr 后续<a href="https://github.com/icyleaf/hpr/issues/11">因为 Crystal 太多轮子和问题需要解决</a>不得已用 Ruby 重写了。
+  </article>
+</div>
+
+
+<h2 id="快速上手">快速上手</h2>
+<p>鉴于 Docker 的便利性，目前教程只提供此种方法进行安装部署，首先克隆本项目：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ git clone https://github.com/icyleaf/hpr.git
+</span></span><span class="line"><span class="ln">2</span><span class="cl">$ <span class="nb">cd</span> hpr
+</span></span></code></pre></div><p>复制 <a href="config/hpr.json.example">config/hpr.json.example</a> 并改名 <code>config/config.json</code> 后可修改</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="nt">&#34;schedule_in&#34;</span><span class="p">:</span> <span class="s2">&#34;1.day&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="nt">&#34;basic_auth&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">    <span class="nt">&#34;enable&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">    <span class="nt">&#34;user&#34;</span><span class="p">:</span> <span class="s2">&#34;hpr&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">    <span class="nt">&#34;password&#34;</span><span class="p">:</span> <span class="s2">&#34;p@ssw0rd&#34;</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">  <span class="nt">&#34;gitlab&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">    <span class="nt">&#34;ssh_port&#34;</span><span class="p">:</span> <span class="mi">22</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">    <span class="nt">&#34;endpoint&#34;</span><span class="p">:</span> <span class="s2">&#34;http://gitlab.example.com/api/v3&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">    <span class="nt">&#34;private_token&#34;</span><span class="p">:</span> <span class="s2">&#34;abc&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">
+</span></span><span class="line"><span class="ln">13</span><span class="cl">    <span class="nt">&#34;group_name&#34;</span><span class="p">:</span> <span class="s2">&#34;mirrors&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">
+</span></span><span class="line"><span class="ln">15</span><span class="cl">    <span class="nt">&#34;project_public&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">    <span class="nt">&#34;project_issue&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl">    <span class="nt">&#34;project_wiki&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl">    <span class="nt">&#34;project_merge_request&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">    <span class="nt">&#34;project_snippet&#34;</span><span class="p">:</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="ln">20</span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln">21</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>核心需要修改的参数有如下四项：</p>
+<ul>
+<li><code>endpoint</code>: Gitlab API 的地址，<strong>无需修改后面部分</strong></li>
+<li><code>private_token</code>: 在个人设置的 Account 页面获得</li>
+<li><code>group_name</code>: 项目镜像的项目都会归属到这个组内，<strong>务必确保你的账户拥有创建组的权限</strong> (如果是管理员请忽略加粗字样)</li>
+<li><code>ssh_port</code>: 如果 SSH 不是 22 端口的话需要根据你的实际情况修改</li>
+</ul>
+<p>配置文件修改保存后还需要在 <code>docker-compose.yml</code> 文件中配置下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;2&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="w"></span><span class="nt">services</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="w">  </span><span class="nt">hpr</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">icyleafcn/hpr</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="w">      </span>- <span class="m">8848</span><span class="p">:</span><span class="m">8848</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="w">      </span>- <span class="l">./config:/app/config</span><span class="w">
+</span></span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="w">      </span>- <span class="l">./repositories:/app/repositories</span><span class="w">
+</span></span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="w">      </span><span class="nt">REDIS_URL</span><span class="p">:</span><span class="w"> </span><span class="l">tcp://redis:6379</span><span class="w">
+</span></span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="w">      </span><span class="nt">REDIS_PROVIDER</span><span class="p">:</span><span class="w"> </span><span class="l">REDIS_URL</span><span class="w">
+</span></span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="w">      </span><span class="nt">HPR_SSH_HOST</span><span class="p">:</span><span class="w"> </span><span class="l">git.example.com</span><span class="w">
+</span></span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="w">      </span><span class="nt">HPR_SSH_PORT</span><span class="p">:</span><span class="w"> </span><span class="m">22</span><span class="w">
+</span></span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="w">      </span>- <span class="l">redis</span><span class="w">
+</span></span></span><span class="line"><span class="ln">19</span><span class="cl"><span class="w">  </span><span class="nt">redis</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">20</span><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">redis:alpine</span><span class="w">
+</span></span></span></code></pre></div><p>其中 <code>HPR_SSH_HOST</code> 和 <code>HPR_SSH_PORT</code> 变量用于设置 Docker 实例中的 SSH 配置。如果 SSH 端口是 22 的可忽略设置这俩参数。</p>
+<p>编辑完成后运行下面命令快完成了！</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln"> 1</span><span class="cl">$ docker-compose up
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">...
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">hpr_1      <span class="p">|</span> Generating public/private rsa key pair ...
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">hpr_1      <span class="p">|</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">hpr_1      <span class="p">|</span> GENERATED SSH PUBLIC KEY:
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">hpr_1      <span class="p">|</span> <span class="c1">##################################################################</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">hpr_1      <span class="p">|</span> ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDq8O3HbLn9x8Uy8RUotlpOnxdakrmCyDpZrGBeLARmEbd6BOIBQ+UWm8NUKthQ7UOavmlsq4j8lY4kyFW2eFX2qWcbvI+s2gI+05MXax+mAukSszaNSnpAoTyJCRipilSkqiOV99V8JIJhrHPtTO0o/Ui
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">9WiyyWsUM4M9lEKHpZ486lDGk3IM2XQW+pxAoMKb0TYzqCsrduHUtjzy0M0BqgMPe9EtVQqCbnTMzDLXmRONoTYyTV51NQ12mMwEQcDaLQ28e5gqouQJKS81JaoRpQWa7pHsOCki6Fk9TB+EQFrGz5nOrmYYM+O1MKnFkzmVHv7Fh50Sz7d2nYzzOKAkR hpr@docker
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">hpr_1      <span class="p">|</span> <span class="c1">##################################################################</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">hpr_1      <span class="p">|</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">hpr_1      <span class="p">|</span> Configuring ssh config ...
+</span></span><span class="line"><span class="ln">12</span><span class="cl">hpr_1      <span class="p">|</span> Starting hpr server ...
+</span></span><span class="line"><span class="ln">13</span><span class="cl">hpr_1      <span class="p">|</span>   _
+</span></span><span class="line"><span class="ln">14</span><span class="cl">hpr_1      <span class="p">|</span>  <span class="p">|</span> <span class="p">|</span>__  _ __  _ __
+</span></span><span class="line"><span class="ln">15</span><span class="cl">hpr_1      <span class="p">|</span>  <span class="p">|</span> <span class="s1">&#39;_ \| &#39;</span>_ <span class="se">\|</span> <span class="err">&#39;</span>__<span class="p">|</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">hpr_1      <span class="p">|</span>  <span class="p">|</span> <span class="p">|</span> <span class="p">|</span> <span class="p">|</span> <span class="p">|</span>_<span class="o">)</span> <span class="p">|</span> <span class="p">|</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl">hpr_1      <span class="p">|</span>  <span class="p">|</span>_<span class="p">|</span> <span class="p">|</span>_<span class="p">|</span> .__/<span class="p">|</span>_<span class="p">|</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl">hpr_1      <span class="p">|</span>        <span class="p">|</span>_<span class="p">|</span>
+</span></span></code></pre></div><p>最后从执行命令的输出找到生成的 SSH PUBLIC KEY（两个井号中间的部分，以 <code>ssh-rsa</code> 开头，<code>hpr@docker</code> 结尾），
+复制添加到 gitlab 的账户 SSH Keys 页面中。</p>
+<h2 id="更多资源">更多资源</h2>
+<p>再多的内容我已经整理到文档中，欢迎移步浏览：https://icyleaf.github.io/hpr/</p>
+]]></content:encoded></item><item><title>Puma 替换 Unicorn 跑 Gitlab</title><link>https://icyleaf.com/2014/01/moving-unicorn-to-puma-on-gitlab/</link><pubDate>Sun, 26 Jan 2014 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2014/01/moving-unicorn-to-puma-on-gitlab/</guid><description>
+用 Ruby 编写的 Puma 网关才是未来</description><content:encoded><![CDATA[<p>前篇介绍到如何在《<a href="http://icyleaf.com/2013/09/how-to-install-gitlab-on-centos/">CentoOS 上面安装 Gitlab</a>》一文，gitlab 默认使用的是 <code>unicorn</code> 作为内部的 app server，再用 <code>nginx</code> 做代理转发。之前是在公司内部搭建了一个平台，用着还算可以。有打算在 <a href="https://www.linode.com/?r=66b0730eca572d3e45f083e29b1b3f8781b2a009">Linode 购买的 VPS</a> 上面，使用 <code>unicorn</code> 跑服务的时候 <code>ruby</code> 的进程居然占了 400-500M 左右，对于 Linode 刚刚免费升级之后才有 1G 内存的环境上，我还真有点放弃安装它的欲望。于是在想是否可以使用 <code>puma</code> 替换掉原先的。</p>
+<h2 id="puma">puma</h2>
+<p>简单介绍下 <a href="http://puma.io/"><code>puma</code></a>，它是一个由 ruby 编写的转为 <a href="http://rack.github.io/"><code>rack</code></a> 设计的 app server，在性能和资源占有上却有极大的优势（下表数据来自官方）</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">PUMA - 78 Mb
+</span></span><span class="line"><span class="ln">2</span><span class="cl">RAINBOWS! (1X16) - 120 Mb
+</span></span><span class="line"><span class="ln">3</span><span class="cl">UNICORN - 1076 Mb
+</span></span><span class="line"><span class="ln">4</span><span class="cl">RAINBOWS! (16X32) - 1138 Mb
+</span></span></code></pre></div><p>而且集成也非常的简单，若使用 rails 或者 sinatra（及 padrino）都已经支持，直接 <code>gem install puma</code>，然后跑默认的 <code>rails/padrino server</code> 会自动加载。</p>
+<h2 id="教程">教程</h2>
+<p>Okay，经过一番查找，官方在收集的 <a href="https://gitlab.com/gitlab-org/gitlab-recipes/tree/master">repices</a> 里面有关于 <code>puma</code> 的一些配置。他们也是收集的非官方资料，里面的资料只有借鉴意义，真正拿来用的时候各种问题，所以才有了本篇文字。</p>
+<p>首先是关闭启动的 <code>gitlab</code> 服务</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ <span class="o">(</span>sudo<span class="o">)</span> service gitlab stop
+</span></span></code></pre></div><p>关闭之后，添加 puma gem，打开 <code>Gemfile</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">group</span> <span class="ss">:unicorn</span> <span class="k">do</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="n">gem</span> <span class="s1">&#39;unicorn&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 4.6.3&#39;</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">	<span class="n">gem</span> <span class="s1">&#39;unicorn-worker-killer&#39;</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><p>找到上面的这段 group 替换成：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">gem</span> <span class="s1">&#39;puma&#39;</span>
+</span></span></code></pre></div><p>再者修改 <code>config.ru</code>，把下面这段代码做下替换，删除 unicorn 的代码，加载 puma：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="ln">1</span><span class="cl"><span class="k">unless</span> <span class="n">defined?</span><span class="p">(</span><span class="no">PhusionPassenger</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nb">require</span> <span class="s1">&#39;unicorn&#39;</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="c1"># Unicorn self-process killer</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">  <span class="nb">require</span> <span class="s1">&#39;unicorn/worker_killer&#39;</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">  <span class="c1"># Max memory size (RSS) per worker</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">  <span class="n">use</span> <span class="no">Unicorn</span><span class="o">::</span><span class="no">WorkerKiller</span><span class="o">::</span><span class="no">Oom</span><span class="p">,</span> <span class="p">(</span><span class="mi">200</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">20</span><span class="p">)),</span> <span class="p">(</span><span class="mi">250</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">20</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><p>更新成</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="ln">1</span><span class="cl"><span class="k">unless</span> <span class="n">defined?</span><span class="p">(</span><span class="no">PhusionPassenger</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nb">require</span> <span class="s1">&#39;puma&#39;</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><p>替换完毕更新 <code>gem</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># mysql 数据库</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">bundle install --without development <span class="nb">test</span> postgres --path vendor/bundle --no-deployment
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="c1"># postgres 数据库</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">bundle install --without development <span class="nb">test</span> mysql --path vendor/bundle --no-deployment
+</span></span></code></pre></div><p>最后还有两处需要修改，添加 <code>config/puma.rb</code>（替代 <code>config/unicorn.rb</code>） 以及替换 <code>/etc/init.d/gitlab</code> 服务脚本代码。</p>
+<p><code>config/puma.rb</code>的代码在<a href="https://gitlab.com/gitlab-org/gitlab-recipes/blob/master/app-server/puma/puma.rb">这里可以下载</a>，无需做任何的修改。</p>
+<p><code>/etc/init.d/gitlab</code> 服务脚本：<a href="https://gitlab.com/gitlab-org/gitlab-recipes/tree/master/init/sysvinit/centos">CentOS</a> | <a href="https://gitlab.com/gitlab-org/gitlab-recipes/tree/master/init/sysvinit/debian">Debian(Ubuntu)</a></p>
+<blockquote>
+<p>服务脚本需要设置下执行权限： chmod +x /etc/init.d/gitlab</p>
+</blockquote>
+<p>最后开启服务应该就完美了</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ <span class="o">(</span>sudo<span class="o">)</span> service gitlab start
+</span></span></code></pre></div><h2 id="我想用-apache-怎么办">我想用 Apache 怎么办？</h2>
+<p>嗯，我没尝试过，官方有提供收集的资料，<a href="https://gitlab.com/gitlab-org/gitlab-recipes/tree/master/web-server">自己查看下吧</a>，记得要活学活用，直接套肯定会出问题的。</p>
+]]></content:encoded></item><item><title>Git 和 Pager 的那点事</title><link>https://icyleaf.com/2013/10/about-pager-on-git/</link><pubDate>Wed, 16 Oct 2013 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2013/10/about-pager-on-git/</guid><description>
+tig 是一个代替 Git Pager 的好工具</description><content:encoded><![CDATA[<blockquote>
+<p>Git 几乎所有命令都提供分页器，即当命令输出超过一页时，自动在每页输出后暂停，可以按空格继续显示，按 q 退出。</p>
+</blockquote>
+<p>默认 git 的 <code>pager = less -FRSX</code>，这个可以通过两种方式更改：</p>
+<p>命令：</p>
+<pre tabindex="0"><code>$ git config --global core.pager &#34;less -FRSX&#34;
+</code></pre><p>配置文件：</p>
+<pre tabindex="0"><code>$ vim ~/.gitconfig
+</code></pre><p>了不起了通过设置自动匹配的色彩来增强可读性</p>
+<pre tabindex="0"><code>$ git config --global color.ui on
+</code></pre><p>随着 <a href="http://jonas.nitro.dk/tig">tig</a> 的出现，给 git 的增加了一个强大武装武器。（不明观众看这里先对它有个感官概念：<a href="http://gitready.com/advanced/2009/07/31/tig-the-ncurses-front-end-to-git.html">tig, the ncurses front-end to Git</a>）</p>
+<p>可能大家不知道 tig 本身就可以也是一个 pager，因此我们可以在 git config 默认替换之：</p>
+<pre tabindex="0"><code>$ git config --global core.pager tig
+</code></pre><p>自从这样配置之后，让我幸福了好几年。直到&hellip;今天发现一个怪异的问题，使用任何需要显示 tig pager 的地方设置的配色是以代码形式显示，而不是解析成了终端显示的颜色。最近忍不住升级到了 10.9 并更新了一些命令，因此也没搞清楚到底是哪里出了问题。只能先把 git 自带的 color 渲染给关闭才解决了这个问题</p>
+<pre tabindex="0"><code>$ git config --global color.ui off
+</code></pre><p>我的个人 <code>.gitconfig</code> 等配置文件：https://gist.github.com/icyleaf/868866</p>
+]]></content:encoded></item><item><title>如何在 CentOS 上安装 Gitlab</title><link>https://icyleaf.com/2013/09/how-to-install-gitlab-on-centos/</link><pubDate>Tue, 17 Sep 2013 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2013/09/how-to-install-gitlab-on-centos/</guid><description>
+Barl Metal 安装服务依赖还是很痛苦的，CentOS 上是痛苦面具</description><content:encoded><![CDATA[<p>2013 年 08 月的 OpenParty &ldquo;<a href="http://www.beijing-open-party.org/event/25">花事如期</a>&rdquo; 活动上，<a href="https://github.com/vecio">晓东</a>在他的机器上演示了自建 Gitlab 的项目，看到 Gitlab 目前已经比较成熟，而不像早期寒碜的界面，这个时候看安装一下也是不错的事情，不过他们的项目文档只提供了 Ubuntu 系统的<a href="https://github.com/gitlabhq/gitlabhq#installation">安装文档</a>，对于 CentOS 没有提到，非官方的文档有比较老久，凭着之前熟悉 Ubuntu 和学习 CentOS，那就开始安装吧：</p>
+<p>以下教程在 <code>CentOS 6 x86_64</code> 版本下操作。</p>
+<h2 id="首先安装-epel-和编译依赖库">首先安装 EPEL 和编译依赖库</h2>
+<pre tabindex="0"><code>$ rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+</code></pre><blockquote>
+<p>如果你是非 64 位，去上面的网址找到适合你发行版的最新版本的 epel rpm</p>
+</blockquote>
+<pre tabindex="0"><code>$ yum -y update
+$ yum -y install gcc gcc-c++ make autoconf libyaml-devel gdbm-devel ncurses-devel openssl-devel zlib-devel readline-devel curl-devel expat-devel gettext-devel  tk-devel libxml2-devel libffi-devel libxslt-devel libicu-devel sendmail patch libyaml* pcre-devel sqlite-devel vim
+</code></pre><h2 id="安装-python-27">安装 Python 2.7+</h2>
+<p>Gitlab 要求 Python 2.5.5+ 以及 Ruby 1.9+</p>
+<p>系统 Python 默认是 2.6.x，如果你想把 Python 升级到目前比较流行的 2.7.x 就参照下面步骤，否则直接跳过。（Gitlab 目前不支持 Python 3.0）</p>
+<pre tabindex="0"><code>$ mkdir /tmp/gitlab &amp;&amp; cd /tmp/gitlab
+$ curl --progress http://python.org/ftp/python/2.7.5/Python-2.7.5.tgz | tar xvf
+$ cd Python-2.7.5
+$ ./configure --prefix=/usr/local
+$ make &amp;&amp; make altinstall
+</code></pre><p>安装好之后，需要做两件事情，替换默认 python 的版本至最新版本，</p>
+<pre tabindex="0"><code>$ sudo ln -s /usr/local/bin/python2.7 /usr/local/bin/python
+</code></pre><blockquote>
+<p>因为系统默认 <code>PATH</code> 的寻址路径是 <code>/usr/local/bin</code></p>
+</blockquote>
+<p>最后看下 Python 版本是否是刚刚安装的版本：</p>
+<pre tabindex="0"><code>$ python --version
+</code></pre><blockquote>
+<p>由于 <code>yum</code> 是 python 的一个 module，所以这块修改可能会引起无法调用 yum 脚本，所以需要修改这个文件 <code>/usr/bin/yum</code> 的第一行为 <code>!#/usr/bin/python2.6</code></p>
+</blockquote>
+<h2 id="安装-ruby-20">安装 Ruby 2.0</h2>
+<p>Ruby 1.9 和 2.0 的特性差别不大，索性升级至最新 2.0 版本即可</p>
+<pre tabindex="0"><code>$ cd /tmp/gitlab
+$ curl --progress http://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p247.tar.gz | tar xz
+$ cd ruby-2.0.0-p247
+$ ./configure
+$ make
+$ make install
+</code></pre><p>ruby 2.0 已经内置 gem (v2.0.3)，只需要安装 bundler</p>
+<pre tabindex="0"><code>$ gem install bundler
+</code></pre><blockquote>
+<p>若在执行 <code>sudo ruby</code> 或 <code>sudo gem</code> 找不到命令，因为编译的路径配置到了 <code>/usr/local/bin</code>，我们只需要做下软链接到 root 用户可以找到的 <code>$PATH</code> 路径：</p>
+</blockquote>
+<pre tabindex="0"><code>$ ln -s /usr/local/bin/ruby /usr/bin/ruby
+$ ln -s /usr/local/bin/gem /usr/bin/gem
+$ ln -s /usr/local/bin/bundle /usr/bin/bundle
+</code></pre><h2 id="安装-git-和-gitolite">安装 Git 和 Gitolite</h2>
+<pre tabindex="0"><code>$ yum -y install git-all gitolite
+</code></pre><h2 id="安装-nginx">安装 Nginx</h2>
+<pre tabindex="0"><code>$ yum -y install nginx
+$ service nginx start
+</code></pre><blockquote>
+<p>nginx 需要从 EPEL 中安装，默认系统没有 nginx 包。</p>
+</blockquote>
+<h2 id="安装-mysql-和-redis">安装 Mysql 和 Redis</h2>
+<p>Gitlab 要求强制安装 redis 处理一些数据，另外支持 MySQL 和 PostgreSQL，这里主要以 MySQL 为例</p>
+<pre tabindex="0"><code>$ yum -y install mysql mysql-devel mysql-server redis
+</code></pre><p>配置 Mysql 和 gitlab 需要的用户和数据库</p>
+<pre tabindex="0"><code>$ service mysqld start
+$ mysql -u root
+$ mysql&gt; CREATE USER &#39;gitlab&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;gitlab&#39;;
+$ mysql&gt; CREATE DATABASE IF NOT EXISTS `gitlabhq_production` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`;
+$ mysql&gt; GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER ON `gitlabhq_production`.* TO &#39;gitlab&#39;@&#39;localhost&#39;;
+$ mysql&gt; \q
+</code></pre><p>Redis 使用默认配置即可，直接启动</p>
+<pre tabindex="0"><code>$ service redis start
+</code></pre><h2 id="添加-gitlab-用户">添加 Gitlab 用户</h2>
+<pre tabindex="0"><code>$ useradd -c &#39;GitLab&#39; git
+</code></pre><p>CentOS 的命令没有办法直接禁止用户的访问的参数，需要用下面命令：</p>
+<pre tabindex="0"><code>$ passwd -l git
+</code></pre><h2 id="安装-gitlab-shell">安装 Gitlab-shell</h2>
+<p>使用 root 账户切换到 git 账户下操作，可以比官方教程省去一些麻烦的输入</p>
+<pre tabindex="0"><code>$ su git &amp;&amp; cd /home/git
+$ git clone https://github.com/gitlabhq/gitlab-shell.git
+$ cd gitlab-shell
+</code></pre><p>通过 <code>git tag</code> 查看最新版本并切换之</p>
+<pre tabindex="0"><code>$ git checkout v1.7.1
+</code></pre><p>编辑配置文件修改你要设定的域名（domain），比如 <code>http://gitlab.dev/</code></p>
+<pre tabindex="0"><code>$ vim config.yml
+</code></pre><p>完成之后执行安装脚本</p>
+<pre tabindex="0"><code>$ ./bin/install
+</code></pre><h2 id="安装-gitlab">安装 Gitlab</h2>
+<pre tabindex="0"><code>$ cd /home/git
+$ git clone https://github.com/gitlabhq/gitlabhq.git gitlab
+$ cd /home/git/gitlab
+</code></pre><p>通过 <code>git tag</code> 查看最新版本并切换之</p>
+<pre tabindex="0"><code>$ git checkout 6.0.1
+</code></pre><p>这里需要配置的东西多一些，这里参考<a href="https://github.com/gitlabhq/gitlabhq/blob/master/doc/install/installation.md#configure-it">官方的文档</a>，也可以安装我下面的步骤来：</p>
+<pre tabindex="0"><code>$ cd /home/git/gitlab
+</code></pre><p>复制配置文件，修改 host 相关的配置项，主要是 domain 要和上面的 <code>http://gitlab.dev</code></p>
+<pre tabindex="0"><code>$ cp config.yml{.example,}
+$ vim config/gitlab.yml
+</code></pre><p>确认 gitlab 以下目录的权限是否正确</p>
+<pre tabindex="0"><code>$ mkdir tmp/pids/
+$ mkdir tmp/sockets/
+$ chown -R git log/
+$ chown -R git tmp/
+$ chmod -R u+rwX log/
+$ chmod -R u+rwX tmp/
+$ chmod -R u+rwX tmp/pids/
+$ chmod -R u+rwX tmp/sockets/
+</code></pre><p>创建 satellites 目录，这个目录是保存各个用户的仓库</p>
+<pre tabindex="0"><code>$ mkdir /home/git/gitlab-satellites
+</code></pre><p>创建 uploads 目录（为什么 gitlab 不在项目中创建呢= =！）</p>
+<pre tabindex="0"><code>$ mkdir public/uploads
+$ chmod -R u+rwX  public/uploads
+</code></pre><p>复制 unicorn 配置文件</p>
+<pre tabindex="0"><code>$ cp config/unicorn.rb{.example,}
+</code></pre><p>设置 ruby web 容器的参数，比如 2GB RAM 服务器可以设置 3 个 worker。</p>
+<blockquote>
+<p>如果系统其他服务占用了 unicorn 的端口，记得改名。</p>
+</blockquote>
+<pre tabindex="0"><code>$ vim config/unicorn.rb
+</code></pre><p>设置一些 git 全局参数</p>
+<pre tabindex="0"><code>$ git config --global user.name &#34;GitLab&#34;
+$ git config --global user.email &#34;gitlab@localhost&#34;
+$ git config --global core.autocrlf input
+</code></pre><p>配置 gitlab 数据库设置</p>
+<pre tabindex="0"><code>$ cp config/database.yml{.mysql,}
+$ vim config/database.yml
+$ chmod o-rwx config/database.yml
+</code></pre><p>安装必需的 Ruby Gems</p>
+<pre tabindex="0"><code>$ cd /home/git/gitlab
+$ [sudo] gem install charlock_holmes --version &#39;0.6.9.4&#39;
+$ bundle install --deployment --without development test postgres aws
+</code></pre><p>初始化数据库数据（执行输入 <code>Yes</code> 继续创建）</p>
+<pre tabindex="0"><code>$ bundle exec rake gitlab:setup RAILS_ENV=production
+</code></pre><p>设置 init 脚本</p>
+<pre tabindex="0"><code>$ sudo cp lib/support/init.d/gitlab /etc/init.d/gitlab
+$ sudo chmod +x /etc/init.d/gitlab
+</code></pre><h2 id="检查-gitlab-状态">检查 Gitlab 状态</h2>
+<pre tabindex="0"><code>$ bundle exec rake gitlab:env:info RAILS_ENV=production
+</code></pre><p>启动 gitlab 服务</p>
+<pre tabindex="0"><code>$ sudo service gitlab start
+</code></pre><p>再起检查，保证所有项目都是绿色</p>
+<pre tabindex="0"><code>$ bundle exec rake gitlab:check RAILS_ENV=production
+</code></pre><h2 id="配置-nginx">配置 nginx</h2>
+<p>根据 nginx 的安装路径适当修改下面的路径即可，我们先把 gitlab 提供的配置文件拷贝过去</p>
+<pre tabindex="0"><code>$ sudo mkdir -p /etc/nginx/conf/sites/
+$ sudo cp lib/support/nginx/gitlab /etc/nginx/conf/sites/gitlab.conf
+</code></pre><blockquote>
+<p>根据 nginx 版本和不同发行版的不同，配置结构可能不同根据你的实际情况加载 <code>gitlab.conf</code></p>
+</blockquote>
+<p>修改 <code>gitlab.conf</code> 的 <code>YOUR_SERVER_FQDN</code> 为上面设置的 domain。
+最后修改 <code>nginx.conf</code> 或者 <code>default.conf</code> 加载 <code>/etc/nginx/conf/site</code> 下所有 conf 文件</p>
+<pre tabindex="0"><code>http {
+
+	include /etc/nginx/conf/site/*.conf;
+
+	server {
+		…
+	}
+}
+</code></pre><p>保存后，重启各个服务</p>
+<pre tabindex="0"><code>$ sudo service nginx reload
+$ sudo service gitlab restart
+</code></pre><h2 id="开始-gitlab-之旅">开始 Gitlab 之旅</h2>
+<p>配置好 hosts 即可访问 <code>gitlab.dev</code></p>
+<pre tabindex="0"><code>$ echo &#34;127.0.0.1 gitlab.dev&#34; &gt;&gt; /etc/hosts
+</code></pre><p>默认的用户名密码：</p>
+<pre tabindex="0"><code>admin@local.host
+5iveL!fe
+</code></pre><h2 id="各种坑">各种坑</h2>
+<h3 id="1-错误日志报权限错误">1. 错误日志报权限错误</h3>
+<pre tabindex="0"><code>2013/11/07 00:42:21 [crit] 15875#0: *2 stat() &#34;/home/git/gitlab/public/favicon.ico.html&#34; failed (13: Permission denied), client: 33.33.33.1, server: gitlab.web.lo, request: &#34;GET /favicon.ico HTTP/1.1&#34;, host: &#34;gitlab.web.lo&#34;
+2013/11/07 00:42:21 [crit] 15875#0: *2 connect() to unix:/home/git/gitlab/tmp/sockets/gitlab.socket failed (13: Permission denied) while connecting to upstream, client: 33.33.33.1, server: gitlab.web.lo, request: &#34;GET /favicon.ico HTTP/1.1&#34;, upstream: &#34;http://unix:/home/git/gitlab/tmp/sockets/gitlab.socket:/favicon.ico&#34;, host: &#34;gitlab.web.lo&#34;
+2013/11/07 00:42:31 [crit] 15875#0: *2 stat() &#34;/home/git/gitlab/public/&#34; failed (13: Permission denied), client: 33.33.33.1, server: gitlab.web.lo, request: &#34;GET / HTTP/1.1&#34;, host: &#34;gitlab.web.lo&#34;
+2013/11/07 00:42:31 [crit] 15875#0: *2 stat() &#34;/home/git/gitlab/public//index.html&#34; failed (13: Permission denied), client: 33.33.33.1, server: gitlab.web.lo, request: &#34;GET / HTTP/1.1&#34;, host: &#34;gitlab.web.lo&#34;
+2013/11/07 00:42:31 [crit] 15875#0: *2 stat() &#34;/home/git/gitlab/public/.html&#34; failed (13: Permission denied), client: 33.33.33.1, server: gitlab.web.lo, request: &#34;GET / HTTP/1.1&#34;, host: &#34;gitlab.web.lo&#34;
+2013/11/07 00:42:31 [crit] 15875#0: *2 connect() to unix:/home/git/gitlab/tmp/sockets/gitlab.socket failed (13: Permission denied) while connecting to upstream, client: 33.33.33.1, server: gitlab.web.lo, request: &#34;GET / HTTP/1.1&#34;, upstream: &#34;http://unix:/home/git/gitlab/tmp/sockets/gitlab.socket:/&#34;, host: &#34;gitlab.web.lo&#34;
+2013/11/07 00:42:31 [crit] 15875#0: *2 stat() &#34;/home/git/gitlab/public/favicon.ico&#34; failed (13: Permission denied), client: 33.33.33.1, server: gitlab.web.lo, request: &#34;GET /favicon.ico HTTP/1.1&#34;, host: &#34;gitlab.web.lo&#34;
+2013/11/07 00:42:31 [crit] 15875#0: *2 stat() &#34;/home/git/gitlab/public/favicon.ico/index.html&#34; failed (13: Permission denied), client: 33.33.33.1, server: gitlab.web.lo, request: &#34;GET /favicon.ico HTTP/1.1&#34;, host: &#34;gitlab.web.lo&#34;
+2013/11/07 00:42:31 [crit] 15875#0: *2 stat() &#34;/home/git/gitlab/public/favicon.ico.html&#34; failed (13: Permission denied), client: 33.33.33.1, server: gitlab.web.lo, request: &#34;GET /favicon.ico HTTP/1.1&#34;, host: &#34;gitlab.web.lo&#34;
+2013/11/07 00:42:31 [crit] 15875#0: *2 connect() to unix:/home/git/gitlab/tmp/sockets/gitlab.socket failed (13: Permission denied) while connecting to upstream, client: 33.33.33.1, server: gitlab.web.lo, request: &#34;GET /favicon.ico HTTP/1.1&#34;, upstream: &#34;http://unix:/home/git/gitlab/tmp/sockets/gitlab.socket:/favicon.ico&#34;, host: &#34;gitlab.web.lo&#34;
+</code></pre><p>解决方案:</p>
+<pre tabindex="0"><code>$ (sudo) chmod o+x /home/git
+</code></pre><h3 id="2-8080-端口被占用">2. 8080 端口被占用</h3>
+<p>这样主要是因为 nginx 的配置是做 unicorn 的代理转发，实际上 gitlab 是由 unicorn 容器驱动，而在配置里默认绑定的是 <code>8080</code> 端口</p>
+<pre tabindex="0"><code>$ vim /home/git/gitlab/config/unicorn.rb
+</code></pre><p>找到 <code>listen &quot;127.0.0.1:8080&quot;, :tcp_nopush =&gt; true</code> 修改成其他未占用的端口号即可。</p>
+]]></content:encoded></item><item><title>如何保持在 Git Submodule 代码的开放和私有共存</title><link>https://icyleaf.com/2012/08/how-to-keep-public-and-private-versions-of-a-git-submodule-repo-in-sync/</link><pubDate>Fri, 03 Aug 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/08/how-to-keep-public-and-private-versions-of-a-git-submodule-repo-in-sync/</guid><description>
+假设我在 github 有一个开源的版本库 x 供大家使用，该库里面又包含了好些个 submodules，其中有一个 submodule 名为 a 是自己在 github 又创建的: $ git submodule add http://github.com/icyleaf/a.git modules/a 现在...</description><content:encoded><![CDATA[<p>假设我在 github 有一个开源的版本库 x 供大家使用，该库里面又包含了好些个 submodules，其中有一个 submodule 名为 a 是自己在 github 又创建的:</p>
+<pre tabindex="0"><code>$ git submodule add http://github.com/icyleaf/a.git modules/a
+</code></pre><p>现在问题是，由于代码需要更新，同时涉及到了 a 这个 submodule，但是它的添加 url 是 read-only，由于 x 这个库是供大家使用，因此 a 又不能设为 private：</p>
+<pre tabindex="0"><code>$ git clone git@github.com:icyleaf/a.git modules/a
+</code></pre><p>目前想到的方法是在 x 库以外 clone 下来 a，进行私有的写入和 push 到 github 上面，然后在 x 库的 a 里 git pull 下来获得最新的代码。</p>
+<p>如何解决这样的问题，能够当大家全部 clone 下来，而自己开发也能避免麻烦？在一篇文章上面找到了灵感，折腾了一番搞定了 !</p>
+<p>该文章有一节讲到，开发者如果经常需要更新 submodule ，即可更换 submodule 的 remote url：</p>
+<pre tabindex="0"><code>$ cd commonlib
+$ git remote rm origin
+$ git remote add origin ssh://mark@git.mysociety.org/data/git/public/commonlib.git
+$ git remote -v origin ssh://mark@git.mysociety.org/data/git/public/commonlib.git
+
+However, you’ll find that two helpful config options will have been
+deleted when removing and adding back origin, so you’ll want to add
+these back.
+
+$ git config branch.master.remote origin
+$ git config branch.master.merge refs/heads/master
+</code></pre><p>首先我也先对 a 进行 git remote -v，结果显示：</p>
+<pre tabindex="0"><code>origin http://github.com/icyleaf/a.git (fetch)
+origin http://github.com/icyleaf/a.git (push)
+</code></pre><p>发现和文章里面的显示的结果不一样，于是我就在想能不能在 remote
+上面做些手脚，首先看下 git remote 的 help，发现有一条是可以单独设置 remote
+push 的 url ，也就是更换上面 git remote -v 中 push 的 url，尝试：</p>
+<pre tabindex="0"><code>$ git remote set-url --push origin git@github.com:icyleaf/a.git
+</code></pre><p>再次执行 remote -v:</p>
+<pre tabindex="0"><code>origin http://github.com/icyleaf/a.git (fetch)
+origin git@github.com:icyleaf/a.git (push)
+</code></pre><p>执行成功！然后随意 commit 并 push orgin master，成功！</p>
+<p>搞定！</p>
+]]></content:encoded></item><item><title>使用 Git Hooks 实现自动项目部署</title><link>https://icyleaf.com/2012/03/apps-auto-deploy-with-git/</link><pubDate>Wed, 14 Mar 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/03/apps-auto-deploy-with-git/</guid><description>
+最近在某服务器上面搭建 git 开发和部署环境，git 开发环境很简单，按照 ProGit 一书的相关知识就可以轻松搞定，实现了类似 Github 的使用 SSH + 私有 Clone 的方式。 关于部...</description><content:encoded><![CDATA[<p>最近在某服务器上面搭建 git 开发和部署环境，git 开发环境很简单，按照 ProGit 一书的相关知识就可以轻松搞定，实现了类似 Github 的使用 SSH + 私有 Clone 的方式。</p>
+<p>关于部署，实际上是自动部署，起初的想法是使用 bash shell 制定一个定时任务去不断 git pull 产品代码，后来记得 Git 带有 Hooks，索性在ProGit 一书翻了翻：</p>
+<blockquote>
+<p>Git 本身可以调用自定义的挂钩脚本，其中有两组：客户端和服务器端。客户端挂钩用于客户端的操作，如提交和合并。服务器端挂钩用于 Git 服务器端的操作，如接收被推送的提交。详情请查看 <a href="http://progit.org/book/zh/ch7-3.html">ProGit 相关章节</a></p>
+</blockquote>
+<p>如果这样就简单了，利用服务器端调用想要的挂钩（Hook），即可实现自动部署的方案，为了保证不被肆意部署，特加了一个对需要部署 commit 的判断，利用读取 commit subject 并匹配想要的字符串才去部署，这样我认为是一个比较安装的部署方案。</p>
+<p>Git的挂钩（Hook）主要包含：</p>
+<ul>
+<li>applypatch-msg</li>
+<li>post-update</li>
+<li>pre-rebase</li>
+<li>commit-msg</li>
+<li>pre-applypatch</li>
+<li>update</li>
+<li>post-commit</li>
+<li>pre-commit</li>
+<li>post-receive</li>
+<li>prepare-commit-msg</li>
+</ul>
+<p>这里我们只需要使用 post-receive 这个 Hook：在接收 post(push)
+请求之后执行。其他大部分我也没有大多研究，不过看名字不算难理解，我觉得其中大部分包含 commit 的属于客户端。</p>
+<p>好了，部署开始：</p>
+<p>​1. 在服务器 git 仓库（注意是 bare 仓库，不是代码仓库）的 Hooks，编辑
+post-receive（如果没有自行创建），代码请看：http://gist.github.com/566767</p>
+<p>这里会先判断脚本所在目录是否是 bare git 仓库，然后获取最新 commit 的 subject，并匹配是否包含 [deploy] 字样，如果包含，则继续检查产品代码仓库路径是否存在，如果存在则执行 git pull 操作。</p>
+<p>​2. 对刚才编辑的 post-receive 执行下面命令以保证脚本可执行：</p>
+<pre tabindex="0"><code>$ chmod +x post-receive
+</code></pre><p>​3. 完成！</p>
+<!-- raw HTML omitted -->
+<p>对于自定义脚本，其实不仅限于 bash shell，你可以使用你熟悉的语言，然后把你的脚本路径在 hooks 脚本中加载即可。</p>
+<p>脚本还会继续更新，下面需要增加关于测试部分的相关判断和部署。 bash shell 还需要进一步学习，上面脚本是我第一次写，如有不妥之处，请指教，感谢！</p>
+]]></content:encoded></item><item><title>几本和 Git 相关的书</title><link>https://icyleaf.com/2009/09/books-about-git/</link><pubDate>Mon, 28 Sep 2009 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2009/09/books-about-git/</guid><description>
+切换到 Git开发已经有一段的时间了，之前一直在使用 svn，现在部分代码还在 Google Code 托管。不过自换了 Git 之后发现 Git 更方便且效率更高，不过用来用去常用...</description><content:encoded><![CDATA[<p>切换到 Git开发已经有一段的时间了，之前一直在使用 svn，现在部分代码还在
+Google Code 托管。不过自换了 Git 之后发现 Git 更方便且效率更高，不过用来用去常用的就拿几个命令，很多时候都要去找一些参考资料和教程。从学习到现在一个接触了一个文档，三本书。文档就是官方的文档手册，这个就不再说了，安装完 git 也都会默认内置的，对于这三本书，依次为 <a href="http://book.git-scm.com/">Git Community Book</a>，<a href="http://progit.org/">ProGit</a>，<a href="http://zh-cn.whygitisbetterthanx.com/">Why Git is Better Than X</a>（X 代表其他 SCM 软件，如
+svn，bzr等）。</p>
+<ul>
+<li>Why Git is Better Than X 已经有国内友人翻译完毕，一一介绍了 Git 与其他 SCM 软件有什么优势和特色</li>
+<li>ProGit 不久前开启了<a href="http://progit.org/2009/08/19/translate-this.html">翻译计划</a>，中文目前还在<a href="http://groups.google.com/group/progit-zh">翻译过程</a>中，这本书很适合作为入门使用和工具书，欢迎前来 <a href="http://github.com/progit/progit">Fork</a></li>
+<li>Git Community Book 就是一个由社区维护的手册，内容很全讲解的很详细，就是还没有中文</li>
+</ul>
+<p>可喜的是，这些书籍都是可以在线观看或下载的，当然如果能进一份力量，请去购买正版，或有一腔热血为 Git 贡献，就请加入到翻译之中。</p>
+]]></content:encoded></item><item><title>初学 git 入门</title><link>https://icyleaf.com/2008/11/new-guy-to-git/</link><pubDate>Fri, 07 Nov 2008 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2008/11/new-guy-to-git/</guid><description>
+Git 是用于 Linux 内核开发的版本控制工具。与常用的版本控制工具 CVS, Subversion 等不同，它采用了分布式版本库的方式，不必服务器端软件支持，使源代码的发布和交流极其...</description><content:encoded><![CDATA[<blockquote>
+<p>Git 是用于 Linux 内核开发的版本控制工具。与常用的版本控制工具 CVS, Subversion 等不同，它采用了分布式版本库的方式，不必服务器端软件支持，使源代码的发布和交流极其方便。Git 的速度很快，这对于诸如 Linux kernel 这样的大项目来说自然很重要。Git 最为出色的是它的合并跟踪（merge tracing）能力。</p>
+</blockquote>
+<p>当前大多数人用的还应该是 SVN 服务，不过上次见到 <a href="http://blog.donews.com/CNBorn">CNBorn</a> 同学使用 <del>git</del>（Bazzer） 做版本控制，其实知道它很早不过没有过多的了解，在我稍微了解之后发现 git 比 svn 更具潜力，可惜对于 PHP 的用户来说还没有多少人开始用 git 甚至我在 PHPChina 的论坛看到有人问 git 的问题，居然有人回答 git 是什么&hellip;</p>
+<p>同样 git 支持多平台且对于 Windows 的用户也有 GUI 的管理界面。通过几天的了解是使用稍微掌握了一点入门的东西（以下都是命令行的东西，如果你想学习使用 GUI 的操作请看<a href="http://gitcasts.com/posts/git-on-windows">此讲解视频</a>）；</p>
+<p>首先是下载并安装 <a href="http://git-scm.com/download">git</a>。接着设置用户标识：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">$ git config --global user.name yourname
+</span></span><span class="line"><span class="ln">2</span><span class="cl">$ git config --global user.email example@mail.com
+</span></span></code></pre></div><p>然后创建一个目录作为版本库：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">$ mkdir examplecd examplegit init
+</span></span></code></pre></div><p>把本地文件同步到远程 git host 服务网站上面</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln"> 1</span><span class="cl"># 添加文件
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">$ git add filename
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"># 提交说明并提交
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">$ git commit -m &#39;first commit&#39;
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"># 添加到远程地址，这个地址不固定，以 git hosts 提供地址为准
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">$ git remote add origin git@example.com:username/example.git
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">
+</span></span><span class="line"><span class="ln">10</span><span class="cl"># 提交 origin 到 master
+</span></span><span class="line"><span class="ln">11</span><span class="cl">$ git push origin master
+</span></span></code></pre></div><p>另外，如果使用网上的 git host 服务，还涉及到设置 ssh public key 的问题，各个平台有些细微的差别，大家看 github 网站的<a href="http://github.com/guides/providing-your-ssh-key">相关帮助</a>。</p>
+<p>如果你想系统的学习 git， 不妨通读下 <a href="http://roclinux.cn/?p=914">《看日记学git》系列文章</a></p>
+]]></content:encoded></item></channel></rss>

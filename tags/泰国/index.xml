@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>泰国 on icyleaf</title><link>https://icyleaf.com/tags/%E6%B3%B0%E5%9B%BD/</link><description>Recent content in 泰国 on icyleaf</description><language>zh</language><lastBuildDate>Wed, 10 Apr 2019 13:12:07 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/%E6%B3%B0%E5%9B%BD/index.xml" rel="self" type="application/rss+xml"/><item><title>申请泰国电子落地签答疑解惑</title><link>https://icyleaf.com/2019/04/apply-thailand-evisa/</link><pubDate>Wed, 10 Apr 2019 13:12:07 +0800</pubDate><guid>https://icyleaf.com/2019/04/apply-thailand-evisa/</guid><description>
+电子签证期间入境神速（大家还未意识到时）</description><content:encoded><![CDATA[
+
+
+
+<div class="updated">
+  <header class="updated-header">
+    <h4 class="updated-title">更新</h4>
+    
+    <p class="updated-meta">3月 28, 2019</p>
+    
+  </header>
+  <article class="updated-body">
+    拿着打印的 eVISA 到达曼谷机场后填写玩出入境申请表去专门的 eVISA 通道（可能有路障，工作人员知道是办理 eVISA 会放行）到那边几乎没有人在排队，我们附带的照片（没贴上去）给了也没要（建议最好还是带着），5 分钟时间入境！
+  </article>
+</div>
+
+
+<p>3月初购买了去泰国曼谷的机票，泰国的签证自 2018 年末增加了第四种在线申请电子落地签（E-Visa），赶上泰国免签证费延期到 2019 年 4 月底的好事情，还需要收第三方机构的手续费（这个后面展开）一家三口办下来比淘宝找中介要便宜好多，也不用落地排 1-2 小时队当场办落地签（据说落地入境走的是独立通道）</p>
+<p>签证办理渠道对比表</p>
+<table>
+<thead>
+<tr>
+<th>渠道</th>
+<th>办理机构</th>
+<th>费用</th>
+<th>停留时长</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>自己递签</td>
+<td>泰国大使馆</td>
+<td>签证费</td>
+<td>60天</td>
+<td>资料要求多，耗时 7 天，婴儿同大人</td>
+</tr>
+<tr>
+<td>代办</td>
+<td>旅行社或淘宝</td>
+<td>230 人民币签证费+中介费</td>
+<td>60天</td>
+<td>资料要求少，耗时 7 天，婴儿同大人</td>
+</tr>
+<tr>
+<td>落地签</td>
+<td>机场入境处</td>
+<td>签证费</td>
+<td>60天</td>
+<td>排队办理耗时 1-2 小时</td>
+</tr>
+<tr>
+<td>电子落地签</td>
+<td>网站办理</td>
+<td>签证费+手续费 525 泰铢</td>
+<td>15天，不可延期</td>
+<td>资料整理比较蛋疼，下签时间未知</td>
+</tr>
+</tbody>
+</table>
+<p>上面三种要么要么自己跑大使馆，要么需要费用比较高，办理电子落地签每人也就收 525 泰铢。当时查了一些资料说是申请有好多坑，如果被拒签有一次修改的机会，再被拒签不退钱。</p>
+<blockquote>
+<p>一句话总结：是 2019 年 4 月底前最佳申请途径，费用低廉只要资料没有任何问题出发前肯定下签。唯一缺点是只有 15 天停留期且不可延期。</p>
+</blockquote>
+<h3 id="申请攻略">申请攻略</h3>
+<p>泰国电子落地签申请入口：https://www.evisathailand.com/</p>
+<p>通过我申请的过程来看我猜这是一个第三方机构委托，他们只负责资料的审核，通过后再递交泰国出入境管理局，因此是商业域名。具体申请步骤大家参考<a href="https://bbs.qyer.com/thread-3121710-1.html">2019泰国电子落地签申请亲妈式教学</a>。</p>
+<h3 id="注意事项">注意事项</h3>
+<ul>
+<li>姓名填写参照护照（名是多字的中间不要有空格）</li>
+<li>上传附件支持 PNG/JPG/GIF/PDF 大于 100KB 总体小于 2MB</li>
+<li>机票行程单和酒店预订单建议是英文版本</li>
+<li>机票行程单往返在一个 PDF 文件的上传两次</li>
+<li>酒店预订单接受 Booking 和 Airbnb（在邮件酒店预订单有打印功能，跳转网页后打开浏览器隐私模式切换英文打印就是纯英文版本）</li>
+</ul>
+<p>泰国电子落地签网站也在不断版本迭代中，以上办理中可能出现的问题后续可能会改善。</p>
+<h3 id="查询进度">查询进度</h3>
+<p>网址：https://www.evisathailand.com/check</p>
+<p>输入 Application id 和护照号即可。</p>
+<p>技术党这么做：</p>
+<pre tabindex="0"><code>curl &#39;https://www.evisathailand.com/check?q=check&#39; --data &#39;reference_code={application_id}&amp;passport_number={passport_number}&#39;
+</code></pre><p>解析结果用 html 解析器解析 css 查询路径 <code>.container ul li</code> 数组里 h5 是标题，input 的 value 值为数值。</p>
+<p>我是用了一个 telegram bot 可以发送命令查询结果，你也可以直接写一个定时脚本有结果了直接发邮件。</p>
+<h3 id="咨询渠道">咨询渠道</h3>
+<ul>
+<li>发英文邮件至 <code>contact@evisathailand.com</code> 回复频率未知，我是 6 天后得到的官腔答复。</li>
+<li>加微信 <code>泰国电子落地签eVISA</code> 直接中文留言，回复频率几分钟内繁体中文官腔回复（我猜又是一个客服委托机构）。</li>
+<li>泰国电子落地签网站最底部 <code>LIVE CHAT 即时聊天</code> 英文沟通，秒回复，当场给你审查资料并递交给泰国出入境管理局。（可能需要翻墙）</li>
+</ul>
+<h3 id="何时下签">何时下签</h3>
+<p>办理电子签除了便宜以外，我另外看中的据说是 24 - 48 小时下签，然而我太年轻&hellip;</p>
+<p>我是 3 月 28 日晚上申请，真正下签是 4 月 10 日，耗时 13 天，期间我尝试了三种咨询渠道，只有最后一种最有效，资料审核后递交泰国出入境管理局后端状态是不可催的，我是从他们审查后递交泰国出入境管理局又花了 3 天才拿到 evisa，不过他们客服给我的答复是只要我这递交泰国出入境管理局了肯定在你出发前给你下签。</p>
+]]></content:encoded></item></channel></rss>

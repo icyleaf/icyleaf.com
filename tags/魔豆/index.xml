@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>魔豆 on icyleaf</title><link>https://icyleaf.com/tags/%E9%AD%94%E8%B1%86/</link><description>Recent content in 魔豆 on icyleaf</description><language>zh</language><lastBuildDate>Mon, 02 May 2011 12:34:56 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/%E9%AD%94%E8%B1%86/index.xml" rel="self" type="application/rss+xml"/><item><title>魔豆及其豆瓣 API 测试平台开源咯</title><link>https://icyleaf.com/2011/05/modou-and-douban-api-console-is-open-source-now/</link><pubDate>Mon, 02 May 2011 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2011/05/modou-and-douban-api-console-is-open-source-now/</guid><description>
+这是作为 2011 年 5 月 1 日劳动节的福利发放，欢迎各位 Kohana 开发者及其爱好者围观领取，领取内容及其使用方式请前往本人 Github 的项目地址：https://git...</description><content:encoded>&lt;p>这是作为 2011 年 5 月 1 日劳动节的福利发放，欢迎各位 Kohana 开发者及其爱好者围观领取，领取内容及其使用方式请前往本人 Github 的项目地址：https://github.com/icyleaf/modou&lt;/p></content:encoded></item><item><title>魔豆：豆瓣网非官方移动版本</title><link>https://icyleaf.com/2009/06/modou/</link><pubDate>Mon, 22 Jun 2009 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2009/06/modou/</guid><description>
+项目已开源: http://github.com/icyleaf/modou 但不再维护。 魔豆，一个豆瓣网非官方移动版本，基于豆瓣 API开发的专门为移动终端（手持设备）定制的豆瓣移动版本。魔豆专注于豆瓣网...</description><content:encoded><![CDATA[<blockquote>
+<p>项目已开源: <a href="http://github.com/icyleaf/modou">http://github.com/icyleaf/modou</a> 但不再维护。</p>
+</blockquote>
+<p><a href="http://modou.us" title="魔豆：豆瓣网非官方移动版本">魔豆</a>，一个<a href="http://douban.com">豆瓣网</a>非官方移动版本，基于<a href="http://www.douban.com/service/apidoc/" title="豆瓣 API">豆瓣
+API</a>开发的专门为移动终端（手持设备）定制的豆瓣移动版本。魔豆专注于豆瓣网的<strong>广播</strong>及<strong>同城活动</strong>。</p>
+<p>魔豆的来历：豆瓣移动版 -&gt; Douban mobile -&gt; moDouban -&gt; moDou -&gt;魔豆</p>
+<p>目前魔豆发布的功能：</p>
+<ol>
+<li>友邻广播：支持显示广播，回复发起人和重播（重复发布其他发起者的广播）</li>
+<li>同城活动：查看自己参与（包含参加/感兴趣）的活动以及用户所在城市的同城活动（需提前在豆瓣设置）</li>
+<li>查看用户相册以及同城活动相册（仅限于从友邻广播）</li>
+<li>搜索用户/书影音/同城活动</li>
+<li>查看用户/书影音/同城活动信息</li>
+<li>显示和查阅豆邮</li>
+</ol>
+<p>我，是一个重度豆瓣使用者，也许这和身在北京这所繁华的帝都有很大的关系。虽然豆瓣网直到现在为其定位在书影音这三大模块，但不可否认的，豆瓣小组，豆瓣广播，豆瓣同城甚至豆邮都起着重要的标志性作用。</p>
+<p>或许和大家一样，一直期待着豆瓣网能够推出移动版本，可以用手机或其他移动设备查查书影音，看看友邻广播和未读豆邮，浏览下所在城市的同城活动，
+光想想都是这么的惬意，于是我们在等，一直在等，几乎使我望穿秋水的时候，还是杳无音讯。平时在有 WIFI 网络的情况下，
+使用 iTouch 访问一下豆瓣网还是可以，如果离开了它，以为这必须使用较昂贵的 GPRS 网络，经过漫长的 loading 才能看到自己感兴趣或自己想看的一点点信息&hellip;</p>
+<p>于是，自己何不使用豆瓣API开发一个呢？紧接着通过查阅大量的文档和官方提供的演示代码，抛弃
+Zend Framework 和 Gdata，使用自己维护中文化的 <a href="http://khnfans.cn" title="Kohana 中文爱好者">Kohana</a>框架，一点一点的搭建起了基础库，通过一个星期多的时间，开始一边做页面的展现，另一边继续完善基础库，直到目前为止，大体的框架已经完成，下面需要考虑如何对细节做修改和完善。</p>
+<p>另外，由于 PHP 没有低耦合的 HTTP requset class，自己使用 curl 函数一点点抠出来的一个 RESTFul requset class，在进行提交 POST，PUT，DELETE 方法还存在一些技术问题，所以魔豆目前还不支持对书影音，同城活动进行操作（包含，想读/听/看，感兴趣，我要参加等等），我会尽快完善。</p>
+<p>开发环境： <strong>Windows XP + XAMPP + E-texteditor</strong> (Office work) AND
+<strong>Ubuntu 9.04 + XAMPP + Aptana</strong> (Laptop)</p>
+<p>调试设备：iPod Touch + Blackberry 8310 + Nokia N-GAGE QD</p>
+<p>由于设备有限，可能在其他设备上会出现设备误判或UI上的问题（大家可以在本日志下面留下误判设备型号），敬请谅解。后期会对不同设备进行专门的优化
+:)</p>
+<p>网站：<a href="http://modou.us">http://modou.us</a></p>
+<p>开发进度：<a href="http://modou.us/timeline">http://modou.us/timeline</a></p>
+<p>相关截图：<a href="http://www.getdropbox.com/gallery/45081/1/modou?h=b26d7e">http://www.getdropbox.com/gallery/45081/1/modou?h=b26d7e</a></p>
+<p>欢迎大家前来测试和使用，心情愉快。</p>
+<blockquote>
+<p>更新于 2009年06月22日：由于 China Mobile 的原因，黑莓手机默认浏览器无法判别，请黑莓用户使用 Opera Mini 或其他浏览器访问，原因请看<a href="http://www.douban.com/group/topic/6946152/">这里</a>。</p>
+</blockquote>
+]]></content:encoded></item></channel></rss>

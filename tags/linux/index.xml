@@ -1,0 +1,703 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Linux on icyleaf</title><link>https://icyleaf.com/tags/linux/</link><description>Recent content in Linux on icyleaf</description><language>zh</language><lastBuildDate>Wed, 22 Jan 2014 12:34:56 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>Linux 101 系列：ssh OpenSSH 客户端工具</title><link>https://icyleaf.com/2014/01/linux-101-ssh/</link><pubDate>Wed, 22 Jan 2014 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2014/01/linux-101-ssh/</guid><description>
+当你敲下 ssh 为什么没连接成功到远程服务器</description><content:encoded><![CDATA[<blockquote>
+<p>使用 *nix 服务器肯定会用到 ssh，它是一个链接到远程服务器终端的工具。</p>
+</blockquote>
+<h2 id="基本常识">基本常识</h2>
+<h3 id="基本组成部分">基本组成部分</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ man ssh
+</span></span><span class="line"><span class="ln">2</span><span class="cl">ssh <span class="o">[</span>-1246AaCfgKkMNnqsTtVvXxYy<span class="o">]</span> <span class="o">[</span>-b bind_address<span class="o">]</span> <span class="o">[</span>-c cipher_spec<span class="o">]</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">     <span class="o">[</span>-D <span class="o">[</span>bind_address:<span class="o">]</span>port<span class="o">]</span> <span class="o">[</span>-e escape_char<span class="o">]</span> <span class="o">[</span>-F configfile<span class="o">]</span> <span class="o">[</span>-I pkcs11<span class="o">]</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">     <span class="o">[</span>-i identity_file<span class="o">]</span> <span class="o">[</span>-L <span class="o">[</span>bind_address:<span class="o">]</span>port:host:hostport<span class="o">]</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">     <span class="o">[</span>-l login_name<span class="o">]</span> <span class="o">[</span>-m mac_spec<span class="o">]</span> <span class="o">[</span>-O ctl_cmd<span class="o">]</span> <span class="o">[</span>-o option<span class="o">]</span> <span class="o">[</span>-p port<span class="o">]</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">     <span class="o">[</span>-R <span class="o">[</span>bind_address:<span class="o">]</span>port:host:hostport<span class="o">]</span> <span class="o">[</span>-S ctl_path<span class="o">]</span> <span class="o">[</span>-W host:port<span class="o">]</span>
+</span></span><span class="line"><span class="ln">7</span><span class="cl">     <span class="o">[</span>-w local_tun<span class="o">[</span>:remote_tun<span class="o">]]</span> <span class="o">[</span>user@<span class="o">]</span>hostname <span class="o">[</span>command<span class="o">]</span>
+</span></span></code></pre></div><p>有没有被帮助手册的参数吓到，那我们精简一下：</p>
+<blockquote>
+<p>ssh [user@]hostname [-p port]</p>
+</blockquote>
+<p>登录到远程服务器和登录本地电脑系统没什么大的区别，都需要用户名，密码，除此之外我们还需要知道远程服务器的地址（IP 地址或域名均可）及允许的端口（默认 22 端口）。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ ssh root@10.10.10.10 -p <span class="m">22</span>
+</span></span></code></pre></div><p>有些时候大家发现一些教程没有提到用户，实际上 ssh 很聪明，默认会使用当前系统的用户名：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl"><span class="o">(</span>icyleaf<span class="o">)</span> $ ssh 10.10.10.10
+</span></span></code></pre></div><p>这个就等同于</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ ssh icyleaf@10.10.10.10
+</span></span></code></pre></div><p>有些服务器可能为了安全期间修改了默认的端口，比如 2020：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ ssh icyleaf@10.10.10.10 -p <span class="m">2020</span>
+</span></span></code></pre></div><h3 id="高级参数">高级参数</h3>
+<h4 id="socket-代理">Socket 代理</h4>
+<p>呐，你可能因为 GFW 的威力，尝试使用 ssh 的 socket 代理，实际上就是用到的 <code>-D</code> 参数：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">-D <span class="o">[</span>bind_address:<span class="o">]</span>port
+</span></span><span class="line"><span class="ln">2</span><span class="cl">   Specifies a <span class="nb">local</span> <span class="sb">``</span>dynamic application-level port forwarding.
+</span></span><span class="line"><span class="ln">3</span><span class="cl">   This works by allocating a socket to listen to port on the <span class="nb">local</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">   side, optionally bound to the specified bind_address.  Whenever a
+</span></span><span class="line"><span class="ln">5</span><span class="cl">   connection is made to this port, the connection is forwarded over
+</span></span><span class="line"><span class="ln">6</span><span class="cl">   the secure channel, and the application protocol is <span class="k">then</span> used to
+</span></span><span class="line"><span class="ln">7</span><span class="cl">   determine where to connect to from the remote machine.  Currently
+</span></span><span class="line"><span class="ln">8</span><span class="cl">   the SOCKS4 and SOCKS5 protocols are supported, and ssh will act
+</span></span><span class="line"><span class="ln">9</span><span class="cl">   as a SOCKS server.  Only root can forward privileged ports.
+</span></span></code></pre></div><p>我们来简单画下它的工作流程：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">|----client----|                    |-----server----|
+</span></span><span class="line"><span class="ln">2</span><span class="cl">|              |                    |               |
+</span></span><span class="line"><span class="ln">3</span><span class="cl">|   local port&lt;|  &lt;incoming         |               |
+</span></span><span class="line"><span class="ln">4</span><span class="cl">|    ssh port&lt;&gt;|  &lt;--------------&gt;  |&lt;&gt; ssh port    |
+</span></span><span class="line"><span class="ln">5</span><span class="cl">                                    |    forwarding&gt;|  &gt;outgoing connection
+</span></span><span class="line"><span class="ln">6</span><span class="cl">
+</span></span><span class="line"><span class="ln">7</span><span class="cl">                                     &lt;&lt;&lt;------------local network-----------
+</span></span></code></pre></div><p>它首先需要登录到远程服务器，并把本地的请求全部转发到服务器指定的端口上，然后通过由服务器再去请求。例如我们设置 8624 端口：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ ssh -D8624 icyleaf@10.10.10.10 -p <span class="m">22</span>
+</span></span></code></pre></div><p>这样保持这个连接，我们在设置浏览器或系统的 socket4/5 代理就能达到翻墙的目的。当前这个最大的前提是你的服务器在不手 GFW 的控制下（任意海外未被 GFW 服务器）</p>
+<h4 id="跳板代理">跳板代理</h4>
+<p>或许曾经你在看某本黑客杂志或电影出现过这样的片段，黑客使用肉鸡跳板不断的增加难度避开警察的追踪，实际上我们通过 ssh 也能非常简单又很酷的实现。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">-L [bind_address:]port:host:hostport
+</span></span><span class="line"><span class="ln">2</span><span class="cl">   Specifies that the given port on the local (client) host is to be
+</span></span><span class="line"><span class="ln">3</span><span class="cl">   forwarded to the given host and port on the remote side.  This
+</span></span><span class="line"><span class="ln">4</span><span class="cl">   works by allocating a socket to listen to port on the local side,
+</span></span><span class="line"><span class="ln">5</span><span class="cl">   optionally bound to the specified bind_address.  Whenever a con-
+</span></span><span class="line"><span class="ln">6</span><span class="cl">   nection is made to this port, the connection is forwarded over
+</span></span><span class="line"><span class="ln">7</span><span class="cl">   the secure channel, and a connection is made to host port
+</span></span><span class="line"><span class="ln">8</span><span class="cl">   hostport from the remote machine.
+</span></span></code></pre></div><p>同样给出工作流程：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">|----client----|                    |-----server----|                 |-----host-----|
+</span></span><span class="line"><span class="ln">2</span><span class="cl">|              |                    |               |                 |              |
+</span></span><span class="line"><span class="ln">3</span><span class="cl">|   local port&lt;|  &lt;incoming         |               |                 |              |
+</span></span><span class="line"><span class="ln">4</span><span class="cl">|    ssh port&lt;&gt;|  &lt;--------------&gt;  |&lt;&gt; ssh port    |                 |              |
+</span></span><span class="line"><span class="ln">5</span><span class="cl">                                    |    forwarding&gt;|  -------------&gt; |&gt;host port    |
+</span></span><span class="line"><span class="ln">6</span><span class="cl">
+</span></span><span class="line"><span class="ln">7</span><span class="cl">                                     &lt;&lt;&lt;------------local network-------------------&gt;&gt;&gt;
+</span></span></code></pre></div><p>实际上我只需要操作 <code>-L [bind_address:]port:host:hostport</code> 即可。这里假设我们想登录的目标服务器 target(10.10.10.10)，而我们希望在肉鸡 chicken(20.20.20.20) 上做成跳板：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ ssh -L2020:20.20.20.20:22 10.10.10.10
+</span></span></code></pre></div><h3 id="简化配置">简化配置</h3>
+<p>反复的输入这些繁琐的参数，甚是苦恼，能不能通过一种起个别名就能把上面的参数全部自动设置好呢？！没问题！</p>
+<p>创建 <code>~/.ssh/config</code> 文件：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">Host linode
+</span></span><span class="line"><span class="ln">2</span><span class="cl">HostName 10.10.10.10
+</span></span><span class="line"><span class="ln">3</span><span class="cl">Port <span class="m">22</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">User icyleaf
+</span></span></code></pre></div><p>这个就是基本组成部分。如果你想配置更多，下面是完整的参数：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln"> 1</span><span class="cl">AddressFamily
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">BatchMode
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">BindAddress
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">ChallengeResponseAuthentication
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">CheckHostIP
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">Cipher
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">Ciphers
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">ClearAllForwardings
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">Compression
+</span></span><span class="line"><span class="ln">10</span><span class="cl">CompressionLevel
+</span></span><span class="line"><span class="ln">11</span><span class="cl">ConnectionAttempts
+</span></span><span class="line"><span class="ln">12</span><span class="cl">ConnectTimeout
+</span></span><span class="line"><span class="ln">13</span><span class="cl">ControlMaster
+</span></span><span class="line"><span class="ln">14</span><span class="cl">ControlPath
+</span></span><span class="line"><span class="ln">15</span><span class="cl">ControlPersist
+</span></span><span class="line"><span class="ln">16</span><span class="cl">DynamicForward
+</span></span><span class="line"><span class="ln">17</span><span class="cl">EscapeChar
+</span></span><span class="line"><span class="ln">18</span><span class="cl">ExitOnForwardFailure
+</span></span><span class="line"><span class="ln">19</span><span class="cl">ForwardAgent
+</span></span><span class="line"><span class="ln">20</span><span class="cl">ForwardX11
+</span></span><span class="line"><span class="ln">21</span><span class="cl">ForwardX11Timeout
+</span></span><span class="line"><span class="ln">22</span><span class="cl">ForwardX11Trusted
+</span></span><span class="line"><span class="ln">23</span><span class="cl">GatewayPorts
+</span></span><span class="line"><span class="ln">24</span><span class="cl">GlobalKnownHostsFile
+</span></span><span class="line"><span class="ln">25</span><span class="cl">GSSAPIAuthentication
+</span></span><span class="line"><span class="ln">26</span><span class="cl">GSSAPIDelegateCredentials
+</span></span><span class="line"><span class="ln">27</span><span class="cl">HashKnownHosts
+</span></span><span class="line"><span class="ln">28</span><span class="cl">Host
+</span></span><span class="line"><span class="ln">29</span><span class="cl">HostbasedAuthentication
+</span></span><span class="line"><span class="ln">30</span><span class="cl">HostKeyAlgorithms
+</span></span><span class="line"><span class="ln">31</span><span class="cl">HostKeyAlias
+</span></span><span class="line"><span class="ln">32</span><span class="cl">HostName
+</span></span><span class="line"><span class="ln">33</span><span class="cl">IdentityFile
+</span></span><span class="line"><span class="ln">34</span><span class="cl">IdentitiesOnly
+</span></span><span class="line"><span class="ln">35</span><span class="cl">IPQoS
+</span></span><span class="line"><span class="ln">36</span><span class="cl">KbdInteractiveAuthentication
+</span></span><span class="line"><span class="ln">37</span><span class="cl">KbdInteractiveDevices
+</span></span><span class="line"><span class="ln">38</span><span class="cl">KexAlgorithms
+</span></span><span class="line"><span class="ln">39</span><span class="cl">LocalCommand
+</span></span><span class="line"><span class="ln">40</span><span class="cl">LocalForward
+</span></span><span class="line"><span class="ln">41</span><span class="cl">LogLevel
+</span></span><span class="line"><span class="ln">42</span><span class="cl">MACs
+</span></span><span class="line"><span class="ln">43</span><span class="cl">NoHostAuthenticationForLocalhost
+</span></span><span class="line"><span class="ln">44</span><span class="cl">NumberOfPasswordPrompts
+</span></span><span class="line"><span class="ln">45</span><span class="cl">PasswordAuthentication
+</span></span><span class="line"><span class="ln">46</span><span class="cl">PermitLocalCommand
+</span></span><span class="line"><span class="ln">47</span><span class="cl">PKCS11Provider
+</span></span><span class="line"><span class="ln">48</span><span class="cl">Port
+</span></span><span class="line"><span class="ln">49</span><span class="cl">PreferredAuthentications
+</span></span><span class="line"><span class="ln">50</span><span class="cl">Protocol
+</span></span><span class="line"><span class="ln">51</span><span class="cl">ProxyCommand
+</span></span><span class="line"><span class="ln">52</span><span class="cl">PubkeyAuthentication
+</span></span><span class="line"><span class="ln">53</span><span class="cl">RekeyLimit
+</span></span><span class="line"><span class="ln">54</span><span class="cl">RemoteForward
+</span></span><span class="line"><span class="ln">55</span><span class="cl">RequestTTY
+</span></span><span class="line"><span class="ln">56</span><span class="cl">RhostsRSAAuthentication
+</span></span><span class="line"><span class="ln">57</span><span class="cl">RSAAuthentication
+</span></span><span class="line"><span class="ln">58</span><span class="cl">SendEnv
+</span></span><span class="line"><span class="ln">59</span><span class="cl">ServerAliveInterval
+</span></span><span class="line"><span class="ln">60</span><span class="cl">ServerAliveCountMax
+</span></span><span class="line"><span class="ln">61</span><span class="cl">StrictHostKeyChecking
+</span></span><span class="line"><span class="ln">62</span><span class="cl">TCPKeepAlive
+</span></span><span class="line"><span class="ln">63</span><span class="cl">Tunnel
+</span></span><span class="line"><span class="ln">64</span><span class="cl">TunnelDevice
+</span></span><span class="line"><span class="ln">65</span><span class="cl">UsePrivilegedPort
+</span></span><span class="line"><span class="ln">66</span><span class="cl">User
+</span></span><span class="line"><span class="ln">67</span><span class="cl">UserKnownHostsFile
+</span></span><span class="line"><span class="ln">68</span><span class="cl">VerifyHostKeyDNS
+</span></span><span class="line"><span class="ln">69</span><span class="cl">VisualHostKey
+</span></span><span class="line"><span class="ln">70</span><span class="cl">XAuthLocation
+</span></span></code></pre></div><h3 id="配置文件">配置文件</h3>
+<p>刚才讲到的 <code>~/.ssh/config</code> 是配置 ssh 服务器的文件，其实除了这些还有好多，比如大家可能会经常见到的：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln"> 1</span><span class="cl">~/.ssh/config
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  This is the per-user configuration file.  The file format and
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  configuration options are described in ssh_config(5).  Because of
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  the potential for abuse, this file must have strict permissions:
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  read/write for the user, and not accessible by others.
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">~/.ssh/authorized_keys
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">  Lists the public keys (DSA/ECDSA/RSA) that can be used for log-
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">  ging in as this user.  The format of this file is described in
+</span></span><span class="line"><span class="ln">10</span><span class="cl">  the sshd(8) manual page.  This file is not highly sensitive, but
+</span></span><span class="line"><span class="ln">11</span><span class="cl">  the recommended permissions are read/write for the user, and not
+</span></span><span class="line"><span class="ln">12</span><span class="cl">  accessible by others.
+</span></span><span class="line"><span class="ln">13</span><span class="cl">
+</span></span><span class="line"><span class="ln">14</span><span class="cl">~/.ssh/identity
+</span></span><span class="line"><span class="ln">15</span><span class="cl">~/.ssh/id_dsa
+</span></span><span class="line"><span class="ln">16</span><span class="cl">~/.ssh/id_ecdsa
+</span></span><span class="line"><span class="ln">17</span><span class="cl">~/.ssh/id_rsa
+</span></span><span class="line"><span class="ln">18</span><span class="cl">  Contains the private key for authentication.  These files contain
+</span></span><span class="line"><span class="ln">19</span><span class="cl">  sensitive data and should be readable by the user but not acces-
+</span></span><span class="line"><span class="ln">20</span><span class="cl">  sible by others (read/write/execute).  ssh will simply ignore a
+</span></span><span class="line"><span class="ln">21</span><span class="cl">  private key file if it is accessible by others.  It is possible
+</span></span><span class="line"><span class="ln">22</span><span class="cl">  to specify a passphrase when generating the key which will be
+</span></span><span class="line"><span class="ln">23</span><span class="cl">  used to encrypt the sensitive part of this file using 3DES.
+</span></span><span class="line"><span class="ln">24</span><span class="cl">
+</span></span><span class="line"><span class="ln">25</span><span class="cl">~/.ssh/identity.pub
+</span></span><span class="line"><span class="ln">26</span><span class="cl">~/.ssh/id_dsa.pub
+</span></span><span class="line"><span class="ln">27</span><span class="cl">~/.ssh/id_ecdsa.pub
+</span></span><span class="line"><span class="ln">28</span><span class="cl">~/.ssh/id_rsa.pub
+</span></span><span class="line"><span class="ln">29</span><span class="cl">  Contains the public key for authentication.  These files are not
+</span></span><span class="line"><span class="ln">30</span><span class="cl">  sensitive and can (but need not) be readable by anyone.
+</span></span><span class="line"><span class="ln">31</span><span class="cl">
+</span></span><span class="line"><span class="ln">32</span><span class="cl">~/.ssh/known_hosts
+</span></span><span class="line"><span class="ln">33</span><span class="cl">  Contains a list of host keys for all hosts the user has logged
+</span></span><span class="line"><span class="ln">34</span><span class="cl">  into that are not already in the systemwide list of known host
+</span></span><span class="line"><span class="ln">35</span><span class="cl">  keys.  See sshd(8) for further details of the format of this
+</span></span><span class="line"><span class="ln">36</span><span class="cl">  file.
+</span></span></code></pre></div><p>更多文件：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln"> 1</span><span class="cl">~/.rhosts
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  This file is used for host-based authentication (see above).  On
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  some machines this file may need to be world-readable if the
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  user&#39;s home directory is on an NFS partition, because sshd(8)
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  reads it as root.  Additionally, this file must be owned by the
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  user, and must not have write permissions for anyone else.  The
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  recommended permission for most machines is read/write for the
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">  user, and not accessible by others.
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">
+</span></span><span class="line"><span class="ln">10</span><span class="cl">~/.shosts
+</span></span><span class="line"><span class="ln">11</span><span class="cl">  This file is used in exactly the same way as .rhosts, but allows
+</span></span><span class="line"><span class="ln">12</span><span class="cl">  host-based authentication without permitting login with
+</span></span><span class="line"><span class="ln">13</span><span class="cl">  rlogin/rsh.
+</span></span><span class="line"><span class="ln">14</span><span class="cl">
+</span></span><span class="line"><span class="ln">15</span><span class="cl">~/.ssh/
+</span></span><span class="line"><span class="ln">16</span><span class="cl">  This directory is the default location for all user-specific con-
+</span></span><span class="line"><span class="ln">17</span><span class="cl">  figuration and authentication information.  There is no general
+</span></span><span class="line"><span class="ln">18</span><span class="cl">  requirement to keep the entire contents of this directory secret,
+</span></span><span class="line"><span class="ln">19</span><span class="cl">  but the recommended permissions are read/write/execute for the
+</span></span><span class="line"><span class="ln">20</span><span class="cl">  user, and not accessible by others.
+</span></span><span class="line"><span class="ln">21</span><span class="cl">
+</span></span><span class="line"><span class="ln">22</span><span class="cl">~/.ssh/environment
+</span></span><span class="line"><span class="ln">23</span><span class="cl">  Contains additional definitions for environment variables; see
+</span></span><span class="line"><span class="ln">24</span><span class="cl">  ENVIRONMENT, above.
+</span></span><span class="line"><span class="ln">25</span><span class="cl">
+</span></span><span class="line"><span class="ln">26</span><span class="cl">~/.ssh/rc
+</span></span><span class="line"><span class="ln">27</span><span class="cl">  Commands in this file are executed by ssh when the user logs in,
+</span></span><span class="line"><span class="ln">28</span><span class="cl">  just before the user&#39;s shell (or command) is started.  See the
+</span></span><span class="line"><span class="ln">29</span><span class="cl">  sshd(8) manual page for more information.
+</span></span><span class="line"><span class="ln">30</span><span class="cl">
+</span></span><span class="line"><span class="ln">31</span><span class="cl">/etc/hosts.equiv
+</span></span><span class="line"><span class="ln">32</span><span class="cl">  This file is for host-based authentication (see above).  It
+</span></span><span class="line"><span class="ln">33</span><span class="cl">  should only be writable by root.
+</span></span><span class="line"><span class="ln">34</span><span class="cl">
+</span></span><span class="line"><span class="ln">35</span><span class="cl">/etc/shosts.equiv
+</span></span><span class="line"><span class="ln">36</span><span class="cl">  This file is used in exactly the same way as hosts.equiv, but
+</span></span><span class="line"><span class="ln">37</span><span class="cl">  allows host-based authentication without permitting login with
+</span></span><span class="line"><span class="ln">38</span><span class="cl">  rlogin/rsh.
+</span></span><span class="line"><span class="ln">39</span><span class="cl">
+</span></span><span class="line"><span class="ln">40</span><span class="cl">/etc/ssh/ssh_config
+</span></span><span class="line"><span class="ln">41</span><span class="cl">  Systemwide configuration file.  The file format and configuration
+</span></span><span class="line"><span class="ln">42</span><span class="cl">  options are described in ssh_config(5).
+</span></span><span class="line"><span class="ln">43</span><span class="cl">
+</span></span><span class="line"><span class="ln">44</span><span class="cl">/etc/ssh/ssh_host_key
+</span></span><span class="line"><span class="ln">45</span><span class="cl">/etc/ssh/ssh_host_dsa_key
+</span></span><span class="line"><span class="ln">46</span><span class="cl">/etc/ssh/ssh_host_ecdsa_key
+</span></span><span class="line"><span class="ln">47</span><span class="cl">/etc/ssh/ssh_host_rsa_key
+</span></span><span class="line"><span class="ln">48</span><span class="cl">  These files contain the private parts of the host keys and are
+</span></span><span class="line"><span class="ln">49</span><span class="cl">  used for host-based authentication.  If protocol version 1 is
+</span></span><span class="line"><span class="ln">50</span><span class="cl">  used, ssh must be setuid root, since the host key is readable
+</span></span><span class="line"><span class="ln">51</span><span class="cl">  only by root.  For protocol version 2, ssh uses ssh-keysign(8) to
+</span></span><span class="line"><span class="ln">52</span><span class="cl">  access the host keys, eliminating the requirement that ssh be
+</span></span><span class="line"><span class="ln">53</span><span class="cl">  setuid root when host-based authentication is used.  By default
+</span></span><span class="line"><span class="ln">54</span><span class="cl">  ssh is not setuid root.
+</span></span><span class="line"><span class="ln">55</span><span class="cl">
+</span></span><span class="line"><span class="ln">56</span><span class="cl">/etc/ssh/ssh_known_hosts
+</span></span><span class="line"><span class="ln">57</span><span class="cl">  Systemwide list of known host keys.  This file should be prepared
+</span></span><span class="line"><span class="ln">58</span><span class="cl">  by the system administrator to contain the public host keys of
+</span></span><span class="line"><span class="ln">59</span><span class="cl">  all machines in the organization.  It should be world-readable.
+</span></span><span class="line"><span class="ln">60</span><span class="cl">  See sshd(8) for further details of the format of this file.
+</span></span><span class="line"><span class="ln">61</span><span class="cl">
+</span></span><span class="line"><span class="ln">62</span><span class="cl">/etc/ssh/sshrc
+</span></span><span class="line"><span class="ln">63</span><span class="cl">  Commands in this file are executed by ssh when the user logs in,
+</span></span><span class="line"><span class="ln">64</span><span class="cl">  just before the user&#39;s shell (or command) is started.  See the
+</span></span><span class="line"><span class="ln">65</span><span class="cl">  sshd(8) manual page for more information.
+</span></span></code></pre></div><p>资料参考：</p>
+<ol>
+<li>[Linux] man ssh</li>
+<li><a href="http://www.openfsg.com/index.php/Advanced_SSH_usage">Advanced SSH usage</a></li>
+</ol>
+]]></content:encoded></item><item><title>Git 和 Pager 的那点事</title><link>https://icyleaf.com/2013/10/about-pager-on-git/</link><pubDate>Wed, 16 Oct 2013 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2013/10/about-pager-on-git/</guid><description>
+tig 是一个代替 Git Pager 的好工具</description><content:encoded><![CDATA[<blockquote>
+<p>Git 几乎所有命令都提供分页器，即当命令输出超过一页时，自动在每页输出后暂停，可以按空格继续显示，按 q 退出。</p>
+</blockquote>
+<p>默认 git 的 <code>pager = less -FRSX</code>，这个可以通过两种方式更改：</p>
+<p>命令：</p>
+<pre tabindex="0"><code>$ git config --global core.pager &#34;less -FRSX&#34;
+</code></pre><p>配置文件：</p>
+<pre tabindex="0"><code>$ vim ~/.gitconfig
+</code></pre><p>了不起了通过设置自动匹配的色彩来增强可读性</p>
+<pre tabindex="0"><code>$ git config --global color.ui on
+</code></pre><p>随着 <a href="http://jonas.nitro.dk/tig">tig</a> 的出现，给 git 的增加了一个强大武装武器。（不明观众看这里先对它有个感官概念：<a href="http://gitready.com/advanced/2009/07/31/tig-the-ncurses-front-end-to-git.html">tig, the ncurses front-end to Git</a>）</p>
+<p>可能大家不知道 tig 本身就可以也是一个 pager，因此我们可以在 git config 默认替换之：</p>
+<pre tabindex="0"><code>$ git config --global core.pager tig
+</code></pre><p>自从这样配置之后，让我幸福了好几年。直到&hellip;今天发现一个怪异的问题，使用任何需要显示 tig pager 的地方设置的配色是以代码形式显示，而不是解析成了终端显示的颜色。最近忍不住升级到了 10.9 并更新了一些命令，因此也没搞清楚到底是哪里出了问题。只能先把 git 自带的 color 渲染给关闭才解决了这个问题</p>
+<pre tabindex="0"><code>$ git config --global color.ui off
+</code></pre><p>我的个人 <code>.gitconfig</code> 等配置文件：https://gist.github.com/icyleaf/868866</p>
+]]></content:encoded></item><item><title>如何在 CentOS 上安装 Gitlab</title><link>https://icyleaf.com/2013/09/how-to-install-gitlab-on-centos/</link><pubDate>Tue, 17 Sep 2013 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2013/09/how-to-install-gitlab-on-centos/</guid><description>
+Barl Metal 安装服务依赖还是很痛苦的，CentOS 上是痛苦面具</description><content:encoded><![CDATA[<p>2013 年 08 月的 OpenParty &ldquo;<a href="http://www.beijing-open-party.org/event/25">花事如期</a>&rdquo; 活动上，<a href="https://github.com/vecio">晓东</a>在他的机器上演示了自建 Gitlab 的项目，看到 Gitlab 目前已经比较成熟，而不像早期寒碜的界面，这个时候看安装一下也是不错的事情，不过他们的项目文档只提供了 Ubuntu 系统的<a href="https://github.com/gitlabhq/gitlabhq#installation">安装文档</a>，对于 CentOS 没有提到，非官方的文档有比较老久，凭着之前熟悉 Ubuntu 和学习 CentOS，那就开始安装吧：</p>
+<p>以下教程在 <code>CentOS 6 x86_64</code> 版本下操作。</p>
+<h2 id="首先安装-epel-和编译依赖库">首先安装 EPEL 和编译依赖库</h2>
+<pre tabindex="0"><code>$ rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+</code></pre><blockquote>
+<p>如果你是非 64 位，去上面的网址找到适合你发行版的最新版本的 epel rpm</p>
+</blockquote>
+<pre tabindex="0"><code>$ yum -y update
+$ yum -y install gcc gcc-c++ make autoconf libyaml-devel gdbm-devel ncurses-devel openssl-devel zlib-devel readline-devel curl-devel expat-devel gettext-devel  tk-devel libxml2-devel libffi-devel libxslt-devel libicu-devel sendmail patch libyaml* pcre-devel sqlite-devel vim
+</code></pre><h2 id="安装-python-27">安装 Python 2.7+</h2>
+<p>Gitlab 要求 Python 2.5.5+ 以及 Ruby 1.9+</p>
+<p>系统 Python 默认是 2.6.x，如果你想把 Python 升级到目前比较流行的 2.7.x 就参照下面步骤，否则直接跳过。（Gitlab 目前不支持 Python 3.0）</p>
+<pre tabindex="0"><code>$ mkdir /tmp/gitlab &amp;&amp; cd /tmp/gitlab
+$ curl --progress http://python.org/ftp/python/2.7.5/Python-2.7.5.tgz | tar xvf
+$ cd Python-2.7.5
+$ ./configure --prefix=/usr/local
+$ make &amp;&amp; make altinstall
+</code></pre><p>安装好之后，需要做两件事情，替换默认 python 的版本至最新版本，</p>
+<pre tabindex="0"><code>$ sudo ln -s /usr/local/bin/python2.7 /usr/local/bin/python
+</code></pre><blockquote>
+<p>因为系统默认 <code>PATH</code> 的寻址路径是 <code>/usr/local/bin</code></p>
+</blockquote>
+<p>最后看下 Python 版本是否是刚刚安装的版本：</p>
+<pre tabindex="0"><code>$ python --version
+</code></pre><blockquote>
+<p>由于 <code>yum</code> 是 python 的一个 module，所以这块修改可能会引起无法调用 yum 脚本，所以需要修改这个文件 <code>/usr/bin/yum</code> 的第一行为 <code>!#/usr/bin/python2.6</code></p>
+</blockquote>
+<h2 id="安装-ruby-20">安装 Ruby 2.0</h2>
+<p>Ruby 1.9 和 2.0 的特性差别不大，索性升级至最新 2.0 版本即可</p>
+<pre tabindex="0"><code>$ cd /tmp/gitlab
+$ curl --progress http://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p247.tar.gz | tar xz
+$ cd ruby-2.0.0-p247
+$ ./configure
+$ make
+$ make install
+</code></pre><p>ruby 2.0 已经内置 gem (v2.0.3)，只需要安装 bundler</p>
+<pre tabindex="0"><code>$ gem install bundler
+</code></pre><blockquote>
+<p>若在执行 <code>sudo ruby</code> 或 <code>sudo gem</code> 找不到命令，因为编译的路径配置到了 <code>/usr/local/bin</code>，我们只需要做下软链接到 root 用户可以找到的 <code>$PATH</code> 路径：</p>
+</blockquote>
+<pre tabindex="0"><code>$ ln -s /usr/local/bin/ruby /usr/bin/ruby
+$ ln -s /usr/local/bin/gem /usr/bin/gem
+$ ln -s /usr/local/bin/bundle /usr/bin/bundle
+</code></pre><h2 id="安装-git-和-gitolite">安装 Git 和 Gitolite</h2>
+<pre tabindex="0"><code>$ yum -y install git-all gitolite
+</code></pre><h2 id="安装-nginx">安装 Nginx</h2>
+<pre tabindex="0"><code>$ yum -y install nginx
+$ service nginx start
+</code></pre><blockquote>
+<p>nginx 需要从 EPEL 中安装，默认系统没有 nginx 包。</p>
+</blockquote>
+<h2 id="安装-mysql-和-redis">安装 Mysql 和 Redis</h2>
+<p>Gitlab 要求强制安装 redis 处理一些数据，另外支持 MySQL 和 PostgreSQL，这里主要以 MySQL 为例</p>
+<pre tabindex="0"><code>$ yum -y install mysql mysql-devel mysql-server redis
+</code></pre><p>配置 Mysql 和 gitlab 需要的用户和数据库</p>
+<pre tabindex="0"><code>$ service mysqld start
+$ mysql -u root
+$ mysql&gt; CREATE USER &#39;gitlab&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;gitlab&#39;;
+$ mysql&gt; CREATE DATABASE IF NOT EXISTS `gitlabhq_production` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`;
+$ mysql&gt; GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER ON `gitlabhq_production`.* TO &#39;gitlab&#39;@&#39;localhost&#39;;
+$ mysql&gt; \q
+</code></pre><p>Redis 使用默认配置即可，直接启动</p>
+<pre tabindex="0"><code>$ service redis start
+</code></pre><h2 id="添加-gitlab-用户">添加 Gitlab 用户</h2>
+<pre tabindex="0"><code>$ useradd -c &#39;GitLab&#39; git
+</code></pre><p>CentOS 的命令没有办法直接禁止用户的访问的参数，需要用下面命令：</p>
+<pre tabindex="0"><code>$ passwd -l git
+</code></pre><h2 id="安装-gitlab-shell">安装 Gitlab-shell</h2>
+<p>使用 root 账户切换到 git 账户下操作，可以比官方教程省去一些麻烦的输入</p>
+<pre tabindex="0"><code>$ su git &amp;&amp; cd /home/git
+$ git clone https://github.com/gitlabhq/gitlab-shell.git
+$ cd gitlab-shell
+</code></pre><p>通过 <code>git tag</code> 查看最新版本并切换之</p>
+<pre tabindex="0"><code>$ git checkout v1.7.1
+</code></pre><p>编辑配置文件修改你要设定的域名（domain），比如 <code>http://gitlab.dev/</code></p>
+<pre tabindex="0"><code>$ vim config.yml
+</code></pre><p>完成之后执行安装脚本</p>
+<pre tabindex="0"><code>$ ./bin/install
+</code></pre><h2 id="安装-gitlab">安装 Gitlab</h2>
+<pre tabindex="0"><code>$ cd /home/git
+$ git clone https://github.com/gitlabhq/gitlabhq.git gitlab
+$ cd /home/git/gitlab
+</code></pre><p>通过 <code>git tag</code> 查看最新版本并切换之</p>
+<pre tabindex="0"><code>$ git checkout 6.0.1
+</code></pre><p>这里需要配置的东西多一些，这里参考<a href="https://github.com/gitlabhq/gitlabhq/blob/master/doc/install/installation.md#configure-it">官方的文档</a>，也可以安装我下面的步骤来：</p>
+<pre tabindex="0"><code>$ cd /home/git/gitlab
+</code></pre><p>复制配置文件，修改 host 相关的配置项，主要是 domain 要和上面的 <code>http://gitlab.dev</code></p>
+<pre tabindex="0"><code>$ cp config.yml{.example,}
+$ vim config/gitlab.yml
+</code></pre><p>确认 gitlab 以下目录的权限是否正确</p>
+<pre tabindex="0"><code>$ mkdir tmp/pids/
+$ mkdir tmp/sockets/
+$ chown -R git log/
+$ chown -R git tmp/
+$ chmod -R u+rwX log/
+$ chmod -R u+rwX tmp/
+$ chmod -R u+rwX tmp/pids/
+$ chmod -R u+rwX tmp/sockets/
+</code></pre><p>创建 satellites 目录，这个目录是保存各个用户的仓库</p>
+<pre tabindex="0"><code>$ mkdir /home/git/gitlab-satellites
+</code></pre><p>创建 uploads 目录（为什么 gitlab 不在项目中创建呢= =！）</p>
+<pre tabindex="0"><code>$ mkdir public/uploads
+$ chmod -R u+rwX  public/uploads
+</code></pre><p>复制 unicorn 配置文件</p>
+<pre tabindex="0"><code>$ cp config/unicorn.rb{.example,}
+</code></pre><p>设置 ruby web 容器的参数，比如 2GB RAM 服务器可以设置 3 个 worker。</p>
+<blockquote>
+<p>如果系统其他服务占用了 unicorn 的端口，记得改名。</p>
+</blockquote>
+<pre tabindex="0"><code>$ vim config/unicorn.rb
+</code></pre><p>设置一些 git 全局参数</p>
+<pre tabindex="0"><code>$ git config --global user.name &#34;GitLab&#34;
+$ git config --global user.email &#34;gitlab@localhost&#34;
+$ git config --global core.autocrlf input
+</code></pre><p>配置 gitlab 数据库设置</p>
+<pre tabindex="0"><code>$ cp config/database.yml{.mysql,}
+$ vim config/database.yml
+$ chmod o-rwx config/database.yml
+</code></pre><p>安装必需的 Ruby Gems</p>
+<pre tabindex="0"><code>$ cd /home/git/gitlab
+$ [sudo] gem install charlock_holmes --version &#39;0.6.9.4&#39;
+$ bundle install --deployment --without development test postgres aws
+</code></pre><p>初始化数据库数据（执行输入 <code>Yes</code> 继续创建）</p>
+<pre tabindex="0"><code>$ bundle exec rake gitlab:setup RAILS_ENV=production
+</code></pre><p>设置 init 脚本</p>
+<pre tabindex="0"><code>$ sudo cp lib/support/init.d/gitlab /etc/init.d/gitlab
+$ sudo chmod +x /etc/init.d/gitlab
+</code></pre><h2 id="检查-gitlab-状态">检查 Gitlab 状态</h2>
+<pre tabindex="0"><code>$ bundle exec rake gitlab:env:info RAILS_ENV=production
+</code></pre><p>启动 gitlab 服务</p>
+<pre tabindex="0"><code>$ sudo service gitlab start
+</code></pre><p>再起检查，保证所有项目都是绿色</p>
+<pre tabindex="0"><code>$ bundle exec rake gitlab:check RAILS_ENV=production
+</code></pre><h2 id="配置-nginx">配置 nginx</h2>
+<p>根据 nginx 的安装路径适当修改下面的路径即可，我们先把 gitlab 提供的配置文件拷贝过去</p>
+<pre tabindex="0"><code>$ sudo mkdir -p /etc/nginx/conf/sites/
+$ sudo cp lib/support/nginx/gitlab /etc/nginx/conf/sites/gitlab.conf
+</code></pre><blockquote>
+<p>根据 nginx 版本和不同发行版的不同，配置结构可能不同根据你的实际情况加载 <code>gitlab.conf</code></p>
+</blockquote>
+<p>修改 <code>gitlab.conf</code> 的 <code>YOUR_SERVER_FQDN</code> 为上面设置的 domain。
+最后修改 <code>nginx.conf</code> 或者 <code>default.conf</code> 加载 <code>/etc/nginx/conf/site</code> 下所有 conf 文件</p>
+<pre tabindex="0"><code>http {
+
+	include /etc/nginx/conf/site/*.conf;
+
+	server {
+		…
+	}
+}
+</code></pre><p>保存后，重启各个服务</p>
+<pre tabindex="0"><code>$ sudo service nginx reload
+$ sudo service gitlab restart
+</code></pre><h2 id="开始-gitlab-之旅">开始 Gitlab 之旅</h2>
+<p>配置好 hosts 即可访问 <code>gitlab.dev</code></p>
+<pre tabindex="0"><code>$ echo &#34;127.0.0.1 gitlab.dev&#34; &gt;&gt; /etc/hosts
+</code></pre><p>默认的用户名密码：</p>
+<pre tabindex="0"><code>admin@local.host
+5iveL!fe
+</code></pre><h2 id="各种坑">各种坑</h2>
+<h3 id="1-错误日志报权限错误">1. 错误日志报权限错误</h3>
+<pre tabindex="0"><code>2013/11/07 00:42:21 [crit] 15875#0: *2 stat() &#34;/home/git/gitlab/public/favicon.ico.html&#34; failed (13: Permission denied), client: 33.33.33.1, server: gitlab.web.lo, request: &#34;GET /favicon.ico HTTP/1.1&#34;, host: &#34;gitlab.web.lo&#34;
+2013/11/07 00:42:21 [crit] 15875#0: *2 connect() to unix:/home/git/gitlab/tmp/sockets/gitlab.socket failed (13: Permission denied) while connecting to upstream, client: 33.33.33.1, server: gitlab.web.lo, request: &#34;GET /favicon.ico HTTP/1.1&#34;, upstream: &#34;http://unix:/home/git/gitlab/tmp/sockets/gitlab.socket:/favicon.ico&#34;, host: &#34;gitlab.web.lo&#34;
+2013/11/07 00:42:31 [crit] 15875#0: *2 stat() &#34;/home/git/gitlab/public/&#34; failed (13: Permission denied), client: 33.33.33.1, server: gitlab.web.lo, request: &#34;GET / HTTP/1.1&#34;, host: &#34;gitlab.web.lo&#34;
+2013/11/07 00:42:31 [crit] 15875#0: *2 stat() &#34;/home/git/gitlab/public//index.html&#34; failed (13: Permission denied), client: 33.33.33.1, server: gitlab.web.lo, request: &#34;GET / HTTP/1.1&#34;, host: &#34;gitlab.web.lo&#34;
+2013/11/07 00:42:31 [crit] 15875#0: *2 stat() &#34;/home/git/gitlab/public/.html&#34; failed (13: Permission denied), client: 33.33.33.1, server: gitlab.web.lo, request: &#34;GET / HTTP/1.1&#34;, host: &#34;gitlab.web.lo&#34;
+2013/11/07 00:42:31 [crit] 15875#0: *2 connect() to unix:/home/git/gitlab/tmp/sockets/gitlab.socket failed (13: Permission denied) while connecting to upstream, client: 33.33.33.1, server: gitlab.web.lo, request: &#34;GET / HTTP/1.1&#34;, upstream: &#34;http://unix:/home/git/gitlab/tmp/sockets/gitlab.socket:/&#34;, host: &#34;gitlab.web.lo&#34;
+2013/11/07 00:42:31 [crit] 15875#0: *2 stat() &#34;/home/git/gitlab/public/favicon.ico&#34; failed (13: Permission denied), client: 33.33.33.1, server: gitlab.web.lo, request: &#34;GET /favicon.ico HTTP/1.1&#34;, host: &#34;gitlab.web.lo&#34;
+2013/11/07 00:42:31 [crit] 15875#0: *2 stat() &#34;/home/git/gitlab/public/favicon.ico/index.html&#34; failed (13: Permission denied), client: 33.33.33.1, server: gitlab.web.lo, request: &#34;GET /favicon.ico HTTP/1.1&#34;, host: &#34;gitlab.web.lo&#34;
+2013/11/07 00:42:31 [crit] 15875#0: *2 stat() &#34;/home/git/gitlab/public/favicon.ico.html&#34; failed (13: Permission denied), client: 33.33.33.1, server: gitlab.web.lo, request: &#34;GET /favicon.ico HTTP/1.1&#34;, host: &#34;gitlab.web.lo&#34;
+2013/11/07 00:42:31 [crit] 15875#0: *2 connect() to unix:/home/git/gitlab/tmp/sockets/gitlab.socket failed (13: Permission denied) while connecting to upstream, client: 33.33.33.1, server: gitlab.web.lo, request: &#34;GET /favicon.ico HTTP/1.1&#34;, upstream: &#34;http://unix:/home/git/gitlab/tmp/sockets/gitlab.socket:/favicon.ico&#34;, host: &#34;gitlab.web.lo&#34;
+</code></pre><p>解决方案:</p>
+<pre tabindex="0"><code>$ (sudo) chmod o+x /home/git
+</code></pre><h3 id="2-8080-端口被占用">2. 8080 端口被占用</h3>
+<p>这样主要是因为 nginx 的配置是做 unicorn 的代理转发，实际上 gitlab 是由 unicorn 容器驱动，而在配置里默认绑定的是 <code>8080</code> 端口</p>
+<pre tabindex="0"><code>$ vim /home/git/gitlab/config/unicorn.rb
+</code></pre><p>找到 <code>listen &quot;127.0.0.1:8080&quot;, :tcp_nopush =&gt; true</code> 修改成其他未占用的端口号即可。</p>
+]]></content:encoded></item><item><title>配置 CentOS 的网络联网设置</title><link>https://icyleaf.com/2013/09/network-configuration-in-centos/</link><pubDate>Thu, 05 Sep 2013 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2013/09/network-configuration-in-centos/</guid><description>
+一篇很基础的配网知识点</description><content:encoded><![CDATA[<p>安装完毕 CentOS 6 Server 开始配置网络设置，网上有很多的教程，用的方法要么不全，要么操作方式比较早期，花点时间整理了下方法：</p>
+<h2 id="dhcp-设定">DHCP 设定</h2>
+<p>CentOS 默认使用了 <code>dhcp</code> 但是可恨的是没有开启。首先我们先看看本机的网卡信息</p>
+<pre tabindex="0"><code>$ ip a
+</code></pre><p>返回结果：</p>
+<pre tabindex="0"><code>1: lo:  mtu 16436 qdisc noqueue state UNKNOWN
+link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+inet 127.0.0.1/8 scope host lo
+inet6 ::1/128 scope host
+valid_lft forever preferred_lft forever
+2: eth0:  mtu 1500 qdisc mq state UP qlen 1000
+link/ether 00:22:19:09:4d:3c brd ff:ff:ff:ff:ff:ff
+</code></pre><p>其中 <code>lo</code> 是回路路由，咱们不必管它，这里 <code>eth0</code> 大家会很熟悉吧，这表示第一块网卡。好了，我们需要改改它的配置文件(CentOS 默认没有安装 <code>vim</code>):</p>
+<pre tabindex="0"><code>$ vi /etc/sysconfig/network-scripts/ifcfg-eth0
+</code></pre><p>如果你要改其他网卡，比如 <code>eth1</code> 那需要修改 <code>/etc/.../ifcfg-eth1</code></p>
+<pre tabindex="0"><code>DEVICE=eth0
+HWADDR=&#34;00:22:19:09:4D:3C&#34;
+NM_CONTROLLED=yes
+ONBOOT=yes      # 默认是 no，我们要改成 yes
+BOOTPROTO=dhcp  # 如果不是这个值也要修改
+</code></pre><p>最后重启 network service 即可：</p>
+<pre tabindex="0"><code>$ service network restart
+# 或者比较原始的方法
+$ /etc/init.d/network restart
+</code></pre><p>如果你看到它在重启并配置 DHCP 服务，那就说明没有问题了</p>
+<pre tabindex="0"><code>Bringing up loopback interface:                [  OK  ]
+Bringing up interface eth0:
+Determining IP information for eth0... done.   [  OK  ]
+</code></pre><p>测试一下</p>
+<pre tabindex="0"><code>$ ping google.com
+$ ifconfig
+</code></pre><h2 id="手动设定">手动设定</h2>
+<p>大部分操作和上面的一直，唯一不同的就是修改 <code>/etc/sysconfig/network-scripts/ifcfg-*</code> 文件：</p>
+<pre tabindex="0"><code>DEVICE=eth0
+HWADDR=&#34;00:22:19:09:4D:3C&#34;
+NM_CONTROLLED=yes
+ONBOOT=yes      		# 默认是 no，我们要改成 yes
+BOOTPROTO=static  		# 改成静态模式
+IPADDR=192.168.1.11 	# 设定 ip 地址
+NETMASK=255.255.255.0 	# 设定子网掩码
+GATEWAY=192.168.1.1 	# 设定网关 ip
+</code></pre><p>修改 DNS 地址</p>
+<pre tabindex="0"><code>$ vi /etc/resolve.conf
+
+nameserver 8.8.8.8 # 主 DNS
+nameserver 8.8.4.4 # 备选 DNS
+</code></pre>]]></content:encoded></item><item><title>Linux 101 系列：chmod 文件权限工具</title><link>https://icyleaf.com/2013/08/linux-101-chmod/</link><pubDate>Wed, 28 Aug 2013 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2013/08/linux-101-chmod/</guid><description>
+640, 755, +X, -rw 这都是什么暗号</description><content:encoded><![CDATA[<blockquote>
+<p>chmod 是用来管理文件访问权限的命令，大家是使用 *nix 系统的时候经常跟它打交道。</p>
+</blockquote>
+<h2 id="基本常识">基本常识</h2>
+<h3 id="用户和用户组">用户和用户组</h3>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>英文</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>u</td>
+<td>Use</td>
+<td>当前用户</td>
+</tr>
+<tr>
+<td>g</td>
+<td>Group</td>
+<td>所属用户组</td>
+</tr>
+<tr>
+<td>o</td>
+<td>Others</td>
+<td>其他人（其他用户及用户组，包含访客用户）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="数字与参数">数字与参数</h3>
+<table>
+<thead>
+<tr>
+<th>数字</th>
+<th>符号</th>
+<th>说明</th>
+<th>对文件</th>
+<th>对目录</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>x</td>
+<td>可执行权限</td>
+<td>可被系统执行的权限</td>
+<td>无</td>
+</tr>
+<tr>
+<td>2</td>
+<td>w</td>
+<td>写权限</td>
+<td>可以编辑或修改文件内容，但不含删除该文件</td>
+<td>增删改该目录及目录下全部文件</td>
+</tr>
+<tr>
+<td>4</td>
+<td>r</td>
+<td>读权限</td>
+<td>可读取文件的内容</td>
+<td>可读取目录结构</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>备注：<code>ls -l</code>对于文件权限是由 rwx 倒序组成。比如 <code>-rwxr--r--</code>，说明当前用户拥有全部权限，所属用户组和其他人只有读权限。</p>
+</blockquote>
+<h2 id="实例">实例</h2>
+<h3 id="数字篇">数字篇</h3>
+<h4 id="1-当前用户拥有所有权限其他只有读权限">1. 当前用户拥有所有权限，其他只有读权限</h4>
+<table>
+<thead>
+<tr>
+<th>u</th>
+<th>g</th>
+<th>o</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>6</td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr>
+<td>rw</td>
+<td>r</td>
+<td>r</td>
+</tr>
+</tbody>
+</table>
+<h4 id="2-所有用户及用户组添加全部权限-谨慎使用">2. 所有用户及用户组添加全部权限 （<strong>谨慎使用</strong>）</h4>
+<table>
+<thead>
+<tr>
+<th>u</th>
+<th>g</th>
+<th>o</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7</td>
+<td>7</td>
+<td>7</td>
+</tr>
+<tr>
+<td>rwx</td>
+<td>rwx</td>
+<td>rwx</td>
+</tr>
+</tbody>
+</table>
+<h3 id="符号篇">符号篇</h3>
+<pre tabindex="0"><code>通用公式：[用户(组)] + [操作] + [符号]
+</code></pre><p>其中<code>操作</code>是由如下表构成：</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-</td>
+<td>移除权限</td>
+</tr>
+<tr>
+<td>+</td>
+<td>增加权限</td>
+</tr>
+<tr>
+<td>=</td>
+<td>设定权限</td>
+</tr>
+</tbody>
+</table>
+<h4 id="1-所有用户及用户组添加执行权限">1. 所有用户及用户组添加执行权限</h4>
+<pre tabindex="0"><code>$ chmod +x [file]
+</code></pre><h5 id="2-不允许其他人有写权限">2. 不允许其他人有写权限</h5>
+<pre tabindex="0"><code>$ chmod o-w [file]
+</code></pre><h4 id="3-增加用户组的读写权限">3. 增加用户组的读写权限</h4>
+<pre tabindex="0"><code>$ chmod g+rw [file]
+</code></pre><h4 id="4-除了当前用户都移除读写权限">4. 除了当前用户都移除读写权限</h4>
+<pre tabindex="0"><code>$ chmod go-rw [file]
+</code></pre><h4 id="5-设置当前用户所有权限所属用户组和其他人保留读权限">5. 设置当前用户所有权限，所属用户组和其他人保留读权限</h4>
+<pre tabindex="0"><code>$ chmod u=rwx,g=r,o=r [file]
+</code></pre>]]></content:encoded></item><item><title>OSX</title><link>https://icyleaf.com/2010/12/switer-between-finder-and-terminal-in-osx/</link><pubDate>Wed, 08 Dec 2010 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2010/12/switer-between-finder-and-terminal-in-osx/</guid><description>
+在 Finder 打开 Terminal 并切换到当前目录 安装一个开源的 Finder 辅助工具：cdto。功能只有一个就是实现在 Finder 打开 Terminal 并切换到当前 Finder 目录。找到你系统的版本的 app （支持当...</description><content:encoded><![CDATA[<p><strong>在 Finder 打开 Terminal 并切换到当前目录</strong></p>
+<p>安装一个开源的 Finder 辅助工具：<a href="http://code.google.com/p/cdto/">cdto</a>。功能只有一个就是实现在 Finder
+打开 Terminal 并切换到当前 Finder 目录。找到你系统的版本的 app （支持当前
+OS X 10.4 以上版本，应该都是雪豹了 吧）拷贝到 Applications 下并把它拖到
+Finder 的工具栏上即可。</p>
+<p><strong>从 Terminal 中用 Finder 打开当前路径的目录</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ open .
+</span></span></code></pre></div><p>PS，如果是 Ubuntu 系统的话请安装 nautilus，然后在 Terminal 里面输入</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ nautilus .
+</span></span></code></pre></div>]]></content:encoded></item><item><title>Ubuntu 解决 public key is not available 问题</title><link>https://icyleaf.com/2010/11/apt-get-gpg-error-public-key-not-available/</link><pubDate>Wed, 03 Nov 2010 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2010/11/apt-get-gpg-error-public-key-not-available/</guid><description>
+自 Ubuntu 10.04 升级至 10.10 之后，系统就有些不注意的小毛病，包括系统的各个软件的配置文件可能有改动，加上常年累计尝试并添加很多 ppa 的源，自定义的软件源在升级...</description><content:encoded><![CDATA[<p>自 Ubuntu 10.04 升级至 10.10 之后，系统就有些不注意的小毛病，包括系统的各个软件的配置文件可能有改动，加上常年累计尝试并添加很多 ppa</p>
+<p>的源，自定义的软件源在升级兼容的考虑下全部金禁用了导致原本软件源的注解名称也没有了，自己不知道各个软件源是干什么的&hellip;于是手动在软件源管理（a本放在了 Applications -&gt; Ubuntu Software Center 程序里面 Edit 菜单下面）清理。</p>
+<p>第一开始是凭记忆清理了一部分不再使用的软件的源，退出后更新发现失败&hellip;再次清理 Authentication 里面的 Public key，发现还是有问题，最后下定狠心把所有的源和 public key 全部删除了再更新发现还是有错误 T_T 其实错误提示的是一种类型的：</p>
+<blockquote>
+<p>W: GPG error: <a href="http://ppa.launchpad.net">http://ppa.launchpad.net</a> jaunty Release: The following signatures couldn&rsquo;t be verified because the public key is not available: NO_PUBKEY 12DE1BCB04E5E17B5</p>
+</blockquote>
+<p>自己动手丰衣足食&hellip;Google 之发现有两种解决方案，第一个是在 launchpad keyserver 网站搜索 key 从而找到 public
+key，详情请看[这里][]。第二种则相对于比较简单：命令行流。</p>
+<p>​1. 复制报错的尾部 NO_PUBKEY 后面的串的后 8
+位（以上面的为例：4E5E17B5），执行:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ gpg --keyserver keyserver.ubuntu.com --recv 4E5E17B5# 返回信息gpg: requesting key 4E5E17B5 from hkp server keyserver.ubuntu.comgpg: key 4E5E17B5: public key <span class="s2">&#34;Launchpad PPA for chromium-daily&#34;</span> importedgpg: no ultimately trusted keys foundgpg: Total number processed: 1gpg:               imported: <span class="m">1</span>  <span class="o">(</span>RSA: 1<span class="o">)</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">$ gpg --export --armor 4E5E17B5 <span class="p">|</span> sudo apt-key add -# 返回信息OK
+</span></span></code></pre></div><p>解决！</p>
+]]></content:encoded></item><item><title>如何使用VirtualBox安装Linux系统</title><link>https://icyleaf.com/2008/03/how-to-use-linux-systems-installed-virtualbox/</link><pubDate>Thu, 13 Mar 2008 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2008/03/how-to-use-linux-systems-installed-virtualbox/</guid><description>
+VirtualBox也已经介绍过了， 昨天是实实在在的用VirtualBox体验了一下 Linux Mint 系统。 这篇日志我就大概的说下如何用VirtualBo...</description><content:encoded><![CDATA[<p><a href="http://www.icyleaf.cn/2008/03/12/virtualbox-free-cross-platform-open-source-virtual-machine/">VirtualBox</a>也已经介绍过了，
+昨天是实实在在的用VirtualBox体验了一下 <a href="http://www.linuxmint.com/">Linux Mint</a> 系统。
+这篇日志我就大概的说下如何用VirtualBox安装和汉化Linux Mint系统，大家先看一个经过简单设置有的效果图：</p>
+<p>这个背景是系统自带的一个，呵呵(^___^)，在介绍 <a href="http://www.icyleaf.cn/2008/03/12/virtualbox-free-cross-platform-open-source-virtual-machine/">VirtualBox</a>
+的文章里面的截图是系统默认的背景。那么如何使用 VirtualBox 安装 Linux 系统呢，其实很简单的，
+VirtualBox 这个软件从官方网站下载的时候看似是英文的，其实他支持多国语言，安装之后它就会因系统的语言而变化，
+Linux Mint 系统就从官方上面下载最新版本的镜像文件就可以了，当前最新版本是4.0。
+这里我就不复述下载的过程~~</p>
+<p>两者都下载并安装VirtualBox之后，打开它的界面，点菜单的“新建”，安装向导的指示下一步有序操作：先点“下一步”，在随后出来的窗口的名称填入你喜欢的名字，
+如Linux Mint或者其他以便自己识别，在系统类型里面他并没有列出具体的Linux的发行版号，只能靠内核的版本确定，这里LinuxMint的内核是Linux2.6。接着是配置虚拟内存，
+如果你机器的实际内存比较大如1G以上，可以配置虚拟内存到400M-512M。再下一步是设置虚拟硬盘，第一次使用是没有硬盘存在，需要”新建&quot;，如果你不是第一次添加，
+则通过它的下拉菜单可选是那块虚拟硬盘。如果你是初级用户，在新建硬盘的时候，选择“动态扩展硬盘”即可，现在就完成了运行前的操作。</p>
+<p>之后直接点击菜单的“启动”就可以了，恩，没错直接启动就可以。VirtualBox提供了一个人性化的设置，如果你使用的是一个新建的虚拟硬盘，在它首次允许之后会弹出一个“首次运行向导”让你选择引导方式。恩，这和VM有些差别，VM提供一个虚拟的BIOS程序，而VrtualBox没有，不过他提供了一个开机引导方式的快捷键<strong>F12</strong>，而且也支持LAN的方式，这点很强。</p>
+<p>在“首次允许向导”的戒指位置选择上图的操作，并在下拉菜单选择今天我们要按照的LinuxMint硬盘就可以了。
+从下图可以看出来，虽然LinuxMint系统是基于Ubuntu系统开发的，但是它默认并不支持多国语言，仅仅只有英语：</p>
+<p>我们选择“Start Linux Mint&quot;启动系统，这就是像LiveCD版的了，随后会进行系统加载并进入到界面，点击桌面的”Install“会出现一个和Ubuntu以及gOS一样的安装系统的窗体，如果你安装过gOS，也许你会在网上搜如何汉化，他们的汉化方式有些变态，其实也是正确的，在选择系统语言环境的时候在选择框的倒数第二个是简体中文，但是如果你选择了，整个的界面全部会变成乱码。这样不利于我们的操作，所以我采取使用默认的英文，在安装好系统之后再进行汉化，相比之下，英文肯定比看乱码舒服多了。呵呵(^___^)</p>
+<p>Linux Mint安装就很简单了，我就不用说了吧，网上搜搜Ubuntu是如何安装的就知道了～嘿嘿，我就不多打字了～记得找LiveCD的安装教程，Ubuntu还提供了一个文本安装的方式：）</p>
+<p>安装完成之后，在登录界面输入完成你在安装时设置的用户名和密码随后会弹出一个询问向导。主要是为了提示是否开启Root并设置密码以及设置终端在打开时是否随机显示一段英文短句（我没自己看写的是什么），对于root一定要开启并设置一个密码，因为Linux的安全机制问题，尤其涉及到后面的安装软件问题，非常重要哦！</p>
+<p>登录界面之后，首先是要解决中文化的问题，首先确保你的机器已经连接到了互联网上面。连上网之后再进行操作：点击左下角的Mint图标，其实和Windows系统差不多，
+选择里面的”Control Center“，在弹出的窗口寻找”Language Support“。随后Language Support窗口会扫描当然的语言文件，
+已经提示是否下载，我们选择”Let me later&quot;，然后再Supported Language列表中寻找Chinese，并在它后面的方框点击选中，然后再点Apply（应用），程序会从网上下载系统的程序的中文语言文件。这个时候我们就等待吧，如果网速好的话差不多，一杯咖啡的时间：）</p>
+<p>下载完成之后，点击“OK”并关闭Linux Mint系统，其实是要重启，为什么要先关闭呢，因为现在还是开机光盘引导，当然我们要去掉光盘引导。先选择你要启动的系统，
+然后点击菜单的“设置”，在左侧的列表选择“光驱&quot;之后去掉右边的”加载光驱“，然后再保存。之后就可以启动系统了，启动到grub菜单，选择第一个正常启动。第二个是安全模式，不过我没进去过&hellip;菜单选择时间默认是4秒。</p>
+<p>又到了登录界面，我们先不急于登录，而是选择登录界面的&quot;Language&quot;，在选择语言窗口选择”Chinese（China Mainland）“，
+在点”Change Language“。系统立即弹出一个窗口，询问是否在以后登录也使用改变后的语言，我们当然是选择是了，之后我们看到我们熟悉的中国字了！尽情享受吧。</p>
+<p>不过他的中文化也不是非常的完美的，不过还有些地方并没有得到汉化，对于日常的使用并没有什么影响的。
+昨天我在Linux Mint下面安装了不少的东西：SciTE，komodo edit，甚至VirtualBox，本来想在Linux下虚拟一个XP，
+无奈的是不想再下一个600多M的镜像了&hellip;不过我还是特别想看到XP虚拟跑Linux,再在虚拟的Linux在虚拟XP，这个场面肯定很壮观，哈哈 o(∩_∩)o&hellip;</p>
+<p>同时也希望我这简单的教程对大家会有所帮助：）</p>
+]]></content:encoded></item></channel></rss>

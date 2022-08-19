@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Ubuntu on icyleaf</title><link>https://icyleaf.com/tags/ubuntu/</link><description>Recent content in Ubuntu on icyleaf</description><language>zh</language><lastBuildDate>Wed, 03 Nov 2010 12:34:56 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/ubuntu/index.xml" rel="self" type="application/rss+xml"/><item><title>Ubuntu 解决 public key is not available 问题</title><link>https://icyleaf.com/2010/11/apt-get-gpg-error-public-key-not-available/</link><pubDate>Wed, 03 Nov 2010 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2010/11/apt-get-gpg-error-public-key-not-available/</guid><description>
+自 Ubuntu 10.04 升级至 10.10 之后，系统就有些不注意的小毛病，包括系统的各个软件的配置文件可能有改动，加上常年累计尝试并添加很多 ppa 的源，自定义的软件源在升级...</description><content:encoded><![CDATA[<p>自 Ubuntu 10.04 升级至 10.10 之后，系统就有些不注意的小毛病，包括系统的各个软件的配置文件可能有改动，加上常年累计尝试并添加很多 ppa</p>
+<p>的源，自定义的软件源在升级兼容的考虑下全部金禁用了导致原本软件源的注解名称也没有了，自己不知道各个软件源是干什么的&hellip;于是手动在软件源管理（a本放在了 Applications -&gt; Ubuntu Software Center 程序里面 Edit 菜单下面）清理。</p>
+<p>第一开始是凭记忆清理了一部分不再使用的软件的源，退出后更新发现失败&hellip;再次清理 Authentication 里面的 Public key，发现还是有问题，最后下定狠心把所有的源和 public key 全部删除了再更新发现还是有错误 T_T 其实错误提示的是一种类型的：</p>
+<blockquote>
+<p>W: GPG error: <a href="http://ppa.launchpad.net">http://ppa.launchpad.net</a> jaunty Release: The following signatures couldn&rsquo;t be verified because the public key is not available: NO_PUBKEY 12DE1BCB04E5E17B5</p>
+</blockquote>
+<p>自己动手丰衣足食&hellip;Google 之发现有两种解决方案，第一个是在 launchpad keyserver 网站搜索 key 从而找到 public
+key，详情请看[这里][]。第二种则相对于比较简单：命令行流。</p>
+<p>​1. 复制报错的尾部 NO_PUBKEY 后面的串的后 8
+位（以上面的为例：4E5E17B5），执行:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ gpg --keyserver keyserver.ubuntu.com --recv 4E5E17B5# 返回信息gpg: requesting key 4E5E17B5 from hkp server keyserver.ubuntu.comgpg: key 4E5E17B5: public key <span class="s2">&#34;Launchpad PPA for chromium-daily&#34;</span> importedgpg: no ultimately trusted keys foundgpg: Total number processed: 1gpg:               imported: <span class="m">1</span>  <span class="o">(</span>RSA: 1<span class="o">)</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">$ gpg --export --armor 4E5E17B5 <span class="p">|</span> sudo apt-key add -# 返回信息OK
+</span></span></code></pre></div><p>解决！</p>
+]]></content:encoded></item></channel></rss>

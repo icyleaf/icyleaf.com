@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Database on icyleaf</title><link>https://icyleaf.com/tags/database/</link><description>Recent content in Database on icyleaf</description><language>zh</language><lastBuildDate>Sat, 21 Jun 2008 12:34:56 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/database/index.xml" rel="self" type="application/rss+xml"/><item><title>标签(Tag)的数据库设计</title><link>https://icyleaf.com/2008/06/tags-database-schemas/</link><pubDate>Sat, 21 Jun 2008 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2008/06/tags-database-schemas/</guid><description>
+原文来自：Then each went to his own home 原文作者：Philipp Keller 译者注：本文在涉及到专业术语或者译者表达不明白的地方均会保留原英文。 最近，在del....</description><content:encoded><![CDATA[<p>原文来自：<a href="http://www.pui.ch/phred/archives/2005/04/tags-database-schemas.html">Then each went to his own home</a></p>
+<p>原文作者：<a href="http://www.pui.ch/phred/about">Philipp Keller</a></p>
+<p>译者注：本文在涉及到专业术语或者译者表达不明白的地方均会保留原英文。</p>
+<p>最近，在<a href="http://lists.del.icio.us/pipermail/discuss/2005-April/002827.html">del.icio.us mailinglist</a>（译者按：应该是美味书签的讨论版块。以下del.icio.us翻译为<strong>美味书签</strong>）上面发了一个问题：“有人知道美味书签的数据库设计吗？”。之后我得到了一些回复，所以我想把这部分东西的知识分享给大家。</p>
+<h2 id="疑问">疑问</h2>
+<p>当你要为一个书签添加你认为需要的一个或多个标签时（或日志或其他）其数据库是如何设计的？然后，执行查询时取消这些书签中标签的合集（<a href="http://en.wikipedia.org/wiki/Union_%28set_theory%29">union</a>）或交集（<a href="http://en.wikipedia.org/wiki/Intersection_%28set_theory%29">intersection</a>）。也能从搜索结果中减少一些标签。</p>
+<p>大致有三种不同的解决方案：（<strong>注意</strong>：如果你开发了一个网站使得任何人都可以添加标签，而且是一个较大规模的网站则请务必看下其作者写的另外一篇文章：<a href="http://www.pui.ch/phred/archives/2005/06/tagsystems-performance-tests.html">标签系统的性能测试</a>）</p>
+<h2 id="mysqlicious-方法solution">“MySQLicious” 方法(solution)</h2>
+<p>在这个方法中仅架构了一个表，它是去规范化（<a href="http://en.wikipedia.org/wiki/Denormalization">denormalized</a>）表。</p>
+<p>这个类型被叫做“MySQLicious
+方法(solution)”，因为MySQLicious使用这种结构可以把美味书签的数据导入到一个表中。</p>
+<p>译者注：MySQLicious是一个把del.icio.us书签镜像到MySQL数据库中的工具。</p>
+<h3 id="交集and">交集(AND)</h3>
+<p>查询方式： “search+webservice+semweb”:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">SELECT *FROM `delicious`WHERE tags LIKE &#34;%search%&#34;AND tags LIKE &#34;%webservice%&#34;AND tags LIKE &#34;%semweb%&#34;
+</span></span></code></pre></div><h3 id="合集or">合集(OR)</h3>
+<p>查询方式： “search|webservice|semweb”:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">SELECT *FROM `delicious`WHERE tags LIKE &#34;%search%&#34;OR tags LIKE &#34;%webservice%&#34;OR tags LIKE &#34;%semweb%&#34;
+</span></span></code></pre></div><h3 id="减少exclusion">减少(Exclusion)</h3>
+<p>查询方式： “search+webservice-semweb”</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">SELECT *FROM `delicious`WHERE tags LIKE &#34;%search%&#34;AND tags LIKE &#34;%webservice%&#34;AND tags NOT LIKE &#34;%semweb%&#34;
+</span></span></code></pre></div><h3 id="结论">结论</h3>
+<p>优点：</p>
+<ul>
+<li>只用一个表。</li>
+<li>查询方式简单易懂。</li>
+<li>一次就能获得全文搜索结果，可能速度快一些。</li>
+<li>我猜测查询在基于[良好][]的[参数][]下是相当的快（[Peter Cooper][]的博客也提到：去规范化！去规范化！去规范化！)</li>
+<li>[在我随后的日志交待使用MySQL fulltext出来有关标签的事情][]。</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>每个书签的标签数量是有限的。通常情况下是在数据库中使用一个256字节的域（VCHAIR），否则，假设你用 <strong>Text</strong> 或类似的域，则速度将会慢下来。</li>
+<li>如果你注意了（就像[Patrice][]那样）你会发现当你以 “websearch” 使用 <strong>Like “%search”</strong>  搜索标签时它也能搜索到，当你修改并使用 <strong>Like “%search%”</strong> 时你最终必须使用一个混乱的解决方法：在标签头添加一个空格，这样才能使其工作。</li>
+</ul>
+<h2 id="scuttle-方法solution">“Scuttle” 方法(solution)</h2>
+<p>分离（Scuttle）字段，并归类到两个表中。右图表“scCategories”是一个标签表，通过一个外来的ID链接书签表。</p>
+<h3 id="交集and-1">交集(AND)</h3>
+<p>查询方式：“bookmark+webservice+semweb”:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">SELECT b.*FROM scBookmarks b, scCategories cWHERE c.bId = b.bIdAND (c.category IN (&#39;bookmark&#39;, &#39;webservice&#39;, &#39;semweb&#39;))GROUP BY b.bIdHAVING COUNT( b.bId )=3
+</span></span></code></pre></div><p>首先，当搜索的标签为“bookmark”，“webservice“或“semweb”（例如：<strong><code>c.category IN ('bookmark', 'webservice', 'semweb')</code></strong> ）时所有名为&quot;bookmark&quot;的标签都会被搜索，然后所有包含这三个标签的书签将筛选出来 (<strong><code>HAVING COUNT(b.bId)=3</code></strong>)。</p>
+<h3 id="合集or-1">合集(OR)</h3>
+<p>查询方式：“bookmark|webservice|semweb”:</p>
+<p>Just leave out the <code>HAVING</code> clause and you have union:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">SELECT b.*FROM scBookmarks b, scCategories cWHERE c.bId = b.bIdAND (c.category IN (&#39;bookmark&#39;, &#39;webservice&#39;, &#39;semweb&#39;))GROUP BY b.bId
+</span></span></code></pre></div><h3 id="减少exclusion-1">减少(Exclusion)</h3>
+<p>查询方式：“bookmark+webservice-semweb”，意味着：<code>bookmark AND webservice AND NOT semweb</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">SELECT b. *FROM scBookmarks b, scCategories cWHERE b.bId = c.bIdAND (c.category IN (&#39;bookmark&#39;, &#39;webservice&#39;))AND b.bId NOTIN (SELECT b.bId FROM scBookmarks b, scCategories c WHERE b.bId = c.bId AND c.category = &#39;semweb&#39;)GROUP BY b.bIdHAVING COUNT( b.bId ) =2
+</span></span></code></pre></div><p>省略掉 <strong><code>HAVING COUNT</code></strong> 会导致搜索方式变为“bookmark|webservice-semweb”.</p>
+<p>信息来源：[Rhomboid][]写的[helping me out with this query][].</p>
+<h3 id="结论-1">结论</h3>
+<p>我猜测这个解决方案主要有利点是使得他更正常化，比第一个解决方案比较而言，好处在于可以为每一个书签添加无限数量的标签。</p>
+<h2 id="toxi-方法solution">“Toxi” 方法(solution)</h2>
+<p>[Toxi][] 提出了一个三个表的结构，通过表”tagmap“的书签和标签的n-to-m关联。每一个标签都可以在不同的书签一期使用，反之亦然。这种数据库结构也被用在[Wordpress][]之中。</p>
+<h3 id="交集and-2">交集(AND)</h3>
+<p>查询方式：“bookmark+webservice+semweb”</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">SELECT b.*FROM tagmap bt, bookmark b, tag tWHERE bt.tag_id = t.tag_idAND (t.name IN (&#39;bookmark&#39;, &#39;webservice&#39;, &#39;semweb&#39;))AND b.id = bt.bookmark_idGROUP BY b.idHAVING COUNT( b.id )=3
+</span></span></code></pre></div><h3 id="合集or-2">合集(OR)</h3>
+<p>查询方式：“bookmark|webservice|semweb”</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">SELECT b.*FROM tagmap bt, bookmark b, tag tWHERE bt.tag_id = t.tag_idAND (t.name IN (&#39;bookmark&#39;, &#39;webservice&#39;, &#39;semweb&#39;))AND b.id = bt.bookmark_idGROUP BY b.id
+</span></span></code></pre></div><h3 id="减少exclusion-2">减少(Exclusion)</h3>
+<p>查询方式：“bookmark+webservice-semweb”，意味：bookmark AND webservice AND NOT semweb.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">SELECT b. *FROM bookmark b, tagmap bt, tag tWHERE b.id = bt.bookmark_idAND bt.tag_id = t.tag_idAND (t.name IN (&#39;Programming&#39;, &#39;Algorithms&#39;))AND b.id NOT IN (SELECT b.id FROM bookmark b, tagmap bt, tag t WHERE b.id = bt.bookmark_id AND bt.tag_id = t.tag_id AND t.name = &#39;Python&#39;)GROUP BY b.idHAVING COUNT( b.id ) =2
+</span></span></code></pre></div><p>省略掉 <strong><code>HAVING COUNT</code></strong> 会导致搜索方式变为“bookmark|webservice-semweb”.</p>
+<p>信息来源：[Rhomboid][]写的[helping me out with this query][].</p>
+<h3 id="结论-2">结论</h3>
+<p>优点：</p>
+<ul>
+<li>可以为每个标签节省额外的信息（描述，分类等）</li>
+<li>这是一个最正常化的解决方案（即，第三范式：[3NF][]）</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>
+<p>当修改或删除书签后，需要删除中间表的相应数据（When altering or deleting bookmarks you can end up with tag-orphans）。</p>
+<p>如果你想要更复杂的查询，比如”<strong>(bookmarks OR bookmark) AND (webservice or WS) AND NOT (semweb or semanticweb)</strong>“这样的查询语句，我建议参见以下查询/计算过程：</p>
+</li>
+</ul>
+<ol>
+<li>为每一个标签出现在你的”“tag-query”时执行一个查询（Run a query for each tag appearing in your
+“tag-query”）：<strong><code>SELECT b.id FROM tagmap bt, bookmark b, tag t WHERE bt.tag_id = t.tag_id AND b.id = bt.bookmark_id AND t.name = &quot;semweb&quot;</code></strong></li>
+<li>把每一个编号集从结果中导到一个数值里面（使用你喜欢的编码语言），这样可以缓存你想要的数组。</li>
+<li>使用合集或交集或其他方式限制数组。</li>
+</ol>
+<p>通过这种方式，你也可以查询<code>&quot;(del.icio.us|delicious)+(semweb|semantic_web)-search&quot;，这种类型的查询（即，括号内）利用去规范化的</code>“MySQLicious solution”<code>不能这样做。</code></p>
+<p>这是最灵活的数据结构和我猜想它的效果相当好（即，使用一些缓存技术）。<!-- raw HTML omitted --></p>
+<p><strong>2006年5月更新</strong>：这篇文章获得了大家的注视。我真的不是为此而准备的！看来大家不断的提到了他，甚至一些网站转载我的文章，我认为，这些不同方式的理论的知识应该归功于：[MySQLicious][],
+[scuttle][], [Toxi][]以及所有参与并贡献的评论者（请务必阅读！）</p>
+<p>p.s. 感谢[Toxi][]发给我关于三个表结构的疑问，Benjamin
+Reitzammer为我指点的[文章][]（一个很好的标签查询参考）和powerlinux提供的[scuttle][]指引。</p>
+<h2 id="扩展阅读">扩展阅读</h2>
+<ul>
+<li>
+<p>[Taglist: a mailing list dedicated to schemas with tagging][]</p>
+</li>
+<li>
+<p>[Tagschema: A blog dedicated to tagging schemas][]</p>
+</li>
+<li>
+<p>[Tag-related Queries on Snippets][]</p>
+</li>
+<li>
+<p>[Freetag][] is a php “library” with which you can add tags to whatever object you like. It actually uses the “toxi schema”.</p>
+</li>
+<li>
+<p>Hammy [gives an insight][] how he did his tagging system with “less DB and more code” (that is: regular expressions), interesting!</p>
+</li>
+<li>
+<p>Brad Choate [has got some ideas][] which tag queries should be possible</p>
+</li>
+<li>
+<p>Feedmaker has written [a sort of reply to this article][]</p>
+<p>[]: <a href="http://www.pui.ch/phred/modules/mysqlicious_structure.png">http://www.pui.ch/phred/modules/mysqlicious_structure.png</a>
+[1]: <a href="http://www.pui.ch/phred/modules/mysqlicious_data.png">http://www.pui.ch/phred/modules/mysqlicious_data.png</a>
+[良好]: <a href="http://www.pui.ch/phred/archives/2005/04/tags-database-schemas.html#comment-57">http://www.pui.ch/phred/archives/2005/04/tags-database-schemas.html#comment-57</a>
+[参数]: <a href="http://www.pui.ch/phred/archives/2005/04/tags-database-schemas.html#comment-62">http://www.pui.ch/phred/archives/2005/04/tags-database-schemas.html#comment-62</a>
+[Peter Cooper]: <a href="http://www.petercooper.co.uk/archives/000648.html">http://www.petercooper.co.uk/archives/000648.html</a>
+[在我随后的日志交待使用MySQL fulltext出来有关标签的事情]: <a href="http://www.pui.ch/phred/archives/2005/05/tags-with-mysql-fulltext.html">http://www.pui.ch/phred/archives/2005/05/tags-with-mysql-fulltext.html</a>
+[Patrice]: <a href="http://www.pui.ch/phred/archives/2005/04/tags-database-schemas.html#comment-63">http://www.pui.ch/phred/archives/2005/04/tags-database-schemas.html#comment-63</a>
+[2]: <a href="http://www.pui.ch/phred/modules/scuttle_structure.png">http://www.pui.ch/phred/modules/scuttle_structure.png</a>
+[Rhomboid]: <a href="http://www.metafilter.com/user/26222">http://www.metafilter.com/user/26222</a>
+[helping me out with this query]: <a href="http://ask.metafilter.com/mefi/34897#544185">http://ask.metafilter.com/mefi/34897#544185</a>
+[3]: <a href="http://www.pui.ch/phred/modules/toxi_structure.png">http://www.pui.ch/phred/modules/toxi_structure.png</a>
+[Toxi]: <a href="http://toxi.co.uk/">http://toxi.co.uk/</a>
+[Wordpress]: <a href="http://wordpress.org/">http://wordpress.org/</a>
+[3NF]: <a href="http://en.wikipedia.org/wiki/3NF">http://en.wikipedia.org/wiki/3NF</a>
+[MySQLicious]: <a href="http://nanovivid.com/projects/mysqlicious/">http://nanovivid.com/projects/mysqlicious/</a>
+[scuttle]: <a href="http://sourceforge.net/projects/scuttle/">http://sourceforge.net/projects/scuttle/</a>
+[文章]: <a href="http://laughingmeme.org/archives/002918.html">http://laughingmeme.org/archives/002918.html</a>
+[Taglist: a mailing list dedicated to schemas with tagging]: <a href="http://lists.tagschema.com/mailman/listinfo/tagdb">http://lists.tagschema.com/mailman/listinfo/tagdb</a>
+[Tagschema: A blog dedicated to tagging schemas]: <a href="http://tagschema.com/blogs/tagschema/">http://tagschema.com/blogs/tagschema/</a>
+[Tag-related Queries on Snippets]: <a href="http://www.bigbold.com/snippets/tags/tagging">http://www.bigbold.com/snippets/tags/tagging</a>
+[Freetag]: <a href="http://www.getluky.net/freetag/">http://www.getluky.net/freetag/</a>
+[gives an insight]: <a href="http://hellojoseph.com/tags-howto.php">http://hellojoseph.com/tags-howto.php</a>
+[has got some ideas]: <a href="http://bradchoate.com/weblog/2004/10/06/delicious">http://bradchoate.com/weblog/2004/10/06/delicious</a>
+[a sort of reply to this article]: <a href="http://blog.feedmarker.com/2005/04/26/tagging-in-mysql/">http://blog.feedmarker.com/2005/04/26/tagging-in-mysql/</a></p>
+</li>
+</ul>
+]]></content:encoded></item></channel></rss>
