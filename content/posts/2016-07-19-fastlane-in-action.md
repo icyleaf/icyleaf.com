@@ -9,20 +9,14 @@ tags:
   - Fastlane
 categories:
   - Technology
+series:
+  - fastlane
 slug: "fastlane-in-action"
 date: "2016-07-19T20:12:07+08:00"
 description: 系列文章的第二篇，带你了解 fastlane 使用流程
 ---
 
-这是《 [Fastlane - iOS 和 Android 的自动化构建工具](https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/)》系列的第二篇。
-
 本篇我想着重介绍 `fastlane` 本身的基本使用，这里使用 fastlane v1.98.0 作为演示版本。
-
-### 系列索引
-
-1. [Fastlane - iOS 和 Android 的自动化构建工具](https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/)
-2. [深入浅出 Fastlane 一看你就懂](https://icyleaf.com/2016/07/fastlane-in-action/)
-3. [你虐我千百遍，我待你如初恋，直到我遇到 match](https://icyleaf.com/2017/03/fastlane-match-in-action/)
 
 ## 命令行工具
 

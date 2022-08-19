@@ -9,6 +9,8 @@ tags:
   - homelab
   - docker
   - traefik
+series:
+  - Homelab
 image: tutorials/how-to-homelab/part-0/cover.png
 comments: true
 isCJKLanguage: true

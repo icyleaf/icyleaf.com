@@ -11,21 +11,6 @@ paginate: 20
 disqusShortname: icyleaf
 canonifyURLs: true
 
-pygmentsUseClasses: true # 使用自定义的代码高亮样式
-markup:
-  highlight:
-    codeFences: true
-    anchorLineNos: false
-    guessSyntax: false
-    hl_Lines:
-    lineAnchors:
-    lineNoStart: 1
-    lineNos: true
-    lineNumbersInTable: false
-    noClasses: true
-    style: tomorrow-night
-    tabWidth: 4
-
 params:
   # global settings
   home_mode: posts
@@ -38,6 +23,7 @@ params:
   enableComment: disqus
   hideHUGOSupport: true
   hidePermalink: true
+  hideSeries: false
   showFullTextinRSS: true
   googleAnalyticsUserID: G-TKQBZ7R259
   # googleAnalyticsCloudflareWorker: https://cfga.icyleaf.com
@@ -80,6 +66,9 @@ permalinks:
 
 # disable all taxnomies
 taxonomies:
+  # category: categories
+  series: series
+  tag: tags
 
 # using process image in figure shortcode
 assetDir: static
@@ -98,3 +87,18 @@ menu:
       weight: 100
       identifier: feed
       url: /index.xml
+
+pygmentsUseClasses: true # 使用自定义的代码高亮样式
+markup:
+  highlight:
+    codeFences: true
+    anchorLineNos: false
+    guessSyntax: false
+    hl_Lines:
+    lineAnchors:
+    lineNoStart: 1
+    lineNos: true
+    lineNumbersInTable: false
+    noClasses: true
+    style: tomorrow-night
+    tabWidth: 4

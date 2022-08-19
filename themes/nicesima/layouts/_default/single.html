@@ -21,109 +21,136 @@
     {{ partial "toc.html" . }}
   {{ end }}
 
-    <div class="post-content">
-      <div id="post-gallery">
-        <!--featured_image-->
-        {{ $images := findRE "<img src=\"[^\"|\\\"]*\"" .Content }}
-        {{ if ge (len $images) 1}}
-          {{ $.Scratch.Set "postHasImages" true }}
-        {{ end }}
-
-        {{ with .Params.featured_image }}
-          {{ $img := . -}}
-          <img src="{{ printf "%s" $img }}" class="featured_image">
-        {{ end }}
-        <!-- end featured_image-->
-
-        {{ $reImgIn := "<img src=\"([^\"]+)\" alt=\"([^\"]+)\">" }}
-        {{ $reImgOut := "<img src=\"$1\" alt=\"$2\" loading=\"lazy\" >" }}
-        {{ $tmpContent := .Content | replaceRE $reImgIn $reImgOut | safeHTML }}
-
-        {{ $reImgTitleIn := "<img src=\"([^\"]+)\" alt=\"([^\"]+)\" title=\"([^\"]+)\">" }}
-        {{ $reImgTitleOut := "<figure><img src=\"$1\" alt=\"$2\" title=\"$3\" loading=\"lazy\" ><figcaption>$3</figcaption></figure>" }}
-        {{ $finalContent := $tmpContent | replaceRE $reImgTitleIn $reImgTitleOut | safeHTML }}
-
-        {{ $finalContent }}
-
-        {{ $context := .}}
-        {{ with .Params.relations }}
-        <div class="post-rel">
-          <h2 id="相关文章">相关文章</h2>
-          <ul>
-            {{ range . }}
-              {{ $title := index . 0 | default (index . 1) }}
-              {{ $link := index . 1 }}
-            <li>
-              <a href="{{ ref $context $link }}">{{ $title }}</a>
+  <div class="post-content">
+    {{- if and .Params.Series (ne .Site.Params.HideSeries "true") -}}
+      {{- $allSeries := .GetTerms "series" -}}
+      {{- $series := where .Site.RegularPages.ByDate ".Params.series" "intersect" .Params.series -}}
+      {{- if lt 1 (len $series) -}}
+      <div class="post-series">
+        {{- with $series -}}
+          {{- with index $allSeries 0 -}}
+            <h4 class="series-title">
+              <a href="{{ .Permalink }}">{{ .LinkTitle }} ({{ len $series }} Part Series)</a>
+            </h4>
+          {{- end -}}
+          <ol class="series-list">
+            {{- range . -}}
+            <li class="series-item">
+              {{- if eq .File.UniqueID $.File.UniqueID -}}
+                <span class="current-serie">{{ .Title }}</span>
+              {{- else -}}
+                <a href="{{ .Permalink }}">{{ .Title }}</a>
+              {{- end -}}
             </li>
-            {{ end }}
-          </ul>
-        </div>
-        {{ end }}
-
-        {{ with .Params.references }}
-        <div class="post-ref">
-          <h2 id="参考链接">参考链接</h2>
-          <ul>
-            {{ range . }}
-              {{ $title := index . 0 | default (index . 1) }}
-              {{ $link := index . 1 }}
-              {{ $author := index . 2 | default nil }}
-            <li>
-              <a href="{{ $link }}">{{ $title }}</a>
-              {{ with $author }}, {{ . }} {{ end }}
-            </li>
-            {{ end }}
-          </ul>
-        </div>
-        {{ end }}
+            {{- end -}}
+          </ol>
+        {{- end -}}
       </div>
-    </div>
+      {{- end -}}
+    {{- end -}}
 
-    {{ with .Site.Params.license }}
-    <div class="post-copyright">
-      <p class="copyright-item lincese">
-        {{ . | safeHTML}}
-      </p>
-    </div>
-    {{ end }}
-
-    <!-- <div class="post-tags">
-      {{ with .Params.tags }}
-        <section>
-        <i class="iconfont icon-tag"></i>Tag(s):
-        {{ range . }}
-        <span class="tag"><a href="{{ "tags/" | absURL }}{{ . | urlize }}/">
-                #{{.}}</a></span>
-        {{ end }}
-        </section>
+    <div id="post-gallery">
+      <!--featured_image-->
+      {{ $images := findRE "<img src=\"[^\"|\\\"]*\"" .Content }}
+      {{ if ge (len $images) 1}}
+        {{ $.Scratch.Set "postHasImages" true }}
       {{ end }}
+
+      {{ with .Params.featured_image }}
+        {{ $img := . -}}
+        <img src="{{ printf "%s" $img }}" class="featured_image">
+      {{ end }}
+      <!-- end featured_image-->
+
+      {{ $reImgIn := "<img src=\"([^\"]+)\" alt=\"([^\"]+)\">" }}
+      {{ $reImgOut := "<img src=\"$1\" alt=\"$2\" loading=\"lazy\" >" }}
+      {{ $tmpContent := .Content | replaceRE $reImgIn $reImgOut | safeHTML }}
+
+      {{ $reImgTitleIn := "<img src=\"([^\"]+)\" alt=\"([^\"]+)\" title=\"([^\"]+)\">" }}
+      {{ $reImgTitleOut := "<figure><img src=\"$1\" alt=\"$2\" title=\"$3\" loading=\"lazy\" ><figcaption>$3</figcaption></figure>" }}
+      {{ $finalContent := $tmpContent | replaceRE $reImgTitleIn $reImgTitleOut | safeHTML }}
+
+      {{ $finalContent }}
+
+      {{ $context := .}}
+      {{ with .Params.relations }}
+      <div class="post-rel">
+        <h2 id="相关文章">相关文章</h2>
+        <ul>
+          {{ range . }}
+            {{ $title := index . 0 | default (index . 1) }}
+            {{ $link := index . 1 }}
+          <li>
+            <a href="{{ ref $context $link }}">{{ $title }}</a>
+          </li>
+          {{ end }}
+        </ul>
+      </div>
+      {{ end }}
+
+      {{ with .Params.references }}
+      <div class="post-ref">
+        <h2 id="参考链接">参考链接</h2>
+        <ul>
+          {{ range . }}
+            {{ $title := index . 0 | default (index . 1) }}
+            {{ $link := index . 1 }}
+            {{ $author := index . 2 | default nil }}
+          <li>
+            <a href="{{ $link }}">{{ $title }}</a>
+            {{ with $author }}, {{ . }} {{ end }}
+          </li>
+          {{ end }}
+        </ul>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+
+  {{ with .Site.Params.license }}
+  <div class="post-copyright">
+    <p class="copyright-item lincese">
+      {{ . | safeHTML}}
+    </p>
+  </div>
+  {{ end }}
+
+  <!-- <div class="post-tags">
+    {{ with .Params.tags }}
       <section>
-        <a href="javascript:window.history.back();">back</a></span> ·
-        <span><a href="{{ .Site.BaseURL }}">home</a></span>
+      <i class="iconfont icon-tag"></i>Tag(s):
+      {{ range . }}
+      <span class="tag"><a href="{{ "tags/" | absURL }}{{ . | urlize }}/">
+              #{{.}}</a></span>
+      {{ end }}
       </section>
-    </div>
-    -->
+    {{ end }}
+    <section>
+      <a href="javascript:window.history.back();">back</a></span> ·
+      <span><a href="{{ .Site.BaseURL }}">home</a></span>
+    </section>
+  </div>
+  -->
 
-    <div class="post-nav">
-      {{ if .PrevInSection }}
-      <a href="{{.PrevInSection.Permalink}}" class="prev" rel="prev" title="{{ .PrevInSection.Title}}"><i class="iconfont icon-left"></i>&nbsp;{{ .PrevInSection.Title}}</a>
-      {{ end }}
-      {{ if .NextInSection }}
-      <a href="{{.NextInSection.Permalink}}" class="next" rel="next" title="{{.NextInSection.Title}}">{{.NextInSection.Title}}&nbsp;<i class="iconfont icon-right"></i></a>
-      {{ end }}
-    </div>
+  <div class="post-nav">
+    {{ if .PrevInSection }}
+    <a href="{{.PrevInSection.Permalink}}" class="prev" rel="prev" title="{{ .PrevInSection.Title}}"><i class="iconfont icon-left"></i>&nbsp;{{ .PrevInSection.Title}}</a>
+    {{ end }}
+    {{ if .NextInSection }}
+    <a href="{{.NextInSection.Permalink}}" class="next" rel="next" title="{{.NextInSection.Title}}">{{.NextInSection.Title}}&nbsp;<i class="iconfont icon-right"></i></a>
+    {{ end }}
+  </div>
 
-    <div class="post-comment">
-      {{ if ( $.Params.Comments | default true ) }}
-        {{ if eq .Site.Params.EnableComment "disqus" }}
-          {{ template "_internal/disqus.html" . }}
-        {{ else if eq .Site.Params.EnableComment "giscus" }}
-          {{ partial "giscus.html" . }}
-        {{ else if eq .Site.Params.EnableComment "utteranc" }}
-          {{ partial "utteranc.html" . }}
-        {{ end }}
+  <div class="post-comment">
+    {{ if ( $.Params.Comments | default true ) }}
+      {{ if eq .Site.Params.EnableComment "disqus" }}
+        {{ template "_internal/disqus.html" . }}
+      {{ else if eq .Site.Params.EnableComment "giscus" }}
+        {{ partial "giscus.html" . }}
+      {{ else if eq .Site.Params.EnableComment "utteranc" }}
+        {{ partial "utteranc.html" . }}
       {{ end }}
-    </div>
+    {{ end }}
+  </div>
 </article>
 {{ end }}

@@ -15,8 +15,12 @@
   padding-top: 1rem;
   font-size: 1.2em;
 
-  .post-header h1 {
-    margin: 0 !important;
+  .post-header {
+    margin-bottom: .5em !important;
+
+    h1 {
+      margin: 0 !important;
+    }
   }
 
   .post-title {
@@ -53,6 +57,29 @@
   .post-content {
     padding-top: 0.25rem;
     word-break: break-all;
+
+    .post-series {
+      display: block;
+      position: relative;
+      margin: .5em 0;
+      background: $light-background-color;
+      border-radius: 6px;
+      transition: transform .1s;
+      border: 1px solid $light-border-color;
+
+      .dark-theme & {
+        background: $dark-background-color;
+        border-color: $dark-border-color;
+      }
+
+      h4.series-title {
+        font-size: 1.25rem;
+        font-weight: 400;
+        border-bottom: 1px solid $light-border-color;
+        padding-bottom: .5em;
+        padding-left: .75em;
+      }
+    }
 
     del {
       text-decoration-thickness: 2px;

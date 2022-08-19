@@ -1,42 +1,41 @@
 baseurl: https://icyleaf.com/
 title: icyleaf
 theme: nicesima
-languageCode: zh-cn
+languageCode: zh
+defaultContentLanguage: zh
+disableHugoGeneratorInject: true
 hasCJKLanguage: true
 enableEmoji: true
 enableRobotsTXT: true
-paginate: 12
-MetaDataFormat: yaml
-canonifyURLs: true
+paginate: 20
 disqusShortname: icyleaf
-
-pygmentsUseClasses: true # 使用自定义的代码高亮样式
-markup:
-  highlight:
-    codeFences: true
-    anchorLineNos: false
-    guessSyntax: false
-    hl_Lines:
-    lineAnchors:
-    lineNoStart: 1
-    lineNos: true
-    lineNumbersInTable: false
-    noClasses: true
-    style: tomorrow-night
-    tabWidth: 4
+canonifyURLs: true
 
 params:
   # global settings
+  home_mode: posts
   author: icyleaf
   avatar: images/icyleaf-icon.png
   description: 日常写代码热爱户外的梦想家
-  since: 2019
+  subtitle: 你好，我是 icyleaf
+  since: 2005
   mark: 🍺
-  hideHUGOSupport: false
-  googleAnalyticsUserID:
+  enableComment: disqus
+  hideHUGOSupport: true
+  hidePermalink: true
+  hideSeries: false
+  showFullTextinRSS: true
+  googleAnalyticsUserID: G-TKQBZ7R259
+
+  # utteranc:
+  #   repo: "icyleaf/icyleaf.com" # The repo to store comments
+  #   issueTerm: "pathname"
+  #   label: "✨💬✨"
+  #   theme: "github-light"
+  #   CrossOrigin: "anonymous"
+  #   async: true
 
   # giscus:
-  #   enabled: true
   #   repo: icyleaf/icyleaf.com
   #   repoId: MDEwOlJlcG9zaXRvcnk1NDg4MDA5Mg==
   #   categoryId: DIC_kwDOA0VnXM4CQ0mG
@@ -82,3 +81,18 @@ menu:
       weight: 100
       identifier: about
       url: /about
+
+pygmentsUseClasses: true # 使用自定义的代码高亮样式
+markup:
+  highlight:
+    codeFences: true
+    anchorLineNos: false
+    guessSyntax: false
+    hl_Lines:
+    lineAnchors:
+    lineNoStart: 1
+    lineNos: true
+    lineNumbersInTable: false
+    noClasses: true
+    style: tomorrow-night
+    tabWidth: 4

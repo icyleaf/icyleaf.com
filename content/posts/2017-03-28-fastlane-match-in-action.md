@@ -10,19 +10,14 @@ tags:
   - Fastlane
   - match
 category: Technology
+series:
+  - fastlane
 date: '2017-03-28T20:12:07+08:00'
-image: https://github.com/fastlane/fastlane/raw/master/match/assets/match.png
+image: /uploads/2017/03/28/match.png
 share: true
 comments: true
 description: 系列文章的第三篇，教你如何使用 match 管理名词都分不清的苹果各自开发者证书
 ---
-
-
-## 系列目录
-
-1. [Fastlane - iOS 和 Android 的自动化构建工具](https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/)
-2. [深入浅出 Fastlane 一看你就懂](http://icyleaf.com/2016/07/fastlane-in-action/)
-3. [你虐我千百遍，我待你如初恋，直到我遇到 match](https://icyleaf.com/2017/03/fastlane-match-in-action/)
 
 ## 前言
 
