@@ -10,6 +10,8 @@ tags:
 - PC
 - 4K
 - 视频剪辑
+series:
+- Hackintosh
 image: /uploads/2019/03/28/install-boardcom-module-to-motherboard.jpg
 index: false
 comments: true

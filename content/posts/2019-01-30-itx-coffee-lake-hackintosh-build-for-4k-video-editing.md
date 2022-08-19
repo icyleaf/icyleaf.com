@@ -10,6 +10,8 @@ tags:
 - PC
 - 4K
 - 视频剪辑
+series:
+- Hackintosh
 image: /uploads/2019/01/30/4k-hackintosh-hardwares.jpg
 index: false
 comments: true
