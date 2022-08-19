@@ -790,14 +790,8 @@ Android 平板到底是生产力工具还是沦为看视频的最终归宿</desc
 </tr>
 </tbody>
 </table>
-]]></content:encoded></item><item><title>Fastlane</title><link>https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/</link><pubDate>Mon, 11 Jul 2016 12:36:07 +0800</pubDate><guid>https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/</guid><description>
-系列文章的第一篇，iOS 和 Android 的自动化构建工具</description><content:encoded><![CDATA[<h3 id="系列索引">系列索引</h3>
-<ol>
-<li><a href="https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/">Fastlane - iOS 和 Android 的自动化构建工具</a></li>
-<li><a href="https://icyleaf.com/2016/07/fastlane-in-action/">深入浅出 Fastlane 一看你就懂</a></li>
-<li><a href="https://icyleaf.com/2017/03/fastlane-match-in-action/">你虐我千百遍，我待你如初恋，直到我遇到 match</a></li>
-</ol>
-<h2 id="前言">前言</h2>
+]]></content:encoded></item><item><title>Fastlane - iOS 和 Android 的自动化构建工具</title><link>https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/</link><pubDate>Mon, 11 Jul 2016 12:36:07 +0800</pubDate><guid>https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/</guid><description>
+使用 fastlane 提升构建移动应用的效率</description><content:encoded><![CDATA[<h2 id="前言">前言</h2>
 <p>这篇文章整理了很久，发现在一篇文章里无法一一讲述和全面的覆盖，初步打算是把这个做成一个系列，想到哪里就写到哪里，如果恰好有读者爱戴并有一些建议反馈，我也会根据大家的需要调整内容的方向和深度。论美剧的编剧的重要性(笑)。</p>
 <h2 id="初次邂逅">初次邂逅</h2>
 <p>初时 fastlane 的时候是去年的 11 月份，看到大就感觉遇到了神器一般的惊喜。它一个针对于 iOS 和 Android（后来才支持的）全方位自动化流程的工具，请看下图</p>
