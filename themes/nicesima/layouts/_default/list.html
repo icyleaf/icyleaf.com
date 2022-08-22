@@ -1,9 +1,11 @@
 {{- define "content" }}
 
-{{ if eq .Site.Params.home_mode "posts" }}
-  {{ partial "home_posts.html" . }}
-{{ else }}
-  {{ partial "home_profile.html" . }}
-{{ end }}
+{{- if .Site.Params.HomePage.ShowProfile | default true -}}
+  {{ partial "profile.html" . }}
+{{- end -}}
+
+{{- if .Site.Params.HomePage.ShowPosts | default true -}}
+  {{ partial "posts.html" . }}
+{{- end -}}
 
 {{ end }}

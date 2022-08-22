@@ -5,21 +5,18 @@
 
 ![Screenshot](https://raw.githubusercontent.com/Mogeko/mogege/master/images/Screenshot.png)
 
-### A blog theme for [Hugo](https://gohugo.io).
+> A blog theme for [Hugo](https://gohugo.io) and apply for [icyleaf' s blog](https://icyleaf.com) (but also a preview site).
 
-**This project is based on [nicesima](https://github.com/niceRAM/nicesima)**
 ## Features
 
-- Images lazy loading
-  ([Can I use?](https://caniuse.com/#search=Lazy%20loading%20via%20attribute%20for%20images%20%26%20iframes))
-- Automatically highlighting code (Support by
-  [highlight.js](https://highlightjs.org/))
+- Images lazy loading ([Can I use?](https://caniuse.com/#search=Lazy%20loading%20via%20attribute%20for%20images%20%26%20iframes))
+- Automatically highlighting code (Support by [highlight.js](https://highlightjs.org/))
 - TeX Functions (Support by [KaTeX](https://katex.org/))
-- [PlantUML](https://plantuml.com/en/) (Sequence diagram, Usecase diagram, Class
-  diagram ...)
+- [PlantUML](https://plantuml.com/en/) (Sequence diagram, Usecase diagram, Class diagram ...)
 - Dark/Light Mode
 - Support for embedded BiliBili video
-- Support hidden text ...
+- Support hidden text
+- Language packs for `en` and `zh`
 
 Here is a table showing the similarities and differences between [nicesima](https://github.com/niceRAM/nicesima) and [mogege](https://github.com/Mogeko/mogege) and [LeaveIt](https://github.com/liuzc/LeaveIt):
 
@@ -82,8 +79,7 @@ hugo server --minify --theme nicesima
 
 ## Lazy loading
 
-If your browser is
-[supported](https://caniuse.com/#search=Lazy%20loading%20via%20attribute%20for%20images%20%26%20iframes),
+If your browser is [supported](https://caniuse.com/#search=Lazy%20loading%20via%20attribute%20for%20images%20%26%20iframes),
 we will lazy loading `<img>` and `<iframes>`
 
 Make sure your browser version:
@@ -93,14 +89,11 @@ Make sure your browser version:
 
 ## TeX Functions
 
-**Note:**
-[list of TeX functions supported by KaTeX](https://katex.org/docs/supported.html)
+**Note:** [list of TeX functions supported by KaTeX](https://katex.org/docs/supported.html)
 
-To enable KaTex globally set the parameter `math` to `true` in a project's
-`config.toml`
+To enable KaTex globally set the parameter `math` to `true` in a project's `config.toml`
 
-To enable KaTex on a per page basis include the parameter `math: true` in
-content files.
+To enable KaTex on a per page basis include the parameter `math: true` in content files.
 
 ### Example
 
@@ -119,14 +112,11 @@ $$
 
 ## PlantUML
 
-**PlantUML is supported by the
-[official server](http://www.plantuml.com/plantuml/uml/SyfFKj2rKt3CoKnELR1Io4ZDoSa70000)**
+**PlantUML is supported by the [official server](http://www.plantuml.com/plantuml/uml/SyfFKj2rKt3CoKnELR1Io4ZDoSa70000)**
 
-To enable KaTex globally set the parameter `plantuml` to `true` in a project's
-`config.toml`
+To enable KaTex globally set the parameter `plantuml` to `true` in a project's `config.toml`
 
-To enable KaTex on a per page basis include the parameter `plantuml: true` in
-content files.
+To enable KaTex on a per page basis include the parameter `plantuml: true` in content files.
 
 You can insert PlantUML in the post by:
 
@@ -158,8 +148,7 @@ Alice --> Bob : ok
 
 ## Embedded BiliBili video
 
-You can embed BiliBili videos via Shortcodes, just provide the AV 号/BV 号 of
-the bilibili video
+You can embed BiliBili videos via Shortcodes, just provide the AV 号/BV 号 of the bilibili video
 
 You can also use the PV 号 to control the 分 P (default: `1`)
 
@@ -244,8 +233,7 @@ This blog supports the [utteranc](https://utteranc.es) comment system.
 
 It is lighter and more powerful than Giscus.
 
-To use utteranc, you need make sure the [utterances app](https://github.com/apps/utterances) is
-installed on the repo, otherwise users will not be able to post comments.
+To use utteranc, you need make sure the [utterances app](https://github.com/apps/utterances) is installed on the repo, otherwise users will not be able to post comments.
 
 Then enable utteranc in config.toml
 
@@ -306,8 +294,8 @@ Then edit in `config.toml`:
 
 ```toml
 [params.custom]
-    css = ["css/_custom.css"]
-    js = ["js/_custom.js"]
+  css = ["css/_custom.css"]
+  js = ["js/_custom.js"]
 ```
 
 > Currently only supports CSS does not support Sass
@@ -373,7 +361,7 @@ pygmentsUseClasses=true # 使用自定义的代码高亮样式
   author = ""                         # Author's name
   avatar = "/images/me/avatar.jpg"    # Author's avatar
   subtitle = ""                       # Subtitle
-  home_mode = ""                      # post or other
+  homeMode = ""                      # post or other
   enableComment = "giscus"            # giscus 评论系统
 
   description = ""                    # (Meta) 描述
@@ -389,3 +377,7 @@ pygmentsUseClasses=true # 使用自定义的代码高亮样式
     categoryId = ""
     localPreview: true
 ```
+
+# Credits
+
+**This project is based on [nicesima](https://github.com/niceRAM/nicesima)**

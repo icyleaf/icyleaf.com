@@ -1,6 +1,3 @@
-{{ if ne (or (in .Site.BaseURL "localhost") (in .Site.BaseURL "127.0.0.1")) .Site.Params.Giscus.LocalPreview }}
-Giscus comments not available by default when the website is previewed locally.
-{{ else }}
 <script src="https://giscus.app/client.js"
         data-repo="{{ .Site.Params.Giscus.Repo }}"
         data-repo-id="{{ .Site.Params.Giscus.RepoId }}"
@@ -17,4 +14,3 @@ Giscus comments not available by default when the website is previewed locally.
         crossorigin="{{ .Site.Params.Giscus.CrossOrigin | default "anonymous" }}"
         async>
 </script>
-{{ end }}

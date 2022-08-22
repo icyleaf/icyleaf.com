@@ -13,7 +13,9 @@ canonifyURLs: true
 
 params:
   # global settings
-  home_mode: posts
+  homepage:
+    showProfile: true
+    showPosts: true
   author: icyleaf
   avatar: images/icyleaf-icon.png
   description: 日常写代码热爱户外的梦想家

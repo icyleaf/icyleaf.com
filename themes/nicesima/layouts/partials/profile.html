@@ -1,4 +1,4 @@
-<div class="intro">
+<div class="intro{{- if ne .Site.Params.HomePage.ShowPosts true }} intro-large{{- end -}}">
   {{ if .Site.Params.Avatar }}
   {{ $avatar := .Site.Params.Avatar | relURL }}
 
@@ -10,10 +10,10 @@
   {{ end }}
 
   {{ with .Site.Params.Subtitle | default .Site.Params.Description | default .Site.Params.Author }}
-  <div id="subtitle"></div>
+  <div id="intro-subtitle"></div>
 
   <script>
-    let divTyping = document.getElementById('subtitle')
+    let divTyping = document.getElementById("intro-subtitle")
     let i = 0,
       timer = 0,
       str = '{{ . }}'
@@ -24,7 +24,7 @@
         timer = setTimeout(typing, 24)
       }
       else {
-        divTyping.innerHTML = str//结束打字,移除 _ 光标
+        divTyping.innerHTML = str // 结束打字,移除 _ 光标
         clearTimeout(timer)
       }
     }

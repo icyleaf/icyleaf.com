@@ -5,16 +5,16 @@
   <meta name="robots" content="noodp"/>
   <title>
     {{ $url := replace .Permalink ( printf "%s" .Site.BaseURL) "" }}
-    {{ if .IsHome }}
-        {{ .Site.Title }}
-    {{ else if .Params.heading }}
-        {{ .Params.heading }}
-    {{ else }}
-        {{ .Title }} | {{ .Site.Title }}
-    {{ end }}
+    {{- if .IsHome -}}
+      {{ .Site.Title }}
+    {{- else if .Params.heading -}}
+      {{ .Params.heading }}
+    {{- else -}}
+      {{ .Title }} | {{ .Site.Title }}
+    {{- end -}}
   </title>
-  {{ if .PrevInSection }}<link rel="prev" href="{{ .PrevInSection.Permalink }}" />{{end}}
-  {{ if .NextInSection}}<link rel="next" href="{{ .NextInSection.Permalink }}" />{{end}}
+  {{ if .PrevInSection }}<link rel="prev" href="{{ .PrevInSection.Permalink }}" />{{ end }}
+  {{ if .NextInSection }}<link rel="next" href="{{ .NextInSection.Permalink }}" />{{ end }}
   <link rel="canonical" href="{{ .Permalink }}" />
 
   {{ partial "favicon.html" . }}
@@ -25,7 +25,7 @@
   <link rel="feed" href="{{ .RelPermalink }}" type="application/rss+xml" title="{{ site.Title }}">
   {{ end }}
 
-  <meta name="title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else if .Params.heading }}{{ .Params.heading }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end}}">
+  <meta name="title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else if .Params.Heading }}{{ .Params.Heading }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}">
   {{ with .Site.Params.author }}<meta name="author" content="{{ . }}">{{ end }}
   {{ with .Site.Params.description }}<meta name="description" content="{{ . }}">{{ end }}
   {{ with .Site.Params.keywords }}<meta name="keywords" content="{{ . }}">{{ end }}

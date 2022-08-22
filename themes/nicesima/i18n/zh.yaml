@@ -1,1 +1,23 @@
+# list
+publishedPosts:
+  other: 本博客共生产 {{ . }} 篇文章。
+
+# single
+postWords:
+  other: '{{ . }} words'
+
+readingTime:
+  other: '{{ . }} minutes'
+
+relatesPosts: 相关文章
+referenceLinks: 参考链接
+
+# terms
+more: 更多
+
 update: 更新
+toc: 目录
+
+# 404 page:
+notFound: /* 404 页面找不到 */
+gobackTitle: ↑ 回到首页 ↑

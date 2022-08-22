@@ -1,1 +1,23 @@
+# list
+publishedPosts:
+  other: Published {{ . }} posts.
+
+# single
+postWords:
+  other: '{{ . }} words'
+
+readingTime:
+  other: '{{ . }} minutes'
+
+relatesPosts: 相关文章
+referenceLinks: 参考链接
+
+# terms
+more: 更多
+
 update: Update
+toc: TOC
+
+# 404 page:
+notFound: /* 404 page not found. */
+gobackTitle: ↑ Back Home ↑

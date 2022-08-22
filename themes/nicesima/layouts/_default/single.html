@@ -4,7 +4,9 @@
     <h1 class="post-title" itemprop="description">{{ .Title }}</h1>
     {{ with .Description | html }}<div class="post-description">{{ . }}</div>{{ end }}
     <div class="post-meta">
-      <time datetime={{.Date.Format (.Site.Params.dateFormatToUse | default "2006-01-02") }} itemprop="datePublished">{{ .Date.Format (.Site.Params.dateFormatToUse | default "January 2, 2006") }}</time>
+      {{ with .Date.Format (.Site.Params.dateFormatToUse | default "2006-01-02") }}
+      <time datetime={{ . }} itemprop="datePublished">{{ . }}</time>
+      {{ end }}
       ·
       {{ with .Params.tags }}
       <span class="tags">{{ range $index, $value := . }}{{ if gt $index 0 }}, {{ end }}{{ $value }}{{ end }}</span>
@@ -12,19 +14,19 @@
       ·
       <span class="post-word-count">
         {{- $readTime := mul (div .WordCount 220.0) 60 -}}
-        {{ .WordCount }} words · {{ math.Floor (div $readTime 60) }} minutes
+        {{ i18n "postWords" .WordCount }} · {{ i18n "readingTime" (math.Floor (div $readTime 60)) }}
       </span>
     </div>
   </header>
 
-  {{ if ( .Site.Params.toc | default true ) }}
+  {{ if .Site.Params.Toc | default true }}
     {{ partial "toc.html" . }}
   {{ end }}
 
   <div class="post-content">
     {{- if and .Params.Series (ne .Site.Params.HideSeries "true") -}}
       {{- $allSeries := .GetTerms "series" -}}
-      {{- $series := where .Site.RegularPages.ByDate ".Params.series" "intersect" .Params.series -}}
+      {{- $series := where .Site.RegularPages.ByDate ".Params.series" "intersect" .Params.Series -}}
       {{- if lt 1 (len $series) -}}
       <div class="post-series">
         {{- with $series -}}
@@ -72,10 +74,10 @@
 
       {{ $finalContent }}
 
-      {{ $context := .}}
-      {{ with .Params.relations }}
+      {{ $context := . }}
+      {{ with .Params.Relations }}
       <div class="post-rel">
-        <h2 id="相关文章">相关文章</h2>
+        <h2 id="relates-posts">{{ i18n "relatesPosts" }}</h2>
         <ul>
           {{ range . }}
             {{ $title := index . 0 | default (index . 1) }}
@@ -88,9 +90,9 @@
       </div>
       {{ end }}
 
-      {{ with .Params.references }}
+      {{ with .Params.References }}
       <div class="post-ref">
-        <h2 id="参考链接">参考链接</h2>
+        <h2 id="reference-links">{{ i18n "referenceLinks" }}</h2>
         <ul>
           {{ range . }}
             {{ $title := index . 0 | default (index . 1) }}
@@ -107,13 +109,13 @@
     </div>
   </div>
 
-  {{ with .Site.Params.license }}
+  {{- with .Site.Params.License -}}
   <div class="post-copyright">
     <p class="copyright-item lincese">
-      {{ . | safeHTML}}
+      {{ . | safeHTML }}
     </p>
   </div>
-  {{ end }}
+  {{- end -}}
 
   <!-- <div class="post-tags">
     {{ with .Params.tags }}
@@ -134,10 +136,10 @@
 
   <div class="post-nav">
     {{ if .PrevInSection }}
-    <a href="{{.PrevInSection.Permalink}}" class="prev" rel="prev" title="{{ .PrevInSection.Title}}"><i class="iconfont icon-left"></i>&nbsp;{{ .PrevInSection.Title}}</a>
+    <a href="{{.PrevInSection.Permalink}}" class="prev" rel="prev" title="{{ .PrevInSection.Title }}"><i class="iconfont icon-left"></i>&nbsp;{{ .PrevInSection.Title }}</a>
     {{ end }}
     {{ if .NextInSection }}
-    <a href="{{.NextInSection.Permalink}}" class="next" rel="next" title="{{.NextInSection.Title}}">{{.NextInSection.Title}}&nbsp;<i class="iconfont icon-right"></i></a>
+    <a href="{{.NextInSection.Permalink}}" class="next" rel="next" title="{{ .NextInSection.Title }}">{{ .NextInSection.Title }}&nbsp;<i class="iconfont icon-right"></i></a>
     {{ end }}
   </div>
 

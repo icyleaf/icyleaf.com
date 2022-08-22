@@ -2,8 +2,19 @@
   /** Home **/
 
   .intro {
-    transform: translateY(25vh);
+    margin-top: 2em;
     text-align: center;
+    .avatar {
+      img {
+        width: 96px;
+      }
+    }
+  }
+
+  .intro-large {
+    transform: translateY(25vh) !important;
+    margin: 2em 0;
+
     .avatar {
       padding: 10px;
       img {
