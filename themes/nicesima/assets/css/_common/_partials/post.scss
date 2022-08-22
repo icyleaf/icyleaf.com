@@ -531,6 +531,16 @@
 
     .updated-body {
       padding: 1.3em;
+
+      p:first-child {
+        padding: 0;
+        margin: 0;
+      }
+
+      p:last-child {
+        padding: 0;
+        margin: 0;
+      }
     }
   }
 }
