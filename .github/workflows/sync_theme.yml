@@ -1,0 +1,25 @@
+name: Sync Theme
+on:
+  push:
+    paths:
+      - 'themes/nicesima/**'
+      - '.github/workflows/sync_theme.yml'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: false
+        fetch-depth: 0
+
+    - name: Pushing to theme repository
+      uses: cpina/github-action-push-to-another-repository@main
+      env:
+        SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
+      with:
+        source-directory: 'themes/nicesima'
+        destination-github-username: 'icyleaf'
+        destination-repository-name: 'hugo-theme-nicesima'
+        user-email: icyleaf.cn@gmail.com
+        target-branch: master
