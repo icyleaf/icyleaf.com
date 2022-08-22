@@ -5,7 +5,7 @@ on:
       - 'themes/nicesima/**'
       - '.github/workflows/sync_theme.yml'
 jobs:
-  build:
+  sync:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -13,13 +13,9 @@ jobs:
         submodules: false
         fetch-depth: 0
 
-    - name: Pushing to theme repository
-      uses: cpina/github-action-push-to-another-repository@main
-      env:
-        SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
+    - uses: nxtlvlsoftware/git-subtree-action@1.1
       with:
-        source-directory: 'themes/nicesima'
-        destination-github-username: 'icyleaf'
-        destination-repository-name: 'hugo-theme-nicesima'
-        user-email: icyleaf.cn@gmail.com
-        target-branch: master
+        repo: 'icyleaf/hugo-theme-nicesima'
+        path: 'themes/nicesima'
+        deploy_key: ${{ secrets.SSH_DEPLOY_KEY }}
+        force: true # will force push to the downstream repository
