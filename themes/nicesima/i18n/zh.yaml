@@ -3,6 +3,8 @@ publishedPosts:
   other: 本博客共生产 {{ . }} 篇文章。
 
 # single
+photoBy: Photo by
+
 postWords:
   other: '{{ . }} words'
 

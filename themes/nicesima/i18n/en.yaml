@@ -3,6 +3,8 @@ publishedPosts:
   other: Published {{ . }} posts.
 
 # single
+photoBy: Photo by
+
 postWords:
   other: '{{ . }} words'
 

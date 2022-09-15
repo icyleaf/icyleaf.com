@@ -1,10 +1,23 @@
 /** Post **/
 
-.post-cover img {
-  width: 100%;
-  object-fit: cover;
-  height: 40vh;
-  min-height: 180px;
+.post-cover {
+  img {
+    width: 100%;
+    object-fit: cover;
+    height: 40vh;
+    min-height: 180px;
+  }
+
+  .cover-author {
+    margin: 0;
+    padding: 0;
+    line-height: normal;
+    text-align: center;
+    font-size: 0.85rem;
+    color: $light-font-secondary-color;
+  }
+
+  margin-bottom: 2em;
 }
 
 .post-warp {
@@ -24,7 +37,7 @@
   }
 
   .post-title {
-    font-size: 2.5em;
+    font-size: 2.2em;
     line-height: 1.3em;
   }
 
