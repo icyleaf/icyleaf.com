@@ -99,7 +99,7 @@ _Blog.scrollIndicator = function () {
 _Blog.changeTile = function () {
   const currentTile = document.title
   window.onblur = function () {
-    emoji = ['🐟', '☕', '🚔', '👻', '🎶']
+    emoji = ['🏕', '☕️', '🍺', '🎮', '🧑‍💻']
     this.document.title = emoji[Math.floor(Math.random() * emoji.length)] + currentTile
   }
   window.onfocus = function () {
@@ -173,6 +173,7 @@ _Blog.addCopyBottons = function () {
       } else if (isLntable && !codeBlock.querySelectorAll('span.lnt').length) {
         highlight = pre.parentNode.parentNode
       }
+
       if (highlight) {
         highlight.appendChild(button)
       }
