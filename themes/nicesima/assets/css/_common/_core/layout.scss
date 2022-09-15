@@ -28,16 +28,16 @@
     appearance: none;
     border: none;
     background-color: transparent;
-    color: #ef3982;
+    color: $light-scrollbar-thumb-color;
   }
   .content_progress::-webkit-progress-bar {
     background-color: transparent;
   }
   .content_progress::-webkit-progress-value {
-    background-color: #ef3982;
+    background-color: $light-scrollbar-thumb-color;
   }
   .content_progress::-moz-progress-bar {
-    background-color: #ef3982;
+    background-color: $light-scrollbar-thumb-color;
   }
   .container {
     width: auto;
