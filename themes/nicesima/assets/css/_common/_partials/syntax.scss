@@ -39,7 +39,7 @@ code {
 .post-warp .post-content code:not([class]) {
   padding: 2px 6px;
   margin: 0 2px;
-  background: #e2e2e2;
+  background: $light-code-notclass-background-color;
   border-radius: 5px;
 
   .dark-theme & {
@@ -50,14 +50,14 @@ code {
 /* Background */
 .chroma {
   color: #f8f8f2;
-  background: $light-code-notclass-background-color;
+  background: $light-code-background-color;
   padding: 0.5rem 0;
   // overflow-x: scroll;
   overflow: auto;
   overflow-y: hidden;
 
   .dark-theme & {
-    background: $dark-code-notclass-background-color;
+    background: $dark-code-background-color;
   }
 
   &::-webkit-scrollbar {
@@ -135,9 +135,9 @@ div.chroma {
     padding-left: 0 !important;
     padding-right: 0 !important;
 
-    background-color: $light-code-notclass-background-color;
+    background-color: $light-code-background-color;
     .dark-theme & {
-      background-color: $dark-code-notclass-background-color;
+      background-color: $dark-code-background-color;
     }
   }
 
@@ -148,9 +148,9 @@ div.chroma {
     z-index: 1;
 
     border-right: 1px dotted #7f7f7f !important;
-    background-color: $light-code-notclass-background-color;
+    background-color: $light-code-background-color;
     .dark-theme & {
-      background-color: $dark-code-notclass-background-color;
+      background-color: $dark-code-background-color;
     }
   }
 
@@ -213,9 +213,9 @@ div.chroma {
   left: 0;
   position: sticky;
   z-index: 1;
-  background-color: $light-code-notclass-background-color;
+  background-color: $light-code-background-color;
   .dark-theme & {
-    background-color: $dark-code-notclass-background-color;
+    background-color: $dark-code-background-color;
   }
 
   margin-right: 0.4em;
