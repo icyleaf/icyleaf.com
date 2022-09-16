@@ -1,3 +1,9 @@
-<link rel="apple-touch-icon" sizes="180x180" href="/images/icyleaf-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/images/icyleaf-icon.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/images/icyleaf-icon.png">
+<link rel="icon" href="{{ site.Params.assets.favicon | default "favicon.ico" | absURL }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ site.Params.assets.favicon16x16 | default "favicon-16x16.png" | absURL }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ site.Params.assets.favicon32x32 | default "favicon-32x32.png" | absURL }}">
+<link rel="icon" type="image/png" sizes="192x192" href="{{ site.Params.assets.androidChrome192x192 | default "android-chrome-192x192.png" | absURL }}">
+<link rel="icon" type="image/png" sizes="512x512" href="{{ site.Params.assets.androidChrome512x512 | default "android-chrome-512x512.png" | absURL }}">
+<link rel="apple-touch-icon" href="{{ site.Params.assets.appleTouchIcon | default "apple-touch-icon.png" | absURL }}">
+<link rel="mask-icon" href="{{ site.Params.assets.safariPinnedTab | default "safari-pinned-tab.svg" | absURL }}">
+<meta name="theme-color" content="{{ site.Params.assets.theme_color | default "#2e2e33" }}">
+<meta name="msapplication-TileColor" content="{{ site.Params.assets.msapplication_TileColor | default "#2e2e33" }}">
