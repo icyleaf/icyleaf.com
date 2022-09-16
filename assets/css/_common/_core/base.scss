@@ -1,5 +1,5 @@
 /** highlight.js**/
-@import url('https://cdn.jsdelivr.net/npm/highlight.js@10.0.3/styles/github-gist.min.css');
+@import url('https://fastly.jsdelivr.net/npm/highlight.js@10.0.3/styles/github-gist.min.css');
 
 /** Font **/
 /* iconfont */
@@ -7,24 +7,7 @@
 /* josefin-sans-regular && Lobster && pt-sans-regular */
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Lobster&family=PT+Sans&display=swap');
 /* FiraCode */
-@import url('https://cdn.jsdelivr.net/npm/firacode@3.1.0/distr/fira_code.min.css');
-
-html {
-  scroll-behavior: smooth;
-  &::-webkit-scrollbar {
-    height: $scrollbar-thickness;
-    width: $scrollbar-thickness;
-  }
-  &::-webkit-scrollbar-thumb {
-    height: 40px;
-    width: 40px;
-    border-radius: 2em;
-    background-color: $light-scrollbar-thumb-color;
-    &:hover {
-      background-color: $light-scrollbar-thumb-hover-color;
-    }
-  }
-}
+@import url('https://fastly.jsdelivr.net/npm/firacode@3.1.0/distr/fira_code.min.css');
 
 ::selection {
   background: rgba(0, 149, 255, 0.1);
@@ -35,7 +18,7 @@ html {
 }
 
 body {
-  font-size: 11pt;
+  font-size: 1em;
   font-weight: 400;
   line-height: 2em;
   background-color: $light-background-color;
@@ -89,19 +72,29 @@ a {
 }
 
 blockquote {
-  font: 14px/22px normal helvetica, sans-serif;
+  font-size: 0.9em;
   margin-top: 10px;
   margin-bottom: 10px;
-  margin-left: 2%;
-  margin-right: 0%;
+  margin-left: 0;
+  margin-right: 1.5%;
   padding-left: 15px;
   padding-top: 10px;
   padding-right: 10px;
   padding-bottom: 10px;
-  border-left: 3px solid #ccc;
-  background-color:#f1f1f1;
+  border-left: 6px solid $light-blockquote-board-color;
+  background-color: $light-blockquote-background-color;
 
   .dark-theme & {
-    background-color:$dark-blockquote-background-color;
+    background-color: $dark-blockquote-background-color;
+    border-color: $dark-blockquote-board-color;
   }
+}
+
+figure {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 2em;
+  margin-inline-start: 0;
+  margin: 0;
+  margin-bottom: .75em;
 }

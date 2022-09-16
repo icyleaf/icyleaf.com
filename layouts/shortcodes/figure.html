@@ -1,0 +1,76 @@
+{{ $thumbMethod := .Get "thumb-method" | default "resize" }}
+{{ $thumbSize := .Get "thumb-size" | default "0x0" }}
+{{ $thumbSizeArray := split $thumbSize "x" }}
+{{ $thumbWidth := int (.Get "thumb-width" | default (index $thumbSizeArray 0)) }}
+{{ $thumbHeight := int (.Get "thumb-height" | default (index $thumbSizeArray 1)) }}
+
+{{ $imageUrl := .Get "src" }}
+{{ $linkUrl := .Get "link" }}
+
+{{ $pswpWidth := .Get "pswp-width" }}
+{{ $pswpHeight := .Get "pswp-height" }}
+
+{{ $image := resources.Get "404" }}
+
+{{- if not (strings.HasSuffix $imageUrl ".svg") }}
+  {{- if or (hasPrefix $imageUrl "http://") (hasPrefix $imageUrl "https://") -}}
+  {{ $image = resources.GetRemote $imageUrl }}
+  {{- else -}}
+  {{ $image = resources.Get $imageUrl }}
+  {{- end -}}
+{{- end -}}
+
+{{- if $image }}
+  {{ $pswpWidth = .Get "pswp-width" | default $image.Width }}
+  {{ $pswpHeight = .Get "pswp-height" | default $image.Height }}
+
+  {{- if and (and (ne $thumbWidth 0) (ne $thumbHeight 0)) (or (lt $thumbWidth $pswpWidth) (lt $thumbHeight $pswpHeight)) -}}
+    {{ $linkUrl = $imageUrl }}
+    {{ $thumbSize = printf "%dx%d" $thumbWidth $thumbHeight }}
+
+    {{- if eq $thumbMethod "fit" -}}
+    {{ $imageUrl = ($image.Fit $thumbSize).RelPermalink | relURL }}
+    {{- else if eq $thumbMethod "fill" -}}
+    {{ $imageUrl = ($image.Fill $thumbSize).RelPermalink | relURL }}
+    {{- else if eq $thumbMethod "crop" -}}
+    {{ $imageUrl = ($image.Crop $thumbSize).RelPermalink | relURL }}
+    {{- else -}}
+    {{ $imageUrl = ($image.Resize $thumbSize).RelPermalink | relURL }}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+<figure{{ with .Get "class" }} class="{{ . }}"{{ end }}>
+  {{- if $linkUrl -}}
+  <a href="{{ $linkUrl }}" class="gallery-item" target="{{ .Get "target" | default "_blank" }}"
+    {{- with .Get "rel" }} rel="{{ . }}"{{ end -}}
+    {{- with $pswpWidth }} data-pswp-width="{{ . }}"{{ end -}}
+    {{- with $pswpHeight }} data-pswp-height="{{ . }}"{{ end -}}
+  >
+  {{- end -}}
+  <img src="{{ $imageUrl }}"
+      {{- if or (.Get "alt") (.Get "caption") }}
+      alt="{{ with .Get "alt" }}{{ . }}{{ else }}{{ .Get "caption" | markdownify | plainify }}{{ end }}"
+      {{- end -}}
+  /><!-- Closing img tag -->
+  {{- if $linkUrl }}</a>{{ end -}}
+
+  {{- if or (or (.Get "title") (.Get "caption")) (.Get "attr") -}}
+  <figcaption>
+    {{- if or (.Get "caption") (.Get "attr") -}}
+    <p class="source">
+      {{- .Get "caption" | markdownify -}}
+      {{- with .Get "attrlink" }}<a href="{{ . }}">{{- end -}}
+      {{- .Get "attr" | markdownify -}}
+      {{- if .Get "attrlink" }}</a>{{ end }}
+    </p>
+    {{- end }}
+
+    {{ with (.Get "title") -}}
+      <h4>{{ . }}</h4>
+    {{- end -}}
+
+    <div style="clear: both"></div>
+  </figcaption>
+  {{- end -}}
+</figure>

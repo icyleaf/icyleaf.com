@@ -16,7 +16,7 @@
       {{ with $.Site.GetPage "taxonomy" (printf "%s/%s" $type $term) }}
       <div class="card-item">
         <div class="categories" >
-          <a href="{{ .Permalink }}"><h3> <i class="iconfont icon-folder" style="padding-right: 3px"></i> {{ $term | humanize}}  </h3> </a>
+          <a href="{{ .Permalink }}"><h3><i class="iconfont icon-folder" style="padding-right: 3px"></i> {{ $term | humanize }}</h3> </a>
           {{ range first 5 $pages }}
           <article class="archive-item">
             <a href="{{ .Permalink }}" class="archive-item-link">{{ .Title }}</a>
@@ -25,7 +25,7 @@
 
           {{ if gt (len $pages) 5 }}
           <span class="more-post">
-            <a href="{{ .Permalink }}" class="more-post-link">More  >></a>
+            <a href="{{ .Permalink }}" class="more-post-link">{{ i18n "more" }}  >></a>
           </span>
           {{ end }}
         </div>
@@ -38,11 +38,11 @@
   <!-- Tag cloud Page -->
   {{ else if and $.Site.Taxonomies.tags (eq $termName "tags") }}
     <div class="tag-cloud-tags">
-    {{ range $.Site.Taxonomies.tags.ByCount }}
+    {{ range $.Site.Taxonomies.Tags.ByCount }}
       {{ if .Name }}
       <a href="/tags/{{ .Name | urlize}}/"> {{ .Name }} <small>({{ .Count }})</small></a>
       {{ end }}
-    {{end}}
+    {{ end }}
     </div>
   {{ end }}
   <!-- //tag-cloud-page -->

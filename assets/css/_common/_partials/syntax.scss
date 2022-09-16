@@ -39,7 +39,7 @@ code {
 .post-warp .post-content code:not([class]) {
   padding: 2px 6px;
   margin: 0 2px;
-  background: #e2e2e2;
+  background: $light-code-notclass-background-color;
   border-radius: 5px;
 
   .dark-theme & {
@@ -50,11 +50,15 @@ code {
 /* Background */
 .chroma {
   color: #f8f8f2;
-  background: $light-code-notclass-background-color;
-  overflow-x: scroll;
+  background: $light-code-background-color;
+  padding: 0.6em 0;
+  // overflow-x: scroll;
+  overflow: auto;
+  overflow-y: hidden;
 
   .dark-theme & {
-    background: $dark-code-notclass-background-color;
+    color: $dark-font-color;
+    background: $dark-code-background-color;
   }
 
   &::-webkit-scrollbar {
@@ -68,13 +72,13 @@ code {
       transition: opacity 300ms;
     }
   }
-  
+
   &::-webkit-scrollbar-track {
     opacity: 1;
     background-color: $light-background-color;
 
     .dark-theme & {
-      background-color: $dark-background-color;
+      background-color: $dark-scrollbar-track-color;
     }
   }
 
@@ -100,10 +104,16 @@ code {
   &::-webkit-scrollbar-corner {
     background-color: transparent;
   }
-}
 
-div.chroma {
-  border-radius: 18px;
+  // .line {
+  //   &:first-child {
+  //     padding-top: 0.5em !important;
+  //   }
+
+  //   &:last-child {
+  //     padding-bottom: 0.5em !important;
+  //   }
+  // }
 }
 
 /* Other */
@@ -115,77 +125,89 @@ div.chroma {
   background-color: #1e0010
 }
 
-/* LineTableTD */
-.chroma .lntd {
-  vertical-align: top;
-  padding: 0 !important;
-  margin: 0 !important;
-  border: 0;
+// /* LineTableTD */
+// .chroma .lntd {
+//   vertical-align: top;
+//   padding: 0 !important;
+//   margin: 0 !important;
+//   border: 0;
 
-  pre.chroma > code {
-    border-radius: 0px;
+//   pre.chroma > code {
+//     border-radius: 0px;
 
-    // fix 首行高亮时，表格行号首行水平错位
-    margin-left: 0 !important;
+//     // fix 首行高亮时，表格行号首行水平错位
+//     margin-left: 0 !important;
 
-    // fix 表格行号首行垂直未对齐
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    
-    background-color: $light-code-notclass-background-color;
-    .dark-theme & {
-      background-color: $dark-code-notclass-background-color;
-    }
-  }
+//     // fix 表格行号首行垂直未对齐
+//     padding-left: 0 !important;
+//     padding-right: 0 !important;
 
-  &:first-child {
-    width: 0;
-    left: 0px;
-    position: sticky;
-    z-index: 1;
-  
-    border-right: 1px dotted #7f7f7f !important;
-    background-color: $light-code-notclass-background-color;
-    .dark-theme & {
-      background-color: $dark-code-notclass-background-color;
-    }
-  }
+//     background-color: $light-code-background-color;
+//     .dark-theme & {
+//       background-color: $dark-code-background-color;
+//     }
+//   }
 
-  &:last-child {
-    overflow-x: hidden;
-  }
-}
+//   &:first-child {
+//     width: 0;
+//     left: 0px;
+//     position: sticky;
+//     z-index: 1;
 
-/* LineTable */
-.chroma .lntable {
-  border-spacing: 0;
-  padding: 0;
-  margin: 0;
-  border: 0;
-  width: 100%;
-  overflow: auto;
-  display: table;
-  box-shadow: 0 0 0 rgba(0,0,0,.125) !important;
+//     border-right: 1px dotted #7f7f7f !important;
+//     background-color: $light-code-background-color;
+//     .dark-theme & {
+//       background-color: $dark-code-background-color;
+//     }
+//   }
 
-  tr {
-    td {
-      border-width: 0px !important;
+//   &:last-child {
+//     overflow-x: hidden;
+//   }
+// }
 
-      pre.chroma {
-        overflow: auto;
-        margin-top: 0;
-        margin-bottom: 0;
-        padding-right: 0;
-      }
-    }
-  }
-}
+// /* LineTable */
+// .chroma .lntable {
+//   border-spacing: 0;
+//   padding: 0;
+//   margin: 0;
+//   border: 0;
+//   width: 100%;
+//   overflow: auto;
+//   display: table;
+//   box-shadow: 0 0 0 rgba(0,0,0,.125) !important;
+
+//   tr {
+//     td {
+//       border-width: 0px !important;
+
+//       pre.chroma {
+//         overflow: auto;
+//         margin-top: 0;
+//         margin-bottom: 0;
+//         padding-right: 0;
+//       }
+//     }
+//   }
+// }
 
 /* LineHighlight */
 .chroma .hl {
   display: block;
   width: 100%;
-  background-color: #3d3d3c
+  background-color: $light-code-highlight-background-color;
+
+  .dark-theme & {
+    background-color: $dark-code-highlight-background-color;
+  }
+
+  .ln {
+    background-color: $light-code-highlight-background-color;
+
+    .dark-theme & {
+      background-color: $dark-code-highlight-background-color;
+    }
+  }
 }
 
 /* LineNumbersTable */
@@ -210,9 +232,9 @@ div.chroma {
   left: 0;
   position: sticky;
   z-index: 1;
-  background-color: $light-code-notclass-background-color;
+  background-color: $light-code-background-color;
   .dark-theme & {
-    background-color: $dark-code-notclass-background-color;
+    background-color: $dark-code-background-color;
   }
 
   margin-right: 0.4em;

@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<html lang="{{ .Site.LanguageCode }}">
-  {{ partial "head.html" . }}
-  <body class="">
+<html lang="{{ site.Language }}" dir="{{ .Language.LanguageDirection | default "auto" }}"></html>
+  <head>
+    {{- partial "head.html" . }}
+  </head>
+
+  <body>
     <div class="wrapper">
       {{ partial "header.html" . }}
       <main class="main">

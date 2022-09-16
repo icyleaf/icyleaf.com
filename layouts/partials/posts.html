@@ -1,0 +1,38 @@
+<div class="post-warp">
+  {{ $pages := union .RegularPages .Sections }}
+
+  {{ if .IsHome }}{{ $pages = where site.RegularPages "Type" "in" site.Params.mainSections }}{{ end }}
+
+  {{ $paginator := .Paginate $pages }}
+
+  {{ range $index, $page := $paginator.Pages }}
+    {{ $postClass := cond (isset .Params "image") "post-block" "post-inline" }}
+    <article class="{{ $postClass }}">
+      <a href="{{ .Permalink }}">
+        <header class="post-header">
+          {{ if .Params.image }}
+          <img src="{{ .Params.image | relURL }}" class="cover">
+          {{ if in .Content "updated-header" }}
+          <div class="post-updated">{{ i18n "update" }}</div>
+          {{ end }}
+          <h1 class="post-title" itemprop="name headline">{{ .Title }}</h1>
+          {{ else }}
+          <h1 class="post-title">{{ .Title }}</h1>
+          {{ if in .Content "updated-header" }}
+          <div class="post-updated">{{ i18n "update" }}</div>
+          {{ end }}
+          {{ end }}
+        </header>
+        <div class="post-content">
+          {{ with .Description | html }}
+          {{ . }}
+          {{ else }}
+          {{ .Summary | html }}{{ if .Truncated }}...{{ end }}
+          {{ end -}}
+        </div>
+      </a>
+    </article>
+  {{ end }}
+
+  {{ partial "paginator.html" . }}
+</div>

@@ -5,35 +5,64 @@ var _Blog = _Blog || {}
 function zip() {
   var args = [].slice.call(arguments);
   var longest = args.reduce(function(a,b){
-      return a.length>b.length ? a : b
+    return a.length>b.length ? a : b
   }, []);
 
   return longest.map(function(_,i){
-      return args.map(function(array){return array[i]})
+    return args.map(function(array){return array[i]})
   });
 }
 
 // Dark Mode
 _Blog.switchDarkMode = function () {
-  const currentTheme = document.cookie.replace(/(?:(?:^|.*;\s*)dark\s*=\s*([^;]*).*$)|^.*$/, '$1') || '0'
-  const isDark = currentTheme === '1'
+  const darkModeKey = 'blog-dark-mode'
+  const currentTheme = cookieValue(darkModeKey)
+  const isDark = (currentTheme === undefined) ? window.matchMedia("(prefers-color-scheme: dark)").matches : currentTheme === '1'
+  if (currentTheme !== undefined) {
+    document.cookie = darkModeKey + '=' + (isDark ? '1' : '0') + ';path=/'
+  }
+  utterancesTheme(isDark)
   document.body.classList.toggle('dark-theme', isDark)
+  console.log('Default dark mode is ' + isDark)
+
   // 手动切换 Dark Mode
   const themeSwitcher = document.querySelectorAll('.theme-switch')
   themeSwitcher.forEach(function (themeSwitcherItem) {
     themeSwitcherItem.addEventListener('click', () => {
-      const currentTheme = document.cookie.replace(/(?:(?:^|.*;\s*)dark\s*=\s*([^;]*).*$)|^.*$/, '$1') || '0'
-      if (currentTheme === '0') {
-        document.body.classList.add('dark-theme')
-        document.cookie = 'dark=1;path=/'
-        console.log('Dark mode on')
-      } else {
+      const currentTheme = cookieValue(darkModeKey)
+      const isDark = (currentTheme === undefined) ? window.matchMedia("(prefers-color-scheme: dark)").matches : currentTheme === '1'
+      if (isDark) {
         document.body.classList.remove('dark-theme')
-        document.cookie = 'dark=0;path=/'
+        document.cookie = darkModeKey + '=0;path=/'
         console.log('Dark mode off')
+      } else {
+        document.body.classList.add('dark-theme')
+        document.cookie = darkModeKey + '=1;path=/'
+        console.log('Dark mode on')
       }
+
+      utterancesTheme(isDark)
     })
   })
+
+  function cookieValue(key) {
+    return document.cookie
+      .split("; ")
+      .find(row => row.startsWith(`${key}=`))
+      ?.split("=")[1];
+  }
+
+  function utterancesTheme(isDark) {
+    const iframe = document.querySelector('.utterances-frame');
+    if (!iframe) { return; }
+
+    const theme = isDark ? 'github-dark' : 'github-light'
+    const message = {
+      type: 'set-theme',
+      theme: theme
+    };
+    iframe.contentWindow.postMessage(message, 'https://utteranc.es');
+  }
 }
 
 // 开关移动端菜单
@@ -70,7 +99,7 @@ _Blog.scrollIndicator = function () {
 _Blog.changeTile = function () {
   const currentTile = document.title
   window.onblur = function () {
-    emoji = ['🐟', '☕', '🚔', '👻', '🎶']
+    emoji = ['🏕', '☕️', '🍺', '🎮', '🧑‍💻']
     this.document.title = emoji[Math.floor(Math.random() * emoji.length)] + currentTile
   }
   window.onfocus = function () {
@@ -144,6 +173,7 @@ _Blog.addCopyBottons = function () {
       } else if (isLntable && !codeBlock.querySelectorAll('span.lnt').length) {
         highlight = pre.parentNode.parentNode
       }
+
       if (highlight) {
         highlight.appendChild(button)
       }
@@ -161,10 +191,12 @@ _Blog.initToc = function () {
   var fixHeight = fix.height();
   var endTop, miss;
   var offsetTop = fix[0].offsetTop;
-  $('.post-toc-content:not(.always-active) a').click(function (e) {
-   $('.post-toc-content li').removeClass('has-active');
-   $(e.target).parents('.post-toc-content li').addClass('has-active');
+
+  $('.post-toc-content a').click(function (e) {
+    $('.post-toc-content li a').removeClass('has-active');
+    $(e.target).addClass('has-active');
   })
+
   $(window).scroll(function () {
     var docTop = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
     if (end.length > 0) {

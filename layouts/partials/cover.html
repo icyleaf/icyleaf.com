@@ -1,12 +1,15 @@
-{{ if not .IsHome }}
-  {{ $cover := .Params.Image }}
-  {{ if $cover }}
+{{- if not .IsHome -}}
+  {{- if .Params.Image -}}
   <div class="post-cover">
-    {{ if or (eq (substr $cover 0 7) "http://") (eq (substr $cover 0 8) "https://") }}
-    <img src="{{ $cover }}">
-    {{ else }}
-    <img src="{{ .Site.BaseURL }}{{ $cover }}">
-    {{ end }}
+    <img src="{{ .Params.Image | relURL }}" loading="lazy">
+    {{- if .Params.ImageAuthor -}}
+    <p class="cover-author">
+      {{ i18n "photoBy" }}
+      {{ with .Params.ImageSourceLink}}<a href="{{ . }}">{{ end }}
+      {{ .Params.ImageAuthor }}
+      {{ with .Params.ImageSourceLink }}</a>{{ end }}
+    </p>
+    {{- end -}}
   </div>
-  {{ end }}
-{{ end }}
+  {{- end -}}
+{{- end -}}

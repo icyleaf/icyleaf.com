@@ -1,5 +1,7 @@
 {{ define "content" }}
 <div class="post-warp archive">
+  <p>{{ i18n "publishedPosts" (len .Pages) }}</p>
+
   {{ range (.Paginate (.Pages.GroupByDate "2006")).PageGroups }}
   <h3>{{ .Key }}</h3>
 

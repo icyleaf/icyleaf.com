@@ -1,7 +1,0 @@
-{{ define "content" }}
-  {{ if eq .Site.Params.home_mode "posts" }}
-    {{ partial "home_posts.html" . }}
-  {{ else }}
-    {{ partial "home_profile.html" . }}
-  {{ end }}
-{{ end }}
