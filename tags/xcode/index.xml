@@ -45,7 +45,7 @@
 <h1 id="范例">范例</h1>
 <p>为了大家对它有个直接的认识，我这里找了几个范例，看到图大家就非常明白了！</p>
 <p>默认系统很对 QuickTime 兼容格式的可以实现视频预览播放，如果安装了最新的 MPlayerX，同样也支持大多数格式（目前还不支持 mkv）
-<img src="https://developer.apple.com/library/mac/documentation/UserExperience/Conceptual/Quicklook_Programming_Guide/Art/preview_example2.jpg"
+<img loading="lazy" src="https://developer.apple.com/library/mac/documentation/UserExperience/Conceptual/Quicklook_Programming_Guide/Art/preview_example2.jpg"
   
   
   alt="video quicklook"></img>

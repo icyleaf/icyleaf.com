@@ -40,7 +40,7 @@ Rancher 0.x 版本部署指南</description><content:encoded><![CDATA[
 </span></span><span class="line"><span class="ln">2</span><span class="cl">172.17.0.2
 </span></span></code></pre></div><p>接着上面的步骤，在打开页面能看到 Add Host 按钮并点击对于弹出 “Host Registration URL” 选择 “Something else:” 在后面的输入框填入上面的 IP 和端口号 <code>http://172.17.0.2:8080</code> 并保存。</p>
 <p>之后就是给你一个客户端（部署主机）的选项，由于我们只添加本机作为部署主机使用，因此这里选择 Custom，其他不用任何设置，直接滑倒最底部找到一个执行 docker 命令的区域：</p>
-<p><img src="http://ww2.sinaimg.cn/large/006tNbRwjw1f6jdkffiqhj31ee150k0c.jpg"
+<p><img loading="lazy" src="http://ww2.sinaimg.cn/large/006tNbRwjw1f6jdkffiqhj31ee150k0c.jpg"
   
   
   alt="add rancher host"></img>
@@ -56,7 +56,7 @@ Rancher 0.x 版本部署指南</description><content:encoded><![CDATA[
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ docker run -d --privileged -v /var/run/docker.sock:/var/run/docker.sock -v <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/docker/rancher/var/lib/rancher:/var/lib/rancher rancher/agent:v1.0.2 http://172.17.0.2:8080/v1/scripts/676576FFEC2212A68391:1470416400000:tfqxfdglHL6Qw8dpLVtbOesYY4
 </span></span><span class="line"><span class="ln">2</span><span class="cl">5cf22a10cf28b4182b6e205fa631146e86d67c3c9d86901ff8cf7ab087319a29
 </span></span></code></pre></div><p>最后点击页面的 Close 后会跳转到 Host 的列表，你就能惊喜的发现添加成功了！</p>
-<p><img src="http://ww2.sinaimg.cn/large/006tNbRwjw1f6jdidcojkj315y0m4dik.jpg"
+<p><img loading="lazy" src="http://ww2.sinaimg.cn/large/006tNbRwjw1f6jdidcojkj315y0m4dik.jpg"
   
   
   alt="rancher host"></img>
@@ -218,7 +218,7 @@ Rancher 0.x 版本部署指南</description><content:encoded><![CDATA[
 <blockquote>
 <p>建议购买 Full Version，目前是半价，人民币 30 元</p>
 </blockquote>
-<p><img src="http://a1.mzstatic.com/us/r1000/106/Purple/v4/14/50/16/14501624-f6fd-4dae-a2bf-187a5a6417de/icon.175x175-75.png"
+<p><img loading="lazy" src="http://a1.mzstatic.com/us/r1000/106/Purple/v4/14/50/16/14501624-f6fd-4dae-a2bf-187a5a6417de/icon.175x175-75.png"
   
   
   alt="Dash"></img>

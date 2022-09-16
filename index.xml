@@ -1,4 +1,173 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>icyleaf</title><link>https://icyleaf.com/</link><description>Recent content on icyleaf</description><language>zh</language><lastBuildDate>Fri, 12 Aug 2022 19:29:06 +0800</lastBuildDate><atom:link href="https://icyleaf.com/index.xml" rel="self" type="application/rss+xml"/><item><title>小新 Pad Pro 2021</title><link>https://icyleaf.com/gears/xiaoxin-pad-pro-2021/</link><pubDate>Fri, 12 Aug 2022 19:29:06 +0800</pubDate><guid>https://icyleaf.com/gears/xiaoxin-pad-pro-2021/</guid><description>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>icyleaf</title><link>https://icyleaf.com/</link><description>Recent content on icyleaf</description><language>zh</language><lastBuildDate>Thu, 15 Sep 2022 13:58:31 +0800</lastBuildDate><atom:link href="https://icyleaf.com/index.xml" rel="self" type="application/rss+xml"/><item><title>Rails 项目构建 Docker 镜像安全处理加密凭证 Credentials</title><link>https://icyleaf.com/2022/09/rails-build-docker-image-handle-encrypted-credentials-securely/</link><pubDate>Thu, 15 Sep 2022 13:58:31 +0800</pubDate><guid>https://icyleaf.com/2022/09/rails-build-docker-image-handle-encrypted-credentials-securely/</guid><description>
+如何正确处理 Rails 中的 master key 和 credentials.yml.enc</description><content:encoded><![CDATA[<p>最近在做一个小的 Side Project 作为公共服务首要是需要保证用户数据的绝对安全，这就需要对数据库数据做加密处理。</p>
+<p>Rails <a href="https://qiita.com/NaokiIshimura/items/2a179f2ab910992c4d39">5.2</a> 开始支持 <code>credentials.yml.enc</code> 加密凭证，
+<a href="https://blog.saeloun.com/2019/10/10/rails-6-adds-support-for-multi-environment-credentials.html">6.0</a> 支持多环境的 credentials 加密凭证，
+<a href="https://blog.saeloun.com/2021/06/09/rails-7-add-encryption-to-active-record.html">7.0</a> 支持对 model 数据库表字段加密处理，但我从 5.1 支持 <code>secrets.yml</code> 开始就没使用过。
+最近一周开发加摸索下来，总结一句话：<strong>一直加密一直爽，容器化奔赴火葬场。</strong></p>
+<h2 id="机制原理">机制原理</h2>
+<p>初始化一个 Rails 5.2+ 项目会在项目根目录 <code>config</code> 生成 <code>master.key</code> 和 <code>credentials.yml.enc</code> 两个文件，前者可以理解为核心密钥，后者是用核心密钥通过
+<a href="https://github.com/rails/rails/blob/7-0-stable/activesupport/lib/active_support/encrypted_configuration.rb">ActiveSupport::EncryptedConfiguration</a> 加密类生成的加密后的数据文件。</p>
+<p>只需要保证 <code>master.key</code> 不会泄露，通过 <code>rails credentials:edit</code> 配置服务所需的各自私密 token、secret key 之类也可以安全的提交到 Git 仓库中。</p>
+<h3 id="存储路径">存储路径</h3>
+<p>密钥和加密后的文件会存在如下目录：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1"># 缺省</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">config/master.key
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">config/credentials.yml.enc
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="c1"># Rails 生产环境决定 (6.0 开始支持)</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="c1"># 如下分别对应 development 和 production 环境</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">config/credentials/development.key
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">config/credentials/development.yml.enc
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">
+</span></span><span class="line"><span class="ln">10</span><span class="cl">config/credentials/production.key
+</span></span><span class="line"><span class="ln">11</span><span class="cl">config/credentials/production.yml.enc
+</span></span></code></pre></div><h3 id="触发机制">触发机制</h3>
+<p>只要运行的代码会涉及 <code>config/environment.rb</code> 文件解密流程就会自动被触发，比如：</p>
+<ul>
+<li><code>rails server</code></li>
+<li><code>rails console</code></li>
+<li><code>Rakefile</code> 附加 <code>:environment</code> 参数的所有 tasks</li>
+</ul>
+<h3 id="常见加解密报错">常见加解密报错</h3>
+<p>解密机制被触发的那一刻，它会从存储路径从缺省到当前生产环境去寻找对应的文件，master key 会优先读取 <code>RAILS_MASTER_KEY</code> 环境变量的值，没有才会去存储文件读取，都没有找到就报错 <code>MissingKeyError</code> 错误。</p>
+<p>master key 在 Rails 5.2 ~ 7 版本密钥的长度必须符合 aes-128-gcm 也就是 32 字节，设置错误会得到 <code>InvalidKeyLengthError</code> 错误。</p>
+<p><code>*.enc</code> 文件不存在会触发 <code>MissingContentError</code> 错误。</p>
+<p>其他的错误还有可能是：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># 通常是 credentials.yml.enc 文件缺失或未设置 secret_key_base (SECRET_KEY_BASE) 的值</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">ArgumentError: Missing <span class="sb">`</span>secret_key_base<span class="sb">`</span> <span class="k">for</span> <span class="s1">&#39;production&#39;</span> environment, <span class="nb">set</span> this string with <span class="sb">`</span>bin/rails credentials:edit<span class="sb">`</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="c1"># master key 密钥不正确无法解密</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">Unable to load application: ActiveSupport::MessageEncryptor::InvalidMessage: ActiveSupport::MessageEncryptor::InvalidMessage
+</span></span><span class="line"><span class="ln">6</span><span class="cl">
+</span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="c1"># 错误同上</span>
+</span></span><span class="line"><span class="ln">8</span><span class="cl">OpenSSL::Cipher::CipherError
+</span></span></code></pre></div><p>成就大体都列出来了，至于你能到哪步就看你的造化了（开玩笑）。</p>
+<h2 id="数据库字段加密">数据库字段加密</h2>
+<p>Rails 默认并不会对数据库字段加密，在 7.0 开始允许开发者定义加密字段也允许自定义加解密方法。这个不是本文的讨论范围不再展开。</p>
+<p>初始化需要通过如下命令生成一个随机的 Keys：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ rails db:encryption:init
+</span></span><span class="line"><span class="ln">2</span><span class="cl">Add this entry to the credentials of the target environment:
+</span></span><span class="line"><span class="ln">3</span><span class="cl">
+</span></span><span class="line"><span class="ln">4</span><span class="cl">active_record_encryption:
+</span></span><span class="line"><span class="ln">5</span><span class="cl">  primary_key: KMw07GoiPScVwtmoNxlBv7YibFCnB4dU
+</span></span><span class="line"><span class="ln">6</span><span class="cl">  deterministic_key: CTttlez04KZcy3MCMFtZ8FUEopSAmJOr
+</span></span><span class="line"><span class="ln">7</span><span class="cl">  key_derivation_salt: FwUgrDWHX3wN7kKw5gYSsYEgzxRnYBWh
+</span></span></code></pre></div><p>在通过 <code>rails credentials:edit</code> 把上端加密串加到 credentials 里面保存即可，<strong>不同的加密串是无法解密已经存在数据库中的数据的，切记！切记！切记！</strong>
+否则你会再获得一个成就 <code>ActiveRecord::Encryption::Errors::Decryption</code> 报错。</p>
+<h2 id="镜像构建处理">镜像构建处理</h2>
+<blockquote>
+<p>恭喜你，从现在开始你本应当直面恐惧，可惜你发现了我这篇文章缺少了点悲惨的经历。</p>
+</blockquote>
+<p>制作 Docker 镜像无论什么情况都要保证不会包含任何私密数据，Rails 绕不开的点主要是 <code>rails assets:complie</code>。
+上面我也说了只要涉及 <code>:environment</code> 参数的所有 tasks 都会走解密流程，它也不例外。</p>
+<p>构建方面我通过三种方式来解析如果从不安全到安全的构建过程：</p>
+<h3 id="-最不安全的方式">🚫 最不安全的方式</h3>
+<p>镜像构建允许设置 <a href="https://docs.docker.com/engine/reference/commandline/build/#set-build-time-variables---build-arg">build-arg</a> 传递：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="k">FROM</span><span class="s"> ruby:3.0.3</span><span class="err">
+</span></span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="err"></span><span class="k">ARG</span> master_key<span class="err">
+</span></span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="err"></span><span class="k">ENV</span> <span class="nv">RAILS_MASTER_KEY</span><span class="o">=</span><span class="nv">$master_key</span><span class="err">
+</span></span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="err"></span><span class="k">ENV</span> <span class="nv">RAILS_ENV</span><span class="o">=</span>production
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="c"># 省略</span><span class="err">
+</span></span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="err"></span>...<span class="err">
+</span></span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="err"></span><span class="k">RUN</span> bin/rails assets:complie<span class="err">
+</span></span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="err"></span><span class="c"># 或者</span><span class="err">
+</span></span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="err"></span><span class="k">RUN</span> <span class="nv">RAILS_MASTER_KEY</span><span class="o">=</span><span class="nv">$master_key</span> bin/rails assets:complie<span class="err">
+</span></span></span></code></pre></div><p>执行构建命令 <code>docker build -t app --build-arg master_key=[32bits-length-key] .</code> 构建后虽然可以获得镜像，但构建时设置的值也被封装在了容器中，就算没有封装到容器中使用 <code>docker history</code> 也可以看到，因此这种方式是绝对不可取的。</p>
+<h3 id="-改进版">⭕️ 改进版</h3>
+<p>你可能会看到有些镜像的 Dockerfile 里面会包含多个 <code>FROM</code> 的<a href="https://docs.docker.com/develop/develop-images/multistage-build/">多阶段构建</a>。这个是为了利用隔离资源，重复利用缓存机制的方式使得最终的容器极可能的小和安全。我们可以利用它把私密数据隔离在前面的临时镜像中。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="k">FROM</span><span class="s"> ruby:3.0.3 as builder</span><span class="err">
+</span></span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="err"></span><span class="k">ARG</span> <span class="nv">workspace</span><span class="o">=</span>/app<span class="err">
+</span></span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="err"></span><span class="k">ARG</span> master_key<span class="err">
+</span></span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="err"></span><span class="k">ENV</span> <span class="nv">RAILS_MASTER_KEY</span><span class="o">=</span><span class="nv">$master_key</span><span class="err">
+</span></span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="err"></span><span class="k">ENV</span> <span class="nv">RAILS_ENV</span><span class="o">=</span>production
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="c"># 省略</span><span class="err">
+</span></span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="err"></span>...<span class="err">
+</span></span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="err"></span><span class="k">WORKDIR</span><span class="s"> $workspace</span><span class="err">
+</span></span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="err"></span><span class="k">RUN</span> bin/rails assets:complie<span class="err">
+</span></span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="err"></span><span class="c"># 省略</span><span class="err">
+</span></span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="err"></span>...<span class="err">
+</span></span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="err"></span><span class="k">FROM</span><span class="s"> ruby:3.0.3-slim</span><span class="err">
+</span></span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="ln">19</span><span class="cl"><span class="err"></span><span class="c"># 省略</span><span class="err">
+</span></span></span><span class="line"><span class="ln">20</span><span class="cl"><span class="err"></span>...<span class="err">
+</span></span></span><span class="line"><span class="ln">21</span><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="ln">22</span><span class="cl"><span class="err"></span><span class="k">COPY</span> --from<span class="o">=</span>builder <span class="nv">$workspace</span> <span class="nv">$workspace</span><span class="err">
+</span></span></span></code></pre></div><p>镜像存在 <code>builder</code> 和一个缺省名字（通常是 <code>stage-N</code>, N 是数字从 1 开始）两个阶段，第一阶段是最不安全方式的实现方式，这里在最后一个阶段通过一个干净安全的镜像把上一个阶段的结果文件复制过来就达成了第一个阶段中私密数据泄露的问题。</p>
+<p>这种方式也是当前大多数人会应用的方式，尤其利用 Github Action 的 <a href="https://docs.github.com/en/actions/security-guides/encrypted-secrets">Encrypted secrets</a> 功能从某种程度上杜绝了隐私数据的泄露。</p>
+<h3 id="-加强版">✅ 加强版</h3>
+<p><a href="https://docs.docker.com/develop/develop-images/build_enhancements/">Buildkit</a> 是 Docker 新一代镜像构建工具，启用可以通过配置环境变量 <code>DOCKER_BUILDKIT=1</code> 或在 Docker 配置文件的 features 字典增加 <code>&quot;buildkit&quot; : &quot;true&quot;</code>。</p>
+<p>由于采用新的构建工具，额外还需要在 Dockerfile 头部显性声明新的语法：<code>syntax = docker/dockerfile:1.2</code> 配合
+<a href="https://docs.docker.com/develop/develop-images/build_enhancements/#new-docker-build-secret-information">新的构建 secret </a></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c"># syntax = docker/dockerfile:1.2</span><span class="err">
+</span></span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="err"></span><span class="k">FROM</span><span class="s"> ruby:3.0.3</span><span class="err">
+</span></span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="err"></span><span class="k">ARG</span> <span class="nv">workspace</span><span class="o">=</span>/app<span class="err">
+</span></span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="err"></span><span class="k">WORKDIR</span><span class="s"> $workspace</span><span class="err">
+</span></span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="err"></span><span class="c"># 省略</span><span class="err">
+</span></span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="err"></span>...<span class="err">
+</span></span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="err"></span><span class="k">RUN</span> --mount<span class="o">=</span><span class="nv">type</span><span class="o">=</span>secret,id<span class="o">=</span>master_key,target<span class="o">=</span>config/master.key,required<span class="o">=</span><span class="nb">true</span> <span class="se">\
+</span></span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="se"></span>    bin/rails assets:precompile<span class="err">
+</span></span></span></code></pre></div><p>构建命令执行需要通过 <a href="https://docs.docker.com/build/buildx/install/">buildx</a> CLI 子命令来完成：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ docker buildx build <span class="se">\
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="se"></span>  --secret <span class="nv">id</span><span class="o">=</span>master_key,src<span class="o">=</span>config/master.key <span class="se">\
+</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="se"></span>  -t app .
+</span></span></code></pre></div><p>结合 <a href="https://github.com/moby/buildkit/blob/master/frontend/dockerfile/docs/reference.md#run---mounttypesecret">&ndash;mount-type=secret</a> 支持的参数:</p>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>密钥的唯一 id，默认是 target 参数的值的文件名</td>
+</tr>
+<tr>
+<td>target</td>
+<td>镜像内挂载的路径，默认是 <code>/run/secrets/</code> + <code>id</code></td>
+</tr>
+<tr>
+<td>required</td>
+<td>设置 <code>true</code> 当密钥不存在时报错，默认是 <code>false</code></td>
+</tr>
+<tr>
+<td>mode</td>
+<td>挂载后的文件权限，默认是 <code>0400</code></td>
+</tr>
+<tr>
+<td>uid</td>
+<td>设置密钥文件的用户 ID，默认是 <code>0</code></td>
+</tr>
+<tr>
+<td>gid</td>
+<td>设置密钥文件的用户组 ID，默认是 <code>0</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>id</code> 关联 CLI 传参和构建镜像中执行步骤，CLI 入参设置 secret 的输入文件，构建镜像则需要把 secret 导出到镜像中具体的路径，其实就是这么简单。极少数支持 Docker
+部署的云服务，比如 <a href="https://render.com/docs/docker-secrets">Render</a> 支持这种方式。部署到云服务上还需要重新考量下。</p>
+<h2 id="本篇小结">本篇小结</h2>
+<p>折腾一圈终于获得了一个干净、安全的镜像，等到部署时又傻眼了。面向技术人员或公司的项目倒还好，初始化时通过命令一通操作配置完也不需要处理 master key 不匹配的情况。
+无论使用上面改进版还是加强版都能过顺利跑起来。如果 Docker 镜像是要面向客户的话，怎么让他们初始化一个属于他们自己的 master key 和加密数据呢？开始挠头了吧。</p>
+<p>未完待续&hellip;</p>
+<h2 id="参考资源">参考资源</h2>
+<ul>
+<li><a href="https://techblog.lclco.com/entry/2021/07/27/110000">Railsのcredentials.yml.encとmaster keyをDockerで安全に扱う</a></li>
+<li><a href="https://pythonspeed.com/articles/docker-build-secrets/">Don’t leak your Docker image’s build secrets</a></li>
+</ul>
+]]></content:encoded></item><item><title>小新 Pad Pro 2021</title><link>https://icyleaf.com/gears/xiaoxin-pad-pro-2021/</link><pubDate>Fri, 12 Aug 2022 19:29:06 +0800</pubDate><guid>https://icyleaf.com/gears/xiaoxin-pad-pro-2021/</guid><description>
 Android 平板到底是生产力工具还是沦为看视频的最终归宿</description><content:encoded><![CDATA[<blockquote>
 <p>不说需求无脑采购耍流氓，绝对不要没有需求创造需求。</p>
 </blockquote>
@@ -106,52 +275,52 @@ Android 平板到底是生产力工具还是沦为看视频的最终归宿</desc
 <p>如果 iOS 生态有独占的优势，Android 在生产力方面有独特的优势<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>：</p>
 <ul>
 <li><a href="https://github.com/tachiyomiorg/tachiyomi">Tachiyomi</a>: 开源的看漫画神器，支持多图源聚合，还有很多<span class="spoiler">绅士图源</span>
- <img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg"
+ <img loading="lazy" src="https://jaywcjlove.github.io/sb/ico/min-oss.svg"
   
   
   alt="Open-Source Software"></img>
 </li>
-<li><a href="https://play.google.com/store/apps/details?id=pl.solidexplorer2&amp;hl=zh&amp;gl=US">Solid Explorer</a>: 最好用的文件管理器，没有之一 <img src="/images/icons/playstore.png"
+<li><a href="https://play.google.com/store/apps/details?id=pl.solidexplorer2&amp;hl=zh&amp;gl=US">Solid Explorer</a>: 最好用的文件管理器，没有之一 <img loading="lazy" src="/images/icons/playstore.png"
   
   
   alt="Play Store"></img>
- <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg"
+ <img loading="lazy" src="https://jaywcjlove.github.io/sb/ico/min-free.svg"
   
   
   alt="Freeware"></img>
 </li>
-<li><a href="https://github.com/devgianlu/Aria2App">Aria2App</a>: 支持本机和远程的 Aria2 下载管理客户端 <img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg"
+<li><a href="https://github.com/devgianlu/Aria2App">Aria2App</a>: 支持本机和远程的 Aria2 下载管理客户端 <img loading="lazy" src="https://jaywcjlove.github.io/sb/ico/min-oss.svg"
   
   
   alt="Open-Source Software"></img>
 </li>
-<li><a href="https://play.google.com/store/apps/details?id=dev.reimu.proxmon&amp;hl=zh&amp;gl=US">ProxMon</a>: Proxmox (PVE) 客户端管理工具 <img src="/images/icons/playstore.png"
+<li><a href="https://play.google.com/store/apps/details?id=dev.reimu.proxmon&amp;hl=zh&amp;gl=US">ProxMon</a>: Proxmox (PVE) 客户端管理工具 <img loading="lazy" src="/images/icons/playstore.png"
   
   
   alt="Play Store"></img>
- <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg"
+ <img loading="lazy" src="https://jaywcjlove.github.io/sb/ico/min-free.svg"
   
   
   alt="Freeware"></img>
 </li>
 <li><span class="spoiler"><a href="https://cn.pornhub.com/apps/android">Pornhub</a></span>
-: 知名 P 站 <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg"
+: 知名 P 站 <img loading="lazy" src="https://jaywcjlove.github.io/sb/ico/min-free.svg"
   
   
   alt="Freeware"></img>
 </li>
 <li><span class="spoiler"><a href="https://github.com/bdvajstudio/javdb">JavDB</a></span>
-: 番号资源和磁力资源，配合 Aria2App 无敌 <img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg"
+: 番号资源和磁力资源，配合 Aria2App 无敌 <img loading="lazy" src="https://jaywcjlove.github.io/sb/ico/min-oss.svg"
   
   
   alt="Open-Source Software"></img>
 </li>
 <li><span class="spoiler"><a href="https://play.google.com/store/apps/details?id=com.github.kr328.clash">Clash for Android</a></span>
-: 一个会挖洞的可爱猫咪 <img src="/images/icons/playstore.png"
+: 一个会挖洞的可爱猫咪 <img loading="lazy" src="/images/icons/playstore.png"
   
   
   alt="Play Store"></img>
- <img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg"
+ <img loading="lazy" src="https://jaywcjlove.github.io/sb/ico/min-oss.svg"
   
   
   alt="Open-Source Software"></img>
@@ -240,17 +409,17 @@ Android 平板到底是生产力工具还是沦为看视频的最终归宿</desc
 </li>
 <li id="fn:3">
 <p>部分图标版权均来自<a href="https://github.com/jaywcjlove/awesome-mac">awesome-mac</a>:<br>
-<img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg"
+<img loading="lazy" src="https://jaywcjlove.github.io/sb/ico/min-oss.svg"
   
   
   alt="Open-Source Software"></img>
 意思是<strong>代码开源</strong>;<br>
-<img src="https://jaywcjlove.github.io/sb/ico/min-free.svg"
+<img loading="lazy" src="https://jaywcjlove.github.io/sb/ico/min-free.svg"
   
   
   alt="Freeware"></img>
 意思是免费使用或个人免费授权;<br>
-<img src="/images/icons/playstore.png"
+<img loading="lazy" src="/images/icons/playstore.png"
   
   
   alt="Play Store"></img>
@@ -259,7 +428,7 @@ Android 平板到底是生产力工具还是沦为看视频的最终归宿</desc
 </ol>
 </div>
 ]]></content:encoded></item><item><title>Projects</title><link>https://icyleaf.com/projects/</link><pubDate>Fri, 12 Aug 2022 14:06:44 +0800</pubDate><guid>https://icyleaf.com/projects/</guid><description>
-移动开发必备 tryzealot/zealot 开源自部署移动应用和 macOS 应用分发平台，提供 iOS、Android SDK、fastlane 等丰富组件库 | Self-hosted Beta App Distribution for Android, iOS and macOS apps Ruby 628 77...</description><content:encoded><![CDATA[<h2 id="移动开发必备">移动开发必备</h2>
+移动开发必备 tryzealot/zealot 开源自部署移动应用和 macOS 应用分发平台，提供 iOS、Android SDK、fastlane 等丰富组件库 | Self-hosted Beta App Distribution for Android, iOS and macOS apps Ruby 631 77...</description><content:encoded><![CDATA[<h2 id="移动开发必备">移动开发必备</h2>
 <div class="shortcode-github">
   <h4 class="title">
     <a href="https://github.com/tryzealot/zealot" target="_blank">tryzealot/zealot</a>
@@ -282,7 +451,7 @@ Android 平板到底是生产力工具还是沦为看视频的最终归宿</desc
         1.456-.53-3.084a.75.75 0 01.216-.664l2.24-2.183-3.096-.45a.75.75 0
         01-.564-.41L8 2.694v.001z"></path>
     </svg>
-    628
+    631
 
     <svg role="img" height="16" width="16" class="forked">
       <path fill-rule="evenodd" d="M5 3.25a.75.75 0 11-1.5 0 .75.75 0 011.5
@@ -777,7 +946,7 @@ macOS 开发和 iOS 差异真的很大</description><content:encoded><![CDATA[<h
 </span></span><span class="line"><span class="ln">8</span><span class="cl">|  +--------------------------------------------------------+  |
 </span></span><span class="line"><span class="ln">9</span><span class="cl">+--------------------------------------------------------------+
 </span></span></code></pre></div><p>选中 Window 控件后后选择删除（<code>Main.storyboard</code> 还需要再删除默认生成的 ViewController 控件），删除后样子是这样的</p>
-<p><img src="/tutorials/macos-app-without-storyboard/001/shot001-xcode-storyboard.png"
+<p><img loading="lazy" src="/tutorials/macos-app-without-storyboard/001/shot001-xcode-storyboard.png"
   
   
   alt="Storyboard and xib in Xcode"></img>
@@ -813,7 +982,7 @@ macOS 开发和 iOS 差异真的很大</description><content:encoded><![CDATA[<h
 </span></span><span class="line"><span class="ln">6</span><span class="cl">    <span class="n">NSApplication</span><span class="p">.</span><span class="n">shared</span><span class="p">.</span><span class="n">mainWindow</span><span class="p">?.</span><span class="n">title</span> <span class="p">=</span> <span class="s">&#34;Hello world&#34;</span>
 </span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>注意看上面代码块的备注，这两行代码不能颠倒，否则 <code>NSApplication.shared.mainWindow</code> 返回的是 <code>nil</code>，我们来运行一下看看，是不是就能看到一个 640x480 的窗口，标题显示的 hello world</p>
-<p><img src="/tutorials/macos-app-without-storyboard/001/shot002-nswindow.png"
+<p><img loading="lazy" src="/tutorials/macos-app-without-storyboard/001/shot002-nswindow.png"
   
   
   alt="NSWindow App"></img>
@@ -922,7 +1091,7 @@ macOS 开发和 iOS 差异真的很大</description><content:encoded><![CDATA[<h
 </span></span><span class="line"><span class="ln">9</span><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>看了上面代码也就明白了为什么在 <code>AppDelegate.swift</code> 设置 contentViewController 需要在代码块的末尾添加了吧，如果在最开始添加那就无法获取到 mainWindow 也就无法设置 ViewController 的 frame。这里还有个小提醒 macOS 10.10 之后版本在覆写该方法如果调用了 <code>super.loadView()</code> 方法就会自动加载同名的 xib 文件<strong>绝对不能填写</strong>。</p>
 <p>让我们在运行一次看看？</p>
-<p><img src="/tutorials/macos-app-without-storyboard/001/shot003-final-app.png"
+<p><img loading="lazy" src="/tutorials/macos-app-without-storyboard/001/shot003-final-app.png"
   
   
   alt="Final App"></img>
@@ -1705,7 +1874,7 @@ macOS 系统小升级带了兼容困扰怎么办</description><content:encoded><
 <li><a href="http://blog.sina.com.cn/s/blog_6d56a57d0102x0dz.html">2017海淀驾校考摩托车驾照流程</a></li>
 </ul>
 ]]></content:encoded></item><item><title>ḫpr</title><link>https://icyleaf.com/2018/04/intro-hpr/</link><pubDate>Fri, 27 Apr 2018 18:12:23 +0800</pubDate><guid>https://icyleaf.com/2018/04/intro-hpr/</guid><description>
-最好用的 git 仓库镜像同步工具</description><content:encoded><![CDATA[<p><img src="https://github.com/icyleaf/hpr/raw/master/docs/_media/icon.png"
+最好用的 git 仓库镜像同步工具</description><content:encoded><![CDATA[<p><img loading="lazy" src="https://github.com/icyleaf/hpr/raw/master/docs/_media/icon.png"
   
   
   alt="icon"></img>
@@ -1947,7 +2116,7 @@ String#{}   9.51M (105.16ns) (± 6.12%)  3.47× slower
 <p><a href="https://github.com/icyleaf/fast-crystal">https://github.com/icyleaf/fast-crystal</a></p>
 ]]></content:encoded></item><item><title>打通 Sidekiq 的任督二脉 Ruby 和 Crystal</title><link>https://icyleaf.com/2017/04/sidekiq-works-in-ruby-togethor-with-crystal/</link><pubDate>Wed, 26 Apr 2017 16:00:49 +0000</pubDate><guid>https://icyleaf.com/2017/04/sidekiq-works-in-ruby-togethor-with-crystal/</guid><description>
 Crystal 和 Ruby 如何相互通讯</description><content:encoded><![CDATA[<p>自从开始研究 Crystal 这门语言（之前也有<a href="http://icyleaf.com/2016/07/gitlab-api-wrapper-for-crystal/">介绍</a>过），基本上每隔一段时间都会看看它的近况，去年 sidekiq 的作者用该语言重新实现了 sidekiq 项目而且给出了特别竟然的<a href="http://www.mikeperham.com/2016/05/25/sidekiq-for-crystal/">对比数据</a>。</p>
-<p><img src="/uploads/2017/04/26/sidekiq-benchmarks.png"
+<p><img loading="lazy" src="/uploads/2017/04/26/sidekiq-benchmarks.png"
   
   
   alt="IMAGE"></img>
@@ -2248,7 +2417,7 @@ Crystal 和 Ruby 如何相互通讯</description><content:encoded><![CDATA[<p>�
 ]]></content:encoded></item><item><title>你虐我千百遍，我待你如初恋，直到我遇到 match</title><link>https://icyleaf.com/2017/03/fastlane-match-in-action/</link><pubDate>Tue, 28 Mar 2017 20:12:07 +0800</pubDate><guid>https://icyleaf.com/2017/03/fastlane-match-in-action/</guid><description>
 系列文章的第三篇，教你如何使用 match 管理名词都分不清的苹果各自开发者证书</description><content:encoded><![CDATA[<h2 id="前言">前言</h2>
 <p>通过前两篇的文章大家已经对 fastlane 的概念和基本使用已经有了初步的掌握，在第二篇中也有提到 fastlane 实现的各种功能其实都是基于独立封装设计的各个工具实现。它们即可以单独成为一个体系同时也会被吸纳到 fastlane 的 action 系统之中。<code>match</code> 是在 iOS 开发和持续测试和构建中最重中之重的环节，它维护和管理着 iOS 的各种证书和 profile 的创建、更新工作。想必很多用户听到 iOS 证书和 profile 都会头大脑涨，恨不得要手撕鬼子的技能点来对付他们（如图）</p>
-<p><img src="https://codesigning.guide/assets/img/cs-the-problem.png"
+<p><img loading="lazy" src="https://codesigning.guide/assets/img/cs-the-problem.png"
   
   
   alt="code-signing-problem"></img>
@@ -2573,7 +2742,7 @@ Rancher 0.x 版本部署指南</description><content:encoded><![CDATA[
 </span></span><span class="line"><span class="ln">2</span><span class="cl">172.17.0.2
 </span></span></code></pre></div><p>接着上面的步骤，在打开页面能看到 Add Host 按钮并点击对于弹出 “Host Registration URL” 选择 “Something else:” 在后面的输入框填入上面的 IP 和端口号 <code>http://172.17.0.2:8080</code> 并保存。</p>
 <p>之后就是给你一个客户端（部署主机）的选项，由于我们只添加本机作为部署主机使用，因此这里选择 Custom，其他不用任何设置，直接滑倒最底部找到一个执行 docker 命令的区域：</p>
-<p><img src="http://ww2.sinaimg.cn/large/006tNbRwjw1f6jdkffiqhj31ee150k0c.jpg"
+<p><img loading="lazy" src="http://ww2.sinaimg.cn/large/006tNbRwjw1f6jdkffiqhj31ee150k0c.jpg"
   
   
   alt="add rancher host"></img>
@@ -2589,7 +2758,7 @@ Rancher 0.x 版本部署指南</description><content:encoded><![CDATA[
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ docker run -d --privileged -v /var/run/docker.sock:/var/run/docker.sock -v <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/docker/rancher/var/lib/rancher:/var/lib/rancher rancher/agent:v1.0.2 http://172.17.0.2:8080/v1/scripts/676576FFEC2212A68391:1470416400000:tfqxfdglHL6Qw8dpLVtbOesYY4
 </span></span><span class="line"><span class="ln">2</span><span class="cl">5cf22a10cf28b4182b6e205fa631146e86d67c3c9d86901ff8cf7ab087319a29
 </span></span></code></pre></div><p>最后点击页面的 Close 后会跳转到 Host 的列表，你就能惊喜的发现添加成功了！</p>
-<p><img src="http://ww2.sinaimg.cn/large/006tNbRwjw1f6jdidcojkj315y0m4dik.jpg"
+<p><img loading="lazy" src="http://ww2.sinaimg.cn/large/006tNbRwjw1f6jdidcojkj315y0m4dik.jpg"
   
   
   alt="rancher host"></img>
@@ -3040,7 +3209,7 @@ Rancher 0.x 版本部署指南</description><content:encoded><![CDATA[
 <p>目前已经完成了大部分 API 的封装，在一边熟悉 crystal 的同时一边补充，其中肯定有一些性能问题和坑，毕竟没有任何依赖都是自己实现的。比较坑爹的是官方手册太简单，也没有实时跟进，能够好好翻阅的其实也就是官方的 API 文档和源码。不过 crystal 还算比较人性化的一面，默认集成了类似 rspce 的单元测试（简化版）和依赖库管理 shards（类似 bundler）和生成文档的工具。通过 <a href="https://travis-ci.org/%60%60">travis-ci</a> 会自动生成每次 git push 的变化。</p>
 <p>API 文档：http://icyleaf.github.io/gitlab.cr/</p>
 <h2 id="为什么学习-crystal">为什么学习 Crystal？</h2>
-<p><img src="https://cloud.githubusercontent.com/assets/209371/13291809/022e2360-daf8-11e5-8be7-d02c1c8b38fb.png"
+<p><img loading="lazy" src="https://cloud.githubusercontent.com/assets/209371/13291809/022e2360-daf8-11e5-8be7-d02c1c8b38fb.png"
   
   
   alt="crystal logo"></img>
@@ -3131,7 +3300,7 @@ Rancher 0.x 版本部署指南</description><content:encoded><![CDATA[
 <p>这篇文章整理了很久，发现在一篇文章里无法一一讲述和全面的覆盖，初步打算是把这个做成一个系列，想到哪里就写到哪里，如果恰好有读者爱戴并有一些建议反馈，我也会根据大家的需要调整内容的方向和深度。论美剧的编剧的重要性(笑)。</p>
 <h2 id="初次邂逅">初次邂逅</h2>
 <p>初时 fastlane 的时候是去年的 11 月份，看到大就感觉遇到了神器一般的惊喜。它一个针对于 iOS 和 Android（后来才支持的）全方位自动化流程的工具，请看下图</p>
-<p><img src="https://fastlane.tools/assets/img/intro-fastlane-tree.png"
+<p><img loading="lazy" src="https://fastlane.tools/assets/img/intro-fastlane-tree.png"
   
   
   alt="fastlane-flow"></img>
@@ -4045,7 +4214,7 @@ iOS 组件仓库超时，网络环境不畅通该如何解，我来指点一二<
 <p>第二次去五台山是还想和她一起去体验雪景，结果天气晴朗，没有一点飘雪。那个时候已经是 11 月，哪里有像凛冬将至的赶脚，摔！</p>
 <p>浏览照片：<a href="http://www.douban.com/photos/album/111742562/">朝圣五台山</a></p>
 <h3 id="阅读">阅读</h3>
-<p><img src="https://chart.googleapis.com/chart?chs=370x200&amp;cht=bvs&amp;chxp=2,100&amp;chxt=y,x,x&amp;chxl=0:%7c0%7c1%7c2%7c3%7c4%7c5%7c6%7c7%7c8%7c9%7c10%7c1:%7c1%7c2%7c3%7c4%7c5%7c6%7c7%7c8%7c9%7c10%7c11%7c12%7c2:%7cmonth&amp;chf=c,lg,90,76A4FB,0.5,ffffff,0%7cbg,s,EFEFEF&amp;chd=t:0,60,10,0,0,0,30,40,40,40,0,20&amp;chco=0000ff&amp;chtt=2013&#43;%e5%b9%b4%e5%85%b1%e9%98%85%e8%af%bb&#43;24&#43;%e6%9c%ac%e4%b9%a6"
+<p><img loading="lazy" src="https://chart.googleapis.com/chart?chs=370x200&amp;cht=bvs&amp;chxp=2,100&amp;chxt=y,x,x&amp;chxl=0:%7c0%7c1%7c2%7c3%7c4%7c5%7c6%7c7%7c8%7c9%7c10%7c1:%7c1%7c2%7c3%7c4%7c5%7c6%7c7%7c8%7c9%7c10%7c11%7c12%7c2:%7cmonth&amp;chf=c,lg,90,76A4FB,0.5,ffffff,0%7cbg,s,EFEFEF&amp;chd=t:0,60,10,0,0,0,30,40,40,40,0,20&amp;chco=0000ff&amp;chtt=2013&#43;%e5%b9%b4%e5%85%b1%e9%98%85%e8%af%bb&#43;24&#43;%e6%9c%ac%e4%b9%a6"
   
   
   alt="2013豆瓣阅读图表"></img>
@@ -4059,7 +4228,7 @@ iOS 组件仓库超时，网络环境不畅通该如何解，我来指点一二<
 <li>小说：《三国演义》《冰与火之歌》《星际争霸系列》</li>
 </ul>
 <h3 id="电影">电影</h3>
-<p><img src="https://chart.googleapis.com/chart?chs=370x200&amp;cht=bvs&amp;chxp=2,100&amp;chxt=y,x,x&amp;chxl=0:%7c0%7c5%7c10%7c15%7c20%7c1:%7c1%7c2%7c3%7c4%7c5%7c6%7c7%7c8%7c9%7c10%7c11%7c12%7c2:%7cmonth&amp;chf=c,lg,90,76A4FB,0.5,ffffff,0%7cbg,s,EFEFEF&amp;chd=t:60,80,60,20,75,30,65,40,50,55,30,35&amp;chco=0000ff&amp;chtt=2013&#43;%e5%b9%b4%e5%85%b1%e8%a7%82%e5%bd%b1&#43;120&#43;%e9%83%a8"
+<p><img loading="lazy" src="https://chart.googleapis.com/chart?chs=370x200&amp;cht=bvs&amp;chxp=2,100&amp;chxt=y,x,x&amp;chxl=0:%7c0%7c5%7c10%7c15%7c20%7c1:%7c1%7c2%7c3%7c4%7c5%7c6%7c7%7c8%7c9%7c10%7c11%7c12%7c2:%7cmonth&amp;chf=c,lg,90,76A4FB,0.5,ffffff,0%7cbg,s,EFEFEF&amp;chd=t:60,80,60,20,75,30,65,40,50,55,30,35&amp;chco=0000ff&amp;chtt=2013&#43;%e5%b9%b4%e5%85%b1%e8%a7%82%e5%bd%b1&#43;120&#43;%e9%83%a8"
   
   
   alt="2013豆瓣观影图表"></img>
@@ -5023,7 +5192,7 @@ nameserver 8.8.4.4 # 备选 DNS
 <blockquote>
 <p>建议购买 Full Version，目前是半价，人民币 30 元</p>
 </blockquote>
-<p><img src="http://a1.mzstatic.com/us/r1000/106/Purple/v4/14/50/16/14501624-f6fd-4dae-a2bf-187a5a6417de/icon.175x175-75.png"
+<p><img loading="lazy" src="http://a1.mzstatic.com/us/r1000/106/Purple/v4/14/50/16/14501624-f6fd-4dae-a2bf-187a5a6417de/icon.175x175-75.png"
   
   
   alt="Dash"></img>
@@ -5294,7 +5463,7 @@ $ mkvirtualenv -r requirements.txt &lt;env_name&gt;
 人在户外混还是要有点安全意识</description><content:encoded><![CDATA[<p>收集<a href="https://weibo.com/1819732165">磨房</a>微博上面主页君教你打绳结的一些知识点：</p>
 <h1 id="alpine-butterfly-bend阿尔卑斯蝴蝶结">Alpine Butterfly Bend（阿尔卑斯蝴蝶结）</h1>
 <p>这个绳结强度大可靠性高，登山的时候很实用，平时绑鞋带什么的就别这样弄了</p>
-<p><img src="http://ww2.sinaimg.cn/bmiddle/6c76e8c5jw1dyvsxbmdbjg.gif"
+<p><img loading="lazy" src="http://ww2.sinaimg.cn/bmiddle/6c76e8c5jw1dyvsxbmdbjg.gif"
   
   
   alt="Alpine Butterfly
@@ -5302,7 +5471,7 @@ Bend"></img>
 </p>
 <h1 id="linemans-loop-中间结或工程蝴蝶结">lineman&rsquo;s loop (中间结或工程蝴蝶结)</h1>
 <p>这种结经常用在登山时绑在中间的人身上；此时只要作个大绳圈套在中间人的身上即可。只要两头的人不想松开，中间的人就跑不掉啦.</p>
-<p><img src="http://ww2.sinaimg.cn/bmiddle/6c76e8c5jw1dz1crmzgl5g.gif"
+<p><img loading="lazy" src="http://ww2.sinaimg.cn/bmiddle/6c76e8c5jw1dz1crmzgl5g.gif"
   
   
   alt="lineman&amp;rsquo;s
@@ -5310,7 +5479,7 @@ loop"></img>
 </p>
 <h1 id="blakes-hitch-抓结或移动结">blake&rsquo;s hitch (抓结或移动结)</h1>
 <p>用于行进，上升过程中的保护，此结不受力时可滑动，受力时在主绳上卡住不动。晚归不想在门外过夜，被迫从楼顶爬回自家阳台的汉子必备</p>
-<p><img src="http://ww4.sinaimg.cn/bmiddle/6c76e8c5jw1dz2oxc2g6ag.gif"
+<p><img loading="lazy" src="http://ww4.sinaimg.cn/bmiddle/6c76e8c5jw1dz2oxc2g6ag.gif"
   
   
   alt="blake&amp;rsquo;s
@@ -5318,21 +5487,21 @@ hitch"></img>
 </p>
 <h1 id="双渔人结">双渔人结</h1>
 <p>它是连接两根绳子的常用结法，这个结比较容易打，但是很难拆开，大家练习的时候注意不要打的太紧了。</p>
-<p><img src="http://ww2.sinaimg.cn/bmiddle/6c76e8c5jw1dz3mi2ddkzg.gif"
+<p><img loading="lazy" src="http://ww2.sinaimg.cn/bmiddle/6c76e8c5jw1dz3mi2ddkzg.gif"
   
   
   alt="双渔人结"></img>
 </p>
 <h1 id="双绳八字结">双绳八字结</h1>
 <p>今儿个教大家的是另外一种实用的连接两根绳子的结法。大家打的时候要把两端的绳子留长一点，才不容易滑脱<del>这种结法的优势在于：即使拉力很大，用过之后绳结都能够轻松解开。试过解不开绳子的同学就知道这个结的好了</del>（实际使用时不要用两根大小型号差异太大的绳子）</p>
-<p><img src="http://ww4.sinaimg.cn/bmiddle/6c76e8c5jw1dz52enzvd7g.gif"
+<p><img loading="lazy" src="http://ww4.sinaimg.cn/bmiddle/6c76e8c5jw1dz52enzvd7g.gif"
   
   
   alt="双绳八字结"></img>
 </p>
 <h1 id="bowline-bend-单套结">bowline bend (单套结)</h1>
 <p>绳结中间留出来的那个圈可用于绳与绳、绳与环之间的临时连接，常用于户外宿营或者是户外运动中进行固定的临时安全带。非要用听起来那么高级的结来绑鞋带的人你就绑吧</p>
-<p><img src="http://ww1.sinaimg.cn/bmiddle/6c76e8c5gw1dz68igt76pg.gif"
+<p><img loading="lazy" src="http://ww1.sinaimg.cn/bmiddle/6c76e8c5gw1dz68igt76pg.gif"
   
   
   alt="bowline
@@ -5588,7 +5757,7 @@ if __name__ == &#39;__main__&#39;:
 	main(sys.argv[1:])
 </code></pre><p>当然，我主要是为了练手 python 才去写的，ruby 本身也有 <a href="http://ruby-doc.org/stdlib-1.9.3/libdoc/optparse/rdoc/OptionParser.html">optparse</a> 库用于解析参数，但是需要自己手写生成 &ndash;help 的输出，而且需要对每个参数做相应的 callback。</p>
 <p>效果如下：</p>
-<p><img src="http://ww3.sinaimg.cn/large/65d1d65bgw1dvi5nsc4sdj.jpg"
+<p><img loading="lazy" src="http://ww3.sinaimg.cn/large/65d1d65bgw1dvi5nsc4sdj.jpg"
   
   
   alt="screenshot"></img>
@@ -5713,7 +5882,7 @@ $ curl -s http://checkip.dyndns.org | grep -Eo &amp;#39;([0-9]{1,3}\\.){3}[0-9]{
 <h1 id="范例">范例</h1>
 <p>为了大家对它有个直接的认识，我这里找了几个范例，看到图大家就非常明白了！</p>
 <p>默认系统很对 QuickTime 兼容格式的可以实现视频预览播放，如果安装了最新的 MPlayerX，同样也支持大多数格式（目前还不支持 mkv）
-<img src="https://developer.apple.com/library/mac/documentation/UserExperience/Conceptual/Quicklook_Programming_Guide/Art/preview_example2.jpg"
+<img loading="lazy" src="https://developer.apple.com/library/mac/documentation/UserExperience/Conceptual/Quicklook_Programming_Guide/Art/preview_example2.jpg"
   
   
   alt="video quicklook"></img>
@@ -5879,7 +6048,7 @@ Web
 ]]></content:encoded></item><item><title>让 Android 支持下拉刷新(Pull Refresh)</title><link>https://icyleaf.com/2012/02/pull-refresh-for-android/</link><pubDate>Wed, 29 Feb 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/02/pull-refresh-for-android/</guid><description>
 曾几何时，自 Android 发布之后一直以来就被管以 Geek 的玩具，而不太注重界面设计和用户交互设计，这让 Android 开发者也顺其自然的接受了这个不好的头衔，但我一度认为...</description><content:encoded><![CDATA[<p>曾几何时，自 Android 发布之后一直以来就被管以 Geek 的玩具，而不太注重界面设计和用户交互设计，这让 Android 开发者也顺其自然的接受了这个不好的头衔，但我一度认为这只是不思进取的行为，谁说 Android 就不能像 iPhone 的界面那样设计，我认为只有用心，没神马不能实现的。说回正题，第一次看到 Android 有这项功能的莫过于改版后的 Twitter，我认为它绝对是一个标榜性的 App（同时也包括已开源许久的 <a href="http://code.google.com/p/foursquared/">Foursquare</a>）。于是全世界的开发者就开始寻思这个效果 Twitter
 是如何实现的，于是就有了&hellip;</p>
-<p><img src="https://github.com/johannilsson/android-pulltorefresh/raw/master/android-pull-to-refresh.png"
+<p><img loading="lazy" src="https://github.com/johannilsson/android-pulltorefresh/raw/master/android-pull-to-refresh.png"
   
   
   alt=""></img>
@@ -6760,7 +6929,7 @@ AIR 客户端版本。嵌入式主要是说 Mockups
 <p><strong>更新</strong>：在发布完此日志之后随后又给官方指定地址发了一封免费获取 Lincense 的邮件，没想到不过 3分钟，一个价值 $79 刀的 Lincense 真的发过来了！</p>
 </blockquote>
 <p>官方网址：[http://www.balsamiq.com/products/mockups][]</p>
-<p>[<img src="http://icyleaf.com/wp-content/uploads/2009/02/2009-02-18_00044.jpg"
+<p>[<img loading="lazy" src="http://icyleaf.com/wp-content/uploads/2009/02/2009-02-18_00044.jpg"
   
   
   alt="mockups snapshot"></img>
@@ -7357,7 +7526,7 @@ update</strong>：娃哈哈，从买了一个相机，已经会有很多作品�
 <li><a href="http://www.china.com.cn/chinese/health/373873.htm">4类食物能降低胆固醇29%</a></li>
 </ul>
 ]]></content:encoded></item><item><title>推荐一本书</title><link>https://icyleaf.com/2007/09/recommend-a-book-stan-lais-creative-learning/</link><pubDate>Fri, 28 Sep 2007 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2007/09/recommend-a-book-stan-lais-creative-learning/</guid><description>
-书名：赖声川的创意学 作者：赖声川 出版社：中信出版社 ISBN：7508607457 纸张：胶版纸 出版日期：2006-9-1 定价：36元 内容提要：...</description><content:encoded><![CDATA[<p><img src="http://images.dangdang.com/images/9214908_b.jpg"
+书名：赖声川的创意学 作者：赖声川 出版社：中信出版社 ISBN：7508607457 纸张：胶版纸 出版日期：2006-9-1 定价：36元 内容提要：...</description><content:encoded><![CDATA[<p><img loading="lazy" src="http://images.dangdang.com/images/9214908_b.jpg"
   
   
   alt="创意"></img>

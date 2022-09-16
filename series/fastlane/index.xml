@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>fastlane on icyleaf</title><link>https://icyleaf.com/series/fastlane/</link><description>Recent content in fastlane on icyleaf</description><language>zh</language><lastBuildDate>Tue, 28 Mar 2017 20:12:07 +0800</lastBuildDate><atom:link href="https://icyleaf.com/series/fastlane/index.xml" rel="self" type="application/rss+xml"/><item><title>你虐我千百遍，我待你如初恋，直到我遇到 match</title><link>https://icyleaf.com/2017/03/fastlane-match-in-action/</link><pubDate>Tue, 28 Mar 2017 20:12:07 +0800</pubDate><guid>https://icyleaf.com/2017/03/fastlane-match-in-action/</guid><description>
 系列文章的第三篇，教你如何使用 match 管理名词都分不清的苹果各自开发者证书</description><content:encoded><![CDATA[<h2 id="前言">前言</h2>
 <p>通过前两篇的文章大家已经对 fastlane 的概念和基本使用已经有了初步的掌握，在第二篇中也有提到 fastlane 实现的各种功能其实都是基于独立封装设计的各个工具实现。它们即可以单独成为一个体系同时也会被吸纳到 fastlane 的 action 系统之中。<code>match</code> 是在 iOS 开发和持续测试和构建中最重中之重的环节，它维护和管理着 iOS 的各种证书和 profile 的创建、更新工作。想必很多用户听到 iOS 证书和 profile 都会头大脑涨，恨不得要手撕鬼子的技能点来对付他们（如图）</p>
-<p><img src="https://codesigning.guide/assets/img/cs-the-problem.png"
+<p><img loading="lazy" src="https://codesigning.guide/assets/img/cs-the-problem.png"
   
   
   alt="code-signing-problem"></img>
@@ -535,7 +535,7 @@
 <p>这篇文章整理了很久，发现在一篇文章里无法一一讲述和全面的覆盖，初步打算是把这个做成一个系列，想到哪里就写到哪里，如果恰好有读者爱戴并有一些建议反馈，我也会根据大家的需要调整内容的方向和深度。论美剧的编剧的重要性(笑)。</p>
 <h2 id="初次邂逅">初次邂逅</h2>
 <p>初时 fastlane 的时候是去年的 11 月份，看到大就感觉遇到了神器一般的惊喜。它一个针对于 iOS 和 Android（后来才支持的）全方位自动化流程的工具，请看下图</p>
-<p><img src="https://fastlane.tools/assets/img/intro-fastlane-tree.png"
+<p><img loading="lazy" src="https://fastlane.tools/assets/img/intro-fastlane-tree.png"
   
   
   alt="fastlane-flow"></img>

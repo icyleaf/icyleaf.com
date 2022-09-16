@@ -67,7 +67,7 @@
 地址本质上无法解决安装 Pod 消耗时间过长的问题。</p>
 ]]></content:encoded></item><item><title>打通 Sidekiq 的任督二脉 Ruby 和 Crystal</title><link>https://icyleaf.com/2017/04/sidekiq-works-in-ruby-togethor-with-crystal/</link><pubDate>Wed, 26 Apr 2017 16:00:49 +0000</pubDate><guid>https://icyleaf.com/2017/04/sidekiq-works-in-ruby-togethor-with-crystal/</guid><description>
 Crystal 和 Ruby 如何相互通讯</description><content:encoded><![CDATA[<p>自从开始研究 Crystal 这门语言（之前也有<a href="http://icyleaf.com/2016/07/gitlab-api-wrapper-for-crystal/">介绍</a>过），基本上每隔一段时间都会看看它的近况，去年 sidekiq 的作者用该语言重新实现了 sidekiq 项目而且给出了特别竟然的<a href="http://www.mikeperham.com/2016/05/25/sidekiq-for-crystal/">对比数据</a>。</p>
-<p><img src="/uploads/2017/04/26/sidekiq-benchmarks.png"
+<p><img loading="lazy" src="/uploads/2017/04/26/sidekiq-benchmarks.png"
   
   
   alt="IMAGE"></img>
@@ -368,7 +368,7 @@ Crystal 和 Ruby 如何相互通讯</description><content:encoded><![CDATA[<p>�
 ]]></content:encoded></item><item><title>你虐我千百遍，我待你如初恋，直到我遇到 match</title><link>https://icyleaf.com/2017/03/fastlane-match-in-action/</link><pubDate>Tue, 28 Mar 2017 20:12:07 +0800</pubDate><guid>https://icyleaf.com/2017/03/fastlane-match-in-action/</guid><description>
 系列文章的第三篇，教你如何使用 match 管理名词都分不清的苹果各自开发者证书</description><content:encoded><![CDATA[<h2 id="前言">前言</h2>
 <p>通过前两篇的文章大家已经对 fastlane 的概念和基本使用已经有了初步的掌握，在第二篇中也有提到 fastlane 实现的各种功能其实都是基于独立封装设计的各个工具实现。它们即可以单独成为一个体系同时也会被吸纳到 fastlane 的 action 系统之中。<code>match</code> 是在 iOS 开发和持续测试和构建中最重中之重的环节，它维护和管理着 iOS 的各种证书和 profile 的创建、更新工作。想必很多用户听到 iOS 证书和 profile 都会头大脑涨，恨不得要手撕鬼子的技能点来对付他们（如图）</p>
-<p><img src="https://codesigning.guide/assets/img/cs-the-problem.png"
+<p><img loading="lazy" src="https://codesigning.guide/assets/img/cs-the-problem.png"
   
   
   alt="code-signing-problem"></img>
@@ -903,7 +903,7 @@ Crystal 和 Ruby 如何相互通讯</description><content:encoded><![CDATA[<p>�
 <p>目前已经完成了大部分 API 的封装，在一边熟悉 crystal 的同时一边补充，其中肯定有一些性能问题和坑，毕竟没有任何依赖都是自己实现的。比较坑爹的是官方手册太简单，也没有实时跟进，能够好好翻阅的其实也就是官方的 API 文档和源码。不过 crystal 还算比较人性化的一面，默认集成了类似 rspce 的单元测试（简化版）和依赖库管理 shards（类似 bundler）和生成文档的工具。通过 <a href="https://travis-ci.org/%60%60">travis-ci</a> 会自动生成每次 git push 的变化。</p>
 <p>API 文档：http://icyleaf.github.io/gitlab.cr/</p>
 <h2 id="为什么学习-crystal">为什么学习 Crystal？</h2>
-<p><img src="https://cloud.githubusercontent.com/assets/209371/13291809/022e2360-daf8-11e5-8be7-d02c1c8b38fb.png"
+<p><img loading="lazy" src="https://cloud.githubusercontent.com/assets/209371/13291809/022e2360-daf8-11e5-8be7-d02c1c8b38fb.png"
   
   
   alt="crystal logo"></img>
@@ -994,7 +994,7 @@ Crystal 和 Ruby 如何相互通讯</description><content:encoded><![CDATA[<p>�
 <p>这篇文章整理了很久，发现在一篇文章里无法一一讲述和全面的覆盖，初步打算是把这个做成一个系列，想到哪里就写到哪里，如果恰好有读者爱戴并有一些建议反馈，我也会根据大家的需要调整内容的方向和深度。论美剧的编剧的重要性(笑)。</p>
 <h2 id="初次邂逅">初次邂逅</h2>
 <p>初时 fastlane 的时候是去年的 11 月份，看到大就感觉遇到了神器一般的惊喜。它一个针对于 iOS 和 Android（后来才支持的）全方位自动化流程的工具，请看下图</p>
-<p><img src="https://fastlane.tools/assets/img/intro-fastlane-tree.png"
+<p><img loading="lazy" src="https://fastlane.tools/assets/img/intro-fastlane-tree.png"
   
   
   alt="fastlane-flow"></img>
@@ -1588,7 +1588,7 @@ if __name__ == &#39;__main__&#39;:
 	main(sys.argv[1:])
 </code></pre><p>当然，我主要是为了练手 python 才去写的，ruby 本身也有 <a href="http://ruby-doc.org/stdlib-1.9.3/libdoc/optparse/rdoc/OptionParser.html">optparse</a> 库用于解析参数，但是需要自己手写生成 &ndash;help 的输出，而且需要对每个参数做相应的 callback。</p>
 <p>效果如下：</p>
-<p><img src="http://ww3.sinaimg.cn/large/65d1d65bgw1dvi5nsc4sdj.jpg"
+<p><img loading="lazy" src="http://ww3.sinaimg.cn/large/65d1d65bgw1dvi5nsc4sdj.jpg"
   
   
   alt="screenshot"></img>

@@ -3,7 +3,7 @@
 <blockquote>
 <p>建议购买 Full Version，目前是半价，人民币 30 元</p>
 </blockquote>
-<p><img src="http://a1.mzstatic.com/us/r1000/106/Purple/v4/14/50/16/14501624-f6fd-4dae-a2bf-187a5a6417de/icon.175x175-75.png"
+<p><img loading="lazy" src="http://a1.mzstatic.com/us/r1000/106/Purple/v4/14/50/16/14501624-f6fd-4dae-a2bf-187a5a6417de/icon.175x175-75.png"
   
   
   alt="Dash"></img>
@@ -211,7 +211,7 @@ if __name__ == &#39;__main__&#39;:
 	main(sys.argv[1:])
 </code></pre><p>当然，我主要是为了练手 python 才去写的，ruby 本身也有 <a href="http://ruby-doc.org/stdlib-1.9.3/libdoc/optparse/rdoc/OptionParser.html">optparse</a> 库用于解析参数，但是需要自己手写生成 &ndash;help 的输出，而且需要对每个参数做相应的 callback。</p>
 <p>效果如下：</p>
-<p><img src="http://ww3.sinaimg.cn/large/65d1d65bgw1dvi5nsc4sdj.jpg"
+<p><img loading="lazy" src="http://ww3.sinaimg.cn/large/65d1d65bgw1dvi5nsc4sdj.jpg"
   
   
   alt="screenshot"></img>

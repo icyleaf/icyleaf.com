@@ -17,7 +17,7 @@ macOS 开发和 iOS 差异真的很大</description><content:encoded><![CDATA[<h
 </span></span><span class="line"><span class="ln">8</span><span class="cl">|  +--------------------------------------------------------+  |
 </span></span><span class="line"><span class="ln">9</span><span class="cl">+--------------------------------------------------------------+
 </span></span></code></pre></div><p>选中 Window 控件后后选择删除（<code>Main.storyboard</code> 还需要再删除默认生成的 ViewController 控件），删除后样子是这样的</p>
-<p><img src="/tutorials/macos-app-without-storyboard/001/shot001-xcode-storyboard.png"
+<p><img loading="lazy" src="/tutorials/macos-app-without-storyboard/001/shot001-xcode-storyboard.png"
   
   
   alt="Storyboard and xib in Xcode"></img>
@@ -53,7 +53,7 @@ macOS 开发和 iOS 差异真的很大</description><content:encoded><![CDATA[<h
 </span></span><span class="line"><span class="ln">6</span><span class="cl">    <span class="n">NSApplication</span><span class="p">.</span><span class="n">shared</span><span class="p">.</span><span class="n">mainWindow</span><span class="p">?.</span><span class="n">title</span> <span class="p">=</span> <span class="s">&#34;Hello world&#34;</span>
 </span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>注意看上面代码块的备注，这两行代码不能颠倒，否则 <code>NSApplication.shared.mainWindow</code> 返回的是 <code>nil</code>，我们来运行一下看看，是不是就能看到一个 640x480 的窗口，标题显示的 hello world</p>
-<p><img src="/tutorials/macos-app-without-storyboard/001/shot002-nswindow.png"
+<p><img loading="lazy" src="/tutorials/macos-app-without-storyboard/001/shot002-nswindow.png"
   
   
   alt="NSWindow App"></img>
@@ -162,7 +162,7 @@ macOS 开发和 iOS 差异真的很大</description><content:encoded><![CDATA[<h
 </span></span><span class="line"><span class="ln">9</span><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>看了上面代码也就明白了为什么在 <code>AppDelegate.swift</code> 设置 contentViewController 需要在代码块的末尾添加了吧，如果在最开始添加那就无法获取到 mainWindow 也就无法设置 ViewController 的 frame。这里还有个小提醒 macOS 10.10 之后版本在覆写该方法如果调用了 <code>super.loadView()</code> 方法就会自动加载同名的 xib 文件<strong>绝对不能填写</strong>。</p>
 <p>让我们在运行一次看看？</p>
-<p><img src="/tutorials/macos-app-without-storyboard/001/shot003-final-app.png"
+<p><img loading="lazy" src="/tutorials/macos-app-without-storyboard/001/shot003-final-app.png"
   
   
   alt="Final App"></img>

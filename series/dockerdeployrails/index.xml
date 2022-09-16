@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>DockerDeployRails on icyleaf</title><link>https://icyleaf.com/series/dockerdeployrails/</link><description>Recent content in DockerDeployRails on icyleaf</description><language>zh</language><lastBuildDate>Thu, 15 Sep 2022 13:58:31 +0800</lastBuildDate><atom:link href="https://icyleaf.com/series/dockerdeployrails/index.xml" rel="self" type="application/rss+xml"/><item><title>Rails 项目构建 Docker 镜像安全处理加密凭证 Credentials</title><link>https://icyleaf.com/2022/09/rails-build-docker-image-handle-encrypted-credentials-securely/</link><pubDate>Thu, 15 Sep 2022 13:58:31 +0800</pubDate><guid>https://icyleaf.com/2022/09/rails-build-docker-image-handle-encrypted-credentials-securely/</guid><description>
+如何正确处理 Rails 中的 master key 和 credentials.yml.enc</description><content:encoded><![CDATA[<p>最近在做一个小的 Side Project 作为公共服务首要是需要保证用户数据的绝对安全，这就需要对数据库数据做加密处理。</p>
+<p>Rails <a href="https://qiita.com/NaokiIshimura/items/2a179f2ab910992c4d39">5.2</a> 开始支持 <code>credentials.yml.enc</code> 加密凭证，
+<a href="https://blog.saeloun.com/2019/10/10/rails-6-adds-support-for-multi-environment-credentials.html">6.0</a> 支持多环境的 credentials 加密凭证，
+<a href="https://blog.saeloun.com/2021/06/09/rails-7-add-encryption-to-active-record.html">7.0</a> 支持对 model 数据库表字段加密处理，但我从 5.1 支持 <code>secrets.yml</code> 开始就没使用过。
+最近一周开发加摸索下来，总结一句话：<strong>一直加密一直爽，容器化奔赴火葬场。</strong></p>
+<h2 id="机制原理">机制原理</h2>
+<p>初始化一个 Rails 5.2+ 项目会在项目根目录 <code>config</code> 生成 <code>master.key</code> 和 <code>credentials.yml.enc</code> 两个文件，前者可以理解为核心密钥，后者是用核心密钥通过
+<a href="https://github.com/rails/rails/blob/7-0-stable/activesupport/lib/active_support/encrypted_configuration.rb">ActiveSupport::EncryptedConfiguration</a> 加密类生成的加密后的数据文件。</p>
+<p>只需要保证 <code>master.key</code> 不会泄露，通过 <code>rails credentials:edit</code> 配置服务所需的各自私密 token、secret key 之类也可以安全的提交到 Git 仓库中。</p>
+<h3 id="存储路径">存储路径</h3>
+<p>密钥和加密后的文件会存在如下目录：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1"># 缺省</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">config/master.key
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">config/credentials.yml.enc
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="c1"># Rails 生产环境决定 (6.0 开始支持)</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="c1"># 如下分别对应 development 和 production 环境</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">config/credentials/development.key
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">config/credentials/development.yml.enc
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">
+</span></span><span class="line"><span class="ln">10</span><span class="cl">config/credentials/production.key
+</span></span><span class="line"><span class="ln">11</span><span class="cl">config/credentials/production.yml.enc
+</span></span></code></pre></div><h3 id="触发机制">触发机制</h3>
+<p>只要运行的代码会涉及 <code>config/environment.rb</code> 文件解密流程就会自动被触发，比如：</p>
+<ul>
+<li><code>rails server</code></li>
+<li><code>rails console</code></li>
+<li><code>Rakefile</code> 附加 <code>:environment</code> 参数的所有 tasks</li>
+</ul>
+<h3 id="常见加解密报错">常见加解密报错</h3>
+<p>解密机制被触发的那一刻，它会从存储路径从缺省到当前生产环境去寻找对应的文件，master key 会优先读取 <code>RAILS_MASTER_KEY</code> 环境变量的值，没有才会去存储文件读取，都没有找到就报错 <code>MissingKeyError</code> 错误。</p>
+<p>master key 在 Rails 5.2 ~ 7 版本密钥的长度必须符合 aes-128-gcm 也就是 32 字节，设置错误会得到 <code>InvalidKeyLengthError</code> 错误。</p>
+<p><code>*.enc</code> 文件不存在会触发 <code>MissingContentError</code> 错误。</p>
+<p>其他的错误还有可能是：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># 通常是 credentials.yml.enc 文件缺失或未设置 secret_key_base (SECRET_KEY_BASE) 的值</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">ArgumentError: Missing <span class="sb">`</span>secret_key_base<span class="sb">`</span> <span class="k">for</span> <span class="s1">&#39;production&#39;</span> environment, <span class="nb">set</span> this string with <span class="sb">`</span>bin/rails credentials:edit<span class="sb">`</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="c1"># master key 密钥不正确无法解密</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">Unable to load application: ActiveSupport::MessageEncryptor::InvalidMessage: ActiveSupport::MessageEncryptor::InvalidMessage
+</span></span><span class="line"><span class="ln">6</span><span class="cl">
+</span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="c1"># 错误同上</span>
+</span></span><span class="line"><span class="ln">8</span><span class="cl">OpenSSL::Cipher::CipherError
+</span></span></code></pre></div><p>成就大体都列出来了，至于你能到哪步就看你的造化了（开玩笑）。</p>
+<h2 id="数据库字段加密">数据库字段加密</h2>
+<p>Rails 默认并不会对数据库字段加密，在 7.0 开始允许开发者定义加密字段也允许自定义加解密方法。这个不是本文的讨论范围不再展开。</p>
+<p>初始化需要通过如下命令生成一个随机的 Keys：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ rails db:encryption:init
+</span></span><span class="line"><span class="ln">2</span><span class="cl">Add this entry to the credentials of the target environment:
+</span></span><span class="line"><span class="ln">3</span><span class="cl">
+</span></span><span class="line"><span class="ln">4</span><span class="cl">active_record_encryption:
+</span></span><span class="line"><span class="ln">5</span><span class="cl">  primary_key: KMw07GoiPScVwtmoNxlBv7YibFCnB4dU
+</span></span><span class="line"><span class="ln">6</span><span class="cl">  deterministic_key: CTttlez04KZcy3MCMFtZ8FUEopSAmJOr
+</span></span><span class="line"><span class="ln">7</span><span class="cl">  key_derivation_salt: FwUgrDWHX3wN7kKw5gYSsYEgzxRnYBWh
+</span></span></code></pre></div><p>在通过 <code>rails credentials:edit</code> 把上端加密串加到 credentials 里面保存即可，<strong>不同的加密串是无法解密已经存在数据库中的数据的，切记！切记！切记！</strong>
+否则你会再获得一个成就 <code>ActiveRecord::Encryption::Errors::Decryption</code> 报错。</p>
+<h2 id="镜像构建处理">镜像构建处理</h2>
+<blockquote>
+<p>恭喜你，从现在开始你本应当直面恐惧，可惜你发现了我这篇文章缺少了点悲惨的经历。</p>
+</blockquote>
+<p>制作 Docker 镜像无论什么情况都要保证不会包含任何私密数据，Rails 绕不开的点主要是 <code>rails assets:complie</code>。
+上面我也说了只要涉及 <code>:environment</code> 参数的所有 tasks 都会走解密流程，它也不例外。</p>
+<p>构建方面我通过三种方式来解析如果从不安全到安全的构建过程：</p>
+<h3 id="-最不安全的方式">🚫 最不安全的方式</h3>
+<p>镜像构建允许设置 <a href="https://docs.docker.com/engine/reference/commandline/build/#set-build-time-variables---build-arg">build-arg</a> 传递：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="k">FROM</span><span class="s"> ruby:3.0.3</span><span class="err">
+</span></span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="err"></span><span class="k">ARG</span> master_key<span class="err">
+</span></span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="err"></span><span class="k">ENV</span> <span class="nv">RAILS_MASTER_KEY</span><span class="o">=</span><span class="nv">$master_key</span><span class="err">
+</span></span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="err"></span><span class="k">ENV</span> <span class="nv">RAILS_ENV</span><span class="o">=</span>production
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="c"># 省略</span><span class="err">
+</span></span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="err"></span>...<span class="err">
+</span></span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="err"></span><span class="k">RUN</span> bin/rails assets:complie<span class="err">
+</span></span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="err"></span><span class="c"># 或者</span><span class="err">
+</span></span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="err"></span><span class="k">RUN</span> <span class="nv">RAILS_MASTER_KEY</span><span class="o">=</span><span class="nv">$master_key</span> bin/rails assets:complie<span class="err">
+</span></span></span></code></pre></div><p>执行构建命令 <code>docker build -t app --build-arg master_key=[32bits-length-key] .</code> 构建后虽然可以获得镜像，但构建时设置的值也被封装在了容器中，就算没有封装到容器中使用 <code>docker history</code> 也可以看到，因此这种方式是绝对不可取的。</p>
+<h3 id="-改进版">⭕️ 改进版</h3>
+<p>你可能会看到有些镜像的 Dockerfile 里面会包含多个 <code>FROM</code> 的<a href="https://docs.docker.com/develop/develop-images/multistage-build/">多阶段构建</a>。这个是为了利用隔离资源，重复利用缓存机制的方式使得最终的容器极可能的小和安全。我们可以利用它把私密数据隔离在前面的临时镜像中。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="k">FROM</span><span class="s"> ruby:3.0.3 as builder</span><span class="err">
+</span></span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="err"></span><span class="k">ARG</span> <span class="nv">workspace</span><span class="o">=</span>/app<span class="err">
+</span></span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="err"></span><span class="k">ARG</span> master_key<span class="err">
+</span></span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="err"></span><span class="k">ENV</span> <span class="nv">RAILS_MASTER_KEY</span><span class="o">=</span><span class="nv">$master_key</span><span class="err">
+</span></span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="err"></span><span class="k">ENV</span> <span class="nv">RAILS_ENV</span><span class="o">=</span>production
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="c"># 省略</span><span class="err">
+</span></span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="err"></span>...<span class="err">
+</span></span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="err"></span><span class="k">WORKDIR</span><span class="s"> $workspace</span><span class="err">
+</span></span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="err"></span><span class="k">RUN</span> bin/rails assets:complie<span class="err">
+</span></span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="err"></span><span class="c"># 省略</span><span class="err">
+</span></span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="err"></span>...<span class="err">
+</span></span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="err"></span><span class="k">FROM</span><span class="s"> ruby:3.0.3-slim</span><span class="err">
+</span></span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="ln">19</span><span class="cl"><span class="err"></span><span class="c"># 省略</span><span class="err">
+</span></span></span><span class="line"><span class="ln">20</span><span class="cl"><span class="err"></span>...<span class="err">
+</span></span></span><span class="line"><span class="ln">21</span><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="ln">22</span><span class="cl"><span class="err"></span><span class="k">COPY</span> --from<span class="o">=</span>builder <span class="nv">$workspace</span> <span class="nv">$workspace</span><span class="err">
+</span></span></span></code></pre></div><p>镜像存在 <code>builder</code> 和一个缺省名字（通常是 <code>stage-N</code>, N 是数字从 1 开始）两个阶段，第一阶段是最不安全方式的实现方式，这里在最后一个阶段通过一个干净安全的镜像把上一个阶段的结果文件复制过来就达成了第一个阶段中私密数据泄露的问题。</p>
+<p>这种方式也是当前大多数人会应用的方式，尤其利用 Github Action 的 <a href="https://docs.github.com/en/actions/security-guides/encrypted-secrets">Encrypted secrets</a> 功能从某种程度上杜绝了隐私数据的泄露。</p>
+<h3 id="-加强版">✅ 加强版</h3>
+<p><a href="https://docs.docker.com/develop/develop-images/build_enhancements/">Buildkit</a> 是 Docker 新一代镜像构建工具，启用可以通过配置环境变量 <code>DOCKER_BUILDKIT=1</code> 或在 Docker 配置文件的 features 字典增加 <code>&quot;buildkit&quot; : &quot;true&quot;</code>。</p>
+<p>由于采用新的构建工具，额外还需要在 Dockerfile 头部显性声明新的语法：<code>syntax = docker/dockerfile:1.2</code> 配合
+<a href="https://docs.docker.com/develop/develop-images/build_enhancements/#new-docker-build-secret-information">新的构建 secret </a></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c"># syntax = docker/dockerfile:1.2</span><span class="err">
+</span></span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="err"></span><span class="k">FROM</span><span class="s"> ruby:3.0.3</span><span class="err">
+</span></span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="err"></span><span class="k">ARG</span> <span class="nv">workspace</span><span class="o">=</span>/app<span class="err">
+</span></span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="err"></span><span class="k">WORKDIR</span><span class="s"> $workspace</span><span class="err">
+</span></span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="err"></span><span class="c"># 省略</span><span class="err">
+</span></span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="err"></span>...<span class="err">
+</span></span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="err"></span><span class="k">RUN</span> --mount<span class="o">=</span><span class="nv">type</span><span class="o">=</span>secret,id<span class="o">=</span>master_key,target<span class="o">=</span>config/master.key,required<span class="o">=</span><span class="nb">true</span> <span class="se">\
+</span></span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="se"></span>    bin/rails assets:precompile<span class="err">
+</span></span></span></code></pre></div><p>构建命令执行需要通过 <a href="https://docs.docker.com/build/buildx/install/">buildx</a> CLI 子命令来完成：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ docker buildx build <span class="se">\
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="se"></span>  --secret <span class="nv">id</span><span class="o">=</span>master_key,src<span class="o">=</span>config/master.key <span class="se">\
+</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="se"></span>  -t app .
+</span></span></code></pre></div><p>结合 <a href="https://github.com/moby/buildkit/blob/master/frontend/dockerfile/docs/reference.md#run---mounttypesecret">&ndash;mount-type=secret</a> 支持的参数:</p>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>密钥的唯一 id，默认是 target 参数的值的文件名</td>
+</tr>
+<tr>
+<td>target</td>
+<td>镜像内挂载的路径，默认是 <code>/run/secrets/</code> + <code>id</code></td>
+</tr>
+<tr>
+<td>required</td>
+<td>设置 <code>true</code> 当密钥不存在时报错，默认是 <code>false</code></td>
+</tr>
+<tr>
+<td>mode</td>
+<td>挂载后的文件权限，默认是 <code>0400</code></td>
+</tr>
+<tr>
+<td>uid</td>
+<td>设置密钥文件的用户 ID，默认是 <code>0</code></td>
+</tr>
+<tr>
+<td>gid</td>
+<td>设置密钥文件的用户组 ID，默认是 <code>0</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>id</code> 关联 CLI 传参和构建镜像中执行步骤，CLI 入参设置 secret 的输入文件，构建镜像则需要把 secret 导出到镜像中具体的路径，其实就是这么简单。极少数支持 Docker
+部署的云服务，比如 <a href="https://render.com/docs/docker-secrets">Render</a> 支持这种方式。部署到云服务上还需要重新考量下。</p>
+<h2 id="本篇小结">本篇小结</h2>
+<p>折腾一圈终于获得了一个干净、安全的镜像，等到部署时又傻眼了。面向技术人员或公司的项目倒还好，初始化时通过命令一通操作配置完也不需要处理 master key 不匹配的情况。
+无论使用上面改进版还是加强版都能过顺利跑起来。如果 Docker 镜像是要面向客户的话，怎么让他们初始化一个属于他们自己的 master key 和加密数据呢？开始挠头了吧。</p>
+<p>未完待续&hellip;</p>
+<h2 id="参考资源">参考资源</h2>
+<ul>
+<li><a href="https://techblog.lclco.com/entry/2021/07/27/110000">Railsのcredentials.yml.encとmaster keyをDockerで安全に扱う</a></li>
+<li><a href="https://pythonspeed.com/articles/docker-build-secrets/">Don’t leak your Docker image’s build secrets</a></li>
+</ul>
+]]></content:encoded></item></channel></rss>

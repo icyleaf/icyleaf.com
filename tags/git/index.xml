@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Git on icyleaf</title><link>https://icyleaf.com/tags/git/</link><description>Recent content in Git on icyleaf</description><language>zh</language><lastBuildDate>Fri, 27 Apr 2018 18:12:23 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/git/index.xml" rel="self" type="application/rss+xml"/><item><title>ḫpr</title><link>https://icyleaf.com/2018/04/intro-hpr/</link><pubDate>Fri, 27 Apr 2018 18:12:23 +0800</pubDate><guid>https://icyleaf.com/2018/04/intro-hpr/</guid><description>
-最好用的 git 仓库镜像同步工具</description><content:encoded><![CDATA[<p><img src="https://github.com/icyleaf/hpr/raw/master/docs/_media/icon.png"
+最好用的 git 仓库镜像同步工具</description><content:encoded><![CDATA[<p><img loading="lazy" src="https://github.com/icyleaf/hpr/raw/master/docs/_media/icon.png"
   
   
   alt="icon"></img>

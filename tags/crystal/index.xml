@@ -12,7 +12,7 @@ String#{}   9.51M (105.16ns) (± 6.12%)  3.47× slower
 <p><a href="https://github.com/icyleaf/fast-crystal">https://github.com/icyleaf/fast-crystal</a></p>
 ]]></content:encoded></item><item><title>打通 Sidekiq 的任督二脉 Ruby 和 Crystal</title><link>https://icyleaf.com/2017/04/sidekiq-works-in-ruby-togethor-with-crystal/</link><pubDate>Wed, 26 Apr 2017 16:00:49 +0000</pubDate><guid>https://icyleaf.com/2017/04/sidekiq-works-in-ruby-togethor-with-crystal/</guid><description>
 Crystal 和 Ruby 如何相互通讯</description><content:encoded><![CDATA[<p>自从开始研究 Crystal 这门语言（之前也有<a href="http://icyleaf.com/2016/07/gitlab-api-wrapper-for-crystal/">介绍</a>过），基本上每隔一段时间都会看看它的近况，去年 sidekiq 的作者用该语言重新实现了 sidekiq 项目而且给出了特别竟然的<a href="http://www.mikeperham.com/2016/05/25/sidekiq-for-crystal/">对比数据</a>。</p>
-<p><img src="/uploads/2017/04/26/sidekiq-benchmarks.png"
+<p><img loading="lazy" src="/uploads/2017/04/26/sidekiq-benchmarks.png"
   
   
   alt="IMAGE"></img>
@@ -316,7 +316,7 @@ Crystal 和 Ruby 如何相互通讯</description><content:encoded><![CDATA[<p>�
 <p>目前已经完成了大部分 API 的封装，在一边熟悉 crystal 的同时一边补充，其中肯定有一些性能问题和坑，毕竟没有任何依赖都是自己实现的。比较坑爹的是官方手册太简单，也没有实时跟进，能够好好翻阅的其实也就是官方的 API 文档和源码。不过 crystal 还算比较人性化的一面，默认集成了类似 rspce 的单元测试（简化版）和依赖库管理 shards（类似 bundler）和生成文档的工具。通过 <a href="https://travis-ci.org/%60%60">travis-ci</a> 会自动生成每次 git push 的变化。</p>
 <p>API 文档：http://icyleaf.github.io/gitlab.cr/</p>
 <h2 id="为什么学习-crystal">为什么学习 Crystal？</h2>
-<p><img src="https://cloud.githubusercontent.com/assets/209371/13291809/022e2360-daf8-11e5-8be7-d02c1c8b38fb.png"
+<p><img loading="lazy" src="https://cloud.githubusercontent.com/assets/209371/13291809/022e2360-daf8-11e5-8be7-d02c1c8b38fb.png"
   
   
   alt="crystal logo"></img>

@@ -106,52 +106,52 @@ Android 平板到底是生产力工具还是沦为看视频的最终归宿</desc
 <p>如果 iOS 生态有独占的优势，Android 在生产力方面有独特的优势<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>：</p>
 <ul>
 <li><a href="https://github.com/tachiyomiorg/tachiyomi">Tachiyomi</a>: 开源的看漫画神器，支持多图源聚合，还有很多<span class="spoiler">绅士图源</span>
- <img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg"
+ <img loading="lazy" src="https://jaywcjlove.github.io/sb/ico/min-oss.svg"
   
   
   alt="Open-Source Software"></img>
 </li>
-<li><a href="https://play.google.com/store/apps/details?id=pl.solidexplorer2&amp;hl=zh&amp;gl=US">Solid Explorer</a>: 最好用的文件管理器，没有之一 <img src="/images/icons/playstore.png"
+<li><a href="https://play.google.com/store/apps/details?id=pl.solidexplorer2&amp;hl=zh&amp;gl=US">Solid Explorer</a>: 最好用的文件管理器，没有之一 <img loading="lazy" src="/images/icons/playstore.png"
   
   
   alt="Play Store"></img>
- <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg"
+ <img loading="lazy" src="https://jaywcjlove.github.io/sb/ico/min-free.svg"
   
   
   alt="Freeware"></img>
 </li>
-<li><a href="https://github.com/devgianlu/Aria2App">Aria2App</a>: 支持本机和远程的 Aria2 下载管理客户端 <img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg"
+<li><a href="https://github.com/devgianlu/Aria2App">Aria2App</a>: 支持本机和远程的 Aria2 下载管理客户端 <img loading="lazy" src="https://jaywcjlove.github.io/sb/ico/min-oss.svg"
   
   
   alt="Open-Source Software"></img>
 </li>
-<li><a href="https://play.google.com/store/apps/details?id=dev.reimu.proxmon&amp;hl=zh&amp;gl=US">ProxMon</a>: Proxmox (PVE) 客户端管理工具 <img src="/images/icons/playstore.png"
+<li><a href="https://play.google.com/store/apps/details?id=dev.reimu.proxmon&amp;hl=zh&amp;gl=US">ProxMon</a>: Proxmox (PVE) 客户端管理工具 <img loading="lazy" src="/images/icons/playstore.png"
   
   
   alt="Play Store"></img>
- <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg"
+ <img loading="lazy" src="https://jaywcjlove.github.io/sb/ico/min-free.svg"
   
   
   alt="Freeware"></img>
 </li>
 <li><span class="spoiler"><a href="https://cn.pornhub.com/apps/android">Pornhub</a></span>
-: 知名 P 站 <img src="https://jaywcjlove.github.io/sb/ico/min-free.svg"
+: 知名 P 站 <img loading="lazy" src="https://jaywcjlove.github.io/sb/ico/min-free.svg"
   
   
   alt="Freeware"></img>
 </li>
 <li><span class="spoiler"><a href="https://github.com/bdvajstudio/javdb">JavDB</a></span>
-: 番号资源和磁力资源，配合 Aria2App 无敌 <img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg"
+: 番号资源和磁力资源，配合 Aria2App 无敌 <img loading="lazy" src="https://jaywcjlove.github.io/sb/ico/min-oss.svg"
   
   
   alt="Open-Source Software"></img>
 </li>
 <li><span class="spoiler"><a href="https://play.google.com/store/apps/details?id=com.github.kr328.clash">Clash for Android</a></span>
-: 一个会挖洞的可爱猫咪 <img src="/images/icons/playstore.png"
+: 一个会挖洞的可爱猫咪 <img loading="lazy" src="/images/icons/playstore.png"
   
   
   alt="Play Store"></img>
- <img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg"
+ <img loading="lazy" src="https://jaywcjlove.github.io/sb/ico/min-oss.svg"
   
   
   alt="Open-Source Software"></img>
@@ -240,17 +240,17 @@ Android 平板到底是生产力工具还是沦为看视频的最终归宿</desc
 </li>
 <li id="fn:3">
 <p>部分图标版权均来自<a href="https://github.com/jaywcjlove/awesome-mac">awesome-mac</a>:<br>
-<img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg"
+<img loading="lazy" src="https://jaywcjlove.github.io/sb/ico/min-oss.svg"
   
   
   alt="Open-Source Software"></img>
 意思是<strong>代码开源</strong>;<br>
-<img src="https://jaywcjlove.github.io/sb/ico/min-free.svg"
+<img loading="lazy" src="https://jaywcjlove.github.io/sb/ico/min-free.svg"
   
   
   alt="Freeware"></img>
 意思是免费使用或个人免费授权;<br>
-<img src="/images/icons/playstore.png"
+<img loading="lazy" src="/images/icons/playstore.png"
   
   
   alt="Play Store"></img>
