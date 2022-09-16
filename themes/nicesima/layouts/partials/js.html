@@ -6,34 +6,24 @@
 <script defer src="https://fastly.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js" crossorigin="anonymous"></script>
 <script defer src="{{ printf "%s" $main.RelPermalink }}"></script>
 
-{{ if or .Page.Params.math .Site.Params.math }}
-{{- /* KaTeX */}}
+{{- /* KaTeX.js */}}
+{{- if or .Page.Params.EnableMath .Site.Params.EnableMath }}
 <link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha256-V8SV2MO1FUb63Bwht5Wx9x6PVHNa02gv8BgH/uH3ung=" crossorigin="anonymous">
 <script defer src="https://fastly.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha256-F/Xda58SPdcUCr+xhSGz9MA2zQBPb0ASEYKohl8UCHc=" crossorigin="anonymous"></script>
 <script defer src="https://fastly.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha256-90d2pnfw0r4K8CZAWPko4rpFXQsZvJhTBGYNkipDprI=" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
-{{ end }}
+{{- end }}
 
-{{ if or .Page.Params.plantuml .Site.Params.plantuml }}
-
-{{- /* PlantUML */}}
-<script defer src="https://fastly.jsdelivr.net/gh/jmnote/plantuml-encoder@1.2.4/dist/plantuml-encoder.min.js" integrity="sha256-Qsk2KRBCN5qVZX7B+8+2IvQl1Aqc723qV1tBCQaVoqo=" crossorigin="anonymous"></script>
+{{- /* Mermaid.js (requires Hugo 0.93+) */}}
+{{ if .Page.Store.Get "hasMermaid" }}
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
 <script>
-(function(){
-  let plantumlPrefix = "language-plantuml";
-  Array.prototype.forEach.call(document.querySelectorAll("[class^=" + plantumlPrefix + "]"), function(code){
-    let image = document.createElement("IMG");
-    image.loading = 'lazy'; // Lazy loading
-    image.src = 'http://www.plantuml.com/plantuml/svg/~1' + plantumlEncoder.encode(code.innerText);
-    code.parentNode.insertBefore(image, code);
-    code.style.display = 'none';
-  });
-})();
+  mermaid.initialize({ startOnLoad: true });
 </script>
 {{ end }}
 
 {{ if and (.Page.Params.restyleTextSpacing | default true) (.Site.Params.restyleTextSpacing | default true) }}
 
-{{- /* Pangu.js */}}
+{{- /* Pangu.js (Paranoid text spacing in JavaScript) */}}
 <script defer src="https://fastly.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
 <script> pangu.spacingPage();</script>
 {{ end }}

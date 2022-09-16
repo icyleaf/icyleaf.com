@@ -1,6 +1,6 @@
 # nicesima(偽島, ニセシマ)
 
-[![Hugo](https://img.shields.io/badge/hugo-0.83.1-blue.svg)](https://gohugo.io)
+[![Hugo](https://img.shields.io/badge/hugo-0.93.0-blue.svg)](https://gohugo.io)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 ![Screenshot](https://raw.githubusercontent.com/Mogeko/mogege/master/images/Screenshot.png)
@@ -12,7 +12,7 @@
 - Images lazy loading ([Can I use?](https://caniuse.com/#search=Lazy%20loading%20via%20attribute%20for%20images%20%26%20iframes))
 - Automatically highlighting code (Support by [highlight.js](https://highlightjs.org/))
 - TeX Functions (Support by [KaTeX](https://katex.org/))
-- [PlantUML](https://plantuml.com/en/) (Sequence diagram, Usecase diagram, Class diagram ...)
+- [Mermaid](https://mermaid-js.github.io/mermaid) (Flowchart/Sequence/Gantt/Class/Entity Relationship Diagram, Git graph and charting tools)
 - Dark/Light Mode
 - Support for embedded BiliBili video
 - Support hidden text
@@ -20,40 +20,16 @@
 
 Here is a table showing the similarities and differences between [nicesima](https://github.com/niceRAM/nicesima) and [mogege](https://github.com/Mogeko/mogege) and [LeaveIt](https://github.com/liuzc/LeaveIt):
 
-| Features                        | *nicesima*   | [mogege(81e57f)](https://github.com/Mogeko/mogege/commit/7c7e26d0b04fb04a0d5c69d837c26823d881e57f) | LeaveIt |
-| ------------------------------- | ------------ | ------------------------------------------------------------ | ------- |
-| Categories                      | Optimization | Yes                                                          | Yes     |
-| Tags                            | inherit      | Yes                                                          | Yes     |
-| RSS support                     | inherit      | Yes                                                          | Yes     |
-| sitemap.xml                     | inherit      | Yes                                                          | Yes     |
-| robots.txt                      | inherit      | Yes                                                          | Yes     |
-| Quote                           | inherit      | Optimization                                                 | Yes     |
-| Images lazy loading             | inherit      | Optimization[*](https://caniuse.com/#search=Lazy%20loading%20via%20attribute%20for%20images%20%26%20iframes) | Yes     |
-| Dark/Light Mode                 | inherit      | Optimization                                                 | Yes     |
-| Highlighting code               | Optimization | Optimization                                                 | Yes     |
-| Comment area                    | Optimization | Optimization                                                 | Yes     |
-| TeX Functions                   | inherit      | Yes                                                          |         |
-| PlantUML                        | inherit      | Yes                                                          |         |
-| BiliBili video (shortcodes)     | inherit      | Yes                                                          |         |
-| Updated (shortcodes)            | inherit      | Yes                                                          |         |
-| Hidden text (shortcodes)        | Optimization | Yes                                                          |         |
-| Easy-searched text (shortcodes) | Yes          |                                                              |         |
-| Social button                   |              | Yes                                                          | Yes     |
-| TOC                             | Yes          |                                                              |         |
-| lightGallery                    |              |                                                              | Yes     |
-
 ## Requirements
 
-Hugo-extended 0.80.0 or higher
-
-**Hugo extended version**, read more [here](https://gohugo.io/news/0.48-relnotes/)
+Hugo-extended 0.93.0 or higher
 
 ## Installation
 
 Navigate to your hugo project root and run:
 
 ```bash
-git submodule add https://github.com/icyleaf/nicesima themes/nicesima
+git submodule add https://github.com/icyleaf/hugo-theme-nicesima themes/nicesima
 ```
 
 Then run hugo (or set `theme: nicesima` in configuration file)
@@ -69,7 +45,7 @@ Below is example how to create new site from scratch
 ```bash
 hugo new site mydocs; cd mydocs
 git init
-git submodule add https://github.com/icyleaf/nicesima  themes/nicesima
+git submodule add https://github.com/icyleaf/hugo-theme-nicesima  themes/nicesima
 cp -R themes/nicesima/exampleSite/content .
 ```
 
@@ -110,41 +86,35 @@ $$
 
 ![KaTeX](https://raw.githubusercontent.com/Mogeko/mogege/master/images/KaTeX.png)
 
-## PlantUML
+## Mermaid
 
-**PlantUML is supported by the [official server](http://www.plantuml.com/plantuml/uml/SyfFKj2rKt3CoKnELR1Io4ZDoSa70000)**
-
-To enable KaTex globally set the parameter `plantuml` to `true` in a project's `config.toml`
-
-To enable KaTex on a per page basis include the parameter `plantuml: true` in content files.
-
-You can insert PlantUML in the post by:
+With that you can use the `mermaid` language in Markdown code blocks:
 
 <pre>
-&#96;&#96;&#96;plantuml
-PlantUML syntax
+&#96;&#96;&#96;mermaid
+Mermaid syntax
 &#96;&#96;&#96;
 </pre>
 
 For example:
 
-```plantuml
-@startuml
-Bob -> Alice : hello
+<pre>
+&#96;&#96;&#96;mermaid
+sequenceDiagram
+    participant Alice
+    participant Bob
+    Alice->>John: Hello John, how are you?
+    loop Healthcheck
+        John->>John: Fight against hypochondria
+    end
+    Note right of John: Rational thoughts <br/>prevail!
+    John-->>Alice: Great!
+    John->>Bob: How about you?
+    Bob-->>John: Jolly good!
+&#96;&#96;&#96;
+</pre>
 
-create Other
-Alice -> Other : new
-
-create control String
-Alice -> String
-note right : You can also put notes!
-
-Alice --> Bob : ok
-
-@enduml
-```
-
-![PlantUML](https://raw.githubusercontent.com/Mogeko/mogege/master/images/PlantUML.svg)
+![sequence](https://mermaid-js.github.io/mermaid/img/sequence.png)
 
 ## Embedded BiliBili video
 

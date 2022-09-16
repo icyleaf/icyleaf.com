@@ -26,6 +26,7 @@ params:
   hideHUGOSupport: true
   hidePermalink: true
   hideSeries: false
+  enableMath: false
   showFullTextinRSS: true
   googleAnalyticsUserID: G-TKQBZ7R259
   # googleAnalyticsCloudflareWorker: https://cfga.icyleaf.com
