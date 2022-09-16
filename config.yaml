@@ -51,12 +51,12 @@ params:
       link: https://github.com/icyleaf
     - name: twitter
       link: https://twitter.com/icyleaf
-    - name: facebook
-      link: https://www.facebook.com/icyleaf
+    # - name: facebook
+    #   link: https://www.facebook.com/icyleaf
     - name: linkedin
       link: https://www.linkedin.com/in/icyleaf
-    - name: instagram
-      link: https://www.instagram.com/icyleaf/
+    # - name: instagram
+    #   link: https://www.instagram.com/icyleaf/
     - name: douban
       link: https://www.douban.com/people/icyleaf
 
