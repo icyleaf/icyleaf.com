@@ -81,7 +81,7 @@ Expecting:
   {{- end -}}
 {{- end -}}
 
-<img src="{{ $src }}"
+<img loading="lazy" src="{{ $src }}"
   {{ if $srcSize }}
   {{ print `src-size=` ( $srcSize | jsonify ) | safeHTMLAttr }}
   {{ end }}

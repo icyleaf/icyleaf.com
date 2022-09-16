@@ -67,22 +67,21 @@ Make sure your browser version:
 
 **Note:** [list of TeX functions supported by KaTeX](https://katex.org/docs/supported.html)
 
-To enable KaTex globally set the parameter `math` to `true` in a project's `config.toml`
-
-To enable KaTex on a per page basis include the parameter `math: true` in content files.
+With that you can use the `katex` language in Markdown code blocks:
 
 ### Example
 
-```latex
-% Inline math:
+<pre>
+&#96;&#96;&#96;katex
+# Inline math:
 $$ \varphi = \dfrac{1+\sqrt5}{2}= 1.6180339887… $$
 
-% or
-% Block math:
+# or Block math:
 $$
  \varphi = 1+\frac{1} {1+\frac{1} {1+\frac{1} {1+\cdots} } }
 $$
-```
+&#96;&#96;&#96;
+</pre>
 
 ![KaTeX](https://raw.githubusercontent.com/Mogeko/mogege/master/images/KaTeX.png)
 
