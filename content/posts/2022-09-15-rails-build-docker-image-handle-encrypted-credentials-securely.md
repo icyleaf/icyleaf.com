@@ -1,15 +1,17 @@
 ---
-title: "Docker 部署 Rails 加密凭证 Credentials 指北"
+title: "Rails 项目构建 Docker 镜像安全处理加密凭证 Credentials"
 image: https://images.unsplash.com/photo-1584949091598-c31daaaa4aa9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80
 imageAuthor: Mitchell Luo / Unsplash
 imageSourceLink: https://unsplash.com/photos/FWoq_ldWlNQ
 date: 2022-09-15T13:58:31+08:00
-slug: "docker-deploy-rails-with-encrypted-credentials"
+slug: "rails-build-docker-image-handle-encrypted-credentials-securely"
 type: posts
-draft: true
+draft: false
 index: true
 comments: true
 isCJKLanguage: true
+series:
+  - DockerDeployRails
 categories:
   - Technology
 tags:
@@ -17,7 +19,9 @@ tags:
   - Docker
 ---
 
-最近在做一个小的 Side Project 需要对数据库数据做加密处理，Rails [5.2](https://qiita.com/NaokiIshimura/items/2a179f2ab910992c4d39) 开始支持 `credentials.yml.enc` 加密凭证，
+最近在做一个小的 Side Project 作为公共服务首要是需要保证用户数据的绝对安全，这就需要对数据库数据做加密处理。
+
+Rails [5.2](https://qiita.com/NaokiIshimura/items/2a179f2ab910992c4d39) 开始支持 `credentials.yml.enc` 加密凭证，
 [6.0](https://blog.saeloun.com/2019/10/10/rails-6-adds-support-for-multi-environment-credentials.html) 支持多环境的 credentials 加密凭证，
 [7.0](https://blog.saeloun.com/2021/06/09/rails-7-add-encryption-to-active-record.html) 支持对 model 数据库表字段加密处理，但我从 5.1 支持 `secrets.yml` 开始就没使用过。
 最近一周开发加摸索下来，总结一句话：**一直加密一直爽，容器化奔赴火葬场。**
@@ -80,7 +84,9 @@ OpenSSL::Cipher::CipherError
 
 ## 数据库字段加密
 
-对于数据库表字段的加密 Rails 允许自定义加密类，这个不是本文的讨论范围不再展开，初始化需要通过如下命令生成一个随机的 Keys:
+Rails 默认并不会对数据库字段加密，在 7.0 开始允许开发者定义加密字段也允许自定义加解密方法。这个不是本文的讨论范围不再展开。
+
+初始化需要通过如下命令生成一个随机的 Keys：
 
 ```bash
 $ rails db:encryption:init
@@ -201,16 +207,12 @@ $ docker buildx build \
 `id` 关联 CLI 传参和构建镜像中执行步骤，CLI 入参设置 secret 的输入文件，构建镜像则需要把 secret 导出到镜像中具体的路径，其实就是这么简单。极少数支持 Docker
 部署的云服务，比如 [Render](https://render.com/docs/docker-secrets) 支持这种方式。部署到云服务上还需要重新考量下。
 
-## 容器部署初始化
+## 本篇小结
 
 折腾一圈终于获得了一个干净、安全的镜像，等到部署时又傻眼了。面向技术人员或公司的项目倒还好，初始化时通过命令一通操作配置完也不需要处理 master key 不匹配的情况。
 无论使用上面改进版还是加强版都能过顺利跑起来。如果 Docker 镜像是要面向客户的话，怎么让他们初始化一个属于他们自己的 master key 和加密数据呢？开始挠头了吧。
 
-> TODO: 后面接着写！
-
-- [ ] 全局缺省的 credentials 只存项目核心密钥，其他的放到生产环境的 credentials 中
-- [ ] 使用 production 的 credentials 配置
-- [ ] 如何自动生成 credentials 必要的数据
+未完待续...
 
 ## 参考资源
 

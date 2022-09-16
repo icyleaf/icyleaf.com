@@ -9,6 +9,7 @@ comments: false
 isCJKLanguage: true
 type: page
 image: images/cover.jpg
-# imageAuthor:
-# imageSourceLink:
+# imageSource:
+#   - name:
+#     link:
 ---

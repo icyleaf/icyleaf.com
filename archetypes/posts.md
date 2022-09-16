@@ -15,6 +15,7 @@ categories:
 tags:
   -
 image: images/cover.jpg
-# imageAuthor:
-# imageSourceLink:
+# imageSource:
+#   - name:
+#     link:
 ---

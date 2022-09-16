@@ -2,12 +2,16 @@
   {{- if .Params.Image -}}
   <div class="post-cover">
     <img src="{{ .Params.Image | relURL }}" loading="lazy">
-    {{- if .Params.ImageAuthor -}}
+    {{- if .Params.ImageSource -}}
     <p class="cover-author">
-      {{ i18n "photoBy" }}
-      {{ with .Params.ImageSourceLink}}<a href="{{ . }}">{{ end }}
-      {{ .Params.ImageAuthor }}
-      {{ with .Params.ImageSourceLink }}</a>{{ end }}
+      {{- i18n "photoBy" }}
+      {{ range  $i, $s := .Params.ImageSource -}}
+      {{ if $i }} / {{ end }}
+
+      {{ if $s.link }}<a href="{{ $s.link }}">{{ end }}
+      {{ $s.name }}
+      {{ if $s.link }}</a>{{ end }}
+      {{ end -}}
     </p>
     {{- end -}}
   </div>
