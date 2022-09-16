@@ -1,11 +1,14 @@
 ---
 title: "{{ replace .Name "-" " " | title }}"
+description: ""
 date: {{ .Date }}
 slug: "{{ .Name }}"
-image: images/cover.jpg
 draft: false
 index: false
 comments: false
 isCJKLanguage: true
 type: page
+image: images/cover.jpg
+# imageAuthor:
+# imageSourceLink:
 ---

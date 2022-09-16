@@ -103,4 +103,4 @@ markup:
     lineNumbersInTable: false
     noClasses: true
     style: tomorrow-night
-    tabWidth: 4
+    tabWidth: 2

@@ -11,6 +11,9 @@ postWords:
 readingTime:
   other: '{{ . }} minutes'
 
+seriesParts:
+  other: ' ({{ . }} Part Series)'
+
 relatesPosts: 相关文章
 referenceLinks: 参考链接
 

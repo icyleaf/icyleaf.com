@@ -32,7 +32,7 @@
         {{- with $series -}}
           {{- with index $allSeries 0 -}}
             <h4 class="series-title">
-              <a href="{{ .Permalink }}">{{ .LinkTitle }} ({{ len $series }} Part Series)</a>
+              <a href="{{ .Permalink }}">{{ i18n .LinkTitle | default .LinkTitle }}{{ i18n "seriesParts" (len $series) }}</a>
             </h4>
           {{- end -}}
           <ol class="series-list">
