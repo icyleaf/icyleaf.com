@@ -1,13 +1,13 @@
 {{- $style := resources.Get "css/main.scss" | resources.ToCSS | resources.Minify -}}
 <link rel="stylesheet" href="{{ $style.RelPermalink }}">
 
-{{- $iconfont := resources.Get "font/iconfont.css" }}
+{{- $iconfont := resources.Get "font/iconfont.css" | resources.Minify }}
 <link rel="stylesheet" href="{{ $iconfont.RelPermalink }}">
 
-{{- $iconfont := resources.Get "font-ali/iconfont.css" }}
+{{- $iconfont := resources.Get "font-ali/iconfont.css" | resources.Minify }}
 <link rel="stylesheet" href="{{ $iconfont.RelPermalink }}">
 
-{{- $photoswipe := resources.Get "photoswipe/photoswipe.css" }}
+{{- $photoswipe := resources.Get "photoswipe/photoswipe.css" | resources.Minify }}
 <link rel="stylesheet" href="{{ $photoswipe.RelPermalink }}">
 
 {{- range .Site.Params.custom.css -}}
