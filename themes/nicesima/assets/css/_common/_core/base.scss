@@ -9,22 +9,7 @@
 /* FiraCode */
 @import url('https://fastly.jsdelivr.net/npm/firacode@3.1.0/distr/fira_code.min.css');
 
-html {
-  scroll-behavior: smooth;
-  &::-webkit-scrollbar {
-    height: $scrollbar-thickness;
-    width: $scrollbar-thickness;
-  }
-  &::-webkit-scrollbar-thumb {
-    height: 40px;
-    width: 40px;
-    border-radius: 2em;
-    background-color: $light-scrollbar-thumb-color;
-    &:hover {
-      background-color: $light-scrollbar-thumb-hover-color;
-    }
-  }
-}
+
 
 ::selection {
   background: rgba(0, 149, 255, 0.1);
