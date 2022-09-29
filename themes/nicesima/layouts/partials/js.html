@@ -3,7 +3,7 @@
 
 {{ $main := slice  $highlight $main | resources.Concat "/js/vendor_main.js" | resources.Minify }}
 <!-- Main -->
-<script defer src="https://fastly.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js" crossorigin="anonymous"></script>
+<script defer src="https://fastly.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js" crossorigin="anonymous"></script>
 <script defer src="{{ printf "%s" $main.RelPermalink }}"></script>
 
 {{- /* KaTeX.js */}}
@@ -22,11 +22,10 @@
 </script>
 {{ end }}
 
-{{ if and (.Page.Params.restyleTextSpacing | default true) (.Site.Params.restyleTextSpacing | default true) }}
-
+{{ if and (.Page.Params.restyleTextSpacing | default false) (.Site.Params.restyleTextSpacing | default false) }}
 {{- /* Pangu.js (Paranoid text spacing in JavaScript) */}}
 <script defer src="https://fastly.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
-<script> pangu.spacingPage();</script>
+<script>pangu.spacingPage();</script>
 {{ end }}
 
 {{- /* photoswipe.js */}}
