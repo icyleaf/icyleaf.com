@@ -122,7 +122,7 @@
   </p>
 
   <div class="stats">
-    <span class="language">Ruby</span>
+    <span class="language"></span>
 
     <svg role="img" height="16" width="16" class="star">
       <path fill-rule="evenodd" d="M8 .25a.75.75 0 01.673.418l1.882 3.815

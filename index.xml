@@ -551,7 +551,7 @@ Android 平板到底是生产力工具还是沦为看视频的最终归宿</desc
   </p>
 
   <div class="stats">
-    <span class="language">Ruby</span>
+    <span class="language"></span>
 
     <svg role="img" height="16" width="16" class="star">
       <path fill-rule="evenodd" d="M8 .25a.75.75 0 01.673.418l1.882 3.815
@@ -1202,7 +1202,7 @@ macOS 开发和 iOS 差异真的很大</description><content:encoded><![CDATA[<h
 <p>一句话总结：是 2019 年 4 月底前最佳申请途径，费用低廉只要资料没有任何问题出发前肯定下签。唯一缺点是只有 15 天停留期且不可延期。</p>
 </blockquote>
 <h3 id="申请攻略">申请攻略</h3>
-<p>泰国电子落地签申请入口：https://www.evisathailand.com/</p>
+<p>泰国电子落地签申请入口：<a href="https://www.evisathailand.com/">https://www.evisathailand.com/</a></p>
 <p>通过我申请的过程来看我猜这是一个第三方机构委托，他们只负责资料的审核，通过后再递交泰国出入境管理局，因此是商业域名。具体申请步骤大家参考<a href="https://bbs.qyer.com/thread-3121710-1.html">2019泰国电子落地签申请亲妈式教学</a>。</p>
 <h3 id="注意事项">注意事项</h3>
 <ul>
@@ -1214,11 +1214,11 @@ macOS 开发和 iOS 差异真的很大</description><content:encoded><![CDATA[<h
 </ul>
 <p>泰国电子落地签网站也在不断版本迭代中，以上办理中可能出现的问题后续可能会改善。</p>
 <h3 id="查询进度">查询进度</h3>
-<p>网址：https://www.evisathailand.com/check</p>
+<p>网址：<a href="https://www.evisathailand.com/check">https://www.evisathailand.com/check</a></p>
 <p>输入 Application id 和护照号即可。</p>
 <p>技术党这么做：</p>
-<pre tabindex="0"><code>curl &#39;https://www.evisathailand.com/check?q=check&#39; --data &#39;reference_code={application_id}&amp;passport_number={passport_number}&#39;
-</code></pre><p>解析结果用 html 解析器解析 css 查询路径 <code>.container ul li</code> 数组里 h5 是标题，input 的 value 值为数值。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">curl <span class="s1">&#39;https://www.evisathailand.com/check?q=check&#39;</span> --data <span class="s1">&#39;reference_code={application_id}&amp;passport_number={passport_number}&#39;</span>
+</span></span></code></pre></div><p>解析结果用 html 解析器解析 css 查询路径 <code>.container ul li</code> 数组里 h5 是标题，input 的 value 值为数值。</p>
 <p>我是用了一个 telegram bot 可以发送命令查询结果，你也可以直接写一个定时脚本有结果了直接发邮件。</p>
 <h3 id="咨询渠道">咨询渠道</h3>
 <ul>
