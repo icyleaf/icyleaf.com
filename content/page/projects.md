@@ -21,6 +21,8 @@ isCJKLanguage: true
 
 {{<github repo="icyleaf/hpr">}}
 
+{{<github repo="icyleaf/better-cli-solution">}}
+
 ## Ruby Gems
 
 {{<github repo="icyleaf/app_info">}}
