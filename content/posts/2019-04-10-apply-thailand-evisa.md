@@ -38,7 +38,7 @@ description: 电子签证期间入境神速（大家还未意识到时）
 
 ### 申请攻略
 
-泰国电子落地签申请入口：https://www.evisathailand.com/
+泰国电子落地签申请入口：[https://www.evisathailand.com/](https://www.evisathailand.com/)
 
 通过我申请的过程来看我猜这是一个第三方机构委托，他们只负责资料的审核，通过后再递交泰国出入境管理局，因此是商业域名。具体申请步骤大家参考[2019泰国电子落地签申请亲妈式教学](https://bbs.qyer.com/thread-3121710-1.html)。
 
@@ -54,13 +54,13 @@ description: 电子签证期间入境神速（大家还未意识到时）
 
 ### 查询进度
 
-网址：https://www.evisathailand.com/check
+网址：[https://www.evisathailand.com/check](https://www.evisathailand.com/check)
 
 输入 Application id 和护照号即可。
 
 技术党这么做：
 
-```
+```bash
 curl 'https://www.evisathailand.com/check?q=check' --data 'reference_code={application_id}&passport_number={passport_number}'
 ```
 
