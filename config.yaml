@@ -8,7 +8,7 @@ hasCJKLanguage: true
 enableEmoji: true
 enableRobotsTXT: true
 paginate: 20
-disqusShortname: icyleaf
+# disqusShortname: icyleaf
 canonifyURLs: true
 
 params:
@@ -22,7 +22,7 @@ params:
   subtitle: 你好，我是 icyleaf
   since: 2005
   mark: 🍺
-  enableComment: disqus
+  enableComment: giscus
   hideHUGOSupport: true
   hidePermalink: true
   hideSeries: false
@@ -39,12 +39,12 @@ params:
   #   CrossOrigin: "anonymous"
   #   async: true
 
-  # giscus:
-  #   repo: icyleaf/icyleaf.com
-  #   repoId: MDEwOlJlcG9zaXRvcnk1NDg4MDA5Mg==
-  #   categoryId: DIC_kwDOA0VnXM4CQ0mG
-  #   # theme: /css/themes/giscus.css
-  #   localPreview: true
+  giscus:
+    repo: icyleaf/icyleaf.com
+    repoId: MDEwOlJlcG9zaXRvcnk1NDg4MDA5Mg==
+    categoryId: DIC_kwDOA0VnXM4CQ0mH
+    mapping: title
+    # theme: /css/themes/giscus.css
 
   socials:
     - name: github

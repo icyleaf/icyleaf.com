@@ -241,7 +241,6 @@ Then enable giscus in config.toml
   repo = "icyleaf/icyleaf.com"
   repoId = ""
   categoryId = ""
-  localPreview: true
 ```
 
 ## Custom CSS/JavaScript
@@ -344,7 +343,6 @@ pygmentsUseClasses=true # 使用自定义的代码高亮样式
     repo = "icyleaf/icyleaf.com"
     repoId = ""
     categoryId = ""
-    localPreview: true
 ```
 
 # Credits
