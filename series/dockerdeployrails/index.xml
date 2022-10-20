@@ -1,5 +1,116 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>DockerDeployRails on icyleaf</title><link>https://icyleaf.com/series/dockerdeployrails/</link><description>Recent content in DockerDeployRails on icyleaf</description><language>zh</language><lastBuildDate>Thu, 15 Sep 2022 13:58:31 +0800</lastBuildDate><atom:link href="https://icyleaf.com/series/dockerdeployrails/index.xml" rel="self" type="application/rss+xml"/><item><title>Rails 项目构建 Docker 镜像安全处理加密凭证 Credentials</title><link>https://icyleaf.com/2022/09/rails-build-docker-image-handle-encrypted-credentials-securely/</link><pubDate>Thu, 15 Sep 2022 13:58:31 +0800</pubDate><guid>https://icyleaf.com/2022/09/rails-build-docker-image-handle-encrypted-credentials-securely/</guid><description>
-如何正确处理 Rails 中的 master key 和 credentials.yml.enc</description><content:encoded><![CDATA[<p>最近在做一个小的 Side Project 作为公共服务首要是需要保证用户数据的绝对安全，这就需要对数据库数据做加密处理。</p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>DockerDeployRails on icyleaf</title><link>https://icyleaf.com/series/dockerdeployrails/</link><description>Recent content in DockerDeployRails on icyleaf</description><language>zh</language><lastBuildDate>Fri, 16 Sep 2022 13:58:31 +0800</lastBuildDate><atom:link href="https://icyleaf.com/series/dockerdeployrails/index.xml" rel="self" type="application/rss+xml"/><item><title>Rails 产品环境配置加密凭证的完美方案</title><link>https://icyleaf.com/2022/09/perfect-solution-to-steup-rails-encrypted-credentials/</link><pubDate>Fri, 16 Sep 2022 13:58:31 +0800</pubDate><guid>https://icyleaf.com/2022/09/perfect-solution-to-steup-rails-encrypted-credentials/</guid><description>
+面向用户的项目如何保证数据安全的情况下给用户提供一个便捷部署方式</description><content:encoded><![CDATA[<p>续接上文，项目已经构建镜像后下一步大概率就要开始面向受众人群去传播使用。你有想过让用户自建服务时他要踩的坑吗？那绝对就是加密凭证的配置。</p>
+<h2 id="rails-教你这么做">Rails 教你这么做</h2>
+<p>很遗憾除了 Rails 寥寥几笔的配置以外你几乎找不到任何不一样的文章。加密凭证的文件结构如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="ln">1</span><span class="cl">├── config
+</span></span><span class="line"><span class="ln">2</span><span class="cl">│  ├── master.key           <span class="c1"># 核心私钥</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">│  ├── credentials.yml.enc  <span class="c1"># 加密凭证</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">│  └── ...
+</span></span></code></pre></div><p><code>master.key</code> 是某种算法随机生成的加密串，<code>credentials.yml.enc</code> 是存储了各种 key、token、secret value 的 YAML 数据加密后的凭证数据。</p>
+<p>Rails 以安全为由（我猜的）对开发者也“封闭”了加密过程，只能通过 <code>rails credentials:edit</code> 命令解密 YAML 数据才能编辑和保存。最致命的该命令是使用 <code>EDITOR</code> 环境变量配置的文本编辑器，这个通常是 vim, nano 等终端文本编辑器。</p>
+<p>这就需要在部署项目的时候无法一键部署，必须在部署前让使用者敲一堆的命令、还要在终端的文本编辑器再敲一堆需要配置的数据。</p>
+<p>我想不仅使用者会疯掉，很多 Rails 开发者或许也会发怵。</p>
+<h2 id="我的最佳实践">我的最佳实践</h2>
+<blockquote>
+<p>截止 2022-10-20 为止适用于 Rails 7.x 版本。</p>
+</blockquote>
+<p>上面提到的“封闭”的意思是使用者不可见加解密过程，但可通过<a href="https://github.com/rails/rails/blob/7-0-stable/railties/lib/rails/commands/credentials/credentials_command.rb">开源代码</a>一探究竟。</p>
+<p>我的思路很简单，不需要挂载文件路径的前提下使用环境变量变向处理。<code>master.key</code> 其实可以不存在 Rails 会<a href="https://github.com/rails/rails/blob/7-0-stable/activesupport/lib/active_support/encrypted_file.rb#L53">优先读取</a> <code>RAILS_MASTER_KEY</code> 环境变量；再定义一个 <code>RAILS_ENCRYPTED_CREDENTIALS</code> 环境变量保存 <code>credentials.yml.enc</code> 就可以啦。</p>
+<h3 id="加密凭证生成器">加密凭证生成器</h3>
+<p>面向用户自动化配置，这就意味着需要项目开发者提供傻瓜式的配置工具。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <figure><img src="/uploads/2022/09/16/generate-encrypted-credentials-tools.png"/><figcaption>
+
+    <h4>加密凭证生成器</h4><div style="clear: both"></div>
+  </figcaption></figure>
+
+<h4 id="核心源码">核心源码</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="k">def</span> <span class="nf">create</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="n">env_key</span> <span class="o">=</span> <span class="s2">&#34;TEMP_MASTER_KEY&#34;</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="no">ENV</span><span class="o">[</span><span class="n">env_key</span><span class="o">]</span> <span class="o">=</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">EncryptedConfiguration</span><span class="o">.</span><span class="n">generate_key</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  <span class="n">generator</span> <span class="o">=</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">EncryptedConfiguration</span><span class="o">.</span><span class="n">new</span><span class="p">(</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">    <span class="ss">config_path</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">    <span class="ss">key_path</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">    <span class="ss">env_key</span><span class="p">:</span> <span class="n">env_key</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">    <span class="ss">raise_if_missing_key</span><span class="p">:</span> <span class="kp">false</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">  <span class="p">)</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">
+</span></span><span class="line"><span class="ln">11</span><span class="cl">  <span class="n">master_key</span> <span class="o">=</span> <span class="n">generator</span><span class="o">.</span><span class="n">key</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">  <span class="n">contents</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">    <span class="s2">&#34;secret_key_base&#34;</span> <span class="o">=&gt;</span> <span class="no">SecureRandom</span><span class="o">.</span><span class="n">alphanumeric</span><span class="p">(</span><span class="mi">64</span><span class="p">),</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">    <span class="s2">&#34;active_record_encryption&#34;</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">      <span class="s2">&#34;primary_key&#34;</span> <span class="o">=&gt;</span> <span class="no">SecureRandom</span><span class="o">.</span><span class="n">alphanumeric</span><span class="p">(</span><span class="mi">32</span><span class="p">),</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">      <span class="s2">&#34;deterministic_key&#34;</span> <span class="o">=&gt;</span> <span class="no">SecureRandom</span><span class="o">.</span><span class="n">alphanumeric</span><span class="p">(</span><span class="mi">32</span><span class="p">),</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl">      <span class="s2">&#34;key_derivation_salt&#34;</span> <span class="o">=&gt;</span> <span class="no">SecureRandom</span><span class="o">.</span><span class="n">alphanumeric</span><span class="p">(</span><span class="mi">32</span><span class="p">),</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln">20</span><span class="cl">
+</span></span><span class="line"><span class="ln">21</span><span class="cl">  <span class="no">ENV</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">env_key</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">22</span><span class="cl">  <span class="n">render</span> <span class="ss">json</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">23</span><span class="cl">    <span class="ss">master_key</span><span class="p">:</span> <span class="n">master_key</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">24</span><span class="cl">    <span class="ss">encrypted_credentials</span><span class="p">:</span> <span class="n">generator</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="ss">:encrypt</span><span class="p">,</span> <span class="no">YAML</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">contents</span><span class="p">)),</span>
+</span></span><span class="line"><span class="ln">25</span><span class="cl">    <span class="ss">contents</span><span class="p">:</span> <span class="n">contents</span>
+</span></span><span class="line"><span class="ln">26</span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln">27</span><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><h3 id="自动化处理脚本">自动化处理脚本</h3>
+<p>环境变量配置的 <code>RAILS_ENCRYPTED_CREDENTIALS</code> 变量并不会被 Rails 识别，必须在依赖 Rails 相关服务运行前（包括 Sidekiq）把变量的值转换成对应的文件即可。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="n">namespace</span> <span class="ss">:app</span> <span class="k">do</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="n">task</span> <span class="ss">:credentials</span> <span class="k">do</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">    <span class="n">master_key_path</span> <span class="o">=</span> <span class="no">Rails</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;config&#39;</span><span class="p">,</span> <span class="s1">&#39;credentials&#39;</span><span class="p">,</span> <span class="s1">&#39;production.key&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">    <span class="n">encrypted_file_path</span> <span class="o">=</span> <span class="no">Rails</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;config&#39;</span><span class="p">,</span> <span class="s1">&#39;credentials&#39;</span><span class="p">,</span> <span class="s1">&#39;production.yml.enc&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">    <span class="n">encrypted_credentials</span> <span class="o">=</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;RAILS_ENCRYPTED_CREDENTIALS&#39;</span><span class="o">].</span><span class="n">presence</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">    <span class="k">if</span> <span class="n">encrypted_credentials</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="o">!</span><span class="no">File</span><span class="o">.</span><span class="n">exist?</span><span class="p">(</span><span class="n">encrypted_file_path</span><span class="p">)</span> <span class="o">||</span> <span class="no">File</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">encrypted_file_path</span><span class="p">)</span><span class="o">.</span><span class="n">empty?</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">      <span class="nb">puts</span> <span class="s2">&#34;Write encrypted data into </span><span class="si">#{</span><span class="n">encrypted_file_path</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">      <span class="no">File</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">encrypted_file_path</span><span class="p">,</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;RAILS_ENCRYPTED_CREDENTIALS&#39;</span><span class="o">]</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">    <span class="k">end</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">
+</span></span><span class="line"><span class="ln">12</span><span class="cl">    <span class="n">encrypted</span> <span class="o">=</span> <span class="no">Rails</span><span class="o">.</span><span class="n">application</span><span class="o">.</span><span class="n">encrypted</span><span class="p">(</span><span class="n">encrypted_file_path</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">    <span class="k">if</span> <span class="n">encrypted</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">nil?</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">      <span class="nb">fail</span> <span class="o">[</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">        <span class="s2">&#34;Missing `RAILS_MASTER_KEY` enviroment value and not found file in </span><span class="si">#{</span><span class="n">master_key_path</span><span class="si">}</span><span class="s2">.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">        <span class="s2">&#34;Make sure generate one first and store it in a safe place.&#34;</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl">      <span class="o">].</span><span class="n">join</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl">    <span class="k">end</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">
+</span></span><span class="line"><span class="ln">20</span><span class="cl">    <span class="k">next</span> <span class="k">if</span> <span class="n">encrypted_credentials</span>
+</span></span><span class="line"><span class="ln">21</span><span class="cl">
+</span></span><span class="line"><span class="ln">22</span><span class="cl">    <span class="k">begin</span>
+</span></span><span class="line"><span class="ln">23</span><span class="cl">      <span class="n">data</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">empty?</span><span class="p">(</span><span class="n">encrypted_file_path</span><span class="p">)</span> <span class="p">?</span> <span class="p">{}</span> <span class="p">:</span> <span class="p">(</span><span class="no">YAML</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">encrypted</span><span class="o">.</span><span class="n">read</span><span class="p">)</span> <span class="o">||</span> <span class="p">{})</span>
+</span></span><span class="line"><span class="ln">24</span><span class="cl">      <span class="nb">puts</span> <span class="s2">&#34;Preparing encrypted keys: secret_key_base, active_record_encryption ...&#34;</span>
+</span></span><span class="line"><span class="ln">25</span><span class="cl">
+</span></span><span class="line"><span class="ln">26</span><span class="cl">      <span class="c1"># Priority: environment &gt; rails builtin &gt; credentials.yml.enc data</span>
+</span></span><span class="line"><span class="ln">27</span><span class="cl">      <span class="n">data</span><span class="o">[</span><span class="s1">&#39;secret_key_base&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;SECRET_TOKEN&#39;</span><span class="o">].</span><span class="n">presence</span> <span class="o">||</span> <span class="n">data</span><span class="o">[</span><span class="s1">&#39;secret_key_base&#39;</span><span class="o">]</span> <span class="o">||</span> <span class="no">SecureRandom</span><span class="o">.</span><span class="n">alphanumeric</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">28</span><span class="cl">
+</span></span><span class="line"><span class="ln">29</span><span class="cl">      <span class="c1"># Support encrypted_key in model</span>
+</span></span><span class="line"><span class="ln">30</span><span class="cl">      <span class="n">data</span><span class="o">[</span><span class="s1">&#39;active_record_encryption&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">31</span><span class="cl">        <span class="s1">&#39;primary_key&#39;</span> <span class="o">=&gt;</span> <span class="no">SecureRandom</span><span class="o">.</span><span class="n">alphanumeric</span><span class="p">(</span><span class="mi">32</span><span class="p">),</span>
+</span></span><span class="line"><span class="ln">32</span><span class="cl">        <span class="s1">&#39;deterministic_key&#39;</span> <span class="o">=&gt;</span> <span class="no">SecureRandom</span><span class="o">.</span><span class="n">alphanumeric</span><span class="p">(</span><span class="mi">32</span><span class="p">),</span>
+</span></span><span class="line"><span class="ln">33</span><span class="cl">        <span class="s1">&#39;key_derivation_salt&#39;</span> <span class="o">=&gt;</span> <span class="no">SecureRandom</span><span class="o">.</span><span class="n">alphanumeric</span><span class="p">(</span><span class="mi">32</span><span class="p">),</span>
+</span></span><span class="line"><span class="ln">34</span><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="ln">35</span><span class="cl">
+</span></span><span class="line"><span class="ln">36</span><span class="cl">      <span class="no">Rails</span><span class="o">.</span><span class="n">application</span><span class="o">.</span><span class="n">encrypted</span><span class="p">(</span><span class="n">encrypted_file_path</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="no">YAML</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln">37</span><span class="cl">    <span class="k">rescue</span> <span class="no">OpenSSL</span><span class="o">::</span><span class="no">Cipher</span><span class="o">::</span><span class="no">CipherError</span><span class="p">,</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">MessageEncryptor</span><span class="o">::</span><span class="no">InvalidMessage</span>
+</span></span><span class="line"><span class="ln">38</span><span class="cl">      <span class="nb">puts</span> <span class="s2">&#34;Couldn&#39;t decrypt </span><span class="si">#{</span><span class="n">encrypted_file_path</span><span class="si">}</span><span class="s2">. Perhaps `RAILS_MASTER_KEY` enviroment value is incorrect?&#34;</span>
+</span></span><span class="line"><span class="ln">39</span><span class="cl">    <span class="k">end</span>
+</span></span><span class="line"><span class="ln">40</span><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="ln">41</span><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><p>我的最佳实践并不代表是最完美的解决方案，最起码能够让用户避免碰触代码也能够很轻松的部署才是前提，不是吗？</p>
+]]></content:encoded></item><item><title>Rails 构建镜像安全处理加密凭证</title><link>https://icyleaf.com/2022/09/rails-build-docker-image-handle-encrypted-credentials-securely/</link><pubDate>Thu, 15 Sep 2022 13:58:31 +0800</pubDate><guid>https://icyleaf.com/2022/09/rails-build-docker-image-handle-encrypted-credentials-securely/</guid><description>
+Docker 构建镜像该如何正确处理 master key 和 credentials.yml.enc</description><content:encoded><![CDATA[<p>最近在做一个小的 Side Project 作为公共服务首要是需要保证用户数据的绝对安全，这就需要对数据库数据做加密处理。</p>
 <p>Rails <a href="https://qiita.com/NaokiIshimura/items/2a179f2ab910992c4d39">5.2</a> 开始支持 <code>credentials.yml.enc</code> 加密凭证，
 <a href="https://blog.saeloun.com/2019/10/10/rails-6-adds-support-for-multi-environment-credentials.html">6.0</a> 支持多环境的 credentials 加密凭证，
 <a href="https://blog.saeloun.com/2021/06/09/rails-7-add-encryption-to-active-record.html">7.0</a> 支持对 model 数据库表字段加密处理，但我从 5.1 支持 <code>secrets.yml</code> 开始就没使用过。
