@@ -1,5 +1,5 @@
 ---
-title: "Rails 项目构建 Docker 镜像安全处理加密凭证 Credentials"
+title: "Rails 构建镜像安全处理加密凭证"
 image: https://images.unsplash.com/photo-1584949091598-c31daaaa4aa9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80
 imageSource:
   - name: Mitchell Luo
@@ -20,7 +20,7 @@ categories:
 tags:
   - Rails
   - Docker
-description: 如何正确处理 Rails 中的 master key 和 credentials.yml.enc
+description: Docker 构建镜像该如何正确处理 master key 和 credentials.yml.enc
 ---
 
 最近在做一个小的 Side Project 作为公共服务首要是需要保证用户数据的绝对安全，这就需要对数据库数据做加密处理。
