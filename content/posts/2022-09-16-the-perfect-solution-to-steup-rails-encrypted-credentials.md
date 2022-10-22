@@ -150,7 +150,7 @@ end
 
 ### Docker 配置
 
-```
+```shell
 docker run -d \
   -e RAILS_MASTER_KEY="[master_key]" \
   -e RAILS_ENCRYPTED_CREDENTIALS="[encrypted]" \
