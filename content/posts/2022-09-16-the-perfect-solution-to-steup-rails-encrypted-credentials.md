@@ -50,7 +50,11 @@ Rails 以安全为由（我猜的）对开发者也“封闭”了加密过程�
 
 上面提到的“封闭”的意思是使用者不可见加解密过程，但可通过[开源代码](https://github.com/rails/rails/blob/7-0-stable/railties/lib/rails/commands/credentials/credentials_command.rb)一探究竟。
 
-我的思路很简单，不需要挂载文件路径的前提下使用环境变量变向处理。`master.key` 其实可以不存在 Rails 会[优先读取](https://github.com/rails/rails/blob/7-0-stable/activesupport/lib/active_support/encrypted_file.rb#L53) `RAILS_MASTER_KEY` 环境变量；再定义一个 `RAILS_ENCRYPTED_CREDENTIALS` 环境变量保存 `credentials.yml.enc` 就可以啦。
+我的思路很简单，不提前生成和挂载上面两个文件，通过设置 `RAILS_MASTER_KEY` 和 `RAILS_ENCRYPTED_CREDENTIALS` 两个环境变量再变相实现。
+
+- `RAILS_MASTER_KEY` 是 Rails 内置的变量，它会[优先读取](https://github.com/rails/rails/blob/7-0-stable/activesupport/lib/active_support/encrypted_file.rb#L53)最后才会读取 `config/master.key`。
+
+- `RAILS_ENCRYPTED_CREDENTIALS` 环境变量保存 `credentials.yml.enc` 文件的加密凭证数据，项目启动阶段通过脚本预处理。
 
 ### 加密凭证生成器
 
@@ -60,7 +64,11 @@ Rails 以安全为由（我猜的）对开发者也“封闭”了加密过程�
     title="加密凭证生成器"
 >}}
 
+上面是一个实现功能的基础版本，如果部署方式是 Docker 或 docker-compose 也可以提供生成对应的部署脚本或文件。
+
 #### 核心源码
+
+生成规则均借鉴 Rails 内部 `ActiveSupport::EncryptedFile` 和 `ActiveSupport::EncryptedConfiguration` 逻辑，数据库加密参考 [database.rake](https://github.com/rails/rails/blob/7-0-stable/activerecord/lib/active_record/railties/databases.rake#L531)：
 
 ```ruby
 def create
@@ -138,6 +146,15 @@ namespace :app do
     end
   end
 end
+```
+
+### Docker 配置
+
+```
+docker run -d \
+  -e RAILS_MASTER_KEY="[master_key]" \
+  -e RAILS_ENCRYPTED_CREDENTIALS="[encrypted]" \
+  [image_name]
 ```
 
 我的最佳实践并不代表是最完美的解决方案，最起码能够让用户避免碰触代码也能够很轻松的部署才是前提，不是吗？

@@ -216,7 +216,8 @@ $ docker buildx build \
 折腾一圈终于获得了一个干净、安全的镜像，等到部署时又傻眼了。面向技术人员或公司的项目倒还好，初始化时通过命令一通操作配置完也不需要处理 master key 不匹配的情况。
 无论使用上面改进版还是加强版都能过顺利跑起来。如果 Docker 镜像是要面向客户的话，怎么让他们初始化一个属于他们自己的 master key 和加密数据呢？开始挠头了吧。
 
-未完待续...
+~~未完待续...~~ [翻看答案](https://icyleaf.com/2022/09/perfect-solution-to-steup-rails-encrypted-credentials/)。
+
 
 ## 参考资源
 
