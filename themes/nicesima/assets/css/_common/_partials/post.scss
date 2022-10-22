@@ -91,6 +91,10 @@
         border-bottom: 1px solid $light-border-color;
         padding-bottom: .5em;
         padding-left: .75em;
+
+        .dark-theme & {
+          border-color: $dark-border-color;
+        }
       }
     }
 
