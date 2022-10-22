@@ -15,7 +15,15 @@
 <p>截止 2022-10-20 为止适用于 Rails 7.x 版本。</p>
 </blockquote>
 <p>上面提到的“封闭”的意思是使用者不可见加解密过程，但可通过<a href="https://github.com/rails/rails/blob/7-0-stable/railties/lib/rails/commands/credentials/credentials_command.rb">开源代码</a>一探究竟。</p>
-<p>我的思路很简单，不需要挂载文件路径的前提下使用环境变量变向处理。<code>master.key</code> 其实可以不存在 Rails 会<a href="https://github.com/rails/rails/blob/7-0-stable/activesupport/lib/active_support/encrypted_file.rb#L53">优先读取</a> <code>RAILS_MASTER_KEY</code> 环境变量；再定义一个 <code>RAILS_ENCRYPTED_CREDENTIALS</code> 环境变量保存 <code>credentials.yml.enc</code> 就可以啦。</p>
+<p>我的思路很简单，不提前生成和挂载上面两个文件，通过设置 <code>RAILS_MASTER_KEY</code> 和 <code>RAILS_ENCRYPTED_CREDENTIALS</code> 两个环境变量再变相实现。</p>
+<ul>
+<li>
+<p><code>RAILS_MASTER_KEY</code> 是 Rails 内置的变量，它会<a href="https://github.com/rails/rails/blob/7-0-stable/activesupport/lib/active_support/encrypted_file.rb#L53">优先读取</a>最后才会读取 <code>config/master.key</code>。</p>
+</li>
+<li>
+<p><code>RAILS_ENCRYPTED_CREDENTIALS</code> 环境变量保存 <code>credentials.yml.enc</code> 文件的加密凭证数据，项目启动阶段通过脚本预处理。</p>
+</li>
+</ul>
 <h3 id="加密凭证生成器">加密凭证生成器</h3>
 <p>面向用户自动化配置，这就意味着需要项目开发者提供傻瓜式的配置工具。</p>
 
@@ -37,7 +45,9 @@
     <h4>加密凭证生成器</h4><div style="clear: both"></div>
   </figcaption></figure>
 
+<p>上面是一个实现功能的基础版本，如果部署方式是 Docker 或 docker-compose 也可以提供生成对应的部署脚本或文件。</p>
 <h4 id="核心源码">核心源码</h4>
+<p>生成规则均借鉴 Rails 内部 <code>ActiveSupport::EncryptedFile</code> 和 <code>ActiveSupport::EncryptedConfiguration</code> 逻辑，数据库加密参考 <a href="https://github.com/rails/rails/blob/7-0-stable/activerecord/lib/active_record/railties/databases.rake#L531">database.rake</a>：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="k">def</span> <span class="nf">create</span>
 </span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="n">env_key</span> <span class="o">=</span> <span class="s2">&#34;TEMP_MASTER_KEY&#34;</span>
 </span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="no">ENV</span><span class="o">[</span><span class="n">env_key</span><span class="o">]</span> <span class="o">=</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">EncryptedConfiguration</span><span class="o">.</span><span class="n">generate_key</span>
@@ -108,7 +118,12 @@
 </span></span><span class="line"><span class="ln">39</span><span class="cl">    <span class="k">end</span>
 </span></span><span class="line"><span class="ln">40</span><span class="cl">  <span class="k">end</span>
 </span></span><span class="line"><span class="ln">41</span><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><p>我的最佳实践并不代表是最完美的解决方案，最起码能够让用户避免碰触代码也能够很轻松的部署才是前提，不是吗？</p>
+</span></span></code></pre></div><h3 id="docker-配置">Docker 配置</h3>
+<pre tabindex="0"><code>docker run -d \
+  -e RAILS_MASTER_KEY=&#34;[master_key]&#34; \
+  -e RAILS_ENCRYPTED_CREDENTIALS=&#34;[encrypted]&#34; \
+  [image_name]
+</code></pre><p>我的最佳实践并不代表是最完美的解决方案，最起码能够让用户避免碰触代码也能够很轻松的部署才是前提，不是吗？</p>
 ]]></content:encoded></item><item><title>Rails 构建镜像安全处理加密凭证</title><link>https://icyleaf.com/2022/09/rails-build-docker-image-handle-encrypted-credentials-securely/</link><pubDate>Thu, 15 Sep 2022 13:58:31 +0800</pubDate><guid>https://icyleaf.com/2022/09/rails-build-docker-image-handle-encrypted-credentials-securely/</guid><description>
 Docker 构建镜像该如何正确处理 master key 和 credentials.yml.enc</description><content:encoded><![CDATA[<p>最近在做一个小的 Side Project 作为公共服务首要是需要保证用户数据的绝对安全，这就需要对数据库数据做加密处理。</p>
 <p>Rails <a href="https://qiita.com/NaokiIshimura/items/2a179f2ab910992c4d39">5.2</a> 开始支持 <code>credentials.yml.enc</code> 加密凭证，
@@ -272,7 +287,7 @@ Docker 构建镜像该如何正确处理 master key 和 credentials.yml.enc</des
 <h2 id="本篇小结">本篇小结</h2>
 <p>折腾一圈终于获得了一个干净、安全的镜像，等到部署时又傻眼了。面向技术人员或公司的项目倒还好，初始化时通过命令一通操作配置完也不需要处理 master key 不匹配的情况。
 无论使用上面改进版还是加强版都能过顺利跑起来。如果 Docker 镜像是要面向客户的话，怎么让他们初始化一个属于他们自己的 master key 和加密数据呢？开始挠头了吧。</p>
-<p>未完待续&hellip;</p>
+<p><del>未完待续&hellip;</del> <a href="https://icyleaf.com/2022/09/perfect-solution-to-steup-rails-encrypted-credentials/">翻看答案</a>。</p>
 <h2 id="参考资源">参考资源</h2>
 <ul>
 <li><a href="https://techblog.lclco.com/entry/2021/07/27/110000">Railsのcredentials.yml.encとmaster keyをDockerで安全に扱う</a></li>
@@ -539,7 +554,7 @@ Android 平板到底是生产力工具还是沦为看视频的最终归宿</desc
 </ol>
 </div>
 ]]></content:encoded></item><item><title>Projects</title><link>https://icyleaf.com/projects/</link><pubDate>Fri, 12 Aug 2022 14:06:44 +0800</pubDate><guid>https://icyleaf.com/projects/</guid><description>
-移动开发必备 tryzealot/zealot 开源自部署移动应用和 macOS 应用分发平台，提供 iOS、Android SDK、fastlane 等丰富组件库 | Self-hosted Beta App Distribution for Android, iOS and macOS apps Ruby 646 79...</description><content:encoded><![CDATA[<h2 id="移动开发必备">移动开发必备</h2>
+移动开发必备 tryzealot/zealot 开源自部署移动应用和 macOS 应用分发平台，提供 iOS、Android SDK、fastlane 等丰富组件库 | Self-hosted Beta App Distribution for Android, iOS and macOS apps Ruby 649 78...</description><content:encoded><![CDATA[<h2 id="移动开发必备">移动开发必备</h2>
 <div class="shortcode-github">
   <h4 class="title">
     <a href="https://github.com/tryzealot/zealot" target="_blank">tryzealot/zealot</a>
@@ -562,7 +577,7 @@ Android 平板到底是生产力工具还是沦为看视频的最终归宿</desc
         1.456-.53-3.084a.75.75 0 01.216-.664l2.24-2.183-3.096-.45a.75.75 0
         01-.564-.41L8 2.694v.001z"></path>
     </svg>
-    646
+    649
 
     <svg role="img" height="16" width="16" class="forked">
       <path fill-rule="evenodd" d="M5 3.25a.75.75 0 11-1.5 0 .75.75 0 011.5
@@ -572,7 +587,7 @@ Android 平板到底是生产力工具还是沦为看视频的最终归宿</desc
         01-.75.75h-4.5A.75.75 0 015 6.25v-.878zm3.75 7.378a.75.75 0 11-1.5 0
         .75.75 0 011.5 0zm3-8.75a.75.75 0 100-1.5.75.75 0 000 1.5z"></path>
     </svg>
-    79
+    78
   </div>
 </div>
 
