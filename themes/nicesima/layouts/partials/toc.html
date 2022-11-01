@@ -1,3 +1,6 @@
+{{- $headers := findRE "<h[1-6].*?>(.|\n])+?</h[1-6]>" .Content -}}
+{{- $has_headers := ge (len $headers) 1 -}}
+{{- if $has_headers -}}
 <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">{{ i18n "toc" }}</h2>
   {{ $globalAutoCollapseToc := .Site.Params.autoCollapseToc | default false }}
@@ -5,3 +8,4 @@
     {{ .TableOfContents }}
   </div>
 </div>
+{{- end }}
