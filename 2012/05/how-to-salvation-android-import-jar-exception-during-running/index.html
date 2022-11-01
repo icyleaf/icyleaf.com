@@ -6,7 +6,7 @@
 ·
 <span class=tags>Android, eclipse</span>
 ·
-<span class=post-word-count>157 words · 0 minutes</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>目录</h2><div class="post-toc-content always-active"><nav id=TableOfContents></nav></div></div><div class=post-content><div id=post-gallery><p>最近 Eclipse 的 ADT 升级至了 18 版本，结果运行的时候发现导入的第三方 jar
+<span class=post-word-count>157 words · 0 minutes</span></div></header><div class=post-content><div id=post-gallery><p>最近 Eclipse 的 ADT 升级至了 18 版本，结果运行的时候发现导入的第三方 jar
 包总是报错</p><blockquote><p>java.lang.NoClassDefFoundError</p></blockquote><p>可气的是 Eclipse 不会给工程同时在编译的时候也不会报错。</p><p>后来发现此版本，第三方的 <code>jar</code> 包必须放在项目的 <code>libs</code>
 目录下面，而且仅能放在 <code>libs</code> 根目录下面，即不能在 <code>libs</code>
 下面在建立子目录存放，也不能改名 <code>lib</code> 目录&mldr;.</p><p>更无奈的是， Eclipse 的 User Library 也是出现同样的问题，目前无解 >.&lt;</p></div></div><div class=post-nav><a href=https://icyleaf.com/2012/05/ios-publish-channel-packger-for-umeng/ class=prev rel=prev title="友盟 iOS 发布渠道自动化脚本"><i class="iconfont icon-left"></i>&nbsp;友盟 iOS 发布渠道自动化脚本</a>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>dark-mode on icyleaf</title><link>https://icyleaf.com/tags/dark-mode/</link><description>Recent content in dark-mode on icyleaf</description><language>zh</language><lastBuildDate>Tue, 01 Nov 2022 11:24:24 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/dark-mode/index.xml" rel="self" type="application/rss+xml"/><item><title>使用 CSS 支持图片黑暗模式动态切换</title><link>https://icyleaf.com/2022/11/how-to-render-image-between-light-and-dark-mode-with-css/</link><pubDate>Tue, 01 Nov 2022 11:24:24 +0800</pubDate><guid>https://icyleaf.com/2022/11/how-to-render-image-between-light-and-dark-mode-with-css/</guid><description>
+Zealot 项目是我个人长期以来的 Side Project，4.5.0 版本开始支持了黑暗模式并提供明亮、黑暗和随系统自动切换三种设置，前两种非常明确可以强制设...</description><content:encoded><![CDATA[<p><a href="https://github.com/tryzealot/zealot">Zealot</a> 项目是我个人长期以来的 Side Project，<a href="https://zealot.ews.im/zh-Hans/docs/user-guide/changelog#450-2022-08-19">4.5.0</a> 版本开始支持了黑暗模式并提供明亮、黑暗和随系统自动切换三种设置，前两种非常明确可以强制设定，随系统自动切换略微棘手 Javascript 一直是我的弱项，还好 CSS 提供 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme">prefers-color-scheme</a> 能够很容易的判断系统主题。受益于 <a href="https://github.com/ColorlibHQ/AdminLTE/releases/tag/v3.2.0">AdminLTE</a> 支持黑暗模式，我只需要把用户设定的值传递给 Javascript 并动态<a href="https://github.com/tryzealot/zealot/blob/4.5.0/app/javascript/controllers/global_controller.js#L26-L37">设置特定的 CSS class 变量</a>。</p>
+<h2 id="效果">效果</h2>
+<p>尝试修改系统设置的主题，切换明亮和黑暗模式下面的结果有什么变化：</p>
+
+
+
+
+
+
+<script
+  data-slug-hash="mdKVOMy"
+  data-user="your_username"
+  data-height="500"
+  data-default-tab="result"
+  data-theme-id="8862"
+  class='codepen'
+  async
+  src="//codepen.io/assets/embed/ei.js"
+></script>
+
+<p>如果看不到上面的演示，请<a href="https://codepen.io/icyleaf/pen/mdKVOMy">点击这里</a>打开新窗口预览。</p>
+<h2 id="原理">原理</h2>
+<h3 id="样式适配">样式适配</h3>
+<p>CSS 样式的模式切换使用的是额外添加的 <code>@media (prefers-color-scheme: dark)</code> 作用域，在它里面对样式重新设置就可以完成对黑暗模式的修改：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="nt">body</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="k">font-family</span><span class="p">:</span> <span class="n">system-ui</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="k">background</span><span class="p">:</span> <span class="mh">#FFFFFF</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  <span class="k">text-align</span><span class="p">:</span> <span class="kc">center</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="c">/* 黑暗模式作用域 */</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="p">@</span><span class="k">media</span> <span class="o">(</span><span class="nt">prefers-color-scheme</span><span class="o">:</span> <span class="nt">dark</span><span class="o">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">  <span class="nt">body</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">    <span class="k">background</span><span class="p">:</span> <span class="mh">#000000</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>默认情况下 body 会设置系统字体、白色背景色和字体居中，黑暗模式下会覆盖背景色为黑色。</p>
+<h3 id="图片适配">图片适配</h3>
+<p>根据 CSS 样式的规则理论上可以把图片设置为 <code>background-image</code> ：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">.</span><span class="nc">intro-image</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="k">background-image</span><span class="p">:</span> <span class="nb">url</span><span class="p">(</span><span class="sx">incro-light.png</span><span class="p">);</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="p">@</span><span class="k">media</span> <span class="o">(</span><span class="nt">prefers-color-scheme</span><span class="o">:</span> <span class="nt">dark</span><span class="o">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">  <span class="p">.</span><span class="nc">intro-image</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">7</span><span class="cl">    <span class="k">background-image</span><span class="p">:</span> <span class="nb">url</span><span class="p">(</span><span class="sx">incro-dark.png</span><span class="p">);</span>
+</span></span><span class="line"><span class="ln">8</span><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="ln">9</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>这个方案能实现却多了额外的设置，设置图片大小和缩放方式，也不太符合 HTML 的规范，图片建议设置到 HTML 标签中，<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture"><!-- raw HTML omitted --></a> 标签就出现了。</p>
+<p>它允许设置多个源 <code>source</code> 来应对不同的环境变量，如果都没有匹配或浏览器不支持再通过 img 标签兜底，利用该特性把 <code>prefers-color-scheme: dark</code> 添加到 <code>source</code> 中：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">&lt;</span><span class="nt">picture</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="c">&lt;!-- 如果是黑暗模式使用该地址 --&gt;</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="p">&lt;</span><span class="nt">source</span> <span class="na">srcset</span><span class="o">=</span><span class="s">&#34;https://zealot.ews.im/img/showcase-dark.png&#34;</span> <span class="na">media</span><span class="o">=</span><span class="s">&#34;(prefers-color-scheme: dark)&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">  <span class="c">&lt;!-- 兜底方案 --&gt;</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">  <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://zealot.ews.im/img/showcase-light.png&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="p">&lt;/</span><span class="nt">picture</span><span class="p">&gt;</span>
+</span></span></code></pre></div><h2 id="实践">实践</h2>
+<p>Zealot 在对图片适配手动设置和自动匹配黑暗模式是<a href="https://github.com/tryzealot/zealot/commit/b48573ce439c07be2eed305a4aac91f4475c2b27">这么做的</a>。项目主要适配的只有图片二维码，简单分解下实现步骤：</p>
+<ol>
+<li>动态二维码生成支持黑暗模式</li>
+<li>判断系统是指定明亮或黑暗模式直接强制设定二维码图片对应的主题</li>
+<li>随系统自动切换的情况下，追加 <code>picture</code> 标签做判断区分两种主题的图片地址</li>
+</ol>
+]]></content:encoded></item></channel></rss>

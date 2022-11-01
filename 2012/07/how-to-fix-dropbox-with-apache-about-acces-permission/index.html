@@ -6,7 +6,7 @@
 ·
 <span class=tags>Dropbox, apache</span>
 ·
-<span class=post-word-count>518 words · 2 minutes</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>目录</h2><div class="post-toc-content always-active"><nav id=TableOfContents></nav></div></div><div class=post-content><div id=post-gallery><p>自从上次 SSD 硬盘不小心挂了之后，就算是返厂检修，一旦是算坏只能更换新的无法提供维修服务。这次我对待一些数据就更加小心了。尤其是代码，其实这次代码也并没有损失多少，丢失了一些平时的练习的项目。但为了保证代码的完整性和整体的同步性，我决定使用 Dropbox 同步我的代码。这样平时练习的代码也不必丢到 Github 或者花麻烦自建的服务器上面，什么都不需要操作就可以同步与无形之中。</p><p>移动用户目录的 src 至 Dropbox 目录并创建软链接：</p><pre tabindex=0><code>$ mv ~/src ~/Dropbox/src
+<span class=post-word-count>518 words · 2 minutes</span></div></header><div class=post-content><div id=post-gallery><p>自从上次 SSD 硬盘不小心挂了之后，就算是返厂检修，一旦是算坏只能更换新的无法提供维修服务。这次我对待一些数据就更加小心了。尤其是代码，其实这次代码也并没有损失多少，丢失了一些平时的练习的项目。但为了保证代码的完整性和整体的同步性，我决定使用 Dropbox 同步我的代码。这样平时练习的代码也不必丢到 Github 或者花麻烦自建的服务器上面，什么都不需要操作就可以同步与无形之中。</p><p>移动用户目录的 src 至 Dropbox 目录并创建软链接：</p><pre tabindex=0><code>$ mv ~/src ~/Dropbox/src
 </code></pre><pre tabindex=0><code>$ ln -s ~/Dropbox/src ~/src
 </code></pre><p>如果这是写 Dropbox 同步代码的事情，那到这里就结束了，后来发现 apache
 无法访问 php 的目录，报如下错误：</p><blockquote><p>Symbolic link not allowed or link target not accessible:
