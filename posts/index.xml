@@ -1,4 +1,79 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Posts on icyleaf</title><link>https://icyleaf.com/posts/</link><description>Recent content in Posts on icyleaf</description><language>zh</language><lastBuildDate>Tue, 01 Nov 2022 11:24:24 +0800</lastBuildDate><atom:link href="https://icyleaf.com/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>使用 CSS 支持图片黑暗模式动态切换</title><link>https://icyleaf.com/2022/11/how-to-render-image-between-light-and-dark-mode-with-css/</link><pubDate>Tue, 01 Nov 2022 11:24:24 +0800</pubDate><guid>https://icyleaf.com/2022/11/how-to-render-image-between-light-and-dark-mode-with-css/</guid><description>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Posts on icyleaf</title><link>https://icyleaf.com/posts/</link><description>Recent content in Posts on icyleaf</description><language>zh</language><lastBuildDate>Thu, 10 Nov 2022 15:30:07 +0800</lastBuildDate><atom:link href="https://icyleaf.com/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Cocoapods CDN 加速新解</title><link>https://icyleaf.com/2022/11/cocoapods-cdn-speed-up-another-solution/</link><pubDate>Thu, 10 Nov 2022 15:30:07 +0800</pubDate><guid>https://icyleaf.com/2022/11/cocoapods-cdn-speed-up-another-solution/</guid><description>
+官方 CDN 不稳定，Git 源又太大，还要其他解决方案吗？</description><content:encoded><![CDATA[<p>距离 Cocoapods 支持 CDN 源已经 3 年，期间不断有开发者从 CDN 源切回了最初 Git 源的方案，Cocoapods 也没有更多的改进措施。</p>
+<p>当初写<a href="https://icyleaf.com/2019/11/cocoapods-cdn-source-code-reading/">CDN 加速镜像源码解读</a>还是用的 jsdelivr 没想到过了 2 个小版本改 Netlify 了。从国内几大 DNS 解析结果来看总会到 cloudflare 上面。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln"> 1</span><span class="cl">$ doggo cdn.cocoapods.org CNAME @202.106.0.20
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">NAME          	TYPE	CLASS	TTL 	ADDRESS                       	NAMESERVER
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">cocoapods.org.	SOA 	IN   	303s	betty.ns.cloudflare.com.      	202.106.0.20:53
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">              	    	     	    	dns.cloudflare.com. <span class="m">2280316554</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">              	    	     	    	<span class="m">10000</span> <span class="m">2400</span> <span class="m">604800</span> <span class="m">3600</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">$ doggo cdn.cocoapods.org CNAME @114.114.114.114
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">NAME          	TYPE	CLASS	TTL 	ADDRESS                       	NAMESERVER
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">cocoapods.org.	SOA 	IN   	277s	betty.ns.cloudflare.com.      	114.114.114.114:53
+</span></span><span class="line"><span class="ln">10</span><span class="cl">              	    	     	    	dns.cloudflare.com. <span class="m">2280316554</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">              	    	     	    	<span class="m">10000</span> <span class="m">2400</span> <span class="m">604800</span> <span class="m">3600</span>
+</span></span></code></pre></div><p>jsdelir 的 CDN 是全球覆盖相对比较广的，中国地区用的是网宿节点，但<a href="https://www.v2ex.com/t/823281">证书问题</a>现在流量都切到了 Fastly</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <figure><a href="/uploads/2022/11/10/jsdelivr-network.png" class="gallery-item" target="_blank" data-pswp-width="2270" data-pswp-height="1316"><img src="/uploads/2022/11/10/jsdelivr-network.png"/></a><figcaption>
+
+    <h4>jsdelivr network</h4><div style="clear: both"></div>
+  </figcaption></figure>
+
+<p>国内 DNS 解析的结果可以看出来：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ doggo cdn.jsdelivr.net CNAME @114.114.114.114
+</span></span><span class="line"><span class="ln">2</span><span class="cl">NAME             	TYPE 	CLASS	TTL  	ADDRESS                 	NAMESERVER
+</span></span><span class="line"><span class="ln">3</span><span class="cl">cdn.jsdelivr.net.	CNAME	IN   	1529s	jsdelivr.map.fastly.net.	114.114.114.114:53
+</span></span><span class="line"><span class="ln">4</span><span class="cl">
+</span></span><span class="line"><span class="ln">5</span><span class="cl">15:38:53 in ~
+</span></span><span class="line"><span class="ln">6</span><span class="cl">$ doggo cdn.jsdelivr.net CNAME @202.106.0.20
+</span></span><span class="line"><span class="ln">7</span><span class="cl">NAME             	TYPE 	CLASS	TTL  	ADDRESS                 	NAMESERVER
+</span></span><span class="line"><span class="ln">8</span><span class="cl">cdn.jsdelivr.net.	CNAME	IN   	1515s	jsdelivr.map.fastly.net.	202.106.0.20:53
+</span></span></code></pre></div><p>jsdelivr 支持 Github 仓库代码的 CDN 加速，利用本机制可以把 CDN 源加速到 jsdelivr。</p>
+<p>官方 CDN 源的源码仓库是 <a href="https://github.com/CocoaPods/cdn.cocoapods.org">Cocoapods/cdn.cocoapods.org</a>，主分支是同步脚本，<code>gh-pages</code> 分支是源的真实数据。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <figure><img src="/uploads/2022/11/10/jsdelivr-github-demo.png"/><figcaption><p class="source"><a href="https://www.jsdelivr.com/github">生成工具</a>
+    </p>
+
+    <h4>Cocoapods github 仓库和 jsdelivr CDN 生成结果</h4><div style="clear: both"></div>
+  </figcaption></figure>
+
+<p>打开 <code>Podfile</code> 修改或添加新的地址：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="line"><span class="ln">1</span><span class="cl"><span class="gd">- source &#34;https://cdn.cocoapods.org&#34;
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="gd"></span><span class="gi">+ source &#34;https://cdn.jsdelivr.net/gh/CocoaPods/cdn.cocoapods.org@gh-pages&#34;
+</span></span></span></code></pre></div><p>也可以手动指定 jsdelivr 不同的 CDN 供应商</p>
+<ul>
+<li>fastly.jsdelivr.net</li>
+<li>testingcf.jsdelivr.net</li>
+<li>quantil.jsdelivr.net (目前不可用)</li>
+</ul>
+<p>利用这个原理可以套到任何支持 Github 仓库作为 CDN 加速的服务。</p>
+]]></content:encoded></item><item><title>使用 CSS 支持图片黑暗模式动态切换</title><link>https://icyleaf.com/2022/11/how-to-render-image-between-light-and-dark-mode-with-css/</link><pubDate>Tue, 01 Nov 2022 11:24:24 +0800</pubDate><guid>https://icyleaf.com/2022/11/how-to-render-image-between-light-and-dark-mode-with-css/</guid><description>
 Zealot 项目是我个人长期以来的 Side Project，4.5.0 版本开始支持了黑暗模式并提供明亮、黑暗和随系统自动切换三种设置，前两种非常明确可以强制设...</description><content:encoded><![CDATA[<p><a href="https://github.com/tryzealot/zealot">Zealot</a> 项目是我个人长期以来的 Side Project，<a href="https://zealot.ews.im/zh-Hans/docs/user-guide/changelog#450-2022-08-19">4.5.0</a> 版本开始支持了黑暗模式并提供明亮、黑暗和随系统自动切换三种设置，前两种非常明确可以强制设定，随系统自动切换略微棘手 Javascript 一直是我的弱项，还好 CSS 提供 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme">prefers-color-scheme</a> 能够很容易的判断系统主题。受益于 <a href="https://github.com/ColorlibHQ/AdminLTE/releases/tag/v3.2.0">AdminLTE</a> 支持黑暗模式，我只需要把用户设定的值传递给 Javascript 并动态<a href="https://github.com/tryzealot/zealot/blob/4.5.0/app/javascript/controllers/global_controller.js#L26-L37">设置特定的 CSS class 变量</a>。</p>
 <h2 id="效果">效果</h2>
 <p>尝试修改系统设置的主题，切换明亮和黑暗模式下面的结果有什么变化：</p>
@@ -639,7 +714,7 @@ Docker 构建镜像该如何正确处理 master key 和 credentials.yml.enc</des
 </li>
 </ul>
 ]]></content:encoded></item><item><title>Cocoapods 新增 CDN 加速镜像源码解读</title><link>https://icyleaf.com/2019/11/cocoapods-cdn-source-code-reading/</link><pubDate>Fri, 15 Nov 2019 19:10:07 +0800</pubDate><guid>https://icyleaf.com/2019/11/cocoapods-cdn-source-code-reading/</guid><description>
-通过代码剖析对比前后都发生了什么变化</description><content:encoded><![CDATA[<p>Cocoapods <a href="https://blog.cocoapods.org/CocoaPods-1.7.2/">1.7.2</a> 版本开始增加 CDN 支持但默认没有启用，<a href="http://blog.cocoapods.org/CocoaPods-1.8.0-beta/">1.8</a> 版本的发布舍弃了原始完整克隆的 Specs 仓库改用 CDN 服务。CDN 利用的是免费且强大的 <a href="https://www.jsdelivr.com/">jsDelivr</a> CDN 服务，该 CDN 网络在国内是有备案因此速度和稳定性都会有很好的保证。该提案其实在去年已经有人使用 Cocoapods Plugin 的方式实现并向社区<a href="https://github.com/CocoaPods/CocoaPods/issues/8268">贡献 PR</a>。</p>
+通过代码剖析对比前后都发生了什么变化</description><content:encoded><![CDATA[<p>Cocoapods <a href="https://blog.cocoapods.org/CocoaPods-1.7.2/">1.7.2</a> 版本开始增加 CDN 支持但默认没有启用，<a href="http://blog.cocoapods.org/CocoaPods-1.8.0-beta/">1.8</a> 版本的发布舍弃了原始完整克隆的 Specs 仓库改用 CDN 服务。CDN 利用的是免费且强大的 <a href="https://github.com/CocoaPods/Core/pull/541">Netlify</a> CDN 服务，<del>该 CDN 网络在国内是有备案因此速度和稳定性都会有很好的保证</del>。类似提案去年有人用 Cocoapods Plugin 实现并向社区<a href="https://github.com/CocoaPods/CocoaPods/issues/8268">贡献 PR</a>。</p>
 <p>那么 CDN 支持相比之前的机制有啥优势呢？难道是把 Pods 的仓库和源码都托管到 CDN 网络了吗，其实并不是的。</p>
 <blockquote>
 <p>友情提醒：本文只重点分析 Pods 下载的机制，不展开其他方面，以下只是 <code>pod install</code> 执行顺序中的一部分，如果你想了解 Cocoapods 都干了什么可以前往<a href="https://www.jianshu.com/p/84936d9344ff">这篇文章</a>查阅。</p>

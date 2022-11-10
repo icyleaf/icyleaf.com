@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Cocoapods 秘笈 on icyleaf</title><link>https://icyleaf.com/series/cocoapods-%E7%A7%98%E7%AC%88/</link><description>Recent content in Cocoapods 秘笈 on icyleaf</description><language>zh</language><lastBuildDate>Thu, 10 Nov 2022 15:30:07 +0800</lastBuildDate><atom:link href="https://icyleaf.com/series/cocoapods-%E7%A7%98%E7%AC%88/index.xml" rel="self" type="application/rss+xml"/><item><title>Cocoapods CDN 加速新解</title><link>https://icyleaf.com/2022/11/cocoapods-cdn-speed-up-another-solution/</link><pubDate>Thu, 10 Nov 2022 15:30:07 +0800</pubDate><guid>https://icyleaf.com/2022/11/cocoapods-cdn-speed-up-another-solution/</guid><description>
+官方 CDN 不稳定，Git 源又太大，还要其他解决方案吗？</description><content:encoded><![CDATA[<p>距离 Cocoapods 支持 CDN 源已经 3 年，期间不断有开发者从 CDN 源切回了最初 Git 源的方案，Cocoapods 也没有更多的改进措施。</p>
+<p>当初写<a href="https://icyleaf.com/2019/11/cocoapods-cdn-source-code-reading/">CDN 加速镜像源码解读</a>还是用的 jsdelivr 没想到过了 2 个小版本改 Netlify 了。从国内几大 DNS 解析结果来看总会到 cloudflare 上面。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln"> 1</span><span class="cl">$ doggo cdn.cocoapods.org CNAME @202.106.0.20
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">NAME          	TYPE	CLASS	TTL 	ADDRESS                       	NAMESERVER
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">cocoapods.org.	SOA 	IN   	303s	betty.ns.cloudflare.com.      	202.106.0.20:53
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">              	    	     	    	dns.cloudflare.com. <span class="m">2280316554</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">              	    	     	    	<span class="m">10000</span> <span class="m">2400</span> <span class="m">604800</span> <span class="m">3600</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">$ doggo cdn.cocoapods.org CNAME @114.114.114.114
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">NAME          	TYPE	CLASS	TTL 	ADDRESS                       	NAMESERVER
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">cocoapods.org.	SOA 	IN   	277s	betty.ns.cloudflare.com.      	114.114.114.114:53
+</span></span><span class="line"><span class="ln">10</span><span class="cl">              	    	     	    	dns.cloudflare.com. <span class="m">2280316554</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">              	    	     	    	<span class="m">10000</span> <span class="m">2400</span> <span class="m">604800</span> <span class="m">3600</span>
+</span></span></code></pre></div><p>jsdelir 的 CDN 是全球覆盖相对比较广的，中国地区用的是网宿节点，但<a href="https://www.v2ex.com/t/823281">证书问题</a>现在流量都切到了 Fastly</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <figure><a href="/uploads/2022/11/10/jsdelivr-network.png" class="gallery-item" target="_blank" data-pswp-width="2270" data-pswp-height="1316"><img src="/uploads/2022/11/10/jsdelivr-network.png"/></a><figcaption>
+
+    <h4>jsdelivr network</h4><div style="clear: both"></div>
+  </figcaption></figure>
+
+<p>国内 DNS 解析的结果可以看出来：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ doggo cdn.jsdelivr.net CNAME @114.114.114.114
+</span></span><span class="line"><span class="ln">2</span><span class="cl">NAME             	TYPE 	CLASS	TTL  	ADDRESS                 	NAMESERVER
+</span></span><span class="line"><span class="ln">3</span><span class="cl">cdn.jsdelivr.net.	CNAME	IN   	1529s	jsdelivr.map.fastly.net.	114.114.114.114:53
+</span></span><span class="line"><span class="ln">4</span><span class="cl">
+</span></span><span class="line"><span class="ln">5</span><span class="cl">15:38:53 in ~
+</span></span><span class="line"><span class="ln">6</span><span class="cl">$ doggo cdn.jsdelivr.net CNAME @202.106.0.20
+</span></span><span class="line"><span class="ln">7</span><span class="cl">NAME             	TYPE 	CLASS	TTL  	ADDRESS                 	NAMESERVER
+</span></span><span class="line"><span class="ln">8</span><span class="cl">cdn.jsdelivr.net.	CNAME	IN   	1515s	jsdelivr.map.fastly.net.	202.106.0.20:53
+</span></span></code></pre></div><p>jsdelivr 支持 Github 仓库代码的 CDN 加速，利用本机制可以把 CDN 源加速到 jsdelivr。</p>
+<p>官方 CDN 源的源码仓库是 <a href="https://github.com/CocoaPods/cdn.cocoapods.org">Cocoapods/cdn.cocoapods.org</a>，主分支是同步脚本，<code>gh-pages</code> 分支是源的真实数据。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <figure><img src="/uploads/2022/11/10/jsdelivr-github-demo.png"/><figcaption><p class="source"><a href="https://www.jsdelivr.com/github">生成工具</a>
+    </p>
+
+    <h4>Cocoapods github 仓库和 jsdelivr CDN 生成结果</h4><div style="clear: both"></div>
+  </figcaption></figure>
+
+<p>打开 <code>Podfile</code> 修改或添加新的地址：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="line"><span class="ln">1</span><span class="cl"><span class="gd">- source &#34;https://cdn.cocoapods.org&#34;
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="gd"></span><span class="gi">+ source &#34;https://cdn.jsdelivr.net/gh/CocoaPods/cdn.cocoapods.org@gh-pages&#34;
+</span></span></span></code></pre></div><p>也可以手动指定 jsdelivr 不同的 CDN 供应商</p>
+<ul>
+<li>fastly.jsdelivr.net</li>
+<li>testingcf.jsdelivr.net</li>
+<li>quantil.jsdelivr.net (目前不可用)</li>
+</ul>
+<p>利用这个原理可以套到任何支持 Github 仓库作为 CDN 加速的服务。</p>
+]]></content:encoded></item><item><title>Cocoapods 新增 CDN 加速镜像源码解读</title><link>https://icyleaf.com/2019/11/cocoapods-cdn-source-code-reading/</link><pubDate>Fri, 15 Nov 2019 19:10:07 +0800</pubDate><guid>https://icyleaf.com/2019/11/cocoapods-cdn-source-code-reading/</guid><description>
+通过代码剖析对比前后都发生了什么变化</description><content:encoded><![CDATA[<p>Cocoapods <a href="https://blog.cocoapods.org/CocoaPods-1.7.2/">1.7.2</a> 版本开始增加 CDN 支持但默认没有启用，<a href="http://blog.cocoapods.org/CocoaPods-1.8.0-beta/">1.8</a> 版本的发布舍弃了原始完整克隆的 Specs 仓库改用 CDN 服务。CDN 利用的是免费且强大的 <a href="https://github.com/CocoaPods/Core/pull/541">Netlify</a> CDN 服务，<del>该 CDN 网络在国内是有备案因此速度和稳定性都会有很好的保证</del>。类似提案去年有人用 Cocoapods Plugin 实现并向社区<a href="https://github.com/CocoaPods/CocoaPods/issues/8268">贡献 PR</a>。</p>
+<p>那么 CDN 支持相比之前的机制有啥优势呢？难道是把 Pods 的仓库和源码都托管到 CDN 网络了吗，其实并不是的。</p>
+<blockquote>
+<p>友情提醒：本文只重点分析 Pods 下载的机制，不展开其他方面，以下只是 <code>pod install</code> 执行顺序中的一部分，如果你想了解 Cocoapods 都干了什么可以前往<a href="https://www.jianshu.com/p/84936d9344ff">这篇文章</a>查阅。</p>
+</blockquote>
+<h3 id="老的机制">老的机制</h3>
+<p>第一步先检查本地 <code>~/.cocoapods/repo/master</code> 目录是否存在，没有直接克隆 <code>https://github.com/Cocoapods/Specs.git</code> 仓库，这步在国内来说特别费时间正常下载下来目录应该是 2G+，如果有其他 source 源（比如私有源）会重复刚才的操作。</p>
+<p>第二步安装 Podfile 每个 Pod 去在各个源中寻找对应的版本，从版本的 .podspec 文件解析获取组件的地址，这个可能是 http、git、svn、hg 中的<a href="https://guides.cocoapods.org/syntax/podspec.html#source">任意一个</a>，获取到之后开始下载（默认是在 <code>~/Library/Caches/CocoaPods</code> 做缓存目录）</p>
+<h3 id="新的机制">新的机制</h3>
+<p>第一步分析 Podfile 里面的 source ，如果没有走默认 Cocoapods 的配置（1.8 以上是 <a href="https://cdn.cocoapods.org">https://cdn.cocoapods.org</a> ，之前的还是 Cocoapods/Spec），
+如果本地不存在官方 cdn 的 repo 名字是 trunk 的保留字，自己无法创建。如果有自定义的 source 会追加上去 sources 列表。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln"> 1</span><span class="cl">$ http HEAD https://cdn.cocoapods.org/all_pods.txt
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">HTTP/1.1 200 OK
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">Accept-Ranges: bytes
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">Age: 0
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">Cache-Control: public, max-age=0, must-revalidate
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">Connection: keep-alive
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">Content-Length: 924280
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">Content-Type: text/plain; charset=UTF-8
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">Date: Sat, 09 Nov 2019 07:06:15 GMT
+</span></span><span class="line"><span class="ln">10</span><span class="cl">Etag: &#34;acf0d284f3a8e82e0d66ba1a91cd30b9-ssl&#34;
+</span></span><span class="line"><span class="ln">11</span><span class="cl">Server: Netlify
+</span></span><span class="line"><span class="ln">12</span><span class="cl">Strict-Transport-Security: max-age=31536000
+</span></span><span class="line"><span class="ln">13</span><span class="cl">X-NF-Request-ID: 50b466cd-ce9e-4326-b5bb-0d29a193ae4b-7809449
+</span></span></code></pre></div><p>第二步检查或下载每个 source，每个 source 会检查是否是 cdn 类型（使用 HEAD 请求检查是否包含 /all_pods.txt）文件：</p>
+<ul>
+<li>cdn 类型，下面详细解释</li>
+<li>其他类型，走原来的老的逻辑，不再赘述</li>
+</ul>
+<p>第三步，下载 <code>Cocoapods-version.yml</code> 并缓存 etag，下载 <code>/Cocoapods-version.yml</code> 并取 headers 的第一个 etag 的值存为 <code>/Cocoapods-version.yml.etag</code>，如果存在 etag 会比对一样就不需要下载， 链接支持根目录和其他目录，支持 301 跳转。</p>
+<p>Cocoapods-version.yml</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w"></span><span class="nt">min</span><span class="p">:</span><span class="w"> </span><span class="m">1.0.0</span><span class="w">
+</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="w"></span><span class="nt">last</span><span class="p">:</span><span class="w"> </span><span class="m">1.8.4</span><span class="w">
+</span></span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="w"></span><span class="nt">prefix_lengths</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="w"></span>- <span class="m">1</span><span class="w">
+</span></span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="w"></span>- <span class="m">1</span><span class="w">
+</span></span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="w"></span>- <span class="m">1</span><span class="w">
+</span></span></span></code></pre></div><p>第四步，分析 Pod 并获取 pod 的版本信息，比如 Podfile 我增加了一个 <code>pod &quot;AFNetworking&quot;</code>，把 pod 名字做 MD5 后的值取 Cocoapods-version.yml 的 prefiex_length 数组长度的值单字母拆分用下划线分割按照规则拼成文件名 <code>all_pods_versions(_{fragment}).txt</code> (如果prefix_length 为 0 则只会去下载 <code>/all_pods_versions.txt</code>)</p>
+<p>比如：prefix_lengths 数组大小为 3，AFNetworking MD5 后 <code>a75d452377f396bdc4b623a5df25820</code> 则匹配前三位 a75 拆分后 a_7_5
+后查找 cdn url 路径的 <code>/all_pods_versions_a_7_5.txt</code> 下载下来后的内容：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">Fuse/0.1.0/0.2.0/1.0.0/1.1.0/1.2.0
+</span></span><span class="line"><span class="ln">2</span><span class="cl">GXFlowView/1.0.0
+</span></span><span class="line"><span class="ln">3</span><span class="cl">JFCountryPicker/0.0.1/0.0.2
+</span></span><span class="line"><span class="ln">4</span><span class="cl">JVEmptyElement/0.1.0
+</span></span></code></pre></div><p>第五步，下载 pod 的所有版本的 .podspec 文件，从上面的文件按照每行寻找第一段的名字，把后面的所有版本按照上面获取到的 prefix_lengths 的值（例如 AFNetworking 是 a, 7 , 5） <code>/Specs/a/7/5/AFNetworking/{version}/AFNetworking.podspec.json</code> 一次下载，并保存 etag 为 <code>/Specs/a/7/5/AFNetworking/{version}/AFNetworking.podspec.json.etag</code>，这个 etag 作用上面已经讲过，如果没有找到的话就会直接报错。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">Adding spec repo `trunk` with CDN `https://cdn.cocoapods.org/`
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  CDN: trunk Relative path downloaded: CocoaPods-version.yml, save ETag: &#34;031c25b97a0aca21900087e355dcf663-ssl&#34;
+</span></span><span class="line"><span class="ln">3</span><span class="cl">  CDN: trunk Relative path: CocoaPods-version.yml exists! Returning local because checking is only perfomed in repo update
+</span></span><span class="line"><span class="ln">4</span><span class="cl">  CDN: trunk Relative path downloaded: all_pods_versions_a_7_5.txt, save ETag: &#34;5b32718ecbe82b0ae71ab3c77120213f-ssl&#34;
+</span></span><span class="line"><span class="ln">5</span><span class="cl">  CDN: trunk Redirecting from https://cdn.cocoapods.org/Specs/a/7/5/AFNetworking/0.10.0/AFNetworking.podspec.json to https://raw.githubusercontent.com/CocoaPods/Specs/master/Specs/a/7/5/AFNetworking/0.10.0/AFNetworking.podspec.json
+</span></span><span class="line"><span class="ln">6</span><span class="cl">  CDN: trunk Relative path downloaded: Specs/a/7/5/AFNetworking/0.10.0/AFNetworking.podspec.json, save ETag: W/&#34;a5f00eb1fdfdcab00b89e96bb81d48c110f09220063fdcf0b269290bffc18cf5&#34;
+</span></span></code></pre></div><p>Cocoapods trunk 源的目录结构：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">.cocoapods
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  repo
+</span></span><span class="line"><span class="ln">3</span><span class="cl">    trunk
+</span></span><span class="line"><span class="ln">4</span><span class="cl">      .url   #=&gt; https://cdn.cocoapods.org/
+</span></span><span class="line"><span class="ln">5</span><span class="cl">      Cocoapods-version.yml  # =&gt; 从 https://cdn.cocoapods.org/CocoaPods-version.yml 下载的文件
+</span></span><span class="line"><span class="ln">6</span><span class="cl">      Cocoapods-version.yml.etag  # 上一个请求的第一个 etag 值存下来
+</span></span><span class="line"><span class="ln">7</span><span class="cl">      all_pods_versions_a_7_5.txt  # 参考上面的备注
+</span></span><span class="line"><span class="ln">8</span><span class="cl">      all_pods_versions_a_7_5.txt.etag # 上一个请求的第一个 etag 值存下来
+</span></span></code></pre></div><p>第六步和老的机制第二步一样同样最终还是会寻找 podspec 里面下载地址去下载，
+也就是说<strong>真正 CDN 缓存加速的只有原有 Specs 必要的 podspec 文件，而不会加速 Pod 真正源地址</strong>，改机制只是减轻了本地更新官方 Specs 源的麻烦以及维护一个巨大的本地文件存储，这也是中心化机制的一个心结。</p>
+<h3 id="结语">结语</h3>
+<p>这个机制大大减少了本地需要占一个较大存储的问题，尤其是初次 <code>pod install</code> 时间长的情况，但 Pod 库本身还是各自的
+地址本质上无法解决安装 Pod 消耗时间过长的问题。</p>
+]]></content:encoded></item><item><title>极速化 CocoaPods</title><link>https://icyleaf.com/2015/01/speed-up-cocoapods/</link><pubDate>Tue, 20 Jan 2015 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2015/01/speed-up-cocoapods/</guid><description>
+iOS 组件仓库超时，网络环境不畅通该如何解，我来指点一二</description><content:encoded><![CDATA[<p><a href="http://cocoapods.org/">Cocopods</a> 本身是一个优秀的 iOS 开发的包管理工具，涵盖了 7k+ 的开源组件，包管理库是托管在 Github。
+众所周知的原因它的速度日渐缓慢，有时会频繁报如下错误：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ pod install
+</span></span><span class="line"><span class="ln">2</span><span class="cl">
+</span></span><span class="line"><span class="ln">3</span><span class="cl">Cloning into <span class="s1">&#39;/path/to/ios/project/Pods/xxx&#39;</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">
+</span></span><span class="line"><span class="ln">5</span><span class="cl">error: RPC failed<span class="p">;</span> <span class="nv">result</span><span class="o">=</span>52, HTTP <span class="nv">code</span> <span class="o">=</span> <span class="m">0</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">
+</span></span><span class="line"><span class="ln">7</span><span class="cl">fatal: The remote end hung up unexpectedly
+</span></span></code></pre></div><p>本文主要为解决该问题而诞生的，以下的加速方案不局限于目前已流传的优化方案，而是在此基础上<strong>彻底的加速</strong>！</p>
+<ul>
+<li>使用淘宝 Ruby Gems 源（Cocoapods 使用 ruby 开发）</li>
+<li><code>pod install</code> 时不设置包的更新：<a href="http://phatblat.com/blog/2014/07/30/pod-install/">参考文章</a></li>
+<li>使用国内 git 服务器镜像 Cocoapods Spec: <a href="http://blog.devtang.com/blog/2014/05/25/use-cocoapod-to-manage-ios-lib-dependency/">参考文章</a></li>
+</ul>
+<p>如果你对 Cocoapods 有更深层次的理解，请参见：<a href="http://www.objc.io/issue-6/cocoapods-under-the-hood.html">objc.io: Cocoapods under the hood</a> <a href="http://objccn.io/issue-6-4/">中文版本</a></p>
+<p>今天早晨看到微博众多 iOS 开发者赞同转发《<a href="http://weibo.com/p/1001603800875490492754">CocoaPods最佳实践探讨</a>》一文，
+针对 <code>Pods</code> 建议纳入版本控制也是无奈之举。之前公司项目中也是这样施行很长一段时间，不排除更新可能会造成很多无用信息&quot;刷屏&quot;，
+偶尔还会因为版本冲突造成一些混乱状况需要处理。个人还是更倾向于精简原则，遵循<a href="http://guides.cocoapods.org/using/using-cocoapods.html#should-i-ignore-the-pods-directory-in-source-control">官方的建议</a>。</p>
+<p>大家都是技术人员，其实这些小问题难道因为 github 倒下就没有解决方案了吗？！看我如何撕破这层纸老虎：</p>
+<h3 id="技术概述">技术概述</h3>
+<ul>
+<li>Cocopods v0.34.0+</li>
+<li>Gitlab: 自建私有 git 服务器</li>
+<li>gitlab-mirrors: 专用于 github 镜像至 gitlab 并保持定期更新</li>
+<li>rake: ruby 的代码构建工具（不懂 ruby 的可以把它理解为命令聚合工具）</li>
+</ul>
+<h3 id="技术剖析">技术剖析</h3>
+<p>Cocoapods 自身支持<a href="http://guides.cocoapods.org/making/private-cocoapods.html">私有仓库</a>，
+恰好的是就在前不久发布的 <a href="https://github.com/CocoaPods/CocoaPods/blob/master/CHANGELOG.md#0340">0.34.0</a> 版本支持 <code>Podfile</code>
+添加多个的包源仓库，举个例子：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">source</span> <span class="s1">&#39;https://github.com/artsy/Specs.git&#39;</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="n">source</span> <span class="s1">&#39;https://github.com/CocoaPods/Specs.git&#39;</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="n">pod</span> <span class="s1">&#39;AFNetworking&#39;</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="n">pod</span> <span class="s1">&#39;Mantle&#39;</span>
+</span></span></code></pre></div><p>这个特性其实是为了扩充官方 Spec 的同时可以更好的让开发者管理私有的公共组件，那我同样是从这里下手：</p>
+<blockquote>
+<p>前提是自己以及搭建好 gitlab 服务器：<a href="https://about.gitlab.com/downloads/">官方教程 （Ubuntu）</a> | <a href="http://icyleaf.com/2013/09/how-to-install-gitlab-on-centos/">本人教程 （CentOS）</a></p>
+</blockquote>
+<h4 id="自力更生">自力更生</h4>
+<p>首先我们需要创建一个自己的 Spec 仓库，目录结构如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">.
+</span></span><span class="line"><span class="ln">2</span><span class="cl">├── CocoaPods-version.yml
+</span></span><span class="line"><span class="ln">3</span><span class="cl">├── Specs/
+</span></span><span class="line"><span class="ln">4</span><span class="cl">├── README.md
+</span></span><span class="line"><span class="ln">5</span><span class="cl">├── Rakefile
+</span></span><span class="line"><span class="ln">6</span><span class="cl">└── Gemfile
+</span></span></code></pre></div><p>配置不做详细描述，这里比官方多了两个文件 <code>Rakefile</code> 和 <code>Gemfile</code> 都是 rake 所需的文件，这个后面会讲到。
+再者就是配置 <a href="https://github.com/samrocketman/gitlab-mirrors#three-easy-steps">gitlab-mirrors</a>，教程很详细不再重复。</p>
+
+
+
+
+<div class="updated">
+  <header class="updated-header">
+    <h4 class="updated-title">更新</h4>
+    
+    <p class="updated-meta">4月 18, 2022</p>
+    
+  </header>
+  <article class="updated-body">
+    gitlab-mirrors 的机制问题再使用其他会有很大的限制，我重新造了一个新轮子 <a href="https://icyleaf.com/2018/04/intro-hpr/">hpr</a> 通过 HTTP REST API + Docker 部署的方式更好的解决了这个问题。
+  </article>
+</div>
+
+
+<h4 id="偷梁换柱">偷梁换柱</h4>
+<p>利用私有 Spec 仓库特性，可以把官方 <code>Spec</code> 目录下面的包按需或全部镜像过来，再次基础上<strong>把里面涉及 github 的地址替换成 gitlab 的地址</strong></p>
+<p>你没有看错，这是核心步骤，如果这步没有做那么和国内镜像的地址没有任何差别。核心代码如下：</p>
+<h5 id="rakefile">Rakefile</h5>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="nb">require</span> <span class="s1">&#39;uri&#39;</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="nb">require</span> <span class="s1">&#39;fileutils&#39;</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="nb">require</span> <span class="s1">&#39;multi_json&#39;</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="nb">require</span> <span class="s1">&#39;net/ssh&#39;</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="n">desc</span> <span class="s1">&#39;镜像一个 github 包至 gitlab 仓库&#39;</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="n">task</span> <span class="ss">:clone</span><span class="p">,</span> <span class="o">[</span><span class="ss">:name</span><span class="o">]</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="p">,</span> <span class="nb">p</span><span class="o">|</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">  <span class="nb">name</span> <span class="o">=</span> <span class="nb">p</span><span class="o">[</span><span class="ss">:name</span><span class="o">]</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">  <span class="n">current_path</span> <span class="o">=</span> <span class="no">Dir</span><span class="o">.</span><span class="n">pwd</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">
+</span></span><span class="line"><span class="ln">11</span><span class="cl">  <span class="n">specs</span> <span class="o">=</span> <span class="no">Dir</span><span class="o">[</span><span class="no">File</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="no">File</span><span class="o">.</span><span class="n">expand_path</span><span class="p">(</span><span class="s1">&#39;~&#39;</span><span class="p">),</span> <span class="s1">&#39;.cocoapods/repos/master/Specs/*&#39;</span><span class="p">)</span><span class="o">]</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">
+</span></span><span class="line"><span class="ln">13</span><span class="cl">  <span class="n">repo</span> <span class="o">=</span> <span class="n">specs</span><span class="o">.</span><span class="n">select</span> <span class="p">{</span> <span class="o">|</span><span class="n">s</span><span class="o">|</span> <span class="no">File</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">==</span> <span class="nb">name</span> <span class="p">}</span><span class="o">.</span><span class="n">first</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">
+</span></span><span class="line"><span class="ln">15</span><span class="cl">  <span class="k">if</span> <span class="n">repo</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">    <span class="nb">puts</span> <span class="s2">&#34; * found repo, copy it here&#34;</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl">    <span class="n">repo_store_path</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">current_path</span><span class="p">,</span> <span class="s1">&#39;Specs&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl">    <span class="no">FileUtils</span><span class="o">.</span><span class="n">cp_r</span> <span class="n">repo</span><span class="p">,</span> <span class="n">repo_store_path</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">
+</span></span><span class="line"><span class="ln">20</span><span class="cl">    <span class="nb">puts</span> <span class="s2">&#34; * updating repo url&#34;</span>
+</span></span><span class="line"><span class="ln">21</span><span class="cl">    <span class="no">Dir</span><span class="o">[</span><span class="s2">&#34;</span><span class="si">#{</span><span class="n">repo_store_path</span><span class="si">}</span><span class="s2">/</span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">/*&#34;</span><span class="o">].</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span>
+</span></span><span class="line"><span class="ln">22</span><span class="cl">      <span class="n">pod_file</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="s2">&#34;</span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">.podspec.json&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">23</span><span class="cl">      <span class="n">json</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">pod_file</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">24</span><span class="cl">      <span class="n">data</span> <span class="o">=</span> <span class="no">MultiJson</span><span class="o">.</span><span class="n">load</span> <span class="n">json</span>
+</span></span><span class="line"><span class="ln">25</span><span class="cl">
+</span></span><span class="line"><span class="ln">26</span><span class="cl">      <span class="k">if</span> <span class="n">data</span><span class="o">[</span><span class="s1">&#39;source&#39;</span><span class="o">][</span><span class="s1">&#39;git&#39;</span><span class="o">]</span>
+</span></span><span class="line"><span class="ln">27</span><span class="cl">        <span class="nb">puts</span> <span class="s2">&#34; -&gt; </span><span class="si">#{</span><span class="n">data</span><span class="o">[</span><span class="s1">&#39;version&#39;</span><span class="o">]</span><span class="si">}</span><span class="s2">: git&#34;</span>
+</span></span><span class="line"><span class="ln">28</span><span class="cl">        <span class="n">orginal_repo_url</span> <span class="o">=</span> <span class="n">data</span><span class="o">[</span><span class="s1">&#39;source&#39;</span><span class="o">][</span><span class="s1">&#39;git&#39;</span><span class="o">]</span>
+</span></span><span class="line"><span class="ln">29</span><span class="cl">        <span class="n">coverted_repo_name</span> <span class="o">=</span>  <span class="no">URI</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">orginal_repo_url</span><span class="p">)</span><span class="o">.</span><span class="n">path</span><span class="o">[</span><span class="mi">1</span><span class="o">..-</span><span class="mi">1</span><span class="o">].</span><span class="n">gsub</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">downcase</span>
+</span></span><span class="line"><span class="ln">30</span><span class="cl">        <span class="n">data</span><span class="o">[</span><span class="s1">&#39;source&#39;</span><span class="o">][</span><span class="s1">&#39;git&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&#34;http://gitlab.dev/mirrors/</span><span class="si">#{</span><span class="n">coverted_repo_name</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="ln">31</span><span class="cl">
+</span></span><span class="line"><span class="ln">32</span><span class="cl">        <span class="no">File</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">pod_file</span><span class="p">,</span> <span class="no">JSON</span><span class="o">.</span><span class="n">pretty_generate</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln">33</span><span class="cl">      <span class="k">else</span> <span class="n">data</span><span class="o">[</span><span class="s1">&#39;source&#39;</span><span class="o">][</span><span class="s1">&#39;http&#39;</span><span class="o">]</span>
+</span></span><span class="line"><span class="ln">34</span><span class="cl">        <span class="nb">puts</span> <span class="s2">&#34; -&gt; </span><span class="si">#{</span><span class="n">data</span><span class="o">[</span><span class="s1">&#39;version&#39;</span><span class="o">]</span><span class="si">}</span><span class="s2">: http url, do you want speed up?&#34;</span>
+</span></span><span class="line"><span class="ln">35</span><span class="cl">      <span class="k">else</span> <span class="n">data</span><span class="o">[</span><span class="s1">&#39;source&#39;</span><span class="o">][</span><span class="s1">&#39;svn&#39;</span><span class="o">]</span>
+</span></span><span class="line"><span class="ln">36</span><span class="cl">        <span class="nb">puts</span> <span class="s2">&#34; -&gt; </span><span class="si">#{</span><span class="n">data</span><span class="o">[</span><span class="s1">&#39;version&#39;</span><span class="o">]</span><span class="si">}</span><span class="s2">: svn repo, do you want speed up?&#34;</span>
+</span></span><span class="line"><span class="ln">37</span><span class="cl">      <span class="k">end</span>
+</span></span><span class="line"><span class="ln">38</span><span class="cl">    <span class="k">end</span>
+</span></span><span class="line"><span class="ln">39</span><span class="cl">  <span class="k">else</span>
+</span></span><span class="line"><span class="ln">40</span><span class="cl">    <span class="nb">puts</span> <span class="s2">&#34;Not find spec named: </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="ln">41</span><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="ln">42</span><span class="cl"><span class="k">end</span>
+</span></span><span class="line"><span class="ln">43</span><span class="cl">
+</span></span><span class="line"><span class="ln">44</span><span class="cl"><span class="n">desc</span> <span class="s1">&#39;gitlab 服务器镜像 Cocoapod Spec&#39;</span>
+</span></span><span class="line"><span class="ln">45</span><span class="cl"><span class="n">task</span> <span class="ss">:mirror</span><span class="p">,</span> <span class="o">[</span><span class="ss">:repo</span><span class="o">]</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="p">,</span> <span class="nb">p</span><span class="o">|</span>
+</span></span><span class="line"><span class="ln">46</span><span class="cl">  <span class="n">host</span>        <span class="o">=</span> <span class="s1">&#39;172..0.1&#39;</span>
+</span></span><span class="line"><span class="ln">47</span><span class="cl">  <span class="n">user</span>        <span class="o">=</span> <span class="s1">&#39;icyleaf&#39;</span>
+</span></span><span class="line"><span class="ln">48</span><span class="cl">  <span class="n">options</span>     <span class="o">=</span> <span class="p">{</span><span class="ss">:keys</span> <span class="o">=&gt;</span> <span class="s1">&#39;~/.ssh/keys/id_rsa.pub&#39;</span><span class="p">}</span>
+</span></span><span class="line"><span class="ln">49</span><span class="cl">
+</span></span><span class="line"><span class="ln">50</span><span class="cl">  <span class="nb">puts</span> <span class="s2">&#34;Connect gitlab server and mirror&#34;</span>
+</span></span><span class="line"><span class="ln">51</span><span class="cl">  <span class="no">Net</span><span class="o">::</span><span class="no">SSH</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">ssh</span><span class="o">|</span>
+</span></span><span class="line"><span class="ln">52</span><span class="cl">    <span class="n">gitmirror_path</span> <span class="o">=</span> <span class="s1">&#39;/home/gitmirror/gitlab-mirrors&#39;</span>
+</span></span><span class="line"><span class="ln">53</span><span class="cl">    <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&#34;sudo -u gitmirror -H rake </span><span class="se">\&#34;</span><span class="s2">add[</span><span class="si">#{</span><span class="nb">p</span><span class="o">[</span><span class="ss">:repo</span><span class="o">]</span><span class="si">}</span><span class="s2">]</span><span class="se">\&#34;</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="ln">54</span><span class="cl">    <span class="n">stdout</span> <span class="o">=</span> <span class="n">ssh</span><span class="o">.</span><span class="n">exec!</span><span class="p">(</span><span class="s2">&#34;echo &#39;cd </span><span class="si">#{</span><span class="n">gitmirror_path</span><span class="si">}</span><span class="s2"> &amp;&amp; </span><span class="si">#{</span><span class="n">cmd</span><span class="si">}</span><span class="s2">&#39;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">55</span><span class="cl">    <span class="nb">puts</span> <span class="n">stdout</span>
+</span></span><span class="line"><span class="ln">56</span><span class="cl">    <span class="n">ssh</span><span class="o">.</span><span class="n">loop</span>
+</span></span><span class="line"><span class="ln">57</span><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="ln">58</span><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><h5 id="gemfile">Gemfile</h5>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">source</span> <span class="s2">&#34;https://ruby.taobao.org&#34;</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="n">gem</span> <span class="s1">&#39;rest_client&#39;</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="n">gem</span> <span class="s1">&#39;multi_json&#39;</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="n">gem</span> <span class="s1">&#39;rake&#39;</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="n">gem</span> <span class="s1">&#39;net-ssh&#39;</span>
+</span></span></code></pre></div><p><code>rake</code> 里面有两个 task：</p>
+<ul>
+<li>mirror: 镜像 iOS 开源组件</li>
+<li>clone: 负责把官方 spec 指定包（开源组件的版本控制）替换 gitlab 地址并加入到私有包仓库</li>
+</ul>
+<h3 id="总结">总结</h3>
+<p>通过工具总有办法可以改进和提升开发者的效率和解决各种的问题，希望本文可以给大家带来更多的灵感！</p>
+<h3 id="答疑解惑">答疑解惑</h3>
+<h5 id="f-这套理论靠谱吗">F: 这套理论靠谱吗？</h5>
+<p>A: 目前我们团队已经采用并运行了很长一段时间，没有任何风险。最大的优势在于兼容官方的仓库，
+就算无法链接自己的私有服务器，使用官方和国内镜像的都可以瞬间切换。</p>
+<h5 id="f-如果没有服务器可以实现吗">F: 如果没有服务器可以实现吗？</h5>
+<p>A: 醒醒吧孩子，就连单纯的镜像官方 Cocoapods Spec 还需要一个服务器执行定期同步脚本呢。</p>
+<h5 id="f-国内-git-托管服务器能够支持吗">F: 国内 git 托管服务器能够支持吗？</h5>
+<p>A: 据我所知国内大部分 git 托管服务器的解决方案都是基于 gitlab 二次开发的，理论上可行，
+上面提到的 gitlab-mirror 本身依赖于 gitlab 的 api 在镜像的同时自动新建仓库。如果有成功的欢迎反馈。</p>
+<h5 id="f-我从你代码发现服务器同样调用了一个-rake-脚本你没有开源">F: 我从你代码发现服务器同样调用了一个 rake 脚本，你没有开源！</h5>
+<p>A: 眼睛真够敏锐的，个人对 gitlab-mirror 再做镜像时做了一个约束，新建一个 <code>Rakefile</code> 文件放到你的 gitlab-mirror 项目根目录即可：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="nb">require</span> <span class="s1">&#39;uri&#39;</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="n">desc</span> <span class="s2">&#34;Adding repo to gitmirror&#34;</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="n">task</span> <span class="ss">:add</span><span class="p">,</span> <span class="o">[</span><span class="ss">:repo</span><span class="o">]</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="p">,</span> <span class="nb">p</span><span class="o">|</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  <span class="n">repo</span> <span class="o">=</span> <span class="nb">p</span><span class="o">[</span><span class="ss">:repo</span><span class="o">]</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  <span class="k">begin</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">    <span class="nb">name</span> <span class="o">=</span> <span class="no">URI</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">repo</span><span class="p">)</span><span class="o">.</span><span class="n">path</span><span class="o">[</span><span class="mi">1</span><span class="o">..-</span><span class="mi">1</span><span class="o">].</span><span class="n">gsub</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="s1">&#39;.git&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">    <span class="k">if</span> <span class="nb">name</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">      <span class="sb">`./add_mirror.sh -f --git --project-name </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="sb"> --mirror </span><span class="si">#{</span><span class="n">repo</span><span class="si">}</span><span class="sb">`</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">    <span class="k">end</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">  <span class="k">rescue</span> <span class="no">Error</span> <span class="o">=&gt;</span> <span class="n">e</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">    <span class="nb">puts</span> <span class="s1">&#39;not url&#39;</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><h5 id="f-我还有问题">F: 我还有问题！</h5>
+<p>A: 麻烦请留言，谢谢！</p>
+]]></content:encoded></item></channel></rss>

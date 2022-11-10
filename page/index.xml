@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Pages on icyleaf</title><link>https://icyleaf.com/page/</link><description>Recent content in Pages on icyleaf</description><language>zh</language><lastBuildDate>Fri, 12 Aug 2022 14:06:44 +0800</lastBuildDate><atom:link href="https://icyleaf.com/page/index.xml" rel="self" type="application/rss+xml"/><item><title>Projects</title><link>https://icyleaf.com/projects/</link><pubDate>Fri, 12 Aug 2022 14:06:44 +0800</pubDate><guid>https://icyleaf.com/projects/</guid><description>
-移动开发必备 tryzealot/zealot 开源自部署移动应用和 macOS 应用分发平台，提供 iOS、Android SDK、fastlane 等丰富组件库 | Self-hosted Beta App Distribution for Android, iOS and macOS apps Ruby 658 78...</description><content:encoded><![CDATA[<h2 id="移动开发必备">移动开发必备</h2>
+移动开发必备 tryzealot/zealot 开源自部署移动应用和 macOS 应用分发平台，提供 iOS、Android SDK、fastlane 等丰富组件库 | Self-hosted Beta App Distribution for Android, iOS and macOS apps Ruby 664 77...</description><content:encoded><![CDATA[<h2 id="移动开发必备">移动开发必备</h2>
 <div class="shortcode-github">
   <h4 class="title">
     <a href="https://github.com/tryzealot/zealot" target="_blank">tryzealot/zealot</a>
@@ -22,7 +22,7 @@
         1.456-.53-3.084a.75.75 0 01.216-.664l2.24-2.183-3.096-.45a.75.75 0
         01-.564-.41L8 2.694v.001z"></path>
     </svg>
-    658
+    664
 
     <svg role="img" height="16" width="16" class="forked">
       <path fill-rule="evenodd" d="M5 3.25a.75.75 0 11-1.5 0 .75.75 0 011.5
@@ -32,7 +32,7 @@
         01-.75.75h-4.5A.75.75 0 015 6.25v-.878zm3.75 7.378a.75.75 0 11-1.5 0
         .75.75 0 011.5 0zm3-8.75a.75.75 0 100-1.5.75.75 0 000 1.5z"></path>
     </svg>
-    78
+    77
   </div>
 </div>
 
@@ -172,7 +172,7 @@
         1.456-.53-3.084a.75.75 0 01.216-.664l2.24-2.183-3.096-.45a.75.75 0
         01-.564-.41L8 2.694v.001z"></path>
     </svg>
-    35
+    36
 
     <svg role="img" height="16" width="16" class="forked">
       <path fill-rule="evenodd" d="M5 3.25a.75.75 0 11-1.5 0 .75.75 0 011.5
