@@ -1,6 +1,6 @@
 ---
 title: "使用 CSS 支持图片黑暗模式动态切换"
-description:
+description: 不用 Javascript 就不用 Javascript（傲娇）
 date: 2022-11-01T11:24:24+08:00
 slug: "how-to-render-image-between-light-and-dark-mode-with-css"
 type: posts

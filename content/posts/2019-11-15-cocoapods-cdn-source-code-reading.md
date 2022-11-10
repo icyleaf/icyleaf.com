@@ -17,7 +17,7 @@ share: true
 description: 通过代码剖析对比前后都发生了什么变化
 ---
 
-Cocoapods [1.7.2](https://blog.cocoapods.org/CocoaPods-1.7.2/) 版本开始增加 CDN 支持但默认没有启用，[1.8](http://blog.cocoapods.org/CocoaPods-1.8.0-beta/) 版本的发布舍弃了原始完整克隆的 Specs 仓库改用 CDN 服务。CDN 利用的是免费且强大的 [jsDelivr](https://www.jsdelivr.com/) CDN 服务，该 CDN 网络在国内是有备案因此速度和稳定性都会有很好的保证。该提案其实在去年已经有人使用 Cocoapods Plugin 的方式实现并向社区[贡献 PR](https://github.com/CocoaPods/CocoaPods/issues/8268)。
+Cocoapods [1.7.2](https://blog.cocoapods.org/CocoaPods-1.7.2/) 版本开始增加 CDN 支持但默认没有启用，[1.8](http://blog.cocoapods.org/CocoaPods-1.8.0-beta/) 版本的发布舍弃了原始完整克隆的 Specs 仓库改用 CDN 服务。CDN 利用的是免费且强大的 [Netlify](https://github.com/CocoaPods/Core/pull/541) CDN 服务，~~该 CDN 网络在国内是有备案因此速度和稳定性都会有很好的保证~~。类似提案去年有人用 Cocoapods Plugin 实现并向社区[贡献 PR](https://github.com/CocoaPods/CocoaPods/issues/8268)。
 
 那么 CDN 支持相比之前的机制有啥优势呢？难道是把 Pods 的仓库和源码都托管到 CDN 网络了吗，其实并不是的。
 
