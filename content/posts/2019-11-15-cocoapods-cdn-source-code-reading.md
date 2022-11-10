@@ -7,6 +7,8 @@ categories:
 tags:
   - Ruby
   - iOS
+series:
+  - Cocoapods 秘笈
 menu: ""
 index: false
 comments: true
