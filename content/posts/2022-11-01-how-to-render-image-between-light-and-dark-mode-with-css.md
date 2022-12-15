@@ -60,12 +60,12 @@ body {
 
 ```css
 .intro-image {
-  background-image: url(incro-light.png);
+  background-image: url(intro-light.png);
 }
 
 @media (prefers-color-scheme: dark) {
   .intro-image {
-    background-image: url(incro-dark.png);
+    background-image: url(intro-dark.png);
   }
 }
 ```
