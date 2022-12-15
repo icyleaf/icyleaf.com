@@ -114,12 +114,12 @@
 <h3 id="图片适配">图片适配</h3>
 <p>根据 CSS 样式的规则理论上可以把图片设置为 <code>background-image</code> ：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">.</span><span class="nc">intro-image</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="k">background-image</span><span class="p">:</span> <span class="nb">url</span><span class="p">(</span><span class="sx">incro-light.png</span><span class="p">);</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="k">background-image</span><span class="p">:</span> <span class="nb">url</span><span class="p">(</span><span class="sx">intro-light.png</span><span class="p">);</span>
 </span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="ln">4</span><span class="cl">
 </span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="p">@</span><span class="k">media</span> <span class="o">(</span><span class="nt">prefers-color-scheme</span><span class="o">:</span> <span class="nt">dark</span><span class="o">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="ln">6</span><span class="cl">  <span class="p">.</span><span class="nc">intro-image</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln">7</span><span class="cl">    <span class="k">background-image</span><span class="p">:</span> <span class="nb">url</span><span class="p">(</span><span class="sx">incro-dark.png</span><span class="p">);</span>
+</span></span><span class="line"><span class="ln">7</span><span class="cl">    <span class="k">background-image</span><span class="p">:</span> <span class="nb">url</span><span class="p">(</span><span class="sx">intro-dark.png</span><span class="p">);</span>
 </span></span><span class="line"><span class="ln">8</span><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="ln">9</span><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>这个方案能实现却多了额外的设置，设置图片大小和缩放方式，也不太符合 HTML 的规范，图片建议设置到 HTML 标签中，<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture"><!-- raw HTML omitted --></a> 标签就出现了。</p>
@@ -693,7 +693,7 @@ Android 平板到底是生产力工具还是沦为看视频的最终归宿</desc
 </ol>
 </div>
 ]]></content:encoded></item><item><title>Projects</title><link>https://icyleaf.com/projects/</link><pubDate>Fri, 12 Aug 2022 14:06:44 +0800</pubDate><guid>https://icyleaf.com/projects/</guid><description>
-移动开发必备 tryzealot/zealot 开源自部署移动应用和 macOS 应用分发平台，提供 iOS、Android SDK、fastlane 等丰富组件库 | Self-hosted Beta App Distribution for Android, iOS and macOS apps Ruby 664 77...</description><content:encoded><![CDATA[<h2 id="移动开发必备">移动开发必备</h2>
+移动开发必备 tryzealot/zealot 开源自部署移动应用和 macOS 应用分发平台，提供 iOS、Android SDK、fastlane 等丰富组件库 | Self-hosted Beta App Distribution for Android, iOS and macOS apps Ruby 681 81...</description><content:encoded><![CDATA[<h2 id="移动开发必备">移动开发必备</h2>
 <div class="shortcode-github">
   <h4 class="title">
     <a href="https://github.com/tryzealot/zealot" target="_blank">tryzealot/zealot</a>
@@ -716,7 +716,7 @@ Android 平板到底是生产力工具还是沦为看视频的最终归宿</desc
         1.456-.53-3.084a.75.75 0 01.216-.664l2.24-2.183-3.096-.45a.75.75 0
         01-.564-.41L8 2.694v.001z"></path>
     </svg>
-    664
+    681
 
     <svg role="img" height="16" width="16" class="forked">
       <path fill-rule="evenodd" d="M5 3.25a.75.75 0 11-1.5 0 .75.75 0 011.5
@@ -726,7 +726,7 @@ Android 平板到底是生产力工具还是沦为看视频的最终归宿</desc
         01-.75.75h-4.5A.75.75 0 015 6.25v-.878zm3.75 7.378a.75.75 0 11-1.5 0
         .75.75 0 011.5 0zm3-8.75a.75.75 0 100-1.5.75.75 0 000 1.5z"></path>
     </svg>
-    77
+    81
   </div>
 </div>
 
@@ -866,7 +866,7 @@ Android 平板到底是生产力工具还是沦为看视频的最终归宿</desc
         1.456-.53-3.084a.75.75 0 01.216-.664l2.24-2.183-3.096-.45a.75.75 0
         01-.564-.41L8 2.694v.001z"></path>
     </svg>
-    36
+    37
 
     <svg role="img" height="16" width="16" class="forked">
       <path fill-rule="evenodd" d="M5 3.25a.75.75 0 11-1.5 0 .75.75 0 011.5

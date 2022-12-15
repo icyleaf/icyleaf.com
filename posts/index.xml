@@ -114,12 +114,12 @@
 <h3 id="图片适配">图片适配</h3>
 <p>根据 CSS 样式的规则理论上可以把图片设置为 <code>background-image</code> ：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">.</span><span class="nc">intro-image</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="k">background-image</span><span class="p">:</span> <span class="nb">url</span><span class="p">(</span><span class="sx">incro-light.png</span><span class="p">);</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="k">background-image</span><span class="p">:</span> <span class="nb">url</span><span class="p">(</span><span class="sx">intro-light.png</span><span class="p">);</span>
 </span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="ln">4</span><span class="cl">
 </span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="p">@</span><span class="k">media</span> <span class="o">(</span><span class="nt">prefers-color-scheme</span><span class="o">:</span> <span class="nt">dark</span><span class="o">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="ln">6</span><span class="cl">  <span class="p">.</span><span class="nc">intro-image</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln">7</span><span class="cl">    <span class="k">background-image</span><span class="p">:</span> <span class="nb">url</span><span class="p">(</span><span class="sx">incro-dark.png</span><span class="p">);</span>
+</span></span><span class="line"><span class="ln">7</span><span class="cl">    <span class="k">background-image</span><span class="p">:</span> <span class="nb">url</span><span class="p">(</span><span class="sx">intro-dark.png</span><span class="p">);</span>
 </span></span><span class="line"><span class="ln">8</span><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="ln">9</span><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>这个方案能实现却多了额外的设置，设置图片大小和缩放方式，也不太符合 HTML 的规范，图片建议设置到 HTML 标签中，<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture"><!-- raw HTML omitted --></a> 标签就出现了。</p>
