@@ -22,7 +22,7 @@ params:
   subtitle: 你好，我是 icyleaf
   since: 2005
   mark: 🍺
-  enableComment: giscus
+  enableComment: utteranc
   hideHUGOSupport: true
   hidePermalink: true
   hideSeries: false
@@ -31,32 +31,28 @@ params:
   googleAnalyticsUserID: G-TKQBZ7R259
   # googleAnalyticsCloudflareWorker: https://cfga.icyleaf.com
 
-  # utteranc:
-  #   repo: "icyleaf/icyleaf.com" # The repo to store comments
-  #   issueTerm: "pathname"
-  #   label: "✨💬✨"
-  #   theme: "github-light"
-  #   CrossOrigin: "anonymous"
-  #   async: true
+  utteranc:
+    repo: icyleaf/icyleaf.com # The repo to store comments
+    issueTerm: pathname
+    label: "✨💬✨"
+    theme: github-light
+    CrossOrigin: anonymous
+    async: true
 
-  giscus:
-    repo: icyleaf/icyleaf.com
-    repoId: MDEwOlJlcG9zaXRvcnk1NDg4MDA5Mg==
-    categoryId: DIC_kwDOA0VnXM4CQ0mH
-    mapping: title
-    # theme: /css/themes/giscus.css
+  # giscus:
+  #   repo: icyleaf/icyleaf.com
+  #   repoId: MDEwOlJlcG9zaXRvcnk1NDg4MDA5Mg==
+  #   categoryId: DIC_kwDOA0VnXM4CQ0mH
+  #   mapping: title
+  # theme: /css/themes/giscus.css
 
   socials:
     - name: github
       link: https://github.com/icyleaf
     - name: twitter
       link: https://twitter.com/icyleaf
-    # - name: facebook
-    #   link: https://www.facebook.com/icyleaf
     - name: linkedin
       link: https://www.linkedin.com/in/icyleaf
-    # - name: instagram
-    #   link: https://www.instagram.com/icyleaf/
     - name: douban
       link: https://www.douban.com/people/icyleaf
 
