@@ -16,6 +16,14 @@ tags:
 description: Android 平板到底是生产力工具还是沦为看视频的最终归宿
 ---
 
+{{< updated at="2023-01-28" >}}
+
+- 补充外接电源不稳定的解决方案
+- 补充 Android 最近一段时间在用的独家应用和修复错误名称
+- 补充 ZUI 14 体验
+
+{{< /updated >}}
+
 > 不说需求无脑采购耍流氓，绝对不要没有需求创造需求。
 
 我曾经拥有过 2 台 iPad 2 [^1]，1 台 iPad Air 1 代，相继淘汰给了父母之后就再也没有考虑过购买任何平板，最核心的原因吃灰率太高，没法真正作为一个生产力工具，况且作为 iPhone 和 Android 双机型用户日常搭配使用基本覆盖 80% 的场景。
@@ -89,12 +97,12 @@ OLED 是仅次于 MiniLED 的最好屏幕材质，在配合 2K 分辨率和日�
 - Lightroom: 修图必备
 - Kiwi: 人类知识离线大全
 - Jellyfin: 配合服务器 Jellyfin 的客户端版本
-- Network Tools: 网管专用
+- he.net: 网管专用
 - Pocket Casts: 个人喜爱的泛用型播客客户端
 - Spark: 邮件客户端
 - kubenav: Kubernetes 管理工具
 - Termius: 服务器 SSH/Mosh 管理工具
-- Brewfater: 家酿啤酒必备
+- Brewfather: 家酿啤酒必备
 
 如果 iOS 生态有独占的优势，Android 在生产力方面有独特的优势[^3]：
 
@@ -105,6 +113,8 @@ OLED 是仅次于 MiniLED 的最好屏幕材质，在配合 2K 分辨率和日�
 - {{<spoiler>}}[Pornhub](https://cn.pornhub.com/apps/android){{< /spoiler >}}: 知名 P 站 ![Freeware][Freeware Icon]
 - {{<spoiler>}}[JavDB](https://github.com/bdvajstudio/javdb){{< /spoiler >}}: 番号资源和磁力资源，配合 Aria2App 无敌 ![Open-Source Software][OSS Icon]
 - {{<spoiler>}}[Clash for Android](https://play.google.com/store/apps/details?id=com.github.kr328.clash){{< /spoiler >}}: 一个会挖洞的可爱猫咪 ![Play Store][play-store Icon] ![Open-Source Software][OSS Icon]
+- [DroidCam](https://play.google.com/store/apps/details?id=com.dev47apps.droidcam): 把 Android 相机当做 PC/macOS 摄像头 ![Play Store][play-store Icon]
+- [Serial USB Terminal](https://play.google.com/store/apps/details?id=de.kai_morich.serial_usb_terminal): USB 串口模拟器 ![Play Store][play-store Icon]
 
 ### 外接数据备份
 
@@ -132,6 +142,8 @@ OLED 是仅次于 MiniLED 的最好屏幕材质，在配合 2K 分辨率和日�
     title="使用 Solid Explorer 拷贝 TF 卡到平板"
 >}}
 
+经过长时间的使用和观察，外接硬盘建议使用扩展坞 + 外部电源（支持 PD 协议充电宝也行）对操作外部存储设备稳定性有很大的帮助。
+
 ### ZUI 的问题
 
 小新 Pad 使用的是自研的 ZUI，截至目前 13 版本只能说堪用，系统提供自由浮窗，分屏功能，但应用支不支持又是另外一回事，偶尔用一下看到应用不分屏肯定会暗地不爽。系统级别的应用几乎不怎么使用，都由上面我说的代替了，输入法需要说下 [Gboard](https://play.google.com/store/apps/details?id=com.google.android.inputmethod.latin) 在 99% 的情况下都是非常好用的，剩下的 1% 是它不支持隐藏键盘的功能。
@@ -143,7 +155,9 @@ OLED 是仅次于 MiniLED 的最好屏幕材质，在配合 2K 分辨率和日�
 
 我基本上把它的个人安全功能设置了关闭，在安装一些被认为是有风险的应用都非常顺畅，不像 MIUI 时不时就让你登录小米账号来验证。在这样的情况下无障碍功能功能总会被关闭，造成李跳跳、Bitwarden 无法长期保持开启的状态。不杀后台应用也会触发关闭，非常的莫名其妙。
 
-我只希望今年年低要发布的 ZUI 14 能够解决我上面说的问题， ~~让我拭目以待吧~~没有预期就没有失望，放低心态。
+~~我只希望今年年底要发布的 ZUI 14 能够解决我上面说的问题， 让我拭目以待吧~~
+
+ZUI 14 的发布后第一时间升级，使用下来让人非常失望，870 U 有点点力不从心，系统的 Dock 栏新增了最近打开应用的功能鸡肋打开多了状态栏变小很不适用，自发布后大半年了连个小更新都没有，最恶心的是应用商店把 Play Store 应用标记为不兼容，需要重新关闭再打开设置，应用管理里面的"谷歌基础服务"开关。
 
 [^1]: [第一台丢在了下飞机的座位上](https://twitter.com/icyleaf/status/123008427495657473)，[第二台至今还会被母上拿出来凑合用一下](https://twitter.com/icyleaf/status/166714788649504769)
 [^2]: 也有刷到推友入手 chromebook duet 咨询和搜索后都没了解到 USB 接口协议版本，没敢入手
