@@ -1,25 +1,22 @@
 ---
 title: "Proxmox VM 创建 Talos OS cloud-init 虚拟机"
-description: 官方不提供 Cloud init 安装部署，如何应对解决
-date: 2022-11-09T12:13:09+08:00
+description: 使用 nocloud 实现自动化下载、配置和部署 talos
+date: 2023-01-27T12:13:09+08:00
 slug: "create-talos-linux-vm-with-cloud-init-in-proxmox"
 type: posts
 draft: true
 index: true
 comments: true
 isCJKLanguage: true
-series:
-  - Proxmox
-categories:
+tags:
   - Proxmox
   - TalOS
-  -
-tags:
-  -
 image: https://images.unsplash.com/photo-1528048330205-623cba504fad?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2781&q=80
-# imageSource:
-#   - name:
-#     link:
+imageSource:
+  - name: Yeray Sánchez
+    link: https://unsplash.com/photos/BQQLB7p1IYI
+  - name: Unsplash
+    link: https://unsplash.com
 ---
 
 [Talos](https://talos.dev) 作为 Container Linux 的一种解决方案，我一直是在 Proxmox VM 上面部署和进行一系列的测试工作，它的部署方式支持裸机安装、虚拟化安装、云安装以及单片机安装。
@@ -28,7 +25,7 @@ image: https://images.unsplash.com/photo-1528048330205-623cba504fad?ixlib=rb-4.0
 
 ### ISO 安装
 
-[Proxmox](https://www.talos.dev/v1.2/talos-guides/install/virtualized-platforms/proxmox/) 虚拟化安装官方只提供 ISO 的安装方式。
+在 talos 1.2 之前版本针对 [Proxmox](https://www.talos.dev/v1.2/talos-guides/install/virtualized-platforms/proxmox/) 虚拟化安装官方只提供 ISO 的安装方式。
 
 ### Cloud-init 安装
 
