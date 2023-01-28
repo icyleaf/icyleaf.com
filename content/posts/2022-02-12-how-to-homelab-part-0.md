@@ -26,10 +26,10 @@ description: 搭建 homelab 之前都需要了解哪些背景
 
 这将会是一个持续系列的主题文章，你将会从最基础的家庭 homelab 搭建开始循序渐进到一些进阶的系统、网络、服务层面的学习。我尽可能以新人的角色描述简单易懂的语言，系列文章会涉及家庭网络、路由器、Linux、数据储存、NAS、服务化等等，如果你在过程中又遇到任何问题，欢迎给我留言。
 
-{{< figure src="/tutorials/how-to-homelab/part-0/diagram.png"
-    title="镇楼用的网络拓扑图"
-    caption="图片来源"
-    attr="icyleaf"
+{{< figure src="/tutorials/how-to-homelab/part-0/homelab-diagram-v2.0.png"
+    title="2021 年底 v2.0 镇楼用的网络拓扑图"
+    caption="图片来源 "
+    attr="@icyleaf@twitter.com"
     attrlink="https://twitter.com/icyleaf/status/1472036769742745603"
 >}}
 
