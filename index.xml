@@ -433,7 +433,29 @@ Docker 构建镜像该如何正确处理 master key 和 credentials.yml.enc</des
 <li><a href="https://pythonspeed.com/articles/docker-build-secrets/">Don’t leak your Docker image’s build secrets</a></li>
 </ul>
 ]]></content:encoded></item><item><title>小新 Pad Pro 2021</title><link>https://icyleaf.com/gears/xiaoxin-pad-pro-2021/</link><pubDate>Fri, 12 Aug 2022 19:29:06 +0800</pubDate><guid>https://icyleaf.com/gears/xiaoxin-pad-pro-2021/</guid><description>
-Android 平板到底是生产力工具还是沦为看视频的最终归宿</description><content:encoded><![CDATA[<blockquote>
+Android 平板到底是生产力工具还是沦为看视频的最终归宿</description><content:encoded><![CDATA[
+
+
+
+<div class="updated">
+  <header class="updated-header">
+    <h4 class="updated-title">更新</h4>
+    
+    <p class="updated-meta">1月 28, 2023</p>
+    
+  </header>
+  <article class="updated-body">
+    <ul>
+<li>补充外接电源不稳定的解决方案</li>
+<li>补充 Android 最近一段时间在用的独家应用和修复错误名称</li>
+<li>补充 ZUI 14 体验</li>
+</ul>
+
+  </article>
+</div>
+
+
+<blockquote>
 <p>不说需求无脑采购耍流氓，绝对不要没有需求创造需求。</p>
 </blockquote>
 <p>我曾经拥有过 2 台 iPad 2 <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>，1 台 iPad Air 1 代，相继淘汰给了父母之后就再也没有考虑过购买任何平板，最核心的原因吃灰率太高，没法真正作为一个生产力工具，况且作为 iPhone 和 Android 双机型用户日常搭配使用基本覆盖 80% 的场景。</p>
@@ -530,12 +552,12 @@ Android 平板到底是生产力工具还是沦为看视频的最终归宿</desc
 <li>Lightroom: 修图必备</li>
 <li>Kiwi: 人类知识离线大全</li>
 <li>Jellyfin: 配合服务器 Jellyfin 的客户端版本</li>
-<li>Network Tools: 网管专用</li>
+<li>he.net: 网管专用</li>
 <li>Pocket Casts: 个人喜爱的泛用型播客客户端</li>
 <li>Spark: 邮件客户端</li>
 <li>kubenav: Kubernetes 管理工具</li>
 <li>Termius: 服务器 SSH/Mosh 管理工具</li>
-<li>Brewfater: 家酿啤酒必备</li>
+<li>Brewfather: 家酿啤酒必备</li>
 </ul>
 <p>如果 iOS 生态有独占的优势，Android 在生产力方面有独特的优势<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>：</p>
 <ul>
@@ -590,6 +612,16 @@ Android 平板到底是生产力工具还是沦为看视频的最终归宿</desc
   
   alt="Open-Source Software"></img>
 </li>
+<li><a href="https://play.google.com/store/apps/details?id=com.dev47apps.droidcam">DroidCam</a>: 把 Android 相机当做 PC/macOS 摄像头 <img loading="lazy" src="/images/icons/playstore.png"
+  
+  
+  alt="Play Store"></img>
+</li>
+<li><a href="https://play.google.com/store/apps/details?id=de.kai_morich.serial_usb_terminal">Serial USB Terminal</a>: USB 串口模拟器 <img loading="lazy" src="/images/icons/playstore.png"
+  
+  
+  alt="Play Store"></img>
+</li>
 </ul>
 <h3 id="外接数据备份">外接数据备份</h3>
 <p>接口 3.1 协议允许外接扩展坞用于连接显示器，鼠标键盘开启电脑模式，这也是这个产品的卖点我一点也不看好，实际测试中系统反应迟钝，应用窗口显示比例不对，尽可能忘记这个功能。</p>
@@ -640,6 +672,7 @@ Android 平板到底是生产力工具还是沦为看视频的最终归宿</desc
     <h4>使用 Solid Explorer 拷贝 TF 卡到平板</h4><div style="clear: both"></div>
   </figcaption></figure>
 
+<p>经过长时间的使用和观察，外接硬盘建议使用扩展坞 + 外部电源（支持 PD 协议充电宝也行）对操作外部存储设备稳定性有很大的帮助。</p>
 <h3 id="zui-的问题">ZUI 的问题</h3>
 <p>小新 Pad 使用的是自研的 ZUI，截至目前 13 版本只能说堪用，系统提供自由浮窗，分屏功能，但应用支不支持又是另外一回事，偶尔用一下看到应用不分屏肯定会暗地不爽。系统级别的应用几乎不怎么使用，都由上面我说的代替了，输入法需要说下 <a href="https://play.google.com/store/apps/details?id=com.google.android.inputmethod.latin">Gboard</a> 在 99% 的情况下都是非常好用的，剩下的 1% 是它不支持隐藏键盘的功能。</p>
 
@@ -662,7 +695,8 @@ Android 平板到底是生产力工具还是沦为看视频的最终归宿</desc
   </figcaption></figure>
 
 <p>我基本上把它的个人安全功能设置了关闭，在安装一些被认为是有风险的应用都非常顺畅，不像 MIUI 时不时就让你登录小米账号来验证。在这样的情况下无障碍功能功能总会被关闭，造成李跳跳、Bitwarden 无法长期保持开启的状态。不杀后台应用也会触发关闭，非常的莫名其妙。</p>
-<p>我只希望今年年低要发布的 ZUI 14 能够解决我上面说的问题， <del>让我拭目以待吧</del>没有预期就没有失望，放低心态。</p>
+<p><del>我只希望今年年底要发布的 ZUI 14 能够解决我上面说的问题， 让我拭目以待吧</del></p>
+<p>ZUI 14 的发布后第一时间升级，使用下来让人非常失望，870 U 有点点力不从心，系统的 Dock 栏新增了最近打开应用的功能鸡肋打开多了状态栏变小很不适用，自发布后大半年了连个小更新都没有，最恶心的是应用商店把 Play Store 应用标记为不兼容，需要重新关闭再打开设置，应用管理里面的&quot;谷歌基础服务&quot;开关。</p>
 <div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
