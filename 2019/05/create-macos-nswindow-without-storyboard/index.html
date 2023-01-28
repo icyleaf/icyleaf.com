@@ -138,7 +138,7 @@
 </span></span><span class=line><span class=ln>9</span><span class=cl><span class=p>}</span>
 </span></span></code></pre></div><p>看了上面代码也就明白了为什么在 <code>AppDelegate.swift</code> 设置 contentViewController 需要在代码块的末尾添加了吧，如果在最开始添加那就无法获取到 mainWindow 也就无法设置 ViewController 的 frame。这里还有个小提醒 macOS 10.10 之后版本在覆写该方法如果调用了 <code>super.loadView()</code> 方法就会自动加载同名的 xib 文件<strong>绝对不能填写</strong>。</p><p>让我们在运行一次看看？</p><p><img loading=lazy src=https://icyleaf.com/tutorials/macos-app-without-storyboard/001/shot003-final-app.png alt="Final App"></img></p><p>Ta-Da! 完成了！</p><h3 id=结语>结语</h3><p>这算是一个开篇，后续还会再继续整理，尽请期待。</p></div></div><div class=post-nav><a href=https://icyleaf.com/2019/04/apply-thailand-evisa/ class=prev rel=prev title=申请泰国电子落地签答疑解惑><i class="iconfont icon-left"></i>&nbsp;申请泰国电子落地签答疑解惑</a>
 <a href=https://icyleaf.com/2019/11/cocoapods-cdn-source-code-reading/ class=next rel=next title="Cocoapods 新增 CDN 加速镜像源码解读">Cocoapods 新增 CDN 加速镜像源码解读&nbsp;<i class="iconfont icon-right"></i></a></div><div class=post-comment><script src=https://utteranc.es/client.js repo=icyleaf/icyleaf.com issue-term=pathname theme=github-light label=✨💬✨ crossorigin=anonymous async></script></div></article></div></main><footer class=footer><div class=copyright>&copy;
-<span itemprop=copyrightYear>2005 - 2022</span>
+<span itemprop=copyrightYear>2005 - 2023</span>
 <span>🍺</span>
 <span class=author itemprop=copyrightHolder><a href=https://icyleaf.com/>icyleaf</a></span></div></footer><script defer src=https://fastly.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js crossorigin=anonymous></script>
 <script defer src=https://icyleaf.com/js/vendor_main.min.js></script>

@@ -11,7 +11,7 @@
 post-receive（如果没有自行创建），代码请看：http://gist.github.com/566767</p><p>这里会先判断脚本所在目录是否是 bare git 仓库，然后获取最新 commit 的 subject，并匹配是否包含 [deploy] 字样，如果包含，则继续检查产品代码仓库路径是否存在，如果存在则执行 git pull 操作。</p><p>​2. 对刚才编辑的 post-receive 执行下面命令以保证脚本可执行：</p><pre tabindex=0><code>$ chmod +x post-receive
 </code></pre><p>​3. 完成！</p><p>对于自定义脚本，其实不仅限于 bash shell，你可以使用你熟悉的语言，然后把你的脚本路径在 hooks 脚本中加载即可。</p><p>脚本还会继续更新，下面需要增加关于测试部分的相关判断和部署。 bash shell 还需要进一步学习，上面脚本是我第一次写，如有不妥之处，请指教，感谢！</p></div></div><div class=post-nav><a href=https://icyleaf.com/2012/03/pngcrush-usage-with-ios-apps/ class=prev rel=prev title="pngcrush 的一些用法"><i class="iconfont icon-left"></i>&nbsp;pngcrush 的一些用法</a>
 <a href=https://icyleaf.com/2012/04/automating-script-to-testflight-from-xcode/ class=next rel=next title="自动化脚本上传应用至 testflightapp">自动化脚本上传应用至 testflightapp&nbsp;<i class="iconfont icon-right"></i></a></div><div class=post-comment><script src=https://utteranc.es/client.js repo=icyleaf/icyleaf.com issue-term=pathname theme=github-light label=✨💬✨ crossorigin=anonymous async></script></div></article></div></main><footer class=footer><div class=copyright>&copy;
-<span itemprop=copyrightYear>2005 - 2022</span>
+<span itemprop=copyrightYear>2005 - 2023</span>
 <span>🍺</span>
 <span class=author itemprop=copyrightHolder><a href=https://icyleaf.com/>icyleaf</a></span></div></footer><script defer src=https://fastly.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js crossorigin=anonymous></script>
 <script defer src=https://icyleaf.com/js/vendor_main.min.js></script>
