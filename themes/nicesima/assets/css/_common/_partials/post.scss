@@ -160,6 +160,10 @@
       td {
         padding: 5px 15px;
         border: 1px double #ebe9f5;
+
+        .dark-theme & {
+          border-color: $dark-border-color;
+        }
       }
     }
 
