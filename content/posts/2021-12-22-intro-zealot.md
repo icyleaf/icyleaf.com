@@ -15,9 +15,9 @@ share: true
 description: 一个为开发者提供快速测试应用核心的应用分发平台
 ---
 
-{{< updated at="2022-08-15" >}}
+{{< updated at="2023-01-28" >}}
 
-自 2021 年 12 月 22 日发布本篇基于 Zealot 4.3.1 一个稳定版本后到现在服务包含了新特性的上线，正文部分做了对应的更新。
+Zealot 4.6.0 是 2023 年春节前最新发布的版本，支持了 Arm 平台部署，正文部分做了对应的更新。
 
 {{< /updated >}}
 
@@ -29,15 +29,15 @@ Zealot 是一个为开发者提供快速测试应用核心的应用分发平台�
 
 ## 特性
 
-- Docker 一键部署
-- 自由解析、托管 iOS/Android 甚至是 macOS 的应用
-- 自定义网络钩子适配所有 InCome Webhook 通知服务（钉钉、企业微信、飞书、Slack 等）
-- 应用解包（甚至 mobileprovision 文件）轻松查看应用包本身的秘密
-- 开发者友好的客户端 SDKs 、REST APIs 及 DevOps 插件
-- 相对全面的文档，服务和文档包含中英文语言支持
-- 托管苹果开发者智能注册 iOS 测试设备
-- 基于 MIT 协议的开源项目
-- 没有什么卵用的黑暗模式
+- 🌏 **多平台应用支持**: macOS、iOS、甚至是 APK 和 AAB 格式的 Android 应用上传、安装（支持 ARM 的 macOS）和下载
+- 🗄 **多渠道分类管理**: Debug、AdHoc、Enterprise 还是 Android 应用渠道管理统统没问题
+- 📱 **测试设备一网打进**: 自动同步 iOS 测试设备信息，允许一键注册新设备到苹果开发者
+- 🧑‍💻 **丰富开发者套件**: 提供 REST API、[iOS][zealot-ios-sdk]、[Android][android-android-sdk] SDK 以及 [fastlane][fastlane-plugin-zealot] 自动化构建插件
+- 💥 **剖析应用内部的秘密**: 解读 iOS、Android 应用或 iOS 描述文件的元信息
+- 🎳 **多架构部署**: amd86、arm64 和 armv7 任君选择（支持 ARM 的 macOS）
+- 🚨 **内置多种事件通知**: 数据可自定义 Income WebHook 到任意通知服务
+- 🔑 **第三方登录**: 飞书、Gitlab、Google 和 LDAP 一键授权
+- 🌑 **黑暗模式**: 黑夜白昼自由切换
 
 ## 开发者的自言自语
 
