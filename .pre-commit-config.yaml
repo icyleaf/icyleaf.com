@@ -1,0 +1,19 @@
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.4.0
+  hooks:
+    - id: check-yaml
+    # - id: end-of-file-fixer
+    # - id: trailing-whitespace
+# - repo: file:///Users/icyleaf/Development/devops/pre-commit-hook-ensure-sops
+#   rev: da54e954780358cf44da59ba24035bcf3e74bddf
+#   hooks:
+#     - id: sops-encryption
+#       files: (^content\/draft\/(.*)\.md$)
+
+# # - repo: file:///Users/icyleaf/Development/devops/sops-pre-commit
+# #   rev: 7ed3a0bcb0da9f6161d73c8531dfee00dc356b53
+# #   hooks:
+# #     - id: forbid-secrets
+# #       files: (^content\/draft\/(.*)\.md$)
+

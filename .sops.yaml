@@ -1,0 +1,3 @@
+creation_rules:
+  - path_regex: ^content/draft/(.*)\.md$
+    pgp: 5CBD4E4E8B1B31E63489AE71F9FF9B1D7399D214

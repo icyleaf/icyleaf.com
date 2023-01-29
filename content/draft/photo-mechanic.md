@@ -14,7 +14,7 @@ categories:
   - Photography
 tags:
   - Photography
-  - photo-mechanic
+  - Photo Mechanic
 image: https://images.unsplash.com/photo-1563982673461-1ca8b01e9b44?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2874&q=80
 imageSource:
   - name: Sergio Rota
@@ -22,4 +22,3 @@ imageSource:
   - name: Unsplash
     link: https://unsplash.com
 ---
-
