@@ -11,6 +11,12 @@ index: ''
 comments: true
 share: true
 description: 让人几多愁的 Jenkins 该如何管理才能省心
+image: https://images.unsplash.com/photo-1620013000843-31252842d370?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3270&q=80
+imageSource:
+  - name: A n v e s h
+    link: https://unsplash.com/photos/CFnee37KZUg
+  - name: Unsplash
+    link: https://unsplash.com
 ---
 
 官方的 [jenkins](https://hub.docker.com/_/jenkins) 镜像已经不再维护管理而是由 Jenkins Community 进行更新，鉴于 Jenkins 的更新频率特别快社区版本会提供两个版本：

@@ -14,6 +14,12 @@ comments: true
 isCJKLanguage: true
 share: true
 description: 亲身经历和几招解决办法
+image: https://images.unsplash.com/photo-1484100356142-db6ab6244067?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2867&q=80
+imageSource:
+  - name: Kristopher Roller
+    link: https://unsplash.com/photos/PC_lbSSxCZE
+  - name: Unsplash
+    link: https://unsplash.com
 ---
 
 ## 前言

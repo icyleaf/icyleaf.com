@@ -1,7 +1,9 @@
 ---
 title: "申请泰国电子落地签答疑解惑"
+description: 电子签证期间入境神速（大家还未意识到时）
 date: "2019-04-10T13:12:07+08:00"
 slug: "apply-thailand-evisa"
+type: posts
 categories:
   - Life
 tags:
@@ -12,7 +14,12 @@ index: false
 comments: true
 isCJKLanguage: true
 share: true
-description: 电子签证期间入境神速（大家还未意识到时）
+image: https://images.unsplash.com/photo-1581656702382-9ae90e68e7b7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2562&q=80
+imageSource:
+  - name: mana5280
+    link: https://unsplash.com/photos/ivG8LkDrtjs
+  - name: Unsplash
+    link: https://unsplash.com
 ---
 
 {{< updated at="2019-03-28" >}}

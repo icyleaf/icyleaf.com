@@ -15,6 +15,12 @@ comments: true
 isCJKLanguage: true
 share: true
 description: 通过代码剖析对比前后都发生了什么变化
+image: https://images.unsplash.com/photo-1570286424717-86d8a0082d0c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1636&q=80
+imageSource:
+  - name: Chris Curry
+    link: https://unsplash.com/photos/j5s_uLajP2o
+  - name: Unsplash
+    link: https://unsplash.com
 ---
 
 Cocoapods [1.7.2](https://blog.cocoapods.org/CocoaPods-1.7.2/) 版本开始增加 CDN 支持但默认没有启用，[1.8](http://blog.cocoapods.org/CocoaPods-1.8.0-beta/) 版本的发布舍弃了原始完整克隆的 Specs 仓库改用 CDN 服务。CDN 利用的是免费且强大的 [Netlify](https://github.com/CocoaPods/Core/pull/541) CDN 服务，~~该 CDN 网络在国内是有备案因此速度和稳定性都会有很好的保证~~。类似提案去年有人用 Cocoapods Plugin 实现并向社区[贡献 PR](https://github.com/CocoaPods/CocoaPods/issues/8268)。
