@@ -73,12 +73,12 @@
   "articleBody": {{ .Content | safeJS | htmlUnescape | plainify }},
   "wordCount" : "{{ .WordCount }}",
   "inLanguage": {{ .Language.Lang | default "en-us" }},
-  {{ if .Params.cover.image -}}
+  {{ if .Params.image -}}
   "image":
-    {{- if (ne .Params.cover.relative true) -}}
-    {{ .Params.cover.image | absURL }},
+    {{- if (ne .Params.relative true) -}}
+    {{ .Params.image | absURL }},
     {{- else -}}
-    {{ (path.Join .RelPermalink .Params.cover.image ) | absURL }},
+    {{ (path.Join .RelPermalink .Params.image ) | absURL }},
     {{- end}}
   {{- end -}}
   "datePublished": {{ .PublishDate }},

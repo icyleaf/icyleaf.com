@@ -2,20 +2,20 @@
 <meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}" />
 <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}" />
 <meta property="og:url" content="{{ .Permalink }}" />
-{{- if .Params.cover.image -}}
-{{- if (ne .Params.cover.relative true) }}
-<meta property="og:image" content="{{ .Params.cover.image | absURL }}" />
+{{- if .Params.image -}}
+{{- if (ne .Params.relative true) }}
+<meta property="og:image" content="{{ .Params.image | absURL }}" />
 {{- else}}
-<meta property="og:image" content="{{ (path.Join .RelPermalink .Params.cover.image ) | absURL }}" />
+<meta property="og:image" content="{{ (path.Join .RelPermalink .Params.image ) | absURL }}" />
 {{- end}}
-{{- else }}
+{{ else }}
 
 {{- with $.Params.images -}}
 {{- range first 6 . }}<meta property="og:image" content="{{ . | absURL }}" />{{ end -}}
 {{- else -}}
 {{- $images := $.Resources.ByType "image" -}}
 {{- $featured := $images.GetMatch "*feature*" -}}
-{{- if not $featured }}{{ $featured = $images.GetMatch "{*cover*,*thumbnail*}" }}{{ end -}}
+{{- if not $featured }}{{ $featured = $images.GetMatch "{*cover*,*thumbnail*}" }}{{ end }}
 {{- with $featured -}}
 <meta property="og:image" content="{{ $featured.Permalink }}"/>
 {{- else -}}

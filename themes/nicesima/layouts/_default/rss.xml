@@ -40,11 +40,11 @@
       {{ with .Site.Author.email }}<author>{{.}}{{ with $.Site.Author.name }} ({{.}}){{end}}</author>{{end}}
       <guid>{{ .Permalink }}</guid>
       <description>
-        {{ with .Description | html }}
+        {{- with .Description | html -}}
         {{ . }}
-        {{ else }}
+        {{- else -}}
         {{ .Summary | html }}{{ if .Truncated }}...{{ end }}
-        {{ end -}}
+        {{- end -}}
       </description>
       {{- if .Site.Params.ShowFullTextinRSS }}
       <content:encoded>{{ (printf "<![CDATA[%s]]>" .Content) | safeHTML }}</content:encoded>

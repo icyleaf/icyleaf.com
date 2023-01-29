@@ -1,7 +1,7 @@
-{{- if .Params.cover.image -}}
+{{- if .Params.image -}}
 <meta name="twitter:card" content="summary_large_image" />
 {{- if (ne $.Params.cover.relative true) }}
-<meta name="twitter:image" content="{{ .Params.cover.image | absURL }}" />
+<meta name="twitter:image" content="{{ .Params.image | absURL }}" />
 {{- else }}
 <meta name="twitter:image" content="{{ (path.Join .RelPermalink .Params.cover.image ) | absURL }}" />
 {{- end}}
