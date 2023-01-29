@@ -1,6 +1,6 @@
 ---
 title: "如何搭建家用 homelab: 硬件和架构"
-description:
+description: 回顾自己家庭的设备架构和不容忽视的因素
 date: 2023-01-28T13:58:50+08:00
 slug: "how-to-homelab-part-1-hardware-and-architecture"
 aliases:
@@ -35,6 +35,7 @@ imageSource:
 ### 网络拓扑
 
 {{< figure src="/tutorials/how-to-homelab/part-1/homelab-diagram-v2.1.png"
+    link="/tutorials/how-to-homelab/part-1/homelab-diagram-v2.1.png"
     title="2022 年底 v2.1 网络拓扑图"
     caption="图片来源"
     attr="@icyleaf@twitter.com"
@@ -60,7 +61,7 @@ iperf3 -c 192.168.1.100
 ## 最低限度设备架构
 
 - 路由器
-- All In One 服务器
+- 资源服务器
 
 单独把路由器隔离出来主要是为了必备炸机后没有了网络，这样的搭配最起码你还能有台方便查问题的电脑，顺便 SSH 登录服务器不是。
 
@@ -68,26 +69,28 @@ iperf3 -c 192.168.1.100
 
 只要能够满足拨号、数据交换、DHCP 和 DNS 服务跑起来高峰不满载即可。如果家里有很多智能设备那还需要考虑 WIFI 的数量上限来决定是不是需要采购 AP。
 
-### All In One 服务器
+### 资源服务器
 
 好吧，不得不说这个概念最近炒的很火热，但我说的并不是一次性把性能拉满非要上个 Intel 11、12 代 CPU、动不动就 8 核 16 线程，还要省电。
 
 ## 不容忽视的因素
 
-采购资金肯定是优先需要考虑的点，在此基础上购买什么硬件也都能够很容易分析出来。我想从一些比较容易忽略的因素下手以确保 Homelab 能够发挥最大的效能。
+采购资金肯定是优先需要考虑的点，在此基础上购买什么硬件也都能够很容易分析出来。我想从一些比较容易忽略的因素下手以确保 homelab 能够发挥最大的效能。
 
 ### 网线规格
 
+__务必保证所有 homelab 的设备都用有线网络互联__，WIFI 会收到周围信道干扰、传输衰减等不稳定性问题，以下是网线的规格汇总：
+
 | 规格 | 命名 | 速率 | 接口 | 备注 |
 | --- | --- | --- | --- | --- |
-| CAT 5 | 五类线 | 100Mbps | RJ45 | 已被淘汰 |
+| CAT 5 | 五类线 | 100Mbps | RJ45 | 不推荐 |
 | CAT 5E | 超五类线 | 1000Mbps | RJ45 | 最低限度 |
 | CAT 6 | 六类线 | 1Gbps/10Gbps* | RJ45 | 50 米内可实现万兆网络 |
 | CAT 6A | 超六类线 | 10Gbps | RJ45 | 200 米内可达万兆网络;国际上是 6A，6E 是大陆自己定义 |
 | CAT 7 | 七类线 | 10Gbps | GG45/TERA | 带着遮蔽 |
 | - | 光纤 |  |  | 不懂，详见[维基百科](https://zh.wikipedia.org/zh-cn/%E5%85%89%E7%BA%96%E9%80%9A%E8%A8%8A) |
 
-从经济上看来 CAT 6/6A 是最佳选择，土豪 CAT 7 或光纤随意。
+从经济上看来 CAT 6/6A 是最佳选择，土豪们 CAT 7 或光纤随意。
 
 ### 噪音和散热
 

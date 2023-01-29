@@ -27,6 +27,7 @@ description: 搭建 homelab 之前都需要了解哪些背景
 这将会是一个持续系列的主题文章，你将会从最基础的家庭 homelab 搭建开始循序渐进到一些进阶的系统、网络、服务层面的学习。我尽可能以新人的角色描述简单易懂的语言，系列文章会涉及家庭网络、路由器、Linux、数据储存、NAS、服务化等等，如果你在过程中又遇到任何问题，欢迎给我留言。
 
 {{< figure src="/tutorials/how-to-homelab/part-0/homelab-diagram-v2.0.png"
+    link="/tutorials/how-to-homelab/part-0/homelab-diagram-v2.0.png"
     title="2021 年底 v2.0 镇楼用的网络拓扑图"
     caption="图片来源 "
     attr="@icyleaf@twitter.com"
@@ -119,6 +120,7 @@ description: 搭建 homelab 之前都需要了解哪些背景
 市面上也会有很多的运维工具用于解决安装系统、配置环境、后期维护、数据备份的工作，比如 Salt、Ansible、Puppet 等有一定的学习成本，没法做到开箱即用， 100% 发挥硬件机能也会是一个问题。
 
 {{< figure src="/tutorials/how-to-homelab/part-0/bare-metal.jpg"
+    link="/tutorials/how-to-homelab/part-0/bare-metal.jpg"
     title="Bare metal 方案"
     caption="图片来源"
     attr="The Cloud Girl"
