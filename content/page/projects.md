@@ -1,7 +1,7 @@
 ---
-title: "Projects"
+title: 开源项目
 date: 2022-08-12T14:06:44+08:00
-slug: "projects"
+slug: projects
 type: page
 image: false
 draft: false
@@ -13,16 +13,18 @@ isCJKLanguage: true
 
 ## 移动开发必备
 
-{{<github repo="tryzealot/zealot">}}
+{{<github repo="tryzealot/zealot" fullname="false">}}
 
-{{<github repo="icyleaf/app_status_notification">}}
+{{<github repo="icyleaf/app_status_notification" fullname="false">}}
+
+{{<github repo="icyleaf/fastlane-plugins" fullname="false">}}
 
 ## DevOps
 
-{{<github repo="icyleaf/hpr">}}
+{{<github repo="icyleaf/hpr" fullname="false">}}
 
-{{<github repo="icyleaf/better-cli-solution">}}
+{{<github repo="icyleaf/better-cli-solution" fullname="false">}}
 
 ## Ruby Gems
 
-{{<github repo="icyleaf/app_info">}}
+{{<github repo="icyleaf/app_info" fullname="false">}}

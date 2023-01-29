@@ -74,18 +74,22 @@ assetDir: static
 
 menu:
   main:
-    - name: About
-      weight: 50
-      identifier: about
-      url: /about
-    - name: Projects
+    - name: 如何搭建家用 homelab
       weight: 60
+      identifier: homelab
+      url: /series/homelab
+    - name: 开源项目
+      weight: 80
       identifier: projects
       url: /projects
-    - name: Feed
-      weight: 100
-      identifier: feed
-      url: /index.xml
+    - name: 关于
+      weight: 90
+      identifier: about
+      url: /about
+    # - name: 订阅
+    #   weight: 100
+    #   identifier: feed
+    #   url: /index.xml
 
 pygmentsUseClasses: true # 使用自定义的代码高亮样式
 markup:

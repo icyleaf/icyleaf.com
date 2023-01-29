@@ -1,5 +1,5 @@
 ---
-title: About
+title: 关于我
 image: /aboutme/cover.jpg
 type: page
 index: false

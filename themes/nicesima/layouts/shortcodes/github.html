@@ -1,9 +1,16 @@
 {{- $repo := .Get "repo" | default (.Get 0) -}}
+{{- $full_name := .Get "fullname" | default (.Get 1) | default "true" -}}
 {{- $json := getJSON (print "https://api.github.com/repos/" $repo) -}}
 
 <div class="shortcode-github">
   <h4 class="title">
-    <a href="{{ $json.html_url }}" target="_blank">{{ $json.full_name }}</a>
+    <a href="{{ $json.html_url }}" target="_blank">
+      {{ if eq $full_name "true" }}
+      {{ $json.full_name }}
+      {{ else }}
+      {{ $json.name }}
+      {{ end }}
+    </a>
   </h4>
 
   <p class="description">
