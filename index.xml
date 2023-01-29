@@ -737,8 +737,8 @@
 
 
   
-  <figure><img src="/tutorials/how-to-homelab/part-0/homelab-diagram-v2.0.png"
-      alt="图片来源"/><figcaption><p class="source">图片来源<a href="https://twitter.com/icyleaf/status/1472036769742745603">@icyleaf@twitter.com</a>
+  <figure><a href="/tutorials/how-to-homelab/part-0/homelab-diagram-v2.0.png" class="gallery-item" target="_blank" data-pswp-width="4644" data-pswp-height="3004"><img src="/tutorials/how-to-homelab/part-0/homelab-diagram-v2.0.png"
+      alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://twitter.com/icyleaf/status/1472036769742745603">@icyleaf@twitter.com</a>
     </p>
 
     <h4>2021 年底 v2.0 镇楼用的网络拓扑图</h4><div style="clear: both"></div>
@@ -838,8 +838,8 @@
 
 
   
-  <figure><img src="/tutorials/how-to-homelab/part-0/bare-metal.jpg"
-      alt="图片来源"/><figcaption><p class="source">图片来源<a href="https://thecloudgirl.dev/BareMetal.html">The Cloud Girl</a>
+  <figure><a href="/tutorials/how-to-homelab/part-0/bare-metal.jpg" class="gallery-item" target="_blank" data-pswp-width="1920" data-pswp-height="1080"><img src="/tutorials/how-to-homelab/part-0/bare-metal.jpg"
+      alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://thecloudgirl.dev/BareMetal.html">The Cloud Girl</a>
     </p>
 
     <h4>Bare metal 方案</h4><div style="clear: both"></div>
