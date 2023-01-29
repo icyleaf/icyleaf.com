@@ -146,7 +146,7 @@ OLED 是仅次于 MiniLED 的最好屏幕材质，在配合 2K 分辨率和日�
 
 ### ZUI 的问题
 
-小新 Pad 使用的是自研的 ZUI，截至目前 13 版本只能说堪用，系统提供自由浮窗，分屏功能，但应用支不支持又是另外一回事，偶尔用一下看到应用不分屏肯定会暗地不爽。系统级别的应用几乎不怎么使用，都由上面我说的代替了，输入法需要说下 [Gboard](https://play.google.com/store/apps/details?id=com.google.android.inputmethod.latin) 在 99% 的情况下都是非常好用的，剩下的 1% 是它不支持隐藏键盘的功能。
+小新 Pad 使用的是自研的 ZUI，截至目前 13 版本只能说堪用，系统提供自由浮窗，分屏功能，但应用支不支持又是另外一回事，偶尔用一下看到应用不分屏肯定会暗地不爽。系统级别的应用几乎不怎么使用，都由上面我说的代替了，输入法需要说下 [Gboard](https://play.google.com/store/apps/details?id=com.google.android.inputmethod.latin) 在 99% 的情况下都是非常好用的，~~剩下的 1% 是它不支持隐藏键盘的功能~~（触发返回动作隐藏）。
 
 {{< figure src="/uploads/2022/08/12/xiaoxin-pad-dual-screens.jpg"
     link="/uploads/2022/08/12/xiaoxin-pad-dual-screens.jpg"
