@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>iOS on icyleaf</title><link>https://icyleaf.com/tags/ios/</link><description>Recent content in iOS on icyleaf</description><language>zh</language><lastBuildDate>Thu, 10 Nov 2022 15:30:07 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/ios/index.xml" rel="self" type="application/rss+xml"/><item><title>Cocoapods CDN 加速新解</title><link>https://icyleaf.com/2022/11/cocoapods-cdn-speed-up-another-solution/</link><pubDate>Thu, 10 Nov 2022 15:30:07 +0800</pubDate><guid>https://icyleaf.com/2022/11/cocoapods-cdn-speed-up-another-solution/</guid><description>
-官方 CDN 不稳定，Git 源又太大，还要其他解决方案吗？</description><content:encoded><![CDATA[<p>距离 Cocoapods 支持 CDN 源已经 3 年，期间不断有开发者从 CDN 源切回了最初 Git 源的方案，Cocoapods 也没有更多的改进措施。</p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>iOS on icyleaf</title><link>https://icyleaf.com/tags/ios/</link><description>Recent content in iOS on icyleaf</description><language>zh</language><lastBuildDate>Thu, 10 Nov 2022 15:30:07 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/ios/index.xml" rel="self" type="application/rss+xml"/><item><title>Cocoapods CDN 加速新解</title><link>https://icyleaf.com/2022/11/cocoapods-cdn-speed-up-another-solution/</link><pubDate>Thu, 10 Nov 2022 15:30:07 +0800</pubDate><guid>https://icyleaf.com/2022/11/cocoapods-cdn-speed-up-another-solution/</guid><description>官方 CDN 不稳定，Git 源又太大，还要其他解决方案吗？</description><content:encoded><![CDATA[<p>距离 Cocoapods 支持 CDN 源已经 3 年，期间不断有开发者从 CDN 源切回了最初 Git 源的方案，Cocoapods 也没有更多的改进措施。</p>
 <p>当初写<a href="https://icyleaf.com/2019/11/cocoapods-cdn-source-code-reading/">CDN 加速镜像源码解读</a>还是用的 jsdelivr 没想到过了 2 个小版本改 Netlify 了。从国内几大 DNS 解析结果来看总会到 cloudflare 上面。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln"> 1</span><span class="cl">$ doggo cdn.cocoapods.org CNAME @202.106.0.20
 </span></span><span class="line"><span class="ln"> 2</span><span class="cl">NAME          	TYPE	CLASS	TTL 	ADDRESS                       	NAMESERVER
@@ -73,8 +72,7 @@
 <li>quantil.jsdelivr.net (目前不可用)</li>
 </ul>
 <p>利用这个原理可以套到任何支持 Github 仓库作为 CDN 加速的服务。</p>
-]]></content:encoded></item><item><title>Cocoapods 新增 CDN 加速镜像源码解读</title><link>https://icyleaf.com/2019/11/cocoapods-cdn-source-code-reading/</link><pubDate>Fri, 15 Nov 2019 19:10:07 +0800</pubDate><guid>https://icyleaf.com/2019/11/cocoapods-cdn-source-code-reading/</guid><description>
-通过代码剖析对比前后都发生了什么变化</description><content:encoded><![CDATA[<p>Cocoapods <a href="https://blog.cocoapods.org/CocoaPods-1.7.2/">1.7.2</a> 版本开始增加 CDN 支持但默认没有启用，<a href="http://blog.cocoapods.org/CocoaPods-1.8.0-beta/">1.8</a> 版本的发布舍弃了原始完整克隆的 Specs 仓库改用 CDN 服务。CDN 利用的是免费且强大的 <a href="https://github.com/CocoaPods/Core/pull/541">Netlify</a> CDN 服务，<del>该 CDN 网络在国内是有备案因此速度和稳定性都会有很好的保证</del>。类似提案去年有人用 Cocoapods Plugin 实现并向社区<a href="https://github.com/CocoaPods/CocoaPods/issues/8268">贡献 PR</a>。</p>
+]]></content:encoded></item><item><title>Cocoapods 新增 CDN 加速镜像源码解读</title><link>https://icyleaf.com/2019/11/cocoapods-cdn-source-code-reading/</link><pubDate>Fri, 15 Nov 2019 19:10:07 +0800</pubDate><guid>https://icyleaf.com/2019/11/cocoapods-cdn-source-code-reading/</guid><description>通过代码剖析对比前后都发生了什么变化</description><content:encoded><![CDATA[<p>Cocoapods <a href="https://blog.cocoapods.org/CocoaPods-1.7.2/">1.7.2</a> 版本开始增加 CDN 支持但默认没有启用，<a href="http://blog.cocoapods.org/CocoaPods-1.8.0-beta/">1.8</a> 版本的发布舍弃了原始完整克隆的 Specs 仓库改用 CDN 服务。CDN 利用的是免费且强大的 <a href="https://github.com/CocoaPods/Core/pull/541">Netlify</a> CDN 服务，<del>该 CDN 网络在国内是有备案因此速度和稳定性都会有很好的保证</del>。类似提案去年有人用 Cocoapods Plugin 实现并向社区<a href="https://github.com/CocoaPods/CocoaPods/issues/8268">贡献 PR</a>。</p>
 <p>那么 CDN 支持相比之前的机制有啥优势呢？难道是把 Pods 的仓库和源码都托管到 CDN 网络了吗，其实并不是的。</p>
 <blockquote>
 <p>友情提醒：本文只重点分析 Pods 下载的机制，不展开其他方面，以下只是 <code>pod install</code> 执行顺序中的一部分，如果你想了解 Cocoapods 都干了什么可以前往<a href="https://www.jianshu.com/p/84936d9344ff">这篇文章</a>查阅。</p>
@@ -140,8 +138,7 @@
 <h3 id="结语">结语</h3>
 <p>这个机制大大减少了本地需要占一个较大存储的问题，尤其是初次 <code>pod install</code> 时间长的情况，但 Pod 库本身还是各自的
 地址本质上无法解决安装 Pod 消耗时间过长的问题。</p>
-]]></content:encoded></item><item><title>你虐我千百遍，我待你如初恋，直到我遇到 match</title><link>https://icyleaf.com/2017/03/fastlane-match-in-action/</link><pubDate>Tue, 28 Mar 2017 20:12:07 +0800</pubDate><guid>https://icyleaf.com/2017/03/fastlane-match-in-action/</guid><description>
-系列文章的第三篇，教你如何使用 match 管理名词都分不清的苹果各自开发者证书</description><content:encoded><![CDATA[<h2 id="前言">前言</h2>
+]]></content:encoded></item><item><title>你虐我千百遍，我待你如初恋，直到我遇到 match</title><link>https://icyleaf.com/2017/03/fastlane-match-in-action/</link><pubDate>Tue, 28 Mar 2017 20:12:07 +0800</pubDate><guid>https://icyleaf.com/2017/03/fastlane-match-in-action/</guid><description>系列文章的第三篇，教你如何使用 match 管理名词都分不清的苹果各自开发者证书</description><content:encoded><![CDATA[<h2 id="前言">前言</h2>
 <p>通过前两篇的文章大家已经对 fastlane 的概念和基本使用已经有了初步的掌握，在第二篇中也有提到 fastlane 实现的各种功能其实都是基于独立封装设计的各个工具实现。它们即可以单独成为一个体系同时也会被吸纳到 fastlane 的 action 系统之中。<code>match</code> 是在 iOS 开发和持续测试和构建中最重中之重的环节，它维护和管理着 iOS 的各种证书和 profile 的创建、更新工作。想必很多用户听到 iOS 证书和 profile 都会头大脑涨，恨不得要手撕鬼子的技能点来对付他们（如图）</p>
 <p><img loading="lazy" src="https://codesigning.guide/assets/img/cs-the-problem.png"
   
@@ -234,8 +231,7 @@
 <li><a href="http://macoscope.com/blog/simplify-your-life-with-fastlane-match/">http://macoscope.com/blog/simplify-your-life-with-fastlane-match/</a></li>
 <li><a href="https://github.com/fastlane/fastlane/issues/2007">https://github.com/fastlane/fastlane/issues/2007</a></li>
 </ul>
-]]></content:encoded></item><item><title>深入浅出 Fastlane 一看你就懂</title><link>https://icyleaf.com/2016/07/fastlane-in-action/</link><pubDate>Tue, 19 Jul 2016 20:12:07 +0800</pubDate><guid>https://icyleaf.com/2016/07/fastlane-in-action/</guid><description>
-系列文章的第二篇，带你了解 fastlane 使用流程</description><content:encoded><![CDATA[<p>本篇我想着重介绍 <code>fastlane</code> 本身的基本使用，这里使用 fastlane v1.98.0 作为演示版本。</p>
+]]></content:encoded></item><item><title>深入浅出 Fastlane 一看你就懂</title><link>https://icyleaf.com/2016/07/fastlane-in-action/</link><pubDate>Tue, 19 Jul 2016 20:12:07 +0800</pubDate><guid>https://icyleaf.com/2016/07/fastlane-in-action/</guid><description>系列文章的第二篇，带你了解 fastlane 使用流程</description><content:encoded><![CDATA[<p>本篇我想着重介绍 <code>fastlane</code> 本身的基本使用，这里使用 fastlane v1.98.0 作为演示版本。</p>
 <h2 id="命令行工具">命令行工具</h2>
 <p>安装之后默认会安装一个命令行工具 <code>fastlane</code>，利用它可以初始化、执行任务、查看任务定义、查看可用的动作和动作的详细定义，甚至可以用它来创建自定义的动作、插件以及一些辅助功能。想了解的话可以先看看它的帮助：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln"> 1</span><span class="cl">$ fastlane --help
@@ -672,8 +668,7 @@
 </tr>
 </tbody>
 </table>
-]]></content:encoded></item><item><title>Fastlane - iOS 和 Android 的自动化构建工具</title><link>https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/</link><pubDate>Mon, 11 Jul 2016 12:36:07 +0800</pubDate><guid>https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/</guid><description>
-使用 fastlane 提升构建移动应用的效率</description><content:encoded><![CDATA[<h2 id="前言">前言</h2>
+]]></content:encoded></item><item><title>Fastlane - iOS 和 Android 的自动化构建工具</title><link>https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/</link><pubDate>Mon, 11 Jul 2016 12:36:07 +0800</pubDate><guid>https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/</guid><description>使用 fastlane 提升构建移动应用的效率</description><content:encoded><![CDATA[<h2 id="前言">前言</h2>
 <p>这篇文章整理了很久，发现在一篇文章里无法一一讲述和全面的覆盖，初步打算是把这个做成一个系列，想到哪里就写到哪里，如果恰好有读者爱戴并有一些建议反馈，我也会根据大家的需要调整内容的方向和深度。论美剧的编剧的重要性(笑)。</p>
 <h2 id="初次邂逅">初次邂逅</h2>
 <p>初时 fastlane 的时候是去年的 11 月份，看到大就感觉遇到了神器一般的惊喜。它一个针对于 iOS 和 Android（后来才支持的）全方位自动化流程的工具，请看下图</p>
@@ -892,8 +887,7 @@
 <p>这个的支持我觉得关键是社区的呼声太大，加上贡献者的热情（我提交过许多 issues 和个别 PL，响应非常的迅速）很快就加上了其支持，
 但具体的特性不是特别多，主要是对于 <code>gradle</code> 的封装，我先不做展开介绍，大家可以先看看<a href="https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Android.md">官方文档</a>，如果后续有特别不明白的地方我在做具体的讲解。</p>
 <p>今天就先写到这里后续我会继续整理更多的使用指南和实战范例共大家参考，最后给大家附赠官方给大家的一些<a href="https://github.com/fastlane/examples">范例</a>。</p>
-]]></content:encoded></item><item><title>极速化 CocoaPods</title><link>https://icyleaf.com/2015/01/speed-up-cocoapods/</link><pubDate>Tue, 20 Jan 2015 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2015/01/speed-up-cocoapods/</guid><description>
-iOS 组件仓库超时，网络环境不畅通该如何解，我来指点一二</description><content:encoded><![CDATA[<p><a href="http://cocoapods.org/">Cocopods</a> 本身是一个优秀的 iOS 开发的包管理工具，涵盖了 7k+ 的开源组件，包管理库是托管在 Github。
+]]></content:encoded></item><item><title>极速化 CocoaPods</title><link>https://icyleaf.com/2015/01/speed-up-cocoapods/</link><pubDate>Tue, 20 Jan 2015 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2015/01/speed-up-cocoapods/</guid><description>iOS 组件仓库超时，网络环境不畅通该如何解，我来指点一二</description><content:encoded><![CDATA[<p><a href="http://cocoapods.org/">Cocopods</a> 本身是一个优秀的 iOS 开发的包管理工具，涵盖了 7k+ 的开源组件，包管理库是托管在 Github。
 众所周知的原因它的速度日渐缓慢，有时会频繁报如下错误：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ pod install
 </span></span><span class="line"><span class="ln">2</span><span class="cl">
@@ -1064,8 +1058,7 @@ iOS 组件仓库超时，网络环境不畅通该如何解，我来指点一二<
 </span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="k">end</span>
 </span></span></code></pre></div><h5 id="f-我还有问题">F: 我还有问题！</h5>
 <p>A: 麻烦请留言，谢谢！</p>
-]]></content:encoded></item><item><title>针对 Universal 应用上线 App Store 的提示</title><link>https://icyleaf.com/2013/02/app-store-review-tips-about-universal-app/</link><pubDate>Tue, 19 Feb 2013 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2013/02/app-store-review-tips-about-universal-app/</guid><description>
-上线 Universal 被拒后的想法和思考</description><content:encoded><![CDATA[<h2 id="官方禁止新版本支持的设备小余旧版本">官方禁止新版本支持的设备小余旧版本</h2>
+]]></content:encoded></item><item><title>针对 Universal 应用上线 App Store 的提示</title><link>https://icyleaf.com/2013/02/app-store-review-tips-about-universal-app/</link><pubDate>Tue, 19 Feb 2013 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2013/02/app-store-review-tips-about-universal-app/</guid><description>上线 Universal 被拒后的想法和思考</description><content:encoded><![CDATA[<h2 id="官方禁止新版本支持的设备小余旧版本">官方禁止新版本支持的设备小余旧版本</h2>
 <p><a href="https://itunes.apple.com/cn/app/le-ju-ji-suan-qi-zui-gei-li/id397735649?mt=8">乐居计算器</a>是我们的第一款 Universal 应用，这次做了重要变化，但仅限于 iPhone 的修改，本想改本次上线仅支持 iPhone 来赶 deadline，临到上线的时候却被 Xcode 报错：</p>
 <blockquote>
 <p>&ldquo;This bundle does not support one or more of the devices that were supported in the previous bundle for this app. Bundles must continue to support any devices previously supported.&rdquo;</p>
@@ -1090,8 +1083,7 @@ iOS 组件仓库超时，网络环境不畅通该如何解，我来指点一二<
 <li><a href="http://www.cocoanetics.com/2011/05/to-universal-or-not/">To Universal or Not</a></li>
 <li><a href="http://blog.iteleportmobile.com/the-case-for-universal-apps">The Case for Universal Apps</a></li>
 </ul>
-]]></content:encoded></item><item><title>在 iOS 应用调用 App Store 显示指定应用的详情</title><link>https://icyleaf.com/2012/10/how-to-preview-app-detail-buit-in-app-using-app-store-data/</link><pubDate>Thu, 25 Oct 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/10/how-to-preview-app-detail-buit-in-app-using-app-store-data/</guid><description>
-可能很多手机应用都使用了“应用推荐”的功能，实现方式各式各样，对于 iOS 来说最致命的缺点就是，如果用户喜欢给推荐的应用，当用户点击该应用的时候，...</description><content:encoded><![CDATA[<p>可能很多手机应用都使用了“应用推荐”的功能，实现方式各式各样，对于 iOS 来说最致命的缺点就是，如果用户喜欢给推荐的应用，当用户点击该应用的时候，系统会硬生生的从当前应用内退出并打开 App Store 查看应用的详情。如果站在用户体验的角度来看，这其实是一个非常差劲的体验。那么能不能有一种方式可以在应用内部打开呢？</p>
+]]></content:encoded></item><item><title>在 iOS 应用调用 App Store 显示指定应用的详情</title><link>https://icyleaf.com/2012/10/how-to-preview-app-detail-buit-in-app-using-app-store-data/</link><pubDate>Thu, 25 Oct 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/10/how-to-preview-app-detail-buit-in-app-using-app-store-data/</guid><description>可能很多手机应用都使用了“应用推荐”的功能，实现方式各式各样，对于 iOS 来说最致命的缺点就是，如果用户喜欢给推荐的应用，当用户点击该应用的时候，...</description><content:encoded><![CDATA[<p>可能很多手机应用都使用了“应用推荐”的功能，实现方式各式各样，对于 iOS 来说最致命的缺点就是，如果用户喜欢给推荐的应用，当用户点击该应用的时候，系统会硬生生的从当前应用内退出并打开 App Store 查看应用的详情。如果站在用户体验的角度来看，这其实是一个非常差劲的体验。那么能不能有一种方式可以在应用内部打开呢？</p>
 <p>答案是肯定可以！！ iOS 6 其实包括了很多很好的特性，比如 Soical framework，丰富了分享面板，包括我最近刚刚更新的 ShareKit 也对新浪微博支持了这个特性(<a href="https://github.com/icyleaf/ShareKit/issues/4">ShareKit#4</a>)。还有针对于 O2O 具有杀手锏作用的 Pass Kit framework 等等等等&hellip;&hellip;</p>
 <blockquote>
 <p>喂喂喂，你说了半天没有讲到正题啊？！！</p>
@@ -1114,8 +1106,7 @@ NSDictionary *params = [NSDictionary dictionaryWithObject:@&#34;397735649&#34; /
                                                  animated:YES
                                                completion:nil];
                       }];
-</code></pre>]]></content:encoded></item><item><title>如何针对 iOS 设备进行网络抓包分析</title><link>https://icyleaf.com/2012/10/%E5%A6%82%E4%BD%95%E9%92%88%E5%AF%B9-ios-%E8%AE%BE%E5%A4%87%E8%BF%9B%E8%A1%8C%E7%BD%91%E7%BB%9C%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90/</link><pubDate>Mon, 15 Oct 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/10/%E5%A6%82%E4%BD%95%E9%92%88%E5%AF%B9-ios-%E8%AE%BE%E5%A4%87%E8%BF%9B%E8%A1%8C%E7%BD%91%E7%BB%9C%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90/</guid><description>
-Charles 目前是 OS X 上面最好的抓包分析软件，相比 WireShark 功能更加强大，并支持代理功能。 iPad HTTP Debugging with Charles - 教大家如何使用它进行代理抓包 Testing / Tethering Data Driven Mobile Apps with Charles and OSX - 教大...</description><content:encoded><![CDATA[<p>Charles 目前是 OS X 上面最好的抓包分析软件，相比 WireShark 功能更加强大，并支持代理功能。</p>
+</code></pre>]]></content:encoded></item><item><title>如何针对 iOS 设备进行网络抓包分析</title><link>https://icyleaf.com/2012/10/%E5%A6%82%E4%BD%95%E9%92%88%E5%AF%B9-ios-%E8%AE%BE%E5%A4%87%E8%BF%9B%E8%A1%8C%E7%BD%91%E7%BB%9C%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90/</link><pubDate>Mon, 15 Oct 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/10/%E5%A6%82%E4%BD%95%E9%92%88%E5%AF%B9-ios-%E8%AE%BE%E5%A4%87%E8%BF%9B%E8%A1%8C%E7%BD%91%E7%BB%9C%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90/</guid><description>Charles 目前是 OS X 上面最好的抓包分析软件，相比 WireShark 功能更加强大，并支持代理功能。 iPad HTTP Debugging with Charles - 教大家如何使用它进行代理抓包 Testing / Tethering Data Driven Mobile Apps with Charles and OSX - 教大...</description><content:encoded><![CDATA[<p>Charles 目前是 OS X 上面最好的抓包分析软件，相比 WireShark 功能更加强大，并支持代理功能。</p>
 <ol>
 <li><a href="http://www.ravelrumba.com/blog/ipad-http-debugging/">iPad HTTP Debugging with Charles</a> - 教大家如何使用它进行代理抓包</li>
 <li><a href="http://www.skinkers.com/2012/06/12/testing-tethering-data-driven-mobile-apps-with-charles-and-osx-ipad-iphone-http-debugging/">Testing / Tethering Data Driven Mobile Apps with Charles and OSX</a> - 教大家如何进行 request remap，适合不改动代码的情况下修改域名切换环境</li>
@@ -1124,8 +1115,7 @@ Charles 目前是 OS X 上面最好的抓包分析软件，相比 WireShark 功�
 <pre tabindex="0"><code>$ rvictl -s &lt;UDID&gt;
 $ rvictl -l
 $ tcpdump -n -t -i rvi0 -q tcp
-</code></pre>]]></content:encoded></item><item><title>友盟 iOS 发布渠道自动化脚本</title><link>https://icyleaf.com/2012/05/ios-publish-channel-packger-for-umeng/</link><pubDate>Thu, 10 May 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/05/ios-publish-channel-packger-for-umeng/</guid><description>
-现在公司的大多数手机项目的统计服务都是用的友盟，而自使用之初到现在都有一个渠道管理的功能，这个最后打包的时候实际上可能会产生一点点的麻烦，最...</description><content:encoded><![CDATA[<p>现在公司的大多数手机项目的统计服务都是用的<a href="http:///www.umeng.com">友盟</a>，而自使用之初到现在都有一个渠道管理的功能，这个最后打包的时候实际上可能会产生一点点的麻烦，最早第一个 app 发布的时候，写了一个半自动的脚本，凑合用了很久，现在觉得需要完全自动化，于是借鉴之前 <a href="http://icyleaf.com/2012/04/automating-script-to-testFlight-from-xcode/">testflightapp 的自动化脚本</a>，重新改造脚本。</p>
+</code></pre>]]></content:encoded></item><item><title>友盟 iOS 发布渠道自动化脚本</title><link>https://icyleaf.com/2012/05/ios-publish-channel-packger-for-umeng/</link><pubDate>Thu, 10 May 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/05/ios-publish-channel-packger-for-umeng/</guid><description>现在公司的大多数手机项目的统计服务都是用的友盟，而自使用之初到现在都有一个渠道管理的功能，这个最后打包的时候实际上可能会产生一点点的麻烦，最...</description><content:encoded><![CDATA[<p>现在公司的大多数手机项目的统计服务都是用的<a href="http:///www.umeng.com">友盟</a>，而自使用之初到现在都有一个渠道管理的功能，这个最后打包的时候实际上可能会产生一点点的麻烦，最早第一个 app 发布的时候，写了一个半自动的脚本，凑合用了很久，现在觉得需要完全自动化，于是借鉴之前 <a href="http://icyleaf.com/2012/04/automating-script-to-testFlight-from-xcode/">testflightapp 的自动化脚本</a>，重新改造脚本。</p>
 <p>实现分两部分：</p>
 <ul>
 <li>iOS 代码</li>
@@ -1140,8 +1130,7 @@ $ tcpdump -n -t -i rvi0 -q tcp
 </ol>
 <p>这样看起来其实工作也不复杂，只不过分发渠道多了就是有些浪费时间。同样还是采用了 Archive 的 Post-Action，这里面可以插入脚本以及外部的调用脚本（如果看不到下面的具体代码，请<a href="https://gist.github.com/2650508">点击这里</a>：</p>
 <!-- raw HTML omitted -->
-]]></content:encoded></item><item><title>自动化脚本上传应用至 testflightapp</title><link>https://icyleaf.com/2012/04/automating-script-to-testflight-from-xcode/</link><pubDate>Fri, 06 Apr 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/04/automating-script-to-testflight-from-xcode/</guid><description>
-Testflightapp 是团队开发测试中起了重要的角色，尤其是到目前为止一直是免费，最近还推出的 Live 功能不仅可以统计本身的一些数据还可以把现有的一些其他的账户的数据...</description><content:encoded><![CDATA[<p>Testflightapp 是团队开发测试中起了重要的角色，尤其是到目前为止一直是免费，最近还推出的 Live 功能不仅可以统计本身的一些数据还可以把现有的一些其他的账户的数据（比如， itunesconnect，Apple iAd，admob 等）导入进一步扩大聚合。</p>
+]]></content:encoded></item><item><title>自动化脚本上传应用至 testflightapp</title><link>https://icyleaf.com/2012/04/automating-script-to-testflight-from-xcode/</link><pubDate>Fri, 06 Apr 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/04/automating-script-to-testflight-from-xcode/</guid><description>Testflightapp 是团队开发测试中起了重要的角色，尤其是到目前为止一直是免费，最近还推出的 Live 功能不仅可以统计本身的一些数据还可以把现有的一些其他的账户的数据...</description><content:encoded><![CDATA[<p>Testflightapp 是团队开发测试中起了重要的角色，尤其是到目前为止一直是免费，最近还推出的 Live 功能不仅可以统计本身的一些数据还可以把现有的一些其他的账户的数据（比如， itunesconnect，Apple iAd，admob 等）导入进一步扩大聚合。</p>
 <p>尤其是它真的重视开发着的核心需求，仅推出了唯一的一个公开 API，就是上传打包后的 ipa 文件，配合 Xcode 中 Archive 的 Post-action 可以轻松搞定自动化的操作。</p>
 <p>下面是网上搜集的脚本，算是我发现定制化比较强的<a href="https://gist.github.com/1379127">自动化脚本</a>，而且注解也写的很详细。可以在配合我的打包脚本，可以把各个发布渠道的事情一起自动化。</p>
 <blockquote>
@@ -1152,8 +1141,7 @@ Testflightapp 是团队开发测试中起了重要的角色，尤其是到目前
 目录下面，如果发现出现问题请仔细查看 log。</p>
 <p>BTW，Post-actions 添加的脚本对于忽略了 XCode 干扰文件的版本控制来说，它没有归入到版本控制之中，脚本是被转义后放在了一个 xcscheme 的 xml 文件中：</p>
 <pre tabindex="0"><code>(project).xcodeproj/xcuserdata/(username).xcuserdatad/xcschemes/(name).xcscheme
-</code></pre>]]></content:encoded></item><item><title>pngcrush 的一些用法</title><link>https://icyleaf.com/2012/03/pngcrush-usage-with-ios-apps/</link><pubDate>Fri, 09 Mar 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/03/pngcrush-usage-with-ios-apps/</guid><description>
-pngcrush 顾名思义，看起名字本身就优化 png 的工具，为什么会提到它呢，因为目前所有 iOS app 自身的 png 文件都是经过它优化的，对于优化有的 png，系统本身默认是无...</description><content:encoded><![CDATA[<p>pngcrush 顾名思义，看起名字本身就优化 png 的工具，为什么会提到它呢，因为目前所有 iOS app 自身的 png 文件都是经过它优化的，对于优化有的 png，系统本身默认是无法识别的（包括看图工具，作图工具）。但这个工具不仅仅可以优化还可以还原。假如你希望可以学习优秀 iOS App 的一些 png 资源设计，通过这个工具延伸的一些辅助工具，可以快速预览和恢复未优化的图片。</p>
+</code></pre>]]></content:encoded></item><item><title>pngcrush 的一些用法</title><link>https://icyleaf.com/2012/03/pngcrush-usage-with-ios-apps/</link><pubDate>Fri, 09 Mar 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/03/pngcrush-usage-with-ios-apps/</guid><description>pngcrush 顾名思义，看起名字本身就优化 png 的工具，为什么会提到它呢，因为目前所有 iOS app 自身的 png 文件都是经过它优化的，对于优化有的 png，系统本身默认是无...</description><content:encoded><![CDATA[<p>pngcrush 顾名思义，看起名字本身就优化 png 的工具，为什么会提到它呢，因为目前所有 iOS app 自身的 png 文件都是经过它优化的，对于优化有的 png，系统本身默认是无法识别的（包括看图工具，作图工具）。但这个工具不仅仅可以优化还可以还原。假如你希望可以学习优秀 iOS App 的一些 png 资源设计，通过这个工具延伸的一些辅助工具，可以快速预览和恢复未优化的图片。</p>
 <h1 id="pngcrush">pngcrush</h1>
 <p>本身就是一个开源的工具，托管在 <a href="http://pmt.sourceforge.net/pngcrush/index.html">SourceForge</a>，可以在任何平台运行，对于安装 Xcode 的童鞋，此工具默认放在：</p>
 <pre tabindex="0"><code># XCode 4.3+
@@ -1173,8 +1161,7 @@ pngcrush -dir reverted -revert-iphone-optimizations -q ipa/*.png
 <h1 id="atpeek">atPeek</h1>
 <p>我就知道你不会满足上面半自动的工具，我想 <a href="http://www.atpurpose.com/atPeek/">atPeek</a>(奇怪为什么会被墙掉) 也是你在本博文中最满意的工具。正式介绍下，这个工具自打开的一瞬间，就会加载 <code>Music/iTunes/Mobile Applications</code> 目录下面的所有 ipa 文件。点击你需要查看的 ipa 文件，不仅可以查看该 ipa 的基本 App，最让大家爽的是，ipa 的所有资源文件以文件资源管理器的方式呈现出来。嗯，没错！我可以看到你们双眼发光了！</p>
 <p>但是，这是一个付费应用，你可以进行的操作就是浏览 ipa 和应用自带的预览功能，任何的放大以及导出 png 资源，都是需要付费的，价格为 $4.99。</p>
-]]></content:encoded></item><item><title>如何让 iOS 和 Android 支持自定义字体</title><link>https://icyleaf.com/2011/07/custom-fonts-both-in-ios-and-android/</link><pubDate>Wed, 06 Jul 2011 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2011/07/custom-fonts-both-in-ios-and-android/</guid><description>
-本篇教程的目前源于我们团队设计师一直询问，iOS(iPhone/iPad) 和 Android 两个平台是否支持自定义字体的问题，恰巧前不久唐茶计划出了一个关...</description><content:encoded><![CDATA[<p>本篇教程的目前源于我们团队设计师一直询问，iOS(iPhone/iPad) 和 Android
+]]></content:encoded></item><item><title>如何让 iOS 和 Android 支持自定义字体</title><link>https://icyleaf.com/2011/07/custom-fonts-both-in-ios-and-android/</link><pubDate>Wed, 06 Jul 2011 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2011/07/custom-fonts-both-in-ios-and-android/</guid><description>本篇教程的目前源于我们团队设计师一直询问，iOS(iPhone/iPad) 和 Android 两个平台是否支持自定义字体的问题，恰巧前不久唐茶计划出了一个关...</description><content:encoded><![CDATA[<p>本篇教程的目前源于我们团队设计师一直询问，iOS(iPhone/iPad) 和 Android
 两个平台是否支持自定义字体的问题，恰巧前不久<a href="http://www.v2ex.com/t/15220">唐茶计划</a>出了一个关于在中文阅读新体验的电子书应用：<a href="http://itunes.apple.com/cn/app/id446752200?mt=8">失控</a>。里面提到中文的显示采用了香港字体设计室的全新中文黑体字：<a href="http://www.typeisbeautiful.com/2011/07/4276">信黑体</a>。于是我就在想看来
 iOS 是可以支持自定义字体的。通过搜索和研究整理如下，供自己备份和大家参考</p>
 <h1 id="ios">iOS</h1>
@@ -1272,8 +1259,7 @@ void setFont(TextView name, String path, int res)
 }
 </code></pre><p>扩展阅读 [<a href="http://mobile.tutsplus.com/tutorials/android/customize-android-fonts/">1</a>] [<a href="http://russenreaktor.wordpress.com/2010/04/29/solved-android-using-custom-fonts/">2</a>]</p>
 <p>话说，为什么 Android 到现在都没有更多的开源的库和框架呢？</p>
-]]></content:encoded></item><item><title>为 ShareKit 增加国内相关微博/SNS 服务</title><link>https://icyleaf.com/2011/05/append-related-services-into-sharekit-from-china/</link><pubDate>Mon, 02 May 2011 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2011/05/append-related-services-into-sharekit-from-china/</guid><description>
-在 iDev 圈内，众所周知 ShareKit是一个家喻户晓的分享框架，很多人都在问哪有支持国内相关微博/SNS服务（比如，新浪微博，腾讯微博，豆瓣，开...</description><content:encoded><![CDATA[<p>在 iDev 圈内，众所周知 ShareKit是一个家喻户晓的分享框架，很多人都在问哪有支持国内相关微博/SNS服务（比如，新浪微博，腾讯微博，豆瓣，开心网，校内等）的类似框架或者谁去做贡献，造福那些拿来主义的人类。正好碰巧我刚刚接触 iOS 开发不久，为了验证文章开头的那段话，恰巧我开发的应用也需要设计这块的内容，我就只好啃下了这块“硬面包”，实际上在熟悉整个 ShareKit 的代码后，外加上对于 OAuth 协议又非常的了解，做一个扩展还是很轻松的，虽然我对 Objective-C 代码并不是很熟悉，这一切得益于 ShareKit。</p>
+]]></content:encoded></item><item><title>为 ShareKit 增加国内相关微博/SNS 服务</title><link>https://icyleaf.com/2011/05/append-related-services-into-sharekit-from-china/</link><pubDate>Mon, 02 May 2011 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2011/05/append-related-services-into-sharekit-from-china/</guid><description>在 iDev 圈内，众所周知 ShareKit是一个家喻户晓的分享框架，很多人都在问哪有支持国内相关微博/SNS服务（比如，新浪微博，腾讯微博，豆瓣，开...</description><content:encoded><![CDATA[<p>在 iDev 圈内，众所周知 ShareKit是一个家喻户晓的分享框架，很多人都在问哪有支持国内相关微博/SNS服务（比如，新浪微博，腾讯微博，豆瓣，开心网，校内等）的类似框架或者谁去做贡献，造福那些拿来主义的人类。正好碰巧我刚刚接触 iOS 开发不久，为了验证文章开头的那段话，恰巧我开发的应用也需要设计这块的内容，我就只好啃下了这块“硬面包”，实际上在熟悉整个 ShareKit 的代码后，外加上对于 OAuth 协议又非常的了解，做一个扩展还是很轻松的，虽然我对 Objective-C 代码并不是很熟悉，这一切得益于 ShareKit。</p>
 <p>ShareKit 在整体上，代码写的比较完美，对于新增的服务可以轻松实现，而且另外最最大的一个好处在于国内的这些服务实际上都是 Copy to China，这有大大减少了移植的开发量，比较恶心的事，国内为了证明我们的结构和功能不同于原版，对其有做了细微的调整，这就导致使用标准化的协议不能通过，这对于只是想用的人来说就是一种灾难。</p>
 <blockquote>
 <p>天下事有难易乎？为之，则难者亦易矣；不为，则易者亦难矣。人之为学有难易乎？学之，则难者亦易矣；不学，则易者亦难矣。</p>

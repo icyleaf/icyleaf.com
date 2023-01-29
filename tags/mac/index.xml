@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Mac on icyleaf</title><link>https://icyleaf.com/tags/mac/</link><description>Recent content in Mac on icyleaf</description><language>zh</language><lastBuildDate>Fri, 05 Aug 2016 17:21:08 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/mac/index.xml" rel="self" type="application/rss+xml"/><item><title>如何在 OS X 上安装 Rancher</title><link>https://icyleaf.com/2016/08/how-to-install-rancher-on-osx/</link><pubDate>Fri, 05 Aug 2016 17:21:08 +0800</pubDate><guid>https://icyleaf.com/2016/08/how-to-install-rancher-on-osx/</guid><description>
-Rancher 0.x 版本部署指南</description><content:encoded><![CDATA[
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Mac on icyleaf</title><link>https://icyleaf.com/tags/mac/</link><description>Recent content in Mac on icyleaf</description><language>zh</language><lastBuildDate>Fri, 05 Aug 2016 17:21:08 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/mac/index.xml" rel="self" type="application/rss+xml"/><item><title>如何在 OS X 上安装 Rancher</title><link>https://icyleaf.com/2016/08/how-to-install-rancher-on-osx/</link><pubDate>Fri, 05 Aug 2016 17:21:08 +0800</pubDate><guid>https://icyleaf.com/2016/08/how-to-install-rancher-on-osx/</guid><description>Rancher 0.x 版本部署指南</description><content:encoded><![CDATA[
 
 
 
@@ -63,8 +62,7 @@ Rancher 0.x 版本部署指南</description><content:encoded><![CDATA[
 </p>
 <h2 id="结尾">结尾</h2>
 <p>本篇只先解决这一个问题，更多使用的资料请看<a href="http://rancher.hidocker.io/">Rancher 实战红宝书</a>。</p>
-]]></content:encoded></item><item><title>Homebrew 隐藏命令</title><link>https://icyleaf.com/2014/01/homebrew-hidden-commands/</link><pubDate>Sat, 25 Jan 2014 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2014/01/homebrew-hidden-commands/</guid><description>
-适用于 macOS 服务下的小秘密</description><content:encoded><![CDATA[<p><a href="http://brew.sh">Homebrew</a> 可谓是 Mac 开发者必备的工具之一，它承载在各种包管理的特性以及拥有一票热情高涨的社区提供强大支持。今天我就给大家解密一下 brew 内部的隐藏命令都有哪些。</p>
+]]></content:encoded></item><item><title>Homebrew 隐藏命令</title><link>https://icyleaf.com/2014/01/homebrew-hidden-commands/</link><pubDate>Sat, 25 Jan 2014 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2014/01/homebrew-hidden-commands/</guid><description>适用于 macOS 服务下的小秘密</description><content:encoded><![CDATA[<p><a href="http://brew.sh">Homebrew</a> 可谓是 Mac 开发者必备的工具之一，它承载在各种包管理的特性以及拥有一票热情高涨的社区提供强大支持。今天我就给大家解密一下 brew 内部的隐藏命令都有哪些。</p>
 <h2 id="服务管理">服务管理</h2>
 <p>当我们安装了众多需要挂载的服务，需要重启或停止的时候，都特别希望 Mac 可以有个统一的命令可以管理服务的状态，比如 <code>services</code> 命令甚至说 <code>/etc/init.d/</code> 也可以啊！</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln"> 1</span><span class="cl">$ brew services <span class="nb">command</span> <span class="o">[</span>formula<span class="o">]</span>
@@ -120,8 +118,7 @@ Rancher 0.x 版本部署指南</description><content:encoded><![CDATA[
 <p>一次性没太多精力完解读所有隐藏命令，这个艰巨的任务就交给大家了：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ brew commands
 </span></span></code></pre></div><p>其实这些命令可以在<a href="https://github.com/Homebrew/homebrew/tree/master/Library/Contributions/cmd">官方源代码</a>看到。</p>
-]]></content:encoded></item><item><title>个人 Mac OS 常用应用清单【2013年版】</title><link>https://icyleaf.com/2013/07/my-mac-os-apps-list-2013/</link><pubDate>Mon, 22 Jul 2013 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2013/07/my-mac-os-apps-list-2013/</guid><description>
-日常使用、开发、娱乐全方面整理</description><content:encoded><![CDATA[<blockquote>
+]]></content:encoded></item><item><title>个人 Mac OS 常用应用清单【2013年版】</title><link>https://icyleaf.com/2013/07/my-mac-os-apps-list-2013/</link><pubDate>Mon, 22 Jul 2013 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2013/07/my-mac-os-apps-list-2013/</guid><description>日常使用、开发、娱乐全方面整理</description><content:encoded><![CDATA[<blockquote>
 <p>特别提醒：没有标注【收费】的应用均为免费应用。【增强付费】代表可以免费使用，但是需要付费开启扩展功能。</p>
 </blockquote>
 <p>最近有些朋友从 Windows 转到了 Mac 上面，发现之前写的清单有些老久了，重新更新一番，然后简单分个类整理：</p>
@@ -213,8 +210,7 @@ Rancher 0.x 版本部署指南</description><content:encoded><![CDATA[
 <li>android-sdk：Mac OX 在开发 Android 利器</li>
 <li>brew： Mac OS 下最佳包管理工具，以上所述命令行应用都可以通过它来安装</li>
 </ul>
-]]></content:encoded></item><item><title>Dash</title><link>https://icyleaf.com/2013/02/dash/</link><pubDate>Wed, 06 Feb 2013 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2013/02/dash/</guid><description>
-你值得拥有的文档管理工具</description><content:encoded><![CDATA[<p>Dash 是 Mac OS 的一个文档管理工具，从它第一版发布用到现在，绝对是一个你值得拥有的文档管理工具，因为它还是免费的，你可以从 <a href="https://itunes.apple.com/cn/app/dash-docs-snippets/id458034879?mt=12">Mac App Store</a> 购买。但是全功能需要应用内付费，否则有些“小骚扰”。</p>
+]]></content:encoded></item><item><title>Dash</title><link>https://icyleaf.com/2013/02/dash/</link><pubDate>Wed, 06 Feb 2013 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2013/02/dash/</guid><description>你值得拥有的文档管理工具</description><content:encoded><![CDATA[<p>Dash 是 Mac OS 的一个文档管理工具，从它第一版发布用到现在，绝对是一个你值得拥有的文档管理工具，因为它还是免费的，你可以从 <a href="https://itunes.apple.com/cn/app/dash-docs-snippets/id458034879?mt=12">Mac App Store</a> 购买。但是全功能需要应用内付费，否则有些“小骚扰”。</p>
 <blockquote>
 <p>建议购买 Full Version，目前是半价，人民币 30 元</p>
 </blockquote>
@@ -293,10 +289,8 @@ Rancher 0.x 版本部署指南</description><content:encoded><![CDATA[
 <li>你可以提供多个 url 多备份提供文档下载</li>
 <li>支持 tgz 格式的打包</li>
 </ul>
-]]></content:encoded></item><item><title>修复 OS X 打开方式的重复项</title><link>https://icyleaf.com/2012/11/%E4%BF%AE%E5%A4%8D-os-x-%E6%89%93%E5%BC%80%E6%96%B9%E5%BC%8F%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9/</link><pubDate>Tue, 06 Nov 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/11/%E4%BF%AE%E5%A4%8D-os-x-%E6%89%93%E5%BC%80%E6%96%B9%E5%BC%8F%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9/</guid><description>
-$ /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain system-domainuser</description><content:encoded>&lt;pre tabindex="0">&lt;code>$ /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain system-domainuser
-&lt;/code>&lt;/pre></content:encoded></item><item><title>EasyConvert</title><link>https://icyleaf.com/2012/10/easyconvert-gbk-to-utf8-convert-tool-for-mac/</link><pubDate>Thu, 25 Oct 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/10/easyconvert-gbk-to-utf8-convert-tool-for-mac/</guid><description>
-托设计朋友的要求，继续奉献出一个小工具: EasyConvert - 针对于文本文件的编码转换工具 - GBK to UTF8 首先这个应用是用于 OS X 系统的，其次其实它是一个很弱的工具，对...</description><content:encoded><![CDATA[<p>托设计朋友的要求，继续奉献出一个小工具: EasyConvert - 针对于文本文件的编码转换工具 - GBK to UTF8</p>
+]]></content:encoded></item><item><title>修复 OS X 打开方式的重复项</title><link>https://icyleaf.com/2012/11/%E4%BF%AE%E5%A4%8D-os-x-%E6%89%93%E5%BC%80%E6%96%B9%E5%BC%8F%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9/</link><pubDate>Tue, 06 Nov 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/11/%E4%BF%AE%E5%A4%8D-os-x-%E6%89%93%E5%BC%80%E6%96%B9%E5%BC%8F%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9/</guid><description>$ /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain system-domainuser</description><content:encoded>&lt;pre tabindex="0">&lt;code>$ /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain system-domainuser
+&lt;/code>&lt;/pre></content:encoded></item><item><title>EasyConvert</title><link>https://icyleaf.com/2012/10/easyconvert-gbk-to-utf8-convert-tool-for-mac/</link><pubDate>Thu, 25 Oct 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/10/easyconvert-gbk-to-utf8-convert-tool-for-mac/</guid><description>托设计朋友的要求，继续奉献出一个小工具: EasyConvert - 针对于文本文件的编码转换工具 - GBK to UTF8 首先这个应用是用于 OS X 系统的，其次其实它是一个很弱的工具，对...</description><content:encoded><![CDATA[<p>托设计朋友的要求，继续奉献出一个小工具: EasyConvert - 针对于文本文件的编码转换工具 - GBK to UTF8</p>
 <p>首先这个应用是用于 OS X 系统的，其次其实它是一个很弱的工具，对于技术宅来说一行代码搞定：</p>
 <pre tabindex="0"><code>iconv -f GBK -t UTF-8 source.txt \&gt; output.txt
 </code></pre><p>但对于非技术的人来说，跟他们说 terminal 就费了牛鼻子劲了，索性上工具。</p>
@@ -304,8 +298,7 @@ $ /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Launch
 <p>应用下载：<a href="https://github.com/downloads/icyleaf/EasyConvert/EasyConvert_v0.1.3.zip">EasyConvert_v0.1.3.zip</a></p>
 <p>使用方法很简单，把要转换的 gbk 文件拖到应用窗口里面，应用会自动保存到同目录下。</p>
 <p>BTW，应用 Icon 及涉及的图片资源均来自网络，<a href="https://github.com/icyleaf/EasyConvert/blob/master/EasyConvert/Readme">声明在此</a>。</p>
-]]></content:encoded></item><item><title>如何针对 iOS 设备进行网络抓包分析</title><link>https://icyleaf.com/2012/10/%E5%A6%82%E4%BD%95%E9%92%88%E5%AF%B9-ios-%E8%AE%BE%E5%A4%87%E8%BF%9B%E8%A1%8C%E7%BD%91%E7%BB%9C%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90/</link><pubDate>Mon, 15 Oct 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/10/%E5%A6%82%E4%BD%95%E9%92%88%E5%AF%B9-ios-%E8%AE%BE%E5%A4%87%E8%BF%9B%E8%A1%8C%E7%BD%91%E7%BB%9C%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90/</guid><description>
-Charles 目前是 OS X 上面最好的抓包分析软件，相比 WireShark 功能更加强大，并支持代理功能。 iPad HTTP Debugging with Charles - 教大家如何使用它进行代理抓包 Testing / Tethering Data Driven Mobile Apps with Charles and OSX - 教大...</description><content:encoded><![CDATA[<p>Charles 目前是 OS X 上面最好的抓包分析软件，相比 WireShark 功能更加强大，并支持代理功能。</p>
+]]></content:encoded></item><item><title>如何针对 iOS 设备进行网络抓包分析</title><link>https://icyleaf.com/2012/10/%E5%A6%82%E4%BD%95%E9%92%88%E5%AF%B9-ios-%E8%AE%BE%E5%A4%87%E8%BF%9B%E8%A1%8C%E7%BD%91%E7%BB%9C%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90/</link><pubDate>Mon, 15 Oct 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/10/%E5%A6%82%E4%BD%95%E9%92%88%E5%AF%B9-ios-%E8%AE%BE%E5%A4%87%E8%BF%9B%E8%A1%8C%E7%BD%91%E7%BB%9C%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90/</guid><description>Charles 目前是 OS X 上面最好的抓包分析软件，相比 WireShark 功能更加强大，并支持代理功能。 iPad HTTP Debugging with Charles - 教大家如何使用它进行代理抓包 Testing / Tethering Data Driven Mobile Apps with Charles and OSX - 教大...</description><content:encoded><![CDATA[<p>Charles 目前是 OS X 上面最好的抓包分析软件，相比 WireShark 功能更加强大，并支持代理功能。</p>
 <ol>
 <li><a href="http://www.ravelrumba.com/blog/ipad-http-debugging/">iPad HTTP Debugging with Charles</a> - 教大家如何使用它进行代理抓包</li>
 <li><a href="http://www.skinkers.com/2012/06/12/testing-tethering-data-driven-mobile-apps-with-charles-and-osx-ipad-iphone-http-debugging/">Testing / Tethering Data Driven Mobile Apps with Charles and OSX</a> - 教大家如何进行 request remap，适合不改动代码的情况下修改域名切换环境</li>
@@ -314,8 +307,7 @@ Charles 目前是 OS X 上面最好的抓包分析软件，相比 WireShark 功�
 <pre tabindex="0"><code>$ rvictl -s &lt;UDID&gt;
 $ rvictl -l
 $ tcpdump -n -t -i rvi0 -q tcp
-</code></pre>]]></content:encoded></item><item><title>升级 OS X 10.8 和 Python 第三方库那点事</title><link>https://icyleaf.com/2012/08/upgrade-osx-10-8-with-python-library/</link><pubDate>Fri, 24 Aug 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/08/upgrade-osx-10-8-with-python-library/</guid><description>
-今天把公司的机器升级到了 10.8 本来就觉得 OS X 的平滑升级做的非常的好，除了一些被乔帮主鄙视的 JDK 需要重新安装外，其他的一切都很平滑的迁移过来。中午的...</description><content:encoded><![CDATA[<p>今天把公司的机器升级到了 10.8 本来就觉得 OS X
+</code></pre>]]></content:encoded></item><item><title>升级 OS X 10.8 和 Python 第三方库那点事</title><link>https://icyleaf.com/2012/08/upgrade-osx-10-8-with-python-library/</link><pubDate>Fri, 24 Aug 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/08/upgrade-osx-10-8-with-python-library/</guid><description>今天把公司的机器升级到了 10.8 本来就觉得 OS X 的平滑升级做的非常的好，除了一些被乔帮主鄙视的 JDK 需要重新安装外，其他的一切都很平滑的迁移过来。中午的...</description><content:encoded><![CDATA[<p>今天把公司的机器升级到了 10.8 本来就觉得 OS X
 的平滑升级做的非常的好，除了一些被乔帮主鄙视的 JDK
 需要重新安装外，其他的一切都很平滑的迁移过来。中午的时候想用 django
 练手做个晓项目，熟练的在终端创建新项目，结果爆出如下错误：</p>
@@ -356,8 +348,7 @@ $ distribute_setup.py
 <p>Easily download, build, install, upgrade, and uninstall Python
 packages</p>
 </blockquote>
-]]></content:encoded></item><item><title>pngcrush 的一些用法</title><link>https://icyleaf.com/2012/03/pngcrush-usage-with-ios-apps/</link><pubDate>Fri, 09 Mar 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/03/pngcrush-usage-with-ios-apps/</guid><description>
-pngcrush 顾名思义，看起名字本身就优化 png 的工具，为什么会提到它呢，因为目前所有 iOS app 自身的 png 文件都是经过它优化的，对于优化有的 png，系统本身默认是无...</description><content:encoded><![CDATA[<p>pngcrush 顾名思义，看起名字本身就优化 png 的工具，为什么会提到它呢，因为目前所有 iOS app 自身的 png 文件都是经过它优化的，对于优化有的 png，系统本身默认是无法识别的（包括看图工具，作图工具）。但这个工具不仅仅可以优化还可以还原。假如你希望可以学习优秀 iOS App 的一些 png 资源设计，通过这个工具延伸的一些辅助工具，可以快速预览和恢复未优化的图片。</p>
+]]></content:encoded></item><item><title>pngcrush 的一些用法</title><link>https://icyleaf.com/2012/03/pngcrush-usage-with-ios-apps/</link><pubDate>Fri, 09 Mar 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/03/pngcrush-usage-with-ios-apps/</guid><description>pngcrush 顾名思义，看起名字本身就优化 png 的工具，为什么会提到它呢，因为目前所有 iOS app 自身的 png 文件都是经过它优化的，对于优化有的 png，系统本身默认是无...</description><content:encoded><![CDATA[<p>pngcrush 顾名思义，看起名字本身就优化 png 的工具，为什么会提到它呢，因为目前所有 iOS app 自身的 png 文件都是经过它优化的，对于优化有的 png，系统本身默认是无法识别的（包括看图工具，作图工具）。但这个工具不仅仅可以优化还可以还原。假如你希望可以学习优秀 iOS App 的一些 png 资源设计，通过这个工具延伸的一些辅助工具，可以快速预览和恢复未优化的图片。</p>
 <h1 id="pngcrush">pngcrush</h1>
 <p>本身就是一个开源的工具，托管在 <a href="http://pmt.sourceforge.net/pngcrush/index.html">SourceForge</a>，可以在任何平台运行，对于安装 Xcode 的童鞋，此工具默认放在：</p>
 <pre tabindex="0"><code># XCode 4.3+
@@ -377,8 +368,7 @@ pngcrush -dir reverted -revert-iphone-optimizations -q ipa/*.png
 <h1 id="atpeek">atPeek</h1>
 <p>我就知道你不会满足上面半自动的工具，我想 <a href="http://www.atpurpose.com/atPeek/">atPeek</a>(奇怪为什么会被墙掉) 也是你在本博文中最满意的工具。正式介绍下，这个工具自打开的一瞬间，就会加载 <code>Music/iTunes/Mobile Applications</code> 目录下面的所有 ipa 文件。点击你需要查看的 ipa 文件，不仅可以查看该 ipa 的基本 App，最让大家爽的是，ipa 的所有资源文件以文件资源管理器的方式呈现出来。嗯，没错！我可以看到你们双眼发光了！</p>
 <p>但是，这是一个付费应用，你可以进行的操作就是浏览 ipa 和应用自带的预览功能，任何的放大以及导出 png 资源，都是需要付费的，价格为 $4.99。</p>
-]]></content:encoded></item><item><title>Colors</title><link>https://icyleaf.com/2012/03/colors-is-ios-development-utility-tool/</link><pubDate>Fri, 02 Mar 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/03/colors-is-ios-development-utility-tool/</guid><description>
-最新更新，发现更好的免费取色器 Sip Colors 是一个简单的颜色取色器，简单的有可能你都没有听说过它，虽然它对于平面设计师以及 Web 设计师不太看中，但它可是程...</description><content:encoded><![CDATA[<blockquote>
+]]></content:encoded></item><item><title>Colors</title><link>https://icyleaf.com/2012/03/colors-is-ios-development-utility-tool/</link><pubDate>Fri, 02 Mar 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/03/colors-is-ios-development-utility-tool/</guid><description>最新更新，发现更好的免费取色器 Sip Colors 是一个简单的颜色取色器，简单的有可能你都没有听说过它，虽然它对于平面设计师以及 Web 设计师不太看中，但它可是程...</description><content:encoded><![CDATA[<blockquote>
 <p>最新更新，发现更好的免费取色器 <a href="https://itunes.apple.com/us/app/sip/id507257563?mt=12">Sip</a></p>
 </blockquote>
 <p><a href="http://mattpatenaude.com/">Colors</a> 是一个简单的颜色取色器，简单的有可能你都没有听说过它，虽然它对于平面设计师以及
@@ -391,8 +381,7 @@ Web
 <blockquote>
 <p>我 fork 了作者的分支，添加了对 UIColor 的支持：http://github.com/icyleaf/Colors</p>
 </blockquote>
-]]></content:encoded></item><item><title>个人常用 OS X 软件集合</title><link>https://icyleaf.com/2011/03/im-using-osx-software-list/</link><pubDate>Tue, 29 Mar 2011 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2011/03/im-using-osx-software-list/</guid><description>
-用了 OS X 已经半年多了，整理下日常常用的软件。大多数都是开源或者免费软件，少数需要购买 AppCleaner：卸载软件必备，适合用于第三方安装和...</description><content:encoded><![CDATA[<p>用了 OS X 已经半年多了，整理下日常常用的软件。大多数都是开源或者免费软件，少数需要购买</p>
+]]></content:encoded></item><item><title>个人常用 OS X 软件集合</title><link>https://icyleaf.com/2011/03/im-using-osx-software-list/</link><pubDate>Tue, 29 Mar 2011 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2011/03/im-using-osx-software-list/</guid><description>用了 OS X 已经半年多了，整理下日常常用的软件。大多数都是开源或者免费软件，少数需要购买 AppCleaner：卸载软件必备，适合用于第三方安装和...</description><content:encoded><![CDATA[<p>用了 OS X 已经半年多了，整理下日常常用的软件。大多数都是开源或者免费软件，少数需要购买</p>
 <ul>
 <li>AppCleaner：卸载软件必备，适合用于第三方安装和 App Store</li>
 <li>aliwangwang：淘宝用户必备</li>
@@ -431,8 +420,7 @@ Web
 <li>Xcode 4：Apple 开发必备</li>
 </ul>
 <p>睡觉前的粗略整理，待续&hellip;</p>
-]]></content:encoded></item><item><title>OSX</title><link>https://icyleaf.com/2010/12/switer-between-finder-and-terminal-in-osx/</link><pubDate>Wed, 08 Dec 2010 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2010/12/switer-between-finder-and-terminal-in-osx/</guid><description>
-在 Finder 打开 Terminal 并切换到当前目录 安装一个开源的 Finder 辅助工具：cdto。功能只有一个就是实现在 Finder 打开 Terminal 并切换到当前 Finder 目录。找到你系统的版本的 app （支持当...</description><content:encoded><![CDATA[<p><strong>在 Finder 打开 Terminal 并切换到当前目录</strong></p>
+]]></content:encoded></item><item><title>OSX</title><link>https://icyleaf.com/2010/12/switer-between-finder-and-terminal-in-osx/</link><pubDate>Wed, 08 Dec 2010 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2010/12/switer-between-finder-and-terminal-in-osx/</guid><description>在 Finder 打开 Terminal 并切换到当前目录 安装一个开源的 Finder 辅助工具：cdto。功能只有一个就是实现在 Finder 打开 Terminal 并切换到当前 Finder 目录。找到你系统的版本的 app （支持当...</description><content:encoded><![CDATA[<p><strong>在 Finder 打开 Terminal 并切换到当前目录</strong></p>
 <p>安装一个开源的 Finder 辅助工具：<a href="http://code.google.com/p/cdto/">cdto</a>。功能只有一个就是实现在 Finder
 打开 Terminal 并切换到当前 Finder 目录。找到你系统的版本的 app （支持当前
 OS X 10.4 以上版本，应该都是雪豹了 吧）拷贝到 Applications 下并把它拖到

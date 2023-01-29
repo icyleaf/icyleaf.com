@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Hackintosh on icyleaf</title><link>https://icyleaf.com/tags/hackintosh/</link><description>Recent content in Hackintosh on icyleaf</description><language>zh</language><lastBuildDate>Thu, 28 Mar 2019 17:12:07 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/hackintosh/index.xml" rel="self" type="application/rss+xml"/><item><title>华擎 Z390 Gaming ITX 黑苹果安装教程</title><link>https://icyleaf.com/2019/03/asrock-z390-gaming-itx-install-hackintosh-tutorial/</link><pubDate>Thu, 28 Mar 2019 17:12:07 +0800</pubDate><guid>https://icyleaf.com/2019/03/asrock-z390-gaming-itx-install-hackintosh-tutorial/</guid><description>
-安装黑苹果只需要注意那几步</description><content:encoded><![CDATA[
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Hackintosh on icyleaf</title><link>https://icyleaf.com/tags/hackintosh/</link><description>Recent content in Hackintosh on icyleaf</description><language>zh</language><lastBuildDate>Thu, 28 Mar 2019 17:12:07 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/hackintosh/index.xml" rel="self" type="application/rss+xml"/><item><title>华擎 Z390 Gaming ITX 黑苹果安装教程</title><link>https://icyleaf.com/2019/03/asrock-z390-gaming-itx-install-hackintosh-tutorial/</link><pubDate>Thu, 28 Mar 2019 17:12:07 +0800</pubDate><guid>https://icyleaf.com/2019/03/asrock-z390-gaming-itx-install-hackintosh-tutorial/</guid><description>安装黑苹果只需要注意那几步</description><content:encoded><![CDATA[
 
 
 
@@ -257,8 +256,7 @@ USB3 端口</li>
 <li><a href="https://www.tonymacx86.com/threads/asrock-z390-phantom-gaming-itx-ac.265245/#post-1854444">ASRock Z390 Phantom Gaming-ITX/ac</a></li>
 <li><a href="https://www.hackintosh-forum.de/forum/thread/40613-1st-hackintosh-beginner-asrock-z390-phantom-gaming-itx-ac/">ASROCK Z390 PHANTOM GAMING-ITX/AC</a></li>
 </ul>
-]]></content:encoded></item><item><title>攒了一台 4K 视频剪辑黑苹果</title><link>https://icyleaf.com/2019/01/itx-coffee-lake-hackintosh-build-for-4k-video-editing/</link><pubDate>Wed, 30 Jan 2019 10:30:07 +0800</pubDate><guid>https://icyleaf.com/2019/01/itx-coffee-lake-hackintosh-build-for-4k-video-editing/</guid><description>
-台式机还是生产力工具吗？</description><content:encoded><![CDATA[<h2 id="装机清单">装机清单</h2>
+]]></content:encoded></item><item><title>攒了一台 4K 视频剪辑黑苹果</title><link>https://icyleaf.com/2019/01/itx-coffee-lake-hackintosh-build-for-4k-video-editing/</link><pubDate>Wed, 30 Jan 2019 10:30:07 +0800</pubDate><guid>https://icyleaf.com/2019/01/itx-coffee-lake-hackintosh-build-for-4k-video-editing/</guid><description>台式机还是生产力工具吗？</description><content:encoded><![CDATA[<h2 id="装机清单">装机清单</h2>
 <blockquote>
 <p>台式机借鉴国外 $1000k 攒机思路在不考虑显示器预算为 6000 元人民币。</p>
 </blockquote>

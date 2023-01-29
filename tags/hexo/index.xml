@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Hexo on icyleaf</title><link>https://icyleaf.com/tags/hexo/</link><description>Recent content in Hexo on icyleaf</description><language>zh</language><lastBuildDate>Thu, 17 Dec 2015 15:01:56 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/hexo/index.xml" rel="self" type="application/rss+xml"/><item><title>博客迁徙记</title><link>https://icyleaf.com/2015/12/a-history-of-my-blog/</link><pubDate>Thu, 17 Dec 2015 15:01:56 +0800</pubDate><guid>https://icyleaf.com/2015/12/a-history-of-my-blog/</guid><description>
-文章没写几篇，博客系统换了到挺勤</description><content:encoded><![CDATA[
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Hexo on icyleaf</title><link>https://icyleaf.com/tags/hexo/</link><description>Recent content in Hexo on icyleaf</description><language>zh</language><lastBuildDate>Thu, 17 Dec 2015 15:01:56 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/hexo/index.xml" rel="self" type="application/rss+xml"/><item><title>博客迁徙记</title><link>https://icyleaf.com/2015/12/a-history-of-my-blog/</link><pubDate>Thu, 17 Dec 2015 15:01:56 +0800</pubDate><guid>https://icyleaf.com/2015/12/a-history-of-my-blog/</guid><description>文章没写几篇，博客系统换了到挺勤</description><content:encoded><![CDATA[
 
 
 
@@ -105,8 +104,7 @@
 <li>2020 年总文章数量 0 篇</li>
 <li>2021 年总文章数量 1 篇</li>
 </ul>
-]]></content:encoded></item><item><title>Hexo 主题推荐 NexT</title><link>https://icyleaf.com/2015/12/hexo-theme-next/</link><pubDate>Thu, 17 Dec 2015 14:41:00 +0800</pubDate><guid>https://icyleaf.com/2015/12/hexo-theme-next/</guid><description>
-或许是最近几年非常流行的主题之一</description><content:encoded><![CDATA[<p>这是我见过配备最完善的 hexo 主题，支持丰富的配置，和 hexo 一样完善的文档。兼容国内外的扩展服务，最重要的主题作者还是国人。</p>
+]]></content:encoded></item><item><title>Hexo 主题推荐 NexT</title><link>https://icyleaf.com/2015/12/hexo-theme-next/</link><pubDate>Thu, 17 Dec 2015 14:41:00 +0800</pubDate><guid>https://icyleaf.com/2015/12/hexo-theme-next/</guid><description>或许是最近几年非常流行的主题之一</description><content:encoded><![CDATA[<p>这是我见过配备最完善的 hexo 主题，支持丰富的配置，和 hexo 一样完善的文档。兼容国内外的扩展服务，最重要的主题作者还是国人。</p>
 <ul>
 <li>文档：http://theme-next.iissnan.com/</li>
 <li>源码：https://github.com/iissnan/hexo-theme-next</li>
