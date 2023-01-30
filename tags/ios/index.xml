@@ -26,10 +26,11 @@
 
 
   
-  <figure><a href="/uploads/2022/11/10/jsdelivr-network.png" class="gallery-item" target="_blank" data-pswp-width="2270" data-pswp-height="1316"><img src="/uploads/2022/11/10/jsdelivr-network.png"/></a><figcaption>
+  
+    
+      <figure data-pswp="2270x1316" data-size="800x"><a href="/uploads/2022/11/10/jsdelivr-network.png" class="gallery-item" target="_blank" data-pswp-width="2270" data-pswp-height="1316"><img src="/uploads/2022/11/10/jsdelivr-network_hu35ca8d8b89ce669a90db33b84e39dea8_282272_800x0_resize_box_3.png"/></a><figcaption>
 
-    <h4>jsdelivr network</h4><div style="clear: both"></div>
-  </figcaption></figure>
+    <h4>jsdelivr network</h4></figcaption></figure>
 
 <p>国内 DNS 解析的结果可以看出来：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ doggo cdn.jsdelivr.net CNAME @114.114.114.114
@@ -56,11 +57,12 @@
 
 
   
-  <figure><img src="/uploads/2022/11/10/jsdelivr-github-demo.png"/><figcaption><p class="source"><a href="https://www.jsdelivr.com/github">生成工具</a>
+  
+    
+      <figure data-pswp="1698x582" data-size="800x"><a href="/uploads/2022/11/10/jsdelivr-github-demo.png" class="gallery-item" target="_blank" data-pswp-width="1698" data-pswp-height="582"><img src="/uploads/2022/11/10/jsdelivr-github-demo_huaeafff840bedf588ce827c05ae754f76_40041_800x0_resize_box_3.png"/></a><figcaption><p class="source"><a href="https://www.jsdelivr.com/github">生成工具</a>
     </p>
 
-    <h4>Cocoapods github 仓库和 jsdelivr CDN 生成结果</h4><div style="clear: both"></div>
-  </figcaption></figure>
+    <h4>Cocoapods github 仓库和 jsdelivr CDN 生成结果</h4></figcaption></figure>
 
 <p>打开 <code>Podfile</code> 修改或添加新的地址：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="line"><span class="ln">1</span><span class="cl"><span class="gd">- source &#34;https://cdn.cocoapods.org&#34;

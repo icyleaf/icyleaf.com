@@ -39,10 +39,11 @@
 
 
   
-  <figure><img src="/uploads/2022/09/16/generate-encrypted-credentials-tools.png"/><figcaption>
+  
+    
+      <figure data-pswp="2278x1206" data-size="800x"><a href="/uploads/2022/09/16/generate-encrypted-credentials-tools.png" class="gallery-item" target="_blank" data-pswp-width="2278" data-pswp-height="1206"><img src="/uploads/2022/09/16/generate-encrypted-credentials-tools_hu53cdae0c645814fab78a15ed8fe0af52_167183_800x0_resize_box_3.png"/></a><figcaption>
 
-    <h4>加密凭证生成器</h4><div style="clear: both"></div>
-  </figcaption></figure>
+    <h4>加密凭证生成器</h4></figcaption></figure>
 
 <p>上面是一个实现功能的基础版本，如果部署方式是 Docker 或 docker-compose 也可以提供生成对应的部署脚本或文件。</p>
 <h4 id="核心源码">核心源码</h4>
