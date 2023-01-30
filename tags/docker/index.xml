@@ -43,7 +43,7 @@
     
       <figure data-pswp="2278x1206" data-size="800x"><a href="/uploads/2022/09/16/generate-encrypted-credentials-tools.png" class="gallery-item" target="_blank" data-pswp-width="2278" data-pswp-height="1206"><img src="/uploads/2022/09/16/generate-encrypted-credentials-tools_hu53cdae0c645814fab78a15ed8fe0af52_167183_800x0_resize_box_3.png"/></a><figcaption>
 
-    <h4>加密凭证生成器</h4></figcaption></figure>
+    <p>加密凭证生成器</p></figcaption></figure>
 
 <p>上面是一个实现功能的基础版本，如果部署方式是 Docker 或 docker-compose 也可以提供生成对应的部署脚本或文件。</p>
 <h4 id="核心源码">核心源码</h4>
@@ -314,7 +314,7 @@
       alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://twitter.com/icyleaf/status/1472036769742745603">@icyleaf@twitter.com</a>
     </p>
 
-    <h4>2021 年底 v2.0 镇楼用的网络拓扑图</h4></figcaption></figure>
+    <p>2021 年底 v2.0 镇楼用的网络拓扑图</p></figcaption></figure>
 
 <h2 id="搭建-homelab-起因">搭建 homelab 起因</h2>
 <blockquote>
@@ -389,7 +389,7 @@
       alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://kubernetes.io/zh/docs/concepts/overview/what-is-kubernetes/">Kubernetes 是什么？</a>
     </p>
 
-    <h4>部署方式的演变</h4></figcaption></figure>
+    <p>部署方式的演变</p></figcaption></figure>
 
 <p>通常在硬件性能还算不错情况下都不会采用传统部署的方案，单主机的优先级：容器化 &gt; 虚拟化 &gt; 传统部署，机器性能不错且有技术兴趣度的优先级：虚拟化 &gt; 容器化 &gt; 传统部署。</p>
 <h3 id="传统部署">传统部署</h3>
@@ -415,7 +415,7 @@
       alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://thecloudgirl.dev/BareMetal.html">The Cloud Girl</a>
     </p>
 
-    <h4>Bare metal 方案</h4></figcaption></figure>
+    <p>Bare metal 方案</p></figcaption></figure>
 
 <h3 id="虚拟化部署">虚拟化部署</h3>
 <ul>

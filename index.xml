@@ -30,7 +30,7 @@
     
       <figure data-pswp="2270x1316" data-size="800x"><a href="/uploads/2022/11/10/jsdelivr-network.png" class="gallery-item" target="_blank" data-pswp-width="2270" data-pswp-height="1316"><img src="/uploads/2022/11/10/jsdelivr-network_hu35ca8d8b89ce669a90db33b84e39dea8_282272_800x0_resize_box_3.png"/></a><figcaption>
 
-    <h4>jsdelivr network</h4></figcaption></figure>
+    <p>jsdelivr network</p></figcaption></figure>
 
 <p>国内 DNS 解析的结果可以看出来：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ doggo cdn.jsdelivr.net CNAME @114.114.114.114
@@ -62,7 +62,7 @@
       <figure data-pswp="1698x582" data-size="800x"><a href="/uploads/2022/11/10/jsdelivr-github-demo.png" class="gallery-item" target="_blank" data-pswp-width="1698" data-pswp-height="582"><img src="/uploads/2022/11/10/jsdelivr-github-demo_huaeafff840bedf588ce827c05ae754f76_40041_800x0_resize_box_3.png"/></a><figcaption><p class="source"><a href="https://www.jsdelivr.com/github">生成工具</a>
     </p>
 
-    <h4>Cocoapods github 仓库和 jsdelivr CDN 生成结果</h4></figcaption></figure>
+    <p>Cocoapods github 仓库和 jsdelivr CDN 生成结果</p></figcaption></figure>
 
 <p>打开 <code>Podfile</code> 修改或添加新的地址：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="line"><span class="ln">1</span><span class="cl"><span class="gd">- source &#34;https://cdn.cocoapods.org&#34;
@@ -182,7 +182,7 @@
     
       <figure data-pswp="2278x1206" data-size="800x"><a href="/uploads/2022/09/16/generate-encrypted-credentials-tools.png" class="gallery-item" target="_blank" data-pswp-width="2278" data-pswp-height="1206"><img src="/uploads/2022/09/16/generate-encrypted-credentials-tools_hu53cdae0c645814fab78a15ed8fe0af52_167183_800x0_resize_box_3.png"/></a><figcaption>
 
-    <h4>加密凭证生成器</h4></figcaption></figure>
+    <p>加密凭证生成器</p></figcaption></figure>
 
 <p>上面是一个实现功能的基础版本，如果部署方式是 Docker 或 docker-compose 也可以提供生成对应的部署脚本或文件。</p>
 <h4 id="核心源码">核心源码</h4>
@@ -486,7 +486,7 @@
       alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://www.ithome.com/0/584/056.htm">IT 之家</a>
     </p>
 
-    <h4>小新 Pad 各个版本对比图</h4></figcaption></figure>
+    <p>小新 Pad 各个版本对比图</p></figcaption></figure>
 
 <h2 id="选择它的理由">选择它的理由</h2>
 <p>2021 年是国内 Android 平板重新回归的一年，也是<a href="https://www.qualcomm.com/products/application/smartphones/snapdragon-8-series-mobile-platforms/snapdragon-870-5g-mobile-platform">骁龙 870</a> 霸占 Android 平板最多的一年，直到 2022 年无论是 4 月份新出的 VIVO 平板，还是雷军良心发现小米平板 5 的硬件太过于吝啬 8 月赶紧补出的<a href="https://twitter.com/icyleaf/status/1558408826889519105">小米平板 5 Pro</a> 都是用的它。</p>
@@ -516,7 +516,7 @@
   
     <figure data-pswp="1536x2048" data-size="1920x1080"><a href="/uploads/2022/08/12/tachiyomi-on-xiaoxin-pad-pro-2021.jpg" class="gallery-item" target="_blank" data-pswp-width="1536" data-pswp-height="2048"><img src="/uploads/2022/08/12/tachiyomi-on-xiaoxin-pad-pro-2021_hucbc89598ac49f5f0f14f62fb5b24d87e_411181_1920x1080_crop_q75_box_smart1.jpg"/></a><figcaption>
 
-    <h4>小新 Pad Pro 2021 上看漫画</h4></figcaption></figure>
+    <p>小新 Pad Pro 2021 上看漫画</p></figcaption></figure>
 
 <p>在一些非强光环境下画面是非常优秀的，看视频配合 JBL 4 扬声器能提高观看体验，看视频我主要用到的是 Youtube、Bilibili、Jellyfin 和 Netflix 这四个 App，</p>
 <p>平板支持 Dolby Vision 用 Youtube 和 B 站在大会员加持下最高画质，Jellyfin 升级 10.8 看片源和转码效率通常情况下不会太差，唯独 Netflix 因没有认证只有最高 1080p HD 画质，联想认证 HDR 的只有 Tab P11-12 Pro 和 Yoga Tab 13。</p>
@@ -540,7 +540,7 @@
       alt="视频来源"/></a><figcaption><p class="source">视频来源<a href="https://www.bilibili.com/video/BV1tY4y1w7GQ">Linksphotograph</a>
     </p>
 
-    <h4>B 站的杜比视界和 Netflix 解码信息</h4></figcaption></figure>
+    <p>B 站的杜比视界和 Netflix 解码信息</p></figcaption></figure>
 
 <p>骁龙 870 支持的视频解码器有 <code>Dolby Vision, HDR10+, HDR10, HLG, H.264 (AVC), H.265 (HEVC), VP8, VP9</code>。Netflix 媒体信息显示不支持 HDR 应该就是没有去认证的原因。</p>
 <h3 id="开放的系统">开放的系统</h3>
@@ -650,7 +650,7 @@
     
       <figure data-pswp="1280x800" data-size="800x"><a href="/uploads/2022/08/12/xiaoxin-pad-filesystem-role.jpg" class="gallery-item" target="_blank" data-pswp-width="1280" data-pswp-height="800"><img src="/uploads/2022/08/12/xiaoxin-pad-filesystem-role_hufd965a5646fcac3bf759d723011481ba_52527_800x0_resize_q75_box.jpg"/></a><figcaption>
 
-    <h4>令人烦恼的外部设备访问权限</h4></figcaption></figure>
+    <p>令人烦恼的外部设备访问权限</p></figcaption></figure>
 
 <p>终于能操作了，数据拷贝的速度如果不是双 Type-C，尽管扩展坞支持 USB 3.0 但速度上限只有 70MB/s 这还是瞬时整个拷贝过程 IO 非常不稳定。</p>
 
@@ -671,7 +671,7 @@
     
       <figure data-pswp="1280x800" data-size="800x"><a href="/uploads/2022/08/12/xiaoxin-pad-copy-tf-photo.jpg" class="gallery-item" target="_blank" data-pswp-width="1280" data-pswp-height="800"><img src="/uploads/2022/08/12/xiaoxin-pad-copy-tf-photo_hua774598b8262a8b6461e699a789dd2a1_39461_800x0_resize_q75_box.jpg"/></a><figcaption>
 
-    <h4>使用 Solid Explorer 拷贝 TF 卡到平板</h4></figcaption></figure>
+    <p>使用 Solid Explorer 拷贝 TF 卡到平板</p></figcaption></figure>
 
 <p>经过长时间的使用和观察，外接硬盘建议使用扩展坞 + 外部电源（支持 PD 协议充电宝也行）对操作外部存储设备稳定性有很大的帮助。</p>
 <h3 id="zui-的问题">ZUI 的问题</h3>
@@ -694,7 +694,7 @@
     
       <figure data-pswp="1280x800" data-size="800x"><a href="/uploads/2022/08/12/xiaoxin-pad-dual-screens.jpg" class="gallery-item" target="_blank" data-pswp-width="1280" data-pswp-height="800"><img src="/uploads/2022/08/12/xiaoxin-pad-dual-screens_hu7b5f7f1053e7051437caf6b8c5b8c076_195282_800x0_resize_q75_box.jpg"/></a><figcaption>
 
-    <h4>分屏模式</h4></figcaption></figure>
+    <p>分屏模式</p></figcaption></figure>
 
 <p>我基本上把它的个人安全功能设置了关闭，在安装一些被认为是有风险的应用都非常顺畅，不像 MIUI 时不时就让你登录小米账号来验证。在这样的情况下无障碍功能功能总会被关闭，造成李跳跳、Bitwarden 无法长期保持开启的状态。不杀后台应用也会触发关闭，非常的莫名其妙。</p>
 <p><del>我只希望今年年底要发布的 ZUI 14 能够解决我上面说的问题， 让我拭目以待吧</del></p>
@@ -750,7 +750,7 @@
       alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://twitter.com/icyleaf/status/1472036769742745603">@icyleaf@twitter.com</a>
     </p>
 
-    <h4>2021 年底 v2.0 镇楼用的网络拓扑图</h4></figcaption></figure>
+    <p>2021 年底 v2.0 镇楼用的网络拓扑图</p></figcaption></figure>
 
 <h2 id="搭建-homelab-起因">搭建 homelab 起因</h2>
 <blockquote>
@@ -825,7 +825,7 @@
       alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://kubernetes.io/zh/docs/concepts/overview/what-is-kubernetes/">Kubernetes 是什么？</a>
     </p>
 
-    <h4>部署方式的演变</h4></figcaption></figure>
+    <p>部署方式的演变</p></figcaption></figure>
 
 <p>通常在硬件性能还算不错情况下都不会采用传统部署的方案，单主机的优先级：容器化 &gt; 虚拟化 &gt; 传统部署，机器性能不错且有技术兴趣度的优先级：虚拟化 &gt; 容器化 &gt; 传统部署。</p>
 <h3 id="传统部署">传统部署</h3>
@@ -851,7 +851,7 @@
       alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://thecloudgirl.dev/BareMetal.html">The Cloud Girl</a>
     </p>
 
-    <h4>Bare metal 方案</h4></figcaption></figure>
+    <p>Bare metal 方案</p></figcaption></figure>
 
 <h3 id="虚拟化部署">虚拟化部署</h3>
 <ul>
@@ -981,7 +981,7 @@
     
       <figure data-pswp="2798x2080" data-size="800x"><a href="/uploads/2021/12/22/zealot-showcase.png" class="gallery-item" target="_blank" data-pswp-width="2798" data-pswp-height="2080"><img src="/uploads/2021/12/22/zealot-showcase_hu129f59bbb7a9006df1d1d4dae982d4a2_298971_800x0_resize_box_3.png"/></a><figcaption>
 
-    <h4>Zealot 服务样图</h4></figcaption></figure>
+    <p>Zealot 服务样图</p></figcaption></figure>
 
 <h2 id="特性">特性</h2>
 <ul>
@@ -1472,7 +1472,7 @@ USB3 端口</li>
     
       <figure data-pswp="720x720" data-size="800x"><a href="/uploads/2019/03/28/m2-vs-boardcom-vs-dadapter.jpg" class="gallery-item" target="_blank" data-pswp-width="720" data-pswp-height="720"><img src="/uploads/2019/03/28/m2-vs-boardcom-vs-dadapter_hu00e81ee142ef13662d8a12eecfc18be1_119676_800x0_resize_q75_box.jpg"/></a><figcaption>
 
-    <h4>M2 VS 博通 VS 转换器</h4></figcaption></figure>
+    <p>M2 VS 博通 VS 转换器</p></figcaption></figure>
 
 <p>避免广告的嫌疑，淘宝自行搜 <code>BCM94360CS2 NGFF M.2 转接卡</code>，买回来的博通网卡 + 转接卡可能是固定好的，我们需要把它拆开。转接卡要固定在框架上面后再把博通网卡插上拧上螺丝，框架上的两个天线随便接博通顶部两侧的插口上。转接卡高度超出框架最初拆下来的金属遮蔽盒不能再装回去。最好把框架固定到主板上就完成了。</p>
 
@@ -1493,7 +1493,7 @@ USB3 端口</li>
     
       <figure data-pswp="1920x1920" data-size="800x"><a href="/uploads/2019/03/28/install-boardcom-module-to-motherboard.jpg" class="gallery-item" target="_blank" data-pswp-width="1920" data-pswp-height="1920"><img src="/uploads/2019/03/28/install-boardcom-module-to-motherboard_hu3990a80f62d04c441c56fcf5f23b96d1_903689_800x0_resize_q75_box.jpg"/></a><figcaption>
 
-    <h4>博通网卡更换步骤图</h4></figcaption></figure>
+    <p>博通网卡更换步骤图</p></figcaption></figure>
 
 <h2 id="bios">BIOS</h2>
 <p>开机 F2 进入 BIOS 再按 F6 切换高级模式，至少需要做如下修改具体情况还需要看硬件情况：</p>
@@ -1875,7 +1875,7 @@ USB3 端口</li>
     
       <figure data-pswp="900x2048" data-size="800x"><a href="/uploads/2020/04/02/m2-key-list.jpeg" class="gallery-item" target="_blank" data-pswp-width="900" data-pswp-height="2048"><img src="/uploads/2020/04/02/m2-key-list_hue303cdd9ec1c456e7c7b209fdb90df78_216428_800x0_resize_q75_box.jpeg"/></a><figcaption>
 
-    <h4>M2 规格图</h4></figcaption></figure>
+    <p>M2 规格图</p></figcaption></figure>
 
 <p><strong>特别提醒</strong>：主板自带 M.2 Key E 插口的无线模块需要<a href="https://bbs.nga.cn/read.php?tid=16399773&amp;page=1">支持非 CNVi 网卡才能使用</a>，如果有白名单请参考上面删除线内的方法。</p>
 <p>如果你不需要蓝牙的话也可以考虑 USB 无线网卡，USB 类型的目前暂无网卡和蓝牙二合一可用的硬件，虽然市面上已经出了一些。个人在春节期间不忍寂寞从 7x24 小时发货的京东买了 Comfast CF-913AC V2 USB 网卡安装<a href="http://en.comfast.com.cn/index.php?m=content&amp;c=index&amp;a=show&amp;catid=30&amp;id=223">驱动</a>装的黑苹果。</p>
@@ -5015,7 +5015,7 @@ nameserver 8.8.4.4 # 备选 DNS
     
       <figure data-pswp="1034x835" data-size="800x"><a href="/uploads/2013/05/25/hulunbeier-riding-roadmap.jpg" class="gallery-item" target="_blank" data-pswp-width="1034" data-pswp-height="835"><img src="/uploads/2013/05/25/hulunbeier-riding-roadmap_hu6dcac0a8d491935924faf69d0f5e89b1_202439_800x0_resize_q75_box.jpg"/></a><figcaption>
 
-    <h4>呼伦贝尔旅行地图</h4></figcaption></figure>
+    <p>呼伦贝尔旅行地图</p></figcaption></figure>
 
 <h2 id="预计费用">预计费用</h2>
 <table>

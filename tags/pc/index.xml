@@ -132,7 +132,7 @@ USB3 端口</li>
     
       <figure data-pswp="720x720" data-size="800x"><a href="/uploads/2019/03/28/m2-vs-boardcom-vs-dadapter.jpg" class="gallery-item" target="_blank" data-pswp-width="720" data-pswp-height="720"><img src="/uploads/2019/03/28/m2-vs-boardcom-vs-dadapter_hu00e81ee142ef13662d8a12eecfc18be1_119676_800x0_resize_q75_box.jpg"/></a><figcaption>
 
-    <h4>M2 VS 博通 VS 转换器</h4></figcaption></figure>
+    <p>M2 VS 博通 VS 转换器</p></figcaption></figure>
 
 <p>避免广告的嫌疑，淘宝自行搜 <code>BCM94360CS2 NGFF M.2 转接卡</code>，买回来的博通网卡 + 转接卡可能是固定好的，我们需要把它拆开。转接卡要固定在框架上面后再把博通网卡插上拧上螺丝，框架上的两个天线随便接博通顶部两侧的插口上。转接卡高度超出框架最初拆下来的金属遮蔽盒不能再装回去。最好把框架固定到主板上就完成了。</p>
 
@@ -153,7 +153,7 @@ USB3 端口</li>
     
       <figure data-pswp="1920x1920" data-size="800x"><a href="/uploads/2019/03/28/install-boardcom-module-to-motherboard.jpg" class="gallery-item" target="_blank" data-pswp-width="1920" data-pswp-height="1920"><img src="/uploads/2019/03/28/install-boardcom-module-to-motherboard_hu3990a80f62d04c441c56fcf5f23b96d1_903689_800x0_resize_q75_box.jpg"/></a><figcaption>
 
-    <h4>博通网卡更换步骤图</h4></figcaption></figure>
+    <p>博通网卡更换步骤图</p></figcaption></figure>
 
 <h2 id="bios">BIOS</h2>
 <p>开机 F2 进入 BIOS 再按 F6 切换高级模式，至少需要做如下修改具体情况还需要看硬件情况：</p>
@@ -535,7 +535,7 @@ USB3 端口</li>
     
       <figure data-pswp="900x2048" data-size="800x"><a href="/uploads/2020/04/02/m2-key-list.jpeg" class="gallery-item" target="_blank" data-pswp-width="900" data-pswp-height="2048"><img src="/uploads/2020/04/02/m2-key-list_hue303cdd9ec1c456e7c7b209fdb90df78_216428_800x0_resize_q75_box.jpeg"/></a><figcaption>
 
-    <h4>M2 规格图</h4></figcaption></figure>
+    <p>M2 规格图</p></figcaption></figure>
 
 <p><strong>特别提醒</strong>：主板自带 M.2 Key E 插口的无线模块需要<a href="https://bbs.nga.cn/read.php?tid=16399773&amp;page=1">支持非 CNVi 网卡才能使用</a>，如果有白名单请参考上面删除线内的方法。</p>
 <p>如果你不需要蓝牙的话也可以考虑 USB 无线网卡，USB 类型的目前暂无网卡和蓝牙二合一可用的硬件，虽然市面上已经出了一些。个人在春节期间不忍寂寞从 7x24 小时发货的京东买了 Comfast CF-913AC V2 USB 网卡安装<a href="http://en.comfast.com.cn/index.php?m=content&amp;c=index&amp;a=show&amp;catid=30&amp;id=223">驱动</a>装的黑苹果。</p>
