@@ -25,9 +25,9 @@
 </nav>
 
 <nav class="navbar-mobile" id="nav-mobile" style="display: none">
-  {{ if (and .IsPage (.Site.Params.contentProgress | default true)) }}
+  {{ if (and .IsPage (.Site.Params.contentProgress | default true)) -}}
   <progress class="content_progress" max="0" value="0"></progress>
-  {{ end }}
+  {{- end }}
 
   <div class="container">
     <div class="navbar">

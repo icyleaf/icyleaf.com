@@ -74,7 +74,7 @@ assetDir: static
 
 menu:
   main:
-    - name: 如何搭建家用 homelab
+    - name: homelab 系列
       weight: 60
       identifier: homelab
       url: /series/homelab
