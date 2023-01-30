@@ -39,6 +39,15 @@
   .post-title {
     font-size: 2.2em;
     line-height: 1.3em;
+
+    .post-isdraft {
+      color: $light-post-link-hover-color;
+      padding-left: 0.2em;
+
+      .dark-theme & {
+        color: $dark-post-link-hover-color !important;
+      }
+    }
   }
 
   .section-title {

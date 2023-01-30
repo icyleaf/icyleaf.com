@@ -1,7 +1,10 @@
 {{ define "content" }}
 <article class="post-warp" itemscope itemtype="http://schema.org/Article">
   <header class="post-header">
-    <h1 class="post-title" itemprop="description">{{ .Title }}</h1>
+    <h1 class="post-title" itemprop="description">
+      {{ .Title }}
+      {{- if .Draft }}<sup><span class="post-isdraft">[draft]</span></sup>{{- end }}
+    </h1>
     {{ with .Description | html }}<div class="post-description">{{ . }}</div>{{ end }}
     <div class="post-meta">
       {{ with .Date.Format (.Site.Params.dateFormatToUse | default "2006-01-02") }}
