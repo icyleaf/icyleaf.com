@@ -24,23 +24,34 @@
   {{ $pswpWidth = .Get "pswp-width" | default $image.Width }}
   {{ $pswpHeight = .Get "pswp-height" | default $image.Height }}
 
-  {{- if and (and (ne $thumbWidth 0) (ne $thumbHeight 0)) (or (lt $thumbWidth $pswpWidth) (lt $thumbHeight $pswpHeight)) -}}
+  {{- if or (lt $thumbWidth $pswpWidth) (lt $thumbHeight $pswpHeight) -}}
     {{ $linkUrl = $imageUrl }}
     {{ $thumbSize = printf "%dx%d" $thumbWidth $thumbHeight }}
 
-    {{- if eq $thumbMethod "fit" -}}
-    {{ $imageUrl = ($image.Fit $thumbSize).RelPermalink | relURL }}
-    {{- else if eq $thumbMethod "fill" -}}
-    {{ $imageUrl = ($image.Fill $thumbSize).RelPermalink | relURL }}
-    {{- else if eq $thumbMethod "crop" -}}
-    {{ $imageUrl = ($image.Crop $thumbSize).RelPermalink | relURL }}
+    {{- if and (ne $thumbWidth 0) (ne $thumbHeight 0) }}
+      {{- if eq $thumbMethod "fit" -}}
+      {{ $imageUrl = ($image.Fit $thumbSize).RelPermalink | relURL }}
+      {{- else if eq $thumbMethod "fill" -}}
+      {{ $imageUrl = ($image.Fill $thumbSize).RelPermalink | relURL }}
+      {{- else if eq $thumbMethod "crop" -}}
+      {{ $imageUrl = ($image.Crop $thumbSize).RelPermalink | relURL }}
+      {{- end -}}
     {{- else -}}
-    {{ $imageUrl = ($image.Resize $thumbSize).RelPermalink | relURL }}
+      {{- if and (eq $thumbWidth 0) (ne $thumbHeight 0) -}}
+      {{ $thumbSize = printf "x%d" $thumbHeight }}
+      {{- else if and (ne $thumbWidth 0) (eq $thumbHeight 0) -}}
+      {{ $thumbSize = printf "%dx" $thumbWidth }}
+      {{- else -}}
+      {{/*  default size  */}}
+      {{ $thumbSize = "800x" }}
+      {{- end -}}
+
+      {{ $imageUrl = ($image.Resize $thumbSize).RelPermalink | relURL }}
     {{- end -}}
   {{- end -}}
 {{- end -}}
 
-<figure{{ with .Get "class" }} class="{{ . }}"{{ end }}>
+<figure{{ with .Get "class" }} class="{{ . }}"{{ end }} data-pswp="{{ $pswpWidth }}x{{ $pswpHeight }}" data-size="{{ $thumbSize }}">
   {{- if $linkUrl -}}
   <a href="{{ $linkUrl }}" class="gallery-item" target="{{ .Get "target" | default "_blank" }}"
     {{- with .Get "rel" }} rel="{{ . }}"{{ end -}}
