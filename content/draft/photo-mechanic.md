@@ -1,24 +1,21 @@
----
-title: 加速摄影后期工作流第一步 Photo Mechanic
-description: 解决预览 Raw 照片太慢；拍摄了 JPG 和 Raw 照片筛图困难；导出规则需求个性化设计，顺带处理视频筛选的最佳工具
-date: 2023-01-29T12:58:50+08:00
-slug: speed-up-photography-workflow-by-using-photo-mechanic
-type: posts
-draft: true
-index: true
-comments: true
-isCJKLanguage: true
-series:
-  - speed-up-photography-workflow
-categories:
-  - Photography
-tags:
-  - Photography
-  - Photo Mechanic
-image: https://images.unsplash.com/photo-1563982673461-1ca8b01e9b44?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2874&q=80
-imageSource:
-  - name: Sergio Rota
-    link: https://unsplash.com/photos/lq-3u9EqNb4
-  - name: Unsplash
-    link: https://unsplash.com
----
+{
+	"data": "ENC[AES256_GCM,data:+tckjYiz4FHIAgMYQzfisa9sw5S12CuWVPsF7WjnHZIi/hs/OE9ATY8K7HhPw657rf7hQJJenXJESYnsn8MbWA4cUk1y0o3++9nmsPnWeivIz8rpjJ6TfjA3j1x6+5nrk3XNErND6LcN4NOgDeh9IWdAm0Axpjf+wipRudzj2X+iRKSBfEJ5uOaWN2g7BvFGH3mtgU/TF5u2n2C07z3oGLQz7c5euaYJhxASWjNlryv1FyUKtrGIm1e22aNYX35ItuX/VMCceyh0TUI0YUAAonfRWaQy89L/ie8/RQQz/2gIUaHU1DDiJ42sBgb8Y4FPRdAt/BJLIhR2i6a2VjQDdmYQkmEpWWt5GQgd+ywiFm2mXclRj4CrxSfuzyZjb57IVqegzPFwhCM1KxPs6WMseu3syjgPCo7LlY/tvVQN3m2aQdK0NMWXeoi8SdoR7k6EvphZct+HahiVR9I74+wem7e41tyr6YSTALewG8mzswZIFIO1cY/8HyrLlsNU/NV/0uyb/QGrMMbGWhL+RZZgYlu+e3dqdmvzeGqA6/HBVzsAOuxZu4loURrrdEJTpfe6eXaXbN3IaroCsHSVu3JxhDuNGC9IRE+jQ0eummfK5unIjSB9P9SUwzPqGb/K/I/rrfLmEdGWUxzvxoZVuys9SeTuTU5k2JBWh8UaagkX+8oRGOPW6efCL3eYFi6LuNyK39+gMtafqLt77y+dosXKcUYo3tYShvxz+Op1nAxg++5uapa21voaZEwwBdismwAmWajGMAVOTKGBp9/xo/y01Q6chKSQ1wZ8SCJDzzAkbdTfIPdwXARH55Y0dVEXFlKre1Gh0v492E3HN4TV7QeiQ1o/l5hTiduiew8cLmMBYlVFg8BPxuy7x+e4acaYcU6GhhUSjiyiFR0NNIAWl8e+RXpoUzVPA2pDhrlWkgIIHd+OEvkeHFChD5HfzDqV1e1TokrI7ywQddLVdDXST+BJG4I6Cg/dSXaReHxnkJ8o1QMCM05zgejhWJzrETA4eBT/TSoxLBKtBwviwg0xpo3MPxj010gOrvm3nUh2PYiKtuiYCWFNH+0=,iv:9zwFE2yeaHUpumjpeNiJra60O06yRWJIoof/cSb5RLg=,tag:w8gBO5XCARw32S7YmGThow==,type:str]",
+	"sops": {
+		"kms": null,
+		"gcp_kms": null,
+		"azure_kv": null,
+		"hc_vault": null,
+		"age": null,
+		"lastmodified": "2023-01-30T05:27:32Z",
+		"mac": "ENC[AES256_GCM,data:Lwh09b4NHtBFVi56W88/i2sJWo9egj9AandEUCKCbNBMeCzVJqt8+fC+VC6ejonoYP/6v+CjYZW+5MrepJK3PmcOKUMDYYo4bRw3WVlJzMJq/WI6uMxgeIuW9viWslQzrAFTQ9n5FBcyJW6XBP3aUv6JERtTLLIT1Kbb+9J7y4s=,iv:o7qjx5o9BovovF+qfdVZeJMlCHD3xzkBtg4fFiOO48Y=,tag:KoIFlxxSRjip9Kv4PQFZ6A==,type:str]",
+		"pgp": [
+			{
+				"created_at": "2023-01-30T05:27:30Z",
+				"enc": "-----BEGIN PGP MESSAGE-----\n\nhQIMA0XkfJp09k5FAQ//bJY/fxfbX5ukMbNe9t3lIapHCG9AIo++2l0OAuNPX7ZQ\n4Fc7wlME7SjDP5Gy7LtdvYdgS5u5+C5iyuw9kVx4x8GXmRrO5N1Vj3bZiSQQ6hoA\nLIBbnX7r8iLipmZcCQfubYxu4c8mCF+uQo4nPpezOZHvASHmMSDlEg4YqXZIzTfy\nvJFCZHK0elO+YwyX1H27gNJmeZIEiizTFLwrIN044MIq2je3PGPOjX/tCUdeDlwh\nhqTfm7Xq+r5D4rbjhMf62QNHYLZ5uLsqOg6gzu82BGRBuwR0Q5BJMsCBkPqsgx8f\nueO393+UhIWWt9VaNbvLroLM09YGtFo09EzJoS1aP123l8au2l8n1TeaSir/VBeB\n/OMkEGNYBS4+0MzY3GF3k/xAgDA13fwZRoZAsw6CS0/sIGRt0O7z2pV1+YgxY7SX\ni50ChsY7phWBwtyLbZ3YaD5siWbOGpxOJmW/igH9b1T/tc4R1SINUlNSxAI5f6FN\nlDpomWWCwFC9fYmcETHsR2FLJdY1tL5Fyn8MP0s5nIV04Dh8EgsdmEd/3RsewMSA\nRWQyRZ07j4reQTxDeIIrDdviQ2gUe4cX7OPTcS6cwnweU3QY62BcUrK2TMIFJm2t\nOH+ddj/lultmXt5hov43Jgoxr2oxHuVq14KC6NroejytTiIg6lI19x4FYZcMHzPU\nZgEJAhBYi0ugqiES9l6xC6XukpfC7wtE9rBmPMJTiNlSAmFUw93Wa1XKhO353YRI\nfsBj7vUQBU31RP2l2K7YZFKhkbLcBpUBzE6DMAOa+aC2VN413VvU7LhNv1T4eqvF\nfhSTDl12UQ==\n=my0H\n-----END PGP MESSAGE-----\n",
+				"fp": "5CBD4E4E8B1B31E63489AE71F9FF9B1D7399D214"
+			}
+		],
+		"unencrypted_suffix": "_unencrypted",
+		"version": "3.7.3"
+	}
+}
