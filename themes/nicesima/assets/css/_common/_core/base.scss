@@ -98,3 +98,63 @@ figure {
   margin: 0;
   margin-bottom: .75em;
 }
+
+// badge style
+// --bs-badge-padding-x: 0.65em;
+// --bs-badge-padding-y: 0.35em;
+// --bs-badge-font-size: 0.75em;
+// --bs-badge-font-weight: 700;
+// --bs-badge-color: #fff;
+// --bs-badge-border-radius: 0.375rem;
+.badge {
+  display: inline-block;
+  padding: 0.35em 0.65em;
+  font-size: 0.75em;
+  font-weight: 700;
+  line-height: 1;
+  color: $light-badge-text-color;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.375rem;
+}
+
+.bg-success {
+  color: $light-success-text-color;
+  background-color: $light-success !important;
+
+  .dark-theme & {
+    color: $dark-success-text-color;
+    background-color: $dark-success !important;
+  }
+}
+
+.bg-warning {
+  color: $light-warning-text-color;
+  background-color: $light-warning !important;
+
+  .dark-theme & {
+    color: $dark-warning-text-color;
+    background-color: $dark-warning !important;
+  }
+}
+
+.bg-danger {
+  color: $light-danger-text-color;
+  background-color: $light-danger !important;
+
+  .dark-theme & {
+    color: $dark-danger-text-color;
+    background-color: $dark-danger !important;
+  }
+}
+
+.bg-notice {
+  color: $light-notice-text-color;
+  background-color: $light-notice !important;
+
+  .dark-theme & {
+    color: $dark-notice-text-color;
+    background-color: $dark-notice !important;
+  }
+}
