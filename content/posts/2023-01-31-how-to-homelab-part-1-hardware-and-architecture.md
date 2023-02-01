@@ -69,7 +69,7 @@ imageSource:
 
 托工作福利政策出国旅游频次逐渐变多，拍摄的照片越来越多需要存储，2016 年从[什么值得买](https://post.smzdm.com/p/399864/)了解后德淘了一台 HP Microserver Gen8。这是一台拥有 4 盘位，双千兆网口还带 iLO 管理功能的服务器，我却给它只安装了黑群晖算是成为了最早的 NAS 服务器设备架构，5.x 版本的群晖还不支持 Docker 算是一台单纯的 NAS 服务用来存储照片、视频、替代 Dropbox 的 Drive 服务，从上图也能看到我当时完全不了解什么是链路聚合，要不然我肯定给黑群晖接入双网口了。
 
-路由器升级到了网件 6300v2 并刷入了 KoolCenter 定制化的[梅林固件](https://twitter.com/icyleaf/status/887209662012989440)方便畅游网络，内网穿透这个时候被迫在使用，黑群晖升级后没法完全洗白之前的 Connect 服务被废从联通那要了公网 IP 后才进行实时，我记得公网 IP 上报用的还是[糖醋鼻子](https://twitter.com/zhmocean)提供的脚本。
+路由器升级到了网件 6300v2 并刷入了 KoolCenter 定制化的[梅林固件](https://twitter.com/icyleaf/status/887209662012989440)方便畅游网络，内网穿透这个时候被迫在使用，黑群晖升级后没法完全洗白之前的[群晖 QuickConnect](https://quickconnect.to/) 服务被废，从联通客服申请公网 IP 后在通过 DDNS 定时上报（脚本还是[糖醋鼻子](https://twitter.com/zhmocean)提供的）。
 
 电视更换成了索尼 4K 60 寸互联网电视，外接了一个晶晨 S912 外贸盒子安装了 Kodi 和 Youtube 成为家庭影音系统。
 
@@ -563,7 +563,7 @@ Portainer 是一款新人友好的容器管理工具，至今我现在也还在�
 </tr>
 <tr>
 <td><a href="https://argo-cd.readthedocs.io/">argocd</a></td>
-<td><span class="badge bg-danger">试验</span></td>
+<td><span class="badge bg-warning">试验</span></td>
 <td>gitops 里对 k8s 自动配置部署还有可视化拓扑图</td>
 </tr>
 <tr>

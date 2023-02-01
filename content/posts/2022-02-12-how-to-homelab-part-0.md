@@ -1,9 +1,9 @@
 ---
 title: "如何搭建家用 homelab: 先导篇"
 date: 2022-02-12T20:00:00+08:00
-slug: "how-to-homelab-part-0-intro"
+slug: "how-to-homelab-part-0"
 aliases:
-  - how-to-homelab-part-0
+  - how-to-homelab-part-0-intro
   - how-to-homelab
   - homelab
 draft: false
