@@ -204,6 +204,7 @@
 
 <p>就这上面集群测试跑通的同时 J1900 主机也完成了对 <a href="https://twitter.com/icyleaf/status/1579499063577554945">nomad</a> 服务的试水并逐步稳定下来，后面也可以和 Proxmox VMs 组成混合集群。</p>
 <p>内网穿透方面除了公网加端口之外多了 <a href="https://twitter.com/icyleaf/status/1539849981598740480">traefik hub</a> 方案。作为最早一批内测用户还额外拥有更多的免费额度，现在免费版限制最大 5 个公网服务。</p>
+<p>Gen 8 在更换新的氦气盘转移数据有大量的视频转码工作要跑 CPU 有点吃不消，闲鱼 1230v2 价格 150 <a href="https://twitter.com/icyleaf/status/1564962797372395520">收了它</a>继续卖命，群晖<a href="https://twitter.com/icyleaf/status/1565176566535323649">需要修改</a>才能正确识别新 U。</p>
 <h2 id="我的设备选择">我的设备选择</h2>
 <blockquote>
 <p>用了很长的篇幅介绍了我的设备演变史，从文字和拓扑图大家已经了解了七七八八，为了方便理解这里会再汇总一份供大家赏阅。在软硬件的折腾方面我总能想起<a href="https://www.gracecode.com/posts/3191.html">明城</a>大哥。</p>
@@ -273,7 +274,7 @@
 <tr>
 <td>
   <a href="https://starcraft.fandom.com/wiki/Splitter">Splitter</a> <sup>arm64</sup><br />
-  EAIDK610 (RK3399/4G/128GB)
+  EAIDK610 (RK3399/4G/6+128GB)
 </td>
 <td>Armbian</td>
 <td><span class="badge bg-warning">试验</span></td>
