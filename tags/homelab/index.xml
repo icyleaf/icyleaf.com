@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>homelab on icyleaf</title><link>https://icyleaf.com/tags/homelab/</link><description>Recent content in homelab on icyleaf</description><language>zh</language><lastBuildDate>Tue, 31 Jan 2023 19:28:50 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/homelab/index.xml" rel="self" type="application/rss+xml"/><item><title>如何搭建家用 homelab: 硬件和架构</title><link>https://icyleaf.com/2023/01/how-to-homelab-part-1-hardware-and-architecture/</link><pubDate>Tue, 31 Jan 2023 19:28:50 +0800</pubDate><guid>https://icyleaf.com/2023/01/how-to-homelab-part-1-hardware-and-architecture/</guid><description>家庭设备架构和考虑因素是根据实际需求不断地演变、试错和总结</description><content:encoded><![CDATA[<p>前面<a href="https://icyleaf.com/2022/02/how-to-homelab-part-0-intro/">先导篇</a>全面性介绍了搭建家用 homelab 软硬件的可能性，实际操作上每个人的室内环境，网络布线都不太一样，钞能力的不同也有会千万种解法。我无法给出一个 100% 的解决方案，但我给大家回顾自己设备架构演变的过程在每个阶段是什么需求，遇到什么问题以及如何应对的，在文章末尾也会给出一些搭建 homelab 中不容忽视的因素。</p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>homelab on icyleaf</title><link>https://icyleaf.com/tags/homelab/</link><description>Recent content in homelab on icyleaf</description><language>zh</language><lastBuildDate>Tue, 31 Jan 2023 19:28:50 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/homelab/index.xml" rel="self" type="application/rss+xml"/><item><title>如何搭建家用 homelab: 硬件和架构</title><link>https://icyleaf.com/2023/01/how-to-homelab-part-1-hardware-and-architecture/</link><pubDate>Tue, 31 Jan 2023 19:28:50 +0800</pubDate><guid>https://icyleaf.com/2023/01/how-to-homelab-part-1-hardware-and-architecture/</guid><description>家庭设备架构和考虑因素是根据实际需求不断地演变、试错和总结</description><content:encoded><![CDATA[<p>前面<a href="https://icyleaf.com/2022/02/how-to-homelab-part-0/">先导篇</a>全面性介绍了搭建家用 homelab 软硬件的可能性，实际操作上每个人的室内环境，网络布线都不太一样，钞能力的不同也有会千万种解法。我无法给出一个 100% 的解决方案，但我给大家回顾自己设备架构演变的过程在每个阶段是什么需求，遇到什么问题以及如何应对的，在文章末尾也会给出一些搭建 homelab 中不容忽视的因素。</p>
 <h2 id="我的设备架构">我的设备架构</h2>
 <blockquote>
 <p>首先声明个人设备架构并不代表这是最佳的方案，只是当前符合我要求的结果，随着需求和技术变化而迭代更新。我的梦想就是有间下图的<a href="https://blog.cavelab.dev/2021/02/new-home-office/">地下室</a>能够给我随意折腾就好了。</p>
@@ -79,7 +79,7 @@
     <p>v0.1 设备架构拓扑图</p></figcaption></figure>
 
 <p>托工作福利政策出国旅游频次逐渐变多，拍摄的照片越来越多需要存储，2016 年从<a href="https://post.smzdm.com/p/399864/">什么值得买</a>了解后德淘了一台 HP Microserver Gen8。这是一台拥有 4 盘位，双千兆网口还带 iLO 管理功能的服务器，我却给它只安装了黑群晖算是成为了最早的 NAS 服务器设备架构，5.x 版本的群晖还不支持 Docker 算是一台单纯的 NAS 服务用来存储照片、视频、替代 Dropbox 的 Drive 服务，从上图也能看到我当时完全不了解什么是链路聚合，要不然我肯定给黑群晖接入双网口了。</p>
-<p>路由器升级到了网件 6300v2 并刷入了 KoolCenter 定制化的<a href="https://twitter.com/icyleaf/status/887209662012989440">梅林固件</a>方便畅游网络，内网穿透这个时候被迫在使用，黑群晖升级后没法完全洗白之前的 Connect 服务被废从联通那要了公网 IP 后才进行实时，我记得公网 IP 上报用的还是<a href="https://twitter.com/zhmocean">糖醋鼻子</a>提供的脚本。</p>
+<p>路由器升级到了网件 6300v2 并刷入了 KoolCenter 定制化的<a href="https://twitter.com/icyleaf/status/887209662012989440">梅林固件</a>方便畅游网络，内网穿透这个时候被迫在使用，黑群晖升级后没法完全洗白之前的<a href="https://quickconnect.to/">群晖 QuickConnect</a> 服务被废，从联通客服申请公网 IP 后在通过 DDNS 定时上报（脚本还是<a href="https://twitter.com/zhmocean">糖醋鼻子</a>提供的）。</p>
 <p>电视更换成了索尼 4K 60 寸互联网电视，外接了一个晶晨 S912 外贸盒子安装了 Kodi 和 Youtube 成为家庭影音系统。</p>
 <p>PS 4 应该是在某一年黑五美亚捆绑赠送了 GTA5 和最后生还者的版本。</p>
 <h4 id="2018--2019">2018 ~ 2019</h4>
@@ -636,7 +636,7 @@
 </tr>
 <tr>
 <td><a href="https://argo-cd.readthedocs.io/">argocd</a></td>
-<td><span class="badge bg-danger">试验</span></td>
+<td><span class="badge bg-warning">试验</span></td>
 <td>gitops 里对 k8s 自动配置部署还有可视化拓扑图</td>
 </tr>
 <tr>
@@ -783,7 +783,7 @@
 </li>
 </ol>
 </div>
-]]></content:encoded></item><item><title>如何搭建家用 homelab: 先导篇</title><link>https://icyleaf.com/2022/02/how-to-homelab-part-0-intro/</link><pubDate>Sat, 12 Feb 2022 20:00:00 +0800</pubDate><guid>https://icyleaf.com/2022/02/how-to-homelab-part-0-intro/</guid><description>搭建 homelab 之前都需要了解哪些背景</description><content:encoded><![CDATA[<h2 id="前言">前言</h2>
+]]></content:encoded></item><item><title>如何搭建家用 homelab: 先导篇</title><link>https://icyleaf.com/2022/02/how-to-homelab-part-0/</link><pubDate>Sat, 12 Feb 2022 20:00:00 +0800</pubDate><guid>https://icyleaf.com/2022/02/how-to-homelab-part-0/</guid><description>搭建 homelab 之前都需要了解哪些背景</description><content:encoded><![CDATA[<h2 id="前言">前言</h2>
 <p>这将会是一个持续系列的主题文章，你将会从最基础的家庭 homelab 搭建开始循序渐进到一些进阶的系统、网络、服务层面的学习。我尽可能以新人的角色描述简单易懂的语言，系列文章会涉及家庭网络、路由器、Linux、数据储存、NAS、服务化等等，如果你在过程中又遇到任何问题，欢迎给我留言。</p>
 
 
