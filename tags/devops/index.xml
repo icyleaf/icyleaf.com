@@ -777,7 +777,7 @@
 <p>关于容器化 OS 可选性可以看看 <a href="https://blog.k8s.li/Photon-OS.html">Reimu 的博文</a>&#160;<a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:6">
-<p>Nomad 支持需要付费增值服务，可免费申请试用 License&#160;<a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Nomad 支持需要<a href="https://docs.portainer.io/admin/licenses">商业授权</a>，当前可以申请<a href="https://www.portainer.io/take-5"> 5 节点免费商业</a>&#160;<a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:7">
 <p>带宽是 1000 进制，1Gbps = 1000Mbps = 千兆网络, 10Gbps = 万兆网络&#160;<a href="#fnref:7" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
