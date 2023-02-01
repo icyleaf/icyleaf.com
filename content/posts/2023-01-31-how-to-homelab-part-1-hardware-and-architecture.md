@@ -688,6 +688,6 @@ CPU 的待机 TPW 只是参考，还需要考虑硬盘，内存和显卡整体�
 [^pve_backup_restore]: 官方提供[备份和恢复](https://pve.proxmox.com/wiki/Backup_and_Restore)方法，Github Gist 也有[备份脚本](https://gist.github.com/mrpeardotnet/6bdc4b504f43ce57fa7eaee96d376edf)
 [^rpi]: 以疫情为由成本上升，国内市场 4B 最高能卖到 1200，我吃灰的 3B 都卖了 600 块
 [^linux-container-os]: 关于容器化 OS 可选性可以看看 [Reimu 的博文](https://blog.k8s.li/Photon-OS.html)
-[^portainer-nomad]: Nomad 支持需要付费增值服务，可免费申请试用 License
+[^portainer-nomad]: Nomad 支持需要[商业授权](https://docs.portainer.io/admin/licenses)，当前可以申请[ 5 节点免费商业](https://www.portainer.io/take-5)
 [^bandwidth]: 带宽是 1000 进制，1Gbps = 1000Mbps = 千兆网络, 10Gbps = 万兆网络
 [^ups-post-action]: [配置教程](https://blog.irain.in/archives/NUT_apcupsd_Synology_DSM_UPS.html)和关机方案 [1](https://blog.k8s.li/apcupsd-on-openwrt-with-esxi.html)、[2](https://github.com/mingcheng/apcupsd_guarder)
