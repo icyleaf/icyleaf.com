@@ -532,7 +532,7 @@ Portainer 是一款新人友好的容器管理工具，至今我现在也还在�
 <tr>
 <td><a href="https://www.nginx.com/">nginx</a></td>
 <td><span class="badge bg-success">采纳</span></td>
-<td>管理多域名可考虑 <a href="https://nginxproxymanager.com">nginx manager</a></td>
+<td>管理多域名可考虑 <a href="https://nginxproxymanager.com">nginx proxy manager</a></td>
 </tr>
 </tbody></table>
 {{< /div >}}
