@@ -596,7 +596,15 @@ Portainer 是一款新人友好的容器管理工具，至今我现在也还在�
 
 ### 网线规格
 
-**`务必保证所有 homelab 的设备都接入千兆以上有线网络`**，WIFI 会收到周围信道干扰、传输衰减等不稳定性问题，以下是网线的规格汇总：
+**`务必保证所有 homelab 的设备都接入千兆以上有线网络`**，WIFI 会收到周围信道干扰、传输衰减等不稳定性问题。
+
+{{< figure src="/tutorials/how-to-homelab/part-1/cable-ethernet-data-rates.png"
+    link="/tutorials/how-to-homelab/part-1/cable-ethernet-data-rates.png"
+    title="不同规格网线速率图"
+    caption="资料来源"
+    attr="IEEE 802 LMSC"
+    attrlink="https://www.ieee802.org/3/cfi/1114_1/CFI_01_1114.pdf"
+>}}
 
 {{< div >}}
 <table>
@@ -620,14 +628,14 @@ Portainer 是一款新人友好的容器管理工具，至今我现在也还在�
 <tr>
 <td>CAT 5E</td>
 <td>超五类线</td>
-<td>1000Mbps</td>
+<td>1000Mbps/2.5Gbps{{< /div >}}[^bandwidth]{{< div >}}</td>
 <td>RJ45</td>
-<td>最低限度</td>
+<td>2.5G 网络<a href="https://www.bilibili.com/video/BV1p14y137v3">仅限 100 米以内</a></td>
 </tr>
 <tr>
 <td>CAT 6</td>
 <td>六类线</td>
-<td>1Gbps/10Gbps{{< /div >}}[^bandwidth]{{< div >}}</td>
+<td>1Gbps/10Gbps</td>
 <td>RJ45</td>
 <td>万兆网络仅限 50 米内</td>
 </tr>
@@ -656,9 +664,7 @@ Portainer 是一款新人友好的容器管理工具，至今我现在也还在�
 </table>
 {{< /div >}}
 
-再次重申 **`千兆以上网络是不可或缺的`**，推荐使用 CAT 6/6A 规格，土豪们 CAT 7 或光纤随意。
-
-假如你不知道家里网络的状态提供两种方法检查：
+再次重申 **`千兆以上网络是不可或缺的`**，最低限度使用 CAT 5E，强烈推荐使用 CAT 6/6A 规格，土豪们 CAT 7 或光纤随意。假如你不知道家里网络的状态提供两种方法检查：
 
 1. 查看网线上面的印字会有网线规格标识
 1. 过 [iperf3](https://github.com/esnet/iperf) 在两台任意可连接有线的设备充当服务器端和客户端进行检测。
