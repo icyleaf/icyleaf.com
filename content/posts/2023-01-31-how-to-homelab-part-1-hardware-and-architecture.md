@@ -459,7 +459,7 @@ Gen 8 在更换新的氦气盘转移数据有大量的视频转码工作要跑 C
 <tr>
 <td><a href="https://rook.github.io/">rook ceph</a></td>
 <td><span class="badge bg-notice">评估</span></td>
-<td>当下具有很大潜力的云原生存储服务</td>
+<td>当下具有很大潜力的云原生存储服务<br />小集群或弱鸡 CPU 不建议使用</td>
 </tr>
 <tr>
 <td><a href="https://github.com/openebs/Mayastor">mayastor</a></td>
