@@ -360,6 +360,11 @@ Gen 8 在更换新的氦气盘转移数据有大量的视频转码工作要跑 C
 <td>新发布的容器化系统，感兴趣但还没成功跑通</td>
 </tr>
 <tr>
+<td><a href="https://www.truenas.com/">truenas</a></td>
+<td><span class="badge bg-notice">评估</span></td>
+<td>基于 FreeBSD 开发的 NAS 系统（ZFS 首选）</td>
+</tr>
+<tr>
 <td><a href="https://www.openmediavault.org/">omv</a></td>
 <td><span class="badge bg-danger">暂缓</span></td>
 <td>完成度高的 NAS 系统但个人无爱</td>
