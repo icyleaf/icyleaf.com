@@ -693,7 +693,7 @@
 <thead>
 <tr>
 <th>规格</th>
-<th>命名</th>
+<th>类型</th>
 <th>速率</th>
 <th>接口</th>
 <th>备注</th>
@@ -701,16 +701,16 @@
 </thead>
 <tbody>
 <tr>
-<td>CAT 5</td>
-<td>五类线</td>
+<td>五类线<br /><sup>CAT 5</sup></td>
+<td>100Base-T<br />10Base-T</td>
 <td>100Mbps</td>
 <td>RJ45</td>
 <td>不推荐</td>
 </tr>
 <tr>
-<td>CAT 5E</td>
-<td>超五类线</td>
-<td>1000Mbps/2.5Gbps
+<td>超五类线<br /><sup>CAT 5E</sup></td>
+<td>100Base-T</td>
+<td>1000Mbps<br />2.5Gbps
 </div>
 <sup id="fnref:7"><a href="#fn:7" class="footnote-ref" role="doc-noteref">7</a></sup><div >
   </td>
@@ -718,31 +718,31 @@
 <td>2.5G 网络<a href="https://www.bilibili.com/video/BV1p14y137v3">仅限 100 米以内</a></td>
 </tr>
 <tr>
-<td>CAT 6</td>
-<td>六类线</td>
-<td>1Gbps/10Gbps</td>
+<td>六类线<br /><sup>CAT 6</sup></td>
+<td>100Base-T</td>
+<td>1Gbps<br />10Gbps</td>
 <td>RJ45</td>
 <td>万兆网络仅限 50 米内</td>
 </tr>
 <tr>
-<td>CAT 6A</td>
-<td>超六类线</td>
+<td>超六类线<br /><sup>CAT 6A</sup></td>
+<td>100Base-T</td>
 <td>10Gbps</td>
 <td>RJ45</td>
 <td>200 米内可达万兆网络<br />没有 6E 标准</td>
 </tr>
 <tr>
-<td>CAT 7</td>
-<td>七类线</td>
+<td>七类线<br /><sup>CAT 7</sup></td>
+<td>100Base-T</td>
 <td>10Gbps</td>
 <td>GG45/TERA</td>
 <td>带着遮蔽</td>
 </tr>
 <tr>
-<td>-</td>
 <td>光纤</td>
-<td></td>
-<td></td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
 <td>不懂，详见<a href="https://zh.wikipedia.org/zh-cn/%E5%85%89%E7%BA%96%E9%80%9A%E8%A8%8A">维基百科</a></td>
 </tr>
 </tbody>
