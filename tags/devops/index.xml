@@ -664,7 +664,29 @@
 <p>大量的篇幅介绍了我个人 homelab 设备架构演变和软硬件的选择，还有什么容易忽略的因素呢？</p>
 <p>如果把设备比做核心建筑，不容忽视的因素那就是基础建设。两手都要抓这样才能以确保 homelab 能够发挥最大的效能，谁也不想性能无法 100% 压榨或意外故障的发生。</p>
 <h3 id="网线规格">网线规格</h3>
-<p><strong><code>务必保证所有 homelab 的设备都接入千兆以上有线网络</code></strong>，WIFI 会收到周围信道干扰、传输衰减等不稳定性问题，以下是网线的规格汇总：</p>
+<p><strong><code>务必保证所有 homelab 的设备都接入千兆以上有线网络</code></strong>，WIFI 会收到周围信道干扰、传输衰减等不稳定性问题。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+      <figure data-pswp="1738x1182" data-size="800x"><a href="/tutorials/how-to-homelab/part-1/cable-ethernet-data-rates.png" class="gallery-item" target="_blank" data-pswp-width="1738" data-pswp-height="1182"><img src="/tutorials/how-to-homelab/part-1/cable-ethernet-data-rates_hu83dc4325097d6232a063b6bcf6f7cad6_166015_800x0_resize_box_3.png"
+      alt="资料来源"/></a><figcaption><p class="source">资料来源<a href="https://www.ieee802.org/3/cfi/1114_1/CFI_01_1114.pdf">IEEE 802 LMSC</a>
+    </p>
+
+    <p>不同规格网线速率图</p></figcaption></figure>
+
 <p><div >
   
 <table>
@@ -688,17 +710,17 @@
 <tr>
 <td>CAT 5E</td>
 <td>超五类线</td>
-<td>1000Mbps</td>
+<td>1000Mbps/2.5Gbps
+</div>
+<sup id="fnref:7"><a href="#fn:7" class="footnote-ref" role="doc-noteref">7</a></sup><div >
+  </td>
 <td>RJ45</td>
-<td>最低限度</td>
+<td>2.5G 网络<a href="https://www.bilibili.com/video/BV1p14y137v3">仅限 100 米以内</a></td>
 </tr>
 <tr>
 <td>CAT 6</td>
 <td>六类线</td>
-<td>1Gbps/10Gbps
-</div>
-<sup id="fnref:7"><a href="#fn:7" class="footnote-ref" role="doc-noteref">7</a></sup><div >
-  </td>
+<td>1Gbps/10Gbps</td>
 <td>RJ45</td>
 <td>万兆网络仅限 50 米内</td>
 </tr>
@@ -728,8 +750,7 @@
 
 </div>
 </p>
-<p>再次重申 <strong><code>千兆以上网络是不可或缺的</code></strong>，推荐使用 CAT 6/6A 规格，土豪们 CAT 7 或光纤随意。</p>
-<p>假如你不知道家里网络的状态提供两种方法检查：</p>
+<p>再次重申 <strong><code>千兆以上网络是不可或缺的</code></strong>，最低限度使用 CAT 5E，强烈推荐使用 CAT 6/6A 规格，土豪们 CAT 7 或光纤随意。假如你不知道家里网络的状态提供两种方法检查：</p>
 <ol>
 <li>查看网线上面的印字会有网线规格标识</li>
 <li>过 <a href="https://github.com/esnet/iperf">iperf3</a> 在两台任意可连接有线的设备充当服务器端和客户端进行检测。</li>
