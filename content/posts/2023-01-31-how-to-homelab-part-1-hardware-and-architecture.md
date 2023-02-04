@@ -306,7 +306,7 @@ Gen 8 在更换新的氦气盘转移数据有大量的视频转码工作要跑 C
 </tbody></table>
 {{< /div >}}
 
-我只使用过施耐德 APC 带有通讯协议的 UPS 基本上可通过 [apcupsd](http://www.apcupsd.org/) 或 NUT（绝大多数 NAS 系统比如群晖、威联通等都支持）通过该服务可以让没有直接插通讯线的设备也能过接收到通知并执行安全关机操作[^ups-post-action]。详细请看[使用NUT和apcupsd将群晖NAS接入UPS不间断电源]获得配置教程。
+我只使用过施耐德 APC 带有通讯协议的 UPS 基本上可通过 [apcupsd](http://www.apcupsd.org/) 或 NUT（绝大多数 NAS 系统比如群晖、威联通等都支持）通过该服务可以让没有直接插通讯线的设备也能过接收到通知并执行安全关机操作[^ups-post-action]。
 
 ### 软件
 
