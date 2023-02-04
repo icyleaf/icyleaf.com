@@ -379,7 +379,7 @@
 
 </div>
 
-<p>我只使用过施耐德 APC 带有通讯协议的 UPS 基本上可通过 <a href="http://www.apcupsd.org/">apcupsd</a> 或 NUT（绝大多数 NAS 系统比如群晖、威联通等都支持）通过该服务可以让没有直接插通讯线的设备也能过接收到通知并执行安全关机操作<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>。详细请看[使用NUT和apcupsd将群晖NAS接入UPS不间断电源]获得配置教程。</p>
+<p>我只使用过施耐德 APC 带有通讯协议的 UPS 基本上可通过 <a href="http://www.apcupsd.org/">apcupsd</a> 或 NUT（绝大多数 NAS 系统比如群晖、威联通等都支持）通过该服务可以让没有直接插通讯线的设备也能过接收到通知并执行安全关机操作<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>。</p>
 <h3 id="软件">软件</h3>
 <h4 id="操作系统">操作系统</h4>
 <div >
