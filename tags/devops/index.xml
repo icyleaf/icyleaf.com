@@ -784,11 +784,11 @@
 <h3 id="省电和功率">省电和功率</h3>
 <p>CPU 的待机 TPW 只是参考，还需要考虑硬盘，内存和显卡整体，还需要考虑峰值功率，这块没有太多可展开的。要考虑能效但也不过分的在意，尤其是为了降低 5 - 10w TPW 而购买溢价过高的产品，这个在前篇的小结也有提到。</p>
 <h2 id="小结">小结</h2>
-<p>在 homelab 这条路上 All in one 设计每个入门的新人都会经历的，随着时间推移，服务的稳定性、数据安全性都需要维护，就像房子需要维修、车子需要定期保养一样，服务得分拆也是某个阶段也要考虑的。有时候真的应了那句话：
-没有经历过痛苦的人永远不会知道什么叫痛。</p>
+<p>在 homelab 这条路上刚开始选什么硬件不重要， All in one 基本上是每个入门都会经历的，随着时间推移，就像房子需要维修、车子需要定期保养一样，服务的稳定性、数据安全性都需要关注和维护。</p>
 <blockquote class="twitter-tweet"><p lang="zh" dir="ltr">ALL IN ONE 的性价比确实很高，但运行的服务和存储的数据越来越多、经历过几次设备升级和故障后，决定将 HOMELAB 向更稳定、易于扩展的超融合架构迁移。<br>在迁移之前使用 Hyper-V 测试一下 Proxmox VE 虚拟化集群 + Ceph 分布式文件系统实现的高可用计算平台的故障迁移功能。<a href="https://twitter.com/hashtag/Hardware?src=hash&amp;ref_src=twsrc%5Etfw">#Hardware</a> <a href="https://twitter.com/hashtag/ProxmoxVE?src=hash&amp;ref_src=twsrc%5Etfw">#ProxmoxVE</a> <a href="https://t.co/UZxmb9ZN3s">pic.twitter.com/UZxmb9ZN3s</a></p>&mdash; 8023 (@0x8023) <a href="https://twitter.com/0x8023/status/1569942942651121664?ref_src=twsrc%5Etfw">September 14, 2022</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
+<p>你可能会说我 all in one 几年了一切稳定，我只能说：没有经历过痛苦的人永远不会知道什么叫痛。</p>
 <!-- raw HTML omitted -->
 <div class="footnotes" role="doc-endnotes">
 <hr>
