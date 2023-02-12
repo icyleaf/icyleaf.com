@@ -1,4 +1,21 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Linux on icyleaf</title><link>https://icyleaf.com/tags/linux/</link><description>Recent content in Linux on icyleaf</description><language>zh</language><lastBuildDate>Tue, 31 Jan 2023 19:28:50 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>如何搭建家用 homelab: 硬件和架构</title><link>https://icyleaf.com/2023/01/how-to-homelab-part-1-hardware-and-architecture/</link><pubDate>Tue, 31 Jan 2023 19:28:50 +0800</pubDate><guid>https://icyleaf.com/2023/01/how-to-homelab-part-1-hardware-and-architecture/</guid><description>家庭设备架构和考虑因素是根据实际需求不断地演变、试错和总结</description><content:encoded><![CDATA[<p>前面<a href="https://icyleaf.com/2022/02/how-to-homelab-part-0/">先导篇</a>全面性介绍了搭建家用 homelab 软硬件的可能性，实际操作上每个人的室内环境，网络布线都不太一样，钞能力的不同也有会千万种解法。我无法给出一个 100% 的解决方案，但我给大家回顾自己设备架构演变的过程在每个阶段是什么需求，遇到什么问题以及如何应对的，在文章末尾也会给出一些搭建 homelab 中不容忽视的因素。</p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Linux on icyleaf</title><link>https://icyleaf.com/tags/linux/</link><description>Recent content in Linux on icyleaf</description><language>zh</language><lastBuildDate>Tue, 31 Jan 2023 19:28:50 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>如何搭建家用 homelab: 硬件和架构</title><link>https://icyleaf.com/2023/01/how-to-homelab-part-1-hardware-and-architecture/</link><pubDate>Tue, 31 Jan 2023 19:28:50 +0800</pubDate><guid>https://icyleaf.com/2023/01/how-to-homelab-part-1-hardware-and-architecture/</guid><description>家庭设备架构和考虑因素是根据实际需求不断地演变、试错和总结</description><content:encoded><![CDATA[
+
+
+
+<div class="updated">
+  <header class="updated-header">
+    <h4 class="updated-title">更新</h4>
+    
+    <p class="updated-meta">2月 12, 2023</p>
+    
+  </header>
+  <article class="updated-body">
+    PDD 600 多采购 Apple TV 用于代替原先的 Android 电视盒子，终于有了一个价格合适即有网飞认证高清又能提供更好的生态体验。
+  </article>
+</div>
+
+
+<p>前面<a href="https://icyleaf.com/2022/02/how-to-homelab-part-0/">先导篇</a>全面性介绍了搭建家用 homelab 软硬件的可能性，实际操作上每个人的室内环境，网络布线都不太一样，钞能力的不同也有会千万种解法。我无法给出一个 100% 的解决方案，但我给大家回顾自己设备架构演变的过程在每个阶段是什么需求，遇到什么问题以及如何应对的，在文章末尾也会给出一些搭建 homelab 中不容忽视的因素。</p>
 <h2 id="我的设备架构">我的设备架构</h2>
 <blockquote>
 <p>首先声明个人设备架构并不代表这是最佳的方案，只是当前符合我要求的结果，随着需求和技术变化而迭代更新。我的梦想就是有间下图的<a href="https://blog.cavelab.dev/2021/02/new-home-office/">地下室</a>能够给我随意折腾就好了。</p>
@@ -283,13 +300,23 @@
 </tr>
 <tr>
 <td>
+  <a href="https://starcraft.fandom.com/wiki/Colossus">Colossus</a> <sup>arm64</sup><br />
+  Apple TV 2021(4K/32G)
+</td>
+<td>Apple TV</td>
+<td><span class="badge bg-success">采纳</span></td>
+<td>1</td>
+<td>新电视盒子</td>
+</tr>
+<tr>
+<td>
   <a href="https://starcraft.fandom.com/wiki/Lair">Lair</a> <sup>armv8</sup><br />
   H96 Pro+ (S912/4G/32GB)
 </td>
 <td>Android TV</td>
 <td><span class="badge bg-success">采纳</span></td>
 <td>1</td>
-<td>影音电视盒子</td>
+<td>备用电视盒子</td>
 </tr>
 <tr>
 <td>
