@@ -27,6 +27,10 @@ imageSource:
     link: https://unsplash.com
 ---
 
+{{< updated at="2023-02-12" >}}
+PDD 600 多采购 Apple TV 用于代替原先的 Android 电视盒子，终于有了一个价格合适即有网飞认证高清又能提供更好的生态体验。
+{{< /updated >}}
+
 前面[先导篇]({{< ref "posts/2022-02-12-how-to-homelab-part-0.md" >}})全面性介绍了搭建家用 homelab 软硬件的可能性，实际操作上每个人的室内环境，网络布线都不太一样，钞能力的不同也有会千万种解法。我无法给出一个 100% 的解决方案，但我给大家回顾自己设备架构演变的过程在每个阶段是什么需求，遇到什么问题以及如何应对的，在文章末尾也会给出一些搭建 homelab 中不容忽视的因素。
 
 ## 我的设备架构
@@ -235,13 +239,23 @@ Gen 8 在更换新的氦气盘转移数据有大量的视频转码工作要跑 C
 </tr>
 <tr>
 <td>
+  <a href="https://starcraft.fandom.com/wiki/Colossus">Colossus</a> <sup>arm64</sup><br />
+  Apple TV 2021(4K/32G)
+</td>
+<td>Apple TV</td>
+<td><span class="badge bg-success">采纳</span></td>
+<td>1</td>
+<td>新电视盒子</td>
+</tr>
+<tr>
+<td>
   <a href="https://starcraft.fandom.com/wiki/Lair">Lair</a> <sup>armv8</sup><br />
   H96 Pro+ (S912/4G/32GB)
 </td>
 <td>Android TV</td>
 <td><span class="badge bg-success">采纳</span></td>
 <td>1</td>
-<td>影音电视盒子</td>
+<td>备用电视盒子</td>
 </tr>
 <tr>
 <td>
