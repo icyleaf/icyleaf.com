@@ -1,21 +1,48 @@
-{
-	"data": "ENC[AES256_GCM,data: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,iv:uq2f+X10nzxLRwtp6z6WgqwGM5BB28dW8K5fZL6KLi4=,tag:OgwZsch06fWfMTyHHv9zPg==,type:str]",
-	"sops": {
-		"kms": null,
-		"gcp_kms": null,
-		"azure_kv": null,
-		"hc_vault": null,
-		"age": null,
-		"lastmodified": "2023-01-31T02:34:07Z",
-		"mac": "ENC[AES256_GCM,data:S4JajZKIZEYhBDXdzPFHexppBDBkAYjWohjyTQlY+gj0qe041+ncuBTcg66jdApesMUPe1noSFWJGPKkbeE4fumsIsGpLslqTL69Yn6t37q7f0+3QfqELojazdV63RiGmqOUyxm5r10zBAR3tkEp3s3CKpBC+LwNbwIuVGiv7to=,iv:Q3ezCfqS1Tlx2nVTgnhpH0mGx60dP/1j/013bwFYp2I=,tag:k9rhj62IGw8c/M+JZDclhg==,type:str]",
-		"pgp": [
-			{
-				"created_at": "2023-01-31T02:34:06Z",
-				"enc": "-----BEGIN PGP MESSAGE-----\n\nwcFMA5qkd2q8RwkTAQ//ZIWTVZ0RfuHlQ8FVtmhFgsx7nVn8wQy/TP0RiE/b3JsY\nm17vBd0ks4YfdkXFKvgRw3S2dg4DP/P2GGLxqoLaDiM58unG4RPzypD+JbRrAsHh\nBHyhfBdyhOFGNeavy8wS1YZNSssP15bnXYzD5LZv4h2++zEKzx4nL+CFyDgxoIxQ\nmEofq+IVqal9yv4+5GMEzvRUGI0c2doROBClh2WG5IRMgCvO7o5RHFEUJAy11yXJ\nTwHEe9dff+LU8e81q2C4wTdjXtVrDS/STlNPQsWEdataio6KoR+gKBFAB4cEbSkb\noUZw2mmmtfqRtizEpU8izTLFHijVvN1wz0kHjoEc+TOMdaGiC9ybtce1LbN9MwVb\n4mQDVr/fYVAZSVQuZXXg1on154BOvAuS7sPtwkm3lZ6hTXbBgkZL5Y3HGuU3wpDW\nUtac3UaVDMYAn5SjfAw5iUJ/vrk1kqwd9YKJ56XaoLH+kSHR+Hgo9Kj+ss4Caz5I\n1EV8V4ACUJ3ckSZfN3JhW4fEvPMkYvUy7Zx4z1QNi+V2mVWVD/AKz7E/17czCIn3\nls/dtGAQ/gl85Zbt5qtPl40fqsOy/W2IeBNieW1uh9Hv8VKB1YKiSNs273c7YDpV\nhUFt+kr/hdpoRzWTkmTu8pimVqe01lMmsPzPD1jejX3xnH5pL2HuoUNfW3MCkKrS\nUQFAkbse0Qw6/g08DKCq1zBf/g4RKhEI/N+LBT9MAgwMGE6DAdLRaZvq8lcw/Y6/\nAl3N2qb341MMuoBbaemIDpw0zxRcluU5fOvB7pTZ37L/9g==\n=O00O\n-----END PGP MESSAGE-----",
-				"fp": "81C2793753873DE1BA7AD6D1B1C7C709F61ABC66"
-			}
-		],
-		"unencrypted_suffix": "_unencrypted",
-		"version": "3.7.3"
-	}
-}
+---
+title: "Proxmox VM 创建 Talos OS cloud-init 虚拟机"
+description: 使用 nocloud 实现自动化下载、配置和部署 talos
+date: 2023-02-01 T12:13:09+08:00
+slug: "create-talos-linux-vm-with-cloud-init-in-proxmox"
+type: posts
+draft: true
+index: true
+comments: true
+isCJKLanguage: true
+tags:
+  - Proxmox
+  - TalOS
+image: https://images.unsplash.com/photo-1528048330205-623cba504fad?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2781&q=80
+imageSource:
+  - name: Yeray Sánchez
+    link: https://unsplash.com/photos/BQQLB7p1IYI
+  - name: Unsplash
+    link: https://unsplash.com
+---
+
+[Talos](https://talos.dev) 作为 Container Linux 的一种解决方案，我一直是在 Proxmox VM 上面部署和进行一系列的测试工作，它的部署方式支持裸机安装、虚拟化安装、云安装以及单片机安装。trt
+
+## 安装方式
+
+### ISO 安装
+
+在 talos 1.2 之前版本针对 [Proxmox](https://www.talos.dev/v1.2/talos-guides/install/virtualized-platforms/proxmox/) 虚拟化安装官方只提供 ISO 的安装方式。
+
+### Cloud-init 安装
+
+我当前使用 terraform 部署，搭配 [proxmox-terraform]() 插件可以做到事半功倍。
+
+talos 是纯 API 管理连 ssh 都被舍弃了，无法通过传统的手段 ssh 获取 IP 地址，proxmox 提供的两种方式可以在安装前设定：
+
+1. lxc container (CT 模板)
+2. qemu cloud-init
+
+第一种制作相对麻烦，第二种官方本以为也没有明确针对 proxomx 的方案那肯定就不可以了吗？
+
+talos 1.2 版本官方支持了 cloud-init 的 [nocloud](https://www.talos.dev/v1.2/talos-guides/install/cloud-platforms/nocloud/) 安装，镜像下载也能看到有 `nocloud-xxx.raw.xz`
+
+## 什么是 cloud-init
+
+
+## 参考资料
+
+- https://fairysen.com/742.html
