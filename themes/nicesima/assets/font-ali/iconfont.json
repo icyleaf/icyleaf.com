@@ -1,0 +1,100 @@
+{
+  "id": "137034",
+  "name": "社交媒体",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "20729",
+      "name": "sina",
+      "font_class": "sina",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "31450",
+      "name": "rss",
+      "font_class": "rss",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "103719",
+      "name": "linkedin",
+      "font_class": "linkedin",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "120352",
+      "name": "instagram",
+      "font_class": "instagram",
+      "unicode": "e605",
+      "unicode_decimal": 58885
+    },
+    {
+      "icon_id": "123377",
+      "name": "douban",
+      "font_class": "douban",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "125531",
+      "name": "twitter",
+      "font_class": "twitter",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
+      "icon_id": "128610",
+      "name": "twitter",
+      "font_class": "twitter-dark",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "225824",
+      "name": "github",
+      "font_class": "github",
+      "unicode": "e60b",
+      "unicode_decimal": 58891
+    },
+    {
+      "icon_id": "233089",
+      "name": "instagram",
+      "font_class": "instagram1",
+      "unicode": "e60c",
+      "unicode_decimal": 58892
+    },
+    {
+      "icon_id": "256397",
+      "name": "facebook",
+      "font_class": "facebook",
+      "unicode": "e60d",
+      "unicode_decimal": 58893
+    },
+    {
+      "icon_id": "256401",
+      "name": "instagram",
+      "font_class": "mastodon",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    },
+    {
+      "icon_id": "295975",
+      "name": "linkedin",
+      "font_class": "linkedin1",
+      "unicode": "e610",
+      "unicode_decimal": 58896
+    },
+    {
+      "icon_id": "540040",
+      "name": "rss",
+      "font_class": "rss1",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    }
+  ]
+}

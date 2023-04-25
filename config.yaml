@@ -51,6 +51,8 @@ params:
       link: https://github.com/icyleaf
     - name: twitter
       link: https://twitter.com/icyleaf
+    - name: mastodon
+      link: https://o3o.ca/@icyleaf
     - name: linkedin
       link: https://www.linkedin.com/in/icyleaf
     - name: douban
