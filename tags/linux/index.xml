@@ -1,4 +1,395 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Linux on icyleaf</title><link>https://icyleaf.com/tags/linux/</link><description>Recent content in Linux on icyleaf</description><language>zh</language><lastBuildDate>Tue, 31 Jan 2023 19:28:50 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>如何搭建家用 homelab: 硬件和架构</title><link>https://icyleaf.com/2023/01/how-to-homelab-part-1-hardware-and-architecture/</link><pubDate>Tue, 31 Jan 2023 19:28:50 +0800</pubDate><guid>https://icyleaf.com/2023/01/how-to-homelab-part-1-hardware-and-architecture/</guid><description>家庭设备架构和考虑因素是根据实际需求不断地演变、试错和总结</description><content:encoded><![CDATA[
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Linux on icyleaf</title><link>https://icyleaf.com/tags/linux/</link><description>Recent content in Linux on icyleaf</description><language>zh</language><lastBuildDate>Wed, 26 Apr 2023 20:30:00 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>如何搭建家用 homelab: Openwrt 软路由</title><link>https://icyleaf.com/2023/04/how-to-homelab-part-2-openwrt-soft-router/</link><pubDate>Wed, 26 Apr 2023 20:30:00 +0800</pubDate><guid>https://icyleaf.com/2023/04/how-to-homelab-part-2-openwrt-soft-router/</guid><description>用牺牲硬件的网络转换效率来换取不必受设备提供商的限制和可玩性</description><content:encoded><![CDATA[<p>路由器是猫总管（调制解调器）最得力的一把手，掌管 homelab 网络大权。对于中国玩家提到软路由肯定绕不开 OpenWrt，今天我尝试用一个全新的视角唠唠这个大家熟悉却又陌生的系统。
+以下会涉及大量的基础认知、概念理解，<strong>不会涉及网络配置或高阶玩法</strong>。</p>
+<h2 id="什么是-openwrt">什么是 OpenWrt</h2>
+<blockquote>
+<p>与同价位的硬路由相比，软路由硬件更好，可配置性更高，但需要一定的网络知识才能发挥作用。软硬路由的选择取决于网络环境的场景，有些人投入了软路由的怀抱，有些人经历了软路由后<a href="https://taresky.com/2019byebye">坚定的使用硬路由</a>，还有些人的硬路由之下还会接一个软路由当旁路由<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>。</p>
+</blockquote>
+<p><a href="https://openwrt.org/">OpenWrt</a> 首先是一个开源的操作系统，能够实现硬路由器的核心功能：LAN 和 WAN 的网络转发、路由（DHCP、防火墙、DNS 解析等），在 Linux 开放的生态和社区基础上扩展出丰富的功能<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>，这个是硬件路由器没有能力达到的（钞能力或重刷魔改固件除外）。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+      <figure data-pswp="1757x1080" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-packages-preview.png" class="gallery-item" target="_blank" data-pswp-width="1757" data-pswp-height="1080"><img src="/tutorials/how-to-homelab/part-2/openwrt-packages-preview_hu0689ad6e7ee2942e696526d209bd670d_459004_800x0_resize_box_3.png"
+      alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://github.com/SuLingGG/OpenWrt-Rpi">SuLingGG/OpenWrt-Rpi</a>
+    </p>
+
+    <p>丰富的软件包资源</p></figcaption></figure>
+
+<p>它适配 x86、x86_64、arm、arm64 和 MIPS 等架构上千种硬件设备。硬件要求极低，21.02 版本最低要求 16M 闪存和 128M 内存，2023 年的今天没有人会拿老的硬路由古董去折腾它了吧，没有吧？没有吧？任意一台淘汰的 x86 设备都高于这个配置。
+且在 x86/x86Z_64 平台安装它甚至比安装 Ubuntu、Debian 系统还要简单。较全的列表请查阅<a href="https://openwrt.org/supported_devices">官方硬件支持列表</a> 未列入的还可以在 <a href="https://github.com/search?q=openwrt&amp;type=repositories">Github 搜索</a>。</p>
+<h2 id="版本分布">版本分布</h2>
+<p>OpenWrt 虽然有一套<a href="https://openwrt.org/zh/releases/start">发布流程</a>却没有稳定的发版节奏和老版本的废弃规则。版本号类似<a href="https://semver.org/lang/zh-CN/">语义化版本规范</a>划分 <code>X</code>.<code>Y</code>.<code>Z</code> 三段。<code>X</code>.<code>Y</code> 是年和月相对固定，小功能迭代全靠更新 <code>Z</code> 的值。版本大致划分两类：</p>
+<ul>
+<li>稳定版：生产环境 Ready 的稳定版本。v22.03.2 是该系列的最新版本。</li>
+<li>开发版：不稳定但会包含不断的迭代增强功能的开发版本，也称之为 snapshot 版本，完成<a href="https://openwrt.org/docs/guide-developer/releases/goals/start">里程碑</a>会进入 RC 版本。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>版本</th>
+<th>状态</th>
+<th>重大变化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://openwrt.org/zh/releases/snapshot">snapshot</a></td>
+<td>开发版本</td>
+<td>-</td>
+</tr>
+<tr>
+<td><a href="https://openwrt.org/zh/releases/22.03/start">22.03</a></td>
+<td>最新版本</td>
+<td>基于 5.10 内核、防火墙迁移 nftables、黑暗模式</td>
+</tr>
+<tr>
+<td><a href="https://openwrt.org/zh/releases/21.02/start">21.02</a></td>
+<td>可看做是 LTS 版本</td>
+<td>基于 5.4 内核、DSA 初步支持</td>
+</tr>
+<tr>
+<td><a href="https://openwrt.org/docs/guide-developer/releases/goals/19.07.4">19.07</a></td>
+<td>不再支持</td>
+<td>基于 4.11 内核、WPA3 支持、客户端渲染 luci</td>
+</tr>
+<tr>
+<td><a href="https://openwrt.org/zh/releases/18.06/start">18.06</a></td>
+<td>不再支持</td>
+<td>基于 4.9 或 4.11 内核、合并 Lede 源码</td>
+</tr>
+<tr>
+<td><a href="https://openwrt.org/zh/releases/17.01/start">LEDE 17.01</a></td>
+<td>不再支持</td>
+<td>基于 4.4 内核</td>
+</tr>
+</tbody>
+</table>
+<p>以上版本信息是截止 2023 年 4 月底。</p>
+<h2 id="衍生及支系">衍生及支系</h2>
+<blockquote>
+<p>话说天下大势，分久必合，合久必分</p>
+</blockquote>
+<p>开源系统生态同样遵循，有些是不满原系统的管理或生态愤恨分支的支系，有些是针对特定的方面有了深化的衍生功能，列举几个我了解的支系。</p>
+<h3 id="lede">LEDE</h3>
+<p><a href="https://zh.wikipedia.org/wiki/LEDE">LEDE</a> 是前者的原因分支出来的一派，新增了很多关键新功能和对新设备的支持而崛起，在 2018 年 1 月 LEDE 宣布和 OpenWRT 和解正式宣布合并，合并后使用 OpenWrt 的名字和 LEDE 的代码。</p>
+<p>早期国内知名的 <a href="https://github.com/coolsnowwolf">Lean 狼大</a>的 <a href="https://github.com/coolsnowwolf/lede">Lede 系统</a>，很多国内玩家最早接触的系统之一。</p>
+<h3 id="immortalwrt">Immortalwrt</h3>
+<p>基于官方分支的 <a href="https://github.com/immortalwrt">Immortalwrt</a> 是一个跟进上游速度很快又融合了 Lean 狼大版本特色的新支系。Lean 狼大<a href="https://twitter.com/icyleaf/status/1496789460473638913">也有参与其中</a>，主要是针对中国玩家定制的固件，拥有更好的本地化适配、加入了各种官方软件列表中没有但是国内环境中可能会用到的软件功能，比如网络多拨、国内镜像及<span class="spoiler">翻开也不会告诉你的功能等。</span>
+</p>
+<p>我从 21.02 开始跟进并使用 snapshot 开发版本没遇到什么大坑，该项目每周都会定时合并上游的代码。</p>
+<h3 id="istoreos">iStoreOS</h3>
+<p>同样是基于官方分支的 <a href="https://www.istoreos.com/">iStoreOS</a> 另辟蹊径，舍弃了 OpenWrt 自身的包管理机制，重新打造了一套类似 <a href="https://www.koolcenter.com/category/merlin">KoolCenter 梅林固件</a>的软件商店用于解决因为 OpenWRT 系统依赖和软件包依赖杂乱导致不同平台的插件依赖不匹配而无法安装的问题。同时提供多套 UI 操作界面和类似上面一样特色功能和 NAS 向功能：网盘、Docker、异地组网、相册备份等。</p>
+<blockquote>
+<p>由于个人没有实际部署和使用，按下不表。</p>
+</blockquote>
+<h2 id="固件构成">固件构成</h2>
+<p>不同的硬件和软件包的搭配组合衍生出五花八门的固件版本。那有没有想过固件到底是什么，有什么组成的呢？</p>
+<p>固件的构成主要是三类 vmlinuz、rootfs 和系统引导。</p>
+<ul>
+<li>vmlinux 是 ELF 文件最原始包含 Linux 内核静态链接的可执行文件；vmlinuz 是压缩后的 vmlinux 且能可启动的文件<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>。</li>
+<li>rootfs 是 OpenWrt 的根分区的所有文件，提供 gzip 压缩后的原始文件、ext4 分区后的文件和 squashfs 分区后的文件。</li>
+<li>系统引导是引导设备开机后正确引领到上述两个文件的 bootloader，OpenWrt 借助的是 grub2 来实现 legacy 或 EFI 分区引导。</li>
+</ul>
+<p>固件文件名包含的 combined 译为合并这就是上面几个文件的自由组合，组合方式会从<code>文件分区</code>和<code>封装</code>两个字段体现。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+      <figure data-pswp="2115x1848" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-file-structure.png" class="gallery-item" target="_blank" data-pswp-width="2115" data-pswp-height="1848"><img src="/tutorials/how-to-homelab/part-2/openwrt-file-structure_hue8f8b12b4fb68e92004b990b9b38574d_269862_800x0_resize_box_3.png"/></a><figcaption>
+
+    <p>Openwrt 固件文件解构</p></figcaption></figure>
+
+<p>OpenWrt 文件系统分区可选择 <a href="https://zh.wikipedia.org/wiki/Ext4">ext4</a> 或 <a href="https://en.wikipedia.org/wiki/SquashFS">squashFS</a>。ext4 是一个可读可写的分区格式，这也是 Linux 生态应用最广的文件系统；对比 squashFS 它是一个只读的分区格式，看似不好用但它却有一个非常诱人的功能，可恢复出厂设置或直刷同文件分区的固件达到升级的功能，只不过需要挂在其他可写的磁盘做扩展应用。</p>
+<p>封装格式提供可烧录的 iso、img 镜像外，还提供了虚拟化的镜像文件，方便使用者根据各自的情况随意部署。</p>
+<p>多提一句，官方还额外其他提供一个组合字段 <code>-factory</code> 和 <code>-sysupgrade</code> 来区分全新安装或升级的专属固件，这俩不能混用。</p>
+<blockquote>
+<p>本节会涉及 Linux 的启动机制，我也是略懂皮毛，如果有描述错误请指正。</p>
+</blockquote>
+<h2 id="安装固件">安装固件</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+      <figure data-pswp="2290x750" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-fireware-image-files.png" class="gallery-item" target="_blank" data-pswp-width="2290" data-pswp-height="750"><img src="/tutorials/how-to-homelab/part-2/openwrt-fireware-image-files_hu4904a272552ec45da40489002210ed25_291049_800x0_resize_box_3.png"/></a><figcaption>
+
+    <p>Openwrt 固件镜像文件</p></figcaption></figure>
+
+<p>我相信结合上面的固件构成的原理在选择什么类型的固件上会迎刃而解了吧。安装步骤略过不讲了吧，网络上有<a href="https://www.google.com.hk/search?q=openwrt+%E5%AE%89%E8%A3%85">太多的教程</a>可供参考。</p>
+<h2 id="系统核心">系统核心</h2>
+<h3 id="访问渠道">访问渠道</h3>
+<p>OpenWrt 提供 Web UI 和 SSH 两种方式访问和管理，默认 Web 界面由 <a href="https://github.com/openwrt/luci">luci</a> 实现前端展示，uhttpd 负责 web 代理服务。
+可通过浏览器访问 http://192.168.1.1 或 <a href="http://openwrt.lan">http://openwrt.lan</a> 打开，默认开放 80 端口；SSH 端口为 22，默认用户名为 root，没有密码。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+      <figure data-pswp="1033x689" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-themes-preview.png" class="gallery-item" target="_blank" data-pswp-width="1033" data-pswp-height="689"><img src="/tutorials/how-to-homelab/part-2/openwrt-themes-preview_hu41c9b4d3d742e1e28eb643449e0f2b44_148205_800x0_resize_box_3.png"
+      alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://blog.vpngame.com/openwrt/cara-install-dan-ganti-tema-luci-di-openwrt/">3elajar OpenWrt</a>
+    </p>
+
+    <p>luci 丰富的主题</p></figcaption></figure>
+
+<p>luci 是官方维护和默认内置开启的前端 UI 实现，其实深挖能发现还有很多的<a href="https://openwrt.org/docs/guide-user/luci/webinterface.overview">实现方案</a>。
+还有社区近期还在维护的 <a href="https://github.com/zhaojh329/oui">oui</a>、<a href="https://github.com/x-wrt/x-wrt">x-wrt</a> 和很久不再更新的 <a href="https://github.com/mkschreder/juci">juci</a> 等。
+这也能够看的出来 OpenWrt 在系统开放性上有很大的包容度。</p>
+<h3 id="网络接口">网络接口</h3>
+<p>默认使用 LAN 2（eth1） 为 WAN 口，LAN 1（eth0）为 LAN 口，如果有多个 WAN、LAN 口需要在网络接口中重新配置。</p>
+<h3 id="配置管理">配置管理</h3>
+<p>系统的配置文件系统层面绝大多数的配置文件都储存在 <code>/etc/config</code> 路径下面，编辑保存后是保存对于配置文件而不是实际修改对应服务，因此需要再执行提交操作，这部会完成把部分服务的中间配置更新到真正的配置文件中，再有必要的执行服务的重启操作。</p>
+<p>我会通过“修改 LAN IP 地址”的例子分别演示 OpenWrt 配置文件的修改的几种途径。</p>
+<h4 id="通过-web-ui">通过 Web UI</h4>
+<p>luci 提供网页的可视化操作，比如查看配置、更新管理等配置的管理工作。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+      <figure data-pswp="1910x822" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-luci.png" class="gallery-item" target="_blank" data-pswp-width="1910" data-pswp-height="822"><img src="/tutorials/how-to-homelab/part-2/openwrt-luci_huaf10a363431c055ce85f91b70cbc6ff2_144888_800x0_resize_box_3.png"/></a></figure>
+
+<p>分别选择 &ldquo;网络&rdquo; -&gt; &ldquo;接口&rdquo;，找到接口 lan 右侧的编辑按钮，点开后编辑 IPv4 地址，保存再应用。</p>
+<h4 id="通过终端编辑器">通过终端编辑器</h4>
+<p>使用 vim 或 nano 这类文本编辑器编辑 <code>/etc/config/network</code> 文件，找到 lan 分段下面的 ipaddr 修改值：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="line"><span class="ln"> 1</span><span class="cl">config interface &#39;loopback&#39;
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  option device &#39;lo&#39;
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  option proto &#39;static&#39;
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  option ipaddr &#39;127.0.0.1&#39;
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  option netmask &#39;255.0.0.0&#39;
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">config globals &#39;globals&#39;
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">  option ula_prefix &#39;fdd3:af57:2ab4::/48&#39;
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">
+</span></span><span class="line"><span class="ln">10</span><span class="cl">config device
+</span></span><span class="line"><span class="ln">11</span><span class="cl">  option name &#39;br-lan&#39;
+</span></span><span class="line"><span class="ln">12</span><span class="cl">  option type &#39;bridge&#39;
+</span></span><span class="line"><span class="ln">13</span><span class="cl">  list ports &#39;eth0&#39;
+</span></span><span class="line"><span class="ln">14</span><span class="cl">  option ipv6 &#39;0&#39;
+</span></span><span class="line"><span class="ln">15</span><span class="cl">
+</span></span><span class="line"><span class="ln">16</span><span class="cl">config interface &#39;lan&#39;
+</span></span><span class="line"><span class="ln">17</span><span class="cl">  option device &#39;br-lan&#39;
+</span></span><span class="line"><span class="ln">18</span><span class="cl">  option proto &#39;static&#39;
+</span></span><span class="line"><span class="ln">19</span><span class="cl"><span class="gd">-	option ipaddr &#39;192.168.1.1&#39;
+</span></span></span><span class="line"><span class="ln">20</span><span class="cl"><span class="gd"></span><span class="gi">+	option ipaddr &#39;10.10.10.1&#39;
+</span></span></span><span class="line"><span class="ln">21</span><span class="cl"><span class="gi"></span>  option netmask &#39;255.255.255.0&#39;
+</span></span><span class="line"><span class="ln">22</span><span class="cl">  option ip6assign &#39;60&#39;
+</span></span><span class="line"><span class="ln">23</span><span class="cl">  option gateway &#39;192.168.16.1&#39;
+</span></span><span class="line"><span class="ln">24</span><span class="cl">  list dns &#39;233.5.5.5&#39;
+</span></span><span class="line"><span class="ln">25</span><span class="cl">  list dns &#39;202.106.0.20&#39;
+</span></span></code></pre></div><p>保存后在重启 network 服务。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ /etc/init.d/network restart
+</span></span></code></pre></div><h4 id="通过终端-uci-工具">通过终端 uci 工具</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+      <figure data-pswp="2650x1282" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-uci.png" class="gallery-item" target="_blank" data-pswp-width="2650" data-pswp-height="1282"><img src="/tutorials/how-to-homelab/part-2/openwrt-uci_hu98b5e14303c570377c8961c6c4d560e6_350612_800x0_resize_box_3.png"
+      alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://openwrt.org/docs/guide-user/base-system/uci">OpenWrt Wiki</a>
+    </p>
+
+    <p>Openwrt uci 对应关系</p></figcaption></figure>
+
+<p><a href="https://openwrt.org/docs/guide-user/base-system/uci">uci</a> 是配置管理的快捷 CLI 工具，它会比网页编辑或终端找配置文件编辑都要方便。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># 设置 LAN 的 IP 地址</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">$ uci <span class="nb">set</span> network.lan.ipaddr<span class="o">=</span>10.10.10.1
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="c1"># 提交应用操作</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">$ uci commit network
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="c1"># 重启网络服务</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">$ /etc/init.d/network restart
+</span></span></code></pre></div><h4 id="通过-json-rpc-接口">通过 JSON-RPC 接口</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+      <figure data-pswp="2143x1561" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/api-architecture-styles.jpeg" class="gallery-item" target="_blank" data-pswp-width="2143" data-pswp-height="1561"><img src="/tutorials/how-to-homelab/part-2/api-architecture-styles_hu66a712dc29cc2d0893569aae05f00fac_195912_800x0_resize_q75_box.jpeg"
+      alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://twitter.com/Rapid_API/status/1567656196022181891">Rapid@twitter</a>
+    </p>
+
+    <p>API 接口方案一览图</p></figcaption></figure>
+
+<p>Openwrt 内部通信全靠的是 <a href="https://openwrt.org/docs/techref/ubus">ubus</a> 总线工具，JSON-RPC 是基于它的二次封装的接口服务。固件默认不会开启此服务，如果需要请在编译固件配置中<a href="https://github.com/openwrt/luci/wiki/JsonRpcHowTo">开启它</a>。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1"># 登录认证获得 token (返回 JSON 的 result 字段值)</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">$ curl http://&lt;hostname&gt;/cgi-bin/luci/rpc/auth --data <span class="s1">&#39;
+</span></span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="s1">{
+</span></span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="s1">  &#34;id&#34;: 1,
+</span></span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="s1">  &#34;method&#34;: &#34;login&#34;,
+</span></span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="s1">  &#34;params&#34;: [
+</span></span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="s1">    &#34;user&#34;, &#34;password&#34;
+</span></span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="s1">  ]
+</span></span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="s1">}&#39;</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="c1"># 修改 LAN IP 地址</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">$ curl http://&lt;hostname&gt;/cgi-bin/luci/rpc/uci?auth<span class="o">=</span>yourtoken --data <span class="s1">&#39;
+</span></span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="s1">{
+</span></span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="s1">  &#34;method&#34;:&#34;set&#34;,
+</span></span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="s1">  &#34;params&#34;:[
+</span></span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="s1">    &#34;network&#34;, &#34;lan&#34;, &#34;ipaddr&#34;, &#34;10.10.10.1&#34;
+</span></span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="s1">  ]
+</span></span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="s1">}&#39;</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">
+</span></span><span class="line"><span class="ln">20</span><span class="cl"><span class="c1"># 提交 network 配置变更</span>
+</span></span><span class="line"><span class="ln">21</span><span class="cl">$ curl http://&lt;hostname&gt;/cgi-bin/luci/rpc/uci?auth<span class="o">=</span>yourtoken --data <span class="s1">&#39;
+</span></span></span><span class="line"><span class="ln">22</span><span class="cl"><span class="s1">{
+</span></span></span><span class="line"><span class="ln">23</span><span class="cl"><span class="s1">  &#34;method&#34;:&#34;commit&#34;,
+</span></span></span><span class="line"><span class="ln">24</span><span class="cl"><span class="s1">  &#34;params&#34;:[
+</span></span></span><span class="line"><span class="ln">25</span><span class="cl"><span class="s1">    &#34;network&#34;
+</span></span></span><span class="line"><span class="ln">26</span><span class="cl"><span class="s1">  ]
+</span></span></span><span class="line"><span class="ln">27</span><span class="cl"><span class="s1">}&#39;</span>
+</span></span><span class="line"><span class="ln">28</span><span class="cl">
+</span></span><span class="line"><span class="ln">29</span><span class="cl"><span class="c1"># 重启 network 服务 （接口请求后可能无法正常响应）</span>
+</span></span><span class="line"><span class="ln">30</span><span class="cl">$ curl http://&lt;hostname&gt;/cgi-bin/luci/rpc/sys?auth<span class="o">=</span>yourtoken --data <span class="s1">&#39;
+</span></span></span><span class="line"><span class="ln">31</span><span class="cl"><span class="s1">{
+</span></span></span><span class="line"><span class="ln">32</span><span class="cl"><span class="s1">  &#34;method&#34;:&#34;call&#34;,
+</span></span></span><span class="line"><span class="ln">33</span><span class="cl"><span class="s1">  &#34;params&#34;:[
+</span></span></span><span class="line"><span class="ln">34</span><span class="cl"><span class="s1">    &#34;/etc/init.d/network restart&#34;
+</span></span></span><span class="line"><span class="ln">35</span><span class="cl"><span class="s1">  ]
+</span></span></span><span class="line"><span class="ln">36</span><span class="cl"><span class="s1">}&#39;</span>
+</span></span></code></pre></div><p>更全面的接口地址和调试可前往我维护的 Postman <a href="https://documenter.getpostman.com/view/14290/SzKPUgEo">OpenWrt RPC 接口合集</a>。</p>
+<h3 id="设备管理">设备管理</h3>
+<p>Dnsmasq 是默认配置和管理设备 DHCP、DNS 为一体的服务，配置文件是 <code>/etc/config/dhcp</code>，应用服务 <code>/etc/init.d/dnsmasq</code>。</p>
+<h3 id="防火墙">防火墙</h3>
+<p>OpenWrt 22.03 版本开始不再使用 iptable 而是该用 nfstable 实现。两个同时时候存在不兼容情况需要注意。防火墙还承担接口转发的配置，
+配置文件是 <code>/etc/config/firewall</code>，应用服务 <code>/etc/init.d/firewall</code>。</p>
+<h3 id="ddns">DDNS</h3>
+<p>动态动态域名解析，解决公网IP不固定的问题，前提是要有公网 IP 才行。可通过给客户提工单说需要用摄像头看家里的猫猫、狗狗、鱼鱼、龟龟为理由有一定概率给开通。
+配置文件是 <code>/etc/config/ddns</code>，应用服务 <code>/etc/init.d/ddns</code>。注意使用不同的域名供应商需要安装对应的软件包扩展才行。</p>
+<h3 id="包管理">包管理</h3>
+<p><a href="https://openwrt.org/docs/guide-user/additional-software/opkg">opkg</a> 是 OpenWrt 的包管理工具，命令类似于 Debian 的 apt。
+它可设置官方和第三方源。也能安装、升级和卸载包的功能。配置目录文件是 <code>/etc/opkg.conf</code> 文件和 <code>/etc/okpg</code> 目录下面的其他源配置文件构成。软件包是 <code>.ipk</code> 扩展名。网页端也有对应的功能实现。</p>
+<h2 id="编译固件">编译固件</h2>
+<p>国内似乎有一个偏见，任何的软件升级和新软件包都要重新编译和重刷固件，以至于流行起了利用 Github Action 白嫖资源来编译符合一万个人心中的哈姆雷特。</p>
+<p>编译固件的教程也异常的多，在 Github 能找到很多硬件设备、很多个性化的编译固件的工具，实在懒省事也有开发者提供在线<a href="https://supes.top/">自定义构建固件工具</a>供您选择。</p>
+<p>前期刚开始接触的时候<a href="https://github.com/icyleaf/openwrt-autobuilder">我也不例外</a>加入到了编译固件的行列，直到最近意识到编译固件只是为了升级几个软件包版本而觉得这个事情有些偏离了设计初衷，我也开始尝试自己编译所需的<a href="https://github.com/icyleaf/openwrt-packages">软件包</a>和<a href="https://github.com/icyleaf/openwrt-dist">软件源</a>。</p>
+<h3 id="开发软件包">开发软件包</h3>
+<p>如果你是要开发新软件包或编译软件包，你会立刻头大起来，这方面的资源可是少的可怜，我的建议是照着<a href="https://openwrt.org/docs/guide-developer/toolchain/single.package">官方文档</a>一步步来。</p>
+<p>你需要的是理解如何准备开发环境、克隆源码、安装编译环境和了解项目的目录结构，官方也考虑到前期准备会异常辛苦和困难重重，特意提供一个三种开发包。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+      <figure data-pswp="2300x912" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-dev-files.png" class="gallery-item" target="_blank" data-pswp-width="2300" data-pswp-height="912"><img src="/tutorials/how-to-homelab/part-2/openwrt-dev-files_hu788235e2748ce1264a229b6065ee449e_308960_800x0_resize_box_3.png"/></a><figcaption>
+
+    <p>Openwrt 开发包文件</p></figcaption></figure>
+
+<ul>
+<li><a href="https://openwrt.org/docs/guide-developer/toolchain/buildsystem_essentials#description">toolchain</a>: 包含了 GCC 编译器、编译必须的二进制工具和链接器（比如 tar, binutils 等）以及 C 标准库（比如 glibc、musl、uClibc 或者 dietlibc）组成的预编译环境，方便修改 OpenWrt 源码。</li>
+<li><a href="https://openwrt.org/docs/guide-developer/toolchain/using_the_sdk">SDK</a>: 包含了预编译 toolchain 包和一个编译平台（target 或叫 platform）用于不同平台交叉 ipk 软件包的开发套件。需要注意的是仅允许 ipk 软件包交叉编译，固件本身无法交叉编译。</li>
+<li><a href="https://openwrt.org/zh/docs/guide-user/additional-software/imagebuilder">imagebuilder</a>: 一个能够快速调整固件内容的特定平台预编译的开箱包，能够这个预设好的环境精简预装的 ipk 包、调整系统参数也能够快速生成个性化固件。需要注意的是软件包是提前预设好，只能精简无法添加新软件包。</li>
+</ul>
+<p>本章节只是浅浅让大家了解并没有计划全面展开，如果你想更深入如何开发一个 OpenWrt 软件包，欢迎留言跟我互动，多的话我或许会单开一个系列。</p>
+<h2 id="最后想说的话">最后想说的话</h2>
+<p>在我的 Homelab 网络拓扑中 OpenWrt 仅仅承担有线部分的网络转发和路由功能，主要是 DHCP、DNS、DDNS 和网络加速为主，无线网络会再通过下游的 Mesh AP 完成。
+Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系统。</p>
+<p>接下来会开启存储服务和 VM 虚拟机管理系统 Proxmox 等核心基础服务。</p>
+<!-- raw HTML omitted -->
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>可参考<a href="https://blog.lishun.me/openwrt-mega-post">川叶</a>的教程查看主旁路由设置和性能对比&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p><a href="https://zh.wikipedia.org/wiki/OpenWrt">维基百科</a>的解释&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p>vmlinuz 资料参考<a href="https://zoepla.github.io/2019/09/%E5%86%85%E6%A0%B8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%92%8C%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">内核环境搭建和基础知识</a>和<a href="https://blog.csdn.net/catoop/article/details/120809707">vmlinuz 文件解压缩</a>&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+]]></content:encoded></item><item><title>如何搭建家用 homelab: 硬件和架构</title><link>https://icyleaf.com/2023/01/how-to-homelab-part-1-hardware-and-architecture/</link><pubDate>Tue, 31 Jan 2023 19:28:50 +0800</pubDate><guid>https://icyleaf.com/2023/01/how-to-homelab-part-1-hardware-and-architecture/</guid><description>家庭设备架构和考虑因素是根据实际需求不断地演变、试错和总结</description><content:encoded><![CDATA[
 
 
 
