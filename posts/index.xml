@@ -21,7 +21,7 @@
   
   
     
-      <figure data-pswp="1757x1080" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-packages-preview.png" class="gallery-item" target="_blank" data-pswp-width="1757" data-pswp-height="1080"><img src="/tutorials/how-to-homelab/part-2/openwrt-packages-preview_hu0689ad6e7ee2942e696526d209bd670d_459004_800x0_resize_box_3.png"
+      <figure data-pswp="1757x1080" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-packages-preview.png" class="gallery-item" target="_blank" data-pswp-width="1757" data-pswp-height="1080"><img src="/tutorials/how-to-homelab/part-2/openwrt-packages-preview_hud400891ca261fa9e07ca732397145413_435673_800x0_resize_box_3.png"
       alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://github.com/SuLingGG/OpenWrt-Rpi">SuLingGG/OpenWrt-Rpi</a>
     </p>
 
@@ -119,7 +119,7 @@
   
   
     
-      <figure data-pswp="2115x1848" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-file-structure.png" class="gallery-item" target="_blank" data-pswp-width="2115" data-pswp-height="1848"><img src="/tutorials/how-to-homelab/part-2/openwrt-file-structure_hue8f8b12b4fb68e92004b990b9b38574d_269862_800x0_resize_box_3.png"/></a><figcaption>
+      <figure data-pswp="2115x1848" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-file-structure.png" class="gallery-item" target="_blank" data-pswp-width="2115" data-pswp-height="1848"><img src="/tutorials/how-to-homelab/part-2/openwrt-file-structure_hu89ce50451123b48915fffad04a92e22e_139504_800x0_resize_box_3.png"/></a><figcaption>
 
     <p>Openwrt 固件文件解构</p></figcaption></figure>
 
@@ -146,7 +146,7 @@
   
   
     
-      <figure data-pswp="2290x750" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-fireware-image-files.png" class="gallery-item" target="_blank" data-pswp-width="2290" data-pswp-height="750"><img src="/tutorials/how-to-homelab/part-2/openwrt-fireware-image-files_hu4904a272552ec45da40489002210ed25_291049_800x0_resize_box_3.png"/></a><figcaption>
+      <figure data-pswp="2290x750" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-fireware-image-files.png" class="gallery-item" target="_blank" data-pswp-width="2290" data-pswp-height="750"><img src="/tutorials/how-to-homelab/part-2/openwrt-fireware-image-files_hu4f63e536e962ff43b9fa658f4c31bfb4_224192_800x0_resize_box_3.png"/></a><figcaption>
 
     <p>Openwrt 固件镜像文件</p></figcaption></figure>
 
@@ -171,7 +171,7 @@
   
   
     
-      <figure data-pswp="1033x689" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-themes-preview.png" class="gallery-item" target="_blank" data-pswp-width="1033" data-pswp-height="689"><img src="/tutorials/how-to-homelab/part-2/openwrt-themes-preview_hu41c9b4d3d742e1e28eb643449e0f2b44_148205_800x0_resize_box_3.png"
+      <figure data-pswp="1033x689" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-themes-preview.png" class="gallery-item" target="_blank" data-pswp-width="1033" data-pswp-height="689"><img src="/tutorials/how-to-homelab/part-2/openwrt-themes-preview_hu33abb04a3fc26983cc7948708958ea73_140538_800x0_resize_box_3.png"
       alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://blog.vpngame.com/openwrt/cara-install-dan-ganti-tema-luci-di-openwrt/">3elajar OpenWrt</a>
     </p>
 
@@ -203,7 +203,7 @@
   
   
     
-      <figure data-pswp="1910x822" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-luci.png" class="gallery-item" target="_blank" data-pswp-width="1910" data-pswp-height="822"><img src="/tutorials/how-to-homelab/part-2/openwrt-luci_huaf10a363431c055ce85f91b70cbc6ff2_144888_800x0_resize_box_3.png"/></a></figure>
+      <figure data-pswp="1910x822" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-luci.png" class="gallery-item" target="_blank" data-pswp-width="1910" data-pswp-height="822"><img src="/tutorials/how-to-homelab/part-2/openwrt-luci_hu625591b40daa7a557058fbcbacf8b92b_94153_800x0_resize_box_3.png"/></a></figure>
 
 <p>分别选择 &ldquo;网络&rdquo; -&gt; &ldquo;接口&rdquo;，找到接口 lan 右侧的编辑按钮，点开后编辑 IPv4 地址，保存再应用。</p>
 <h4 id="通过终端编辑器">通过终端编辑器</h4>
@@ -252,7 +252,7 @@
   
   
     
-      <figure data-pswp="2650x1282" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-uci.png" class="gallery-item" target="_blank" data-pswp-width="2650" data-pswp-height="1282"><img src="/tutorials/how-to-homelab/part-2/openwrt-uci_hu98b5e14303c570377c8961c6c4d560e6_350612_800x0_resize_box_3.png"
+      <figure data-pswp="2650x1282" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-uci.png" class="gallery-item" target="_blank" data-pswp-width="2650" data-pswp-height="1282"><img src="/tutorials/how-to-homelab/part-2/openwrt-uci_hue276e5c9fefad17390851e095847751d_229224_800x0_resize_box_3.png"
       alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://openwrt.org/docs/guide-user/base-system/uci">OpenWrt Wiki</a>
     </p>
 
@@ -360,7 +360,7 @@
   
   
     
-      <figure data-pswp="2300x912" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-dev-files.png" class="gallery-item" target="_blank" data-pswp-width="2300" data-pswp-height="912"><img src="/tutorials/how-to-homelab/part-2/openwrt-dev-files_hu788235e2748ce1264a229b6065ee449e_308960_800x0_resize_box_3.png"/></a><figcaption>
+      <figure data-pswp="2300x912" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-dev-files.png" class="gallery-item" target="_blank" data-pswp-width="2300" data-pswp-height="912"><img src="/tutorials/how-to-homelab/part-2/openwrt-dev-files_hub712545ea67e7dea7998ba1f55078d39_233471_800x0_resize_box_3.png"/></a><figcaption>
 
     <p>Openwrt 开发包文件</p></figcaption></figure>
 
@@ -427,7 +427,7 @@ Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系�
   
   
     
-      <figure data-pswp="2066x1444" data-size="800x"><a href="/tutorials/how-to-homelab/part-1/memo-devices-changes.png" class="gallery-item" target="_blank" data-pswp-width="2066" data-pswp-height="1444"><img src="/tutorials/how-to-homelab/part-1/memo-devices-changes_hu3bba97879b6716d3588d1f721fb7294f_2449304_800x0_resize_box_3.png"
+      <figure data-pswp="2066x1444" data-size="800x"><a href="/tutorials/how-to-homelab/part-1/memo-devices-changes.png" class="gallery-item" target="_blank" data-pswp-width="2066" data-pswp-height="1444"><img src="/tutorials/how-to-homelab/part-1/memo-devices-changes_hu35c3082d2dbedac4f58069b5e8a3e9e3_2396575_800x0_resize_box_3.png"
       alt="创意来源"/></a><figcaption><p class="source">创意来源<a href="https://twitter.com/featherye/status/1619863195145089025">@HCocoa@twitter</a>
     </p>
 
@@ -460,7 +460,7 @@ Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系�
   
   
     
-      <figure data-pswp="1204x750" data-size="800x"><a href="/tutorials/how-to-homelab/part-1/homelab-diagram-v0.png" class="gallery-item" target="_blank" data-pswp-width="1204" data-pswp-height="750"><img src="/tutorials/how-to-homelab/part-1/homelab-diagram-v0_hubc530f3d7645fc4772a55310c300252b_67594_800x0_resize_box_3.png"/></a><figcaption>
+      <figure data-pswp="1204x750" data-size="800x"><a href="/tutorials/how-to-homelab/part-1/homelab-diagram-v0.png" class="gallery-item" target="_blank" data-pswp-width="1204" data-pswp-height="750"><img src="/tutorials/how-to-homelab/part-1/homelab-diagram-v0_huf87e6e7ddab588d948a389d696e1d1c3_56332_800x0_resize_box_3.png"/></a><figcaption>
 
     <p>v0 设备架构拓扑图</p></figcaption></figure>
 
@@ -507,7 +507,7 @@ Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系�
   
   
     
-      <figure data-pswp="2284x1662" data-size="800x"><a href="/tutorials/how-to-homelab/part-1/homelab-diagram-v1.0.png" class="gallery-item" target="_blank" data-pswp-width="2284" data-pswp-height="1662"><img src="/tutorials/how-to-homelab/part-1/homelab-diagram-v1.0_hu16a6d641ca5084c17972231b4497bef7_264511_800x0_resize_box_3.png"/></a><figcaption>
+      <figure data-pswp="2284x1662" data-size="800x"><a href="/tutorials/how-to-homelab/part-1/homelab-diagram-v1.0.png" class="gallery-item" target="_blank" data-pswp-width="2284" data-pswp-height="1662"><img src="/tutorials/how-to-homelab/part-1/homelab-diagram-v1.0_huc1d6c49922a951b2ad5c6811196fb260_221563_800x0_resize_box_3.png"/></a><figcaption>
 
     <p>v1 设备架构拓扑图</p></figcaption></figure>
 
@@ -743,7 +743,7 @@ Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系�
   
   
     
-      <figure data-pswp="949x1253" data-size="800x"><a href="/tutorials/how-to-homelab/part-1/harddisk-2022-full.png" class="gallery-item" target="_blank" data-pswp-width="949" data-pswp-height="1253"><img src="/tutorials/how-to-homelab/part-1/harddisk-2022-full_hu04a2dabdf73291bf2078d685bd542bb0_847668_800x0_resize_box_3.png"/></a><figcaption>
+      <figure data-pswp="949x1253" data-size="800x"><a href="/tutorials/how-to-homelab/part-1/harddisk-2022-full.png" class="gallery-item" target="_blank" data-pswp-width="949" data-pswp-height="1253"><img src="/tutorials/how-to-homelab/part-1/harddisk-2022-full_hud081e0864bcc4ffbf16f9ee8e8cfcbbf_501693_800x0_resize_box_3.png"/></a><figcaption>
 
     <p>硬盘大军</p></figcaption></figure>
 
@@ -763,7 +763,7 @@ Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系�
   
   
     
-      <figure data-pswp="1512x1538" data-size="800x"><a href="/tutorials/how-to-homelab/part-1/harddisk-category.png" class="gallery-item" target="_blank" data-pswp-width="1512" data-pswp-height="1538"><img src="/tutorials/how-to-homelab/part-1/harddisk-category_hudc0352c8205a256a2ea382889711a8c3_301266_800x0_resize_box_3.png"/></a><figcaption>
+      <figure data-pswp="1512x1538" data-size="800x"><a href="/tutorials/how-to-homelab/part-1/harddisk-category.png" class="gallery-item" target="_blank" data-pswp-width="1512" data-pswp-height="1538"><img src="/tutorials/how-to-homelab/part-1/harddisk-category_hube521c0ab503d096d3459f577944019e_171022_800x0_resize_box_3.png"/></a><figcaption>
 
     <p>硬盘分布情况</p></figcaption></figure>
 
@@ -1099,7 +1099,7 @@ Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系�
   
   
     
-      <figure data-pswp="1738x1182" data-size="800x"><a href="/tutorials/how-to-homelab/part-1/cable-ethernet-data-rates.png" class="gallery-item" target="_blank" data-pswp-width="1738" data-pswp-height="1182"><img src="/tutorials/how-to-homelab/part-1/cable-ethernet-data-rates_hu83dc4325097d6232a063b6bcf6f7cad6_166015_800x0_resize_box_3.png"
+      <figure data-pswp="1738x1182" data-size="800x"><a href="/tutorials/how-to-homelab/part-1/cable-ethernet-data-rates.png" class="gallery-item" target="_blank" data-pswp-width="1738" data-pswp-height="1182"><img src="/tutorials/how-to-homelab/part-1/cable-ethernet-data-rates_huf6595c4cf5b97c48e3a51bdfb2bf6182_107276_800x0_resize_box_3.png"
       alt="资料来源"/></a><figcaption><p class="source">资料来源<a href="https://www.ieee802.org/3/cfi/1114_1/CFI_01_1114.pdf">IEEE 802 LMSC</a>
     </p>
 
