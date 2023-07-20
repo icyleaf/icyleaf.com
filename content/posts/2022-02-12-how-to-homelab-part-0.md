@@ -180,7 +180,7 @@ description: 搭建 homelab 之前都需要了解哪些背景
 
 #### NAS
 
-- [OpenMediaValut](): 硬件依赖低门槛的综合性 NAS 系统
+- [OpenMediaValut](https://www.openmediavault.org/): 硬件依赖低门槛的综合性 NAS 系统
 
 #### 服务部署
 

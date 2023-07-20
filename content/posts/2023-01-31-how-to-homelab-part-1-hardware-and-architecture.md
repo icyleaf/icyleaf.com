@@ -304,17 +304,17 @@ Gen 8 在更换新的氦气盘转移数据有大量的视频转码工作要跑 C
 <tbody>
 <tr>
 <td>APC BK650</td>
-<td>Proxmox + 黑群晖 + WIFI AP</a></td>
+<td>Proxmox + 黑群晖 + WIFI AP</td>
 <td>连接 Proxmox 并开启 NUT 服务和<br /> apcupsd 数据接入 Prometheus</td>
 </tr>
 <tr>
 <td>APC BK650</td>
-<td>黑苹果 + Armbian 集群 + Nomad</a></td>
+<td>黑苹果 + Armbian 集群 + Nomad</td>
 <td>连接 Nomad 并开启 NUT 服务<br /> apcupsd 数据接入 Prometheus</td>
 </tr>
 <tr>
 <td><a href="https://twitter.com/icyleaf/status/1590351704020910080">弱电箱 UPS</a></td>
-<td>光猫 + 软路由 + 交换机</a></td>
+<td>光猫 + 软路由 + 交换机</td>
 <td>软路由接受其他两个 NUT 通知<br />四口 12V 还富裕一个</td>
 </tr>
 </tbody></table>
