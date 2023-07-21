@@ -939,7 +939,7 @@ Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系�
 </tr></thead>
 <tbody>
 <tr>
-<td>samba</td>
+<td>smb</td>
 <td><span class="badge bg-success">采纳</span></td>
 <td>兼容性和实用性最高，仅建议手动文件挂载使用</td>
 </tr>
@@ -7291,11 +7291,8 @@ OST （曾一度在网上搜索关键词写成 OTA）</p>
 <h3 id="言而总之">言而总之</h3>
 <p>2010 年读了许多书，也看了不少电影，在个人修养上面有很大的提高，早晨 6 点 50 起床是一个长期考验而且我坚持下来了，也算是摆脱了很大的“懒”的坏习惯。今年最大的开发实践准备尝试敏捷开发流程 + TDD以及重构相结合的开发模式双结合。</p>
 <p>新的一年，加油！</p>
-]]></content:encoded></item><item><title>OSX</title><link>https://icyleaf.com/2010/12/switer-between-finder-and-terminal-in-osx/</link><pubDate>Wed, 08 Dec 2010 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2010/12/switer-between-finder-and-terminal-in-osx/</guid><description>在 Finder 打开 Terminal 并切换到当前目录 安装一个开源的 Finder 辅助工具：cdto。功能只有一个就是实现在 Finder 打开 Terminal 并切换到当前 Finder 目录。找到你系统的版本的 app （支持当...</description><content:encoded><![CDATA[<p><strong>在 Finder 打开 Terminal 并切换到当前目录</strong></p>
-<p>安装一个开源的 Finder 辅助工具：<a href="http://code.google.com/p/cdto/">cdto</a>。功能只有一个就是实现在 Finder
-打开 Terminal 并切换到当前 Finder 目录。找到你系统的版本的 app （支持当前
-OS X 10.4 以上版本，应该都是雪豹了 吧）拷贝到 Applications 下并把它拖到
-Finder 的工具栏上即可。</p>
+]]></content:encoded></item><item><title>OSX 下 Finer 和 Terminal 相互切换</title><link>https://icyleaf.com/2010/12/switer-between-finder-and-terminal-in-osx/</link><pubDate>Wed, 08 Dec 2010 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2010/12/switer-between-finder-and-terminal-in-osx/</guid><description>在 Finder 打开 Terminal 并切换到当前目录 安装一个开源的 Finder 辅助工具：cdto。功能只有一个就是实现在 Finder 打开 Terminal 并切换到当前 Finder 目录。找到你系统的版本的 app （支持当...</description><content:encoded><![CDATA[<p><strong>在 Finder 打开 Terminal 并切换到当前目录</strong></p>
+<p>安装一个开源的 Finder 辅助工具：<a href="http://code.google.com/p/cdto/">cdto</a>。功能只有一个就是实现在 Finder 打开 Terminal 并切换到当前 Finder 目录。找到你系统的版本的 app （支持当前 OS X 10.4 以上版本）拷贝到 Applications 下并把它拖到 Finder 的工具栏上即可。</p>
 <p><strong>从 Terminal 中用 Finder 打开当前路径的目录</strong></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ open .
 </span></span></code></pre></div><p>PS，如果是 Ubuntu 系统的话请安装 nautilus，然后在 Terminal 里面输入</p>

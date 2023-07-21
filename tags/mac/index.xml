@@ -420,11 +420,8 @@ Web
 <li>Xcode 4：Apple 开发必备</li>
 </ul>
 <p>睡觉前的粗略整理，待续&hellip;</p>
-]]></content:encoded></item><item><title>OSX</title><link>https://icyleaf.com/2010/12/switer-between-finder-and-terminal-in-osx/</link><pubDate>Wed, 08 Dec 2010 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2010/12/switer-between-finder-and-terminal-in-osx/</guid><description>在 Finder 打开 Terminal 并切换到当前目录 安装一个开源的 Finder 辅助工具：cdto。功能只有一个就是实现在 Finder 打开 Terminal 并切换到当前 Finder 目录。找到你系统的版本的 app （支持当...</description><content:encoded><![CDATA[<p><strong>在 Finder 打开 Terminal 并切换到当前目录</strong></p>
-<p>安装一个开源的 Finder 辅助工具：<a href="http://code.google.com/p/cdto/">cdto</a>。功能只有一个就是实现在 Finder
-打开 Terminal 并切换到当前 Finder 目录。找到你系统的版本的 app （支持当前
-OS X 10.4 以上版本，应该都是雪豹了 吧）拷贝到 Applications 下并把它拖到
-Finder 的工具栏上即可。</p>
+]]></content:encoded></item><item><title>OSX 下 Finer 和 Terminal 相互切换</title><link>https://icyleaf.com/2010/12/switer-between-finder-and-terminal-in-osx/</link><pubDate>Wed, 08 Dec 2010 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2010/12/switer-between-finder-and-terminal-in-osx/</guid><description>在 Finder 打开 Terminal 并切换到当前目录 安装一个开源的 Finder 辅助工具：cdto。功能只有一个就是实现在 Finder 打开 Terminal 并切换到当前 Finder 目录。找到你系统的版本的 app （支持当...</description><content:encoded><![CDATA[<p><strong>在 Finder 打开 Terminal 并切换到当前目录</strong></p>
+<p>安装一个开源的 Finder 辅助工具：<a href="http://code.google.com/p/cdto/">cdto</a>。功能只有一个就是实现在 Finder 打开 Terminal 并切换到当前 Finder 目录。找到你系统的版本的 app （支持当前 OS X 10.4 以上版本）拷贝到 Applications 下并把它拖到 Finder 的工具栏上即可。</p>
 <p><strong>从 Terminal 中用 Finder 打开当前路径的目录</strong></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ open .
 </span></span></code></pre></div><p>PS，如果是 Ubuntu 系统的话请安装 nautilus，然后在 Terminal 里面输入</p>
