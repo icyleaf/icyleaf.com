@@ -451,7 +451,7 @@ Gen 8 在更换新的氦气盘转移数据有大量的视频转码工作要跑 C
 </tr></thead>
 <tbody>
 <tr>
-<td>samba</td>
+<td>smb</td>
 <td><span class="badge bg-success">采纳</span></td>
 <td>兼容性和实用性最高，仅建议手动文件挂载使用</td>
 </tr>
