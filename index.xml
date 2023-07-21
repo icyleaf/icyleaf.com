@@ -512,6 +512,26 @@ Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系�
     <p>v1 设备架构拓扑图</p></figcaption></figure>
 
 <p>2018 年我在推上吐槽梅林固件刷机太难被 <a href="https://twitter.com/icyleaf/status/1100322141914853376">anbutu</a> 安利 openwrt 系统并赠送了一台 <a href="https://cn.v2ex.com/t/659602">N270 x86 32 位双网口工控机</a>让我了解了新领域：软路由。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+      <figure data-pswp="1280x1280" data-size="800x"><a href="/tutorials/how-to-homelab/part-1/n270-soft-router.jpeg" class="gallery-item" target="_blank" data-pswp-width="1280" data-pswp-height="1280"><img src="/tutorials/how-to-homelab/part-1/n270-soft-router_hu047e742a3dc4a515b91c2b5fd5aca173_518233_800x0_resize_q75_box.jpeg"/></a><figcaption>
+
+    <p>N270 x86 32 位双网口工控机</p></figcaption></figure>
+
 <p>黑群晖升级到了支持 Docker 的 6.x 版本，开始尝试跑一些基础服务，比如 <a href="https://aria2.github.io/">aria2</a>，<a href="https://www.home-assistant.io/">home assistant</a>，<a href="https://github.com/AdguardTeam/AdGuardHome">Adguard home</a> 等。不知道什么时候小区会莫名其妙突然停电几分钟后再恢复，有一次硬盘被群晖的检测爆出来好多坏道，吓得我立刻买了<a href="https://twitter.com/icyleaf/status/1096386681907798017">施耐德 APC BK650</a> 带通讯协议，接入群晖保证断电后安全关机。</p>
 <p>2019 年初开始学习拍摄视频，采购了<a href="https://icyleaf.com/2019/01/itx-coffee-lake-hackintosh-build-for-4k-video-editing/">新的 Intel 主机</a>在时隔 <a href="https://twitter.com/icyleaf/status/11322513061580800">9 年</a>后后重新学习安装<a href="https://icyleaf.com/2019/03/asrock-z390-gaming-itx-install-hackintosh-tutorial/">黑苹果</a>来代替年迈的 Macbook Pro 2015 款，期间不升级后续版本主要是因为 Intel 太拉，Apple 把硬件全焊死升级顶配不值得。</p>
 <h4 id="2020--2021">2020 ~ 2021</h4>
@@ -654,7 +674,7 @@ Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系�
   <a href="https://starcraft.fandom.com/wiki/Corruptor">Corruptor</a> <sup>amd64</sup><br />
   蜜獾超存 (8700es/64G/10TB)
 </td>
-<td>Promox</td>
+<td>Proxmox</td>
 <td><span class="badge bg-success">采纳</span></td>
 <td>1</td>
 <td>虚拟开发机</td>
@@ -780,17 +800,17 @@ Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系�
 <tbody>
 <tr>
 <td>APC BK650</td>
-<td>Proxmox + 黑群晖 + WIFI AP</a></td>
+<td>Proxmox + 黑群晖 + WIFI AP</td>
 <td>连接 Proxmox 并开启 NUT 服务和<br /> apcupsd 数据接入 Prometheus</td>
 </tr>
 <tr>
 <td>APC BK650</td>
-<td>黑苹果 + Armbian 集群 + Nomad</a></td>
+<td>黑苹果 + Armbian 集群 + Nomad</td>
 <td>连接 Nomad 并开启 NUT 服务<br /> apcupsd 数据接入 Prometheus</td>
 </tr>
 <tr>
 <td><a href="https://twitter.com/icyleaf/status/1590351704020910080">弱电箱 UPS</a></td>
-<td>光猫 + 软路由 + 交换机</a></td>
+<td>光猫 + 软路由 + 交换机</td>
 <td>软路由接受其他两个 NUT 通知<br />四口 12V 还富裕一个</td>
 </tr>
 </tbody></table>
@@ -2135,7 +2155,7 @@ Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系�
 </ul>
 <h4 id="nas">NAS</h4>
 <ul>
-<li><a href="">OpenMediaValut</a>: 硬件依赖低门槛的综合性 NAS 系统</li>
+<li><a href="https://www.openmediavault.org/">OpenMediaValut</a>: 硬件依赖低门槛的综合性 NAS 系统</li>
 </ul>
 <h4 id="服务部署">服务部署</h4>
 <ul>
@@ -2172,12 +2192,50 @@ Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系�
 <p>另外不要太过于计较服务器的功耗情况，只要不是电耗子 35W 还是 65W 没省多少电费，
 下面是一个正面例子，虽然用的是 X99-T8D + E5 2696V3*2 + 金河田 6100 双路电源
 但开发者主要用于适合自己场景的使用，那就不是浪费。</p>
-<blockquote class="twitter-tweet"><p lang="zh" dir="ltr">太牛逼了！今天把 <a href="https://twitter.com/wey_gu?ref_src=twsrc%5Etfw">@wey_gu</a> 哥哥送给我的 NUMA Server 弄好了，这是我人生中第一次拥有 NUMA，看到配置的时候直接惊住了，大半夜微信骚扰 Wey 哥哥表达自己的震惊和感谢，心想我何德何能可以拥有这么豪华的配置！在上面起了几个 VM 组了个 k8s 集群，终于不用紧张兮兮地在我的 MBP 上起 k8s 了！开心！ <a href="https://t.co/B9uwSiQXxK">pic.twitter.com/B9uwSiQXxK</a></p>&mdash; yetone (@yetone) <a href="https://twitter.com/yetone/status/1540235004495921152?ref_src=twsrc%5Etfw">June 24, 2022</a></blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+      <figure data-pswp="1186x1124" data-size="800x"><a href="/tutorials/how-to-homelab/part-0/twitter-yetone-numa-server.png" class="gallery-item" target="_blank" data-pswp-width="1186" data-pswp-height="1124"><img src="/tutorials/how-to-homelab/part-0/twitter-yetone-numa-server_huea852396b454c0d00217dfc71abf162b_963015_800x0_resize_box_3.png"
+      alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://twitter.com/yetone/status/1540235004495921152">@yetone@twitter</a>
+    </p>
+
+    <p>NUMA DIY 服务器</p></figcaption></figure>
 
 <p>下面这个图中的例子是一个反面教材，要么哗众取宠要么非蠢即坏。</p>
-<blockquote class="twitter-tweet"><p lang="zh" dir="ltr">待机 100W 的低性能 NAS，这是图什么😂 <a href="https://t.co/WgphSsjobb">pic.twitter.com/WgphSsjobb</a></p>&mdash; taresky (@taresky) <a href="https://twitter.com/taresky/status/1555752846334705666?ref_src=twsrc%5Etfw">August 6, 2022</a></blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+      <figure data-pswp="1192x1660" data-size="800x"><a href="/tutorials/how-to-homelab/part-0/twitter-taresky-tpw-100w-nas-server.png" class="gallery-item" target="_blank" data-pswp-width="1192" data-pswp-height="1660"><img src="/tutorials/how-to-homelab/part-0/twitter-taresky-tpw-100w-nas-server_hu963c44b14c22087339c51b296a01567c_1004792_800x0_resize_box_3.png"
+      alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://twitter.com/taresky/status/1555752846334705666">@taresky@twitter</a>
+    </p>
+
+    <p>待机 100W 的 NAS 服务器</p></figcaption></figure>
 
 <p>最后的忠告，国内各自信息咨询站的 OpenWrt，NAS 文章看看就行，别太认真。
 有那时间不如多看看官方文档，官方社区讨论 :D</p>
