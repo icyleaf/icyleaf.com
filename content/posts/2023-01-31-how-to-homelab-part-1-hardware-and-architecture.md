@@ -88,6 +88,11 @@ PS 4 应该是在某一年黑五美亚捆绑赠送了 GTA5 和最后生还者的
 
 2018 年我在推上吐槽梅林固件刷机太难被 [anbutu](https://twitter.com/icyleaf/status/1100322141914853376) 安利 openwrt 系统并赠送了一台 [N270 x86 32 位双网口工控机](https://cn.v2ex.com/t/659602)让我了解了新领域：软路由。
 
+{{< figure src="/tutorials/how-to-homelab/part-1/n270-soft-router.jpeg"
+    link="/tutorials/how-to-homelab/part-1/n270-soft-router.jpeg"
+    title="N270 x86 32 位双网口工控机"
+>}}
+
 黑群晖升级到了支持 Docker 的 6.x 版本，开始尝试跑一些基础服务，比如 [aria2](https://aria2.github.io/)，[home assistant](https://www.home-assistant.io/)，[Adguard home](https://github.com/AdguardTeam/AdGuardHome) 等。不知道什么时候小区会莫名其妙突然停电几分钟后再恢复，有一次硬盘被群晖的检测爆出来好多坏道，吓得我立刻买了[施耐德 APC BK650](https://twitter.com/icyleaf/status/1096386681907798017) 带通讯协议，接入群晖保证断电后安全关机。
 
 2019 年初开始学习拍摄视频，采购了[新的 Intel 主机]({{< ref "2019-01-30-itx-coffee-lake-hackintosh-build-for-4k-video-editing.md" >}})在时隔 [9 年](https://twitter.com/icyleaf/status/11322513061580800)后后重新学习安装[黑苹果]({{< ref "2019-03-28-asrock-z390-gaming-itx-install-hackintosh-tutorial.md" >}})来代替年迈的 Macbook Pro 2015 款，期间不升级后续版本主要是因为 Intel 太拉，Apple 把硬件全焊死升级顶配不值得。
@@ -202,7 +207,7 @@ Gen 8 在更换新的氦气盘转移数据有大量的视频转码工作要跑 C
   <a href="https://starcraft.fandom.com/wiki/Corruptor">Corruptor</a> <sup>amd64</sup><br />
   蜜獾超存 (8700es/64G/10TB)
 </td>
-<td>Promox</td>
+<td>Proxmox</td>
 <td><span class="badge bg-success">采纳</span></td>
 <td>1</td>
 <td>虚拟开发机</td>

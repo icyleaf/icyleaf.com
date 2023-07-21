@@ -223,11 +223,23 @@ homelab 玩法的可能性是无限的，不要把想象力局限在这几年国
 下面是一个正面例子，虽然用的是 X99-T8D + E5 2696V3*2 + 金河田 6100 双路电源
 但开发者主要用于适合自己场景的使用，那就不是浪费。
 
-{{<twitter user="yetone" id="1540235004495921152">}}
+{{< figure src="/tutorials/how-to-homelab/part-0/twitter-yetone-numa-server.png"
+    link="/tutorials/how-to-homelab/part-0/twitter-yetone-numa-server.png"
+    title="NUMA DIY 服务器"
+    caption="图片来源"
+    attr="@yetone@twitter"
+    attrlink="https://twitter.com/yetone/status/1540235004495921152"
+>}}
 
 下面这个图中的例子是一个反面教材，要么哗众取宠要么非蠢即坏。
 
-{{<twitter user="taresky" id="1555752846334705666">}}
+{{< figure src="/tutorials/how-to-homelab/part-0/twitter-taresky-tpw-100w-nas-server.png"
+    link="/tutorials/how-to-homelab/part-0/twitter-taresky-tpw-100w-nas-server.png"
+    title="待机 100W 的 NAS 服务器"
+    caption="图片来源"
+    attr="@taresky@twitter"
+    attrlink="https://twitter.com/taresky/status/1555752846334705666"
+>}}
 
 最后的忠告，国内各自信息咨询站的 OpenWrt，NAS 文章看看就行，别太认真。
 有那时间不如多看看官方文档，官方社区讨论 :D

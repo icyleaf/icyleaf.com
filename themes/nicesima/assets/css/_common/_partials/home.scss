@@ -81,12 +81,22 @@
     }
 
     .post-toc-content {
-      >nav>ul {
+      nav>ul {
         margin: 10px 0;
       }
 
+      nav ul li ul a {
+        padding-left: 0.5rem;
+      }
+
       a {
+        display: block;
+        line-height: 30px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
         border-left: 3px solid $light-font-secondary-color;
+        color: $light-font-secondary-color;
         padding-left: 0.5rem;
 
         &:hover {
@@ -96,6 +106,7 @@
 
           .dark-theme & {
             border-left-color: $dark-post-link-color;
+            color: $dark-global-link-hover-color;
           }
         }
       }
@@ -103,22 +114,6 @@
       ul {
         padding-left: 0;
         list-style: none;
-
-        ul {
-          // padding-left: 0.75rem;
-
-          li {
-            display: list-item;
-            opacity: 100%;
-            height: 0;
-            width: 0;
-
-            -webkit-transition: all 0.4s, width 20ms, opacity 820ms;
-            -moz-transition: all 0.4s, width 20ms, opacity 820ms;
-            -o-transition: all 0.4s, width 20ms, opacity 820ms;
-            transition: all 0.4s, width 20ms, opacity 820ms;
-          }
-        }
 
         a.has-active {
           color: $light-post-link-color;
@@ -136,27 +131,6 @@
           opacity: 100%;
           height: 30px;
           width: 100%;
-        }
-      }
-
-      a {
-        color: $light-font-secondary-color;
-      }
-    }
-
-    a {
-      display: block;
-      line-height: 30px;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-
-      &:hover {
-        text-decoration: underline;
-        color: $light-global-link-hover-color;
-
-        .dark-theme & {
-          color: $dark-global-link-hover-color;
         }
       }
     }
