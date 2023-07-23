@@ -102,8 +102,8 @@ description: 搭建 homelab 之前都需要了解哪些背景
 - 虚拟化部署（Virutalization Deployment）
 - 容器化部署（Containerd Deployment）
 
-{{< figure src="/tutorials/how-to-homelab/part-0/container-evolution.svg"
-    link="/tutorials/how-to-homelab/part-0/container-evolution.svg"
+{{< figure src="/tutorials/how-to-homelab/part-0/container-evolution.png"
+    link="/tutorials/how-to-homelab/part-0/container-evolution.png"
     title="部署方式的演变"
     pswp-width="1800"
     pswp-height="650"
