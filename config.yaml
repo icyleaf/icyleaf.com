@@ -99,11 +99,7 @@ markup:
     codeFences: true
     anchorLineNos: false
     guessSyntax: false
-    hl_Lines:
-    lineAnchors:
-    lineNoStart: 1
     lineNos: true
     lineNumbersInTable: false
     noClasses: true
-    style: tomorrow-night
     tabWidth: 2

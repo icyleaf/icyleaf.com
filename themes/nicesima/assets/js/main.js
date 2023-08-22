@@ -20,10 +20,11 @@ _Blog.switchDarkMode = function () {
   const isDark = (currentTheme === undefined) ? window.matchMedia("(prefers-color-scheme: dark)").matches : currentTheme === '1'
   if (currentTheme !== undefined) {
     document.cookie = darkModeKey + '=' + (isDark ? '1' : '0') + ';path=/'
+    window.localStorage && window.localStorage.setItem(darkModeKey, isDark ? 'dark' : 'light')
   }
   utterancesTheme(isDark)
   document.body.classList.toggle('dark-theme', isDark)
-  console.log('Default dark mode is ' + isDark)
+  // console.log('Default dark mode is ' + isDark)
 
   // 手动切换 Dark Mode
   const themeSwitcher = document.querySelectorAll('.theme-switch')
@@ -31,6 +32,7 @@ _Blog.switchDarkMode = function () {
     themeSwitcherItem.addEventListener('click', () => {
       const currentTheme = cookieValue(darkModeKey)
       const isDark = (currentTheme === undefined) ? window.matchMedia("(prefers-color-scheme: dark)").matches : currentTheme === '1'
+      window.localStorage && window.localStorage.setItem(darkModeKey, isDark ? 'light' : 'dark')
       if (isDark) {
         document.body.classList.remove('dark-theme')
         document.cookie = darkModeKey + '=0;path=/'
@@ -41,7 +43,7 @@ _Blog.switchDarkMode = function () {
         console.log('Dark mode on')
       }
 
-      utterancesTheme(isDark)
+      utterancesTheme(!isDark)
     })
   })
 
@@ -52,11 +54,13 @@ _Blog.switchDarkMode = function () {
       ?.split("=")[1];
   }
 
+  // https://github.com/utterance/utterances/issues/549#issuecomment-907606127
   function utterancesTheme(isDark) {
     const iframe = document.querySelector('.utterances-frame');
     if (!iframe) { return; }
 
     const theme = isDark ? 'github-dark' : 'github-light'
+    console.log('Switch utterances themes to ' + theme)
     const message = {
       type: 'set-theme',
       theme: theme

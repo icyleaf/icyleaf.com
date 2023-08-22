@@ -1,8 +1,16 @@
-<script src='https://utteranc.es/client.js'
-  repo='{{ .Site.Params.Utteranc.Repo }}'
-  issue-term='{{ .Site.Params.Utteranc.IssueTerm | default "pathname" }}'
-  theme='{{ .Site.Params.Utteranc.Theme | default "github-light" }}'
-  {{ with .Site.Params.Utteranc.Label }}label='{{ . }}'{{ end }}
-  crossorigin='{{ .Site.Params.Utteranc.CrossOrigin | default "anonymous" }}'
-  {{ if eq .Site.Params.Utteranc.Async true }}async{{ end }}>
+<script>
+  // load utteranc comment
+  var getTheme = window.localStorage && window.localStorage.getItem("blog-dark-mode");
+  getTheme = getTheme == null ? '{{ $.Site.Params.Utteranc.Theme }}' : getTheme;
+
+  let theme = getTheme === 'dark' ? 'github-dark' : 'github-light';
+  let s = document.createElement('script');
+  s.src = 'https://utteranc.es/client.js';
+  s.setAttribute('repo', '{{ .Site.Params.Utteranc.Repo }}');
+  s.setAttribute('issue-term', '{{ .Site.Params.Utteranc.IssueTerm }}');
+  s.setAttribute('theme', theme);
+  s.setAttribute('crossorigin', 'anonymous');
+  s.setAttribute('async', '');
+  document.querySelector('div.post-comment').innerHTML = '';
+  document.querySelector('div.post-comment').appendChild(s);
 </script>

@@ -1,9 +1,9 @@
-{{ $highlight := resources.Get "/js/highlight.min.js" }}
-{{ $main := resources.Get "/js/main.js" }}
-
-{{ $main := slice  $highlight $main | resources.Concat "/js/vendor_main.js" | resources.Minify }}
 <!-- Main -->
-<script defer src="https://fastly.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js" crossorigin="anonymous"></script>
+<script defer src="https://fastly.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js" crossorigin="anonymous"></script>
+{{- $highlight := resources.Get "/js/highlight.min.js" -}}
+{{- $main := resources.Get "/js/main.js" -}}
+
+{{- $main := slice $highlight $main | resources.Concat "/js/vendor_main.js" | resources.Minify -}}
 <script defer src="{{ printf "%s" $main.RelPermalink }}"></script>
 
 {{- /* KaTeX.js */}}
@@ -12,7 +12,6 @@
 <script defer src="https://fastly.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha256-F/Xda58SPdcUCr+xhSGz9MA2zQBPb0ASEYKohl8UCHc=" crossorigin="anonymous"></script>
 <script defer src="https://fastly.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha256-90d2pnfw0r4K8CZAWPko4rpFXQsZvJhTBGYNkipDprI=" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
 {{ end }}
-
 
 {{- /* Mermaid.js (requires Hugo 0.93+) */}}
 {{ if .Page.Store.Get "hasMermaid" }}

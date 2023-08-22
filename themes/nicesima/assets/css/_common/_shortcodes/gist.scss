@@ -1,0 +1,65 @@
+.gist {
+  @import url('https://cdn.rawgit.com/lonekorean/gist-syntax-themes/d49b91b3/stylesheets/monokai.css');
+
+  .blob-num,
+  .blob-code-inner {
+    font-size: 16px !important
+  }
+
+  .blob-num {
+    color: #7f7f7f !important
+  }
+
+  .blob-code-inner {
+    font-family: 'Cascadia Code', 'Fira Code', Consolas, Monaco, Menlo, Consolas, monospace !important;
+  }
+
+  .gist-file {
+    border: none !important;
+
+    table td {
+      border: none;
+    }
+  }
+
+  .gist-data {
+    background-color: #272822 !important;
+
+    .pl-s:has(span) {
+      color: #e6db74
+    }
+
+    .pl-s {
+      color: #ae81ff
+    }
+
+    .dark-theme & {
+      border-bottom-color: $dark-border-color
+    }
+  }
+
+  .gist-meta {
+    font-size: 16px !important;
+
+    a {
+      color: $light-post-link-color !important;
+
+      &:hover {
+        color: $light-post-link-hover-color !important;
+      }
+    }
+
+    .dark-theme & {
+      background-color: #272822;
+      color: $dark-font-color;
+
+      a {
+        color: $light-post-link-color !important;
+
+        &:hover {
+          color: $light-post-link-hover-color !important;
+        }
+      }
+    }
+  }
+}
