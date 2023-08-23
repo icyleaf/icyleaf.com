@@ -8,7 +8,7 @@ tags:
   - Ruby
   - iOS
 series:
-  - Cocoapods 秘笈
+  - cocoapods-collection
 index: false
 comments: true
 isCJKLanguage: true

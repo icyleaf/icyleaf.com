@@ -7,7 +7,7 @@ tags:
 - CocoaPods
 - iOS
 series:
-  - Cocoapods 秘笈
+  - cocoapods-collection
 slug: "speed-up-cocoapods"
 description: iOS 组件仓库超时，网络环境不畅通该如何解，我来指点一二
 ---
