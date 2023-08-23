@@ -3,7 +3,7 @@ publishedPosts:
   other: Published {{ . }} posts.
 
 # single
-photoBy: Photo by
+photoBy: 'Photo by'
 
 postWords:
   other: '{{ . }} words'
@@ -14,16 +14,16 @@ readingTime:
 seriesParts:
   other: ' ({{ . }} Part Series)'
 
-relatesPosts: 相关文章
-referenceLinks: 参考链接
+relatesPosts: 'Relates posts'
+referenceLinks: 'Reference links'
 
 # terms
-more: 更多
+more: 'More'
 
-draft: draft
-update: Update
-toc: TOC
+draft: 'draft'
+update: 'Update'
+toc: 'TOC'
 
 # 404 page:
-notFound: /* 404 page not found. */
-gobackTitle: ↑ Back Home ↑
+notFound: '/* 404 page not found. */'
+gobackTitle: '↑ Back Home ↑'

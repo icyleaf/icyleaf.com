@@ -1,9 +1,9 @@
 # list
 publishedPosts:
-  other: 本博客共生产 {{ . }} 篇文章。
+  other: '本博客共生产 {{ . }} 篇文章。'
 
 # single
-photoBy: Photo by
+photoBy: 'Photo by'
 
 postWords:
   other: '{{ . }} words'
@@ -14,17 +14,16 @@ readingTime:
 seriesParts:
   other: '（{{ . }} 篇）'
 
-
-relatesPosts: 相关文章
-referenceLinks: 参考链接
+relatesPosts: '相关文章'
+referenceLinks: '参考链接'
 
 # terms
-more: 更多
+more: '更多'
 
-draft: 草稿
-update: 更新
-toc: 目录
+draft: '草稿'
+update: '更新'
+toc: '目录'
 
 # 404 page:
-notFound: /* 404 页面找不到 */
-gobackTitle: ↑ 回到首页 ↑
+notFound: '/* 404 页面找不到 */'
+gobackTitle: '↑ 回到首页 ↑'
