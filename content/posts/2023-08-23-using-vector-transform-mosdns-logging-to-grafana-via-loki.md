@@ -42,7 +42,7 @@ mosdns 5 版本采用了[新数据源解包格式](https://github.com/IrineSisti
 
 看不到下面配置文件的，送上[直达电梯](https://gist.github.com/icyleaf/e98093f673b4b2850226db582447175a#file-mosdns_config_v5-yaml)。
 
-{{< gist e98093f673b4b2850226db582447175a mosdns_config_v5.yaml >}}
+{{< gist "e98093f673b4b2850226db582447175a" "mosdns_config_v5.yaml" >}}
 
 配置定义了 mosdns 日志的文件路径为 `/var/log/mosdns.log`，输出日志等级只需要是 INFO 即可。如果 mosdns 服务所在磁盘空间较小建议使用 logrotate 来切割日志并控制归档日志数量，以免出现空间不足的情况。
 
