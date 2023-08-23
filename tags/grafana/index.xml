@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>grafana on icyleaf</title><link>https://icyleaf.com/tags/grafana/</link><description>Recent content in grafana on icyleaf</description><language>zh</language><lastBuildDate>Wed, 23 Aug 2023 10:04:13 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/grafana/index.xml" rel="self" type="application/rss+xml"/><item><title>vector + loki 实现 mosdns 数据看板</title><link>https://icyleaf.com/2023/08/using-vector-transform-mosdns-logging-to-grafana-via-loki/</link><pubDate>Wed, 23 Aug 2023 10:04:13 +0800</pubDate><guid>https://icyleaf.com/2023/08/using-vector-transform-mosdns-logging-to-grafana-via-loki/</guid><description>快速验证规则的同时实现类似 AdGuard Home 好看的数据看板</description><content:encoded><![CDATA[<p>我是从 4.0 版本开始使用 <a href="https://github.com/IrineSistiana/mosdns">mosdns</a>，经历了 4.1 和 4.2 <a href="https://github.com/IrineSistiana/mosdns/discussions/417#discussioncomment-3831982">不稳定的功能更新</a>和今年 1 月份发布 5.x 大版本重构后貌似已经稳定下来。</p>
+<p>托 @<a href="https://twitter.com/river_leaves/status/1574393162163896321">river_leaves</a> 的福利用 mosdns 自带的 <a href="https://irine-sistiana.gitbook.io/mosdns-wiki/mosdns-v5/api-shuo-ming">prometheus metrics</a> 接口实时查看 DNS 解析情况。</p>
+<p>配置中的规则是灵活且有时候很难调试，为了验证配置规则是否有效以及可视化看到域名访问频次，我从 mosdns 日志本身下手，需要的工具有 vector、prometheus、loki 和 grafana。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+      <figure data-pswp="2552x1204" data-size="800x"><a href="/uploads/2023/08/grafana-mosdns.png" class="gallery-item" target="_blank" data-pswp-width="2552" data-pswp-height="1204"><img src="/uploads/2023/08/grafana-mosdns_hu5ea19e21d5254f679649ad3f2a4154f8_328741_800x0_resize_box_3.png"/></a><figcaption>
+
+    <p>实时监控 mosdns 规则解析 Grafana 看板</p></figcaption></figure>
+
+<blockquote>
+<p>当前教程仅适用于 mosdns 5.0 ~ 5.1.3 版本（后续版本没有发布可能存在配置变化，依据实际情况调整）</p>
+</blockquote>
+<h2 id="mosdns">mosdns</h2>
+<p>mosdns 5 版本采用了<a href="https://github.com/IrineSistiana/mosdns/discussions/584">新数据源解包格式</a>，配置我实在懒得调整了，直接在采用了 <a href="https://github.com/sbwml/luci-app-mosdns">luci-app-mosdns</a> 插件配置微调。配置中各个 plugins 名称请确保不要修改和变动，否则会导致 vector 转换规则无法正常工作。</p>
+<p>看不到下面配置文件的，送上<a href="https://gist.github.com/icyleaf/e98093f673b4b2850226db582447175a#file-mosdns_config_v5-yaml">直达电梯</a>。</p>
+<script type="text/javascript" src="http://gist.github.com/e98093f673b4b2850226db582447175a.js?file=mosdns_config_v5.yaml&theme=dark"></script>
+
+<p>配置定义了 mosdns 日志的文件路径为 <code>/var/log/mosdns.log</code>，输出日志等级只需要是 INFO 即可。如果 mosdns 服务所在磁盘空间较小建议使用 logrotate 来切割日志并控制归档日志数量，以免出现空间不足的情况。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-conf" data-lang="conf"><span class="line"><span class="ln">1</span><span class="cl"><span class="err">/</span><span class="nv">var</span><span class="err">/</span><span class="nv">log</span><span class="err">/</span><span class="nv">mosdns.log</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nv">daily</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="nv">rotate</span> <span class="nv">2</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">  <span class="nv">compress</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">  <span class="nv">missingok</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">  <span class="nv">notifempty</span>
+</span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="vector">vector</h2>
+<p><a href="https://vector.dev">vector</a> 是一个日志收集工具，能够从多个源（Source）收集、转换（Transform）并推送到下一个接收器（Sinks）。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+      <figure data-pswp="1630x736" data-size="800x"><a href="/uploads/2023/08/vector-flow.png" class="gallery-item" target="_blank" data-pswp-width="1630" data-pswp-height="736"><img src="/uploads/2023/08/vector-flow_hu8954b4abb768382c5c1a6fbe2895a9c8_129401_800x0_resize_box_3.png"/></a></figure>
+
+<p>vector 需要能够直接访问到 mosdns 的日志文件。这里有两种方式可以实现：一种是两个服务都在一台机器上运行，另外一种是通过容器化共享 volume 让 vector 可以读取 mosdns 日志。</p>
+<p>工具本身是 Go 语言开发从 Github 直接下载好对应的包解压缩就能够使用或者使用一键安装脚本：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">curl --proto <span class="s1">&#39;=https&#39;</span> --tlsv1.2 -sSf https://sh.vector.dev <span class="p">|</span> bash
+</span></span></code></pre></div><p>Openwrt/Immortalwrt 用户可使用我个人维护的仓库 <a href="https://github.com/icyleaf/openwrt-dist">icyleaf/openwrt-dist</a> 添加后即可安装（支持 amd64、armv8 平台的 snapshot 和 23.05.0-rc3 两个分支）：</p>
+<p>添加仓库密钥</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">wget http://cdn.jsdelivr.net/gh/icyleaf/openwrt-dist@master/key-build.pub
+</span></span><span class="line"><span class="ln">2</span><span class="cl">opkg-key add key-build.pub
+</span></span></code></pre></div><p>根据 openwrt 平台不同修改源地址</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># 源规则</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="c1"># src/gz icyleaf https://icyleaf-openwrt-repo.vercel.app/{{target}}/packages/{{arch}}</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="c1"># 添加 snapshot 分支 amd64 (x86/64) 平台的源</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;src/gz icyleaf https://icyleaf-openwrt-repo.vercel.app/snapshot/packages/x86/64&#34;</span> &gt;&gt; /etc/opkg/customfeeds.conf
+</span></span></code></pre></div><p>安装 vector</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">opkg update
+</span></span><span class="line"><span class="ln">2</span><span class="cl">opkg install vector
+</span></span></code></pre></div><p>修改 <code>/etc/vector/config.yml</code> 的配置文件如下</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="nt">data_dir</span><span class="p">:</span><span class="w"> </span><span class="l">/tmp/vector</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="w"></span><span class="nt">sources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="w">  </span><span class="nt">mosdns-log-file</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">file</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="w">    </span><span class="nt">include</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="w">      </span>- <span class="l">/var/log/mosdns.log</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="w">    </span><span class="nt">read_from</span><span class="p">:</span><span class="w"> </span><span class="l">beginning</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="w"></span><span class="nt">transforms</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="w">  </span><span class="nt">mosdns-input</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">filter</span><span class="w">
+</span></span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="w">    </span><span class="nt">inputs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="w">      </span>- <span class="l">mosdns-log-file</span><span class="w">
+</span></span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="w">    </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
+</span></span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="sd">      .file == &#34;/var/log/mosdns.log&#34;</span><span class="w">      
+</span></span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="w">  </span><span class="nt">mosdns-data</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">19</span><span class="cl"><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">remap</span><span class="w">
+</span></span></span><span class="line"><span class="ln">20</span><span class="cl"><span class="w">    </span><span class="nt">inputs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">21</span><span class="cl"><span class="w">      </span>- <span class="l">mosdns-input</span><span class="w">
+</span></span></span><span class="line"><span class="ln">22</span><span class="cl"><span class="w">    </span><span class="nt">drop_on_error</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="ln">23</span><span class="cl"><span class="w">    </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
+</span></span></span><span class="line"><span class="ln">24</span><span class="cl"><span class="sd">      .type = &#34;mosdns&#34;
+</span></span></span><span class="line"><span class="ln">25</span><span class="cl"><span class="sd">      .app = &#34;mosdns&#34;
+</span></span></span><span class="line"><span class="ln">26</span><span class="cl"><span class="sd">      del(.host)
+</span></span></span><span class="line"><span class="ln">27</span><span class="cl"><span class="sd">      del(.file)
+</span></span></span><span class="line"><span class="ln">28</span><span class="cl"><span class="sd">      del(.source_type)
+</span></span></span><span class="line"><span class="ln">29</span><span class="cl"><span class="sd">
+</span></span></span><span class="line"><span class="ln">30</span><span class="cl"><span class="sd">      message_parts = split!(.message, r&#39;\t&#39;)
+</span></span></span><span class="line"><span class="ln">31</span><span class="cl"><span class="sd">
+</span></span></span><span class="line"><span class="ln">32</span><span class="cl"><span class="sd">      .timestamp = parse_timestamp!(message_parts[0], format: &#34;%FT%T%.9fZ&#34;)
+</span></span></span><span class="line"><span class="ln">33</span><span class="cl"><span class="sd">      .level = message_parts[1]
+</span></span></span><span class="line"><span class="ln">34</span><span class="cl"><span class="sd">
+</span></span></span><span class="line"><span class="ln">35</span><span class="cl"><span class="sd">      if (length(message_parts) == 6) {
+</span></span></span><span class="line"><span class="ln">36</span><span class="cl"><span class="sd">        .plugin = message_parts[2]
+</span></span></span><span class="line"><span class="ln">37</span><span class="cl"><span class="sd">        .processor = message_parts[3]
+</span></span></span><span class="line"><span class="ln">38</span><span class="cl"><span class="sd">        .message = message_parts[4]
+</span></span></span><span class="line"><span class="ln">39</span><span class="cl"><span class="sd">
+</span></span></span><span class="line"><span class="ln">40</span><span class="cl"><span class="sd">        if (exists(message_parts[5])) {
+</span></span></span><span class="line"><span class="ln">41</span><span class="cl"><span class="sd">          .metadata = parse_json!(message_parts[5])
+</span></span></span><span class="line"><span class="ln">42</span><span class="cl"><span class="sd">          . = merge!(., .metadata)
+</span></span></span><span class="line"><span class="ln">43</span><span class="cl"><span class="sd">          del(.metadata)
+</span></span></span><span class="line"><span class="ln">44</span><span class="cl"><span class="sd">        }
+</span></span></span><span class="line"><span class="ln">45</span><span class="cl"><span class="sd">      } else {
+</span></span></span><span class="line"><span class="ln">46</span><span class="cl"><span class="sd">        .processor = message_parts[2]
+</span></span></span><span class="line"><span class="ln">47</span><span class="cl"><span class="sd">        .message = message_parts[3]
+</span></span></span><span class="line"><span class="ln">48</span><span class="cl"><span class="sd">
+</span></span></span><span class="line"><span class="ln">49</span><span class="cl"><span class="sd">        if (exists(message_parts[4])) {
+</span></span></span><span class="line"><span class="ln">50</span><span class="cl"><span class="sd">          .metadata = parse_json!(message_parts[4])
+</span></span></span><span class="line"><span class="ln">51</span><span class="cl"><span class="sd">          . = merge!(., .metadata)
+</span></span></span><span class="line"><span class="ln">52</span><span class="cl"><span class="sd">          del(.metadata)
+</span></span></span><span class="line"><span class="ln">53</span><span class="cl"><span class="sd">        }
+</span></span></span><span class="line"><span class="ln">54</span><span class="cl"><span class="sd">      }
+</span></span></span><span class="line"><span class="ln">55</span><span class="cl"><span class="sd">
+</span></span></span><span class="line"><span class="ln">56</span><span class="cl"><span class="sd">      if (exists(.query)) {
+</span></span></span><span class="line"><span class="ln">57</span><span class="cl"><span class="sd">        query_parts = split!(.query, r&#39;\s&#39;)
+</span></span></span><span class="line"><span class="ln">58</span><span class="cl"><span class="sd">        .domain = query_parts[0]
+</span></span></span><span class="line"><span class="ln">59</span><span class="cl"><span class="sd">        .record = query_parts[2]
+</span></span></span><span class="line"><span class="ln">60</span><span class="cl"><span class="sd">        .address = query_parts[5]
+</span></span></span><span class="line"><span class="ln">61</span><span class="cl"><span class="sd">      }</span><span class="w">      
+</span></span></span><span class="line"><span class="ln">62</span><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="ln">63</span><span class="cl"><span class="w"></span><span class="nt">sinks</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">64</span><span class="cl"><span class="w">  </span><span class="c"># 同步到 loki，根据实际情况修改 endpoint 的值</span><span class="w">
+</span></span></span><span class="line"><span class="ln">65</span><span class="cl"><span class="w">  </span><span class="nt">loki</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">66</span><span class="cl"><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">loki</span><span class="w">
+</span></span></span><span class="line"><span class="ln">67</span><span class="cl"><span class="w">    </span><span class="nt">inputs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">68</span><span class="cl"><span class="w">      </span>- <span class="l">mosdns-data</span><span class="w">
+</span></span></span><span class="line"><span class="ln">69</span><span class="cl"><span class="w">    </span><span class="nt">endpoint</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;http://10.10.10.2:3100&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="ln">70</span><span class="cl"><span class="w">    </span><span class="nt">encoding</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">71</span><span class="cl"><span class="w">      </span><span class="nt">codec</span><span class="p">:</span><span class="w"> </span><span class="l">json</span><span class="w">
+</span></span></span><span class="line"><span class="ln">72</span><span class="cl"><span class="w">    </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">73</span><span class="cl"><span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;{{ app }}&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="ln">74</span><span class="cl"><span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;{{ type }}&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="ln">75</span><span class="cl"><span class="w">    </span><span class="nt">healthcheck</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">76</span><span class="cl"><span class="w">      </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="ln">77</span><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="ln">78</span><span class="cl"><span class="w">  </span><span class="c"># 临时输出转换数据到 vector 控制台（生产环境请禁用）</span><span class="w">
+</span></span></span><span class="line"><span class="ln">79</span><span class="cl"><span class="w">  </span><span class="nt">debug_mosdns</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">80</span><span class="cl"><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">console</span><span class="w">
+</span></span></span><span class="line"><span class="ln">81</span><span class="cl"><span class="w">    </span><span class="nt">inputs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">82</span><span class="cl"><span class="w">      </span>- <span class="l">mosdns-data</span><span class="w">
+</span></span></span><span class="line"><span class="ln">83</span><span class="cl"><span class="w">    </span><span class="nt">encoding</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">84</span><span class="cl"><span class="w">      </span><span class="nt">codec</span><span class="p">:</span><span class="w"> </span><span class="l">json</span><span class="w">
+</span></span></span></code></pre></div><p>运行 vector 服务（部署好 loki 后再运行）</p>
+<p>非 openwrt 用户使用</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">vector --config /etc/vector/config.yml --watch-config --verbose
+</span></span></code></pre></div><p>openwrt 用户使用</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ /etc/init.d/vector start
+</span></span><span class="line"><span class="ln">2</span><span class="cl">
+</span></span><span class="line"><span class="ln">3</span><span class="cl">Loaded with warnings <span class="o">[</span><span class="s2">&#34;/etc/vector/config.yml&#34;</span><span class="o">]</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">-----------------------------------------------
+</span></span><span class="line"><span class="ln">5</span><span class="cl">√ Component configuration
+</span></span><span class="line"><span class="ln">6</span><span class="cl">√ Health check <span class="s2">&#34;loki&#34;</span>
+</span></span><span class="line"><span class="ln">7</span><span class="cl">√ Health check <span class="s2">&#34;vector&#34;</span>
+</span></span><span class="line"><span class="ln">8</span><span class="cl">-----------------------------------------------
+</span></span><span class="line"><span class="ln">9</span><span class="cl">                                      Validated
+</span></span></code></pre></div><p>使用 openwrt 插件的 vector 服务本身是会监控配置文件变化并重载，后面再调整的时候也不需要反复重启服务。</p>
+<h2 id="prometheus">prometheus</h2>
+<p><a href="https://prometheus.io/">prometheus</a> 是一个监控数据服务，可以作为 Grafana 数据源使用。安装参考<a href="https://prometheus.io/docs/prometheus/latest/installation/">官方教程</a>，配置文件需要把 mosdns metrics 地址（比如是 10.10.10.1:8338）加到 <code>prometheus.yml</code> 文件中:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="line"><span class="ln"> 1</span><span class="cl">global:
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  scrape_interval:     1m
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  evaluation_interval: 1m
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">scrape_configs:
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="gi">+  - job_name: mosdns
+</span></span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="gi">+    scrape_interval: 5s
+</span></span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="gi">+    # scrape_timeout: 10s
+</span></span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="gi">+
+</span></span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="gi">+    # metrics_path: /metrics
+</span></span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="gi">+    static_configs:
+</span></span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="gi">+      - targets:
+</span></span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="gi">+        - 10.10.10.1:8338
+</span></span></span></code></pre></div><h2 id="loki">loki</h2>
+<p><a href="https://grafana.com/oss/loki/">loki</a> 是一个日志聚合服务，本身也是 Grafana 研发的，可以作为 Grafana 数据源使用。参照<a href="https://grafana.com/docs/loki/latest/installation/docker/">官方文档</a>就能部署好 loki 和 Grafana，唯一需要注意的是要提前下载好 loki <a href="https://raw.githubusercontent.com/grafana/loki/v2.8.0/cmd/loki/loki-local-config.yaml">配置文件</a>。部署好之后把 loki 地址更新到上面 vector 配置。</p>
+<h2 id="grafana">grafana</h2>
+<p><a href="https://grafana.com/">grafana</a> 是一个数据可视化工具，安装见 loki 部分，已有服务直接跳过。</p>
+<p>Dashboard 看板的配置就非常简单了，先添加好 prometheus 和 loki 的数据源后，导入 <a href="https://grafana.com/grafana/dashboards/19305-mosdns-v5/">mosdns v5 看板</a>，按照图示配置即可。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+      <figure data-pswp="1804x800" data-size="800x"><a href="/uploads/2023/08/import-grafana-dashboard.png" class="gallery-item" target="_blank" data-pswp-width="1804" data-pswp-height="800"><img src="/uploads/2023/08/import-grafana-dashboard_hue88f2f1259717888351e09b6c3616bc3_122375_800x0_resize_box_3.png"/></a><figcaption>
+
+    <p>Grafana 导入 Dashboard 看板</p></figcaption></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+      <figure data-pswp="2138x1306" data-size="800x"><a href="/uploads/2023/08/configure-grafana-database.png" class="gallery-item" target="_blank" data-pswp-width="2138" data-pswp-height="1306"><img src="/uploads/2023/08/configure-grafana-database_hu978e2c5228327cb7fa55667074edf0eb_183610_800x0_resize_box_3.png"/></a><figcaption>
+
+    <p>Grafana 配置数据源</p></figcaption></figure>
+
+<h2 id="结语">结语</h2>
+<p>感谢 mosdns 长达几个月的配置稳定之前挖的坑填上了，撒花！</p>
+]]></content:encoded></item></channel></rss>
