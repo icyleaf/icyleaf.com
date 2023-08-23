@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>architecture on icyleaf</title><link>https://icyleaf.com/tags/architecture/</link><description>Recent content in architecture on icyleaf</description><language>zh</language><lastBuildDate>Wed, 26 Apr 2023 20:30:00 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/architecture/index.xml" rel="self" type="application/rss+xml"/><item><title>如何搭建家用 homelab: Openwrt 软路由</title><link>https://icyleaf.com/2023/04/how-to-homelab-part-2-openwrt-soft-router/</link><pubDate>Wed, 26 Apr 2023 20:30:00 +0800</pubDate><guid>https://icyleaf.com/2023/04/how-to-homelab-part-2-openwrt-soft-router/</guid><description>用牺牲硬件的网络转换效率来换取不必受设备提供商的限制和可玩性</description><content:encoded><![CDATA[<p>路由器是猫总管（调制解调器）最得力的一把手，掌管 homelab 网络大权。对于中国玩家提到软路由肯定绕不开 OpenWrt，今天我尝试用一个全新的视角唠唠这个大家熟悉却又陌生的系统。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>architecture on icyleaf</title><link>https://icyleaf.com/tags/architecture/</link><description>Recent content in architecture on icyleaf</description><language>zh-cn</language><lastBuildDate>Wed, 26 Apr 2023 20:30:00 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/architecture/index.xml" rel="self" type="application/rss+xml"/><item><title>如何搭建家用 homelab: Openwrt 软路由</title><link>https://icyleaf.com/2023/04/how-to-homelab-part-2-openwrt-soft-router/</link><pubDate>Wed, 26 Apr 2023 20:30:00 +0800</pubDate><guid>https://icyleaf.com/2023/04/how-to-homelab-part-2-openwrt-soft-router/</guid><description>用牺牲硬件的网络转换效率来换取不必受设备提供商的限制和可玩性</description><content:encoded><![CDATA[<p>路由器是猫总管（调制解调器）最得力的一把手，掌管 homelab 网络大权。对于中国玩家提到软路由肯定绕不开 OpenWrt，今天我尝试用一个全新的视角唠唠这个大家熟悉却又陌生的系统。
 以下会涉及大量的基础认知、概念理解，<strong>不会涉及网络配置或高阶玩法</strong>。</p>
 <h2 id="什么是-openwrt">什么是 OpenWrt</h2>
 <blockquote>
@@ -397,7 +397,7 @@ Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系�
   <header class="updated-header">
     <h4 class="updated-title">更新</h4>
     
-    <p class="updated-meta">2月 12, 2023</p>
+    <p class="updated-meta">Feb 12, 2023</p>
     
   </header>
   <article class="updated-body">

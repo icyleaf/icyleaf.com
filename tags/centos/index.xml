@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>CentOS on icyleaf</title><link>https://icyleaf.com/tags/centos/</link><description>Recent content in CentOS on icyleaf</description><language>zh</language><lastBuildDate>Fri, 30 Dec 2016 17:52:30 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/centos/index.xml" rel="self" type="application/rss+xml"/><item><title>Docker 摸爬滚打对抗 CentOS 6</title><link>https://icyleaf.com/2016/12/docker-with-centos/</link><pubDate>Fri, 30 Dec 2016 17:52:30 +0800</pubDate><guid>https://icyleaf.com/2016/12/docker-with-centos/</guid><description>能不用 CentOS 就别了吧，啊不行？那就点进来看看吧</description><content:encoded><![CDATA[
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>CentOS on icyleaf</title><link>https://icyleaf.com/tags/centos/</link><description>Recent content in CentOS on icyleaf</description><language>zh-cn</language><lastBuildDate>Fri, 30 Dec 2016 17:52:30 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/centos/index.xml" rel="self" type="application/rss+xml"/><item><title>Docker 摸爬滚打对抗 CentOS 6</title><link>https://icyleaf.com/2016/12/docker-with-centos/</link><pubDate>Fri, 30 Dec 2016 17:52:30 +0800</pubDate><guid>https://icyleaf.com/2016/12/docker-with-centos/</guid><description>能不用 CentOS 就别了吧，啊不行？那就点进来看看吧</description><content:encoded><![CDATA[
 
 
 
@@ -6,7 +6,7 @@
   <header class="updated-header">
     <h4 class="updated-title">更新</h4>
     
-    <p class="updated-meta">10月 9, 2018</p>
+    <p class="updated-meta">Oct 9, 2018</p>
     
   </header>
   <article class="updated-body">

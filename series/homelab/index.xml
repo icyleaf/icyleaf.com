@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Homelab on icyleaf</title><link>https://icyleaf.com/series/homelab/</link><description>Recent content in Homelab on icyleaf</description><language>zh</language><lastBuildDate>Mon, 24 Jul 2023 10:30:25 +0800</lastBuildDate><atom:link href="https://icyleaf.com/series/homelab/index.xml" rel="self" type="application/rss+xml"/><item><title>如何搭建家用 homelab: 数据存储</title><link>https://icyleaf.com/2023/07/how-to-homelab-part-3-storages/</link><pubDate>Mon, 24 Jul 2023 10:30:25 +0800</pubDate><guid>https://icyleaf.com/2023/07/how-to-homelab-part-3-storages/</guid><description>如果你想部署任何一个服务，你都需要存储一些数据</description><content:encoded><![CDATA[
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Homelab on icyleaf</title><link>https://icyleaf.com/series/homelab/</link><description>Recent content in Homelab on icyleaf</description><language>zh-cn</language><lastBuildDate>Mon, 24 Jul 2023 10:30:25 +0800</lastBuildDate><atom:link href="https://icyleaf.com/series/homelab/index.xml" rel="self" type="application/rss+xml"/><item><title>如何搭建家用 homelab: 数据存储</title><link>https://icyleaf.com/2023/07/how-to-homelab-part-3-storages/</link><pubDate>Mon, 24 Jul 2023 10:30:25 +0800</pubDate><guid>https://icyleaf.com/2023/07/how-to-homelab-part-3-storages/</guid><description>如果你想部署任何一个服务，你都需要存储一些数据</description><content:encoded><![CDATA[
 
 
 
@@ -1155,7 +1155,7 @@ Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系�
   <header class="updated-header">
     <h4 class="updated-title">更新</h4>
     
-    <p class="updated-meta">2月 12, 2023</p>
+    <p class="updated-meta">Feb 12, 2023</p>
     
   </header>
   <article class="updated-body">
