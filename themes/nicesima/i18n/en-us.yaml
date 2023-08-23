@@ -1,0 +1,42 @@
+# list
+publishedPosts:
+  other: Published {{ . }} posts.
+
+# single
+photoBy:
+  other: Photo by
+
+postWords:
+  other: '{{ . }} words'
+
+readingTime:
+  other: '{{ . }} minutes'
+
+seriesParts:
+  other: ' ({{ . }} Part Series)'
+
+relatesPosts:
+  other: Relates posts
+
+referenceLinks:
+  other: Reference links
+
+# terms
+more:
+  other: More
+
+draft:
+  other: draft
+
+update:
+  other: Update
+
+toc:
+  other: TOC
+
+# 404 page:
+notFound:
+  other: /* 404 page not found. */
+
+gobackTitle:
+  other: ↑ Back Home ↑

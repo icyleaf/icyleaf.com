@@ -1,8 +1,8 @@
 baseurl: https://icyleaf.com/
 title: icyleaf
 theme: nicesima
-languageCode: zh
-defaultContentLanguage: zh
+languageCode: zh-cn
+defaultContentLanguage: zh-cn
 disableHugoGeneratorInject: true
 hasCJKLanguage: true
 enableEmoji: true

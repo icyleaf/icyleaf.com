@@ -1,0 +1,37 @@
+# list
+publishedPosts:
+  other: '本博客共生产 {{ . }} 篇文章。'
+
+# single
+photoBy:
+  other: Photo by
+
+postWords:
+  other: '{{ . }} words'
+
+readingTime:
+  other: '{{ . }} minutes'
+
+seriesParts:
+  other: '（{{ . }} 篇）'
+
+relatesPosts:
+  other: 相关文章
+referenceLinks:
+  other: 参考链接
+
+# terms
+more:
+  other: 更多
+draft:
+  other: 草稿
+update:
+  other: 更新
+toc:
+  other: 目录
+
+# 404 page:
+notFound:
+  other: /* 404 页面找不到 */
+gobackTitle:
+  other: ↑ 回到首页 ↑
