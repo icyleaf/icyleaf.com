@@ -18,6 +18,7 @@ description: Android 平板到底是生产力工具还是沦为看视频的最�
 
 {{< updated at="2023-01-28" >}}
 
+- 没想到 2023 年 870 还是最强国产 Android 平板
 - 补充外接电源不稳定的解决方案
 - 补充 Android 最近一段时间在用的独家应用和修复错误名称
 - 补充 ZUI 14 体验
@@ -40,7 +41,7 @@ description: Android 平板到底是生产力工具还是沦为看视频的最�
 
 > 再写本文时在最新的 iOS 15.5 上面测试自带 File 应用已经会显示速率，复制大文件的时候依然会卡几秒，但真正进入拷贝过程速度非常快！
 
-iPad 被排除后依次考虑过 Linux 平板[^2]、Surface 和 Android 平板，时隔多年小米平板 5 [不但沉](https://twitter.com/icyleaf/status/1446034323136679939) USB 还是 2.0，联想小新 Pad 有稍微关注过，我把重心放到了 2022 年新平板（[爆料](https://weibo.com/1642632024/Lf64Y3kYH?refer_flag=1001030103_)），年初刷到[推友分享小新 Pad Pro](https://twitter.com/oasisfeng/status/1481541399359389696)让我有点心动，可直接安装 Google 全家桶、USB 3.1、90Hz，可刷国际版，决定 4 月份新平板出来不合适就入手它。
+iPad 被排除后依次考虑过 Linux 平板[^2]、Surface 和 Android 平板，时隔多年小米平板 5 [不但沉](https://twitter.com/icyleaf/status/1446034323136679939) USB 还是 2.0，联想小新 Pad 有稍微关注过，我把重心放到了 2022 年新平板（[爆料](https://weibo.com/1642632024/Lf64Y3kYH?refer_flag=1001030103_)），年初刷到[推友分享小新 Pad Pro](https://twitter.com/oasisfeng/status/1481541399359389696) 让我有点心动，可直接安装 Google 全家桶、USB 3.1、90Hz，可刷国际版，两年质保。决定 4 月份新平板出来不合适就入手它。
 
 {{< figure src="/uploads/2022/08/12/xiaoxin-pads-compare.jpg"
     link="/uploads/2022/08/12/xiaoxin-pads-compare.jpg"
@@ -110,11 +111,11 @@ OLED 是仅次于 MiniLED 的最好屏幕材质，在配合 2K 分辨率和日�
 - [Solid Explorer](https://play.google.com/store/apps/details?id=pl.solidexplorer2&hl=zh&gl=US): 最好用的文件管理器，没有之一 ![Play Store][play-store Icon] ![Freeware][Freeware Icon]
 - [Aria2App](https://github.com/devgianlu/Aria2App): 支持本机和远程的 Aria2 下载管理客户端 ![Open-Source Software][OSS Icon]
 - [ProxMon](https://play.google.com/store/apps/details?id=dev.reimu.proxmon&hl=zh&gl=US): Proxmox (PVE) 客户端管理工具 ![Play Store][play-store Icon] ![Freeware][Freeware Icon]
-- {{<spoiler>}}[Pornhub](https://cn.pornhub.com/apps/android){{< /spoiler >}}: 知名 P 站 ![Freeware][Freeware Icon]
-- {{<spoiler>}}[JavDB](https://github.com/bdvajstudio/javdb){{< /spoiler >}}: 番号资源和磁力资源，配合 Aria2App 无敌 ![Open-Source Software][OSS Icon]
-- {{<spoiler>}}[Clash for Android](https://play.google.com/store/apps/details?id=com.github.kr328.clash){{< /spoiler >}}: 一个会挖洞的可爱猫咪 ![Play Store][play-store Icon] ![Open-Source Software][OSS Icon]
+- [FolderSync](https://play.google.com/store/apps/details?id=dk.tacit.android.foldersync.lite&hl=en_US): 本地和远程服务器文件同步工具 ![Play Store][play-store Icon]
 - [DroidCam](https://play.google.com/store/apps/details?id=com.dev47apps.droidcam): 把 Android 相机当做 PC/macOS 摄像头 ![Play Store][play-store Icon]
 - [Serial USB Terminal](https://play.google.com/store/apps/details?id=de.kai_morich.serial_usb_terminal): USB 串口模拟器 ![Play Store][play-store Icon]
+- {{<spoiler>}}[JavDB](https://github.com/bdvajstudio/javdb){{< /spoiler >}}: 番号资源和磁力资源，配合 Aria2App 无敌 ![Open-Source Software][OSS Icon]
+- {{<spoiler>}}[Clash for Android](https://play.google.com/store/apps/details?id=com.github.kr328.clash){{< /spoiler >}}: 一个会挖洞的可爱猫咪 ![Play Store][play-store Icon] ![Open-Source Software][OSS Icon]
 
 ### 外接数据备份
 

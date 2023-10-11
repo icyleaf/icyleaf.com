@@ -53,7 +53,15 @@ mosdns 5 版本采用了[新数据源解包格式](https://github.com/IrineSisti
   compress
   missingok
   notifempty
+  copytruncate
 }
+```
+
+`copytruncate` 的意思是将旧日志文件的内容复制到新日志文件，默认是直接改名原文件会造成 mosdns 运行日志记录出现问题，设置好后确保 logrotate 定时运行：
+
+```bash
+# crontab -e
+0 1 * * * /bin/sh -c "/usr/sbin/logrotate -l=syslog -d /etc/logrotate.d"
 ```
 
 ## vector
