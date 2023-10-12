@@ -14,10 +14,8 @@ series:
 categories:
   - Technology
 tags:
-  - homelab
   - hardware
   - architecture
-  - linux
   - openwrt
 image: https://images.unsplash.com/photo-1521542464131-cb30f7398bc6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2673&q=80
 imageSource:
@@ -26,6 +24,10 @@ imageSource:
   - name: Unsplash
     link: https://unsplash.com
 ---
+
+{{< updated title="加入讨论群" color="tip" >}}
+方便大家沟通交流，开通了 Discord 讨论群便于第一时间获得教程的最新更新，并提供关于 Homelab 沟通、疑惑解答专区，欢迎[大家加入](https://discord.gg/gdXpKyh85r)。
+{{< /updated >}}
 
 路由器是猫总管（调制解调器）最得力的一把手，掌管 homelab 网络大权。对于中国玩家提到软路由肯定绕不开 OpenWrt，今天我尝试用一个全新的视角唠唠这个大家熟悉却又陌生的系统。
 以下会涉及大量的基础认知、概念理解，__不会涉及网络配置或高阶玩法__。

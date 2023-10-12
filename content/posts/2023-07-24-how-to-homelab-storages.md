@@ -14,10 +14,8 @@ series:
 categories:
   - Technology
 tags:
-  - homelab
   - hardware
   - storages
-  - linux
 image: https://images.unsplash.com/photo-1686705562930-4f3e46f620d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3000&q=80
 imageSource:
   - name: Michael Kahn
@@ -26,11 +24,15 @@ imageSource:
     link: https://unsplash.com
 ---
 
+{{< updated title="加入讨论群" color="tip" >}}
+方便大家沟通交流，开通了 Discord 讨论群便于第一时间获得教程的最新更新，并提供关于 Homelab 沟通、疑惑解答专区，欢迎[大家加入](https://discord.gg/gdXpKyh85r)。
+{{< /updated >}}
+
+当你有些照片、视频需要存放时；或跑一些无状态的应用或服务时；或同步转存某网云的文件时，这些数据是不是都要保存起来，这就是数据存储。本篇的内容都是从各方面浅尝辄止的介绍，每个部分展开讲都是很大的篇幅，能力有限，大家多多理解。
+
 {{< figure src="/tutorials/how-to-homelab/storages/hp-micro-gen8.jpeg"
     title="我的 NAS 服务器"
 >}}
-
-当你有些照片、视频需要存放时；或跑一些无状态的应用或服务时；或同步转存某网云的文件时，这些数据是不是都要保存起来，这就是数据存储。本篇的内容都是从各方面浅尝辄止的介绍，每个部分展开讲都是很大的篇幅，能力有限，大家多多理解。
 
 ## 存储介质
 

@@ -43,6 +43,7 @@ description: DIY 生产力台式机电脑
 - 购入独立显卡蓝宝石 RX580 8G 1411MHz Nitro+ 超白金(矿卡），更新相关内容，尾部加上[黑苹果安装教程](http://icyleaf.com/2019/03/asrock-z390-gaming-itx-install-hackintosh-tutorial/)。
 - 修改无线网卡的最终选择和价格，更新博通网卡部分的内容。
 - 独立显卡升级成迪兰 RX 5600xt 6G X 战神（通用是矿卡）
+
 {{< /updated >}}
 
 ## 为什么要台式机

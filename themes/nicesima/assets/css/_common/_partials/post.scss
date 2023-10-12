@@ -534,16 +534,10 @@
     }
 
     .updated-header {
-      background: $light-box-shadow-color;
       border-top-left-radius: 10px;
       border-top-right-radius: 10px;
       padding: 1em 1.5em;
       position: relative;
-
-      .dark-theme & {
-        color: $dark-post-link-color;
-        background: $dark-box-shadow-color;
-      }
 
       h4.updated-title {
         padding: 0;
@@ -556,6 +550,34 @@
         font-size: 1.2rem;
         color: $light-font-secondary-color;
         font-weight: 600;
+      }
+    }
+
+    .color-primary {
+      background: $light-box-shadow-color;
+      .dark-theme & {
+        color: $dark-post-link-color;
+        background: $dark-box-shadow-color;
+      }
+    }
+
+    .color-info {
+      background: #80d280;
+      color: #003100;
+
+      .dark-theme & {
+        background: #003100;
+        color: #e6f6e6;
+      }
+    }
+
+    .color-tip {
+      background: #cffbcf;
+      color: #003100;
+
+      .dark-theme & {
+        background: #003100;
+        color: #e6f6e6;
       }
     }
 

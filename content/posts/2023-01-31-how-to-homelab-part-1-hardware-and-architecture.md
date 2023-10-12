@@ -14,11 +14,8 @@ series:
 categories:
   - Technology
 tags:
-  - homelab
   - hardware
   - architecture
-  - devops
-  - linux
 image: https://images.unsplash.com/photo-1549319114-d67887c51aed?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2874&q=80
 imageSource:
   - name: Martijn Baudoin
@@ -27,8 +24,8 @@ imageSource:
     link: https://unsplash.com
 ---
 
-{{< updated at="2023-02-12" >}}
-PDD 600 多采购 Apple TV 用于代替原先的 Android 电视盒子，终于有了一个价格合适即有网飞认证高清又能提供更好的生态体验。
+{{< updated title="加入讨论群" color="tip" >}}
+方便大家沟通交流，开通了 Discord 讨论群便于第一时间获得教程的最新更新，并提供关于 Homelab 沟通、疑惑解答专区，欢迎[大家加入](https://discord.gg/gdXpKyh85r)。
 {{< /updated >}}
 
 前面[先导篇]({{< ref "posts/2022-02-12-how-to-homelab-part-0.md" >}})全面性介绍了搭建家用 homelab 软硬件的可能性，实际操作上每个人的室内环境，网络布线都不太一样，钞能力的不同也有会千万种解法。我无法给出一个 100% 的解决方案，但我给大家回顾自己设备架构演变的过程在每个阶段是什么需求，遇到什么问题以及如何应对的，在文章末尾也会给出一些搭建 homelab 中不容忽视的因素。
@@ -172,6 +169,10 @@ Gen 8 在更换新的氦气盘转移数据有大量的视频转码工作要跑 C
 软硬件我采用的是 [thoughtworks 技术雷达](https://www.thoughtworks.com/zh-cn/radar) 的策略把任何一个方案划分成`评估`、`试验`、`采纳`和`暂缓` 4 个阶段，因此会包含很多解决方案，标记`采纳`的可安心服用。
 
 ### 硬件
+
+{{< updated at="2023-02-12" >}}
+PDD 600 多采购 Apple TV 用于代替原先的 Android 电视盒子，终于有了一个价格合适即有网飞认证高清又能提供更好的生态体验。
+{{< /updated >}}
 
 {{< div >}}
 <table>
