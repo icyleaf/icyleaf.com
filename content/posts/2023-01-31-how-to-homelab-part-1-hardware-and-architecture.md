@@ -24,9 +24,9 @@ imageSource:
     link: https://unsplash.com
 ---
 
-{{< updated title="加入讨论群" color="tip" >}}
+{{< tip title="加入讨论群" >}}
 方便大家沟通交流，开通了 Discord 讨论群便于第一时间获得教程的最新更新，并提供关于 Homelab 沟通、疑惑解答专区，欢迎[大家加入](https://discord.gg/gdXpKyh85r)。
-{{< /updated >}}
+{{< /tip >}}
 
 前面[先导篇]({{< ref "posts/2022-02-12-how-to-homelab-part-0.md" >}})全面性介绍了搭建家用 homelab 软硬件的可能性，实际操作上每个人的室内环境，网络布线都不太一样，钞能力的不同也有会千万种解法。我无法给出一个 100% 的解决方案，但我给大家回顾自己设备架构演变的过程在每个阶段是什么需求，遇到什么问题以及如何应对的，在文章末尾也会给出一些搭建 homelab 中不容忽视的因素。
 

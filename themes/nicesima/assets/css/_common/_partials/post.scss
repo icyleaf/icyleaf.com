@@ -553,7 +553,7 @@
       }
     }
 
-    .color-primary {
+    .color-note {
       background: $light-box-shadow-color;
       .dark-theme & {
         color: $dark-post-link-color;
@@ -578,6 +578,16 @@
       .dark-theme & {
         background: #003100;
         color: #e6f6e6;
+      }
+    }
+
+    .color-warning {
+      background: #FFF8E6;
+      color: #4D3800;
+
+      .dark-theme & {
+        background: #4D3800;
+        color: #FFF8E6;
       }
     }
 

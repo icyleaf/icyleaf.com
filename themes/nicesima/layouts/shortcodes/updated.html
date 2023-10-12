@@ -1,12 +1,10 @@
-{{ $title := .Get "title" | default (i18n "update") }}
 {{ $date := .Get "at" }}
-{{ $color := .Get "color" | default "primary" }}
 {{ $body := .Inner }}
 
 {{ with $body }}
-<div class="updated">
-  <header class="updated-header color-{{ $color }}">
-    <h4 class="updated-title">{{ $title }}</h4>
+<div class="updated updated-mark">
+  <header class="updated-header color-note">
+    <h4 class="updated-title">{{ i18n "update" }}</h4>
     {{ with $date }}
     <p class="updated-meta">{{ time.Format "Jan 2, 2006" $date }}</p>
     {{ end }}

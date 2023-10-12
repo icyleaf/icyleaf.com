@@ -1,0 +1,17 @@
+{{ $title := .Get "title" | default (i18n "warning") }}
+{{ $subtitle := .Get "subtitle" }}
+{{ $body := .Inner }}
+
+{{ with $body }}
+<div class="updated">
+  <header class="updated-header color-warning">
+    <h4 class="updated-title">{{ $title }}</h4>
+    {{ with $subtitle }}
+    <p class="updated-meta">{{ $subtitle }}</p>
+    {{ end }}
+  </header>
+  <article class="updated-body">
+    {{ $body | markdownify }}
+  </article>
+</div>
+{{ end }}
