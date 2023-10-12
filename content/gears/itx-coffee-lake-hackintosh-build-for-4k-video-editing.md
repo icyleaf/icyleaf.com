@@ -3,13 +3,11 @@ title: 攒了一台 4K 视频剪辑黑苹果
 date: 2019-01-30T10:30:07+08:00
 slug: itx-coffee-lake-hackintosh-build-for-4k-video-editing
 categories:
-- Technology
+- Gears
 tags:
 - 硬件
-- Hackintosh
-- PC
-- 4K
 - 视频剪辑
+- Hackintosh
 series:
 - Hackintosh
 image: /uploads/2019/01/30/4k-hackintosh-hardwares.jpg
@@ -17,7 +15,7 @@ index: false
 comments: true
 isCJKLanguage: true
 share: true
-description: 台式机还是生产力工具吗？
+description: DIY 生产力台式机电脑
 ---
 
 ## 装机清单
@@ -28,7 +26,7 @@ description: 台式机还是生产力工具吗？
 | --- | --- | --- | --- |
 | CPU | Intel i7 9700k | 2550 |  |
 | 主板 | 华擎 Z390 Phantom Gaming itx/ac | 1399 |  |
-| 散热器 | 九州风神 船长 240 EX White RGB | 453 |  |
+| 散热器 | 九州风神 船长 240 EX White RGB | 453 | 更换酷里奥屠龙 240A  |
 | 内存 | 海盗船 Vengeance LPX DDR4 3000 16G x 1 | 719 |  |
 | SSD | 三星 970 EVO 250G | 489 |  |
 | 机箱 | 追风者 215P ITX 侧透 RGB | 489 | 支持大风冷和全尺寸显卡 |
@@ -36,15 +34,15 @@ description: 台式机还是生产力工具吗？
 | 无线网卡/蓝牙 | 博通 BCM94360CS2 | 95 元 | 需转接卡 |
 | 显卡 | 蓝宝石 RX580 8G 1411MHz Nitro+ 超白金 | 750 | 后期预算，闲鱼二手矿卡 |
 | 显示器 | LG 27UL600 4k HDR400 IPS | 后期单独预算 |  |
-| 总价 |  | 6075<br />6825(独立显卡) |  |
+| 总价 |  | 6075{{< div >}}<br />{{< /div >}}6825(独立显卡) |  |
 
-{{< updated at="2020-07-09" >}}
+{{< updated at="2023-10-12" >}}
 
-- 6月份采购了一个 LG 面板的 DIY 4k 显示器，价格很香 1500 元，就是驱动板固件差点，单摇臂换了双摇臂来挂两个 4k 显示器。具体请看[我买过的显示器](https://gist.github.com/icyleaf/b09d70da0a7c368fe550338088b5dbc3)。
+- 6 月份采购了一个 LG 面板的 DIY 4k 显示器，价格很香 1500 元，就是驱动板固件差点，单摇臂换了双摇臂来挂两个 4k 显示器。具体请看[我买过的显示器](https://gist.github.com/icyleaf/b09d70da0a7c368fe550338088b5dbc3)。
 - 购入矿卡显卡整 2 个月的时间目前没有翻车，macOS 下用于视频剪辑速度确实快了很多！在 Windows 用显卡超频检测风扇偶尔会提示风扇有问题但玩 Apex 英雄最高画质渲染除了显卡风扇噪音比较大以外没有任何问题。一般来说矿卡日常使用没有太大问题，后续会考虑换个显卡风扇。
 - 购入独立显卡蓝宝石 RX580 8G 1411MHz Nitro+ 超白金(矿卡），更新相关内容，尾部加上[黑苹果安装教程](http://icyleaf.com/2019/03/asrock-z390-gaming-itx-install-hackintosh-tutorial/)。
 - 修改无线网卡的最终选择和价格，更新博通网卡部分的内容。
-
+- 独立显卡升级成迪兰 RX 5600xt 6G X 战神（通用是矿卡）
 {{< /updated >}}
 
 ## 为什么要台式机

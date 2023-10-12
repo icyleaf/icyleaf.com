@@ -1,6 +1,6 @@
 ---
 title: "小新 Pad Pro 2021"
-image: /uploads/2022/08/12/xiaoxin-pad-pro-2021.jpg
+image: /gears/xiaoxin-pad-pro-2021/xiaoxin-pad-pro-2021.jpg
 date: 2022-08-12T19:29:06+08:00
 slug: "xiaoxin-pad-pro-2021"
 type: posts
@@ -43,8 +43,8 @@ description: Android 平板到底是生产力工具还是沦为看视频的最�
 
 iPad 被排除后依次考虑过 Linux 平板[^2]、Surface 和 Android 平板，时隔多年小米平板 5 [不但沉](https://twitter.com/icyleaf/status/1446034323136679939) USB 还是 2.0，联想小新 Pad 有稍微关注过，我把重心放到了 2022 年新平板（[爆料](https://weibo.com/1642632024/Lf64Y3kYH?refer_flag=1001030103_)），年初刷到[推友分享小新 Pad Pro](https://twitter.com/oasisfeng/status/1481541399359389696) 让我有点心动，可直接安装 Google 全家桶、USB 3.1、90Hz，可刷国际版，两年质保。决定 4 月份新平板出来不合适就入手它。
 
-{{< figure src="/uploads/2022/08/12/xiaoxin-pads-compare.jpg"
-    link="/uploads/2022/08/12/xiaoxin-pads-compare.jpg"
+{{< figure src="/gears/xiaoxin-pad-pro-2021/version-compares.jpg"
+    link="/gears/xiaoxin-pad-pro-2021/version-compares.jpg"
     title="小新 Pad 各个版本对比图"
     caption="图片来源"
     attr="IT 之家"
@@ -69,7 +69,7 @@ iPad 被排除后依次考虑过 Linux 平板[^2]、Surface 和 Android 平板�
 
 OLED 是仅次于 MiniLED 的最好屏幕材质，在配合 2K 分辨率和日常 420 尼特，峰值 600 尼特加持下，看漫画真的爽歪歪：
 
-{{< figure src="/uploads/2022/08/12/tachiyomi-on-xiaoxin-pad-pro-2021.jpg"
+{{< figure src="/gears/xiaoxin-pad-pro-2021/tachiyomi.jpg"
     thumb-size="1920x1080"
     thumb-method="crop"
     title="小新 Pad Pro 2021 上看漫画"
@@ -79,8 +79,8 @@ OLED 是仅次于 MiniLED 的最好屏幕材质，在配合 2K 分辨率和日�
 
 平板支持 Dolby Vision 用 Youtube 和 B 站在大会员加持下最高画质，Jellyfin 升级 10.8 看片源和转码效率通常情况下不会太差，唯独 Netflix 因没有认证只有最高 1080p HD 画质，联想认证 HDR 的只有 Tab P11-12 Pro 和 Yoga Tab 13。
 
-{{< figure src="/uploads/2022/08/12/xiaoxin-video-encoder.jpg"
-    link="/uploads/2022/08/12/xiaoxin-video-encoder.jpg"
+{{< figure src="/gears/xiaoxin-pad-pro-2021/video-encoder.jpg"
+    link="/gears/xiaoxin-pad-pro-2021/video-encoder.jpg"
     title="B 站的杜比视界和 Netflix 解码信息"
     caption="视频来源"
     attr="Linksphotograph"
@@ -131,15 +131,15 @@ OLED 是仅次于 MiniLED 的最好屏幕材质，在配合 2K 分辨率和日�
 
 就算是成功连接了，外部设备的访问权限反复提醒，我不确定这是 Android 11 的问题还是 ZUI 移植后的适配问题。
 
-{{< figure src="/uploads/2022/08/12/xiaoxin-pad-filesystem-role.jpg"
-    link="/uploads/2022/08/12/xiaoxin-pad-filesystem-role.jpg"
+{{< figure src="/gears/xiaoxin-pad-pro-2021/filesystem-role.jpg"
+    link="/gears/xiaoxin-pad-pro-2021/filesystem-role.jpg"
     title="令人烦恼的外部设备访问权限"
 >}}
 
 终于能操作了，数据拷贝的速度如果不是双 Type-C，尽管扩展坞支持 USB 3.0 但速度上限只有 70MB/s 这还是瞬时整个拷贝过程 IO 非常不稳定。
 
-{{< figure src="/uploads/2022/08/12/xiaoxin-pad-copy-tf-photo.jpg"
-    link="/uploads/2022/08/12/xiaoxin-pad-copy-tf-photo.jpg"
+{{< figure src="/gears/xiaoxin-pad-pro-2021/copy-tf-photo.jpg"
+    link="/gears/xiaoxin-pad-pro-2021/copy-tf-photo.jpg"
     title="使用 Solid Explorer 拷贝 TF 卡到平板"
 >}}
 
@@ -149,8 +149,8 @@ OLED 是仅次于 MiniLED 的最好屏幕材质，在配合 2K 分辨率和日�
 
 小新 Pad 使用的是自研的 ZUI，截至目前 13 版本只能说堪用，系统提供自由浮窗，分屏功能，但应用支不支持又是另外一回事，偶尔用一下看到应用不分屏肯定会暗地不爽。系统级别的应用几乎不怎么使用，都由上面我说的代替了，输入法需要说下 [Gboard](https://play.google.com/store/apps/details?id=com.google.android.inputmethod.latin) 在 99% 的情况下都是非常好用的，~~剩下的 1% 是它不支持隐藏键盘的功能~~（触发返回动作隐藏）。
 
-{{< figure src="/uploads/2022/08/12/xiaoxin-pad-dual-screens.jpg"
-    link="/uploads/2022/08/12/xiaoxin-pad-dual-screens.jpg"
+{{< figure src="/gears/xiaoxin-pad-pro-2021/dual-screens.jpg"
+    link="/gears/xiaoxin-pad-pro-2021/dual-screens.jpg"
     title="分屏模式"
 >}}
 

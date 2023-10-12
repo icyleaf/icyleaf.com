@@ -84,8 +84,12 @@ menu:
       weight: 80
       identifier: projects
       url: /projects
-    - name: 关于
+    - name: 我的设备
       weight: 90
+      identifier: gears
+      url: /gears
+    - name: 关于
+      weight: 95
       identifier: about
       url: /about
     # - name: 订阅
