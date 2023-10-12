@@ -80,10 +80,8 @@
 
 
 
-
-
-<div class="updated">
-  <header class="updated-header color-primary">
+<div class="updated updated-mark">
+  <header class="updated-header color-note">
     <h4 class="updated-title">更新</h4>
     
     <p class="updated-meta">Jan 28, 2023</p>
@@ -464,10 +462,8 @@
 
 
 
-
-
-<div class="updated">
-  <header class="updated-header color-primary">
+<div class="updated updated-mark">
+  <header class="updated-header color-note">
     <h4 class="updated-title">更新</h4>
     
     <p class="updated-meta">Oct 12, 2023</p>

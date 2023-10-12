@@ -243,7 +243,6 @@
 
 
 
-
 <div class="updated">
   <header class="updated-header color-tip">
     <h4 class="updated-title">加入讨论群</h4>
@@ -1018,7 +1017,6 @@
 
 
 
-
 <div class="updated">
   <header class="updated-header color-tip">
     <h4 class="updated-title">加入讨论群</h4>
@@ -1426,7 +1424,6 @@ Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系�
 
 
 
-
 <div class="updated">
   <header class="updated-header color-tip">
     <h4 class="updated-title">加入讨论群</h4>
@@ -1675,10 +1672,8 @@ Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系�
 
 
 
-
-
-<div class="updated">
-  <header class="updated-header color-primary">
+<div class="updated updated-mark">
+  <header class="updated-header color-note">
     <h4 class="updated-title">更新</h4>
     
     <p class="updated-meta">Feb 12, 2023</p>
@@ -2740,7 +2735,6 @@ Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系�
 
 
 
-
 <div class="updated">
   <header class="updated-header color-tip">
     <h4 class="updated-title">加入讨论群</h4>
@@ -3015,10 +3009,8 @@ Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系�
 
 
 
-
-
-<div class="updated">
-  <header class="updated-header color-primary">
+<div class="updated updated-mark">
+  <header class="updated-header color-note">
     <h4 class="updated-title">更新</h4>
     
     <p class="updated-meta">Jan 28, 2023</p>
@@ -3318,10 +3310,8 @@ Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系�
 
 
 
-
-
-<div class="updated">
-  <header class="updated-header color-primary">
+<div class="updated updated-mark">
+  <header class="updated-header color-note">
     <h4 class="updated-title">更新</h4>
     
     <p class="updated-meta">Mar 28, 2019</p>
@@ -3412,10 +3402,8 @@ Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系�
 
 
 
-
-
-<div class="updated">
-  <header class="updated-header color-primary">
+<div class="updated updated-mark">
+  <header class="updated-header color-note">
     <h4 class="updated-title">更新</h4>
     
     <p class="updated-meta">Apr 14, 2021</p>
@@ -4396,10 +4384,8 @@ String#{}   9.51M (105.16ns) (± 6.12%)  3.47× slower
 
 
 
-
-
-<div class="updated">
-  <header class="updated-header color-primary">
+<div class="updated updated-mark">
+  <header class="updated-header color-note">
     <h4 class="updated-title">更新</h4>
     
     <p class="updated-meta">Oct 9, 2018</p>
@@ -4500,10 +4486,8 @@ String#{}   9.51M (105.16ns) (± 6.12%)  3.47× slower
 
 
 
-
-
-<div class="updated">
-  <header class="updated-header color-primary">
+<div class="updated updated-mark">
+  <header class="updated-header color-note">
     <h4 class="updated-title">更新</h4>
     
     <p class="updated-meta">Feb 22, 2022</p>
@@ -5313,10 +5297,8 @@ String#{}   9.51M (105.16ns) (± 6.12%)  3.47× slower
 
 
 
-
-
-<div class="updated">
-  <header class="updated-header color-primary">
+<div class="updated updated-mark">
+  <header class="updated-header color-note">
     <h4 class="updated-title">更新</h4>
     
     <p class="updated-meta">Aug 15, 2022</p>
@@ -5476,10 +5458,8 @@ String#{}   9.51M (105.16ns) (± 6.12%)  3.47× slower
 
 
 
-
-
-<div class="updated">
-  <header class="updated-header color-primary">
+<div class="updated updated-mark">
+  <header class="updated-header color-note">
     <h4 class="updated-title">更新</h4>
     
     <p class="updated-meta">Apr 18, 2022</p>
@@ -6767,10 +6747,8 @@ nameserver 8.8.4.4 # 备选 DNS
 
 
 
-
-
-<div class="updated">
-  <header class="updated-header color-primary">
+<div class="updated updated-mark">
+  <header class="updated-header color-note">
     <h4 class="updated-title">更新</h4>
     
     <p class="updated-meta">Jul 1, 2013</p>
@@ -9060,10 +9038,8 @@ update</strong>：娃哈哈，从买了一个相机，已经会有很多作品�
 
 
 
-
-
-<div class="updated">
-  <header class="updated-header color-primary">
+<div class="updated updated-mark">
+  <header class="updated-header color-note">
     <h4 class="updated-title">更新</h4>
     
     <p class="updated-meta">Feb 3, 2008</p>
