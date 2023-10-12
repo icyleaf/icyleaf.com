@@ -258,7 +258,7 @@ USB3 端口</li>
 <li><a href="https://www.tonymacx86.com/threads/asrock-z390-phantom-gaming-itx-ac.265245/#post-1854444">ASRock Z390 Phantom Gaming-ITX/ac</a></li>
 <li><a href="https://www.hackintosh-forum.de/forum/thread/40613-1st-hackintosh-beginner-asrock-z390-phantom-gaming-itx-ac/">ASROCK Z390 PHANTOM GAMING-ITX/AC</a></li>
 </ul>
-]]></content:encoded></item><item><title>攒了一台 4K 视频剪辑黑苹果</title><link>https://icyleaf.com/2019/01/itx-coffee-lake-hackintosh-build-for-4k-video-editing/</link><pubDate>Wed, 30 Jan 2019 10:30:07 +0800</pubDate><guid>https://icyleaf.com/2019/01/itx-coffee-lake-hackintosh-build-for-4k-video-editing/</guid><description>台式机还是生产力工具吗？</description><content:encoded><![CDATA[<h2 id="装机清单">装机清单</h2>
+]]></content:encoded></item><item><title>攒了一台 4K 视频剪辑黑苹果</title><link>https://icyleaf.com/gears/itx-coffee-lake-hackintosh-build-for-4k-video-editing/</link><pubDate>Wed, 30 Jan 2019 10:30:07 +0800</pubDate><guid>https://icyleaf.com/gears/itx-coffee-lake-hackintosh-build-for-4k-video-editing/</guid><description>DIY 生产力台式机电脑</description><content:encoded><![CDATA[<h2 id="装机清单">装机清单</h2>
 <blockquote>
 <p>台式机借鉴国外 $1000k 攒机思路在不考虑显示器预算为 6000 元人民币。</p>
 </blockquote>
@@ -288,7 +288,7 @@ USB3 端口</li>
 <td>散热器</td>
 <td>九州风神 船长 240 EX White RGB</td>
 <td>453</td>
-<td></td>
+<td>更换酷里奥屠龙 240A</td>
 </tr>
 <tr>
 <td>内存</td>
@@ -335,7 +335,10 @@ USB3 端口</li>
 <tr>
 <td>总价</td>
 <td></td>
-<td>6075<!-- raw HTML omitted -->6825(独立显卡)</td>
+<td>6075<div >
+  <br />
+</div>
+6825(独立显卡)</td>
 <td></td>
 </tr>
 </tbody>
@@ -348,15 +351,16 @@ USB3 端口</li>
   <header class="updated-header">
     <h4 class="updated-title">更新</h4>
     
-    <p class="updated-meta">Jul 9, 2020</p>
+    <p class="updated-meta">Oct 12, 2023</p>
     
   </header>
   <article class="updated-body">
     <ul>
-<li>6月份采购了一个 LG 面板的 DIY 4k 显示器，价格很香 1500 元，就是驱动板固件差点，单摇臂换了双摇臂来挂两个 4k 显示器。具体请看<a href="https://gist.github.com/icyleaf/b09d70da0a7c368fe550338088b5dbc3">我买过的显示器</a>。</li>
+<li>6 月份采购了一个 LG 面板的 DIY 4k 显示器，价格很香 1500 元，就是驱动板固件差点，单摇臂换了双摇臂来挂两个 4k 显示器。具体请看<a href="https://gist.github.com/icyleaf/b09d70da0a7c368fe550338088b5dbc3">我买过的显示器</a>。</li>
 <li>购入矿卡显卡整 2 个月的时间目前没有翻车，macOS 下用于视频剪辑速度确实快了很多！在 Windows 用显卡超频检测风扇偶尔会提示风扇有问题但玩 Apex 英雄最高画质渲染除了显卡风扇噪音比较大以外没有任何问题。一般来说矿卡日常使用没有太大问题，后续会考虑换个显卡风扇。</li>
 <li>购入独立显卡蓝宝石 RX580 8G 1411MHz Nitro+ 超白金(矿卡），更新相关内容，尾部加上<a href="http://icyleaf.com/2019/03/asrock-z390-gaming-itx-install-hackintosh-tutorial/">黑苹果安装教程</a>。</li>
 <li>修改无线网卡的最终选择和价格，更新博通网卡部分的内容。</li>
+<li>独立显卡升级成迪兰 RX 5600xt 6G X 战神（通用是矿卡）</li>
 </ul>
 
   </article>

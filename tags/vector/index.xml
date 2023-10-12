@@ -36,7 +36,11 @@
 </span></span><span class="line"><span class="ln">4</span><span class="cl">  <span class="nv">compress</span>
 </span></span><span class="line"><span class="ln">5</span><span class="cl">  <span class="nv">missingok</span>
 </span></span><span class="line"><span class="ln">6</span><span class="cl">  <span class="nv">notifempty</span>
-</span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln">7</span><span class="cl">  <span class="nv">copytruncate</span>
+</span></span><span class="line"><span class="ln">8</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><code>copytruncate</code> 的意思是将旧日志文件的内容复制到新日志文件，默认是直接改名原文件会造成 mosdns 运行日志记录出现问题，设置好后确保 logrotate 定时运行：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># crontab -e</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="m">0</span> <span class="m">1</span> * * * /bin/sh -c <span class="s2">&#34;/usr/sbin/logrotate -l=syslog -d /etc/logrotate.d&#34;</span>
 </span></span></code></pre></div><h2 id="vector">vector</h2>
 <p><a href="https://vector.dev">vector</a> 是一个日志收集工具，能够从多个源（Source）收集、转换（Transform）并推送到下一个接收器（Sinks）。</p>
 

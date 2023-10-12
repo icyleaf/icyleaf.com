@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>掌机 on icyleaf</title><link>https://icyleaf.com/tags/%E6%8E%8C%E6%9C%BA/</link><description>Recent content in 掌机 on icyleaf</description><language>zh-cn</language><lastBuildDate>Thu, 12 Oct 2023 12:40:06 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/%E6%8E%8C%E6%9C%BA/index.xml" rel="self" type="application/rss+xml"/><item><title>RG35XX 复古国产掌机</title><link>https://icyleaf.com/gears/rg35xx-game-console/</link><pubDate>Thu, 12 Oct 2023 12:40:06 +0800</pubDate><guid>https://icyleaf.com/gears/rg35xx-game-console/</guid><description>比 Switch 更适合外出携带的便携掌机</description><content:encoded><![CDATA[<p>高中我第一次接触了同学的 GBA 像是开启了新天地，工作之后买了 NDSi、Switch 也没能找回原来的那种感觉，但何 GB、GBC、GBA 掌机都太太太贵了。
+今年 6 月份在日本旅游的时候看到了一些视频 <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> 了解到 RG35XX 是比 Miyoo mini 更适合我的掌机，综合分析后 PDD 262 元购入（包含 64GB TF 卡和收纳包）。</p>
+<ul>
+<li>基于 RetroArch 系统 <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></li>
+<li>3.5 英寸（保证便携的基础上比 Miyoo mini 大一些）</li>
+<li>IPS 全贴合屏幕</li>
+<li>640x480 分辨率</li>
+<li>2600 毫安电池提供约 5 小时续航（可改装更大电池）</li>
+<li>双 TF 卡（可系统和游戏分离）</li>
+</ul>
+<p>经过 3 个月的使用和体验，RG35XX 成为我出门必带的设备。它提供 3.5 耳机孔适合在任何的公共场所游玩。
+手感说不上有多舒服，按钮手感适中，D-Pad 十字键略硬，竖版设计注定握持感不会特别好，无法长时间握持。
+背键设计不好建议替换成有梯度的背键提供更好的手指触感和识别。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+      <figure data-pswp="1977x1483" data-size="800x"><a href="/gears/rg35xx/shoulder-buttons.jpg" class="gallery-item" target="_blank" data-pswp-width="1977" data-pswp-height="1483"><img src="/gears/rg35xx/shoulder-buttons_hucc2d8143100f38663bd26e933d0f6dab_253069_800x0_resize_q75_box.jpg"/></a><figcaption>
+
+    <p>背键改装 3D 件</p></figcaption></figure>
+
+<p>掌机到手建议升级<a href="https://tieba.baidu.com/p/8490422220">官方系统支持切换大蒜系统</a>且<a href="https://tieba.baidu.com/p/8489528570">游戏共用</a>后再刷大蒜系统或国内大蒜系统魔改版，
+后者能够提供更多的功能设置和更多模拟器（DOS、EasyRing）支持。TF 双卡推荐 32G 系统盘，128G 存储游戏。大蒜系统在 98% 的情况下非常好用，唯独想要玩 SEGA 土星游戏只能使用原装系统。除此之外还有些 RetroArch 系统问题：</p>
+<ul>
+<li>GBA 用的是 mGBA 新核心，音频卡顿的要死，有时候还会卡帧，可把 GBA rom 放到 GPSP 文件夹使用 gpSP 旧核心，目前还未找到把新核心的存档平移过来的<a href="https://www.reddit.com/r/RG35XX/comments/11rkh6b/new_core_of_gameboy_advance_has_very_bad_audio/">方案</a>。</li>
+<li>建议不要使用高功率的充电口，使用 5V 3A 电源可以正常充电。</li>
+</ul>
+<p>最后分享系统、游戏的资源，国内大部分都在各种群、B 站可以找到：</p>
+<ul>
+<li><a href="https://gist.github.com/milnak/a288ddb7b0e1e51d251b2121baa03685">大蒜系统资源聚合</a></li>
+<li><a href="https://pan.baidu.com/s/1MjXp7AVHKqjEJJrHmMMrZg?pwd=35xx">集合各种系统和游戏合集</a> （百度网盘，密码 <span class="spoiler">35xx</span>
+）</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+      <figure data-pswp="1200x554" data-size="800x"><a href="/gears/rg35xx/cadillacs-dinosaurs-mod.jpg" class="gallery-item" target="_blank" data-pswp-width="1200" data-pswp-height="554"><img src="/gears/rg35xx/cadillacs-dinosaurs-mod_hu312bf80486923e5c8d2e39996bdf965f_73610_800x0_resize_q75_box.jpg"
+      alt="视频来源"/></a><figcaption><p class="source">视频来源<a href="https://www.bilibili.com/video/BV1UV4y147uC">Unity试做恐龙快打3D</a>
+    </p>
+
+    <p>最爱的恐龙岛</p></figcaption></figure>
+
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p><a href="https://www.youtube.com/watch?v=hqAM3INcLeA">My Favorite Handhelds of 2022</a> 和 <a href="https://www.youtube.com/watch?v=Bdo44c2HsQY">Miyoo Mini Plus vs Anbernic RG35XX Comparison</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>市面上大多数游戏系统都是基于 <a href="https://www.retroarch.com/">RetroArch</a> 开源系统二次开发，RG35XX 拥有 Miyoo Mini <a href="https://github.com/OnionUI/Onion">洋葱 Onion 系统</a> 官方维护者移植的 <a href="https://www.patreon.com/posts/garlicos-for-76561333">大蒜 Garlic 系统</a>，之前还在树莓派、香橙派安装过 <a href="https://www.lakka.tv">Lakka</a> 都是如此。该系统包含我最喜欢的绝大多数游戏引擎。洋葱国内魔改办法还能支持 DOS 这就能玩上仙剑奇侠传、金庸群侠传等。&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+]]></content:encoded></item></channel></rss>

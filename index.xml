@@ -1,4 +1,82 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>icyleaf</title><link>https://icyleaf.com/</link><description>Recent content on icyleaf</description><language>zh-cn</language><lastBuildDate>Wed, 23 Aug 2023 10:04:13 +0800</lastBuildDate><atom:link href="https://icyleaf.com/index.xml" rel="self" type="application/rss+xml"/><item><title>vector + loki 实现 mosdns 数据看板</title><link>https://icyleaf.com/2023/08/using-vector-transform-mosdns-logging-to-grafana-via-loki/</link><pubDate>Wed, 23 Aug 2023 10:04:13 +0800</pubDate><guid>https://icyleaf.com/2023/08/using-vector-transform-mosdns-logging-to-grafana-via-loki/</guid><description>快速验证规则的同时实现类似 AdGuard Home 好看的数据看板</description><content:encoded><![CDATA[<p>我是从 4.0 版本开始使用 <a href="https://github.com/IrineSistiana/mosdns">mosdns</a>，经历了 4.1 和 4.2 <a href="https://github.com/IrineSistiana/mosdns/discussions/417#discussioncomment-3831982">不稳定的功能更新</a>和今年 1 月份发布 5.x 大版本重构后貌似已经稳定下来。</p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>icyleaf</title><link>https://icyleaf.com/</link><description>Recent content on icyleaf</description><language>zh-cn</language><lastBuildDate>Thu, 12 Oct 2023 12:40:06 +0800</lastBuildDate><atom:link href="https://icyleaf.com/index.xml" rel="self" type="application/rss+xml"/><item><title>RG35XX 复古国产掌机</title><link>https://icyleaf.com/gears/rg35xx-game-console/</link><pubDate>Thu, 12 Oct 2023 12:40:06 +0800</pubDate><guid>https://icyleaf.com/gears/rg35xx-game-console/</guid><description>比 Switch 更适合外出携带的便携掌机</description><content:encoded><![CDATA[<p>高中我第一次接触了同学的 GBA 像是开启了新天地，工作之后买了 NDSi、Switch 也没能找回原来的那种感觉，但何 GB、GBC、GBA 掌机都太太太贵了。
+今年 6 月份在日本旅游的时候看到了一些视频 <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> 了解到 RG35XX 是比 Miyoo mini 更适合我的掌机，综合分析后 PDD 262 元购入（包含 64GB TF 卡和收纳包）。</p>
+<ul>
+<li>基于 RetroArch 系统 <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></li>
+<li>3.5 英寸（保证便携的基础上比 Miyoo mini 大一些）</li>
+<li>IPS 全贴合屏幕</li>
+<li>640x480 分辨率</li>
+<li>2600 毫安电池提供约 5 小时续航（可改装更大电池）</li>
+<li>双 TF 卡（可系统和游戏分离）</li>
+</ul>
+<p>经过 3 个月的使用和体验，RG35XX 成为我出门必带的设备。它提供 3.5 耳机孔适合在任何的公共场所游玩。
+手感说不上有多舒服，按钮手感适中，D-Pad 十字键略硬，竖版设计注定握持感不会特别好，无法长时间握持。
+背键设计不好建议替换成有梯度的背键提供更好的手指触感和识别。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+      <figure data-pswp="1977x1483" data-size="800x"><a href="/gears/rg35xx/shoulder-buttons.jpg" class="gallery-item" target="_blank" data-pswp-width="1977" data-pswp-height="1483"><img src="/gears/rg35xx/shoulder-buttons_hucc2d8143100f38663bd26e933d0f6dab_253069_800x0_resize_q75_box.jpg"/></a><figcaption>
+
+    <p>背键改装 3D 件</p></figcaption></figure>
+
+<p>掌机到手建议升级<a href="https://tieba.baidu.com/p/8490422220">官方系统支持切换大蒜系统</a>且<a href="https://tieba.baidu.com/p/8489528570">游戏共用</a>后再刷大蒜系统或国内大蒜系统魔改版，
+后者能够提供更多的功能设置和更多模拟器（DOS、EasyRing）支持。TF 双卡推荐 32G 系统盘，128G 存储游戏。大蒜系统在 98% 的情况下非常好用，唯独想要玩 SEGA 土星游戏只能使用原装系统。除此之外还有些 RetroArch 系统问题：</p>
+<ul>
+<li>GBA 用的是 mGBA 新核心，音频卡顿的要死，有时候还会卡帧，可把 GBA rom 放到 GPSP 文件夹使用 gpSP 旧核心，目前还未找到把新核心的存档平移过来的<a href="https://www.reddit.com/r/RG35XX/comments/11rkh6b/new_core_of_gameboy_advance_has_very_bad_audio/">方案</a>。</li>
+<li>建议不要使用高功率的充电口，使用 5V 3A 电源可以正常充电。</li>
+</ul>
+<p>最后分享系统、游戏的资源，国内大部分都在各种群、B 站可以找到：</p>
+<ul>
+<li><a href="https://gist.github.com/milnak/a288ddb7b0e1e51d251b2121baa03685">大蒜系统资源聚合</a></li>
+<li><a href="https://pan.baidu.com/s/1MjXp7AVHKqjEJJrHmMMrZg?pwd=35xx">集合各种系统和游戏合集</a> （百度网盘，密码 <span class="spoiler">35xx</span>
+）</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+      <figure data-pswp="1200x554" data-size="800x"><a href="/gears/rg35xx/cadillacs-dinosaurs-mod.jpg" class="gallery-item" target="_blank" data-pswp-width="1200" data-pswp-height="554"><img src="/gears/rg35xx/cadillacs-dinosaurs-mod_hu312bf80486923e5c8d2e39996bdf965f_73610_800x0_resize_q75_box.jpg"
+      alt="视频来源"/></a><figcaption><p class="source">视频来源<a href="https://www.bilibili.com/video/BV1UV4y147uC">Unity试做恐龙快打3D</a>
+    </p>
+
+    <p>最爱的恐龙岛</p></figcaption></figure>
+
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p><a href="https://www.youtube.com/watch?v=hqAM3INcLeA">My Favorite Handhelds of 2022</a> 和 <a href="https://www.youtube.com/watch?v=Bdo44c2HsQY">Miyoo Mini Plus vs Anbernic RG35XX Comparison</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>市面上大多数游戏系统都是基于 <a href="https://www.retroarch.com/">RetroArch</a> 开源系统二次开发，RG35XX 拥有 Miyoo Mini <a href="https://github.com/OnionUI/Onion">洋葱 Onion 系统</a> 官方维护者移植的 <a href="https://www.patreon.com/posts/garlicos-for-76561333">大蒜 Garlic 系统</a>，之前还在树莓派、香橙派安装过 <a href="https://www.lakka.tv">Lakka</a> 都是如此。该系统包含我最喜欢的绝大多数游戏引擎。洋葱国内魔改办法还能支持 DOS 这就能玩上仙剑奇侠传、金庸群侠传等。&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+]]></content:encoded></item><item><title>vector + loki 实现 mosdns 数据看板</title><link>https://icyleaf.com/2023/08/using-vector-transform-mosdns-logging-to-grafana-via-loki/</link><pubDate>Wed, 23 Aug 2023 10:04:13 +0800</pubDate><guid>https://icyleaf.com/2023/08/using-vector-transform-mosdns-logging-to-grafana-via-loki/</guid><description>快速验证规则的同时实现类似 AdGuard Home 好看的数据看板</description><content:encoded><![CDATA[<p>我是从 4.0 版本开始使用 <a href="https://github.com/IrineSistiana/mosdns">mosdns</a>，经历了 4.1 和 4.2 <a href="https://github.com/IrineSistiana/mosdns/discussions/417#discussioncomment-3831982">不稳定的功能更新</a>和今年 1 月份发布 5.x 大版本重构后貌似已经稳定下来。</p>
 <p>托 @<a href="https://twitter.com/river_leaves/status/1574393162163896321">river_leaves</a> 的福利用 mosdns 自带的 <a href="https://irine-sistiana.gitbook.io/mosdns-wiki/mosdns-v5/api-shuo-ming">prometheus metrics</a> 接口实时查看 DNS 解析情况。</p>
 <p>配置中的规则是灵活且有时候很难调试，为了验证配置规则是否有效以及可视化看到域名访问频次，我从 mosdns 日志本身下手，需要的工具有 vector、prometheus、loki 和 grafana。</p>
 
@@ -36,7 +114,11 @@
 </span></span><span class="line"><span class="ln">4</span><span class="cl">  <span class="nv">compress</span>
 </span></span><span class="line"><span class="ln">5</span><span class="cl">  <span class="nv">missingok</span>
 </span></span><span class="line"><span class="ln">6</span><span class="cl">  <span class="nv">notifempty</span>
-</span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln">7</span><span class="cl">  <span class="nv">copytruncate</span>
+</span></span><span class="line"><span class="ln">8</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><code>copytruncate</code> 的意思是将旧日志文件的内容复制到新日志文件，默认是直接改名原文件会造成 mosdns 运行日志记录出现问题，设置好后确保 logrotate 定时运行：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># crontab -e</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="m">0</span> <span class="m">1</span> * * * /bin/sh -c <span class="s2">&#34;/usr/sbin/logrotate -l=syslog -d /etc/logrotate.d&#34;</span>
 </span></span></code></pre></div><h2 id="vector">vector</h2>
 <p><a href="https://vector.dev">vector</a> 是一个日志收集工具，能够从多个源（Source）收集、转换（Transform）并推送到下一个接收器（Sinks）。</p>
 
@@ -1527,7 +1609,7 @@ Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系�
     <p>N270 x86 32 位双网口工控机</p></figcaption></figure>
 
 <p>黑群晖升级到了支持 Docker 的 6.x 版本，开始尝试跑一些基础服务，比如 <a href="https://aria2.github.io/">aria2</a>，<a href="https://www.home-assistant.io/">home assistant</a>，<a href="https://github.com/AdguardTeam/AdGuardHome">Adguard home</a> 等。不知道什么时候小区会莫名其妙突然停电几分钟后再恢复，有一次硬盘被群晖的检测爆出来好多坏道，吓得我立刻买了<a href="https://twitter.com/icyleaf/status/1096386681907798017">施耐德 APC BK650</a> 带通讯协议，接入群晖保证断电后安全关机。</p>
-<p>2019 年初开始学习拍摄视频，采购了<a href="https://icyleaf.com/2019/01/itx-coffee-lake-hackintosh-build-for-4k-video-editing/">新的 Intel 主机</a>在时隔 <a href="https://twitter.com/icyleaf/status/11322513061580800">9 年</a>后后重新学习安装<a href="https://icyleaf.com/2019/03/asrock-z390-gaming-itx-install-hackintosh-tutorial/">黑苹果</a>来代替年迈的 Macbook Pro 2015 款，期间不升级后续版本主要是因为 Intel 太拉，Apple 把硬件全焊死升级顶配不值得。</p>
+<p>2019 年初开始学习拍摄视频，采购了<a href="https://icyleaf.com/gears/itx-coffee-lake-hackintosh-build-for-4k-video-editing/">新的 Intel 主机</a>在时隔 <a href="https://twitter.com/icyleaf/status/11322513061580800">9 年</a>后后重新学习安装<a href="https://icyleaf.com/2019/03/asrock-z390-gaming-itx-install-hackintosh-tutorial/">黑苹果</a>来代替年迈的 Macbook Pro 2015 款，期间不升级后续版本主要是因为 Intel 太拉，Apple 把硬件全焊死升级顶配不值得。</p>
 <h4 id="2020--2021">2020 ~ 2021</h4>
 
 
@@ -2691,6 +2773,7 @@ Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系�
   </header>
   <article class="updated-body">
     <ul>
+<li>没想到 2023 年 870 还是最强国产 Android 平板</li>
 <li>补充外接电源不稳定的解决方案</li>
 <li>补充 Android 最近一段时间在用的独家应用和修复错误名称</li>
 <li>补充 ZUI 14 体验</li>
@@ -2712,7 +2795,7 @@ Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系�
 <blockquote>
 <p>再写本文时在最新的 iOS 15.5 上面测试自带 File 应用已经会显示速率，复制大文件的时候依然会卡几秒，但真正进入拷贝过程速度非常快！</p>
 </blockquote>
-<p>iPad 被排除后依次考虑过 Linux 平板<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>、Surface 和 Android 平板，时隔多年小米平板 5 <a href="https://twitter.com/icyleaf/status/1446034323136679939">不但沉</a> USB 还是 2.0，联想小新 Pad 有稍微关注过，我把重心放到了 2022 年新平板（<a href="https://weibo.com/1642632024/Lf64Y3kYH?refer_flag=1001030103_">爆料</a>），年初刷到<a href="https://twitter.com/oasisfeng/status/1481541399359389696">推友分享小新 Pad Pro</a>让我有点心动，可直接安装 Google 全家桶、USB 3.1、90Hz，可刷国际版，决定 4 月份新平板出来不合适就入手它。</p>
+<p>iPad 被排除后依次考虑过 Linux 平板<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>、Surface 和 Android 平板，时隔多年小米平板 5 <a href="https://twitter.com/icyleaf/status/1446034323136679939">不但沉</a> USB 还是 2.0，联想小新 Pad 有稍微关注过，我把重心放到了 2022 年新平板（<a href="https://weibo.com/1642632024/Lf64Y3kYH?refer_flag=1001030103_">爆料</a>），年初刷到<a href="https://twitter.com/oasisfeng/status/1481541399359389696">推友分享小新 Pad Pro</a> 让我有点心动，可直接安装 Google 全家桶、USB 3.1、90Hz，可刷国际版，两年质保。决定 4 月份新平板出来不合适就入手它。</p>
 
 
 
@@ -2729,7 +2812,7 @@ Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系�
   
   
     
-      <figure data-pswp="1973x1015" data-size="800x"><a href="/uploads/2022/08/12/xiaoxin-pads-compare.jpg" class="gallery-item" target="_blank" data-pswp-width="1973" data-pswp-height="1015"><img src="/uploads/2022/08/12/xiaoxin-pads-compare_hu9f0b77db774b36a991eecec9ea6d013c_427253_800x0_resize_q75_box.jpg"
+      <figure data-pswp="1973x1015" data-size="800x"><a href="/gears/xiaoxin-pad-pro-2021/version-compares.jpg" class="gallery-item" target="_blank" data-pswp-width="1973" data-pswp-height="1015"><img src="/gears/xiaoxin-pad-pro-2021/version-compares_hu9f0b77db774b36a991eecec9ea6d013c_427253_800x0_resize_q75_box.jpg"
       alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://www.ithome.com/0/584/056.htm">IT 之家</a>
     </p>
 
@@ -2761,7 +2844,7 @@ Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系�
 
   
   
-    <figure data-pswp="1536x2048" data-size="1920x1080"><a href="/uploads/2022/08/12/tachiyomi-on-xiaoxin-pad-pro-2021.jpg" class="gallery-item" target="_blank" data-pswp-width="1536" data-pswp-height="2048"><img src="/uploads/2022/08/12/tachiyomi-on-xiaoxin-pad-pro-2021_hucbc89598ac49f5f0f14f62fb5b24d87e_411181_1920x1080_crop_q75_box_smart1.jpg"/></a><figcaption>
+    <figure data-pswp="1536x2048" data-size="1920x1080"><a href="/gears/xiaoxin-pad-pro-2021/tachiyomi.jpg" class="gallery-item" target="_blank" data-pswp-width="1536" data-pswp-height="2048"><img src="/gears/xiaoxin-pad-pro-2021/tachiyomi_hucbc89598ac49f5f0f14f62fb5b24d87e_411181_1920x1080_crop_q75_box_smart1.jpg"/></a><figcaption>
 
     <p>小新 Pad Pro 2021 上看漫画</p></figcaption></figure>
 
@@ -2783,7 +2866,7 @@ Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系�
   
   
     
-      <figure data-pswp="2560x1600" data-size="800x"><a href="/uploads/2022/08/12/xiaoxin-video-encoder.jpg" class="gallery-item" target="_blank" data-pswp-width="2560" data-pswp-height="1600"><img src="/uploads/2022/08/12/xiaoxin-video-encoder_hu93fe9c789c7778a62a70f0bfd07f3965_1725089_800x0_resize_q75_box.jpg"
+      <figure data-pswp="2560x1600" data-size="800x"><a href="/gears/xiaoxin-pad-pro-2021/video-encoder.jpg" class="gallery-item" target="_blank" data-pswp-width="2560" data-pswp-height="1600"><img src="/gears/xiaoxin-pad-pro-2021/video-encoder_hu93fe9c789c7778a62a70f0bfd07f3965_1725089_800x0_resize_q75_box.jpg"
       alt="视频来源"/></a><figcaption><p class="source">视频来源<a href="https://www.bilibili.com/video/BV1tY4y1w7GQ">Linksphotograph</a>
     </p>
 
@@ -2836,11 +2919,20 @@ Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系�
   
   alt="Freeware"></img>
 </li>
-<li><span class="spoiler"><a href="https://cn.pornhub.com/apps/android">Pornhub</a></span>
-: 知名 P 站 <img loading="lazy" src="https://jaywcjlove.github.io/sb/ico/min-free.svg"
+<li><a href="https://play.google.com/store/apps/details?id=dk.tacit.android.foldersync.lite&amp;hl=en_US">FolderSync</a>: 本地和远程服务器文件同步工具 <img loading="lazy" src="/images/icons/playstore.png"
   
   
-  alt="Freeware"></img>
+  alt="Play Store"></img>
+</li>
+<li><a href="https://play.google.com/store/apps/details?id=com.dev47apps.droidcam">DroidCam</a>: 把 Android 相机当做 PC/macOS 摄像头 <img loading="lazy" src="/images/icons/playstore.png"
+  
+  
+  alt="Play Store"></img>
+</li>
+<li><a href="https://play.google.com/store/apps/details?id=de.kai_morich.serial_usb_terminal">Serial USB Terminal</a>: USB 串口模拟器 <img loading="lazy" src="/images/icons/playstore.png"
+  
+  
+  alt="Play Store"></img>
 </li>
 <li><span class="spoiler"><a href="https://github.com/bdvajstudio/javdb">JavDB</a></span>
 : 番号资源和磁力资源，配合 Aria2App 无敌 <img loading="lazy" src="https://jaywcjlove.github.io/sb/ico/min-oss.svg"
@@ -2857,16 +2949,6 @@ Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系�
   
   
   alt="Open-Source Software"></img>
-</li>
-<li><a href="https://play.google.com/store/apps/details?id=com.dev47apps.droidcam">DroidCam</a>: 把 Android 相机当做 PC/macOS 摄像头 <img loading="lazy" src="/images/icons/playstore.png"
-  
-  
-  alt="Play Store"></img>
-</li>
-<li><a href="https://play.google.com/store/apps/details?id=de.kai_morich.serial_usb_terminal">Serial USB Terminal</a>: USB 串口模拟器 <img loading="lazy" src="/images/icons/playstore.png"
-  
-  
-  alt="Play Store"></img>
 </li>
 </ul>
 <h3 id="外接数据备份">外接数据备份</h3>
@@ -2895,7 +2977,7 @@ Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系�
   
   
     
-      <figure data-pswp="1280x800" data-size="800x"><a href="/uploads/2022/08/12/xiaoxin-pad-filesystem-role.jpg" class="gallery-item" target="_blank" data-pswp-width="1280" data-pswp-height="800"><img src="/uploads/2022/08/12/xiaoxin-pad-filesystem-role_hufd965a5646fcac3bf759d723011481ba_52527_800x0_resize_q75_box.jpg"/></a><figcaption>
+      <figure data-pswp="1280x800" data-size="800x"><a href="/gears/xiaoxin-pad-pro-2021/filesystem-role.jpg" class="gallery-item" target="_blank" data-pswp-width="1280" data-pswp-height="800"><img src="/gears/xiaoxin-pad-pro-2021/filesystem-role_hufd965a5646fcac3bf759d723011481ba_52527_800x0_resize_q75_box.jpg"/></a><figcaption>
 
     <p>令人烦恼的外部设备访问权限</p></figcaption></figure>
 
@@ -2916,7 +2998,7 @@ Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系�
   
   
     
-      <figure data-pswp="1280x800" data-size="800x"><a href="/uploads/2022/08/12/xiaoxin-pad-copy-tf-photo.jpg" class="gallery-item" target="_blank" data-pswp-width="1280" data-pswp-height="800"><img src="/uploads/2022/08/12/xiaoxin-pad-copy-tf-photo_hua774598b8262a8b6461e699a789dd2a1_39461_800x0_resize_q75_box.jpg"/></a><figcaption>
+      <figure data-pswp="1280x800" data-size="800x"><a href="/gears/xiaoxin-pad-pro-2021/copy-tf-photo.jpg" class="gallery-item" target="_blank" data-pswp-width="1280" data-pswp-height="800"><img src="/gears/xiaoxin-pad-pro-2021/copy-tf-photo_hua774598b8262a8b6461e699a789dd2a1_39461_800x0_resize_q75_box.jpg"/></a><figcaption>
 
     <p>使用 Solid Explorer 拷贝 TF 卡到平板</p></figcaption></figure>
 
@@ -2939,7 +3021,7 @@ Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系�
   
   
     
-      <figure data-pswp="1280x800" data-size="800x"><a href="/uploads/2022/08/12/xiaoxin-pad-dual-screens.jpg" class="gallery-item" target="_blank" data-pswp-width="1280" data-pswp-height="800"><img src="/uploads/2022/08/12/xiaoxin-pad-dual-screens_hu7b5f7f1053e7051437caf6b8c5b8c076_195282_800x0_resize_q75_box.jpg"/></a><figcaption>
+      <figure data-pswp="1280x800" data-size="800x"><a href="/gears/xiaoxin-pad-pro-2021/dual-screens.jpg" class="gallery-item" target="_blank" data-pswp-width="1280" data-pswp-height="800"><img src="/gears/xiaoxin-pad-pro-2021/dual-screens_hu7b5f7f1053e7051437caf6b8c5b8c076_195282_800x0_resize_q75_box.jpg"/></a><figcaption>
 
     <p>分屏模式</p></figcaption></figure>
 
@@ -3887,7 +3969,7 @@ USB3 端口</li>
 <li><a href="https://www.tonymacx86.com/threads/asrock-z390-phantom-gaming-itx-ac.265245/#post-1854444">ASRock Z390 Phantom Gaming-ITX/ac</a></li>
 <li><a href="https://www.hackintosh-forum.de/forum/thread/40613-1st-hackintosh-beginner-asrock-z390-phantom-gaming-itx-ac/">ASROCK Z390 PHANTOM GAMING-ITX/AC</a></li>
 </ul>
-]]></content:encoded></item><item><title>攒了一台 4K 视频剪辑黑苹果</title><link>https://icyleaf.com/2019/01/itx-coffee-lake-hackintosh-build-for-4k-video-editing/</link><pubDate>Wed, 30 Jan 2019 10:30:07 +0800</pubDate><guid>https://icyleaf.com/2019/01/itx-coffee-lake-hackintosh-build-for-4k-video-editing/</guid><description>台式机还是生产力工具吗？</description><content:encoded><![CDATA[<h2 id="装机清单">装机清单</h2>
+]]></content:encoded></item><item><title>攒了一台 4K 视频剪辑黑苹果</title><link>https://icyleaf.com/gears/itx-coffee-lake-hackintosh-build-for-4k-video-editing/</link><pubDate>Wed, 30 Jan 2019 10:30:07 +0800</pubDate><guid>https://icyleaf.com/gears/itx-coffee-lake-hackintosh-build-for-4k-video-editing/</guid><description>DIY 生产力台式机电脑</description><content:encoded><![CDATA[<h2 id="装机清单">装机清单</h2>
 <blockquote>
 <p>台式机借鉴国外 $1000k 攒机思路在不考虑显示器预算为 6000 元人民币。</p>
 </blockquote>
@@ -3917,7 +3999,7 @@ USB3 端口</li>
 <td>散热器</td>
 <td>九州风神 船长 240 EX White RGB</td>
 <td>453</td>
-<td></td>
+<td>更换酷里奥屠龙 240A</td>
 </tr>
 <tr>
 <td>内存</td>
@@ -3964,7 +4046,10 @@ USB3 端口</li>
 <tr>
 <td>总价</td>
 <td></td>
-<td>6075<!-- raw HTML omitted -->6825(独立显卡)</td>
+<td>6075<div >
+  <br />
+</div>
+6825(独立显卡)</td>
 <td></td>
 </tr>
 </tbody>
@@ -3977,15 +4062,16 @@ USB3 端口</li>
   <header class="updated-header">
     <h4 class="updated-title">更新</h4>
     
-    <p class="updated-meta">Jul 9, 2020</p>
+    <p class="updated-meta">Oct 12, 2023</p>
     
   </header>
   <article class="updated-body">
     <ul>
-<li>6月份采购了一个 LG 面板的 DIY 4k 显示器，价格很香 1500 元，就是驱动板固件差点，单摇臂换了双摇臂来挂两个 4k 显示器。具体请看<a href="https://gist.github.com/icyleaf/b09d70da0a7c368fe550338088b5dbc3">我买过的显示器</a>。</li>
+<li>6 月份采购了一个 LG 面板的 DIY 4k 显示器，价格很香 1500 元，就是驱动板固件差点，单摇臂换了双摇臂来挂两个 4k 显示器。具体请看<a href="https://gist.github.com/icyleaf/b09d70da0a7c368fe550338088b5dbc3">我买过的显示器</a>。</li>
 <li>购入矿卡显卡整 2 个月的时间目前没有翻车，macOS 下用于视频剪辑速度确实快了很多！在 Windows 用显卡超频检测风扇偶尔会提示风扇有问题但玩 Apex 英雄最高画质渲染除了显卡风扇噪音比较大以外没有任何问题。一般来说矿卡日常使用没有太大问题，后续会考虑换个显卡风扇。</li>
 <li>购入独立显卡蓝宝石 RX580 8G 1411MHz Nitro+ 超白金(矿卡），更新相关内容，尾部加上<a href="http://icyleaf.com/2019/03/asrock-z390-gaming-itx-install-hackintosh-tutorial/">黑苹果安装教程</a>。</li>
 <li>修改无线网卡的最终选择和价格，更新博通网卡部分的内容。</li>
+<li>独立显卡升级成迪兰 RX 5600xt 6G X 战神（通用是矿卡）</li>
 </ul>
 
   </article>
@@ -9755,4 +9841,4 @@ of Fine Arts）将击败MBA，成为工商社会最受欢迎的学位。</p>
 </blockquote>
 <p>这是一个僵化的社会，我们做什么事情基本都是一个凭着一个标准，一个框架，一个准则，无论是上学，就业，生活这些大方面，就连编程等这些小的方面也是如此。创意不是凭空制作出来的，懂得超与格式化创造创意的人已经高高在上，成为了富豪。前几天我在网上略微看了几章《互联网草根革命》，一个新的创意也并不能说明，你立即成为富豪，还需要想办法去宣传，推广，为了我们的明天，让我们一起努力吧！</p>
 <p>工作之余可以看看这本书，我想可以消除工作的疲乏:)</p>
-]]></content:encoded></item><item><title/><link>https://icyleaf.com/draft/photo-mechanic/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://icyleaf.com/draft/photo-mechanic/</guid><description/><content:encoded></content:encoded></item></channel></rss>
+]]></content:encoded></item></channel></rss>
