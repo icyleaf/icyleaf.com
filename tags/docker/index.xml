@@ -292,7 +292,24 @@
 <li><a href="https://techblog.lclco.com/entry/2021/07/27/110000">Railsのcredentials.yml.encとmaster keyをDockerで安全に扱う</a></li>
 <li><a href="https://pythonspeed.com/articles/docker-build-secrets/">Don’t leak your Docker image’s build secrets</a></li>
 </ul>
-]]></content:encoded></item><item><title>如何搭建家用 homelab: 先导篇</title><link>https://icyleaf.com/2022/02/how-to-homelab-part-0/</link><pubDate>Sat, 12 Feb 2022 20:00:00 +0800</pubDate><guid>https://icyleaf.com/2022/02/how-to-homelab-part-0/</guid><description>搭建 homelab 之前都需要了解哪些背景</description><content:encoded><![CDATA[<h2 id="前言">前言</h2>
+]]></content:encoded></item><item><title>如何搭建家用 homelab: 先导篇</title><link>https://icyleaf.com/2022/02/how-to-homelab-part-0/</link><pubDate>Sat, 12 Feb 2022 20:00:00 +0800</pubDate><guid>https://icyleaf.com/2022/02/how-to-homelab-part-0/</guid><description>搭建 homelab 之前都需要了解哪些背景</description><content:encoded><![CDATA[
+
+
+
+
+
+<div class="updated">
+  <header class="updated-header color-tip">
+    <h4 class="updated-title">加入讨论群</h4>
+    
+  </header>
+  <article class="updated-body">
+    方便大家沟通交流，开通了 Discord 讨论群便于第一时间获得教程的最新更新，并提供关于 Homelab 沟通、疑惑解答专区，欢迎<a href="https://discord.gg/gdXpKyh85r">大家加入</a>。
+  </article>
+</div>
+
+
+<h2 id="前言">前言</h2>
 <p>这将会是一个持续系列的主题文章，你将会从最基础的家庭 homelab 搭建开始循序渐进到一些进阶的系统、网络、服务层面的学习。我尽可能以新人的角色描述简单易懂的语言，系列文章会涉及家庭网络、路由器、Linux、数据储存、NAS、服务化等等，如果你在过程中又遇到任何问题，欢迎给我留言。</p>
 
 
@@ -607,8 +624,10 @@
 
 
 
+
+
 <div class="updated">
-  <header class="updated-header">
+  <header class="updated-header color-primary">
     <h4 class="updated-title">更新</h4>
     
     <p class="updated-meta">Oct 9, 2018</p>
@@ -709,8 +728,10 @@
 
 
 
+
+
 <div class="updated">
-  <header class="updated-header">
+  <header class="updated-header color-primary">
     <h4 class="updated-title">更新</h4>
     
     <p class="updated-meta">Feb 22, 2022</p>

@@ -244,6 +244,24 @@
 
 
 
+<div class="updated">
+  <header class="updated-header color-tip">
+    <h4 class="updated-title">加入讨论群</h4>
+    
+  </header>
+  <article class="updated-body">
+    方便大家沟通交流，开通了 Discord 讨论群便于第一时间获得教程的最新更新，并提供关于 Homelab 沟通、疑惑解答专区，欢迎<a href="https://discord.gg/gdXpKyh85r">大家加入</a>。
+  </article>
+</div>
+
+
+<p>当你有些照片、视频需要存放时；或跑一些无状态的应用或服务时；或同步转存某网云的文件时，这些数据是不是都要保存起来，这就是数据存储。本篇的内容都是从各方面浅尝辄止的介绍，每个部分展开讲都是很大的篇幅，能力有限，大家多多理解。</p>
+
+
+
+
+
+
 
 
 
@@ -258,7 +276,6 @@
 
     <p>我的 NAS 服务器</p></figcaption></figure>
 
-<p>当你有些照片、视频需要存放时；或跑一些无状态的应用或服务时；或同步转存某网云的文件时，这些数据是不是都要保存起来，这就是数据存储。本篇的内容都是从各方面浅尝辄止的介绍，每个部分展开讲都是很大的篇幅，能力有限，大家多多理解。</p>
 <h2 id="存储介质">存储介质</h2>
 <p>存储介质只从硬盘考虑，无论是 HDD 机械硬盘还是 SSD 固态硬盘在适合的场合都是不错的选择。</p>
 <h3 id="hdd-机械硬盘">HDD 机械硬盘</h3>
@@ -996,7 +1013,24 @@
 <p>B2 服务最吸引人的地方注册直接赠送免费 10G 空间，下载头 1GB 免费，API 提供免费额度，小场景使用几乎可以一直白嫖，国内的云存储价格打法就特别眼花缭乱，大体划分为标准存储，低频，（冷）归档，深度（冷）归档。</p>
 <h2 id="小结">小结</h2>
 <p>准备好好你的 NAS，下一篇正式开始 homelab 实战。</p>
-]]></content:encoded></item><item><title>如何搭建家用 homelab: Openwrt 软路由</title><link>https://icyleaf.com/2023/04/how-to-homelab-part-2-openwrt-soft-router/</link><pubDate>Wed, 26 Apr 2023 20:30:00 +0800</pubDate><guid>https://icyleaf.com/2023/04/how-to-homelab-part-2-openwrt-soft-router/</guid><description>用牺牲硬件的网络转换效率来换取不必受设备提供商的限制和可玩性</description><content:encoded><![CDATA[<p>路由器是猫总管（调制解调器）最得力的一把手，掌管 homelab 网络大权。对于中国玩家提到软路由肯定绕不开 OpenWrt，今天我尝试用一个全新的视角唠唠这个大家熟悉却又陌生的系统。
+]]></content:encoded></item><item><title>如何搭建家用 homelab: Openwrt 软路由</title><link>https://icyleaf.com/2023/04/how-to-homelab-part-2-openwrt-soft-router/</link><pubDate>Wed, 26 Apr 2023 20:30:00 +0800</pubDate><guid>https://icyleaf.com/2023/04/how-to-homelab-part-2-openwrt-soft-router/</guid><description>用牺牲硬件的网络转换效率来换取不必受设备提供商的限制和可玩性</description><content:encoded><![CDATA[
+
+
+
+
+
+<div class="updated">
+  <header class="updated-header color-tip">
+    <h4 class="updated-title">加入讨论群</h4>
+    
+  </header>
+  <article class="updated-body">
+    方便大家沟通交流，开通了 Discord 讨论群便于第一时间获得教程的最新更新，并提供关于 Homelab 沟通、疑惑解答专区，欢迎<a href="https://discord.gg/gdXpKyh85r">大家加入</a>。
+  </article>
+</div>
+
+
+<p>路由器是猫总管（调制解调器）最得力的一把手，掌管 homelab 网络大权。对于中国玩家提到软路由肯定绕不开 OpenWrt，今天我尝试用一个全新的视角唠唠这个大家熟悉却又陌生的系统。
 以下会涉及大量的基础认知、概念理解，<strong>不会涉及网络配置或高阶玩法</strong>。</p>
 <h2 id="什么是-openwrt">什么是 OpenWrt</h2>
 <blockquote>
@@ -1391,15 +1425,15 @@ Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系�
 
 
 
+
+
 <div class="updated">
-  <header class="updated-header">
-    <h4 class="updated-title">更新</h4>
-    
-    <p class="updated-meta">Feb 12, 2023</p>
+  <header class="updated-header color-tip">
+    <h4 class="updated-title">加入讨论群</h4>
     
   </header>
   <article class="updated-body">
-    PDD 600 多采购 Apple TV 用于代替原先的 Android 电视盒子，终于有了一个价格合适即有网飞认证高清又能提供更好的生态体验。
+    方便大家沟通交流，开通了 Discord 讨论群便于第一时间获得教程的最新更新，并提供关于 Homelab 沟通、疑惑解答专区，欢迎<a href="https://discord.gg/gdXpKyh85r">大家加入</a>。
   </article>
 </div>
 
@@ -1637,6 +1671,25 @@ Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系�
 </blockquote>
 <p>软硬件我采用的是 <a href="https://www.thoughtworks.com/zh-cn/radar">thoughtworks 技术雷达</a> 的策略把任何一个方案划分成<code>评估</code>、<code>试验</code>、<code>采纳</code>和<code>暂缓</code> 4 个阶段，因此会包含很多解决方案，标记<code>采纳</code>的可安心服用。</p>
 <h3 id="硬件">硬件</h3>
+
+
+
+
+
+
+<div class="updated">
+  <header class="updated-header color-primary">
+    <h4 class="updated-title">更新</h4>
+    
+    <p class="updated-meta">Feb 12, 2023</p>
+    
+  </header>
+  <article class="updated-body">
+    PDD 600 多采购 Apple TV 用于代替原先的 Android 电视盒子，终于有了一个价格合适即有网飞认证高清又能提供更好的生态体验。
+  </article>
+</div>
+
+
 <div >
   
 <table>
@@ -2682,7 +2735,24 @@ Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系�
 <li><a href="https://techblog.lclco.com/entry/2021/07/27/110000">Railsのcredentials.yml.encとmaster keyをDockerで安全に扱う</a></li>
 <li><a href="https://pythonspeed.com/articles/docker-build-secrets/">Don’t leak your Docker image’s build secrets</a></li>
 </ul>
-]]></content:encoded></item><item><title>如何搭建家用 homelab: 先导篇</title><link>https://icyleaf.com/2022/02/how-to-homelab-part-0/</link><pubDate>Sat, 12 Feb 2022 20:00:00 +0800</pubDate><guid>https://icyleaf.com/2022/02/how-to-homelab-part-0/</guid><description>搭建 homelab 之前都需要了解哪些背景</description><content:encoded><![CDATA[<h2 id="前言">前言</h2>
+]]></content:encoded></item><item><title>如何搭建家用 homelab: 先导篇</title><link>https://icyleaf.com/2022/02/how-to-homelab-part-0/</link><pubDate>Sat, 12 Feb 2022 20:00:00 +0800</pubDate><guid>https://icyleaf.com/2022/02/how-to-homelab-part-0/</guid><description>搭建 homelab 之前都需要了解哪些背景</description><content:encoded><![CDATA[
+
+
+
+
+
+<div class="updated">
+  <header class="updated-header color-tip">
+    <h4 class="updated-title">加入讨论群</h4>
+    
+  </header>
+  <article class="updated-body">
+    方便大家沟通交流，开通了 Discord 讨论群便于第一时间获得教程的最新更新，并提供关于 Homelab 沟通、疑惑解答专区，欢迎<a href="https://discord.gg/gdXpKyh85r">大家加入</a>。
+  </article>
+</div>
+
+
+<h2 id="前言">前言</h2>
 <p>这将会是一个持续系列的主题文章，你将会从最基础的家庭 homelab 搭建开始循序渐进到一些进阶的系统、网络、服务层面的学习。我尽可能以新人的角色描述简单易懂的语言，系列文章会涉及家庭网络、路由器、Linux、数据储存、NAS、服务化等等，如果你在过程中又遇到任何问题，欢迎给我留言。</p>
 
 
@@ -2945,8 +3015,10 @@ Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系�
 
 
 
+
+
 <div class="updated">
-  <header class="updated-header">
+  <header class="updated-header color-primary">
     <h4 class="updated-title">更新</h4>
     
     <p class="updated-meta">Jan 28, 2023</p>
@@ -3246,8 +3318,10 @@ Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系�
 
 
 
+
+
 <div class="updated">
-  <header class="updated-header">
+  <header class="updated-header color-primary">
     <h4 class="updated-title">更新</h4>
     
     <p class="updated-meta">Mar 28, 2019</p>
@@ -3338,8 +3412,10 @@ Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系�
 
 
 
+
+
 <div class="updated">
-  <header class="updated-header">
+  <header class="updated-header color-primary">
     <h4 class="updated-title">更新</h4>
     
     <p class="updated-meta">Apr 14, 2021</p>
@@ -4320,8 +4396,10 @@ String#{}   9.51M (105.16ns) (± 6.12%)  3.47× slower
 
 
 
+
+
 <div class="updated">
-  <header class="updated-header">
+  <header class="updated-header color-primary">
     <h4 class="updated-title">更新</h4>
     
     <p class="updated-meta">Oct 9, 2018</p>
@@ -4422,8 +4500,10 @@ String#{}   9.51M (105.16ns) (± 6.12%)  3.47× slower
 
 
 
+
+
 <div class="updated">
-  <header class="updated-header">
+  <header class="updated-header color-primary">
     <h4 class="updated-title">更新</h4>
     
     <p class="updated-meta">Feb 22, 2022</p>
@@ -5233,8 +5313,10 @@ String#{}   9.51M (105.16ns) (± 6.12%)  3.47× slower
 
 
 
+
+
 <div class="updated">
-  <header class="updated-header">
+  <header class="updated-header color-primary">
     <h4 class="updated-title">更新</h4>
     
     <p class="updated-meta">Aug 15, 2022</p>
@@ -5394,8 +5476,10 @@ String#{}   9.51M (105.16ns) (± 6.12%)  3.47× slower
 
 
 
+
+
 <div class="updated">
-  <header class="updated-header">
+  <header class="updated-header color-primary">
     <h4 class="updated-title">更新</h4>
     
     <p class="updated-meta">Apr 18, 2022</p>
@@ -6683,8 +6767,10 @@ nameserver 8.8.4.4 # 备选 DNS
 
 
 
+
+
 <div class="updated">
-  <header class="updated-header">
+  <header class="updated-header color-primary">
     <h4 class="updated-title">更新</h4>
     
     <p class="updated-meta">Jul 1, 2013</p>
@@ -8974,8 +9060,10 @@ update</strong>：娃哈哈，从买了一个相机，已经会有很多作品�
 
 
 
+
+
 <div class="updated">
-  <header class="updated-header">
+  <header class="updated-header color-primary">
     <h4 class="updated-title">更新</h4>
     
     <p class="updated-meta">Feb 3, 2008</p>

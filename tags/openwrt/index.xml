@@ -238,7 +238,24 @@
 
 <h2 id="结语">结语</h2>
 <p>感谢 mosdns 长达几个月的配置稳定之前挖的坑填上了，撒花！</p>
-]]></content:encoded></item><item><title>如何搭建家用 homelab: Openwrt 软路由</title><link>https://icyleaf.com/2023/04/how-to-homelab-part-2-openwrt-soft-router/</link><pubDate>Wed, 26 Apr 2023 20:30:00 +0800</pubDate><guid>https://icyleaf.com/2023/04/how-to-homelab-part-2-openwrt-soft-router/</guid><description>用牺牲硬件的网络转换效率来换取不必受设备提供商的限制和可玩性</description><content:encoded><![CDATA[<p>路由器是猫总管（调制解调器）最得力的一把手，掌管 homelab 网络大权。对于中国玩家提到软路由肯定绕不开 OpenWrt，今天我尝试用一个全新的视角唠唠这个大家熟悉却又陌生的系统。
+]]></content:encoded></item><item><title>如何搭建家用 homelab: Openwrt 软路由</title><link>https://icyleaf.com/2023/04/how-to-homelab-part-2-openwrt-soft-router/</link><pubDate>Wed, 26 Apr 2023 20:30:00 +0800</pubDate><guid>https://icyleaf.com/2023/04/how-to-homelab-part-2-openwrt-soft-router/</guid><description>用牺牲硬件的网络转换效率来换取不必受设备提供商的限制和可玩性</description><content:encoded><![CDATA[
+
+
+
+
+
+<div class="updated">
+  <header class="updated-header color-tip">
+    <h4 class="updated-title">加入讨论群</h4>
+    
+  </header>
+  <article class="updated-body">
+    方便大家沟通交流，开通了 Discord 讨论群便于第一时间获得教程的最新更新，并提供关于 Homelab 沟通、疑惑解答专区，欢迎<a href="https://discord.gg/gdXpKyh85r">大家加入</a>。
+  </article>
+</div>
+
+
+<p>路由器是猫总管（调制解调器）最得力的一把手，掌管 homelab 网络大权。对于中国玩家提到软路由肯定绕不开 OpenWrt，今天我尝试用一个全新的视角唠唠这个大家熟悉却又陌生的系统。
 以下会涉及大量的基础认知、概念理解，<strong>不会涉及网络配置或高阶玩法</strong>。</p>
 <h2 id="什么是-openwrt">什么是 OpenWrt</h2>
 <blockquote>
