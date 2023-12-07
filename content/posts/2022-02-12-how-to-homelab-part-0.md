@@ -23,7 +23,7 @@ description: 搭建 homelab 之前都需要了解哪些背景
 ---
 
 {{< tip title="加入讨论群" >}}
-方便大家沟通交流，开通讨论群便于第一时间获得教程的最新更新，并提供关于 Homelab 沟通、疑惑解答专区，欢迎大家加入：[Discord](https://discord.gg/B5RxWfGngG) 或 [Discord](https://t.me/GeekAdventure)。
+方便大家沟通交流，开通讨论群便于第一时间获得教程的最新更新，并提供关于 Homelab 沟通、疑惑解答专区，欢迎大家加入：[Discord](https://discord.gg/B5RxWfGngG) 或 [Telegram](https://t.me/GeekAdventure)。
 {{< /tip >}}
 
 ## 前言
