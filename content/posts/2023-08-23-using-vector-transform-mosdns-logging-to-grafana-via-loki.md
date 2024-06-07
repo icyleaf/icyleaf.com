@@ -34,7 +34,7 @@ imageSource:
     title="实时监控 mosdns 规则解析 Grafana 看板"
 >}}
 
-> 当前教程仅适用于 mosdns 5.0 ~ 5.1.3 版本（后续版本没有发布可能存在配置变化，依据实际情况调整）
+> 当前教程仅适用于 mosdns 5.0 ~ 5.1.3 版本（后续版本没有发布可能存在配置变化，依据实际情况调整），没错 5.3 日志结构作者又做调整了，气人不气人（如下暂不支持 5.3）。
 
 ## mosdns
 
@@ -78,7 +78,7 @@ vector 需要能够直接访问到 mosdns 的日志文件。这里有两种方�
 curl --proto '=https' --tlsv1.2 -sSf https://sh.vector.dev | bash
 ```
 
-Openwrt/Immortalwrt 用户可使用我个人维护的仓库 [icyleaf/openwrt-dist](https://github.com/icyleaf/openwrt-dist) 添加后即可安装（支持 amd64、armv8 平台的 snapshot 和 23.05.0-rc3 两个分支）：
+Openwrt/Immortalwrt 用户可使用我个人维护的仓库 [icyleaf/openwrt-dist](https://github.com/icyleaf/openwrt-dist) 添加后即可安装（支持 amd64、armv8 平台的 snapshot 和 23.05.0 两个分支）：
 
 添加仓库密钥
 
