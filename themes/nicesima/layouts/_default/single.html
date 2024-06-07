@@ -93,6 +93,10 @@
       </div>
       {{ end }}
 
+      {{- if .Site.Params.Donate.Enable -}}
+      {{- template "partials/templates/donate.html" . }}
+      {{- end -}}
+
       {{ with .Params.References }}
       <div class="post-ref">
         <h2 id="reference-links">{{ i18n "referenceLinks" }}</h2>

@@ -467,6 +467,43 @@
     }
   }
 
+  .footnotes {
+    hr {
+      .dark-theme & {
+        border-color: $dark-border-color;
+      }
+    }
+  }
+
+  .post-donate {
+    border-top: 1px solid $light-border-color;
+    border-bottom: 1px solid $light-border-color;
+    padding: 2rem 0;
+    width: 100%;
+    text-align: center;
+    .post-donate-title {
+      margin: 0 0 0.4rem 0;
+    }
+
+    .post-donate-channel {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      img {
+        width: 240px;
+        height: 240px;
+
+        .dark-theme & {
+          filter: saturate(50%);
+        }
+      }
+    }
+
+    .dark-theme & {
+      border-color: $dark-border-color;
+    }
+  }
+
   .post-tags {
     padding: 1rem 0 1rem;
     display: flex;

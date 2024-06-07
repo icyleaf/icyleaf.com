@@ -1,0 +1,7 @@
+<div class="post-donate">
+  <p class="post-donate-title">{{ .Site.Params.Donate.Description }}</p>
+  <div class="post-donate-channel">
+    <img src="{{ .Site.Params.Donate.alipay | relURL }}" alt="支付宝打赏" />
+    <img src="{{ .Site.Params.Donate.wechat | relURL }}" alt="微信打赏" />
+  </div>
+</div>

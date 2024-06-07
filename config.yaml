@@ -16,6 +16,11 @@ params:
   homepage:
     showProfile: true
     showPosts: true
+  donate:
+    enable: true
+    description: 如果你觉得我的文章对你有帮助，欢迎打赏，这对我非常重要，谢谢！
+    alipay: images/donate/alipay.png
+    wechat: images/donate/wechat.png
   author: icyleaf
   avatar: images/icyleaf-icon.png
   description: 日常写代码热爱户外的梦想家
