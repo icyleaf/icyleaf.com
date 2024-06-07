@@ -24,6 +24,13 @@ imageSource:
     link: https://unsplash.com
 ---
 
+{{< updated at="2024-06-07" >}}
+- 5.3 日志结构作者又做调整了，完整配置已更新，如果是 5.0 ~ 5.1.x 版本需要注意完整配置下面的代码对比部分。
+- 作者自己使用是把 modsns 从之前的后置改成了前置测试了好几个月，好处是某些服务挂了也不会影响 DNS 的解析，有想了解具体细节的吗？
+
+更新维护不易，欢迎在文章尾部打赏作者，这个对于作者很重要，感谢你的支持！
+{{< /updated >}}
+
 我是从 4.0 版本开始使用 [mosdns](https://github.com/IrineSistiana/mosdns)，经历了 4.1 和 4.2 [不稳定的功能更新](https://github.com/IrineSistiana/mosdns/discussions/417#discussioncomment-3831982)和今年 1 月份发布 5.x 大版本重构后貌似已经稳定下来。
 
 托 @[river_leaves](https://twitter.com/river_leaves/status/1574393162163896321) 的福利用 mosdns 自带的 [prometheus metrics](https://irine-sistiana.gitbook.io/mosdns-wiki/mosdns-v5/api-shuo-ming) 接口实时查看 DNS 解析情况。
@@ -34,7 +41,7 @@ imageSource:
     title="实时监控 mosdns 规则解析 Grafana 看板"
 >}}
 
-> 当前教程仅适用于 mosdns 5.0 ~ 5.1.3 版本（后续版本没有发布可能存在配置变化，依据实际情况调整），没错 5.3 日志结构作者又做调整了，气人不气人（如下暂不支持 5.3）。
+> 当前教程仅适用于 mosdns 5.0 ~ 5.3.x 版本（后续版本没有发布可能存在配置变化，依据实际情况调整）。
 
 ## mosdns
 
@@ -46,7 +53,7 @@ mosdns 5 版本采用了[新数据源解包格式](https://github.com/IrineSisti
 
 配置定义了 mosdns 日志的文件路径为 `/var/log/mosdns.log`，输出日志等级只需要是 INFO 即可。如果 mosdns 服务所在磁盘空间较小建议使用 logrotate 来切割日志并控制归档日志数量，以免出现空间不足的情况。
 
-```conf
+```text
 /var/log/mosdns.log {
   daily
   rotate 2
@@ -138,7 +145,7 @@ transforms:
 
       message_parts = split!(.message, r'\t')
 
-      .timestamp = parse_timestamp!(message_parts[0], format: "%FT%T%.9fZ")
+      .timestamp = parse_timestamp!(message_parts[0], format: "%F %T")
       .level = message_parts[1]
 
       if (length(message_parts) == 6) {
@@ -163,10 +170,8 @@ transforms:
       }
 
       if (exists(.query)) {
-        query_parts = split!(.query, r'\s')
-        .domain = query_parts[0]
-        .record = query_parts[2]
-        .address = query_parts[5]
+        . = merge!(., .query)
+        del(.query)
       }
 
 sinks:
@@ -191,6 +196,24 @@ sinks:
       - mosdns-data
     encoding:
       codec: json
+```
+
+mosdns 5.3 对比 5.0 ~ 5.1.x 版本时间戳和 query 字段做了修改，需要调整配置文件：
+
+```diff
+...
+-      .timestamp = parse_timestamp!(message_parts[0], format: "%F %T")
++      .timestamp = parse_timestamp!(message_parts[0], format: "%FT%T%.9fZ")
+
+...
+      if (exists(.query)) {
+-        . = merge!(., .query)
+-        del(.query)
++        query_parts = split!(.query, r'\s')
++        .domain = query_parts[0]
++        .record = query_parts[2]
++        .address = query_parts[5]
+      }
 ```
 
 运行 vector 服务（部署好 loki 后再运行）
