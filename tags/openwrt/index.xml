@@ -22,7 +22,7 @@
     <p>实时监控 mosdns 规则解析 Grafana 看板</p></figcaption></figure>
 
 <blockquote>
-<p>当前教程仅适用于 mosdns 5.0 ~ 5.1.3 版本（后续版本没有发布可能存在配置变化，依据实际情况调整）</p>
+<p>当前教程仅适用于 mosdns 5.0 ~ 5.1.3 版本（后续版本没有发布可能存在配置变化，依据实际情况调整），没错 5.3 日志结构作者又做调整了，气人不气人（如下暂不支持 5.3）。</p>
 </blockquote>
 <h2 id="mosdns">mosdns</h2>
 <p>mosdns 5 版本采用了<a href="https://github.com/IrineSistiana/mosdns/discussions/584">新数据源解包格式</a>，配置我实在懒得调整了，直接在采用了 <a href="https://github.com/sbwml/luci-app-mosdns">luci-app-mosdns</a> 插件配置微调。配置中各个 plugins 名称请确保不要修改和变动，否则会导致 vector 转换规则无法正常工作。</p>
@@ -64,7 +64,7 @@
 <p>vector 需要能够直接访问到 mosdns 的日志文件。这里有两种方式可以实现：一种是两个服务都在一台机器上运行，另外一种是通过容器化共享 volume 让 vector 可以读取 mosdns 日志。</p>
 <p>工具本身是 Go 语言开发从 Github 直接下载好对应的包解压缩就能够使用或者使用一键安装脚本：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">curl --proto <span class="s1">&#39;=https&#39;</span> --tlsv1.2 -sSf https://sh.vector.dev <span class="p">|</span> bash
-</span></span></code></pre></div><p>Openwrt/Immortalwrt 用户可使用我个人维护的仓库 <a href="https://github.com/icyleaf/openwrt-dist">icyleaf/openwrt-dist</a> 添加后即可安装（支持 amd64、armv8 平台的 snapshot 和 23.05.0-rc3 两个分支）：</p>
+</span></span></code></pre></div><p>Openwrt/Immortalwrt 用户可使用我个人维护的仓库 <a href="https://github.com/icyleaf/openwrt-dist">icyleaf/openwrt-dist</a> 添加后即可安装（支持 amd64、armv8 平台的 snapshot 和 23.05.0 两个分支）：</p>
 <p>添加仓库密钥</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">wget http://cdn.jsdelivr.net/gh/icyleaf/openwrt-dist@master/key-build.pub
 </span></span><span class="line"><span class="ln">2</span><span class="cl">opkg-key add key-build.pub
@@ -249,7 +249,7 @@
     
   </header>
   <article class="updated-body">
-    方便大家沟通交流，开通讨论群便于第一时间获得教程的最新更新，并提供关于 Homelab 沟通、疑惑解答专区，欢迎大家加入：<a href="https://discord.gg/B5RxWfGngG">Discord</a> 或 <a href="https://t.me/GeekAdventure">Discord</a>。
+    方便大家沟通交流，开通讨论群便于第一时间获得教程的最新更新，并提供关于 Homelab 沟通、疑惑解答专区，欢迎大家加入：<a href="https://discord.gg/B5RxWfGngG">Discord</a> 或 <a href="https://t.me/GeekAdventure">Telegram</a>。
   </article>
 </div>
 
