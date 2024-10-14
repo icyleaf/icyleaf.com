@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>豆瓣 on icyleaf</title><link>https://icyleaf.com/tags/%E8%B1%86%E7%93%A3/</link><description>Recent content in 豆瓣 on icyleaf</description><language>zh-cn</language><lastBuildDate>Mon, 02 May 2011 12:34:56 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/%E8%B1%86%E7%93%A3/index.xml" rel="self" type="application/rss+xml"/><item><title>魔豆及其豆瓣 API 测试平台开源咯</title><link>https://icyleaf.com/2011/05/modou-and-douban-api-console-is-open-source-now/</link><pubDate>Mon, 02 May 2011 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2011/05/modou-and-douban-api-console-is-open-source-now/</guid><description>&lt;p>这是作为 2011 年 5 月 1 日劳动节的福利发放，欢迎各位 Kohana 开发者及其爱好者围观领取，领取内容及其使用方式请前往本人 Github 的项目地址：https://github.com/icyleaf/modou&lt;/p>...</description><content:encoded>&lt;p>这是作为 2011 年 5 月 1 日劳动节的福利发放，欢迎各位 Kohana 开发者及其爱好者围观领取，领取内容及其使用方式请前往本人 Github 的项目地址：https://github.com/icyleaf/modou&lt;/p>
-</content:encoded></item><item><title>Douban API Package 发布！</title><link>https://icyleaf.com/2010/01/douban-api-package/</link><pubDate>Fri, 08 Jan 2010 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2010/01/douban-api-package/</guid><description>&lt;p>Douban API Package 是一个使用 PHP 开发且基于 Kohana v3 开发的一个扩展（Module）。&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>豆瓣 on icyleaf</title><link>https://icyleaf.com/tags/%E8%B1%86%E7%93%A3/</link><description>Recent content in 豆瓣 on icyleaf</description><language>zh-cn</language><lastBuildDate>Fri, 08 Jan 2010 12:34:56 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/%E8%B1%86%E7%93%A3/index.xml" rel="self" type="application/rss+xml"/><item><title>Douban API Package 发布！</title><link>https://icyleaf.com/2010/01/douban-api-package/</link><pubDate>Fri, 08 Jan 2010 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2010/01/douban-api-package/</guid><description>&lt;p>Douban API Package 是一个使用 PHP 开发且基于 Kohana v3 开发的一个扩展（Module）。&lt;/p>
 &lt;p>它对&lt;a href="http://www.douban.com/">豆瓣&lt;/a> &lt;a href="http://www.douban.com/service/apidoc/">API&lt;/a> 进行重新封包。它使用起来非常方便，可以快速开发一个 web 应用。&lt;/p>
 &lt;p>&lt;strong>为什么要另外封包？&lt;/strong>&lt;/p>...</description><content:encoded><![CDATA[<p>Douban API Package 是一个使用 PHP 开发且基于 Kohana v3 开发的一个扩展（Module）。</p>
 <p>它对<a href="http://www.douban.com/">豆瓣</a> <a href="http://www.douban.com/service/apidoc/">API</a> 进行重新封包。它使用起来非常方便，可以快速开发一个 web 应用。</p>
@@ -59,19 +58,16 @@
 <p>祝你开发顺利！</p>
 <p>如果任何疑问或者 Bugs 反馈，即可以在本项目中提交 Issue
 或者给我发邮件：icyleaf.cn囧gmail.com （请替换 &ldquo;囧&rdquo; 为 @）</p>
-]]></content:encoded></item><item><title>豆瓣API测试控制台</title><link>https://icyleaf.com/2009/07/douban-api-console/</link><pubDate>Mon, 06 Jul 2009 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2009/07/douban-api-console/</guid><description>&lt;blockquote>
-&lt;p>项目已开源: &lt;a href="http://github.com/icyleaf/modou">http://github.com/icyleaf/modou&lt;/a>&lt;/p>
-&lt;/blockquote>
-&lt;p>豆瓣 API 测试控制台的创造灵感来源于 Facebook Developers Tools 中的&lt;a href="http://developers.facebook.com/tools.php">Facebook API Console&lt;/a>， 或许大家知道，魔豆是我的另外一个豆瓣 API 应用，由于是自己封装的 Douban
+]]></content:encoded></item><item><title>豆瓣API测试控制台</title><link>https://icyleaf.com/2009/07/douban-api-console/</link><pubDate>Mon, 06 Jul 2009 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2009/07/douban-api-console/</guid><description>&lt;p>豆瓣 API 测试控制台的创造灵感来源于 Facebook Developers Tools 中的&lt;a href="http://developers.facebook.com/tools.php">Facebook API Console&lt;/a>， 或许大家知道，魔豆是我的另外一个豆瓣 API 应用，由于是自己封装的 Douban
 API（官方提供的库类要求太多，安装繁琐，这不属于我喜爱简洁，轻便的风格），每次想查看某个
 API 接口返回的数据都要写一个 test 跑一下。麻烦不说，还容易出错，于是，使用自己封装的 Douban API，借鉴 Facebook API Console
-的界面和类似的功能显示，终于小有所成，其中为了实现此控制台，封包的库类经过两次大改，虽然改的很辛苦，但从中学到了很多开发经验。&lt;/p>...</description><content:encoded><![CDATA[<blockquote>
-<p>项目已开源: <a href="http://github.com/icyleaf/modou">http://github.com/icyleaf/modou</a></p>
-</blockquote>
-<p>豆瓣 API 测试控制台的创造灵感来源于 Facebook Developers Tools 中的<a href="http://developers.facebook.com/tools.php">Facebook API Console</a>， 或许大家知道，魔豆是我的另外一个豆瓣 API 应用，由于是自己封装的 Douban
+的界面和类似的功能显示，终于小有所成，其中为了实现此控制台，封包的库类经过两次大改，虽然改的很辛苦，但从中学到了很多开发经验。&lt;/p>...</description><content:encoded><![CDATA[<p>豆瓣 API 测试控制台的创造灵感来源于 Facebook Developers Tools 中的<a href="http://developers.facebook.com/tools.php">Facebook API Console</a>， 或许大家知道，魔豆是我的另外一个豆瓣 API 应用，由于是自己封装的 Douban
 API（官方提供的库类要求太多，安装繁琐，这不属于我喜爱简洁，轻便的风格），每次想查看某个
 API 接口返回的数据都要写一个 test 跑一下。麻烦不说，还容易出错，于是，使用自己封装的 Douban API，借鉴 Facebook API Console
 的界面和类似的功能显示，终于小有所成，其中为了实现此控制台，封包的库类经过两次大改，虽然改的很辛苦，但从中学到了很多开发经验。</p>
+<blockquote>
+<p>项目已开源: <a href="http://github.com/icyleaf/modou">http://github.com/icyleaf/modou</a></p>
+</blockquote>
 <p>测试用户必须先进行用户验证才能进行测试，这主要是为了：</p>
 <ol>
 <li>避免提交查询中出现错误，并让测试者使用到全部API方法</li>
@@ -110,17 +106,14 @@ id 留空或者设置为 ‘me’ （不带引号），这样调用结果显示�
 <p>由于目前为止豆瓣 API 还没有封装完成，现只提供用户，广播，书影音，豆邮和日记的不完全功能测试查询。
 其余的 API 会尽快添加进去 :)</p>
 <p>测试地址：<a href="http://ews.im/douban_console">http://ews.im/douban_console</a></p>
-]]></content:encoded></item><item><title>魔豆：豆瓣网非官方移动版本</title><link>https://icyleaf.com/2009/06/modou/</link><pubDate>Mon, 22 Jun 2009 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2009/06/modou/</guid><description>&lt;blockquote>
-&lt;p>项目已开源: &lt;a href="http://github.com/icyleaf/modou">http://github.com/icyleaf/modou&lt;/a> 但不再维护。&lt;/p>
-&lt;/blockquote>
-&lt;p>&lt;a href="http://modou.us" title="魔豆：豆瓣网非官方移动版本">魔豆&lt;/a>，一个&lt;a href="http://douban.com">豆瓣网&lt;/a>非官方移动版本，基于&lt;a href="http://www.douban.com/service/apidoc/" title="豆瓣 API">豆瓣
+]]></content:encoded></item><item><title>魔豆：豆瓣网非官方移动版本</title><link>https://icyleaf.com/2009/06/modou/</link><pubDate>Mon, 22 Jun 2009 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2009/06/modou/</guid><description>&lt;p>&lt;a href="http://modou.us" title="魔豆：豆瓣网非官方移动版本">魔豆&lt;/a>，一个&lt;a href="http://douban.com">豆瓣网&lt;/a>非官方移动版本，基于&lt;a href="http://www.douban.com/service/apidoc/" title="豆瓣 API">豆瓣
 API&lt;/a>开发的专门为移动终端（手持设备）定制的豆瓣移动版本。魔豆专注于豆瓣网的&lt;strong>广播&lt;/strong>及&lt;strong>同城活动&lt;/strong>。&lt;/p>
-&lt;p>魔豆的来历：豆瓣移动版 -&amp;gt; Douban mobile -&amp;gt; moDouban -&amp;gt; moDou -&amp;gt;魔豆&lt;/p>...</description><content:encoded><![CDATA[<blockquote>
-<p>项目已开源: <a href="http://github.com/icyleaf/modou">http://github.com/icyleaf/modou</a> 但不再维护。</p>
-</blockquote>
-<p><a href="http://modou.us" title="魔豆：豆瓣网非官方移动版本">魔豆</a>，一个<a href="http://douban.com">豆瓣网</a>非官方移动版本，基于<a href="http://www.douban.com/service/apidoc/" title="豆瓣 API">豆瓣
+&lt;p>魔豆的来历：豆瓣移动版 -&amp;gt; Douban mobile -&amp;gt; moDouban -&amp;gt; moDou -&amp;gt;魔豆&lt;/p>...</description><content:encoded><![CDATA[<p><a href="http://modou.us" title="魔豆：豆瓣网非官方移动版本">魔豆</a>，一个<a href="http://douban.com">豆瓣网</a>非官方移动版本，基于<a href="http://www.douban.com/service/apidoc/" title="豆瓣 API">豆瓣
 API</a>开发的专门为移动终端（手持设备）定制的豆瓣移动版本。魔豆专注于豆瓣网的<strong>广播</strong>及<strong>同城活动</strong>。</p>
 <p>魔豆的来历：豆瓣移动版 -&gt; Douban mobile -&gt; moDouban -&gt; moDou -&gt;魔豆</p>
+<blockquote>
+<p>项目已开源: <a href="http://github.com/icyleaf/modou">http://github.com/icyleaf/modou</a> 但不再维护。</p>
+</blockquote>
 <p>目前魔豆发布的功能：</p>
 <ol>
 <li>友邻广播：支持显示广播，回复发起人和重播（重复发布其他发起者的广播）</li>

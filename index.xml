@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>icyleaf</title><link>https://icyleaf.com/</link><description>Recent content on icyleaf</description><language>zh-cn</language><lastBuildDate>Tue, 16 Jul 2024 21:43:52 +0800</lastBuildDate><atom:link href="https://icyleaf.com/index.xml" rel="self" type="application/rss+xml"/><item><title>RG35XX 复古国产掌机</title><link>https://icyleaf.com/gears/rg35xx-game-console/</link><pubDate>Thu, 12 Oct 2023 12:40:06 +0800</pubDate><guid>https://icyleaf.com/gears/rg35xx-game-console/</guid><description>比 Switch 更适合外出携带的便携掌机</description><content:encoded><![CDATA[<p>高中我第一次接触了同学的 GBA 像是开启了新天地，工作之后买了 NDSi、Switch 也没能找回原来的那种感觉，但何 GB、GBC、GBA 掌机都太太太贵了。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>icyleaf</title><link>https://icyleaf.com/</link><description>Recent content on icyleaf</description><language>zh-cn</language><lastBuildDate>Thu, 12 Oct 2023 12:40:06 +0800</lastBuildDate><atom:link href="https://icyleaf.com/index.xml" rel="self" type="application/rss+xml"/><item><title>RG35XX 复古国产掌机</title><link>https://icyleaf.com/gears/rg35xx-game-console/</link><pubDate>Thu, 12 Oct 2023 12:40:06 +0800</pubDate><guid>https://icyleaf.com/gears/rg35xx-game-console/</guid><description>比 Switch 更适合外出携带的便携掌机</description><content:encoded><![CDATA[<p>高中我第一次接触了同学的 GBA 像是开启了新天地，工作之后买了 NDSi、Switch 也没能找回原来的那种感觉，但何 GB、GBC、GBA 掌机都太太太贵了。
 今年 6 月份在日本旅游的时候看到了一些视频 <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> 了解到 RG35XX 是比 Miyoo mini 更适合我的掌机，综合分析后 PDD 262 元购入（包含 64GB TF 卡和收纳包）。</p>
 <ul>
 <li>基于 RetroArch 系统 <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></li>
@@ -7755,31 +7755,6 @@ $ mkvirtualenv -r requirements.txt &lt;env_name&gt;
 </code></pre><h1 id="创建临时环境-deactivate-之后自动销毁">创建临时环境 (deactivate 之后自动销毁)</h1>
 <pre tabindex="0"><code>$ mktmpenv
 </code></pre><p>查看更详细的<a href="http://virtualenvwrapper.readthedocs.org/en/latest/command_ref.html">命令描述文档</a>。</p>
-]]></content:encoded></item><item><title>面粉的种类说明</title><link>https://icyleaf.com/2013/01/types-of-flour/</link><pubDate>Mon, 14 Jan 2013 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2013/01/types-of-flour/</guid><description>饺子，面包，馒头的面粉有区别吗</description><content:encoded><![CDATA[<blockquote>
-<p>以下资源收集于网络。</p>
-</blockquote>
-<h2 id="面粉为何物">面粉为何物</h2>
-<p>小麦是世界上栽种最广的粮食。与其它谷物去壳后直接食用不同，小麦表面麸皮坚韧，内部胚乳易碎，难以加工成整粒，所以只能磨制成面粉。</p>
-<p>小麦面粉和其它粮食磨成粉的最大区别在于小麦特有的两种蛋白质能够结合形成弹性和延展性都很好的面筋（就是既能拉得很长，又不会断掉），因此只有小麦才能制作出花样繁多、口感各异的面食制品。</p>
-<p>面粉中面筋的含量和质量（就是两种蛋白质各自的含量）取决于小麦作物的品种和种植过程，而不是面粉加工过程，但是在加工储藏过程中，蛋白质含量有可能发生变化。</p>
-<h3 id="基本概念">基本概念</h3>
-<ul>
-<li><code>面筋</code>：就是从面粉中提取出的（纯筋度）蛋白质部分，可以拌凉皮、做油面筋等中国特色美食。</li>
-<li><code>小麦淀粉</code>：又叫澄粉，澄面，汀粉，汀面，就是面粉里除掉蛋白质之后剩下的（无筋度）淀粉部分，颜色非常白，是水晶糕点的主要原料，也是凉皮的原料。</li>
-</ul>
-<h2 id="面粉的分类">面粉的分类</h2>
-<ul>
-<li><code>高筋面粉</code>：又叫强力粉，bread flour，蛋白质含量11.5%以上，筋度最强，用于做面包、批萨、泡芙、油条、千层饼等需要依靠很强的弹性和延展性来包裹气泡、油层以便形成疏松结构的点心。</li>
-<li><code>中筋面粉</code>：最普通的面粉，plain flour，蛋白质含量9.5-11.5%，用于做馒头、包子、饺子、烙饼、面条、麻花等大多数中式点心。</li>
-<li><code>低筋面粉</code>：又叫薄力粉，cake flour，蛋白质含量6.5-9.5%，可以用按照质量比四份中筋面粉加一份玉米淀粉（其它淀粉也可以）混合配成，适合做蛋糕、饼干、蛋挞等松散、酥脆、没有韧性的点心。</li>
-<li><code>自发粉</code>：超市里卖的自发粉是面粉中混入一定比例的酵母、泡打粉和其它化学添加剂，用时只需要加水，而且可以节约发酵时间。使用自发粉应该按照包装上的说明，因为不同的产品配方，使用方法可能有不同。</li>
-<li><code>全麦面粉</code>：小麦种子由麸皮、胚乳、胚芽三部分组成，麸皮坚硬难以消化，胚芽含油丰富易酸败，因此面粉由胚乳制成。但是麸皮提供丰富的膳食纤维，非常有益于人的消化过程。所以，全麦面粉就是在胚乳制成的普通面粉中添加磨制过的麸皮，对于面包、蛋糕、面条等不同的用途，所添加的麸皮比例和麸皮大小、形状也各有不同，所以其实全麦面粉并不是整个的麦粒直接磨碎的粗制品，反而是更加复杂的精制品。</li>
-</ul>
-<h2 id="中国地区的说明">中国地区的说明</h2>
-<p>现在国内超市粮食区卖的面粉主要是适合中式面食的中筋面粉，而标注<strong>精粉</strong>, <strong>特粉</strong>, <strong>富强粉</strong>的是表明面粉的加工精细程度，而不是面粉的筋度含量。一般可以用中筋面粉代替高筋面粉或者低筋面粉而不会有明显差别。</p>
-<blockquote>
-<p><code>饺子粉</code> 是中筋面粉，<code>面包粉</code> 是高筋面粉。</p>
-</blockquote>
 ]]></content:encoded></item><item><title>2011-2012 两年总结</title><link>https://icyleaf.com/2013/01/2011-2012-in-review/</link><pubDate>Tue, 01 Jan 2013 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2013/01/2011-2012-in-review/</guid><description>回忆两年的事情是一件痛苦的事情，幸好赶上了新浪潮</description><content:encoded><![CDATA[<p>从 2011 年忙碌到 2012 年，这两年的时间经历的很多事物，让我感受颇多，而我惊讶的是 2011 的年终总结居然缺失了。这两年工作上专注了一个领域，也是当前最火热移动互联网。两年放在一起总结也算是比较完整的。</p>
 <p>总结从已下几大方面分别详细描述：</p>
 <ul>
@@ -7966,9 +7941,7 @@ hitch"></img>
   alt="bowline
 bend"></img>
 </p>
-]]></content:encoded></item><item><title>修复 OS X 打开方式的重复项</title><link>https://icyleaf.com/2012/11/%E4%BF%AE%E5%A4%8D-os-x-%E6%89%93%E5%BC%80%E6%96%B9%E5%BC%8F%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9/</link><pubDate>Tue, 06 Nov 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/11/%E4%BF%AE%E5%A4%8D-os-x-%E6%89%93%E5%BC%80%E6%96%B9%E5%BC%8F%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9/</guid><description>&lt;pre tabindex="0">&lt;code>$ /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain system-domainuser
-&lt;/code>&lt;/pre></description><content:encoded>&lt;pre tabindex="0">&lt;code>$ /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain system-domainuser
-&lt;/code>&lt;/pre></content:encoded></item><item><title>EasyConvert</title><link>https://icyleaf.com/2012/10/easyconvert-gbk-to-utf8-convert-tool-for-mac/</link><pubDate>Thu, 25 Oct 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/10/easyconvert-gbk-to-utf8-convert-tool-for-mac/</guid><description>&lt;p>托设计朋友的要求，继续奉献出一个小工具: EasyConvert - 针对于文本文件的编码转换工具 - GBK to UTF8&lt;/p>
+]]></content:encoded></item><item><title>EasyConvert</title><link>https://icyleaf.com/2012/10/easyconvert-gbk-to-utf8-convert-tool-for-mac/</link><pubDate>Thu, 25 Oct 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/10/easyconvert-gbk-to-utf8-convert-tool-for-mac/</guid><description>&lt;p>托设计朋友的要求，继续奉献出一个小工具: EasyConvert - 针对于文本文件的编码转换工具 - GBK to UTF8&lt;/p>
 &lt;p>首先这个应用是用于 OS X 系统的，其次其实它是一个很弱的工具，对于技术宅来说一行代码搞定：&lt;/p>...</description><content:encoded><![CDATA[<p>托设计朋友的要求，继续奉献出一个小工具: EasyConvert - 针对于文本文件的编码转换工具 - GBK to UTF8</p>
 <p>首先这个应用是用于 OS X 系统的，其次其实它是一个很弱的工具，对于技术宅来说一行代码搞定：</p>
 <pre tabindex="0"><code>iconv -f GBK -t UTF-8 source.txt \&gt; output.txt
@@ -8251,7 +8224,7 @@ if __name__ == &#39;__main__&#39;:
   
   alt="screenshot"></img>
 </p>
-]]></content:encoded></item><item><title>Dropbox和Apache关于权限的问题</title><link>https://icyleaf.com/2012/07/how-to-fix-dropbox-with-apache-about-acces-permission/</link><pubDate>Mon, 30 Jul 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/07/how-to-fix-dropbox-with-apache-about-acces-permission/</guid><description>&lt;p>自从上次 SSD 硬盘不小心挂了之后，就算是返厂检修，一旦是算坏只能更换新的无法提供维修服务。这次我对待一些数据就更加小心了。尤其是代码，其实这次代码也并没有损失多少，丢失了一些平时的练习的项目。但为了保证代码的完整性和整体的同步性，我决定使用 Dropbox 同步我的代码。这样平时练习的代码也不必丢到 Github 或者花麻烦自建的服务器上面，什么都不需要操作就可以同步与无形之中。&lt;/p>...</description><content:encoded><![CDATA[<p>自从上次 SSD 硬盘不小心挂了之后，就算是返厂检修，一旦是算坏只能更换新的无法提供维修服务。这次我对待一些数据就更加小心了。尤其是代码，其实这次代码也并没有损失多少，丢失了一些平时的练习的项目。但为了保证代码的完整性和整体的同步性，我决定使用 Dropbox 同步我的代码。这样平时练习的代码也不必丢到 Github 或者花麻烦自建的服务器上面，什么都不需要操作就可以同步与无形之中。</p>
+]]></content:encoded></item><item><title>Dropbox 和 Apache 关于权限的问题</title><link>https://icyleaf.com/2012/07/how-to-fix-dropbox-with-apache-about-acces-permission/</link><pubDate>Mon, 30 Jul 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/07/how-to-fix-dropbox-with-apache-about-acces-permission/</guid><description>&lt;p>自从上次 SSD 硬盘不小心挂了之后，就算是返厂检修，一旦是算坏只能更换新的无法提供维修服务。这次我对待一些数据就更加小心了。尤其是代码，其实这次代码也并没有损失多少，丢失了一些平时的练习的项目。但为了保证代码的完整性和整体的同步性，我决定使用 Dropbox 同步我的代码。这样平时练习的代码也不必丢到 Github 或者花麻烦自建的服务器上面，什么都不需要操作就可以同步与无形之中。&lt;/p>...</description><content:encoded><![CDATA[<p>自从上次 SSD 硬盘不小心挂了之后，就算是返厂检修，一旦是算坏只能更换新的无法提供维修服务。这次我对待一些数据就更加小心了。尤其是代码，其实这次代码也并没有损失多少，丢失了一些平时的练习的项目。但为了保证代码的完整性和整体的同步性，我决定使用 Dropbox 同步我的代码。这样平时练习的代码也不必丢到 Github 或者花麻烦自建的服务器上面，什么都不需要操作就可以同步与无形之中。</p>
 <p>移动用户目录的 src 至 Dropbox 目录并创建软链接：</p>
 <pre tabindex="0"><code>$ mv ~/src ~/Dropbox/src
 </code></pre><pre tabindex="0"><code>$ ln -s ~/Dropbox/src ~/src
@@ -8334,24 +8307,6 @@ if __name__ == &#39;__main__&#39;:
 <li><a href="http://www.virtualenv.org/">virtualenv</a></li>
 <li><a href="http://jsome.net/blog/2010/06/11/start-to-use-virtualenv">开始使用Virtualenv</a></li>
 </ol>
-]]></content:encoded></item><item><title>“java.lang.NoClassDefFoundError” in Android</title><link>https://icyleaf.com/2012/05/how-to-salvation-android-import-jar-exception-during-running/</link><pubDate>Mon, 14 May 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/05/how-to-salvation-android-import-jar-exception-during-running/</guid><description>&lt;p>最近 Eclipse 的 ADT 升级至了 18 版本，结果运行的时候发现导入的第三方 jar
-包总是报错&lt;/p>
-&lt;blockquote>
-&lt;p>java.lang.NoClassDefFoundError&lt;/p>
-&lt;/blockquote>
-&lt;p>可气的是 Eclipse 不会给工程同时在编译的时候也不会报错。&lt;/p>
-&lt;p>后来发现此版本，第三方的 &lt;code>jar&lt;/code> 包必须放在项目的 &lt;code>libs&lt;/code>
-目录下面，而且仅能放在 &lt;code>libs&lt;/code> 根目录下面，即不能在 &lt;code>libs&lt;/code>
-下面在建立子目录存放，也不能改名 &lt;code>lib&lt;/code> 目录&amp;hellip;.&lt;/p>...</description><content:encoded><![CDATA[<p>最近 Eclipse 的 ADT 升级至了 18 版本，结果运行的时候发现导入的第三方 jar
-包总是报错</p>
-<blockquote>
-<p>java.lang.NoClassDefFoundError</p>
-</blockquote>
-<p>可气的是 Eclipse 不会给工程同时在编译的时候也不会报错。</p>
-<p>后来发现此版本，第三方的 <code>jar</code> 包必须放在项目的 <code>libs</code>
-目录下面，而且仅能放在 <code>libs</code> 根目录下面，即不能在 <code>libs</code>
-下面在建立子目录存放，也不能改名 <code>lib</code> 目录&hellip;.</p>
-<p>更无奈的是， Eclipse 的 User Library 也是出现同样的问题，目前无解 &gt;.&lt;</p>
 ]]></content:encoded></item><item><title>友盟 iOS 发布渠道自动化脚本</title><link>https://icyleaf.com/2012/05/ios-publish-channel-packger-for-umeng/</link><pubDate>Thu, 10 May 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/05/ios-publish-channel-packger-for-umeng/</guid><description>&lt;p>现在公司的大多数手机项目的统计服务都是用的&lt;a href="http:///www.umeng.com">友盟&lt;/a>，而自使用之初到现在都有一个渠道管理的功能，这个最后打包的时候实际上可能会产生一点点的麻烦，最早第一个 app 发布的时候，写了一个半自动的脚本，凑合用了很久，现在觉得需要完全自动化，于是借鉴之前 &lt;a href="http://icyleaf.com/2012/04/automating-script-to-testFlight-from-xcode/">testflightapp 的自动化脚本&lt;/a>，重新改造脚本。&lt;/p>...</description><content:encoded><![CDATA[<p>现在公司的大多数手机项目的统计服务都是用的<a href="http:///www.umeng.com">友盟</a>，而自使用之初到现在都有一个渠道管理的功能，这个最后打包的时候实际上可能会产生一点点的麻烦，最早第一个 app 发布的时候，写了一个半自动的脚本，凑合用了很久，现在觉得需要完全自动化，于是借鉴之前 <a href="http://icyleaf.com/2012/04/automating-script-to-testFlight-from-xcode/">testflightapp 的自动化脚本</a>，重新改造脚本。</p>
 <p>实现分两部分：</p>
 <ul>
@@ -8367,9 +8322,7 @@ if __name__ == &#39;__main__&#39;:
 </ol>
 <p>这样看起来其实工作也不复杂，只不过分发渠道多了就是有些浪费时间。同样还是采用了 Archive 的 Post-Action，这里面可以插入脚本以及外部的调用脚本（如果看不到下面的具体代码，请<a href="https://gist.github.com/2650508">点击这里</a>：</p>
 <!-- raw HTML omitted -->
-]]></content:encoded></item><item><title>获取公网 IP</title><link>https://icyleaf.com/2012/05/fetch-public-ip/</link><pubDate>Wed, 09 May 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/05/fetch-public-ip/</guid><description>&lt;pre tabindex="0">&lt;code>$ curl -s http://checkip.dyndns.org | grep -Eo &amp;#39;([0-9]{1,3}\\.){3}[0-9]{1,3}&amp;#39;
-&lt;/code>&lt;/pre></description><content:encoded><![CDATA[<pre tabindex="0"><code>$ curl -s http://checkip.dyndns.org | grep -Eo &#39;([0-9]{1,3}\\.){3}[0-9]{1,3}&#39;
-</code></pre>]]></content:encoded></item><item><title>QuickLook 感悟</title><link>https://icyleaf.com/2012/04/thinking-in-quicklook/</link><pubDate>Mon, 30 Apr 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/04/thinking-in-quicklook/</guid><description>&lt;p>前段时间对 OS X 系统的 &lt;a href="http://en.wikipedia.org/wiki/Quick_Look">QuickLook&lt;/a> 非常感兴趣，能够随着开发者的定制，针对不同的文件呈现符合用户需求的预览功能，然后认为它属于是万能的。随后可以琢磨利用它做些意思的事情。&lt;/p>...</description><content:encoded><![CDATA[<p>前段时间对 OS X 系统的 <a href="http://en.wikipedia.org/wiki/Quick_Look">QuickLook</a> 非常感兴趣，能够随着开发者的定制，针对不同的文件呈现符合用户需求的预览功能，然后认为它属于是万能的。随后可以琢磨利用它做些意思的事情。</p>
+]]></content:encoded></item><item><title>QuickLook 感悟</title><link>https://icyleaf.com/2012/04/thinking-in-quicklook/</link><pubDate>Mon, 30 Apr 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/04/thinking-in-quicklook/</guid><description>&lt;p>前段时间对 OS X 系统的 &lt;a href="http://en.wikipedia.org/wiki/Quick_Look">QuickLook&lt;/a> 非常感兴趣，能够随着开发者的定制，针对不同的文件呈现符合用户需求的预览功能，然后认为它属于是万能的。随后可以琢磨利用它做些意思的事情。&lt;/p>...</description><content:encoded><![CDATA[<p>前段时间对 OS X 系统的 <a href="http://en.wikipedia.org/wiki/Quick_Look">QuickLook</a> 非常感兴趣，能够随着开发者的定制，针对不同的文件呈现符合用户需求的预览功能，然后认为它属于是万能的。随后可以琢磨利用它做些意思的事情。</p>
 <h1 id="范例">范例</h1>
 <p>为了大家对它有个直接的认识，我这里找了几个范例，看到图大家就非常明白了！</p>
 <p>默认系统很对 QuickTime 兼容格式的可以实现视频预览播放，如果安装了最新的 MPlayerX，同样也支持大多数格式（目前还不支持 mkv）
@@ -8494,36 +8447,7 @@ pngcrush -dir reverted -revert-iphone-optimizations -q ipa/*.png
 <h1 id="atpeek">atPeek</h1>
 <p>我就知道你不会满足上面半自动的工具，我想 <a href="http://www.atpurpose.com/atPeek/">atPeek</a>(奇怪为什么会被墙掉) 也是你在本博文中最满意的工具。正式介绍下，这个工具自打开的一瞬间，就会加载 <code>Music/iTunes/Mobile Applications</code> 目录下面的所有 ipa 文件。点击你需要查看的 ipa 文件，不仅可以查看该 ipa 的基本 App，最让大家爽的是，ipa 的所有资源文件以文件资源管理器的方式呈现出来。嗯，没错！我可以看到你们双眼发光了！</p>
 <p>但是，这是一个付费应用，你可以进行的操作就是浏览 ipa 和应用自带的预览功能，任何的放大以及导出 png 资源，都是需要付费的，价格为 $4.99。</p>
-]]></content:encoded></item><item><title>升级 xcode 4.3.1</title><link>https://icyleaf.com/2012/03/upgrade-xcode-431/</link><pubDate>Fri, 09 Mar 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/03/upgrade-xcode-431/</guid><description>&lt;p>下载 XCode 目前有两种途径：&lt;/p>
-&lt;p>​1. &lt;a href="http://itunes.apple.com/us/app/xcode/id497799835?mt=12">Mac App Store&lt;/a>&lt;/p>
-&lt;p>​2. &lt;a href="https://developer.apple.com/downloads/index.action">Apple Developer Download Page&lt;/a>
-(需要有开发者账号并登陆）&lt;/p>
-&lt;p>对于前者好处在于免费下载但下载时间或许非常漫长；但后者如果条件都满足的话（apple developer id + &lt;a href="http://t.cn/zOcn4KN">script&lt;/a> + vps + axel）那就可以非常快速的下载到页面上面的所有资源。&lt;/p>...</description><content:encoded><![CDATA[<p>下载 XCode 目前有两种途径：</p>
-<p>​1. <a href="http://itunes.apple.com/us/app/xcode/id497799835?mt=12">Mac App Store</a></p>
-<p>​2. <a href="https://developer.apple.com/downloads/index.action">Apple Developer Download Page</a>
-(需要有开发者账号并登陆）</p>
-<p>对于前者好处在于免费下载但下载时间或许非常漫长；但后者如果条件都满足的话（apple developer id + <a href="http://t.cn/zOcn4KN">script</a> + vps + axel）那就可以非常快速的下载到页面上面的所有资源。</p>
-<p>XCode 4.3 之后的版本采用核心和模块分离，现在主程序只有 1.8G 左右，其余的包括 Command line tools + dashcode + graphics tools（同样可以使用上面的脚本）需要单独按需下载。但这还不是变化最大的，最大的地方在于之前版本都是存放在 <code>/Developer</code> 路径下面，4.3 之后的版本统一改放在了 <code>/Applications</code>下面，下载 dmg 打开后直接把 Xcode 拖入 <code>/Applications</code> 即可。</p>
-<p>安装完毕后首次启动，会有一个提示，这点需要非常注意，新版的会要求你把 <code>/Developer</code> 以及 <code>/Applications/Install Xcode</code> 一并移动至回收站，注意是整个目录完全移动。假如你的机器安装了其他的开发工具放置在了<code>/Developer</code> 了，这里就需要谨慎处理。</p>
-<p>初次之外，我参考 <a href="http://useyourloaf.com/blog/2012/2/17/updating-to-xcode-43.html">Use Your Loaf</a>的博文，假如你的环境还需要依赖 Command line tools for xcode，除了下载和安装的过程，还需要在终端作下处理。比如上面提到博文所说的 <code>agvtools</code> 管理 App 版本自动化的工具。在升级 4.3+ 版本可能就会出现下面的错误</p>
-<pre tabindex="0"><code>$ agvtools
-Error: No developer directory found at /Developer.
-Run /usr/bin/xcode-select to update the developer directory path.
-</code></pre><p>Use Your Loaf 博文提到需要使用 <code>xcode-select</code> 重新选择 Xcode 的安装路径，来保证终端工具可以正常运行，但是在 4.3.1 中我尝试还是失败。提示如下：</p>
-<pre tabindex="0"><code>$ sudo /usr/bin/xcode-select -switch /Applications/Xcode.app
-$ agvtool
-Error: Can&#39;t run /Applications/Xcode.app/usr/bin/agvtool (no such file).
-</code></pre><p>经常检查发现，实际上 Command line tools 安装后存放在 <code>/Applications/Xcode.app/Contents/Developer/usr</code> 路径下面，尝试更正操作:</p>
-<pre tabindex="0"><code>$ sudo /usr/bin/xcode-select -switch /Applications/Xcode.app/Contents/Developer/
-
-搞定！
-
----------华丽丽的分割线---------
-
-**Instruments 哪里去了？**
-
-哼哼，尝试在 Xcode 图标右键 &#34;Open Developer Tool&#34;，看到了吧，还有一些其他的工具 :)
-</code></pre>]]></content:encoded></item><item><title>Colors</title><link>https://icyleaf.com/2012/03/colors-is-ios-development-utility-tool/</link><pubDate>Fri, 02 Mar 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/03/colors-is-ios-development-utility-tool/</guid><description>&lt;blockquote>
+]]></content:encoded></item><item><title>Colors</title><link>https://icyleaf.com/2012/03/colors-is-ios-development-utility-tool/</link><pubDate>Fri, 02 Mar 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/03/colors-is-ios-development-utility-tool/</guid><description>&lt;blockquote>
 &lt;p>最新更新，发现更好的免费取色器 &lt;a href="https://itunes.apple.com/us/app/sip/id507257563?mt=12">Sip&lt;/a>&lt;/p>
 &lt;/blockquote>
 &lt;p>&lt;a href="http://mattpatenaude.com/">Colors&lt;/a> 是一个简单的颜色取色器，简单的有可能你都没有听说过它，虽然它对于平面设计师以及
@@ -8692,27 +8616,7 @@ void setFont(TextView name, String path, int res)
 }
 </code></pre><p>扩展阅读 [<a href="http://mobile.tutsplus.com/tutorials/android/customize-android-fonts/">1</a>] [<a href="http://russenreaktor.wordpress.com/2010/04/29/solved-android-using-custom-fonts/">2</a>]</p>
 <p>话说，为什么 Android 到现在都没有更多的开源的库和框架呢？</p>
-]]></content:encoded></item><item><title>Chrome 扩展</title><link>https://icyleaf.com/2011/06/chrome-extension-url-to-qr-code/</link><pubDate>Thu, 16 Jun 2011 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2011/06/chrome-extension-url-to-qr-code/</guid><description>&lt;p>URL to QR-Code 是一个 Chrome 扩展,适用于 Chrome 浏览页面的同时希望把在手机设备(当然手机得支持 QR-Code的扫描)也能访问.我总结可以适用于以下情景:&lt;/p>
-&lt;ul>
-&lt;li>这个网页必须使用手机设备访问&lt;/li>
-&lt;li>这个网页是一个手机应用的安装链接(AppStore/Google Market),用手机访问可以直接安装&lt;/li>
-&lt;li>我就是想用手机浏览此网页,怎么着&lt;/li>
-&lt;/ul>
-&lt;p>好吧,基于以上情景,我做了一个 Chrome 扩展,恩,没错,只适用于 Chrome,也许会有人说,这个东西网上已经有了,为什么你还要重造轮子.我的理由是,虽然我的功能非常简单,鉴于目前现有的一些应用,都会把功能显示在 Chrome 的 Tab 上面,其实这个功能用的几率并不多,放在 Tab 实在是浪费了太大的空间,我的 Tab 的 Icons 已经负载过多了(大家可参考我之前分享的 &lt;a href="http://icyleaf.com/2011/06/11/im-using-chrome-extensions-software-list/">我常用的 Chrome 扩展集合&lt;/a>),因此我决定把 Icon 丢在地址栏的右侧,这里相对于的利用空间更小.点击之后直接弹出
-QR-Code,方便手机扫描.&lt;/p>...</description><content:encoded><![CDATA[<p>URL to QR-Code 是一个 Chrome 扩展,适用于 Chrome 浏览页面的同时希望把在手机设备(当然手机得支持 QR-Code的扫描)也能访问.我总结可以适用于以下情景:</p>
-<ul>
-<li>这个网页必须使用手机设备访问</li>
-<li>这个网页是一个手机应用的安装链接(AppStore/Google Market),用手机访问可以直接安装</li>
-<li>我就是想用手机浏览此网页,怎么着</li>
-</ul>
-<p>好吧,基于以上情景,我做了一个 Chrome 扩展,恩,没错,只适用于 Chrome,也许会有人说,这个东西网上已经有了,为什么你还要重造轮子.我的理由是,虽然我的功能非常简单,鉴于目前现有的一些应用,都会把功能显示在 Chrome 的 Tab 上面,其实这个功能用的几率并不多,放在 Tab 实在是浪费了太大的空间,我的 Tab 的 Icons 已经负载过多了(大家可参考我之前分享的 <a href="http://icyleaf.com/2011/06/11/im-using-chrome-extensions-software-list/">我常用的 Chrome 扩展集合</a>),因此我决定把 Icon 丢在地址栏的右侧,这里相对于的利用空间更小.点击之后直接弹出
-QR-Code,方便手机扫描.</p>
-<p>安装地址: http://icyleaf.googlecode.com/svn/javascript/Chrome/url_to_qr_code_v0.1.crx</p>
-<p>&mdash;&mdash;&mdash;&mdash;&ndash;需要更新的分割线&mdash;&mdash;&mdash;&mdash;&mdash;-</p>
-<p>发现 Google Chart API 居然提供支持 QR-Code,文档在此后面准备更换生成QR-Code的服务接口支持选文字生成和文字链的原始链接的生成.这里算是埋下一个坑,大家可以提醒我来填满。。。</p>
-<p>文档地址：http://code.google.com/apis/chart/image/docs/gallery/qr_codes.html</p>
-]]></content:encoded></item><item><title>魔豆及其豆瓣 API 测试平台开源咯</title><link>https://icyleaf.com/2011/05/modou-and-douban-api-console-is-open-source-now/</link><pubDate>Mon, 02 May 2011 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2011/05/modou-and-douban-api-console-is-open-source-now/</guid><description>&lt;p>这是作为 2011 年 5 月 1 日劳动节的福利发放，欢迎各位 Kohana 开发者及其爱好者围观领取，领取内容及其使用方式请前往本人 Github 的项目地址：https://github.com/icyleaf/modou&lt;/p>...</description><content:encoded>&lt;p>这是作为 2011 年 5 月 1 日劳动节的福利发放，欢迎各位 Kohana 开发者及其爱好者围观领取，领取内容及其使用方式请前往本人 Github 的项目地址：https://github.com/icyleaf/modou&lt;/p>
-</content:encoded></item><item><title>如何在开发和发布环境使用 Android Map Key</title><link>https://icyleaf.com/2011/05/how-to-using-android-map-key-both-in-development-and-production/</link><pubDate>Mon, 02 May 2011 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2011/05/how-to-using-android-map-key-both-in-development-and-production/</guid><description>&lt;p>在项目中第一次使用并涉及 Google Map 的功能，而由于 Google 的限制，Google Map 模块出来需要单独下载模块之外，对于每一个应用还都必须具有一个 Google Map Key，这点和使用 Web 开发调用 Google Map API 是一致的。&lt;/p>...</description><content:encoded><![CDATA[<p>在项目中第一次使用并涉及 Google Map 的功能，而由于 Google 的限制，Google Map 模块出来需要单独下载模块之外，对于每一个应用还都必须具有一个 Google Map Key，这点和使用 Web 开发调用 Google Map API 是一致的。</p>
+]]></content:encoded></item><item><title>如何在开发和发布环境使用 Android Map Key</title><link>https://icyleaf.com/2011/05/how-to-using-android-map-key-both-in-development-and-production/</link><pubDate>Mon, 02 May 2011 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2011/05/how-to-using-android-map-key-both-in-development-and-production/</guid><description>&lt;p>在项目中第一次使用并涉及 Google Map 的功能，而由于 Google 的限制，Google Map 模块出来需要单独下载模块之外，对于每一个应用还都必须具有一个 Google Map Key，这点和使用 Web 开发调用 Google Map API 是一致的。&lt;/p>...</description><content:encoded><![CDATA[<p>在项目中第一次使用并涉及 Google Map 的功能，而由于 Google 的限制，Google Map 模块出来需要单独下载模块之外，对于每一个应用还都必须具有一个 Google Map Key，这点和使用 Web 开发调用 Google Map API 是一致的。</p>
 <p>对于 Android 采用的 Google Map Key 来说，是由一串 MD5 值（类似这样：94:1E:43:49:87:73:BB:E6:A6:88:D7:20:F1:8E:B5:98）生成的。那么这个 MD5 是哪来的呢？</p>
 <p>​1. 开发环境的 Google Map Key</p>
 <p>这个比较简单，网上大面积教程所采用的 android 系统默认带有一个 debug.keystore。假如开发使用 Eclipse，在其 windows -&gt; Preference -&gt; Android -&gt; Build 下，其中 Default debug keystore 的值便是 debug.keystore 的路径。</p>
@@ -8736,7 +8640,7 @@ QR-Code,方便手机扫描.</p>
 <p>为什么我要说上面这段和标题并不沾边的文字呢，实际上现在要发布的日志本来在我看来是非常没有必要的，因为这个项目我已经在 git 上面 fork 并贡献了关于国内相关微博/SNS服务的代码，我以为大家可以通过搜索引擎搜索到，可想还是有人来问我，那好吧，为了减少询问我的次数，以及这篇日志的SEO，我还是写下了这个日志。</p>
 <p>Github 项目地址：https://github.com/icyleaf/ShareKit</p>
 <p>衷心希望这个 fork 的代码对热情开发的人有所帮助！</p>
-]]></content:encoded></item><item><title>个人常用 OS X 软件集合</title><link>https://icyleaf.com/2011/03/im-using-osx-software-list/</link><pubDate>Tue, 29 Mar 2011 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2011/03/im-using-osx-software-list/</guid><description>&lt;p>用了 OS X 已经半年多了，整理下日常常用的软件。大多数都是开源或者免费软件，少数需要购买&lt;/p>
+]]></content:encoded></item><item><title>个人常用 OS X 软件集合 (2011 年版)</title><link>https://icyleaf.com/2011/03/im-using-osx-software-list-in-2011/</link><pubDate>Tue, 29 Mar 2011 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2011/03/im-using-osx-software-list-in-2011/</guid><description>&lt;p>用了 OS X 已经半年多了，整理下日常常用的软件。大多数都是开源或者免费软件，少数需要购买&lt;/p>
 &lt;ul>
 &lt;li>AppCleaner：卸载软件必备，适合用于第三方安装和 App Store&lt;/li>
 &lt;li>aliwangwang：淘宝用户必备&lt;/li>
@@ -8881,36 +8785,7 @@ OST （曾一度在网上搜索关键词写成 OTA）</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ open .
 </span></span></code></pre></div><p>PS，如果是 Ubuntu 系统的话请安装 nautilus，然后在 Terminal 里面输入</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ nautilus .
-</span></span></code></pre></div>]]></content:encoded></item><item><title>Ubuntu 解决 public key is not available 问题</title><link>https://icyleaf.com/2010/11/apt-get-gpg-error-public-key-not-available/</link><pubDate>Wed, 03 Nov 2010 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2010/11/apt-get-gpg-error-public-key-not-available/</guid><description>&lt;p>自 Ubuntu 10.04 升级至 10.10 之后，系统就有些不注意的小毛病，包括系统的各个软件的配置文件可能有改动，加上常年累计尝试并添加很多 ppa&lt;/p>
-&lt;p>的源，自定义的软件源在升级兼容的考虑下全部金禁用了导致原本软件源的注解名称也没有了，自己不知道各个软件源是干什么的&amp;hellip;于是手动在软件源管理（a本放在了 Applications -&amp;gt; Ubuntu Software Center 程序里面 Edit 菜单下面）清理。&lt;/p>...</description><content:encoded><![CDATA[<p>自 Ubuntu 10.04 升级至 10.10 之后，系统就有些不注意的小毛病，包括系统的各个软件的配置文件可能有改动，加上常年累计尝试并添加很多 ppa</p>
-<p>的源，自定义的软件源在升级兼容的考虑下全部金禁用了导致原本软件源的注解名称也没有了，自己不知道各个软件源是干什么的&hellip;于是手动在软件源管理（a本放在了 Applications -&gt; Ubuntu Software Center 程序里面 Edit 菜单下面）清理。</p>
-<p>第一开始是凭记忆清理了一部分不再使用的软件的源，退出后更新发现失败&hellip;再次清理 Authentication 里面的 Public key，发现还是有问题，最后下定狠心把所有的源和 public key 全部删除了再更新发现还是有错误 T_T 其实错误提示的是一种类型的：</p>
-<blockquote>
-<p>W: GPG error: <a href="http://ppa.launchpad.net">http://ppa.launchpad.net</a> jaunty Release: The following signatures couldn&rsquo;t be verified because the public key is not available: NO_PUBKEY 12DE1BCB04E5E17B5</p>
-</blockquote>
-<p>自己动手丰衣足食&hellip;Google 之发现有两种解决方案，第一个是在 launchpad keyserver 网站搜索 key 从而找到 public
-key，详情请看[这里][]。第二种则相对于比较简单：命令行流。</p>
-<p>​1. 复制报错的尾部 NO_PUBKEY 后面的串的后 8
-位（以上面的为例：4E5E17B5），执行:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ gpg --keyserver keyserver.ubuntu.com --recv 4E5E17B5# 返回信息gpg: requesting key 4E5E17B5 from hkp server keyserver.ubuntu.comgpg: key 4E5E17B5: public key <span class="s2">&#34;Launchpad PPA for chromium-daily&#34;</span> importedgpg: no ultimately trusted keys foundgpg: Total number processed: 1gpg:               imported: <span class="m">1</span>  <span class="o">(</span>RSA: 1<span class="o">)</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">$ gpg --export --armor 4E5E17B5 <span class="p">|</span> sudo apt-key add -# 返回信息OK
-</span></span></code></pre></div><p>解决！</p>
-]]></content:encoded></item><item><title>水果属性概述</title><link>https://icyleaf.com/2010/09/fruit-properties-overview/</link><pubDate>Sat, 25 Sep 2010 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2010/09/fruit-properties-overview/</guid><description>&lt;p>&lt;strong>热性水果&lt;/strong>：适合寒性体质&lt;/p>
-&lt;p>榴连、黑枣&lt;/p>
-&lt;p>&lt;strong>温性水果&lt;/strong>：适合寒性体质&lt;/p>
-&lt;p>芒果、荔枝、桃子、龙眼、红毛丹、水蜜桃、板栗、释迦、椰子肉、金桔、乌梅、樱桃、红枣、&lt;/p>
-&lt;p>李子(微温)&lt;/p>...</description><content:encoded><![CDATA[<p><strong>热性水果</strong>：适合寒性体质</p>
-<p>榴连、黑枣</p>
-<p><strong>温性水果</strong>：适合寒性体质</p>
-<p>芒果、荔枝、桃子、龙眼、红毛丹、水蜜桃、板栗、释迦、椰子肉、金桔、乌梅、樱桃、红枣、</p>
-<p>李子(微温)</p>
-<p><strong>平性水果</strong>：适合各种体质</p>
-<p>百香果、柠檬、番石榴、酪梨、凤梨、葡萄、莲雾、柳橙、甘蔗、木瓜、橄榄、梅子、印度枣</p>
-<p><strong>凉性水果</strong>：适合热性体质</p>
-<p>火龙果、梨、苹果、杨桃、山竹、葡萄柚、草莓、枇杷</p>
-<p><strong>寒性水果</strong>：适合热性体质</p>
-<p>蕃茄(微寒)、西瓜、香蕉、奇异果、甜瓜、柚子、橘子、柿子、椰子水、桑椹</p>
-]]></content:encoded></item><item><title>Nginx+FastCGI 环境搭建 Kohana</title><link>https://icyleaf.com/2010/05/nginx-with-fastcgi-build-kohana/</link><pubDate>Mon, 31 May 2010 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2010/05/nginx-with-fastcgi-build-kohana/</guid><description>&lt;p>Kohana 默认仅对 Apache 环境提供的部署支持，其实对于 Nginx+FastCGI
+</span></span></code></pre></div>]]></content:encoded></item><item><title>Nginx+FastCGI 环境搭建 Kohana</title><link>https://icyleaf.com/2010/05/nginx-with-fastcgi-build-kohana/</link><pubDate>Mon, 31 May 2010 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2010/05/nginx-with-fastcgi-build-kohana/</guid><description>&lt;p>Kohana 默认仅对 Apache 环境提供的部署支持，其实对于 Nginx+FastCGI
 也是很容易支持的。本文搭建环境是 Ubuntu 10.4 并采用 apt-get
 方式安装，喜爱编译的朋友可以自行解决 :)&lt;/p>
 &lt;h3 id="1-安装-mysql">1. 安装 MySQL&lt;/h3>
@@ -9270,11 +9145,7 @@ XD</p>
 <p>那天阳光灿烂， 由于起飞的时候正好是早上 8 点多钟，从北京飞往乌市需要 4 个小时的时间，起初新鲜抓着相机拍了好多的云彩和大大的太阳，一抹蓝蓝的天空，后来飞机一直在厚厚的云层中飞行，抓起书继续阅读《向加泰罗尼亚致敬》一书，偶尔和身边的新疆人随便闲扯几句，他是一个很粗犷但心很细的中年人，从事销售行业。和他聊起了第一印象还是很不错的，没有传说中的那么恶略。趁下机的时候还给了我一些提醒。</p>
 <p>当飞机经过甘肃，莫高窟之后，透过飞机出窗户看到的就是另一番风景：一望无际的沙漠，蜿蜒的山脉，旷阔的牧地，曲折的河流，水库和巍巍的天山被银白的白雪覆盖，相机是一直不断的刷刷刷的拍个不停，那个时候阳光已经非常明媚，而且加上窗户的反光，阳光的光晕，以及不小心就能拍到机翼，导致废掉了好多照片。</p>
 <p>待续&hellip;</p>
-]]></content:encoded></item><item><title>几本和 Git 相关的书</title><link>https://icyleaf.com/2009/09/books-about-git/</link><pubDate>Mon, 28 Sep 2009 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2009/09/books-about-git/</guid><description>&lt;p>切换到 Git开发已经有一段的时间了，之前一直在使用 svn，现在部分代码还在
-Google Code 托管。不过自换了 Git 之后发现 Git 更方便且效率更高，不过用来用去常用的就拿几个命令，很多时候都要去找一些参考资料和教程。从学习到现在一个接触了一个文档，三本书。文档就是官方的文档手册，这个就不再说了，安装完 git 也都会默认内置的，对于这三本书，依次为 &lt;a href="http://book.git-scm.com/">Git Community Book&lt;/a>，&lt;a href="http://progit.org/">ProGit&lt;/a>，&lt;a href="http://zh-cn.whygitisbetterthanx.com/">Why Git is Better Than X&lt;/a>（X 代表其他 SCM 软件，如
-svn，bzr等）。&lt;/p>...</description><content:encoded><![CDATA[<p>切换到 Git开发已经有一段的时间了，之前一直在使用 svn，现在部分代码还在
-Google Code 托管。不过自换了 Git 之后发现 Git 更方便且效率更高，不过用来用去常用的就拿几个命令，很多时候都要去找一些参考资料和教程。从学习到现在一个接触了一个文档，三本书。文档就是官方的文档手册，这个就不再说了，安装完 git 也都会默认内置的，对于这三本书，依次为 <a href="http://book.git-scm.com/">Git Community Book</a>，<a href="http://progit.org/">ProGit</a>，<a href="http://zh-cn.whygitisbetterthanx.com/">Why Git is Better Than X</a>（X 代表其他 SCM 软件，如
-svn，bzr等）。</p>
+]]></content:encoded></item><item><title>几本和 Git 相关的书</title><link>https://icyleaf.com/2009/09/books-about-git/</link><pubDate>Mon, 28 Sep 2009 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2009/09/books-about-git/</guid><description>&lt;p>切换到 Git开发已经有一段的时间了，之前一直在使用 svn，现在部分代码还在 Google Code 托管。不过自换了 Git 之后发现 Git 更方便且效率更高，不过用来用去常用的就拿几个命令，很多时候都要去找一些参考资料和教程。从学习到现在一个接触了一个文档，三本书。文档就是官方的文档手册，这个就不再说了，安装完 git 也都会默认内置的，对于这三本书，依次为 &lt;a href="http://book.git-scm.com/">Git Community Book&lt;/a>，&lt;a href="http://progit.org/">ProGit&lt;/a>，&lt;a href="http://zh-cn.whygitisbetterthanx.com/">Why Git is Better Than X&lt;/a>（X 代表其他 SCM 软件，如 svn，bzr等）。&lt;/p>...</description><content:encoded><![CDATA[<p>切换到 Git开发已经有一段的时间了，之前一直在使用 svn，现在部分代码还在 Google Code 托管。不过自换了 Git 之后发现 Git 更方便且效率更高，不过用来用去常用的就拿几个命令，很多时候都要去找一些参考资料和教程。从学习到现在一个接触了一个文档，三本书。文档就是官方的文档手册，这个就不再说了，安装完 git 也都会默认内置的，对于这三本书，依次为 <a href="http://book.git-scm.com/">Git Community Book</a>，<a href="http://progit.org/">ProGit</a>，<a href="http://zh-cn.whygitisbetterthanx.com/">Why Git is Better Than X</a>（X 代表其他 SCM 软件，如 svn，bzr等）。</p>
 <ul>
 <li>Why Git is Better Than X 已经有国内友人翻译完毕，一一介绍了 Git 与其他 SCM 软件有什么优势和特色</li>
 <li>ProGit 不久前开启了<a href="http://progit.org/2009/08/19/translate-this.html">翻译计划</a>，中文目前还在<a href="http://groups.google.com/group/progit-zh">翻译过程</a>中，这本书很适合作为入门使用和工具书，欢迎前来 <a href="http://github.com/progit/progit">Fork</a></li>
@@ -9309,19 +9180,16 @@ Github 放出了源码！而且声称会开发 Linux 版本并且弘扬 Linux �
 editor on Fedora 10</a></p>
 <p>不知道身为 Textmate clone 的 Intype
 会做何打算，它们目前正在全力开发新的版本（貌似内核和界面全部重新），拭目以待！</p>
-]]></content:encoded></item><item><title>豆瓣API测试控制台</title><link>https://icyleaf.com/2009/07/douban-api-console/</link><pubDate>Mon, 06 Jul 2009 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2009/07/douban-api-console/</guid><description>&lt;blockquote>
-&lt;p>项目已开源: &lt;a href="http://github.com/icyleaf/modou">http://github.com/icyleaf/modou&lt;/a>&lt;/p>
-&lt;/blockquote>
-&lt;p>豆瓣 API 测试控制台的创造灵感来源于 Facebook Developers Tools 中的&lt;a href="http://developers.facebook.com/tools.php">Facebook API Console&lt;/a>， 或许大家知道，魔豆是我的另外一个豆瓣 API 应用，由于是自己封装的 Douban
+]]></content:encoded></item><item><title>豆瓣API测试控制台</title><link>https://icyleaf.com/2009/07/douban-api-console/</link><pubDate>Mon, 06 Jul 2009 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2009/07/douban-api-console/</guid><description>&lt;p>豆瓣 API 测试控制台的创造灵感来源于 Facebook Developers Tools 中的&lt;a href="http://developers.facebook.com/tools.php">Facebook API Console&lt;/a>， 或许大家知道，魔豆是我的另外一个豆瓣 API 应用，由于是自己封装的 Douban
 API（官方提供的库类要求太多，安装繁琐，这不属于我喜爱简洁，轻便的风格），每次想查看某个
 API 接口返回的数据都要写一个 test 跑一下。麻烦不说，还容易出错，于是，使用自己封装的 Douban API，借鉴 Facebook API Console
-的界面和类似的功能显示，终于小有所成，其中为了实现此控制台，封包的库类经过两次大改，虽然改的很辛苦，但从中学到了很多开发经验。&lt;/p>...</description><content:encoded><![CDATA[<blockquote>
-<p>项目已开源: <a href="http://github.com/icyleaf/modou">http://github.com/icyleaf/modou</a></p>
-</blockquote>
-<p>豆瓣 API 测试控制台的创造灵感来源于 Facebook Developers Tools 中的<a href="http://developers.facebook.com/tools.php">Facebook API Console</a>， 或许大家知道，魔豆是我的另外一个豆瓣 API 应用，由于是自己封装的 Douban
+的界面和类似的功能显示，终于小有所成，其中为了实现此控制台，封包的库类经过两次大改，虽然改的很辛苦，但从中学到了很多开发经验。&lt;/p>...</description><content:encoded><![CDATA[<p>豆瓣 API 测试控制台的创造灵感来源于 Facebook Developers Tools 中的<a href="http://developers.facebook.com/tools.php">Facebook API Console</a>， 或许大家知道，魔豆是我的另外一个豆瓣 API 应用，由于是自己封装的 Douban
 API（官方提供的库类要求太多，安装繁琐，这不属于我喜爱简洁，轻便的风格），每次想查看某个
 API 接口返回的数据都要写一个 test 跑一下。麻烦不说，还容易出错，于是，使用自己封装的 Douban API，借鉴 Facebook API Console
 的界面和类似的功能显示，终于小有所成，其中为了实现此控制台，封包的库类经过两次大改，虽然改的很辛苦，但从中学到了很多开发经验。</p>
+<blockquote>
+<p>项目已开源: <a href="http://github.com/icyleaf/modou">http://github.com/icyleaf/modou</a></p>
+</blockquote>
 <p>测试用户必须先进行用户验证才能进行测试，这主要是为了：</p>
 <ol>
 <li>避免提交查询中出现错误，并让测试者使用到全部API方法</li>
@@ -9360,17 +9228,14 @@ id 留空或者设置为 ‘me’ （不带引号），这样调用结果显示�
 <p>由于目前为止豆瓣 API 还没有封装完成，现只提供用户，广播，书影音，豆邮和日记的不完全功能测试查询。
 其余的 API 会尽快添加进去 :)</p>
 <p>测试地址：<a href="http://ews.im/douban_console">http://ews.im/douban_console</a></p>
-]]></content:encoded></item><item><title>魔豆：豆瓣网非官方移动版本</title><link>https://icyleaf.com/2009/06/modou/</link><pubDate>Mon, 22 Jun 2009 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2009/06/modou/</guid><description>&lt;blockquote>
-&lt;p>项目已开源: &lt;a href="http://github.com/icyleaf/modou">http://github.com/icyleaf/modou&lt;/a> 但不再维护。&lt;/p>
-&lt;/blockquote>
-&lt;p>&lt;a href="http://modou.us" title="魔豆：豆瓣网非官方移动版本">魔豆&lt;/a>，一个&lt;a href="http://douban.com">豆瓣网&lt;/a>非官方移动版本，基于&lt;a href="http://www.douban.com/service/apidoc/" title="豆瓣 API">豆瓣
+]]></content:encoded></item><item><title>魔豆：豆瓣网非官方移动版本</title><link>https://icyleaf.com/2009/06/modou/</link><pubDate>Mon, 22 Jun 2009 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2009/06/modou/</guid><description>&lt;p>&lt;a href="http://modou.us" title="魔豆：豆瓣网非官方移动版本">魔豆&lt;/a>，一个&lt;a href="http://douban.com">豆瓣网&lt;/a>非官方移动版本，基于&lt;a href="http://www.douban.com/service/apidoc/" title="豆瓣 API">豆瓣
 API&lt;/a>开发的专门为移动终端（手持设备）定制的豆瓣移动版本。魔豆专注于豆瓣网的&lt;strong>广播&lt;/strong>及&lt;strong>同城活动&lt;/strong>。&lt;/p>
-&lt;p>魔豆的来历：豆瓣移动版 -&amp;gt; Douban mobile -&amp;gt; moDouban -&amp;gt; moDou -&amp;gt;魔豆&lt;/p>...</description><content:encoded><![CDATA[<blockquote>
-<p>项目已开源: <a href="http://github.com/icyleaf/modou">http://github.com/icyleaf/modou</a> 但不再维护。</p>
-</blockquote>
-<p><a href="http://modou.us" title="魔豆：豆瓣网非官方移动版本">魔豆</a>，一个<a href="http://douban.com">豆瓣网</a>非官方移动版本，基于<a href="http://www.douban.com/service/apidoc/" title="豆瓣 API">豆瓣
+&lt;p>魔豆的来历：豆瓣移动版 -&amp;gt; Douban mobile -&amp;gt; moDouban -&amp;gt; moDou -&amp;gt;魔豆&lt;/p>...</description><content:encoded><![CDATA[<p><a href="http://modou.us" title="魔豆：豆瓣网非官方移动版本">魔豆</a>，一个<a href="http://douban.com">豆瓣网</a>非官方移动版本，基于<a href="http://www.douban.com/service/apidoc/" title="豆瓣 API">豆瓣
 API</a>开发的专门为移动终端（手持设备）定制的豆瓣移动版本。魔豆专注于豆瓣网的<strong>广播</strong>及<strong>同城活动</strong>。</p>
 <p>魔豆的来历：豆瓣移动版 -&gt; Douban mobile -&gt; moDouban -&gt; moDou -&gt;魔豆</p>
+<blockquote>
+<p>项目已开源: <a href="http://github.com/icyleaf/modou">http://github.com/icyleaf/modou</a> 但不再维护。</p>
+</blockquote>
 <p>目前魔豆发布的功能：</p>
 <ol>
 <li>友邻广播：支持显示广播，回复发起人和重播（重复发布其他发起者的广播）</li>
@@ -9489,20 +9354,12 @@ AIR 客户端版本。嵌入式主要是说 Mockups
   alt="mockups snapshot"></img>
 ]: <a href="http://icyleaf.com/wp-content/uploads/2009/02/2009-02-18_00044.jpg">http://icyleaf.com/wp-content/uploads/2009/02/2009-02-18_00044.jpg</a>
 [http://www.balsamiq.com/products/mockups]: <a href="http://www.balsamiq.com/products/mockups">http://www.balsamiq.com/products/mockups</a></p>
-]]></content:encoded></item><item><title>与SPAM战斗到底：CSS篇</title><link>https://icyleaf.com/2009/02/fighting-spam-with-css/</link><pubDate>Sun, 08 Feb 2009 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2009/02/fighting-spam-with-css/</guid><description>&lt;p>SPAM，现在还没有一个非常严格的定义。一般来说，凡是未经用户许可就强行发送到用户的邮箱中的任何电子邮件。现在应该已经广泛各种网络应用上面。对于网站来说，网站知名度小的时候或许还可以免于“侵犯”，可是一旦在搜索引擎收录的数量做出一些成绩，SPAM 就会主动找上门来，各种垃圾信息就会扑面而来，然而对SPAM 的战斗一起在进行，这是一场没有硝烟的战争，为了防范
+]]></content:encoded></item><item><title>与 SPAM 战斗到底：CSS 篇</title><link>https://icyleaf.com/2009/02/fighting-spam-with-css/</link><pubDate>Sun, 08 Feb 2009 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2009/02/fighting-spam-with-css/</guid><description>&lt;p>SPAM，现在还没有一个非常严格的定义。一般来说，凡是未经用户许可就强行发送到用户的邮箱中的任何电子邮件。现在应该已经广泛各种网络应用上面。对于网站来说，网站知名度小的时候或许还可以免于“侵犯”，可是一旦在搜索引擎收录的数量做出一些成绩，SPAM 就会主动找上门来，各种垃圾信息就会扑面而来，然而对SPAM 的战斗一起在进行，这是一场没有硝烟的战争，为了防范
 SPAM，大家各显其能，招招新颖，当然还有一些专门为 SPAM 创建防御服务的网站，比如说 WordPress 自带的 &lt;a href="http://akismet.com/">Akismet&lt;/a>。对于各种防御方法，我想应该可以写成一个系列，这个系列的内容或许是从网络上搜集或许是自己突发奇想想出来的奇招（目前应该还不可能哈）。&lt;/p>...</description><content:encoded><![CDATA[<p>SPAM，现在还没有一个非常严格的定义。一般来说，凡是未经用户许可就强行发送到用户的邮箱中的任何电子邮件。现在应该已经广泛各种网络应用上面。对于网站来说，网站知名度小的时候或许还可以免于“侵犯”，可是一旦在搜索引擎收录的数量做出一些成绩，SPAM 就会主动找上门来，各种垃圾信息就会扑面而来，然而对SPAM 的战斗一起在进行，这是一场没有硝烟的战争，为了防范
 SPAM，大家各显其能，招招新颖，当然还有一些专门为 SPAM 创建防御服务的网站，比如说 WordPress 自带的 <a href="http://akismet.com/">Akismet</a>。对于各种防御方法，我想应该可以写成一个系列，这个系列的内容或许是从网络上搜集或许是自己突发奇想想出来的奇招（目前应该还不可能哈）。</p>
 <p>今天我带给大家的是方法另辟其境：<strong>CSS</strong>。总所周知，CSS 是一种层样式表，只是为了网站界面的展现做出重要贡献的角色。那么它怎么实现防御 SPAM 的呢？ok，接着下看。</p>
 <p><strong>原理</strong></p>
-<p>为了不上了就代码让大家感到迷惑，先讲一下原理：首先在创建表单的时候，添加一个对
-SPAM 校验的 input
-标签，然后再提交的时候进行对这个标签进行判断其值是否为空，因判断是否为
-SPAM（如果你不明白 SPAM 的实现原理请看<a href="http://www.codewall.cn/blog/?p=7">这里</a>）。（看官：不就是设置成
-hidden 类型吗，这谁都知道）错！我承认这是一个最常见的判断 SPAM
-的流程，但这里添加的 input 类型使用的是 text 类型，这是为了防止 SPAM
-在进行抓取页面进行对 input 类型判断是否有 hidden
-类型为设置的，那么怎么隐藏这个 input 标签呢？那么就可以利用到 CSS 的
-display 属性，哈哈，是不是明白了？好吧，看代码吧。</p>
+<p>为了不上了就代码让大家感到迷惑，先讲一下原理：首先在创建表单的时候，添加一个对 SPAM 校验的 input 标签，然后再提交的时候进行对这个标签进行判断其值是否为空，因判断是否为 SPAM。（看官：不就是设置成 hidden 类型吗，这谁都知道）错！我承认这是一个最常见的判断 SPAM 的流程，但这里添加的 input 类型使用的是 text 类型，这是为了防止 SPAM 在进行抓取页面进行对 input 类型判断是否有 hidden 类型为设置的，那么怎么隐藏这个 input 标签呢？那么就可以利用到 CSS 的 display 属性，哈哈，是不是明白了？好吧，看代码吧。</p>
 <p><strong>代码</strong></p>
 <p>HTML 代码：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">Name:&lt;input name=&#34;name&#34; /&gt;&lt;br /&gt;
@@ -9513,11 +9370,9 @@ display 属性，哈哈，是不是明白了？好吧，看代码吧。</p>
 </span></span></code></pre></div><p>CSS 代码：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="ln">1</span><span class="cl">body {line-height:35px;font-family:Arial, Helvetica, sans-serif;color:#333;font-size:14px;}
 </span></span><span class="line"><span class="ln">2</span><span class="cl">.special {display:none;}
-</span></span></code></pre></div><p>上述代码中 class 为 special 的 input 标签即为判断 SPAM 的标志。使用 CSS
-对其隐藏，就在提交表单后进行对这个 input 进行判断是否为空即可。这样就简单避免 SPAM 对 input 的 hidden 判断的避免而轻松达到防御的目的。</p>
+</span></span></code></pre></div><p>上述代码中 class 为 special 的 input 标签即为判断 SPAM 的标志。使用 CSS 对其隐藏，就在提交表单后进行对这个 input 进行判断是否为空即可。这样就简单避免 SPAM 对 input 的 hidden 判断的避免而轻松达到防御的目的。</p>
 <p><strong>声明</strong></p>
-<p>CSS 防御 SPAM 的实现方法来自<a href="http://www.modernblue.com/web-design-blog/fighting-spam-with-css/">Modernblue</a>
-网站发布的文章。本人只是做翻译工作，特此声明。</p>
+<p>CSS 防御 SPAM 的实现方法来自<a href="http://www.modernblue.com/web-design-blog/fighting-spam-with-css/">Modernblue</a> 网站发布的文章。本人只是做翻译工作，特此声明。</p>
 ]]></content:encoded></item><item><title>回顾 2008 年度及总结报告</title><link>https://icyleaf.com/2008/12/2008-year-in-review/</link><pubDate>Tue, 30 Dec 2008 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2008/12/2008-year-in-review/</guid><description>&lt;p>2008 年是一个不平凡的一年，这一年发生了很多大事件：&lt;strong>南方雪灾，西藏拉萨暴力事件，四川汶川大地震，北京奥运会，三鹿奶粉事件，0807（本人毕业）&lt;/strong>&amp;hellip;就在去年的 12 月份，我踏入北京开始了北漂的生活，而且预先给自己制订了一个新的 08 计划：&lt;a href="http://icyleaf.com/2007/12/27/2008-a-new-i/">2008，一个全新的我&lt;/a>。下面针对 08 计划做一下总结：&lt;/p>...</description><content:encoded><![CDATA[<p>2008 年是一个不平凡的一年，这一年发生了很多大事件：<strong>南方雪灾，西藏拉萨暴力事件，四川汶川大地震，北京奥运会，三鹿奶粉事件，0807（本人毕业）</strong>&hellip;就在去年的 12 月份，我踏入北京开始了北漂的生活，而且预先给自己制订了一个新的 08 计划：<a href="http://icyleaf.com/2007/12/27/2008-a-new-i/">2008，一个全新的我</a>。下面针对 08 计划做一下总结：</p>
 <ol>
 <li>
@@ -9600,16 +9455,11 @@ display 属性，哈哈，是不是明白了？好吧，看代码吧。</p>
 </ol>
 <p><strong>特别声明</strong></p>
 <p>本工具只为技术交流使用，请勿做非法事情，如有此事请自己承担法律责任！切记！切记！</p>
-]]></content:encoded></item><item><title>入手 HP6520</title><link>https://icyleaf.com/2008/06/buyed-hp6520/</link><pubDate>Mon, 30 Jun 2008 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2008/06/buyed-hp6520/</guid><description>&lt;p>前天在中关村入手的，哈哈
-o(∩_∩)o&amp;hellip;惠普6520(054)，多年的梦想终于完成了，我的075Q计划延期完成，虽然晚了半年之久，但是能遇到一个自己喜欢的机型和价位比那个时候为了限制价格买本还是很满足的。&lt;/p>...</description><content:encoded><![CDATA[<p>前天在中关村入手的，哈哈
-o(∩_∩)o&hellip;惠普6520(054)，多年的梦想终于完成了，我的075Q计划延期完成，虽然晚了半年之久，但是能遇到一个自己喜欢的机型和价位比那个时候为了限制价格买本还是很满足的。</p>
-<p>昨天把卖家给我的系统格掉了，装了自己刻的系统（WinodwsXP+Linux
-Mint），由于还没有怎么测试，这里初步说一下这两天的使用感受，买本是贴了屏膜和键盘保护，外加了1G的内存，在玩奥妮之刃(oniblade)的时候音效全开，一点也不卡，画面细腻。而在玩鬼泣4PC试玩版的时候，由于本的显卡仅支持Dx9c，所以使用的这个进入的游戏，画面效果很好，跑起来却非常的卡&hellip;我不知道到哪开启帧的监测&hellip;</p>
-<p>在安装一些大体积的程序（MyEclipse，PhotoShop CS3，Fireworks
-CS3的时候，安装速度这叫一个快，看来那1G内存不是白加的，哈哈。</p>
+]]></content:encoded></item><item><title>入手 HP6520</title><link>https://icyleaf.com/2008/06/hp6520/</link><pubDate>Mon, 30 Jun 2008 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2008/06/hp6520/</guid><description>&lt;p>前天在中关村入手的，哈哈 o(∩_∩)o&amp;hellip;惠普6520(054)，多年的梦想终于完成了，我的075Q计划延期完成，虽然晚了半年之久，但是能遇到一个自己喜欢的机型和价位比那个时候为了限制价格买本还是很满足的。&lt;/p>...</description><content:encoded><![CDATA[<p>前天在中关村入手的，哈哈 o(∩_∩)o&hellip;惠普6520(054)，多年的梦想终于完成了，我的075Q计划延期完成，虽然晚了半年之久，但是能遇到一个自己喜欢的机型和价位比那个时候为了限制价格买本还是很满足的。</p>
+<p>昨天把卖家给我的系统格掉了，装了自己刻的系统（WinodwsXP+Linux Mint），由于还没有怎么测试，这里初步说一下这两天的使用感受，买本是贴了屏膜和键盘保护，外加了1G的内存，在玩奥妮之刃(oniblade)的时候音效全开，一点也不卡，画面细腻。而在玩鬼泣4PC试玩版的时候，由于本的显卡仅支持Dx9c，所以使用的这个进入的游戏，画面效果很好，跑起来却非常的卡&hellip;我不知道到哪开启帧的监测&hellip;</p>
+<p>在安装一些大体积的程序（MyEclipse，PhotoShop CS3，Fireworks CS3的时候，安装速度这叫一个快，看来那1G内存不是白加的，哈哈。</p>
 <p>机器本身的音箱效果一般，就比普通的喇叭好些，而且只有在右边安放，在使用中感觉只有单声道的效果，不过我对这个并不感冒，外配一个好的耳机或外设音箱就ok了:)</p>
-<p>Linux的安装也很顺利，我安装了Ubuntu和Linux
-Mint，安装速度也是很快的，完成后不需要自己在另装驱动，不错。</p>
+<p>Linux的安装也很顺利，我安装了Ubuntu和Linux Mint，安装速度也是很快的，完成后不需要自己在另装驱动，不错。</p>
 <p>另外网上所说的硬盘“嘎嘎”响的问题我这也有出现，不过是在进行读写硬盘大操作的时候才会出现，正常现象。散热效果还是蛮理想的，一下午的时候也只是温温的感觉。</p>
 <p>机器基本上还没有怎么使用，现在激活电池阶段，以后就好了～～呵呵(^___^)</p>
 <p>更过实物照片：<a href="https://photos.google.com/album/AF1QipOB4CrCHGUJcyRHj-79K4evKEd13xjqVKS1bY92">Picasa</a></p>
@@ -9754,16 +9604,6 @@ Reitzammer为我指点的[文章][]（一个很好的标签查询参考）和pow
 [a sort of reply to this article]: <a href="http://blog.feedmarker.com/2005/04/26/tagging-in-mysql/">http://blog.feedmarker.com/2005/04/26/tagging-in-mysql/</a></p>
 </li>
 </ul>
-]]></content:encoded></item><item><title>如何制定免费短信提醒新邮件</title><link>https://icyleaf.com/2008/06/how-to-prepare-for-free-sms-alerts-for-new-mail/</link><pubDate>Mon, 16 Jun 2008 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2008/06/how-to-prepare-for-free-sms-alerts-for-new-mail/</guid><description>&lt;p>邮箱每个人都有，而且大部分应该还不只一个而已，分类使用，工作用一个，生活用一个，申请会员/社区再用一个&amp;hellip;.不过多少个一般都会有一个比较重要的，和朋友交流的email。比如我，平时和朋友聊天以及WordPress的留言自动邮件都是发到一个指定的邮件里。一旦到了周六，周日休息的时候，可能会错过一些重要的邮件，而用手机上网收发邮件虽然可以，但是我们总可能一直在刷新吧，所以几天突然想起来邮箱都是由自动转发功能的，那么利用什么做中间介质发短信通知到自己的手机上呢？&lt;/p>...</description><content:encoded><![CDATA[<p>邮箱每个人都有，而且大部分应该还不只一个而已，分类使用，工作用一个，生活用一个，申请会员/社区再用一个&hellip;.不过多少个一般都会有一个比较重要的，和朋友交流的email。比如我，平时和朋友聊天以及WordPress的留言自动邮件都是发到一个指定的邮件里。一旦到了周六，周日休息的时候，可能会错过一些重要的邮件，而用手机上网收发邮件虽然可以，但是我们总可能一直在刷新吧，所以几天突然想起来邮箱都是由自动转发功能的，那么利用什么做中间介质发短信通知到自己的手机上呢？</p>
-<p>中国移动间接的为我们提供了一个非常棒的服务：<a href="http://mail.139.com">手机邮箱(</a>又名139邮箱)，中国移动免费提供1G的服务，直接申请就可以了，然后无论什么时候，只要139邮箱有了新邮件，它就会发一个免费短信到自己的手机上，而且还支持在手机上阅读哦！那么我们开始行动吧。</p>
-<p><strong>如果你要设定转发所有的邮件请按照这个步骤：</strong></p>
-<p>这里我拿Gmail做例子，点击设置（settings）-&gt; 转发和POP/IMAP（Forwarding and POP/IMAP）。
-勾选“转发邮件副本到（Forward a copy of incoming mail to）”再在后面填写上你的手机邮箱填上，在保存即可。</p>
-<p><strong>如果你要设定转发符合条件的邮件请按照这个步骤：</strong></p>
-<p>同样以Gmail为例子，点击设置（settings）-&gt;过滤器（Filters），点击新建过滤器（Create a new filter)，
-然后根据提示的配置框填写你指定的参数即可，填写完成后，点击”测试搜索&quot;可以预览你的设置是否符合你的要求，如果没有达到，请重新设置，再测试，直到达成你的要求后点击下一步，然后勾选倒数第二项，“转发到（Forward it to）”然后再在后面填写上你的手机邮箱填上，在保存即可。</p>
-<p>注意：<strong>这两个方法不能同时实现，任选其一</strong>。</p>
-<p>再找一个邮件测试下，一会你就能听到自己手机的短信铃声咯～祝大家好运!</p>
 ]]></content:encoded></item><item><title>北京的卤煮</title><link>https://icyleaf.com/2008/05/beijings-lu-zhu/</link><pubDate>Mon, 26 May 2008 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2008/05/beijings-lu-zhu/</guid><description>&lt;blockquote>
 &lt;p>卤煮火烧在北京是一种尽人皆知的食品，它是将火烧和炖好的猪肠和猪肺放在一起煮（有时也用猪腰子），买一碗主食副食和热汤都有了。&lt;/p>
 &lt;/blockquote>
@@ -9848,7 +9688,7 @@ inclusion of small data items as &lsquo;immediate&rsquo; data.（允许在页面
 <li>最后进行头颈部前屈、后仰、左右侧偏及旋转等活动，此动作应缓慢进行，切不可用力过猛。</li>
 </ol>
 <p>像我这一个人生活的只有选择按摩和热敷，多做些颈部活动好了&hellip;.</p>
-]]></content:encoded></item><item><title>如何使用VirtualBox安装Linux系统</title><link>https://icyleaf.com/2008/03/how-to-use-linux-systems-installed-virtualbox/</link><pubDate>Thu, 13 Mar 2008 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2008/03/how-to-use-linux-systems-installed-virtualbox/</guid><description>&lt;p>&lt;a href="http://www.icyleaf.cn/2008/03/12/virtualbox-free-cross-platform-open-source-virtual-machine/">VirtualBox&lt;/a>也已经介绍过了，
+]]></content:encoded></item><item><title>如何使用 VirtualBox 安装 Linux 系统</title><link>https://icyleaf.com/2008/03/how-to-use-linux-systems-installed-virtualbox/</link><pubDate>Thu, 13 Mar 2008 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2008/03/how-to-use-linux-systems-installed-virtualbox/</guid><description>&lt;p>&lt;a href="http://www.icyleaf.cn/2008/03/12/virtualbox-free-cross-platform-open-source-virtual-machine/">VirtualBox&lt;/a>也已经介绍过了，
 昨天是实实在在的用VirtualBox体验了一下 &lt;a href="http://www.linuxmint.com/">Linux Mint&lt;/a> 系统。
 这篇日志我就大概的说下如何用VirtualBox安装和汉化Linux Mint系统，大家先看一个经过简单设置有的效果图：&lt;/p>...</description><content:encoded><![CDATA[<p><a href="http://www.icyleaf.cn/2008/03/12/virtualbox-free-cross-platform-open-source-virtual-machine/">VirtualBox</a>也已经介绍过了，
 昨天是实实在在的用VirtualBox体验了一下 <a href="http://www.linuxmint.com/">Linux Mint</a> 系统。
@@ -9998,122 +9838,10 @@ update</strong>：娃哈哈，从买了一个相机，已经会有很多作品�
 正则表达式也不是一件很容易的事情，现在在网上有一份教程，应该是很火的，名叫&quot;<strong><a href="http://unibetter.com/deerchao/zhengzhe-biaodashi-jiaocheng-se.htm">正则表达式30分钟入门教程</a></strong>&quot;，这也是我推荐的初学入门教程。教程来自<a href="http://www.unibetter.com/">unibetter大学生社区</a>。</p>
 <p>教程中用到的测试正则表达式的工具是在.NET支持。这里我推荐一个由<a href="http://www.chken.com/">CHKen</a>（<a href="http://www.chken.com/ViewSoft.asp?id=1">CHKenPlayer</a>的作者）使用纯API编写的测试正则表达式工具：<a href="http://www.chken.com/Soft/Other/RegExp.zip" title="点击直接下载">RegExp</a>。</p>
 <p>另外在<a href="http://www.williamlong.info">月光博客</a>还收集了很多“<a href="http://www.williamlong.info/archives/433.html">常用的正则表达式</a>”是实际应用中也许对大家会有所帮助。</p>
-]]></content:encoded></item><item><title>博客串联：5 个关于你的问题</title><link>https://icyleaf.com/2007/12/blog-series-five-on-your-question/</link><pubDate>Sat, 01 Dec 2007 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2007/12/blog-series-five-on-your-question/</guid><description>&lt;p>记得是&lt;a href="http://roamlog.cn/archives/5-questions-about-you.html">漫步&lt;/a>好几天前在饭否给我发的信息，让我参与这个活动，由于这几天一直再忙，耽搁了，今天补上：）&lt;/p>
-&lt;ol>
-&lt;li>
-&lt;p>你从什么时候开始 Blogging 的？
-上大学的时候接触到了博客，偶尔玩玩，而真正开始博客的时候大概是在05年9月份。博客的名字一直是灵狼天，关于它的意义所在，大家自己猜想吧。猜对有糖吃哦呵呵(^__________^)&lt;/p>...</description><content:encoded><![CDATA[<p>记得是<a href="http://roamlog.cn/archives/5-questions-about-you.html">漫步</a>好几天前在饭否给我发的信息，让我参与这个活动，由于这几天一直再忙，耽搁了，今天补上：）</p>
-<ol>
-<li>
-<p>你从什么时候开始 Blogging 的？
-上大学的时候接触到了博客，偶尔玩玩，而真正开始博客的时候大概是在05年9月份。博客的名字一直是灵狼天，关于它的意义所在，大家自己猜想吧。猜对有糖吃哦呵呵(^__________^)</p>
-</li>
-<li>
-<p>你为什么博客？</p>
-<p>刚开始在MyOpera申请的一个提供300M空间的博客服务，本来是要做一个家乡的图片博客，后来发现此平台上有很多IT界“有名人士”以及归隐者，受他们影响开始安心的blogging。不过刚开始大部分都是转载一些我喜欢和我收藏的文章。
-去年5.1黄金周后，MyOpera因涉嫌某些东西被GFW掉，后来就有了自己搭站的念头。
-我在MyOpera的地址：http://my.opera.com/icyleaf</p>
-</li>
-<li>
-<p>你是否尝试在网上赚钱或已经开始在网上赚钱？
-一直有尝试过，但是由于个人原因和经营不善问题，一直处于白忙活状态，呵呵，凭着纯乐呵的状态做这件事情，赚不赚钱并不重要，当然有钱赚更好。</p>
-</li>
-<li>
-<p>你喜欢网络的三个理由
-信息，朋友，Enjoy myself
-通过网络我可以获得我所喜欢的各种信息，让自己充实；
-通过网络我可以结识到很多志同道合的朋友，但由于我不善于言表，都没有太深的交谈&gt;____&lt;我的一大痛处；
-通过网络，Enjoy myself也是一种快乐。</p>
-</li>
-<li>
-<p>你 Blogging 的目标是什么？将如何实现？
-对于目前来说。博自己所喜欢的，无论是单纯的生活日志还是混杂的各种信息技术也好都会在一个博客上面展现，本来嘛博客就是记录自己的方方面面，但是由于各种原因使得人们博的心态和目的都已经歪曲。但路是要靠自己来走，我还是凭着一颗单纯的心做自己的博客。</p>
-</li>
-</ol>
-]]></content:encoded></item><item><title>如何治疗嘴唇破皮</title><link>https://icyleaf.com/2007/11/how-to-treat-lips-popi/</link><pubDate>Fri, 09 Nov 2007 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2007/11/how-to-treat-lips-popi/</guid><description>&lt;p>嘴唇破皮确实是一件很痛苦的事情，我也是身受体会，最近嘴唇的皮还是一点一点的起皮。我自称是耐渴性人物，可是嘴唇一开始破皮，就总想用舌头舔，结果是越舔越干，每当皮翘起来的时候，我还会把它揪掉。&lt;/p>...</description><content:encoded><![CDATA[<p>嘴唇破皮确实是一件很痛苦的事情，我也是身受体会，最近嘴唇的皮还是一点一点的起皮。我自称是耐渴性人物，可是嘴唇一开始破皮，就总想用舌头舔，结果是越舔越干，每当皮翘起来的时候，我还会把它揪掉。</p>
-<p>冬天正在慢慢的来临，在着北方的天气干且燥，风又大，更是嘴唇破皮的季节&gt;_&lt;这不刚刚去陪mm逛街的时候买了一管润唇膏。要不我又该受不了了，买润唇膏后就想上网查查嘴唇破皮是什么原因，恩&hellip;原因概括可以分6种：&lt; p&gt;</p>
-<ul>
-<li>天气干燥，身体缺水分。</li>
-<li>上火也有可能导致嘴唇破皮。</li>
-<li>也有可能是习惯性的会用舌头來舔嘴唇。</li>
-<li>嘴唇皮肤比较纤薄幼细，嘴唇很容易被紫外线灼伤而引起脱皮。</li>
-<li>身体缺少维生素B2，也有可能导致嘴唇破皮。（甚至会有口角发炎、龟裂，舌头发炎的现象。）</li>
-<li>主要针对女性，若是使用了过度干燥的口紅，或是对口红过敏也有可能造成嘴唇的破皮。</li>
-</ul>
-<p>刚问了问家在南方的室友，原来他那边冬天也有很多嘴唇破皮的，可以这么说，导致嘴唇破皮的最主要的原因是<strong>天气干燥，身体缺水分</strong>。然而嘴唇干燥，破皮不舒服，很多人会下意识地舔唇，结果却往往越舔越干，越干越舔，形成一个恶性循环，甚至舔得口唇周围皮肤粗糙变厚，甚至嘴唇肿胀，形成医学上的“<strong>舌舔皮炎</strong>”。无论是从健康还是美观的角度考虑，还是改掉舔唇这个不太雅观的习惯吧。（更多详细可以看<a href="http://www.xiaojd.com/qa/b6b35dc764">这里</a>）</p>
-<p>**治疗嘴唇破皮的最简单的方法就是多喝水！**当然治疗嘴唇干燥，破皮不可是是一朝一夕就治疗的，大家可以选用润唇膏消除因干燥而带来的不舒服。是唇膏，不要买唇彩或唇油，这些对于嘴唇破皮无效。</p>
-<p>下面我说一个土方，我家传的，一般在家的朋友可以试下：</p>
-<blockquote>
-<p>晚上的时候，用筷子沾2-3的小磨油（香油）涂在嘴唇上面，如果嘴唇破皮的不厉害，一般2-3天就好了。</p>
-</blockquote>
-]]></content:encoded></item><item><title>人为什么会上火</title><link>https://icyleaf.com/2007/10/why-do-people-at-fire/</link><pubDate>Tue, 30 Oct 2007 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2007/10/why-do-people-at-fire/</guid><description>&lt;p>我发现我现在浑身是病，特开“&lt;strong>养生之道&lt;/strong>”专栏，给自己给大家介绍一些发生在我身上的一些问题和解决方法。希望大家喜欢&lt;/p>
-&lt;p>上火对我来说可以说是家常便饭，三天两头的上上火，无论我吃任何的败火（感慨：人类造词的真是高明啊）的药一点用途都没有，只是光往厕所跑的事情了- -!所以我现在根本都不吃药，都是硬挺的。虽说常上火，对我来说一般都是&lt;strong>口腔溃疡&lt;/strong>的症状。但还是不能完全忽视掉那种痛感。太痛苦，太受折磨了&amp;hellip;&lt;/p>...</description><content:encoded><![CDATA[<p>我发现我现在浑身是病，特开“<strong>养生之道</strong>”专栏，给自己给大家介绍一些发生在我身上的一些问题和解决方法。希望大家喜欢</p>
-<p>上火对我来说可以说是家常便饭，三天两头的上上火，无论我吃任何的败火（感慨：人类造词的真是高明啊）的药一点用途都没有，只是光往厕所跑的事情了- -!所以我现在根本都不吃药，都是硬挺的。虽说常上火，对我来说一般都是<strong>口腔溃疡</strong>的症状。但还是不能完全忽视掉那种痛感。太痛苦，太受折磨了&hellip;</p>
-<p><a href="http://zhidao.baidu.com/question/28887798.html?si=1">上火是中医的理论，西医一直没有明确支持</a>。中国人一般都是这么叫的。人体里本身是有火的，如果没有火那么生命也就停止了，也就是所谓的生命之火。当然火也应该保持在一定的范围内，比如体温应该在37度左右，如果火过亢人就会不舒服，会出现很多红、肿、热、痛、烦等具体表现。<a href="http://zhidao.baidu.com/question/15539369.html?fr=qrl3">上火的症状有哪些？吃什么东西可以败火？</a></p>
-<p>网上对上火有很多种分类，一般分实虚两种（只是个人观点，不对实际的对与否做解释）。对于口腔溃疡的症状属于<strong>实火旺</strong>，表现为口腔溃疡、口干、尿黄、心烦易怒等；除了实火旺还有<strong>虚火</strong>，主要表现有心烦、口干、盗汗、睡眠不安等。按病位分有出来三种：</p>
-<ul>
-<li><strong>上焦有火</strong>（上焦指心肺部位），症见口干、舌烂、唇裂、目赤、耳鸣，甚则微咳。</li>
-<li><strong>中焦有火</strong>（中焦指脾胃部位），表现为时而胃火亢盛，食不知饱，时而嗳腐吞酸，呃气上逆，脘腹胀满，饮食少进。</li>
-<li><strong>下焦有火</strong>（下焦指肝、肾、膀胱、大小肠部位），表现为大便干，小便少且黄赤，混浊有味，阴部时痒，妇女白带多，甚至带黄。</li>
-</ul>
-<p><strong>如何败火？</strong></p>
-<ul>
-<li><a href="http://www.39.net/zhongyi/yaoshan/yaoshan/71927.html">经常&quot;上火&quot;者的饮食治疗</a></li>
-<li><a href="http://zhidao.baidu.com/question/872372.html">容易上火应多吃什么食物？</a></li>
-<li><a href="http://www.39.net/Treatment/jktx/jkkd/94705.html">上火吃泻火药为何无效</a></li>
-<li><a href="http://zhidao.baidu.com/question/1663301">最快的败火方法是什么</a></li>
-<li><a href="">败火的三道凉菜</a><a href="http://life.people.com.cn/GB/35076/4534013.html">http://life.people.com.cn/GB/35076/4534013.html</a>)</li>
-</ul>
-<p><strong>口腔溃疡专栏</strong></p>
-<blockquote>
-<p>口腔溃疡发生的部位多见于口腔粘膜及舌的边缘，常是白色溃疡，周围有红晕，十分疼痛，特别是遇酸、咸、辣的食物时，疼痛更加厉害，以致美味佳肴都不愿品尝。虽是口腔小疾，却令人痛苦不堪，甚至坐卧不宁，寝食不安，情绪低落。</p>
-</blockquote>
-<p><a href="http://health.sohu.com/2004/06/17/62/article220586282.shtml">人为什么会口腔溃疡</a>？（说的比较悬乎&hellip;)那么人为什么会反复口腔溃疡？</p>
-<p><strong>如何预防口腔溃疡？</strong></p>
-<p>口腔溃疡在很大程度上与个人身体素质有关，因此要想完全避免其发生可能性不大，但如果尽量避免诱发因素，仍可降低发生率。</p>
-<p><a href="http://bk.baidu.com/view/60479.htm">具体措施</a>)是：</p>
-<ul>
-<li>注意口腔卫生，避免损伤口腔黏膜，避免辛辣性食物和局部刺激。</li>
-<li>保持心情舒畅，乐观开朗，避免事情和着急。</li>
-<li>保证充足的睡眠时间，避免过度疲劳。</li>
-<li>注意生活规律性和营养均衡性，养成一定排便习惯，防止便秘。</li>
-</ul>
-]]></content:encoded></item><item><title>如何降低胆固醇</title><link>https://icyleaf.com/2007/10/how-to-reduce-cholesterol/</link><pubDate>Mon, 29 Oct 2007 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2007/10/how-to-reduce-cholesterol/</guid><description>&lt;p>忘记了一个小小重要的事情，上次去北京献血时的验血结果，护士告诉我胆固醇有些过高，说是熬夜导致，熬夜肯定是有的通宵唱K嘛，但是我有些疑惑，为什么胆固醇有些过高是由熬夜导致的？这难道能从血液里面看出来？还是说我身体的胆固醇本身就有些过高？&lt;/p>...</description><content:encoded><![CDATA[<p>忘记了一个小小重要的事情，上次去北京献血时的验血结果，护士告诉我胆固醇有些过高，说是熬夜导致，熬夜肯定是有的通宵唱K嘛，但是我有些疑惑，为什么胆固醇有些过高是由熬夜导致的？这难道能从血液里面看出来？还是说我身体的胆固醇本身就有些过高？</p>
-<p>听说胆固醇过高很危险，小米说少吃鸡蛋就可以了，鸡蛋含的胆固醇是很高的。而我坚持每天1-2个鸡蛋，
-在学校本身就没什么好吃的，在不补补营养怎么能行，呵呵。难道因为鸡蛋含的胆固醇是很高而不吃鸡蛋？赶紧搜了搜关于胆固醇的知识（<a href="http://baike.baidu.com/view/24827.htm">详细说明</a>）：</p>
-<blockquote>
-<p><strong>胆固醇</strong>又称胆甾醇。一种环戊烷多氢菲的衍生物。早在18世纪人们已从胆石中发现了胆固醇，1816年化学家本歇尔将这种具脂类性质的物质命名为胆固醇。胆固醇广泛存在于动物体内，尤以脑及神经组织中最为丰富，在肾、脾、皮肤、肝和胆汁中含量也高。其溶解性与脂肪类似，不溶于水，易溶于乙醚、氯仿等溶剂。胆固醇是动物组织细胞所不可缺少的重要物质，它不仅参与形成细胞膜，而且是合成胆汁酸，维生素D以及甾体激素的原料。</p>
-<p>一般都知道，脂类物质主要分为两大类。脂肪（主要是甘油三酯）是人体内含量最多的脂类，是体内的一种主要能量来源；另一类叫类脂，是生物膜的基本成分，约占体重的5%，除包括磷脂、糖脂外，还有很重要的一种叫<strong>胆固醇</strong>。</p>
-<p>通常，将每100克食物中胆固醇含量低于100毫克的食物称为**<!-- raw HTML omitted -->低胆固醇食物<!-- raw HTML omitted -->**，如鳗鱼、娼鱼、鲤鱼、猪瘦肉、牛瘦肉、羊瘦肉、鸭肉等；将每100克食物中胆固醇含量为100～200毫克的食物称为<!-- raw HTML omitted --><strong>中度胆固醇食物</strong><!-- raw HTML omitted -->，如草鱼、鲫鱼、鲢鱼、黄鳝、河鳗、甲鱼、蟹肉、猪排、鸡肉等；而将每100克食物中胆固醇含量为200～300毫克的食物称<!-- raw HTML omitted --><strong>高胆固醇食物</strong><!-- raw HTML omitted -->，如猪肾、猪肝、猪肚、蚌肉、蛀肉、蛋黄、蟹黄等。高胆固醇血症的患者应尽量少吃或不吃高胆固醇的食物。</p>
-</blockquote>
-<p><strong>那么如何降低胆固醇？</strong></p>
-<p>经常食用几种常见的食物就能降低胆固醇：早餐一碗约75克燕麦粥，配一杯无糖豆浆；看电视时吃一把约二十来颗甜杏仁。</p>
-<p>下面在摘录一些搜索到的信息，给自己同时也给大家做参考。</p>
-<ul>
-<li><a href="http://news.xinhuanet.com/health/2006-07/16/content_4840049.htm">十种食物能吃掉胆固醇</a></li>
-<li><a href="http://www.china.com.cn/chinese/health/85030.htm">27种保持低胆固醇的方法</a></li>
-<li><a href="http://www.china.com.cn/chinese/health/85030.htm">你应该如何降低胆固醇</a></li>
-<li><a href="http://www.china.com.cn/chinese/health/373873.htm">4类食物能降低胆固醇29%</a></li>
-</ul>
-]]></content:encoded></item><item><title>推荐一本书</title><link>https://icyleaf.com/2007/09/recommend-a-book-stan-lais-creative-learning/</link><pubDate>Fri, 28 Sep 2007 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2007/09/recommend-a-book-stan-lais-creative-learning/</guid><description>&lt;p>&lt;img loading="lazy" src="http://images.dangdang.com/images/9214908_b.jpg"
-alt="创意">&lt;/img>
-&lt;/p>
-&lt;blockquote>
-&lt;p>书名：赖声川的创意学&lt;/p>
-&lt;p>作者：赖声川&lt;/p>
-&lt;p>出版社：中信出版社&lt;/p>
-&lt;p>ISBN：7508607457&lt;/p>
-&lt;p>纸张：胶版纸&lt;/p>
-&lt;p>出版日期：2006-9-1&lt;/p>
-&lt;p>定价：36元&lt;/p>
-&lt;/blockquote>
-&lt;p>&lt;strong>内容提要：&lt;/strong>&lt;/p>
-&lt;p>创意是人类最向往的一种能力，但是我们却不了解它，也不知道如何才能拥有它。专家学者预测，世界即将从&amp;quot;资讯时代&amp;quot;转向所谓&amp;quot;概念时代&amp;quot;，创意也将成为新时代中最重要的工具。最大胆的预测还认为，MFA&amp;ndash;艺术硕士（Master
-of Fine Arts）将击败MBA，成为工商社会最受欢迎的学位。&lt;/p>...</description><content:encoded><![CDATA[<p><img loading="lazy" src="http://images.dangdang.com/images/9214908_b.jpg"
-  
-  
-  alt="创意"></img>
-</p>
+]]></content:encoded></item><item><title>推荐一本书</title><link>https://icyleaf.com/2007/09/recommend-a-book-stan-lais-creative-learning/</link><pubDate>Fri, 28 Sep 2007 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2007/09/recommend-a-book-stan-lais-creative-learning/</guid><description>&lt;p>创意是人类最向往的一种能力，但是我们却不了解它，也不知道如何才能拥有它。专家学者预测，世界即将从&amp;quot;资讯时代&amp;quot;转向所谓&amp;quot;概念时代&amp;quot;，创意也将成为新时代中最重要的工具。最大胆的预测还认为，MFA&amp;ndash;艺术硕士（Master
+of Fine Arts）将击败MBA，成为工商社会最受欢迎的学位。&lt;/p>...</description><content:encoded><![CDATA[<p>创意是人类最向往的一种能力，但是我们却不了解它，也不知道如何才能拥有它。专家学者预测，世界即将从&quot;资讯时代&quot;转向所谓&quot;概念时代&quot;，创意也将成为新时代中最重要的工具。最大胆的预测还认为，MFA&ndash;艺术硕士（Master
+of Fine Arts）将击败MBA，成为工商社会最受欢迎的学位。</p>
+<p>在美国斯坦福大学开设&quot;创意&quot;讲座的赖声川，发明了&quot;创意金字塔&quot;，提出一套生活哲学解构创意，教你在日常生活中运用崭新的&quot;看&quot;法学创意、领风骚。</p>
 <blockquote>
 <p>书名：赖声川的创意学</p>
 <p>作者：赖声川</p>
@@ -10124,9 +9852,6 @@ of Fine Arts）将击败MBA，成为工商社会最受欢迎的学位。&lt;/p>.
 <p>定价：36元</p>
 </blockquote>
 <p><strong>内容提要：</strong></p>
-<p>创意是人类最向往的一种能力，但是我们却不了解它，也不知道如何才能拥有它。专家学者预测，世界即将从&quot;资讯时代&quot;转向所谓&quot;概念时代&quot;，创意也将成为新时代中最重要的工具。最大胆的预测还认为，MFA&ndash;艺术硕士（Master
-of Fine Arts）将击败MBA，成为工商社会最受欢迎的学位。</p>
-<p>在美国斯坦福大学开设&quot;创意&quot;讲座的赖声川，发明了&quot;创意金字塔&quot;，提出一套生活哲学解构创意，教你在日常生活中运用崭新的&quot;看&quot;法学创意、领风骚。</p>
 <p>作者简介：
 赖声川，创意源源不绝的创作人。一九五四年生于美国华盛顿，美国加州柏克莱大学戏剧博士，现任国立台北艺术大学教授、美国史丹福大学客座教授及驻校艺术家、【表演工作坊】艺术总监。他二十九岁开始剧场创作，至今编导舞台剧二十七部（包括轰动亚洲的七小时史诗《如梦之梦》）、电影二部（包括享誉国际的《暗恋桃花源》）、电视影集三百集（包括家喻户晓的《我们一家都是人》），另有剧场导演作品二十二部（包括莫扎特歌剧三部）等。</p>
 <hr>

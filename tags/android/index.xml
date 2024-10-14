@@ -1045,24 +1045,6 @@
 <p>这个的支持我觉得关键是社区的呼声太大，加上贡献者的热情（我提交过许多 issues 和个别 PL，响应非常的迅速）很快就加上了其支持，
 但具体的特性不是特别多，主要是对于 <code>gradle</code> 的封装，我先不做展开介绍，大家可以先看看<a href="https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Android.md">官方文档</a>，如果后续有特别不明白的地方我在做具体的讲解。</p>
 <p>今天就先写到这里后续我会继续整理更多的使用指南和实战范例共大家参考，最后给大家附赠官方给大家的一些<a href="https://github.com/fastlane/examples">范例</a>。</p>
-]]></content:encoded></item><item><title>“java.lang.NoClassDefFoundError” in Android</title><link>https://icyleaf.com/2012/05/how-to-salvation-android-import-jar-exception-during-running/</link><pubDate>Mon, 14 May 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/05/how-to-salvation-android-import-jar-exception-during-running/</guid><description>&lt;p>最近 Eclipse 的 ADT 升级至了 18 版本，结果运行的时候发现导入的第三方 jar
-包总是报错&lt;/p>
-&lt;blockquote>
-&lt;p>java.lang.NoClassDefFoundError&lt;/p>
-&lt;/blockquote>
-&lt;p>可气的是 Eclipse 不会给工程同时在编译的时候也不会报错。&lt;/p>
-&lt;p>后来发现此版本，第三方的 &lt;code>jar&lt;/code> 包必须放在项目的 &lt;code>libs&lt;/code>
-目录下面，而且仅能放在 &lt;code>libs&lt;/code> 根目录下面，即不能在 &lt;code>libs&lt;/code>
-下面在建立子目录存放，也不能改名 &lt;code>lib&lt;/code> 目录&amp;hellip;.&lt;/p>...</description><content:encoded><![CDATA[<p>最近 Eclipse 的 ADT 升级至了 18 版本，结果运行的时候发现导入的第三方 jar
-包总是报错</p>
-<blockquote>
-<p>java.lang.NoClassDefFoundError</p>
-</blockquote>
-<p>可气的是 Eclipse 不会给工程同时在编译的时候也不会报错。</p>
-<p>后来发现此版本，第三方的 <code>jar</code> 包必须放在项目的 <code>libs</code>
-目录下面，而且仅能放在 <code>libs</code> 根目录下面，即不能在 <code>libs</code>
-下面在建立子目录存放，也不能改名 <code>lib</code> 目录&hellip;.</p>
-<p>更无奈的是， Eclipse 的 User Library 也是出现同样的问题，目前无解 &gt;.&lt;</p>
 ]]></content:encoded></item><item><title>让 Android 支持下拉刷新(Pull Refresh)</title><link>https://icyleaf.com/2012/02/pull-refresh-for-android/</link><pubDate>Wed, 29 Feb 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/02/pull-refresh-for-android/</guid><description>&lt;p>曾几何时，自 Android 发布之后一直以来就被管以 Geek 的玩具，而不太注重界面设计和用户交互设计，这让 Android 开发者也顺其自然的接受了这个不好的头衔，但我一度认为这只是不思进取的行为，谁说 Android 就不能像 iPhone 的界面那样设计，我认为只有用心，没神马不能实现的。说回正题，第一次看到 Android 有这项功能的莫过于改版后的 Twitter，我认为它绝对是一个标榜性的 App（同时也包括已开源许久的 &lt;a href="http://code.google.com/p/foursquared/">Foursquare&lt;/a>）。于是全世界的开发者就开始寻思这个效果 Twitter
 是如何实现的，于是就有了&amp;hellip;&lt;/p>...</description><content:encoded><![CDATA[<p>曾几何时，自 Android 发布之后一直以来就被管以 Geek 的玩具，而不太注重界面设计和用户交互设计，这让 Android 开发者也顺其自然的接受了这个不好的头衔，但我一度认为这只是不思进取的行为，谁说 Android 就不能像 iPhone 的界面那样设计，我认为只有用心，没神马不能实现的。说回正题，第一次看到 Android 有这项功能的莫过于改版后的 Twitter，我认为它绝对是一个标榜性的 App（同时也包括已开源许久的 <a href="http://code.google.com/p/foursquared/">Foursquare</a>）。于是全世界的开发者就开始寻思这个效果 Twitter
 是如何实现的，于是就有了&hellip;</p>

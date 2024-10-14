@@ -289,9 +289,7 @@
 <li>你可以提供多个 url 多备份提供文档下载</li>
 <li>支持 tgz 格式的打包</li>
 </ul>
-]]></content:encoded></item><item><title>修复 OS X 打开方式的重复项</title><link>https://icyleaf.com/2012/11/%E4%BF%AE%E5%A4%8D-os-x-%E6%89%93%E5%BC%80%E6%96%B9%E5%BC%8F%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9/</link><pubDate>Tue, 06 Nov 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/11/%E4%BF%AE%E5%A4%8D-os-x-%E6%89%93%E5%BC%80%E6%96%B9%E5%BC%8F%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9/</guid><description>&lt;pre tabindex="0">&lt;code>$ /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain system-domainuser
-&lt;/code>&lt;/pre></description><content:encoded>&lt;pre tabindex="0">&lt;code>$ /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain system-domainuser
-&lt;/code>&lt;/pre></content:encoded></item><item><title>EasyConvert</title><link>https://icyleaf.com/2012/10/easyconvert-gbk-to-utf8-convert-tool-for-mac/</link><pubDate>Thu, 25 Oct 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/10/easyconvert-gbk-to-utf8-convert-tool-for-mac/</guid><description>&lt;p>托设计朋友的要求，继续奉献出一个小工具: EasyConvert - 针对于文本文件的编码转换工具 - GBK to UTF8&lt;/p>
+]]></content:encoded></item><item><title>EasyConvert</title><link>https://icyleaf.com/2012/10/easyconvert-gbk-to-utf8-convert-tool-for-mac/</link><pubDate>Thu, 25 Oct 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/10/easyconvert-gbk-to-utf8-convert-tool-for-mac/</guid><description>&lt;p>托设计朋友的要求，继续奉献出一个小工具: EasyConvert - 针对于文本文件的编码转换工具 - GBK to UTF8&lt;/p>
 &lt;p>首先这个应用是用于 OS X 系统的，其次其实它是一个很弱的工具，对于技术宅来说一行代码搞定：&lt;/p>...</description><content:encoded><![CDATA[<p>托设计朋友的要求，继续奉献出一个小工具: EasyConvert - 针对于文本文件的编码转换工具 - GBK to UTF8</p>
 <p>首先这个应用是用于 OS X 系统的，其次其实它是一个很弱的工具，对于技术宅来说一行代码搞定：</p>
 <pre tabindex="0"><code>iconv -f GBK -t UTF-8 source.txt \&gt; output.txt
@@ -396,7 +394,7 @@ Web
 <blockquote>
 <p>我 fork 了作者的分支，添加了对 UIColor 的支持：http://github.com/icyleaf/Colors</p>
 </blockquote>
-]]></content:encoded></item><item><title>个人常用 OS X 软件集合</title><link>https://icyleaf.com/2011/03/im-using-osx-software-list/</link><pubDate>Tue, 29 Mar 2011 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2011/03/im-using-osx-software-list/</guid><description>&lt;p>用了 OS X 已经半年多了，整理下日常常用的软件。大多数都是开源或者免费软件，少数需要购买&lt;/p>
+]]></content:encoded></item><item><title>个人常用 OS X 软件集合 (2011 年版)</title><link>https://icyleaf.com/2011/03/im-using-osx-software-list-in-2011/</link><pubDate>Tue, 29 Mar 2011 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2011/03/im-using-osx-software-list-in-2011/</guid><description>&lt;p>用了 OS X 已经半年多了，整理下日常常用的软件。大多数都是开源或者免费软件，少数需要购买&lt;/p>
 &lt;ul>
 &lt;li>AppCleaner：卸载软件必备，适合用于第三方安装和 App Store&lt;/li>
 &lt;li>aliwangwang：淘宝用户必备&lt;/li>
