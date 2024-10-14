@@ -1,4 +1,4 @@
-{{- $style := resources.Get "css/main.scss" | resources.ToCSS | resources.Minify -}}
+{{- $style := resources.Get "css/main.scss" | css.Sass | resources.Minify -}}
 <link rel="stylesheet" href="{{ $style.RelPermalink }}">
 
 {{- $iconfont := resources.Get "font/iconfont.css" | resources.Minify }}
