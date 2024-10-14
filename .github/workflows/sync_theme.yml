@@ -18,4 +18,5 @@ jobs:
         repo: 'icyleaf/hugo-theme-nicesima'
         path: 'themes/nicesima'
         deploy_key: ${{ secrets.SSH_DEPLOY_KEY }}
+        branch: main
         force: true # will force push to the downstream repository
