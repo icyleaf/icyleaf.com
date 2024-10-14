@@ -1,7 +1,7 @@
 ---
 title: "Proxmox VM 创建 Talos OS cloud-init 虚拟机"
 description: 使用 nocloud 实现自动化下载、配置和部署 talos
-date: 2023-02-01 T12:13:09+08:00
+date: "2023-02-01T12:13:09+08:00" 
 slug: "create-talos-linux-vm-with-cloud-init-in-proxmox"
 type: posts
 draft: true
