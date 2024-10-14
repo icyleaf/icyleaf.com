@@ -10,7 +10,6 @@ enableRobotsTXT: true
 # disqusShortname: icyleaf
 canonifyURLs: true
 
-# paginate: 20
 pagination:
   pagerSize: 20
 

@@ -7,8 +7,8 @@
 
   {{ range $index, $page := $paginator.Pages }}
     {{ $postClass := cond (isset .Params "image") "post-block" "post-inline" }}
-    <article class="{{ $postClass }}">
-      <a href="{{ .Permalink }}">
+    <a href="{{ .Permalink }}">
+      <article class="{{ $postClass }}">
         <header class="post-header">
           {{ if .Params.image }}
           <img src="{{ .Params.image | relURL }}" class="cover">
@@ -33,11 +33,11 @@
           {{ with .Description | html }}
           {{ . }}
           {{ else }}
-          {{ .Summary | html }}{{ if .Truncated }}...{{ end }}
+          {{ .Summary | safeHTML }}{{ if .Truncated }}...{{ end }}
           {{ end -}}
         </div>
-      </a>
-    </article>
+      </article>
+    </a>
   {{ end }}
 
   {{ partial "paginator.html" . }}
