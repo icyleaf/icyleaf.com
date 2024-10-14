@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>iOS on icyleaf</title><link>https://icyleaf.com/tags/ios/</link><description>Recent content in iOS on icyleaf</description><language>zh-cn</language><lastBuildDate>Thu, 10 Nov 2022 15:30:07 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/ios/index.xml" rel="self" type="application/rss+xml"/><item><title>Cocoapods CDN 加速新解</title><link>https://icyleaf.com/2022/11/cocoapods-cdn-speed-up-another-solution/</link><pubDate>Thu, 10 Nov 2022 15:30:07 +0800</pubDate><guid>https://icyleaf.com/2022/11/cocoapods-cdn-speed-up-another-solution/</guid><description>官方 CDN 不稳定，Git 源又太大，还要其他解决方案吗？</description><content:encoded><![CDATA[<p>距离 Cocoapods 支持 CDN 源已经 3 年，期间不断有开发者从 CDN 源切回了最初 Git 源的方案，Cocoapods 也没有更多的改进措施。</p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>IOS on icyleaf</title><link>https://icyleaf.com/tags/ios/</link><description>Recent content in IOS on icyleaf</description><language>zh-cn</language><lastBuildDate>Thu, 10 Nov 2022 15:30:07 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/ios/index.xml" rel="self" type="application/rss+xml"/><item><title>Cocoapods CDN 加速新解</title><link>https://icyleaf.com/2022/11/cocoapods-cdn-speed-up-another-solution/</link><pubDate>Thu, 10 Nov 2022 15:30:07 +0800</pubDate><guid>https://icyleaf.com/2022/11/cocoapods-cdn-speed-up-another-solution/</guid><description>官方 CDN 不稳定，Git 源又太大，还要其他解决方案吗？</description><content:encoded><![CDATA[<p>距离 Cocoapods 支持 CDN 源已经 3 年，期间不断有开发者从 CDN 源切回了最初 Git 源的方案，Cocoapods 也没有更多的改进措施。</p>
 <p>当初写<a href="https://icyleaf.com/2019/11/cocoapods-cdn-source-code-reading/">CDN 加速镜像源码解读</a>还是用的 jsdelivr 没想到过了 2 个小版本改 Netlify 了。从国内几大 DNS 解析结果来看总会到 cloudflare 上面。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln"> 1</span><span class="cl">$ doggo cdn.cocoapods.org CNAME @202.106.0.20
 </span></span><span class="line"><span class="ln"> 2</span><span class="cl">NAME          	TYPE	CLASS	TTL 	ADDRESS                       	NAMESERVER
@@ -28,7 +28,7 @@
   
   
     
-      <figure data-pswp="2270x1316" data-size="800x"><a href="/uploads/2022/11/10/jsdelivr-network.png" class="gallery-item" target="_blank" data-pswp-width="2270" data-pswp-height="1316"><img src="/uploads/2022/11/10/jsdelivr-network_hu35ca8d8b89ce669a90db33b84e39dea8_282272_800x0_resize_box_3.png"/></a><figcaption>
+      <figure data-pswp="2270x1316" data-size="800x"><a href="/uploads/2022/11/10/jsdelivr-network.png" class="gallery-item" target="_blank" data-pswp-width="2270" data-pswp-height="1316"><img src="/uploads/2022/11/10/jsdelivr-network_hu6915014520778962123.png"/></a><figcaption>
 
     <p>jsdelivr network</p></figcaption></figure>
 
@@ -59,7 +59,7 @@
   
   
     
-      <figure data-pswp="1698x582" data-size="800x"><a href="/uploads/2022/11/10/jsdelivr-github-demo.png" class="gallery-item" target="_blank" data-pswp-width="1698" data-pswp-height="582"><img src="/uploads/2022/11/10/jsdelivr-github-demo_huaeafff840bedf588ce827c05ae754f76_40041_800x0_resize_box_3.png"/></a><figcaption><p class="source"><a href="https://www.jsdelivr.com/github">生成工具</a>
+      <figure data-pswp="1698x582" data-size="800x"><a href="/uploads/2022/11/10/jsdelivr-github-demo.png" class="gallery-item" target="_blank" data-pswp-width="1698" data-pswp-height="582"><img src="/uploads/2022/11/10/jsdelivr-github-demo_hu10365139180803583141.png"/></a><figcaption><p class="source"><a href="https://www.jsdelivr.com/github">生成工具</a>
     </p>
 
     <p>Cocoapods github 仓库和 jsdelivr CDN 生成结果</p></figcaption></figure>
@@ -281,45 +281,45 @@
 </span></span></code></pre></div><p>我会随着下面每个概念的解释和展开来配合上面的命令一起讲解。</p>
 <h2 id="生命周期">生命周期</h2>
 <table>
-<thead>
-<tr>
-<th>执行顺序</th>
-<th>方法名</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>before_all</td>
-<td>在执行 lane 之前只执行一次</td>
-</tr>
-<tr>
-<td>2</td>
-<td>before_each</td>
-<td>每次执行 lane 之前都会执行一次</td>
-</tr>
-<tr>
-<td>3</td>
-<td>lane</td>
-<td>自定义的任务</td>
-</tr>
-<tr>
-<td>4</td>
-<td>after_each</td>
-<td>每次执行 lane 之后都会执行一次</td>
-</tr>
-<tr>
-<td>5</td>
-<td>after_all</td>
-<td>在执行 lane 成功结束之后执行一次</td>
-</tr>
-<tr>
-<td>6</td>
-<td>error</td>
-<td>在执行上述情况任意环境报错都会中止并执行一次</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">执行顺序</th>
+          <th style="text-align: left">方法名</th>
+          <th style="text-align: left">说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">1</td>
+          <td style="text-align: left">before_all</td>
+          <td style="text-align: left">在执行 lane 之前只执行一次</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">2</td>
+          <td style="text-align: left">before_each</td>
+          <td style="text-align: left">每次执行 lane 之前都会执行一次</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">3</td>
+          <td style="text-align: left">lane</td>
+          <td style="text-align: left">自定义的任务</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">4</td>
+          <td style="text-align: left">after_each</td>
+          <td style="text-align: left">每次执行 lane 之后都会执行一次</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">5</td>
+          <td style="text-align: left">after_all</td>
+          <td style="text-align: left">在执行 lane 成功结束之后执行一次</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">6</td>
+          <td style="text-align: left">error</td>
+          <td style="text-align: left">在执行上述情况任意环境报错都会中止并执行一次</td>
+      </tr>
+  </tbody>
 </table>
 <p>以上的部分大家在上一篇已经见识过了，有些还没接触到，不用着急都会一一说明。</p>
 <h2 id="任务lane">任务（lane）</h2>
@@ -327,40 +327,40 @@
 <h3 id="任务定义">任务定义</h3>
 <p>定义任务的方法类似于 rake 的 task，但使用上缺比前者要好用很多，见下表：</p>
 <table>
-<thead>
-<tr>
-<th>定义</th>
-<th>是否必须</th>
-<th>说明</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>desc</td>
-<td><code>false</code></td>
-<td>方法描述</td>
-<td>可多次使用打到换行的目的</td>
-</tr>
-<tr>
-<td>name</td>
-<td><code>true</code></td>
-<td>方法名</td>
-<td>符号化的方法名</td>
-</tr>
-<tr>
-<td>options</td>
-<td><code>false</code></td>
-<td>方法参数</td>
-<td>返回 Hash 类型</td>
-</tr>
-<tr>
-<td>task</td>
-<td><code>true</code></td>
-<td>方法主体</td>
-<td>参考 ruby 的方法代码且支持 ruby 代码</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">定义</th>
+          <th style="text-align: left">是否必须</th>
+          <th style="text-align: left">说明</th>
+          <th style="text-align: left">备注</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">desc</td>
+          <td style="text-align: left"><code>false</code></td>
+          <td style="text-align: left">方法描述</td>
+          <td style="text-align: left">可多次使用打到换行的目的</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">name</td>
+          <td style="text-align: left"><code>true</code></td>
+          <td style="text-align: left">方法名</td>
+          <td style="text-align: left">符号化的方法名</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">options</td>
+          <td style="text-align: left"><code>false</code></td>
+          <td style="text-align: left">方法参数</td>
+          <td style="text-align: left">返回 Hash 类型</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">task</td>
+          <td style="text-align: left"><code>true</code></td>
+          <td style="text-align: left">方法主体</td>
+          <td style="text-align: left">参考 ruby 的方法代码且支持 ruby 代码</td>
+      </tr>
+  </tbody>
 </table>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="n">desc</span> <span class="s1">&#39;定义一个 build 方法&#39;</span>
 </span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="n">desc</span> <span class="s1">&#39;参数 adhoc 判断是否为内测版本, 默认为 false&#39;</span>
@@ -617,58 +617,58 @@
 </span></span></code></pre></div><h3 id="环境变量">环境变量</h3>
 <p>从 fastlane 的设计体系上在各个地方都加入了环境变量的支持，每个扩展的参数、以及扩展需要共享给其他扩展和任务读取的数据都是通过环境变量获取，如下是我收集的比较常用的列表：</p>
 <table>
-<thead>
-<tr>
-<th>环境变量</th>
-<th>来源</th>
-<th>说明</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>FASTLANE_USER</td>
-<td>credentials_manager</td>
-<td>Apple 开发者账户名</td>
-<td>验证通过后会保存 Keychain</td>
-</tr>
-<tr>
-<td>FASTLANE_PASSWORD</td>
-<td>credentials_manager</td>
-<td>Apple 开发者账户密码</td>
-<td>验证通过后会保存 Keychain</td>
-</tr>
-<tr>
-<td>FASTLANE_TEAM_ID<!-- raw HTML omitted -->CERT_TEAM_ID</td>
-<td>produce<!-- raw HTML omitted -->sigh</td>
-<td>Apple 团队 ID</td>
-<td></td>
-</tr>
-<tr>
-<td>DELIVER_USER&lt;br &gt;PRODUCE_USERNAME</td>
-<td>deliver<!-- raw HTML omitted -->produce</td>
-<td>iTunesConnect 账户名</td>
-<td></td>
-</tr>
-<tr>
-<td>DELIVER_PASSWORD</td>
-<td>deliver</td>
-<td>iTunesConnect 账户密码</td>
-<td></td>
-</tr>
-<tr>
-<td>MATCH_PASSWORD</td>
-<td>match</td>
-<td>证书加/解密密码</td>
-<td></td>
-</tr>
-<tr>
-<td>FASTLANE_XCODE_LIST_TIMEOUT</td>
-<td>fastlane_core</td>
-<td>获取 iOS Scheme 的超时时间</td>
-<td>默认 10s</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">环境变量</th>
+          <th style="text-align: left">来源</th>
+          <th style="text-align: left">说明</th>
+          <th style="text-align: left">备注</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">FASTLANE_USER</td>
+          <td style="text-align: left">credentials_manager</td>
+          <td style="text-align: left">Apple 开发者账户名</td>
+          <td style="text-align: left">验证通过后会保存 Keychain</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">FASTLANE_PASSWORD</td>
+          <td style="text-align: left">credentials_manager</td>
+          <td style="text-align: left">Apple 开发者账户密码</td>
+          <td style="text-align: left">验证通过后会保存 Keychain</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">FASTLANE_TEAM_ID<!-- raw HTML omitted -->CERT_TEAM_ID</td>
+          <td style="text-align: left">produce<!-- raw HTML omitted -->sigh</td>
+          <td style="text-align: left">Apple 团队 ID</td>
+          <td style="text-align: left"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">DELIVER_USER&lt;br &gt;PRODUCE_USERNAME</td>
+          <td style="text-align: left">deliver<!-- raw HTML omitted -->produce</td>
+          <td style="text-align: left">iTunesConnect 账户名</td>
+          <td style="text-align: left"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">DELIVER_PASSWORD</td>
+          <td style="text-align: left">deliver</td>
+          <td style="text-align: left">iTunesConnect 账户密码</td>
+          <td style="text-align: left"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">MATCH_PASSWORD</td>
+          <td style="text-align: left">match</td>
+          <td style="text-align: left">证书加/解密密码</td>
+          <td style="text-align: left"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">FASTLANE_XCODE_LIST_TIMEOUT</td>
+          <td style="text-align: left">fastlane_core</td>
+          <td style="text-align: left">获取 iOS Scheme 的超时时间</td>
+          <td style="text-align: left">默认 10s</td>
+      </tr>
+  </tbody>
 </table>
 ]]></content:encoded></item><item><title>Fastlane - iOS 和 Android 的自动化构建工具</title><link>https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/</link><pubDate>Mon, 11 Jul 2016 12:36:07 +0800</pubDate><guid>https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/</guid><description>使用 fastlane 提升构建移动应用的效率</description><content:encoded><![CDATA[<h2 id="前言">前言</h2>
 <p>这篇文章整理了很久，发现在一篇文章里无法一一讲述和全面的覆盖，初步打算是把这个做成一个系列，想到哪里就写到哪里，如果恰好有读者爱戴并有一些建议反馈，我也会根据大家的需要调整内容的方向和深度。论美剧的编剧的重要性(笑)。</p>
@@ -1085,12 +1085,12 @@
 <li><a href="http://www.cocoanetics.com/2011/05/to-universal-or-not/">To Universal or Not</a></li>
 <li><a href="http://blog.iteleportmobile.com/the-case-for-universal-apps">The Case for Universal Apps</a></li>
 </ul>
-]]></content:encoded></item><item><title>在 iOS 应用调用 App Store 显示指定应用的详情</title><link>https://icyleaf.com/2012/10/how-to-preview-app-detail-buit-in-app-using-app-store-data/</link><pubDate>Thu, 25 Oct 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/10/how-to-preview-app-detail-buit-in-app-using-app-store-data/</guid><description>可能很多手机应用都使用了“应用推荐”的功能，实现方式各式各样，对于 iOS 来说最致命的缺点就是，如果用户喜欢给推荐的应用，当用户点击该应用的时候，...</description><content:encoded><![CDATA[<p>可能很多手机应用都使用了“应用推荐”的功能，实现方式各式各样，对于 iOS 来说最致命的缺点就是，如果用户喜欢给推荐的应用，当用户点击该应用的时候，系统会硬生生的从当前应用内退出并打开 App Store 查看应用的详情。如果站在用户体验的角度来看，这其实是一个非常差劲的体验。那么能不能有一种方式可以在应用内部打开呢？</p>
+]]></content:encoded></item><item><title>在 iOS 应用调用 App Store 显示指定应用的详情</title><link>https://icyleaf.com/2012/10/how-to-preview-app-detail-buit-in-app-using-app-store-data/</link><pubDate>Thu, 25 Oct 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/10/how-to-preview-app-detail-buit-in-app-using-app-store-data/</guid><description>&lt;p>可能很多手机应用都使用了“应用推荐”的功能，实现方式各式各样，对于 iOS 来说最致命的缺点就是，如果用户喜欢给推荐的应用，当用户点击该应用的时候，系统会硬生生的从当前应用内退出并打开 App Store 查看应用的详情。如果站在用户体验的角度来看，这其实是一个非常差劲的体验。那么能不能有一种方式可以在应用内部打开呢？&lt;/p>...</description><content:encoded><![CDATA[<p>可能很多手机应用都使用了“应用推荐”的功能，实现方式各式各样，对于 iOS 来说最致命的缺点就是，如果用户喜欢给推荐的应用，当用户点击该应用的时候，系统会硬生生的从当前应用内退出并打开 App Store 查看应用的详情。如果站在用户体验的角度来看，这其实是一个非常差劲的体验。那么能不能有一种方式可以在应用内部打开呢？</p>
 <p>答案是肯定可以！！ iOS 6 其实包括了很多很好的特性，比如 Soical framework，丰富了分享面板，包括我最近刚刚更新的 ShareKit 也对新浪微博支持了这个特性(<a href="https://github.com/icyleaf/ShareKit/issues/4">ShareKit#4</a>)。还有针对于 O2O 具有杀手锏作用的 Pass Kit framework 等等等等&hellip;&hellip;</p>
 <blockquote>
 <p>喂喂喂，你说了半天没有讲到正题啊？！！</p>
 </blockquote>
-<p>咳~咳~书归正题，如果你没做应用内付费，可能你就忽略了 iOS 6 对 In-App Purchase 的说明：</p>
+<p>咳<del>咳</del>书归正题，如果你没做应用内付费，可能你就忽略了 iOS 6 对 In-App Purchase 的说明：</p>
 <blockquote>
 <p>The Store Kit framework (StoreKit.framework) now supports the purchasing of iTunes content inside your app and provides support for having downloadable content hosted on Apple servers. With in-app content purchases, you present a view controller that lets users purchase apps, music, books, and other iTunes content directly from within your app. You identify the items you want to make available for purchase but the rest of the transaction is handled for you by Store Kit.</p>
 </blockquote>
@@ -1108,7 +1108,12 @@ NSDictionary *params = [NSDictionary dictionaryWithObject:@&#34;397735649&#34; /
                                                  animated:YES
                                                completion:nil];
                       }];
-</code></pre>]]></content:encoded></item><item><title>如何针对 iOS 设备进行网络抓包分析</title><link>https://icyleaf.com/2012/10/%E5%A6%82%E4%BD%95%E9%92%88%E5%AF%B9-ios-%E8%AE%BE%E5%A4%87%E8%BF%9B%E8%A1%8C%E7%BD%91%E7%BB%9C%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90/</link><pubDate>Mon, 15 Oct 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/10/%E5%A6%82%E4%BD%95%E9%92%88%E5%AF%B9-ios-%E8%AE%BE%E5%A4%87%E8%BF%9B%E8%A1%8C%E7%BD%91%E7%BB%9C%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90/</guid><description>Charles 目前是 OS X 上面最好的抓包分析软件，相比 WireShark 功能更加强大，并支持代理功能。 iPad HTTP Debugging with Charles - 教大家如何使用它进行代理抓包 Testing / Tethering Data Driven Mobile Apps with Charles and OSX - 教大...</description><content:encoded><![CDATA[<p>Charles 目前是 OS X 上面最好的抓包分析软件，相比 WireShark 功能更加强大，并支持代理功能。</p>
+</code></pre>]]></content:encoded></item><item><title>如何针对 iOS 设备进行网络抓包分析</title><link>https://icyleaf.com/2012/10/%E5%A6%82%E4%BD%95%E9%92%88%E5%AF%B9-ios-%E8%AE%BE%E5%A4%87%E8%BF%9B%E8%A1%8C%E7%BD%91%E7%BB%9C%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90/</link><pubDate>Mon, 15 Oct 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/10/%E5%A6%82%E4%BD%95%E9%92%88%E5%AF%B9-ios-%E8%AE%BE%E5%A4%87%E8%BF%9B%E8%A1%8C%E7%BD%91%E7%BB%9C%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90/</guid><description>&lt;p>Charles 目前是 OS X 上面最好的抓包分析软件，相比 WireShark 功能更加强大，并支持代理功能。&lt;/p>
+&lt;ol>
+&lt;li>&lt;a href="http://www.ravelrumba.com/blog/ipad-http-debugging/">iPad HTTP Debugging with Charles&lt;/a> - 教大家如何使用它进行代理抓包&lt;/li>
+&lt;li>&lt;a href="http://www.skinkers.com/2012/06/12/testing-tethering-data-driven-mobile-apps-with-charles-and-osx-ipad-iphone-http-debugging/">Testing / Tethering Data Driven Mobile Apps with Charles and OSX&lt;/a> - 教大家如何进行 request remap，适合不改动代码的情况下修改域名切换环境&lt;/li>
+&lt;/ol>
+&lt;p>不过 Charles 的确定就是共享软件，未注册版本可以使用全功能但是限制是只能允许使用 30 分钟，那么&amp;hellip;习惯用 Terminal 的还有一个方法：&lt;a href="http://useyourloaf.com/blog/2012/02/07/remote-packet-capture-for-ios-devices.html">Remote Packet Capture for iOS Devices&lt;/a>&lt;/p>...</description><content:encoded><![CDATA[<p>Charles 目前是 OS X 上面最好的抓包分析软件，相比 WireShark 功能更加强大，并支持代理功能。</p>
 <ol>
 <li><a href="http://www.ravelrumba.com/blog/ipad-http-debugging/">iPad HTTP Debugging with Charles</a> - 教大家如何使用它进行代理抓包</li>
 <li><a href="http://www.skinkers.com/2012/06/12/testing-tethering-data-driven-mobile-apps-with-charles-and-osx-ipad-iphone-http-debugging/">Testing / Tethering Data Driven Mobile Apps with Charles and OSX</a> - 教大家如何进行 request remap，适合不改动代码的情况下修改域名切换环境</li>
@@ -1117,7 +1122,7 @@ NSDictionary *params = [NSDictionary dictionaryWithObject:@&#34;397735649&#34; /
 <pre tabindex="0"><code>$ rvictl -s &lt;UDID&gt;
 $ rvictl -l
 $ tcpdump -n -t -i rvi0 -q tcp
-</code></pre>]]></content:encoded></item><item><title>友盟 iOS 发布渠道自动化脚本</title><link>https://icyleaf.com/2012/05/ios-publish-channel-packger-for-umeng/</link><pubDate>Thu, 10 May 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/05/ios-publish-channel-packger-for-umeng/</guid><description>现在公司的大多数手机项目的统计服务都是用的友盟，而自使用之初到现在都有一个渠道管理的功能，这个最后打包的时候实际上可能会产生一点点的麻烦，最...</description><content:encoded><![CDATA[<p>现在公司的大多数手机项目的统计服务都是用的<a href="http:///www.umeng.com">友盟</a>，而自使用之初到现在都有一个渠道管理的功能，这个最后打包的时候实际上可能会产生一点点的麻烦，最早第一个 app 发布的时候，写了一个半自动的脚本，凑合用了很久，现在觉得需要完全自动化，于是借鉴之前 <a href="http://icyleaf.com/2012/04/automating-script-to-testFlight-from-xcode/">testflightapp 的自动化脚本</a>，重新改造脚本。</p>
+</code></pre>]]></content:encoded></item><item><title>友盟 iOS 发布渠道自动化脚本</title><link>https://icyleaf.com/2012/05/ios-publish-channel-packger-for-umeng/</link><pubDate>Thu, 10 May 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/05/ios-publish-channel-packger-for-umeng/</guid><description>&lt;p>现在公司的大多数手机项目的统计服务都是用的&lt;a href="http:///www.umeng.com">友盟&lt;/a>，而自使用之初到现在都有一个渠道管理的功能，这个最后打包的时候实际上可能会产生一点点的麻烦，最早第一个 app 发布的时候，写了一个半自动的脚本，凑合用了很久，现在觉得需要完全自动化，于是借鉴之前 &lt;a href="http://icyleaf.com/2012/04/automating-script-to-testFlight-from-xcode/">testflightapp 的自动化脚本&lt;/a>，重新改造脚本。&lt;/p>...</description><content:encoded><![CDATA[<p>现在公司的大多数手机项目的统计服务都是用的<a href="http:///www.umeng.com">友盟</a>，而自使用之初到现在都有一个渠道管理的功能，这个最后打包的时候实际上可能会产生一点点的麻烦，最早第一个 app 发布的时候，写了一个半自动的脚本，凑合用了很久，现在觉得需要完全自动化，于是借鉴之前 <a href="http://icyleaf.com/2012/04/automating-script-to-testFlight-from-xcode/">testflightapp 的自动化脚本</a>，重新改造脚本。</p>
 <p>实现分两部分：</p>
 <ul>
 <li>iOS 代码</li>
@@ -1132,7 +1137,7 @@ $ tcpdump -n -t -i rvi0 -q tcp
 </ol>
 <p>这样看起来其实工作也不复杂，只不过分发渠道多了就是有些浪费时间。同样还是采用了 Archive 的 Post-Action，这里面可以插入脚本以及外部的调用脚本（如果看不到下面的具体代码，请<a href="https://gist.github.com/2650508">点击这里</a>：</p>
 <!-- raw HTML omitted -->
-]]></content:encoded></item><item><title>自动化脚本上传应用至 testflightapp</title><link>https://icyleaf.com/2012/04/automating-script-to-testflight-from-xcode/</link><pubDate>Fri, 06 Apr 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/04/automating-script-to-testflight-from-xcode/</guid><description>Testflightapp 是团队开发测试中起了重要的角色，尤其是到目前为止一直是免费，最近还推出的 Live 功能不仅可以统计本身的一些数据还可以把现有的一些其他的账户的数据...</description><content:encoded><![CDATA[<p>Testflightapp 是团队开发测试中起了重要的角色，尤其是到目前为止一直是免费，最近还推出的 Live 功能不仅可以统计本身的一些数据还可以把现有的一些其他的账户的数据（比如， itunesconnect，Apple iAd，admob 等）导入进一步扩大聚合。</p>
+]]></content:encoded></item><item><title>自动化脚本上传应用至 testflightapp</title><link>https://icyleaf.com/2012/04/automating-script-to-testflight-from-xcode/</link><pubDate>Fri, 06 Apr 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/04/automating-script-to-testflight-from-xcode/</guid><description>&lt;p>Testflightapp 是团队开发测试中起了重要的角色，尤其是到目前为止一直是免费，最近还推出的 Live 功能不仅可以统计本身的一些数据还可以把现有的一些其他的账户的数据（比如， itunesconnect，Apple iAd，admob 等）导入进一步扩大聚合。&lt;/p>...</description><content:encoded><![CDATA[<p>Testflightapp 是团队开发测试中起了重要的角色，尤其是到目前为止一直是免费，最近还推出的 Live 功能不仅可以统计本身的一些数据还可以把现有的一些其他的账户的数据（比如， itunesconnect，Apple iAd，admob 等）导入进一步扩大聚合。</p>
 <p>尤其是它真的重视开发着的核心需求，仅推出了唯一的一个公开 API，就是上传打包后的 ipa 文件，配合 Xcode 中 Archive 的 Post-action 可以轻松搞定自动化的操作。</p>
 <p>下面是网上搜集的脚本，算是我发现定制化比较强的<a href="https://gist.github.com/1379127">自动化脚本</a>，而且注解也写的很详细。可以在配合我的打包脚本，可以把各个发布渠道的事情一起自动化。</p>
 <blockquote>
@@ -1143,7 +1148,7 @@ $ tcpdump -n -t -i rvi0 -q tcp
 目录下面，如果发现出现问题请仔细查看 log。</p>
 <p>BTW，Post-actions 添加的脚本对于忽略了 XCode 干扰文件的版本控制来说，它没有归入到版本控制之中，脚本是被转义后放在了一个 xcscheme 的 xml 文件中：</p>
 <pre tabindex="0"><code>(project).xcodeproj/xcuserdata/(username).xcuserdatad/xcschemes/(name).xcscheme
-</code></pre>]]></content:encoded></item><item><title>pngcrush 的一些用法</title><link>https://icyleaf.com/2012/03/pngcrush-usage-with-ios-apps/</link><pubDate>Fri, 09 Mar 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/03/pngcrush-usage-with-ios-apps/</guid><description>pngcrush 顾名思义，看起名字本身就优化 png 的工具，为什么会提到它呢，因为目前所有 iOS app 自身的 png 文件都是经过它优化的，对于优化有的 png，系统本身默认是无...</description><content:encoded><![CDATA[<p>pngcrush 顾名思义，看起名字本身就优化 png 的工具，为什么会提到它呢，因为目前所有 iOS app 自身的 png 文件都是经过它优化的，对于优化有的 png，系统本身默认是无法识别的（包括看图工具，作图工具）。但这个工具不仅仅可以优化还可以还原。假如你希望可以学习优秀 iOS App 的一些 png 资源设计，通过这个工具延伸的一些辅助工具，可以快速预览和恢复未优化的图片。</p>
+</code></pre>]]></content:encoded></item><item><title>pngcrush 的一些用法</title><link>https://icyleaf.com/2012/03/pngcrush-usage-with-ios-apps/</link><pubDate>Fri, 09 Mar 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/03/pngcrush-usage-with-ios-apps/</guid><description>&lt;p>pngcrush 顾名思义，看起名字本身就优化 png 的工具，为什么会提到它呢，因为目前所有 iOS app 自身的 png 文件都是经过它优化的，对于优化有的 png，系统本身默认是无法识别的（包括看图工具，作图工具）。但这个工具不仅仅可以优化还可以还原。假如你希望可以学习优秀 iOS App 的一些 png 资源设计，通过这个工具延伸的一些辅助工具，可以快速预览和恢复未优化的图片。&lt;/p>...</description><content:encoded><![CDATA[<p>pngcrush 顾名思义，看起名字本身就优化 png 的工具，为什么会提到它呢，因为目前所有 iOS app 自身的 png 文件都是经过它优化的，对于优化有的 png，系统本身默认是无法识别的（包括看图工具，作图工具）。但这个工具不仅仅可以优化还可以还原。假如你希望可以学习优秀 iOS App 的一些 png 资源设计，通过这个工具延伸的一些辅助工具，可以快速预览和恢复未优化的图片。</p>
 <h1 id="pngcrush">pngcrush</h1>
 <p>本身就是一个开源的工具，托管在 <a href="http://pmt.sourceforge.net/pngcrush/index.html">SourceForge</a>，可以在任何平台运行，对于安装 Xcode 的童鞋，此工具默认放在：</p>
 <pre tabindex="0"><code># XCode 4.3+
@@ -1163,7 +1168,9 @@ pngcrush -dir reverted -revert-iphone-optimizations -q ipa/*.png
 <h1 id="atpeek">atPeek</h1>
 <p>我就知道你不会满足上面半自动的工具，我想 <a href="http://www.atpurpose.com/atPeek/">atPeek</a>(奇怪为什么会被墙掉) 也是你在本博文中最满意的工具。正式介绍下，这个工具自打开的一瞬间，就会加载 <code>Music/iTunes/Mobile Applications</code> 目录下面的所有 ipa 文件。点击你需要查看的 ipa 文件，不仅可以查看该 ipa 的基本 App，最让大家爽的是，ipa 的所有资源文件以文件资源管理器的方式呈现出来。嗯，没错！我可以看到你们双眼发光了！</p>
 <p>但是，这是一个付费应用，你可以进行的操作就是浏览 ipa 和应用自带的预览功能，任何的放大以及导出 png 资源，都是需要付费的，价格为 $4.99。</p>
-]]></content:encoded></item><item><title>如何让 iOS 和 Android 支持自定义字体</title><link>https://icyleaf.com/2011/07/custom-fonts-both-in-ios-and-android/</link><pubDate>Wed, 06 Jul 2011 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2011/07/custom-fonts-both-in-ios-and-android/</guid><description>本篇教程的目前源于我们团队设计师一直询问，iOS(iPhone/iPad) 和 Android 两个平台是否支持自定义字体的问题，恰巧前不久唐茶计划出了一个关...</description><content:encoded><![CDATA[<p>本篇教程的目前源于我们团队设计师一直询问，iOS(iPhone/iPad) 和 Android
+]]></content:encoded></item><item><title>如何让 iOS 和 Android 支持自定义字体</title><link>https://icyleaf.com/2011/07/custom-fonts-both-in-ios-and-android/</link><pubDate>Wed, 06 Jul 2011 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2011/07/custom-fonts-both-in-ios-and-android/</guid><description>&lt;p>本篇教程的目前源于我们团队设计师一直询问，iOS(iPhone/iPad) 和 Android
+两个平台是否支持自定义字体的问题，恰巧前不久&lt;a href="http://www.v2ex.com/t/15220">唐茶计划&lt;/a>出了一个关于在中文阅读新体验的电子书应用：&lt;a href="http://itunes.apple.com/cn/app/id446752200?mt=8">失控&lt;/a>。里面提到中文的显示采用了香港字体设计室的全新中文黑体字：&lt;a href="http://www.typeisbeautiful.com/2011/07/4276">信黑体&lt;/a>。于是我就在想看来
+iOS 是可以支持自定义字体的。通过搜索和研究整理如下，供自己备份和大家参考&lt;/p>...</description><content:encoded><![CDATA[<p>本篇教程的目前源于我们团队设计师一直询问，iOS(iPhone/iPad) 和 Android
 两个平台是否支持自定义字体的问题，恰巧前不久<a href="http://www.v2ex.com/t/15220">唐茶计划</a>出了一个关于在中文阅读新体验的电子书应用：<a href="http://itunes.apple.com/cn/app/id446752200?mt=8">失控</a>。里面提到中文的显示采用了香港字体设计室的全新中文黑体字：<a href="http://www.typeisbeautiful.com/2011/07/4276">信黑体</a>。于是我就在想看来
 iOS 是可以支持自定义字体的。通过搜索和研究整理如下，供自己备份和大家参考</p>
 <h1 id="ios">iOS</h1>
@@ -1261,7 +1268,7 @@ void setFont(TextView name, String path, int res)
 }
 </code></pre><p>扩展阅读 [<a href="http://mobile.tutsplus.com/tutorials/android/customize-android-fonts/">1</a>] [<a href="http://russenreaktor.wordpress.com/2010/04/29/solved-android-using-custom-fonts/">2</a>]</p>
 <p>话说，为什么 Android 到现在都没有更多的开源的库和框架呢？</p>
-]]></content:encoded></item><item><title>为 ShareKit 增加国内相关微博/SNS 服务</title><link>https://icyleaf.com/2011/05/append-related-services-into-sharekit-from-china/</link><pubDate>Mon, 02 May 2011 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2011/05/append-related-services-into-sharekit-from-china/</guid><description>在 iDev 圈内，众所周知 ShareKit是一个家喻户晓的分享框架，很多人都在问哪有支持国内相关微博/SNS服务（比如，新浪微博，腾讯微博，豆瓣，开...</description><content:encoded><![CDATA[<p>在 iDev 圈内，众所周知 ShareKit是一个家喻户晓的分享框架，很多人都在问哪有支持国内相关微博/SNS服务（比如，新浪微博，腾讯微博，豆瓣，开心网，校内等）的类似框架或者谁去做贡献，造福那些拿来主义的人类。正好碰巧我刚刚接触 iOS 开发不久，为了验证文章开头的那段话，恰巧我开发的应用也需要设计这块的内容，我就只好啃下了这块“硬面包”，实际上在熟悉整个 ShareKit 的代码后，外加上对于 OAuth 协议又非常的了解，做一个扩展还是很轻松的，虽然我对 Objective-C 代码并不是很熟悉，这一切得益于 ShareKit。</p>
+]]></content:encoded></item><item><title>为 ShareKit 增加国内相关微博/SNS 服务</title><link>https://icyleaf.com/2011/05/append-related-services-into-sharekit-from-china/</link><pubDate>Mon, 02 May 2011 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2011/05/append-related-services-into-sharekit-from-china/</guid><description>&lt;p>在 iDev 圈内，众所周知 ShareKit是一个家喻户晓的分享框架，很多人都在问哪有支持国内相关微博/SNS服务（比如，新浪微博，腾讯微博，豆瓣，开心网，校内等）的类似框架或者谁去做贡献，造福那些拿来主义的人类。正好碰巧我刚刚接触 iOS 开发不久，为了验证文章开头的那段话，恰巧我开发的应用也需要设计这块的内容，我就只好啃下了这块“硬面包”，实际上在熟悉整个 ShareKit 的代码后，外加上对于 OAuth 协议又非常的了解，做一个扩展还是很轻松的，虽然我对 Objective-C 代码并不是很熟悉，这一切得益于 ShareKit。&lt;/p>...</description><content:encoded><![CDATA[<p>在 iDev 圈内，众所周知 ShareKit是一个家喻户晓的分享框架，很多人都在问哪有支持国内相关微博/SNS服务（比如，新浪微博，腾讯微博，豆瓣，开心网，校内等）的类似框架或者谁去做贡献，造福那些拿来主义的人类。正好碰巧我刚刚接触 iOS 开发不久，为了验证文章开头的那段话，恰巧我开发的应用也需要设计这块的内容，我就只好啃下了这块“硬面包”，实际上在熟悉整个 ShareKit 的代码后，外加上对于 OAuth 协议又非常的了解，做一个扩展还是很轻松的，虽然我对 Objective-C 代码并不是很熟悉，这一切得益于 ShareKit。</p>
 <p>ShareKit 在整体上，代码写的比较完美，对于新增的服务可以轻松实现，而且另外最最大的一个好处在于国内的这些服务实际上都是 Copy to China，这有大大减少了移植的开发量，比较恶心的事，国内为了证明我们的结构和功能不同于原版，对其有做了细微的调整，这就导致使用标准化的协议不能通过，这对于只是想用的人来说就是一种灾难。</p>
 <blockquote>
 <p>天下事有难易乎？为之，则难者亦易矣；不为，则易者亦难矣。人之为学有难易乎？学之，则难者亦易矣；不学，则易者亦难矣。</p>

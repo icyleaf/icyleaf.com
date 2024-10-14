@@ -130,7 +130,7 @@ USB3 端口</li>
   
   
     
-      <figure data-pswp="720x720" data-size="800x"><a href="/uploads/2019/03/28/m2-vs-boardcom-vs-dadapter.jpg" class="gallery-item" target="_blank" data-pswp-width="720" data-pswp-height="720"><img src="/uploads/2019/03/28/m2-vs-boardcom-vs-dadapter_hu00e81ee142ef13662d8a12eecfc18be1_119676_800x0_resize_q75_box.jpg"/></a><figcaption>
+      <figure data-pswp="720x720" data-size="800x"><a href="/uploads/2019/03/28/m2-vs-boardcom-vs-dadapter.jpg" class="gallery-item" target="_blank" data-pswp-width="720" data-pswp-height="720"><img src="/uploads/2019/03/28/m2-vs-boardcom-vs-dadapter_hu2140254577266551733.jpg"/></a><figcaption>
 
     <p>M2 VS 博通 VS 转换器</p></figcaption></figure>
 
@@ -151,7 +151,7 @@ USB3 端口</li>
   
   
     
-      <figure data-pswp="1920x1920" data-size="800x"><a href="/uploads/2019/03/28/install-boardcom-module-to-motherboard.jpg" class="gallery-item" target="_blank" data-pswp-width="1920" data-pswp-height="1920"><img src="/uploads/2019/03/28/install-boardcom-module-to-motherboard_hu3990a80f62d04c441c56fcf5f23b96d1_903689_800x0_resize_q75_box.jpg"/></a><figcaption>
+      <figure data-pswp="1920x1920" data-size="800x"><a href="/uploads/2019/03/28/install-boardcom-module-to-motherboard.jpg" class="gallery-item" target="_blank" data-pswp-width="1920" data-pswp-height="1920"><img src="/uploads/2019/03/28/install-boardcom-module-to-motherboard_hu7907550017879703547.jpg"/></a><figcaption>
 
     <p>博通网卡更换步骤图</p></figcaption></figure>
 
@@ -263,85 +263,85 @@ USB3 端口</li>
 <p>台式机借鉴国外 $1000k 攒机思路在不考虑显示器预算为 6000 元人民币。</p>
 </blockquote>
 <table>
-<thead>
-<tr>
-<th>名称</th>
-<th>品牌型号</th>
-<th>价格</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>CPU</td>
-<td>Intel i7 9700k</td>
-<td>2550</td>
-<td></td>
-</tr>
-<tr>
-<td>主板</td>
-<td>华擎 Z390 Phantom Gaming itx/ac</td>
-<td>1399</td>
-<td></td>
-</tr>
-<tr>
-<td>散热器</td>
-<td>九州风神 船长 240 EX White RGB</td>
-<td>453</td>
-<td>更换酷里奥屠龙 240A</td>
-</tr>
-<tr>
-<td>内存</td>
-<td>海盗船 Vengeance LPX DDR4 3000 16G x 1</td>
-<td>719</td>
-<td></td>
-</tr>
-<tr>
-<td>SSD</td>
-<td>三星 970 EVO 250G</td>
-<td>489</td>
-<td></td>
-</tr>
-<tr>
-<td>机箱</td>
-<td>追风者 215P ITX 侧透 RGB</td>
-<td>489</td>
-<td>支持大风冷和全尺寸显卡</td>
-</tr>
-<tr>
-<td>电源</td>
-<td>讯景 XTR550</td>
-<td>354</td>
-<td></td>
-</tr>
-<tr>
-<td>无线网卡/蓝牙</td>
-<td>博通 BCM94360CS2</td>
-<td>95 元</td>
-<td>需转接卡</td>
-</tr>
-<tr>
-<td>显卡</td>
-<td>蓝宝石 RX580 8G 1411MHz Nitro+ 超白金</td>
-<td>750</td>
-<td>后期预算，闲鱼二手矿卡</td>
-</tr>
-<tr>
-<td>显示器</td>
-<td>LG 27UL600 4k HDR400 IPS</td>
-<td>后期单独预算</td>
-<td></td>
-</tr>
-<tr>
-<td>总价</td>
-<td></td>
-<td>6075<div >
+  <thead>
+      <tr>
+          <th style="text-align: left">名称</th>
+          <th style="text-align: left">品牌型号</th>
+          <th style="text-align: left">价格</th>
+          <th style="text-align: left">备注</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">CPU</td>
+          <td style="text-align: left">Intel i7 9700k</td>
+          <td style="text-align: left">2550</td>
+          <td style="text-align: left"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">主板</td>
+          <td style="text-align: left">华擎 Z390 Phantom Gaming itx/ac</td>
+          <td style="text-align: left">1399</td>
+          <td style="text-align: left"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">散热器</td>
+          <td style="text-align: left">九州风神 船长 240 EX White RGB</td>
+          <td style="text-align: left">453</td>
+          <td style="text-align: left">更换酷里奥屠龙 240A</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">内存</td>
+          <td style="text-align: left">海盗船 Vengeance LPX DDR4 3000 16G x 1</td>
+          <td style="text-align: left">719</td>
+          <td style="text-align: left"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">SSD</td>
+          <td style="text-align: left">三星 970 EVO 250G</td>
+          <td style="text-align: left">489</td>
+          <td style="text-align: left"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">机箱</td>
+          <td style="text-align: left">追风者 215P ITX 侧透 RGB</td>
+          <td style="text-align: left">489</td>
+          <td style="text-align: left">支持大风冷和全尺寸显卡</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">电源</td>
+          <td style="text-align: left">讯景 XTR550</td>
+          <td style="text-align: left">354</td>
+          <td style="text-align: left"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">无线网卡/蓝牙</td>
+          <td style="text-align: left">博通 BCM94360CS2</td>
+          <td style="text-align: left">95 元</td>
+          <td style="text-align: left">需转接卡</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">显卡</td>
+          <td style="text-align: left">蓝宝石 RX580 8G 1411MHz Nitro+ 超白金</td>
+          <td style="text-align: left">750</td>
+          <td style="text-align: left">后期预算，闲鱼二手矿卡</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">显示器</td>
+          <td style="text-align: left">LG 27UL600 4k HDR400 IPS</td>
+          <td style="text-align: left">后期单独预算</td>
+          <td style="text-align: left"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">总价</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">6075<div >
   <br />
 </div>
 6825(独立显卡)</td>
-<td></td>
-</tr>
-</tbody>
+          <td style="text-align: left"></td>
+      </tr>
+  </tbody>
 </table>
 
 
@@ -434,90 +434,90 @@ USB3 端口</li>
 </ul>
 <p>理论上上面 4 个模块是真正免驱的（但也不排除需要加驱动）。</p>
 <table>
-<thead>
-<tr>
-<th>接口</th>
-<th>模块</th>
-<th>天线</th>
-<th>无线</th>
-<th>蓝牙</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>PCIe/x1</td>
-<td>BCM94360CD</td>
-<td>4</td>
-<td>2.4G 450M+/5G 1300M=1750M</td>
-<td>4.0</td>
-<td>iMac (2013) 使用，请勿购买三天线版本，三天线版本（3T3R）蓝牙和无线共用一根影响使用</td>
-</tr>
-<tr>
-<td>PCIe/x1</td>
-<td>BCM94331CD</td>
-<td></td>
-<td></td>
-<td></td>
-<td>tonymacx86 列表之一，国内没找到</td>
-</tr>
-<tr>
-<td>M.2</td>
-<td>BCM943602CS</td>
-<td>3T3R</td>
-<td>2.4G 450M+/5G 1300M=1750M</td>
-<td>4.0</td>
-<td>MacBook Pro (2015) 使用，蓝牙需要接 USB</td>
-</tr>
-<tr>
-<td>M.2/NGFF 2230, key E</td>
-<td>BCM94360CS2</td>
-<td>2T2R</td>
-<td>2.4G 300M+/5G 867M=1167M</td>
-<td>4.0</td>
-<td>MacBook Air (2013) 使用，价格低廉，性价比最好</td>
-</tr>
-<tr>
-<td>M.2/NGFF 2230, key E</td>
-<td>BCM94352Z/AzureWave AW-CE162NF/DW1560</td>
-<td>2T2R</td>
-<td>2.4G 300M/5.0G 867M=1167M</td>
-<td>4.0</td>
-<td></td>
-</tr>
-<tr>
-<td>M.2</td>
-<td>BCM943602BAED/DELL DW1830</td>
-<td>3T3R</td>
-<td>2.4G 450M+</td>
-<td>4.1</td>
-<td></td>
-</tr>
-<tr>
-<td>M.2</td>
-<td>BCM94350ZAE/DW1820A</td>
-<td></td>
-<td></td>
-<td></td>
-<td>tonymacx86 列表之一，国内没找到</td>
-</tr>
-<tr>
-<td>Half mini</td>
-<td>BCM94360HMB/AzureWave AW-CB160H</td>
-<td>3T3R</td>
-<td></td>
-<td></td>
-<td>tonymacx86 列表之一，国内没找到</td>
-</tr>
-<tr>
-<td>Half mini</td>
-<td>BCM94352 HMB/AzureWave AW-CE123H</td>
-<td></td>
-<td></td>
-<td></td>
-<td>tonymacx86 列表之一，国内没找到</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">接口</th>
+          <th style="text-align: left">模块</th>
+          <th style="text-align: left">天线</th>
+          <th style="text-align: left">无线</th>
+          <th style="text-align: left">蓝牙</th>
+          <th style="text-align: left">备注</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">PCIe/x1</td>
+          <td style="text-align: left">BCM94360CD</td>
+          <td style="text-align: left">4</td>
+          <td style="text-align: left">2.4G 450M+/5G 1300M=1750M</td>
+          <td style="text-align: left">4.0</td>
+          <td style="text-align: left">iMac (2013) 使用，请勿购买三天线版本，三天线版本（3T3R）蓝牙和无线共用一根影响使用</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">PCIe/x1</td>
+          <td style="text-align: left">BCM94331CD</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">tonymacx86 列表之一，国内没找到</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">M.2</td>
+          <td style="text-align: left">BCM943602CS</td>
+          <td style="text-align: left">3T3R</td>
+          <td style="text-align: left">2.4G 450M+/5G 1300M=1750M</td>
+          <td style="text-align: left">4.0</td>
+          <td style="text-align: left">MacBook Pro (2015) 使用，蓝牙需要接 USB</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">M.2/NGFF 2230, key E</td>
+          <td style="text-align: left">BCM94360CS2</td>
+          <td style="text-align: left">2T2R</td>
+          <td style="text-align: left">2.4G 300M+/5G 867M=1167M</td>
+          <td style="text-align: left">4.0</td>
+          <td style="text-align: left">MacBook Air (2013) 使用，价格低廉，性价比最好</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">M.2/NGFF 2230, key E</td>
+          <td style="text-align: left">BCM94352Z/AzureWave AW-CE162NF/DW1560</td>
+          <td style="text-align: left">2T2R</td>
+          <td style="text-align: left">2.4G 300M/5.0G 867M=1167M</td>
+          <td style="text-align: left">4.0</td>
+          <td style="text-align: left"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">M.2</td>
+          <td style="text-align: left">BCM943602BAED/DELL DW1830</td>
+          <td style="text-align: left">3T3R</td>
+          <td style="text-align: left">2.4G 450M+</td>
+          <td style="text-align: left">4.1</td>
+          <td style="text-align: left"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">M.2</td>
+          <td style="text-align: left">BCM94350ZAE/DW1820A</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">tonymacx86 列表之一，国内没找到</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Half mini</td>
+          <td style="text-align: left">BCM94360HMB/AzureWave AW-CB160H</td>
+          <td style="text-align: left">3T3R</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">tonymacx86 列表之一，国内没找到</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Half mini</td>
+          <td style="text-align: left">BCM94352 HMB/AzureWave AW-CE123H</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">tonymacx86 列表之一，国内没找到</td>
+      </tr>
+  </tbody>
 </table>
 <p>更多博通模块请看 <a href="https://dortania.github.io/Wireless-Buyers-Guide">无线购买指南</a>，其他兼容的列表请看 <a href="https://osxlatitude.com/forums/topic/2120-inventory-of-supportedunsupported-wireless-cards-1-snow-leopard-el-capitan/">osxlatitude 的整理</a>。</p>
 <p>首先排除 PCIe 接口华擎 Z390 itx 版只有一个接口这个是为独立显卡准备的，虽然我很想入 BCM94360CD 四天线。 因此只能考虑 M.2 接口，上面的模块虽然也可以直接插 M.2 接口（底子还是 PCIe 嘛）但板子仅支持 2260/2280，支持 2260 的口我已经插了 SSD（因为主板提供散热马甲），<del>因此我只能考虑 2280。淘宝上能找到的支持 2280 转接卡的模块基本上只有 BCM94360CS2 和 BCM943602CS，考虑到后者是较新的 5G 可以达到 1300M，这俩价格也差不多基本上会考虑后者</del>。受春节的影响没有入手，期间在浏览的时候发现华擎 Z370 可以拆卸原本的 Intel 的无线模块用来安装博通网卡/蓝牙模块，联系了 up 主没有得到解答只能从他视频扣细节，Intel 网卡型号不一样但确定插槽是 M.2 Key E，考虑到主板自带两个天线口放弃了三天线的 BCM943602CS，买了最物美价廉的 BCM94360CS2，带上转接卡高度 2230 机箱可以兼容。附上一个 M.2 接口的一栏图：</p>
@@ -537,7 +537,7 @@ USB3 端口</li>
   
   
     
-      <figure data-pswp="900x2048" data-size="800x"><a href="/uploads/2020/04/02/m2-key-list.jpeg" class="gallery-item" target="_blank" data-pswp-width="900" data-pswp-height="2048"><img src="/uploads/2020/04/02/m2-key-list_hue303cdd9ec1c456e7c7b209fdb90df78_216428_800x0_resize_q75_box.jpeg"/></a><figcaption>
+      <figure data-pswp="900x2048" data-size="800x"><a href="/uploads/2020/04/02/m2-key-list.jpeg" class="gallery-item" target="_blank" data-pswp-width="900" data-pswp-height="2048"><img src="/uploads/2020/04/02/m2-key-list_hu12425770893066929093.jpeg"/></a><figcaption>
 
     <p>M2 规格图</p></figcaption></figure>
 

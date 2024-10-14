@@ -22,46 +22,46 @@
 <p>Dash 本身只支持 docsets 格式的文档，也就是由 <a href="http://gentlebytes.com/appledoc/">appledoc</a> 生成的。默认是让 XCode 的 Organizer 管理文档，但是针对这个庞然大物，只是做文档的管理和快速搜索有消受不起。因此 Dash 才诞生出来的。</p>
 <p>其实本篇日志主要是讲这块的内容，从上面的特性上面我也说到 Dash 支持生成任何的文档，因为它支持的文档类型涵盖了目前绝大多数的文档格式，针对这块官方已经写了<a href="http://kapeli.com/docsets">如何转换的说明</a>，这里简单说明下：</p>
 <table>
-<thead>
-<tr>
-<th>语言</th>
-<th>转换工具</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Objective-C 文档</td>
-<td><a href="http://gentlebytes.com/appledoc-docs-examples-basic/">appledoc</a></td>
-</tr>
-<tr>
-<td>Python, Sphinx, pydoctor</td>
-<td><a href="http://pypi.python.org/pypi/doc2dash/">doc2dash</a></td>
-</tr>
-<tr>
-<td>Javadoc</td>
-<td><a href="http://kapeli.com/JavaDocset.zip">java.docset</a></td>
-</tr>
-<tr>
-<td>RDoc</td>
-<td>使用 Dash 自身的 &ldquo;Ruby Installed Gems&rdquo;</td>
-</tr>
-<tr>
-<td>Scaladoc</td>
-<td><a href="https://bitbucket.org/inkytonik/mkscaladocset">mkscaldocset</a></td>
-</tr>
-<tr>
-<td>Doxygen(源码)</td>
-<td>修改参数生成</td>
-</tr>
-<tr>
-<td>docsetutil</td>
-<td>需要创建指定目录结构</td>
-</tr>
-<tr>
-<td>SQLite</td>
-<td>官方支持数据库索引，需要创建指定目录结构</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">语言</th>
+          <th style="text-align: left">转换工具</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Objective-C 文档</td>
+          <td style="text-align: left"><a href="http://gentlebytes.com/appledoc-docs-examples-basic/">appledoc</a></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Python, Sphinx, pydoctor</td>
+          <td style="text-align: left"><a href="http://pypi.python.org/pypi/doc2dash/">doc2dash</a></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Javadoc</td>
+          <td style="text-align: left"><a href="http://kapeli.com/JavaDocset.zip">java.docset</a></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">RDoc</td>
+          <td style="text-align: left">使用 Dash 自身的 &ldquo;Ruby Installed Gems&rdquo;</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Scaladoc</td>
+          <td style="text-align: left"><a href="https://bitbucket.org/inkytonik/mkscaladocset">mkscaldocset</a></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Doxygen(源码)</td>
+          <td style="text-align: left">修改参数生成</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">docsetutil</td>
+          <td style="text-align: left">需要创建指定目录结构</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">SQLite</td>
+          <td style="text-align: left">官方支持数据库索引，需要创建指定目录结构</td>
+      </tr>
+  </tbody>
 </table>
 <h3 id="生成-flask-文档">生成 Flask 文档</h3>
 <p>因为最近在学习 Flask，过年回家家里没有网络，因为我需要可以查询它的文档，虽然官方提供了 html 和 pdf 格式，但是没有办法快速搜索 API，没法发挥 Dash 的优势嘛，对吧！</p>
@@ -102,7 +102,10 @@ $ mkvirtualenv -r requirements.txt &lt;env_name&gt;
 </code></pre><h1 id="创建临时环境-deactivate-之后自动销毁">创建临时环境 (deactivate 之后自动销毁)</h1>
 <pre tabindex="0"><code>$ mktmpenv
 </code></pre><p>查看更详细的<a href="http://virtualenvwrapper.readthedocs.org/en/latest/command_ref.html">命令描述文档</a>。</p>
-]]></content:encoded></item><item><title>升级 OS X 10.8 和 Python 第三方库那点事</title><link>https://icyleaf.com/2012/08/upgrade-osx-10-8-with-python-library/</link><pubDate>Fri, 24 Aug 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/08/upgrade-osx-10-8-with-python-library/</guid><description>今天把公司的机器升级到了 10.8 本来就觉得 OS X 的平滑升级做的非常的好，除了一些被乔帮主鄙视的 JDK 需要重新安装外，其他的一切都很平滑的迁移过来。中午的...</description><content:encoded><![CDATA[<p>今天把公司的机器升级到了 10.8 本来就觉得 OS X
+]]></content:encoded></item><item><title>升级 OS X 10.8 和 Python 第三方库那点事</title><link>https://icyleaf.com/2012/08/upgrade-osx-10-8-with-python-library/</link><pubDate>Fri, 24 Aug 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/08/upgrade-osx-10-8-with-python-library/</guid><description>&lt;p>今天把公司的机器升级到了 10.8 本来就觉得 OS X
+的平滑升级做的非常的好，除了一些被乔帮主鄙视的 JDK
+需要重新安装外，其他的一切都很平滑的迁移过来。中午的时候想用 django
+练手做个晓项目，熟练的在终端创建新项目，结果爆出如下错误：&lt;/p>...</description><content:encoded><![CDATA[<p>今天把公司的机器升级到了 10.8 本来就觉得 OS X
 的平滑升级做的非常的好，除了一些被乔帮主鄙视的 JDK
 需要重新安装外，其他的一切都很平滑的迁移过来。中午的时候想用 django
 练手做个晓项目，熟练的在终端创建新项目，结果爆出如下错误：</p>
@@ -143,7 +146,28 @@ $ distribute_setup.py
 <p>Easily download, build, install, upgrade, and uninstall Python
 packages</p>
 </blockquote>
-]]></content:encoded></item><item><title>利用 argparse 写的脚本命令：测试 URL 响应时间</title><link>https://icyleaf.com/2012/08/url-request-time-test-using-python-with-argparse/</link><pubDate>Thu, 02 Aug 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/08/url-request-time-test-using-python-with-argparse/</guid><description>前几天看完《Python简明教程》，预想练手，想起同事的一个 ruby 代码，尝试改写成 python，顺便看看两个语言的简练程度。下面是原始的 ruby 代码：...</description><content:encoded><![CDATA[<p>前几天看完《<a href="http://woodpecker.org.cn/abyteofpython_cn/chinese/">Python简明教程</a>》，预想练手，想起同事的一个 ruby 代码，尝试改写成 python，顺便看看两个语言的简练程度。下面是原始的 ruby 代码：</p>
+]]></content:encoded></item><item><title>利用 argparse 写的脚本命令：测试 URL 响应时间</title><link>https://icyleaf.com/2012/08/url-request-time-test-using-python-with-argparse/</link><pubDate>Thu, 02 Aug 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/08/url-request-time-test-using-python-with-argparse/</guid><description>&lt;p>前几天看完《&lt;a href="http://woodpecker.org.cn/abyteofpython_cn/chinese/">Python简明教程&lt;/a>》，预想练手，想起同事的一个 ruby 代码，尝试改写成 python，顺便看看两个语言的简练程度。下面是原始的 ruby 代码：&lt;/p>
+&lt;pre tabindex="0">&lt;code>#!/usr/bin/env ruby
+require &amp;#39;rubygems&amp;#39;
+require &amp;#39;net/http&amp;#39;
+urls = [&amp;#34;http://icyleaf.com&amp;#34;]
+50.times do
+urls.each do |url|
+start_at = Time.now
+Net::HTTP.get URI.parse(url)
+end_at = Time.now
+diff = end_at - start_at
+if diff &amp;lt; 0.3 then
+color_code = 32
+elsif diff &amp;gt; 0.8 then
+color_code = 31
+else
+color_code = 33
+end
+puts &amp;#34;#{url}\n time: \033[#{color_code}m#{diff}\033[0m seconds&amp;#34;
+end
+end
+&lt;/code>&lt;/pre>&lt;p>改写 python 的同时，考虑脚本的灵活性准备增加两个参数，第一个是请求测试次数，第二个是请求测试的 URL，而 python 默认提供了 &lt;a href="http://docs.python.org/dev/library/argparse.html">argparse&lt;/a> 库，可以很方便的生成 &amp;ndash;help 的帮助和解析传递的参数：&lt;/p>...</description><content:encoded><![CDATA[<p>前几天看完《<a href="http://woodpecker.org.cn/abyteofpython_cn/chinese/">Python简明教程</a>》，预想练手，想起同事的一个 ruby 代码，尝试改写成 python，顺便看看两个语言的简练程度。下面是原始的 ruby 代码：</p>
 <pre tabindex="0"><code>#!/usr/bin/env ruby
 
 require &#39;rubygems&#39;
@@ -212,7 +236,7 @@ if __name__ == &#39;__main__&#39;:
   
   alt="screenshot"></img>
 </p>
-]]></content:encoded></item><item><title>初次接触 virtualenv</title><link>https://icyleaf.com/2012/07/intro-virtualenv/</link><pubDate>Fri, 27 Jul 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/07/intro-virtualenv/</guid><description>python 的 virtualenv 功能看着类似于 Ruby 的 RVM，其实这两个东西我都没有用过，本身脚本语言用的最熟练的是 php，最近觉得 php 在处理一些多线程和终端繁琐的事情上有...</description><content:encoded><![CDATA[<p>python 的 virtualenv 功能看着类似于 Ruby 的 RVM，其实这两个东西我都没有用过，本身脚本语言用的最熟练的是 php，最近觉得 php 在处理一些多线程和终端繁琐的事情上有些局限性。决定熟悉下 python 并尝试用 django 做一个小应用。</p>
+]]></content:encoded></item><item><title>初次接触 virtualenv</title><link>https://icyleaf.com/2012/07/intro-virtualenv/</link><pubDate>Fri, 27 Jul 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/07/intro-virtualenv/</guid><description>&lt;p>python 的 virtualenv 功能看着类似于 Ruby 的 RVM，其实这两个东西我都没有用过，本身脚本语言用的最熟练的是 php，最近觉得 php 在处理一些多线程和终端繁琐的事情上有些局限性。决定熟悉下 python 并尝试用 django 做一个小应用。&lt;/p>...</description><content:encoded><![CDATA[<p>python 的 virtualenv 功能看着类似于 Ruby 的 RVM，其实这两个东西我都没有用过，本身脚本语言用的最熟练的是 php，最近觉得 php 在处理一些多线程和终端繁琐的事情上有些局限性。决定熟悉下 python 并尝试用 django 做一个小应用。</p>
 <p>由于本身 <a href="http://github.com/openparty/openparty">OpenParty</a> 的代码也是基于 django 开发的，加上最近也开始使用了 virtualenv，这样正好解决了不同项目在使用不同的环境造成的一些困扰。</p>
 <p>OS X 本身已经安装了 easy_install 可以通过命令安装：</p>
 <pre tabindex="0"><code>$ easy_install pip

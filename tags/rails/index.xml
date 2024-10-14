@@ -41,7 +41,7 @@
   
   
     
-      <figure data-pswp="2278x1206" data-size="800x"><a href="/uploads/2022/09/16/generate-encrypted-credentials-tools.png" class="gallery-item" target="_blank" data-pswp-width="2278" data-pswp-height="1206"><img src="/uploads/2022/09/16/generate-encrypted-credentials-tools_hu53cdae0c645814fab78a15ed8fe0af52_167183_800x0_resize_box_3.png"/></a><figcaption>
+      <figure data-pswp="2278x1206" data-size="800x"><a href="/uploads/2022/09/16/generate-encrypted-credentials-tools.png" class="gallery-item" target="_blank" data-pswp-width="2278" data-pswp-height="1206"><img src="/uploads/2022/09/16/generate-encrypted-credentials-tools_hu12596015414207723162.png"/></a><figcaption>
 
     <p>加密凭证生成器</p></figcaption></figure>
 
@@ -248,38 +248,38 @@
 </span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="se"></span>  -t app .
 </span></span></code></pre></div><p>结合 <a href="https://github.com/moby/buildkit/blob/master/frontend/dockerfile/docs/reference.md#run---mounttypesecret">&ndash;mount-type=secret</a> 支持的参数:</p>
 <table>
-<thead>
-<tr>
-<th>参数名</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>id</td>
-<td>密钥的唯一 id，默认是 target 参数的值的文件名</td>
-</tr>
-<tr>
-<td>target</td>
-<td>镜像内挂载的路径，默认是 <code>/run/secrets/</code> + <code>id</code></td>
-</tr>
-<tr>
-<td>required</td>
-<td>设置 <code>true</code> 当密钥不存在时报错，默认是 <code>false</code></td>
-</tr>
-<tr>
-<td>mode</td>
-<td>挂载后的文件权限，默认是 <code>0400</code></td>
-</tr>
-<tr>
-<td>uid</td>
-<td>设置密钥文件的用户 ID，默认是 <code>0</code></td>
-</tr>
-<tr>
-<td>gid</td>
-<td>设置密钥文件的用户组 ID，默认是 <code>0</code></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">参数名</th>
+          <th style="text-align: left">说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">id</td>
+          <td style="text-align: left">密钥的唯一 id，默认是 target 参数的值的文件名</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">target</td>
+          <td style="text-align: left">镜像内挂载的路径，默认是 <code>/run/secrets/</code> + <code>id</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">required</td>
+          <td style="text-align: left">设置 <code>true</code> 当密钥不存在时报错，默认是 <code>false</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">mode</td>
+          <td style="text-align: left">挂载后的文件权限，默认是 <code>0400</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">uid</td>
+          <td style="text-align: left">设置密钥文件的用户 ID，默认是 <code>0</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">gid</td>
+          <td style="text-align: left">设置密钥文件的用户组 ID，默认是 <code>0</code></td>
+      </tr>
+  </tbody>
 </table>
 <p><code>id</code> 关联 CLI 传参和构建镜像中执行步骤，CLI 入参设置 secret 的输入文件，构建镜像则需要把 secret 导出到镜像中具体的路径，其实就是这么简单。极少数支持 Docker
 部署的云服务，比如 <a href="https://render.com/docs/docker-secrets">Render</a> 支持这种方式。部署到云服务上还需要重新考量下。</p>

@@ -14,7 +14,7 @@
 <li>5.3 日志结构作者又做调整了，完整配置已更新，如果是 5.0 ~ 5.1.x 版本需要注意完整配置下面的代码对比部分。</li>
 <li>作者自己使用是把 modsns 从之前的后置改成了前置测试了好几个月，好处是某些服务挂了也不会影响 DNS 的解析，有想了解具体细节的吗？</li>
 </ul>
-<p>更新维护不易，欢迎在文章尾部打赏作者，这个对于作者很重要，感谢你的支持！
+<p>更新维护不易，欢迎在文章尾部打赏作者，这个对于作者很重要，感谢你的支持！</p>
   </article>
 </div>
 
@@ -38,7 +38,7 @@
   
   
     
-      <figure data-pswp="2552x1204" data-size="800x"><a href="/uploads/2023/08/grafana-mosdns.png" class="gallery-item" target="_blank" data-pswp-width="2552" data-pswp-height="1204"><img src="/uploads/2023/08/grafana-mosdns_hu7b3446c2932c9a82ef05eb189f85c3c2_313540_800x0_resize_box_3.png"/></a><figcaption>
+      <figure data-pswp="2552x1204" data-size="800x"><a href="/uploads/2023/08/grafana-mosdns.png" class="gallery-item" target="_blank" data-pswp-width="2552" data-pswp-height="1204"><img src="/uploads/2023/08/grafana-mosdns_hu14669541674982067454.png"/></a><figcaption>
 
     <p>实时监控 mosdns 规则解析 Grafana 看板</p></figcaption></figure>
 
@@ -80,7 +80,7 @@
   
   
     
-      <figure data-pswp="1630x736" data-size="800x"><a href="/uploads/2023/08/vector-flow.png" class="gallery-item" target="_blank" data-pswp-width="1630" data-pswp-height="736"><img src="/uploads/2023/08/vector-flow_hubd01c31007c9ec336c64593db2dd6651_89209_800x0_resize_box_3.png"/></a></figure>
+      <figure data-pswp="1630x736" data-size="800x"><a href="/uploads/2023/08/vector-flow.png" class="gallery-item" target="_blank" data-pswp-width="1630" data-pswp-height="736"><img src="/uploads/2023/08/vector-flow_hu10473946876088393779.png"/></a></figure>
 
 <p>vector 需要能够直接访问到 mosdns 的日志文件。这里有两种方式可以实现：一种是两个服务都在一台机器上运行，另外一种是通过容器化共享 volume 让 vector 可以读取 mosdns 日志。</p>
 <p>工具本身是 Go 语言开发从 Github 直接下载好对应的包解压缩就能够使用或者使用一键安装脚本：</p>
@@ -245,7 +245,7 @@
   
   
     
-      <figure data-pswp="1804x800" data-size="800x"><a href="/uploads/2023/08/import-grafana-dashboard.png" class="gallery-item" target="_blank" data-pswp-width="1804" data-pswp-height="800"><img src="/uploads/2023/08/import-grafana-dashboard_hub624a0be8631d27cc91142a38cc5db9b_78770_800x0_resize_box_3.png"/></a><figcaption>
+      <figure data-pswp="1804x800" data-size="800x"><a href="/uploads/2023/08/import-grafana-dashboard.png" class="gallery-item" target="_blank" data-pswp-width="1804" data-pswp-height="800"><img src="/uploads/2023/08/import-grafana-dashboard_hu17516823876611020524.png"/></a><figcaption>
 
     <p>Grafana 导入 Dashboard 看板</p></figcaption></figure>
 
@@ -265,7 +265,7 @@
   
   
     
-      <figure data-pswp="2138x1306" data-size="800x"><a href="/uploads/2023/08/configure-grafana-database.png" class="gallery-item" target="_blank" data-pswp-width="2138" data-pswp-height="1306"><img src="/uploads/2023/08/configure-grafana-database_hu1e22fd61c3dc8671eabbbb90328e1589_111606_800x0_resize_box_3.png"/></a><figcaption>
+      <figure data-pswp="2138x1306" data-size="800x"><a href="/uploads/2023/08/configure-grafana-database.png" class="gallery-item" target="_blank" data-pswp-width="2138" data-pswp-height="1306"><img src="/uploads/2023/08/configure-grafana-database_hu9312454246112292748.png"/></a><figcaption>
 
     <p>Grafana 配置数据源</p></figcaption></figure>
 
@@ -770,65 +770,65 @@ nameserver 8.8.4.4 # 备选 DNS
 <h2 id="基本常识">基本常识</h2>
 <h3 id="用户和用户组">用户和用户组</h3>
 <table>
-<thead>
-<tr>
-<th>参数</th>
-<th>英文</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>u</td>
-<td>Use</td>
-<td>当前用户</td>
-</tr>
-<tr>
-<td>g</td>
-<td>Group</td>
-<td>所属用户组</td>
-</tr>
-<tr>
-<td>o</td>
-<td>Others</td>
-<td>其他人（其他用户及用户组，包含访客用户）</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">参数</th>
+          <th style="text-align: left">英文</th>
+          <th style="text-align: left">说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">u</td>
+          <td style="text-align: left">Use</td>
+          <td style="text-align: left">当前用户</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">g</td>
+          <td style="text-align: left">Group</td>
+          <td style="text-align: left">所属用户组</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">o</td>
+          <td style="text-align: left">Others</td>
+          <td style="text-align: left">其他人（其他用户及用户组，包含访客用户）</td>
+      </tr>
+  </tbody>
 </table>
 <h3 id="数字与参数">数字与参数</h3>
 <table>
-<thead>
-<tr>
-<th>数字</th>
-<th>符号</th>
-<th>说明</th>
-<th>对文件</th>
-<th>对目录</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>x</td>
-<td>可执行权限</td>
-<td>可被系统执行的权限</td>
-<td>无</td>
-</tr>
-<tr>
-<td>2</td>
-<td>w</td>
-<td>写权限</td>
-<td>可以编辑或修改文件内容，但不含删除该文件</td>
-<td>增删改该目录及目录下全部文件</td>
-</tr>
-<tr>
-<td>4</td>
-<td>r</td>
-<td>读权限</td>
-<td>可读取文件的内容</td>
-<td>可读取目录结构</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">数字</th>
+          <th style="text-align: left">符号</th>
+          <th style="text-align: left">说明</th>
+          <th style="text-align: left">对文件</th>
+          <th style="text-align: left">对目录</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">1</td>
+          <td style="text-align: left">x</td>
+          <td style="text-align: left">可执行权限</td>
+          <td style="text-align: left">可被系统执行的权限</td>
+          <td style="text-align: left">无</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">2</td>
+          <td style="text-align: left">w</td>
+          <td style="text-align: left">写权限</td>
+          <td style="text-align: left">可以编辑或修改文件内容，但不含删除该文件</td>
+          <td style="text-align: left">增删改该目录及目录下全部文件</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">4</td>
+          <td style="text-align: left">r</td>
+          <td style="text-align: left">读权限</td>
+          <td style="text-align: left">可读取文件的内容</td>
+          <td style="text-align: left">可读取目录结构</td>
+      </tr>
+  </tbody>
 </table>
 <blockquote>
 <p>备注：<code>ls -l</code>对于文件权限是由 rwx 倒序组成。比如 <code>-rwxr--r--</code>，说明当前用户拥有全部权限，所属用户组和其他人只有读权限。</p>
@@ -837,72 +837,72 @@ nameserver 8.8.4.4 # 备选 DNS
 <h3 id="数字篇">数字篇</h3>
 <h4 id="1-当前用户拥有所有权限其他只有读权限">1. 当前用户拥有所有权限，其他只有读权限</h4>
 <table>
-<thead>
-<tr>
-<th>u</th>
-<th>g</th>
-<th>o</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>6</td>
-<td>4</td>
-<td>4</td>
-</tr>
-<tr>
-<td>rw</td>
-<td>r</td>
-<td>r</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">u</th>
+          <th style="text-align: left">g</th>
+          <th style="text-align: left">o</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">6</td>
+          <td style="text-align: left">4</td>
+          <td style="text-align: left">4</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">rw</td>
+          <td style="text-align: left">r</td>
+          <td style="text-align: left">r</td>
+      </tr>
+  </tbody>
 </table>
 <h4 id="2-所有用户及用户组添加全部权限-谨慎使用">2. 所有用户及用户组添加全部权限 （<strong>谨慎使用</strong>）</h4>
 <table>
-<thead>
-<tr>
-<th>u</th>
-<th>g</th>
-<th>o</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>7</td>
-<td>7</td>
-<td>7</td>
-</tr>
-<tr>
-<td>rwx</td>
-<td>rwx</td>
-<td>rwx</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">u</th>
+          <th style="text-align: left">g</th>
+          <th style="text-align: left">o</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">7</td>
+          <td style="text-align: left">7</td>
+          <td style="text-align: left">7</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">rwx</td>
+          <td style="text-align: left">rwx</td>
+          <td style="text-align: left">rwx</td>
+      </tr>
+  </tbody>
 </table>
 <h3 id="符号篇">符号篇</h3>
 <pre tabindex="0"><code>通用公式：[用户(组)] + [操作] + [符号]
 </code></pre><p>其中<code>操作</code>是由如下表构成：</p>
 <table>
-<thead>
-<tr>
-<th>操作</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>-</td>
-<td>移除权限</td>
-</tr>
-<tr>
-<td>+</td>
-<td>增加权限</td>
-</tr>
-<tr>
-<td>=</td>
-<td>设定权限</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">操作</th>
+          <th style="text-align: left">说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">-</td>
+          <td style="text-align: left">移除权限</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">+</td>
+          <td style="text-align: left">增加权限</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">=</td>
+          <td style="text-align: left">设定权限</td>
+      </tr>
+  </tbody>
 </table>
 <h4 id="1-所有用户及用户组添加执行权限">1. 所有用户及用户组添加执行权限</h4>
 <pre tabindex="0"><code>$ chmod +x [file]
@@ -914,13 +914,15 @@ nameserver 8.8.4.4 # 备选 DNS
 <pre tabindex="0"><code>$ chmod go-rw [file]
 </code></pre><h4 id="5-设置当前用户所有权限所属用户组和其他人保留读权限">5. 设置当前用户所有权限，所属用户组和其他人保留读权限</h4>
 <pre tabindex="0"><code>$ chmod u=rwx,g=r,o=r [file]
-</code></pre>]]></content:encoded></item><item><title>OSX 下 Finer 和 Terminal 相互切换</title><link>https://icyleaf.com/2010/12/switer-between-finder-and-terminal-in-osx/</link><pubDate>Wed, 08 Dec 2010 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2010/12/switer-between-finder-and-terminal-in-osx/</guid><description>在 Finder 打开 Terminal 并切换到当前目录 安装一个开源的 Finder 辅助工具：cdto。功能只有一个就是实现在 Finder 打开 Terminal 并切换到当前 Finder 目录。找到你系统的版本的 app （支持当...</description><content:encoded><![CDATA[<p><strong>在 Finder 打开 Terminal 并切换到当前目录</strong></p>
+</code></pre>]]></content:encoded></item><item><title>OSX 下 Finer 和 Terminal 相互切换</title><link>https://icyleaf.com/2010/12/switer-between-finder-and-terminal-in-osx/</link><pubDate>Wed, 08 Dec 2010 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2010/12/switer-between-finder-and-terminal-in-osx/</guid><description>&lt;p>&lt;strong>在 Finder 打开 Terminal 并切换到当前目录&lt;/strong>&lt;/p>
+&lt;p>安装一个开源的 Finder 辅助工具：&lt;a href="http://code.google.com/p/cdto/">cdto&lt;/a>。功能只有一个就是实现在 Finder 打开 Terminal 并切换到当前 Finder 目录。找到你系统的版本的 app （支持当前 OS X 10.4 以上版本）拷贝到 Applications 下并把它拖到 Finder 的工具栏上即可。&lt;/p>...</description><content:encoded><![CDATA[<p><strong>在 Finder 打开 Terminal 并切换到当前目录</strong></p>
 <p>安装一个开源的 Finder 辅助工具：<a href="http://code.google.com/p/cdto/">cdto</a>。功能只有一个就是实现在 Finder 打开 Terminal 并切换到当前 Finder 目录。找到你系统的版本的 app （支持当前 OS X 10.4 以上版本）拷贝到 Applications 下并把它拖到 Finder 的工具栏上即可。</p>
 <p><strong>从 Terminal 中用 Finder 打开当前路径的目录</strong></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ open .
 </span></span></code></pre></div><p>PS，如果是 Ubuntu 系统的话请安装 nautilus，然后在 Terminal 里面输入</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ nautilus .
-</span></span></code></pre></div>]]></content:encoded></item><item><title>Ubuntu 解决 public key is not available 问题</title><link>https://icyleaf.com/2010/11/apt-get-gpg-error-public-key-not-available/</link><pubDate>Wed, 03 Nov 2010 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2010/11/apt-get-gpg-error-public-key-not-available/</guid><description>自 Ubuntu 10.04 升级至 10.10 之后，系统就有些不注意的小毛病，包括系统的各个软件的配置文件可能有改动，加上常年累计尝试并添加很多 ppa 的源，自定义的软件源在升级...</description><content:encoded><![CDATA[<p>自 Ubuntu 10.04 升级至 10.10 之后，系统就有些不注意的小毛病，包括系统的各个软件的配置文件可能有改动，加上常年累计尝试并添加很多 ppa</p>
+</span></span></code></pre></div>]]></content:encoded></item><item><title>Ubuntu 解决 public key is not available 问题</title><link>https://icyleaf.com/2010/11/apt-get-gpg-error-public-key-not-available/</link><pubDate>Wed, 03 Nov 2010 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2010/11/apt-get-gpg-error-public-key-not-available/</guid><description>&lt;p>自 Ubuntu 10.04 升级至 10.10 之后，系统就有些不注意的小毛病，包括系统的各个软件的配置文件可能有改动，加上常年累计尝试并添加很多 ppa&lt;/p>
+&lt;p>的源，自定义的软件源在升级兼容的考虑下全部金禁用了导致原本软件源的注解名称也没有了，自己不知道各个软件源是干什么的&amp;hellip;于是手动在软件源管理（a本放在了 Applications -&amp;gt; Ubuntu Software Center 程序里面 Edit 菜单下面）清理。&lt;/p>...</description><content:encoded><![CDATA[<p>自 Ubuntu 10.04 升级至 10.10 之后，系统就有些不注意的小毛病，包括系统的各个软件的配置文件可能有改动，加上常年累计尝试并添加很多 ppa</p>
 <p>的源，自定义的软件源在升级兼容的考虑下全部金禁用了导致原本软件源的注解名称也没有了，自己不知道各个软件源是干什么的&hellip;于是手动在软件源管理（a本放在了 Applications -&gt; Ubuntu Software Center 程序里面 Edit 菜单下面）清理。</p>
 <p>第一开始是凭记忆清理了一部分不再使用的软件的源，退出后更新发现失败&hellip;再次清理 Authentication 里面的 Public key，发现还是有问题，最后下定狠心把所有的源和 public key 全部删除了再更新发现还是有错误 T_T 其实错误提示的是一种类型的：</p>
 <blockquote>
@@ -933,7 +935,9 @@ key，详情请看[这里][]。第二种则相对于比较简单：命令行流�
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ gpg --keyserver keyserver.ubuntu.com --recv 4E5E17B5# 返回信息gpg: requesting key 4E5E17B5 from hkp server keyserver.ubuntu.comgpg: key 4E5E17B5: public key <span class="s2">&#34;Launchpad PPA for chromium-daily&#34;</span> importedgpg: no ultimately trusted keys foundgpg: Total number processed: 1gpg:               imported: <span class="m">1</span>  <span class="o">(</span>RSA: 1<span class="o">)</span>
 </span></span><span class="line"><span class="ln">2</span><span class="cl">$ gpg --export --armor 4E5E17B5 <span class="p">|</span> sudo apt-key add -# 返回信息OK
 </span></span></code></pre></div><p>解决！</p>
-]]></content:encoded></item><item><title>如何使用VirtualBox安装Linux系统</title><link>https://icyleaf.com/2008/03/how-to-use-linux-systems-installed-virtualbox/</link><pubDate>Thu, 13 Mar 2008 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2008/03/how-to-use-linux-systems-installed-virtualbox/</guid><description>VirtualBox也已经介绍过了， 昨天是实实在在的用VirtualBox体验了一下 Linux Mint 系统。 这篇日志我就大概的说下如何用VirtualBo...</description><content:encoded><![CDATA[<p><a href="http://www.icyleaf.cn/2008/03/12/virtualbox-free-cross-platform-open-source-virtual-machine/">VirtualBox</a>也已经介绍过了，
+]]></content:encoded></item><item><title>如何使用VirtualBox安装Linux系统</title><link>https://icyleaf.com/2008/03/how-to-use-linux-systems-installed-virtualbox/</link><pubDate>Thu, 13 Mar 2008 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2008/03/how-to-use-linux-systems-installed-virtualbox/</guid><description>&lt;p>&lt;a href="http://www.icyleaf.cn/2008/03/12/virtualbox-free-cross-platform-open-source-virtual-machine/">VirtualBox&lt;/a>也已经介绍过了，
+昨天是实实在在的用VirtualBox体验了一下 &lt;a href="http://www.linuxmint.com/">Linux Mint&lt;/a> 系统。
+这篇日志我就大概的说下如何用VirtualBox安装和汉化Linux Mint系统，大家先看一个经过简单设置有的效果图：&lt;/p>...</description><content:encoded><![CDATA[<p><a href="http://www.icyleaf.cn/2008/03/12/virtualbox-free-cross-platform-open-source-virtual-machine/">VirtualBox</a>也已经介绍过了，
 昨天是实实在在的用VirtualBox体验了一下 <a href="http://www.linuxmint.com/">Linux Mint</a> 系统。
 这篇日志我就大概的说下如何用VirtualBox安装和汉化Linux Mint系统，大家先看一个经过简单设置有的效果图：</p>
 <p>这个背景是系统自带的一个，呵呵(^___^)，在介绍 <a href="http://www.icyleaf.cn/2008/03/12/virtualbox-free-cross-platform-open-source-virtual-machine/">VirtualBox</a>

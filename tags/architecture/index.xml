@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>architecture on icyleaf</title><link>https://icyleaf.com/tags/architecture/</link><description>Recent content in architecture on icyleaf</description><language>zh-cn</language><lastBuildDate>Wed, 26 Apr 2023 20:30:00 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/architecture/index.xml" rel="self" type="application/rss+xml"/><item><title>如何搭建家用 homelab: Openwrt 软路由</title><link>https://icyleaf.com/2023/04/how-to-homelab-part-2-openwrt-soft-router/</link><pubDate>Wed, 26 Apr 2023 20:30:00 +0800</pubDate><guid>https://icyleaf.com/2023/04/how-to-homelab-part-2-openwrt-soft-router/</guid><description>用牺牲硬件的网络转换效率来换取不必受设备提供商的限制和可玩性</description><content:encoded><![CDATA[
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Architecture on icyleaf</title><link>https://icyleaf.com/tags/architecture/</link><description>Recent content in Architecture on icyleaf</description><language>zh-cn</language><lastBuildDate>Wed, 26 Apr 2023 20:30:00 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/architecture/index.xml" rel="self" type="application/rss+xml"/><item><title>如何搭建家用 homelab: Openwrt 软路由</title><link>https://icyleaf.com/2023/04/how-to-homelab-part-2-openwrt-soft-router/</link><pubDate>Wed, 26 Apr 2023 20:30:00 +0800</pubDate><guid>https://icyleaf.com/2023/04/how-to-homelab-part-2-openwrt-soft-router/</guid><description>用牺牲硬件的网络转换效率来换取不必受设备提供商的限制和可玩性</description><content:encoded><![CDATA[
 
 
 
@@ -37,7 +37,7 @@
   
   
     
-      <figure data-pswp="1757x1080" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-packages-preview.png" class="gallery-item" target="_blank" data-pswp-width="1757" data-pswp-height="1080"><img src="/tutorials/how-to-homelab/part-2/openwrt-packages-preview_hud400891ca261fa9e07ca732397145413_435673_800x0_resize_box_3.png"
+      <figure data-pswp="1757x1080" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-packages-preview.png" class="gallery-item" target="_blank" data-pswp-width="1757" data-pswp-height="1080"><img src="/tutorials/how-to-homelab/part-2/openwrt-packages-preview_hu9624692276249078092.png"
       alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://github.com/SuLingGG/OpenWrt-Rpi">SuLingGG/OpenWrt-Rpi</a>
     </p>
 
@@ -52,45 +52,45 @@
 <li>开发版：不稳定但会包含不断的迭代增强功能的开发版本，也称之为 snapshot 版本，完成<a href="https://openwrt.org/docs/guide-developer/releases/goals/start">里程碑</a>会进入 RC 版本。</li>
 </ul>
 <table>
-<thead>
-<tr>
-<th>版本</th>
-<th>状态</th>
-<th>重大变化</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="https://openwrt.org/zh/releases/snapshot">snapshot</a></td>
-<td>开发版本</td>
-<td>-</td>
-</tr>
-<tr>
-<td><a href="https://openwrt.org/zh/releases/22.03/start">22.03</a></td>
-<td>最新版本</td>
-<td>基于 5.10 内核、防火墙迁移 nftables、黑暗模式</td>
-</tr>
-<tr>
-<td><a href="https://openwrt.org/zh/releases/21.02/start">21.02</a></td>
-<td>可看做是 LTS 版本</td>
-<td>基于 5.4 内核、DSA 初步支持</td>
-</tr>
-<tr>
-<td><a href="https://openwrt.org/docs/guide-developer/releases/goals/19.07.4">19.07</a></td>
-<td>不再支持</td>
-<td>基于 4.11 内核、WPA3 支持、客户端渲染 luci</td>
-</tr>
-<tr>
-<td><a href="https://openwrt.org/zh/releases/18.06/start">18.06</a></td>
-<td>不再支持</td>
-<td>基于 4.9 或 4.11 内核、合并 Lede 源码</td>
-</tr>
-<tr>
-<td><a href="https://openwrt.org/zh/releases/17.01/start">LEDE 17.01</a></td>
-<td>不再支持</td>
-<td>基于 4.4 内核</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">版本</th>
+          <th style="text-align: left">状态</th>
+          <th style="text-align: left">重大变化</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><a href="https://openwrt.org/zh/releases/snapshot">snapshot</a></td>
+          <td style="text-align: left">开发版本</td>
+          <td style="text-align: left">-</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><a href="https://openwrt.org/zh/releases/22.03/start">22.03</a></td>
+          <td style="text-align: left">最新版本</td>
+          <td style="text-align: left">基于 5.10 内核、防火墙迁移 nftables、黑暗模式</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><a href="https://openwrt.org/zh/releases/21.02/start">21.02</a></td>
+          <td style="text-align: left">可看做是 LTS 版本</td>
+          <td style="text-align: left">基于 5.4 内核、DSA 初步支持</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><a href="https://openwrt.org/docs/guide-developer/releases/goals/19.07.4">19.07</a></td>
+          <td style="text-align: left">不再支持</td>
+          <td style="text-align: left">基于 4.11 内核、WPA3 支持、客户端渲染 luci</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><a href="https://openwrt.org/zh/releases/18.06/start">18.06</a></td>
+          <td style="text-align: left">不再支持</td>
+          <td style="text-align: left">基于 4.9 或 4.11 内核、合并 Lede 源码</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><a href="https://openwrt.org/zh/releases/17.01/start">LEDE 17.01</a></td>
+          <td style="text-align: left">不再支持</td>
+          <td style="text-align: left">基于 4.4 内核</td>
+      </tr>
+  </tbody>
 </table>
 <p>以上版本信息是截止 2023 年 4 月底。</p>
 <h2 id="衍生及支系">衍生及支系</h2>
@@ -135,7 +135,7 @@
   
   
     
-      <figure data-pswp="2115x1848" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-file-structure.png" class="gallery-item" target="_blank" data-pswp-width="2115" data-pswp-height="1848"><img src="/tutorials/how-to-homelab/part-2/openwrt-file-structure_hu89ce50451123b48915fffad04a92e22e_139504_800x0_resize_box_3.png"/></a><figcaption>
+      <figure data-pswp="2115x1848" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-file-structure.png" class="gallery-item" target="_blank" data-pswp-width="2115" data-pswp-height="1848"><img src="/tutorials/how-to-homelab/part-2/openwrt-file-structure_hu13823974744168859868.png"/></a><figcaption>
 
     <p>Openwrt 固件文件解构</p></figcaption></figure>
 
@@ -162,7 +162,7 @@
   
   
     
-      <figure data-pswp="2290x750" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-fireware-image-files.png" class="gallery-item" target="_blank" data-pswp-width="2290" data-pswp-height="750"><img src="/tutorials/how-to-homelab/part-2/openwrt-fireware-image-files_hu4f63e536e962ff43b9fa658f4c31bfb4_224192_800x0_resize_box_3.png"/></a><figcaption>
+      <figure data-pswp="2290x750" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-fireware-image-files.png" class="gallery-item" target="_blank" data-pswp-width="2290" data-pswp-height="750"><img src="/tutorials/how-to-homelab/part-2/openwrt-fireware-image-files_hu7781832039173501890.png"/></a><figcaption>
 
     <p>Openwrt 固件镜像文件</p></figcaption></figure>
 
@@ -187,7 +187,7 @@
   
   
     
-      <figure data-pswp="1033x689" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-themes-preview.png" class="gallery-item" target="_blank" data-pswp-width="1033" data-pswp-height="689"><img src="/tutorials/how-to-homelab/part-2/openwrt-themes-preview_hu33abb04a3fc26983cc7948708958ea73_140538_800x0_resize_box_3.png"
+      <figure data-pswp="1033x689" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-themes-preview.png" class="gallery-item" target="_blank" data-pswp-width="1033" data-pswp-height="689"><img src="/tutorials/how-to-homelab/part-2/openwrt-themes-preview_hu663218415583165777.png"
       alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://blog.vpngame.com/openwrt/cara-install-dan-ganti-tema-luci-di-openwrt/">3elajar OpenWrt</a>
     </p>
 
@@ -219,7 +219,7 @@
   
   
     
-      <figure data-pswp="1910x822" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-luci.png" class="gallery-item" target="_blank" data-pswp-width="1910" data-pswp-height="822"><img src="/tutorials/how-to-homelab/part-2/openwrt-luci_hu625591b40daa7a557058fbcbacf8b92b_94153_800x0_resize_box_3.png"/></a></figure>
+      <figure data-pswp="1910x822" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-luci.png" class="gallery-item" target="_blank" data-pswp-width="1910" data-pswp-height="822"><img src="/tutorials/how-to-homelab/part-2/openwrt-luci_hu7142261069637284769.png"/></a></figure>
 
 <p>分别选择 &ldquo;网络&rdquo; -&gt; &ldquo;接口&rdquo;，找到接口 lan 右侧的编辑按钮，点开后编辑 IPv4 地址，保存再应用。</p>
 <h4 id="通过终端编辑器">通过终端编辑器</h4>
@@ -268,7 +268,7 @@
   
   
     
-      <figure data-pswp="2650x1282" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-uci.png" class="gallery-item" target="_blank" data-pswp-width="2650" data-pswp-height="1282"><img src="/tutorials/how-to-homelab/part-2/openwrt-uci_hue276e5c9fefad17390851e095847751d_229224_800x0_resize_box_3.png"
+      <figure data-pswp="2650x1282" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-uci.png" class="gallery-item" target="_blank" data-pswp-width="2650" data-pswp-height="1282"><img src="/tutorials/how-to-homelab/part-2/openwrt-uci_hu924355447412920979.png"
       alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://openwrt.org/docs/guide-user/base-system/uci">OpenWrt Wiki</a>
     </p>
 
@@ -298,7 +298,7 @@
   
   
     
-      <figure data-pswp="2143x1561" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/api-architecture-styles.jpeg" class="gallery-item" target="_blank" data-pswp-width="2143" data-pswp-height="1561"><img src="/tutorials/how-to-homelab/part-2/api-architecture-styles_hu66a712dc29cc2d0893569aae05f00fac_195912_800x0_resize_q75_box.jpeg"
+      <figure data-pswp="2143x1561" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/api-architecture-styles.jpeg" class="gallery-item" target="_blank" data-pswp-width="2143" data-pswp-height="1561"><img src="/tutorials/how-to-homelab/part-2/api-architecture-styles_hu2591862223337229523.jpeg"
       alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://twitter.com/Rapid_API/status/1567656196022181891">Rapid@twitter</a>
     </p>
 
@@ -376,7 +376,7 @@
   
   
     
-      <figure data-pswp="2300x912" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-dev-files.png" class="gallery-item" target="_blank" data-pswp-width="2300" data-pswp-height="912"><img src="/tutorials/how-to-homelab/part-2/openwrt-dev-files_hub712545ea67e7dea7998ba1f55078d39_233471_800x0_resize_box_3.png"/></a><figcaption>
+      <figure data-pswp="2300x912" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-dev-files.png" class="gallery-item" target="_blank" data-pswp-width="2300" data-pswp-height="912"><img src="/tutorials/how-to-homelab/part-2/openwrt-dev-files_hu6409894197412165701.png"/></a><figcaption>
 
     <p>Openwrt 开发包文件</p></figcaption></figure>
 
@@ -442,7 +442,7 @@ Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系�
   
   
     
-      <figure data-pswp="2066x1444" data-size="800x"><a href="/tutorials/how-to-homelab/part-1/memo-devices-changes.png" class="gallery-item" target="_blank" data-pswp-width="2066" data-pswp-height="1444"><img src="/tutorials/how-to-homelab/part-1/memo-devices-changes_hu35c3082d2dbedac4f58069b5e8a3e9e3_2396575_800x0_resize_box_3.png"
+      <figure data-pswp="2066x1444" data-size="800x"><a href="/tutorials/how-to-homelab/part-1/memo-devices-changes.png" class="gallery-item" target="_blank" data-pswp-width="2066" data-pswp-height="1444"><img src="/tutorials/how-to-homelab/part-1/memo-devices-changes_hu4513805756245757906.png"
       alt="创意来源"/></a><figcaption><p class="source">创意来源<a href="https://twitter.com/featherye/status/1619863195145089025">@HCocoa@twitter</a>
     </p>
 
@@ -475,7 +475,7 @@ Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系�
   
   
     
-      <figure data-pswp="1204x750" data-size="800x"><a href="/tutorials/how-to-homelab/part-1/homelab-diagram-v0.png" class="gallery-item" target="_blank" data-pswp-width="1204" data-pswp-height="750"><img src="/tutorials/how-to-homelab/part-1/homelab-diagram-v0_huf87e6e7ddab588d948a389d696e1d1c3_56332_800x0_resize_box_3.png"/></a><figcaption>
+      <figure data-pswp="1204x750" data-size="800x"><a href="/tutorials/how-to-homelab/part-1/homelab-diagram-v0.png" class="gallery-item" target="_blank" data-pswp-width="1204" data-pswp-height="750"><img src="/tutorials/how-to-homelab/part-1/homelab-diagram-v0_hu8105949490426474008.png"/></a><figcaption>
 
     <p>v0 设备架构拓扑图</p></figcaption></figure>
 
@@ -497,7 +497,7 @@ Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系�
   
   
     
-      <figure data-pswp="2212x1038" data-size="800x"><a href="/tutorials/how-to-homelab/part-1/homelab-diagram-v0.1.png" class="gallery-item" target="_blank" data-pswp-width="2212" data-pswp-height="1038"><img src="/tutorials/how-to-homelab/part-1/homelab-diagram-v0.1_huf66b4d76496a1cf08ad9e6737ad64050_133744_800x0_resize_box_3.png"/></a><figcaption>
+      <figure data-pswp="2212x1038" data-size="800x"><a href="/tutorials/how-to-homelab/part-1/homelab-diagram-v0.1.png" class="gallery-item" target="_blank" data-pswp-width="2212" data-pswp-height="1038"><img src="/tutorials/how-to-homelab/part-1/homelab-diagram-v0.1_hu12113575979327332291.png"/></a><figcaption>
 
     <p>v0.1 设备架构拓扑图</p></figcaption></figure>
 
@@ -522,7 +522,7 @@ Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系�
   
   
     
-      <figure data-pswp="2284x1662" data-size="800x"><a href="/tutorials/how-to-homelab/part-1/homelab-diagram-v1.0.png" class="gallery-item" target="_blank" data-pswp-width="2284" data-pswp-height="1662"><img src="/tutorials/how-to-homelab/part-1/homelab-diagram-v1.0_huc1d6c49922a951b2ad5c6811196fb260_221563_800x0_resize_box_3.png"/></a><figcaption>
+      <figure data-pswp="2284x1662" data-size="800x"><a href="/tutorials/how-to-homelab/part-1/homelab-diagram-v1.0.png" class="gallery-item" target="_blank" data-pswp-width="2284" data-pswp-height="1662"><img src="/tutorials/how-to-homelab/part-1/homelab-diagram-v1.0_hu4514310097263518943.png"/></a><figcaption>
 
     <p>v1 设备架构拓扑图</p></figcaption></figure>
 
@@ -543,7 +543,7 @@ Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系�
   
   
     
-      <figure data-pswp="1280x1280" data-size="800x"><a href="/tutorials/how-to-homelab/part-1/n270-soft-router.jpeg" class="gallery-item" target="_blank" data-pswp-width="1280" data-pswp-height="1280"><img src="/tutorials/how-to-homelab/part-1/n270-soft-router_hube238e244fb01f35d525ea3f565974ff_485496_800x0_resize_q75_box.jpeg"/></a><figcaption>
+      <figure data-pswp="1280x1280" data-size="800x"><a href="/tutorials/how-to-homelab/part-1/n270-soft-router.jpeg" class="gallery-item" target="_blank" data-pswp-width="1280" data-pswp-height="1280"><img src="/tutorials/how-to-homelab/part-1/n270-soft-router_hu17806326416165696574.jpeg"/></a><figcaption>
 
     <p>N270 x86 32 位双网口工控机</p></figcaption></figure>
 
@@ -566,7 +566,7 @@ Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系�
   
   
     
-      <figure data-pswp="4644x3004" data-size="800x"><a href="/tutorials/how-to-homelab/part-0/homelab-diagram-v2.0.png" class="gallery-item" target="_blank" data-pswp-width="4644" data-pswp-height="3004"><img src="/tutorials/how-to-homelab/part-0/homelab-diagram-v2.0_hud6b13e642cdec1b76e4883675cc1f0da_933051_800x0_resize_box_3.png"
+      <figure data-pswp="4644x3004" data-size="800x"><a href="/tutorials/how-to-homelab/part-0/homelab-diagram-v2.0.png" class="gallery-item" target="_blank" data-pswp-width="4644" data-pswp-height="3004"><img src="/tutorials/how-to-homelab/part-0/homelab-diagram-v2.0_hu7475183235597552237.png"
       alt="首发"/></a><figcaption><p class="source">首发<a href="https://twitter.com/icyleaf/status/1472036769742745603">@icyleaf@twitter</a>
     </p>
 
@@ -610,7 +610,7 @@ Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系�
   
   
     
-      <figure data-pswp="4644x3342" data-size="800x"><a href="/tutorials/how-to-homelab/part-1/homelab-diagram-v2.1.png" class="gallery-item" target="_blank" data-pswp-width="4644" data-pswp-height="3342"><img src="/tutorials/how-to-homelab/part-1/homelab-diagram-v2.1_hu2e07676c2790f7a793b80a519fce3f89_1014582_800x0_resize_box_3.png"
+      <figure data-pswp="4644x3342" data-size="800x"><a href="/tutorials/how-to-homelab/part-1/homelab-diagram-v2.1.png" class="gallery-item" target="_blank" data-pswp-width="4644" data-pswp-height="3342"><img src="/tutorials/how-to-homelab/part-1/homelab-diagram-v2.1_hu14305683590208388798.png"
       alt="首发"/></a><figcaption><p class="source">首发<a href="https://twitter.com/icyleaf/status/1619228928685801474">@icyleaf@twitter</a>
     </p>
 
@@ -639,7 +639,7 @@ Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系�
   
   
     
-      <figure data-pswp="1536x2048" data-size="800x"><a href="/tutorials/how-to-homelab/part-1/eaidk-610.jpg" class="gallery-item" target="_blank" data-pswp-width="1536" data-pswp-height="2048"><img src="/tutorials/how-to-homelab/part-1/eaidk-610_hu074222726f2aa0440c99e8e5bdbae569_466590_800x0_resize_q75_box.jpg"
+      <figure data-pswp="1536x2048" data-size="800x"><a href="/tutorials/how-to-homelab/part-1/eaidk-610.jpg" class="gallery-item" target="_blank" data-pswp-width="1536" data-pswp-height="2048"><img src="/tutorials/how-to-homelab/part-1/eaidk-610_hu16787066421264500639.jpg"
       alt="首发"/></a><figcaption><p class="source">首发<a href="https://twitter.com/icyleaf/status/1585792876235005953">@icyleaf@twitter</a>
     </p>
 
@@ -795,7 +795,7 @@ Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系�
   
   
     
-      <figure data-pswp="949x1253" data-size="800x"><a href="/tutorials/how-to-homelab/part-1/harddisk-2022-full.png" class="gallery-item" target="_blank" data-pswp-width="949" data-pswp-height="1253"><img src="/tutorials/how-to-homelab/part-1/harddisk-2022-full_hud081e0864bcc4ffbf16f9ee8e8cfcbbf_501693_800x0_resize_box_3.png"/></a><figcaption>
+      <figure data-pswp="949x1253" data-size="800x"><a href="/tutorials/how-to-homelab/part-1/harddisk-2022-full.png" class="gallery-item" target="_blank" data-pswp-width="949" data-pswp-height="1253"><img src="/tutorials/how-to-homelab/part-1/harddisk-2022-full_hu6657792424229600747.png"/></a><figcaption>
 
     <p>硬盘大军</p></figcaption></figure>
 
@@ -815,7 +815,7 @@ Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系�
   
   
     
-      <figure data-pswp="1512x1538" data-size="800x"><a href="/tutorials/how-to-homelab/part-1/harddisk-category.png" class="gallery-item" target="_blank" data-pswp-width="1512" data-pswp-height="1538"><img src="/tutorials/how-to-homelab/part-1/harddisk-category_hube521c0ab503d096d3459f577944019e_171022_800x0_resize_box_3.png"/></a><figcaption>
+      <figure data-pswp="1512x1538" data-size="800x"><a href="/tutorials/how-to-homelab/part-1/harddisk-category.png" class="gallery-item" target="_blank" data-pswp-width="1512" data-pswp-height="1538"><img src="/tutorials/how-to-homelab/part-1/harddisk-category_hu1074902989374174360.png"/></a><figcaption>
 
     <p>硬盘分布情况</p></figcaption></figure>
 
@@ -1151,7 +1151,7 @@ Docker、网盘等这类复杂且有风险的功能不会出现在 OpenWrt 系�
   
   
     
-      <figure data-pswp="1738x1182" data-size="800x"><a href="/tutorials/how-to-homelab/part-1/cable-ethernet-data-rates.png" class="gallery-item" target="_blank" data-pswp-width="1738" data-pswp-height="1182"><img src="/tutorials/how-to-homelab/part-1/cable-ethernet-data-rates_huf6595c4cf5b97c48e3a51bdfb2bf6182_107276_800x0_resize_box_3.png"
+      <figure data-pswp="1738x1182" data-size="800x"><a href="/tutorials/how-to-homelab/part-1/cable-ethernet-data-rates.png" class="gallery-item" target="_blank" data-pswp-width="1738" data-pswp-height="1182"><img src="/tutorials/how-to-homelab/part-1/cable-ethernet-data-rates_hu5594327913410453652.png"
       alt="资料来源"/></a><figcaption><p class="source">资料来源<a href="https://www.ieee802.org/3/cfi/1114_1/CFI_01_1114.pdf">IEEE 802 LMSC</a>
     </p>
 

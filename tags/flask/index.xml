@@ -22,46 +22,46 @@
 <p>Dash 本身只支持 docsets 格式的文档，也就是由 <a href="http://gentlebytes.com/appledoc/">appledoc</a> 生成的。默认是让 XCode 的 Organizer 管理文档，但是针对这个庞然大物，只是做文档的管理和快速搜索有消受不起。因此 Dash 才诞生出来的。</p>
 <p>其实本篇日志主要是讲这块的内容，从上面的特性上面我也说到 Dash 支持生成任何的文档，因为它支持的文档类型涵盖了目前绝大多数的文档格式，针对这块官方已经写了<a href="http://kapeli.com/docsets">如何转换的说明</a>，这里简单说明下：</p>
 <table>
-<thead>
-<tr>
-<th>语言</th>
-<th>转换工具</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Objective-C 文档</td>
-<td><a href="http://gentlebytes.com/appledoc-docs-examples-basic/">appledoc</a></td>
-</tr>
-<tr>
-<td>Python, Sphinx, pydoctor</td>
-<td><a href="http://pypi.python.org/pypi/doc2dash/">doc2dash</a></td>
-</tr>
-<tr>
-<td>Javadoc</td>
-<td><a href="http://kapeli.com/JavaDocset.zip">java.docset</a></td>
-</tr>
-<tr>
-<td>RDoc</td>
-<td>使用 Dash 自身的 &ldquo;Ruby Installed Gems&rdquo;</td>
-</tr>
-<tr>
-<td>Scaladoc</td>
-<td><a href="https://bitbucket.org/inkytonik/mkscaladocset">mkscaldocset</a></td>
-</tr>
-<tr>
-<td>Doxygen(源码)</td>
-<td>修改参数生成</td>
-</tr>
-<tr>
-<td>docsetutil</td>
-<td>需要创建指定目录结构</td>
-</tr>
-<tr>
-<td>SQLite</td>
-<td>官方支持数据库索引，需要创建指定目录结构</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">语言</th>
+          <th style="text-align: left">转换工具</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Objective-C 文档</td>
+          <td style="text-align: left"><a href="http://gentlebytes.com/appledoc-docs-examples-basic/">appledoc</a></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Python, Sphinx, pydoctor</td>
+          <td style="text-align: left"><a href="http://pypi.python.org/pypi/doc2dash/">doc2dash</a></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Javadoc</td>
+          <td style="text-align: left"><a href="http://kapeli.com/JavaDocset.zip">java.docset</a></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">RDoc</td>
+          <td style="text-align: left">使用 Dash 自身的 &ldquo;Ruby Installed Gems&rdquo;</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Scaladoc</td>
+          <td style="text-align: left"><a href="https://bitbucket.org/inkytonik/mkscaladocset">mkscaldocset</a></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Doxygen(源码)</td>
+          <td style="text-align: left">修改参数生成</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">docsetutil</td>
+          <td style="text-align: left">需要创建指定目录结构</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">SQLite</td>
+          <td style="text-align: left">官方支持数据库索引，需要创建指定目录结构</td>
+      </tr>
+  </tbody>
 </table>
 <h3 id="生成-flask-文档">生成 Flask 文档</h3>
 <p>因为最近在学习 Flask，过年回家家里没有网络，因为我需要可以查询它的文档，虽然官方提供了 html 和 pdf 格式，但是没有办法快速搜索 API，没法发挥 Dash 的优势嘛，对吧！</p>

@@ -1,8 +1,78 @@
-<!doctype html><html lang=zh-cn></html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>利用 argparse 写的脚本命令：测试 URL 响应时间 | icyleaf</title><meta name=keywords content="Python,Ruby"><meta name=description content="前几天看完《Python简明教程》，预想练手，想起同事的一个 ruby 代码，尝试改写成 python，顺便看看两个语言的简练程度。下面是原始的 ruby 代码："><meta name=author content="icyleaf"><link rel=canonical href=https://icyleaf.com/2012/08/url-request-time-test-using-python-with-argparse/><link rel=icon href=https://icyleaf.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://icyleaf.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://icyleaf.com/favicon-32x32.png><link rel=icon type=image/png sizes=192x192 href=https://icyleaf.com/android-chrome-192x192.png><link rel=icon type=image/png sizes=512x512 href=https://icyleaf.com/android-chrome-512x512.png><link rel=apple-touch-icon href=https://icyleaf.com/apple-touch-icon.png><link rel=mask-icon href=https://icyleaf.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=stylesheet href=https://icyleaf.com/css/main.min.css><link rel=stylesheet href=https://icyleaf.com/font/iconfont.min.css><link rel=stylesheet href=https://icyleaf.com/font-ali/iconfont.min.css><link rel=stylesheet href=https://icyleaf.com/photoswipe/photoswipe.min.css><link rel=canonical href=https://icyleaf.com/2012/08/url-request-time-test-using-python-with-argparse/><meta property="og:title" content="利用 argparse 写的脚本命令：测试 URL 响应时间"><meta property="og:description" content="前几天看完《Python简明教程》，预想练手，想起同事的一个 ruby 代码，尝试改写成 python，顺便看看两个语言的简练程度。下面是原始的 ruby 代码："><meta property="og:type" content="article"><meta property="og:url" content="https://icyleaf.com/2012/08/url-request-time-test-using-python-with-argparse/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2012-08-02T12:34:56+08:00"><meta property="article:modified_time" content="2012-08-02T12:34:56+08:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="利用 argparse 写的脚本命令：测试 URL 响应时间"><meta name=twitter:description content="前几天看完《Python简明教程》，预想练手，想起同事的一个 ruby 代码，尝试改写成 python，顺便看看两个语言的简练程度。下面是原始的 ruby 代码："><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://icyleaf.com/posts/"},{"@type":"ListItem","position":2,"name":"利用 argparse 写的脚本命令：测试 URL 响应时间","item":"https://icyleaf.com/2012/08/url-request-time-test-using-python-with-argparse/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"利用 argparse 写的脚本命令：测试 URL 响应时间","name":"利用 argparse 写的脚本命令：测试 URL 响应时间","description":"前几天看完《Python简明教程》，预想练手，想起同事的一个 ruby 代码，尝试改写成 python，顺便看看两个语言的简练程度。下面是原始的 ruby 代码：","keywords":["Python","Ruby"],"articleBody":"前几天看完《Python简明教程》，预想练手，想起同事的一个 ruby 代码，尝试改写成 python，顺便看看两个语言的简练程度。下面是原始的 ruby 代码：\n#!/usr/bin/env ruby require 'rubygems' require 'net/http' urls = [\"http://icyleaf.com\"] 50.times do urls.each do |url| start_at = Time.now Net::HTTP.get URI.parse(url) end_at = Time.now diff = end_at - start_at if diff \u003c 0.3 then color_code = 32 elsif diff \u003e 0.8 then color_code = 31 else color_code = 33 end puts \"#{url}\\n time: \\033[#{color_code}m#{diff}\\033[0m seconds\" end end 改写 python 的同时，考虑脚本的灵活性准备增加两个参数，第一个是请求测试次数，第二个是请求测试的 URL，而 python 默认提供了 argparse 库，可以很方便的生成 –help 的帮助和解析传递的参数：\n#!/usr/bin/env python import urllib2 import time import sys import argparse def benchmark(url, count): for i in range(count): s = time.time() r = urllib2.urlopen(urllib2.Request(url)) e = time.time() diff = e - s if diff \u003c 0.3: color_code = 32 elif diff \u003e 0.8: color_code = 31 else: color_code = 33 print '# %d' % (i + 1) print '\\tStauts: %s' % r.getcode() print '\\tTime: \\033[%dm%f\\033[0m second(s)' % (color_code, diff) def main(argv): parser = argparse.ArgumentParser(description='url request time test') parser.add_argument('URL', help='request url') parser.add_argument('-t', '--time', action='store', dest='count', type=int, default=10, help='request times') args = parser.parse_args(argv) benchmark(args.URL, args.count) if __name__ == '__main__': main(sys.argv[1:]) 当然，我主要是为了练手 python 才去写的，ruby 本身也有 optparse 库用于解析参数，但是需要自己手写生成 –help 的输出，而且需要对每个参数做相应的 callback。\n效果如下：\n","wordCount":"377","inLanguage":"zh-cn","datePublished":"2012-08-02T12:34:56+08:00","dateModified":"2012-08-02T12:34:56+08:00","author":{"@type":"Person","name":"icyleaf"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://icyleaf.com/2012/08/url-request-time-test-using-python-with-argparse/"},"publisher":{"@type":"Organization","name":"icyleaf","logo":{"@type":"ImageObject","url":"https://icyleaf.com/favicon.ico"}}}</script></head><body><div class=wrapper><nav class=navbar><progress class=content_progress max=0 value=0></progress><div class=container><div class="navbar-header header-logo"><a href=https://icyleaf.com/>icyleaf</a></div><div class=navbar-right><span class=menu><a class=menu-item href=https://icyleaf.com/series/homelab title>homelab 系列</a>
-<a class=menu-item href=https://icyleaf.com/projects title>开源项目</a>
-<a class=menu-item href=https://icyleaf.com/gears title>我的设备</a>
-<a class=menu-item href=https://icyleaf.com/about title>关于</a>
-<span class=divide></span>
+<!doctype html><html lang=zh-cn></html><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>利用 argparse 写的脚本命令：测试 URL 响应时间 | icyleaf</title>
+<meta name=keywords content="Python,Ruby"><meta name=description content="前几天看完《Python简明教程》，预想练手，想起同事的一个 ruby 代码，尝试改写成 python，顺便看看两个语言的简练程度。下面是原始的 ruby 代码：
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'net/http'
+
+urls = [&#34;http://icyleaf.com&#34;]
+50.times do
+  urls.each do |url|
+    start_at = Time.now
+    Net::HTTP.get URI.parse(url)
+    end_at = Time.now
+    diff = end_at - start_at
+    if diff < 0.3 then
+      color_code = 32
+    elsif diff > 0.8 then
+      color_code = 31
+    else
+      color_code = 33
+    end
+    puts &#34;#{url}\n time: \033[#{color_code}m#{diff}\033[0m seconds&#34;
+  end
+end
+改写 python 的同时，考虑脚本的灵活性准备增加两个参数，第一个是请求测试次数，第二个是请求测试的 URL，而 python 默认提供了 argparse 库，可以很方便的生成 &ndash;help 的帮助和解析传递的参数："><meta name=author content="icyleaf"><link rel=canonical href=https://icyleaf.com/2012/08/url-request-time-test-using-python-with-argparse/><link rel=icon href=https://icyleaf.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://icyleaf.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://icyleaf.com/favicon-32x32.png><link rel=icon type=image/png sizes=192x192 href=https://icyleaf.com/android-chrome-192x192.png><link rel=icon type=image/png sizes=512x512 href=https://icyleaf.com/android-chrome-512x512.png><link rel=apple-touch-icon href=https://icyleaf.com/apple-touch-icon.png><link rel=mask-icon href=https://icyleaf.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=stylesheet href=https://icyleaf.com/css/main.min.css><link rel=stylesheet href=https://icyleaf.com/font/iconfont.min.css><link rel=stylesheet href=https://icyleaf.com/font-ali/iconfont.min.css><link rel=stylesheet href=https://icyleaf.com/photoswipe/photoswipe.min.css><link rel=alternate hreflang=zh-cn href=https://icyleaf.com/2012/08/url-request-time-test-using-python-with-argparse/><link rel=canonical href=https://icyleaf.com/2012/08/url-request-time-test-using-python-with-argparse/><meta property="og:title" content="利用 argparse 写的脚本命令：测试 URL 响应时间"><meta property="og:description" content="前几天看完《Python简明教程》，预想练手，想起同事的一个 ruby 代码，尝试改写成 python，顺便看看两个语言的简练程度。下面是原始的 ruby 代码：
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'net/http'
+
+urls = [&#34;http://icyleaf.com&#34;]
+50.times do
+  urls.each do |url|
+    start_at = Time.now
+    Net::HTTP.get URI.parse(url)
+    end_at = Time.now
+    diff = end_at - start_at
+    if diff < 0.3 then
+      color_code = 32
+    elsif diff > 0.8 then
+      color_code = 31
+    else
+      color_code = 33
+    end
+    puts &#34;#{url}\n time: \033[#{color_code}m#{diff}\033[0m seconds&#34;
+  end
+end
+改写 python 的同时，考虑脚本的灵活性准备增加两个参数，第一个是请求测试次数，第二个是请求测试的 URL，而 python 默认提供了 argparse 库，可以很方便的生成 &ndash;help 的帮助和解析传递的参数："><meta property="og:type" content="article"><meta property="og:url" content="https://icyleaf.com/2012/08/url-request-time-test-using-python-with-argparse/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2012-08-02T12:34:56+08:00"><meta property="article:modified_time" content="2012-08-02T12:34:56+08:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="利用 argparse 写的脚本命令：测试 URL 响应时间"><meta name=twitter:description content="前几天看完《Python简明教程》，预想练手，想起同事的一个 ruby 代码，尝试改写成 python，顺便看看两个语言的简练程度。下面是原始的 ruby 代码：
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'net/http'
+
+urls = [&#34;http://icyleaf.com&#34;]
+50.times do
+  urls.each do |url|
+    start_at = Time.now
+    Net::HTTP.get URI.parse(url)
+    end_at = Time.now
+    diff = end_at - start_at
+    if diff < 0.3 then
+      color_code = 32
+    elsif diff > 0.8 then
+      color_code = 31
+    else
+      color_code = 33
+    end
+    puts &#34;#{url}\n time: \033[#{color_code}m#{diff}\033[0m seconds&#34;
+  end
+end
+改写 python 的同时，考虑脚本的灵活性准备增加两个参数，第一个是请求测试次数，第二个是请求测试的 URL，而 python 默认提供了 argparse 库，可以很方便的生成 &ndash;help 的帮助和解析传递的参数："><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://icyleaf.com/posts/"},{"@type":"ListItem","position":2,"name":"利用 argparse 写的脚本命令：测试 URL 响应时间","item":"https://icyleaf.com/2012/08/url-request-time-test-using-python-with-argparse/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"利用 argparse 写的脚本命令：测试 URL 响应时间","name":"利用 argparse 写的脚本命令：测试 URL 响应时间","description":"前几天看完《Python简明教程》，预想练手，想起同事的一个 ruby 代码，尝试改写成 python，顺便看看两个语言的简练程度。下面是原始的 ruby 代码：\n#!/usr/bin/env ruby require \u0026#39;rubygems\u0026#39; require \u0026#39;net/http\u0026#39; urls = [\u0026#34;http://icyleaf.com\u0026#34;] 50.times do urls.each do |url| start_at = Time.now Net::HTTP.get URI.parse(url) end_at = Time.now diff = end_at - start_at if diff \u0026lt; 0.3 then color_code = 32 elsif diff \u0026gt; 0.8 then color_code = 31 else color_code = 33 end puts \u0026#34;#{url}\\n time: \\033[#{color_code}m#{diff}\\033[0m seconds\u0026#34; end end 改写 python 的同时，考虑脚本的灵活性准备增加两个参数，第一个是请求测试次数，第二个是请求测试的 URL，而 python 默认提供了 argparse 库，可以很方便的生成 \u0026ndash;help 的帮助和解析传递的参数：\n","keywords":["Python","Ruby"],"articleBody":"前几天看完《Python简明教程》，预想练手，想起同事的一个 ruby 代码，尝试改写成 python，顺便看看两个语言的简练程度。下面是原始的 ruby 代码：\n#!/usr/bin/env ruby require 'rubygems' require 'net/http' urls = [\"http://icyleaf.com\"] 50.times do urls.each do |url| start_at = Time.now Net::HTTP.get URI.parse(url) end_at = Time.now diff = end_at - start_at if diff \u003c 0.3 then color_code = 32 elsif diff \u003e 0.8 then color_code = 31 else color_code = 33 end puts \"#{url}\\n time: \\033[#{color_code}m#{diff}\\033[0m seconds\" end end 改写 python 的同时，考虑脚本的灵活性准备增加两个参数，第一个是请求测试次数，第二个是请求测试的 URL，而 python 默认提供了 argparse 库，可以很方便的生成 –help 的帮助和解析传递的参数：\n#!/usr/bin/env python import urllib2 import time import sys import argparse def benchmark(url, count): for i in range(count): s = time.time() r = urllib2.urlopen(urllib2.Request(url)) e = time.time() diff = e - s if diff \u003c 0.3: color_code = 32 elif diff \u003e 0.8: color_code = 31 else: color_code = 33 print '# %d' % (i + 1) print '\\tStauts: %s' % r.getcode() print '\\tTime: \\033[%dm%f\\033[0m second(s)' % (color_code, diff) def main(argv): parser = argparse.ArgumentParser(description='url request time test') parser.add_argument('URL', help='request url') parser.add_argument('-t', '--time', action='store', dest='count', type=int, default=10, help='request times') args = parser.parse_args(argv) benchmark(args.URL, args.count) if __name__ == '__main__': main(sys.argv[1:]) 当然，我主要是为了练手 python 才去写的，ruby 本身也有 optparse 库用于解析参数，但是需要自己手写生成 –help 的输出，而且需要对每个参数做相应的 callback。\n效果如下：\n","wordCount":"377","inLanguage":"zh-cn","datePublished":"2012-08-02T12:34:56+08:00","dateModified":"2012-08-02T12:34:56+08:00","author":{"@type":"Person","name":"icyleaf"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://icyleaf.com/2012/08/url-request-time-test-using-python-with-argparse/"},"publisher":{"@type":"Organization","name":"icyleaf","logo":{"@type":"ImageObject","url":"https://icyleaf.com/favicon.ico"}}}</script></head><body><div class=wrapper><nav class=navbar><progress class=content_progress max=0 value=0></progress><div class=container><div class="navbar-header header-logo"><a href=https://icyleaf.com/>icyleaf</a></div><div class=navbar-right><span class=menu><a class=menu-item href=https://icyleaf.com/series/homelab title>homelab 系列
+</a><a class=menu-item href=https://icyleaf.com/projects title>开源项目
+</a><a class=menu-item href=https://icyleaf.com/gears title>我的设备
+</a><a class=menu-item href=https://icyleaf.com/about title>关于
+</a><span class=divide></span>
 <a href=javascript:void(0); class=theme-switch><i class="iconfont icon-dark-mode"></i></a></span></div></div></nav><nav class=navbar-mobile id=nav-mobile style=display:none><progress class=content_progress max=0 value=0></progress><div class=container><div class=navbar><div class="navbar-header header-logo"><a href=https://icyleaf.com/>icyleaf</a></div><div class=navbar-right><div><a href=javascript:void(0); class=theme-switch><i class="iconfont icon-dark-mode"></i></a></div><div class=menu-toggle><span></span><span></span><span></span></div></div></div><div class=menu id=mobile-menu><nav class=mb-md><a class=menu-item href=https://icyleaf.com/series/homelab title><h3>homelab 系列</h3><div class=menu-active></div></a><a class=menu-item href=https://icyleaf.com/projects title><h3>开源项目</h3><div class=menu-active></div></a><a class=menu-item href=https://icyleaf.com/gears title><h3>我的设备</h3><div class=menu-active></div></a><a class=menu-item href=https://icyleaf.com/about title><h3>关于</h3><div class=menu-active></div></a></nav></div></div></nav><main class=main><div class=container><article class=post-warp itemscope itemtype=http://schema.org/Article><header class=post-header><h1 class=post-title itemprop=description>利用 argparse 写的脚本命令：测试 URL 响应时间</h1><div class=post-meta><time datetime=2012-08-02 itemprop=datePublished>2012-08-02</time>
 ·
 <span class=tags>Python, Ruby</span>
@@ -72,8 +142,7 @@ if __name__ == &#39;__main__&#39;:
 <a href=https://icyleaf.com/2012/08/how-to-keep-public-and-private-versions-of-a-git-submodule-repo-in-sync/ class=next rel=next title="如何保持在 Git Submodule 代码的开放和私有共存">如何保持在 Git Submodule 代码的开放和私有共存&nbsp;<i class="iconfont icon-right"></i></a></div><div class=post-comment><script>var getTheme=window.localStorage&&window.localStorage.getItem("blog-dark-mode"),getTheme=getTheme??"github-light";let theme=getTheme==="dark"?"github-dark":"github-light",s=document.createElement("script");s.src="https://utteranc.es/client.js",s.setAttribute("repo","icyleaf/icyleaf.com"),s.setAttribute("issue-term","pathname"),s.setAttribute("theme",theme),s.setAttribute("crossorigin","anonymous"),s.setAttribute("async",""),document.querySelector("div.post-comment").innerHTML="",document.querySelector("div.post-comment").appendChild(s)</script></div></article></div></main><footer class=footer><div class=copyright>&copy;
 <span itemprop=copyrightYear>2005 - 2024</span>
 <span>🍺</span>
-<span class=author itemprop=copyrightHolder><a href=https://icyleaf.com/>icyleaf</a></span></div></footer><script defer src=https://fastly.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js crossorigin=anonymous></script><script defer src=https://icyleaf.com/js/vendor_main.min.js></script>
-<script type=module>
+<span class=author itemprop=copyrightHolder><a href=https://icyleaf.com/>icyleaf</a></span></div></footer><script defer src=https://fastly.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js crossorigin=anonymous></script><script defer src=https://icyleaf.com/js/vendor_main.min.js></script><script type=module>
   
   import PhotoSwipeLightbox from '\/photoswipe\/photoswipe-lightbox.esm.js';
 
@@ -83,5 +152,4 @@ if __name__ == &#39;__main__&#39;:
     pswpModule: () => import('\/photoswipe\/photoswipe.esm.js'),
   });
   lightbox.init();
-</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-TKQBZ7R259"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-TKQBZ7R259")</script></div></body></html>
+</script></div></body></html>

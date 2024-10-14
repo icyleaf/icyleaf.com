@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>fastlane on icyleaf</title><link>https://icyleaf.com/series/fastlane/</link><description>Recent content in fastlane on icyleaf</description><language>zh-cn</language><lastBuildDate>Tue, 28 Mar 2017 20:12:07 +0800</lastBuildDate><atom:link href="https://icyleaf.com/series/fastlane/index.xml" rel="self" type="application/rss+xml"/><item><title>你虐我千百遍，我待你如初恋，直到我遇到 match</title><link>https://icyleaf.com/2017/03/fastlane-match-in-action/</link><pubDate>Tue, 28 Mar 2017 20:12:07 +0800</pubDate><guid>https://icyleaf.com/2017/03/fastlane-match-in-action/</guid><description>系列文章的第三篇，教你如何使用 match 管理名词都分不清的苹果各自开发者证书</description><content:encoded><![CDATA[<h2 id="前言">前言</h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Fastlane on icyleaf</title><link>https://icyleaf.com/series/fastlane/</link><description>Recent content in Fastlane on icyleaf</description><language>zh-cn</language><lastBuildDate>Tue, 28 Mar 2017 20:12:07 +0800</lastBuildDate><atom:link href="https://icyleaf.com/series/fastlane/index.xml" rel="self" type="application/rss+xml"/><item><title>你虐我千百遍，我待你如初恋，直到我遇到 match</title><link>https://icyleaf.com/2017/03/fastlane-match-in-action/</link><pubDate>Tue, 28 Mar 2017 20:12:07 +0800</pubDate><guid>https://icyleaf.com/2017/03/fastlane-match-in-action/</guid><description>系列文章的第三篇，教你如何使用 match 管理名词都分不清的苹果各自开发者证书</description><content:encoded><![CDATA[<h2 id="前言">前言</h2>
 <p>通过前两篇的文章大家已经对 fastlane 的概念和基本使用已经有了初步的掌握，在第二篇中也有提到 fastlane 实现的各种功能其实都是基于独立封装设计的各个工具实现。它们即可以单独成为一个体系同时也会被吸纳到 fastlane 的 action 系统之中。<code>match</code> 是在 iOS 开发和持续测试和构建中最重中之重的环节，它维护和管理着 iOS 的各种证书和 profile 的创建、更新工作。想必很多用户听到 iOS 证书和 profile 都会头大脑涨，恨不得要手撕鬼子的技能点来对付他们（如图）</p>
 <p><img loading="lazy" src="https://codesigning.guide/assets/img/cs-the-problem.png"
   
@@ -139,45 +139,45 @@
 </span></span></code></pre></div><p>我会随着下面每个概念的解释和展开来配合上面的命令一起讲解。</p>
 <h2 id="生命周期">生命周期</h2>
 <table>
-<thead>
-<tr>
-<th>执行顺序</th>
-<th>方法名</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>before_all</td>
-<td>在执行 lane 之前只执行一次</td>
-</tr>
-<tr>
-<td>2</td>
-<td>before_each</td>
-<td>每次执行 lane 之前都会执行一次</td>
-</tr>
-<tr>
-<td>3</td>
-<td>lane</td>
-<td>自定义的任务</td>
-</tr>
-<tr>
-<td>4</td>
-<td>after_each</td>
-<td>每次执行 lane 之后都会执行一次</td>
-</tr>
-<tr>
-<td>5</td>
-<td>after_all</td>
-<td>在执行 lane 成功结束之后执行一次</td>
-</tr>
-<tr>
-<td>6</td>
-<td>error</td>
-<td>在执行上述情况任意环境报错都会中止并执行一次</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">执行顺序</th>
+          <th style="text-align: left">方法名</th>
+          <th style="text-align: left">说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">1</td>
+          <td style="text-align: left">before_all</td>
+          <td style="text-align: left">在执行 lane 之前只执行一次</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">2</td>
+          <td style="text-align: left">before_each</td>
+          <td style="text-align: left">每次执行 lane 之前都会执行一次</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">3</td>
+          <td style="text-align: left">lane</td>
+          <td style="text-align: left">自定义的任务</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">4</td>
+          <td style="text-align: left">after_each</td>
+          <td style="text-align: left">每次执行 lane 之后都会执行一次</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">5</td>
+          <td style="text-align: left">after_all</td>
+          <td style="text-align: left">在执行 lane 成功结束之后执行一次</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">6</td>
+          <td style="text-align: left">error</td>
+          <td style="text-align: left">在执行上述情况任意环境报错都会中止并执行一次</td>
+      </tr>
+  </tbody>
 </table>
 <p>以上的部分大家在上一篇已经见识过了，有些还没接触到，不用着急都会一一说明。</p>
 <h2 id="任务lane">任务（lane）</h2>
@@ -185,40 +185,40 @@
 <h3 id="任务定义">任务定义</h3>
 <p>定义任务的方法类似于 rake 的 task，但使用上缺比前者要好用很多，见下表：</p>
 <table>
-<thead>
-<tr>
-<th>定义</th>
-<th>是否必须</th>
-<th>说明</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>desc</td>
-<td><code>false</code></td>
-<td>方法描述</td>
-<td>可多次使用打到换行的目的</td>
-</tr>
-<tr>
-<td>name</td>
-<td><code>true</code></td>
-<td>方法名</td>
-<td>符号化的方法名</td>
-</tr>
-<tr>
-<td>options</td>
-<td><code>false</code></td>
-<td>方法参数</td>
-<td>返回 Hash 类型</td>
-</tr>
-<tr>
-<td>task</td>
-<td><code>true</code></td>
-<td>方法主体</td>
-<td>参考 ruby 的方法代码且支持 ruby 代码</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">定义</th>
+          <th style="text-align: left">是否必须</th>
+          <th style="text-align: left">说明</th>
+          <th style="text-align: left">备注</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">desc</td>
+          <td style="text-align: left"><code>false</code></td>
+          <td style="text-align: left">方法描述</td>
+          <td style="text-align: left">可多次使用打到换行的目的</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">name</td>
+          <td style="text-align: left"><code>true</code></td>
+          <td style="text-align: left">方法名</td>
+          <td style="text-align: left">符号化的方法名</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">options</td>
+          <td style="text-align: left"><code>false</code></td>
+          <td style="text-align: left">方法参数</td>
+          <td style="text-align: left">返回 Hash 类型</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">task</td>
+          <td style="text-align: left"><code>true</code></td>
+          <td style="text-align: left">方法主体</td>
+          <td style="text-align: left">参考 ruby 的方法代码且支持 ruby 代码</td>
+      </tr>
+  </tbody>
 </table>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="n">desc</span> <span class="s1">&#39;定义一个 build 方法&#39;</span>
 </span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="n">desc</span> <span class="s1">&#39;参数 adhoc 判断是否为内测版本, 默认为 false&#39;</span>
@@ -475,58 +475,58 @@
 </span></span></code></pre></div><h3 id="环境变量">环境变量</h3>
 <p>从 fastlane 的设计体系上在各个地方都加入了环境变量的支持，每个扩展的参数、以及扩展需要共享给其他扩展和任务读取的数据都是通过环境变量获取，如下是我收集的比较常用的列表：</p>
 <table>
-<thead>
-<tr>
-<th>环境变量</th>
-<th>来源</th>
-<th>说明</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>FASTLANE_USER</td>
-<td>credentials_manager</td>
-<td>Apple 开发者账户名</td>
-<td>验证通过后会保存 Keychain</td>
-</tr>
-<tr>
-<td>FASTLANE_PASSWORD</td>
-<td>credentials_manager</td>
-<td>Apple 开发者账户密码</td>
-<td>验证通过后会保存 Keychain</td>
-</tr>
-<tr>
-<td>FASTLANE_TEAM_ID<!-- raw HTML omitted -->CERT_TEAM_ID</td>
-<td>produce<!-- raw HTML omitted -->sigh</td>
-<td>Apple 团队 ID</td>
-<td></td>
-</tr>
-<tr>
-<td>DELIVER_USER&lt;br &gt;PRODUCE_USERNAME</td>
-<td>deliver<!-- raw HTML omitted -->produce</td>
-<td>iTunesConnect 账户名</td>
-<td></td>
-</tr>
-<tr>
-<td>DELIVER_PASSWORD</td>
-<td>deliver</td>
-<td>iTunesConnect 账户密码</td>
-<td></td>
-</tr>
-<tr>
-<td>MATCH_PASSWORD</td>
-<td>match</td>
-<td>证书加/解密密码</td>
-<td></td>
-</tr>
-<tr>
-<td>FASTLANE_XCODE_LIST_TIMEOUT</td>
-<td>fastlane_core</td>
-<td>获取 iOS Scheme 的超时时间</td>
-<td>默认 10s</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">环境变量</th>
+          <th style="text-align: left">来源</th>
+          <th style="text-align: left">说明</th>
+          <th style="text-align: left">备注</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">FASTLANE_USER</td>
+          <td style="text-align: left">credentials_manager</td>
+          <td style="text-align: left">Apple 开发者账户名</td>
+          <td style="text-align: left">验证通过后会保存 Keychain</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">FASTLANE_PASSWORD</td>
+          <td style="text-align: left">credentials_manager</td>
+          <td style="text-align: left">Apple 开发者账户密码</td>
+          <td style="text-align: left">验证通过后会保存 Keychain</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">FASTLANE_TEAM_ID<!-- raw HTML omitted -->CERT_TEAM_ID</td>
+          <td style="text-align: left">produce<!-- raw HTML omitted -->sigh</td>
+          <td style="text-align: left">Apple 团队 ID</td>
+          <td style="text-align: left"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">DELIVER_USER&lt;br &gt;PRODUCE_USERNAME</td>
+          <td style="text-align: left">deliver<!-- raw HTML omitted -->produce</td>
+          <td style="text-align: left">iTunesConnect 账户名</td>
+          <td style="text-align: left"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">DELIVER_PASSWORD</td>
+          <td style="text-align: left">deliver</td>
+          <td style="text-align: left">iTunesConnect 账户密码</td>
+          <td style="text-align: left"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">MATCH_PASSWORD</td>
+          <td style="text-align: left">match</td>
+          <td style="text-align: left">证书加/解密密码</td>
+          <td style="text-align: left"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">FASTLANE_XCODE_LIST_TIMEOUT</td>
+          <td style="text-align: left">fastlane_core</td>
+          <td style="text-align: left">获取 iOS Scheme 的超时时间</td>
+          <td style="text-align: left">默认 10s</td>
+      </tr>
+  </tbody>
 </table>
 ]]></content:encoded></item><item><title>Fastlane - iOS 和 Android 的自动化构建工具</title><link>https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/</link><pubDate>Mon, 11 Jul 2016 12:36:07 +0800</pubDate><guid>https://icyleaf.com/2016/07/intro-fastlane-automation-for-ios-and-android/</guid><description>使用 fastlane 提升构建移动应用的效率</description><content:encoded><![CDATA[<h2 id="前言">前言</h2>
 <p>这篇文章整理了很久，发现在一篇文章里无法一一讲述和全面的覆盖，初步打算是把这个做成一个系列，想到哪里就写到哪里，如果恰好有读者爱戴并有一些建议反馈，我也会根据大家的需要调整内容的方向和深度。论美剧的编剧的重要性(笑)。</p>

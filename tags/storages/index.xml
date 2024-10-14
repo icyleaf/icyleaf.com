@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>storages on icyleaf</title><link>https://icyleaf.com/tags/storages/</link><description>Recent content in storages on icyleaf</description><language>zh-cn</language><lastBuildDate>Mon, 24 Jul 2023 10:30:25 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/storages/index.xml" rel="self" type="application/rss+xml"/><item><title>如何搭建家用 homelab: 数据存储</title><link>https://icyleaf.com/2023/07/how-to-homelab-part-3-storages/</link><pubDate>Mon, 24 Jul 2023 10:30:25 +0800</pubDate><guid>https://icyleaf.com/2023/07/how-to-homelab-part-3-storages/</guid><description>如果你想部署任何一个服务，你都需要存储一些数据</description><content:encoded><![CDATA[
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Storages on icyleaf</title><link>https://icyleaf.com/tags/storages/</link><description>Recent content in Storages on icyleaf</description><language>zh-cn</language><lastBuildDate>Mon, 24 Jul 2023 10:30:25 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/storages/index.xml" rel="self" type="application/rss+xml"/><item><title>如何搭建家用 homelab: 数据存储</title><link>https://icyleaf.com/2023/07/how-to-homelab-part-3-storages/</link><pubDate>Mon, 24 Jul 2023 10:30:25 +0800</pubDate><guid>https://icyleaf.com/2023/07/how-to-homelab-part-3-storages/</guid><description>如果你想部署任何一个服务，你都需要存储一些数据</description><content:encoded><![CDATA[
 
 
 
@@ -31,7 +31,7 @@
   
   
     
-      <figure data-pswp="1280x1707" data-size="800x"><a href="/tutorials/how-to-homelab/storages/hp-micro-gen8.jpeg" class="gallery-item" target="_blank" data-pswp-width="1280" data-pswp-height="1707"><img src="/tutorials/how-to-homelab/storages/hp-micro-gen8_hu08300d076dd4851218d95fd3c3a735cf_375638_800x0_resize_q75_box.jpeg"/></a><figcaption>
+      <figure data-pswp="1280x1707" data-size="800x"><a href="/tutorials/how-to-homelab/storages/hp-micro-gen8.jpeg" class="gallery-item" target="_blank" data-pswp-width="1280" data-pswp-height="1707"><img src="/tutorials/how-to-homelab/storages/hp-micro-gen8_hu10351035699127340248.jpeg"/></a><figcaption>
 
     <p>我的 NAS 服务器</p></figcaption></figure>
 
@@ -55,7 +55,7 @@
   
   
     
-      <figure data-pswp="2370x1580" data-size="800x"><a href="https://images.unsplash.com/photo-1597852074816-d933c7d2b988?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=2370&amp;q=80" class="gallery-item" target="_blank" data-pswp-width="2370" data-pswp-height="1580"><img src="/photo-1597852074816-d933c7d2b988_18431204067559107571_hu5459c0360c2b0cb7a147d2df0eb350ca_0_800x0_resize_q75_box.jpg"
+      <figure data-pswp="2370x1580" data-size="800x"><a href="https://images.unsplash.com/photo-1597852074816-d933c7d2b988?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=2370&amp;q=80" class="gallery-item" target="_blank" data-pswp-width="2370" data-pswp-height="1580"><img src="/photo-1597852074816-d933c7d2b988_3803599289716941996_hu9829482930095115779.jpg"
       alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://unsplash.com/photos/GNyjCePVRs8">benjamin lehman</a>
     </p>
 
@@ -79,7 +79,7 @@
   
   
     
-      <figure data-pswp="678x452" data-size="800x"><a href="/tutorials/how-to-homelab/storages/9-platter-Ultrastar-18TB-HDD.jpeg" class="gallery-item" target="_blank" data-pswp-width="678" data-pswp-height="452"><img src="/tutorials/how-to-homelab/storages/9-platter-Ultrastar-18TB-HDD_hu8c4058ea039e3d4b31b8a5d177eba626_61808_800x0_resize_q75_box.jpeg"
+      <figure data-pswp="678x452" data-size="800x"><a href="/tutorials/how-to-homelab/storages/9-platter-Ultrastar-18TB-HDD.jpeg" class="gallery-item" target="_blank" data-pswp-width="678" data-pswp-height="452"><img src="/tutorials/how-to-homelab/storages/9-platter-Ultrastar-18TB-HDD_hu12235394817623331910.jpeg"
       alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://www.anandtech.com/show/17097/western-digital-30tb-hdd-plans-mamr-future-unclear">anandtech</a>
     </p>
 
@@ -103,7 +103,7 @@
   
   
     
-      <figure data-pswp="1200x628" data-size="800x"><a href="/tutorials/how-to-homelab/storages/pmr-vs-cmr.jpeg" class="gallery-item" target="_blank" data-pswp-width="1200" data-pswp-height="628"><img src="/tutorials/how-to-homelab/storages/pmr-vs-cmr_hud0c1f5384c508937af3c94c29a26ec0a_82125_800x0_resize_q75_box.jpeg"
+      <figure data-pswp="1200x628" data-size="800x"><a href="/tutorials/how-to-homelab/storages/pmr-vs-cmr.jpeg" class="gallery-item" target="_blank" data-pswp-width="1200" data-pswp-height="628"><img src="/tutorials/how-to-homelab/storages/pmr-vs-cmr_hu9625660027833294024.jpeg"
       alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://www.buffalotech.com/blog/cmr-vs-smr-hard-drives-in-network-attached-storage-nas">buffalotech</a>
     </p>
 
@@ -127,7 +127,7 @@
   
   
     
-      <figure data-pswp="500x336" data-size="800x"><a href="/tutorials/how-to-homelab/storages/ssd-nand.png" class="gallery-item" target="_blank" data-pswp-width="500" data-pswp-height="336"><img src="/tutorials/how-to-homelab/storages/ssd-nand_hu5d0c900d7b459cda8ce02a2906f9a8d5_267481_800x0_resize_box_3.png"
+      <figure data-pswp="500x336" data-size="800x"><a href="/tutorials/how-to-homelab/storages/ssd-nand.png" class="gallery-item" target="_blank" data-pswp-width="500" data-pswp-height="336"><img src="/tutorials/how-to-homelab/storages/ssd-nand_hu3726560244323952356.png"
       alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://www.advantech.com/pt-br/resources/news/choosing-the-right-ssd-technology-for-expanding-embedded-application-requirements">advantech</a>
     </p>
 
@@ -157,7 +157,7 @@
   
   
     
-      <figure data-pswp="1024x570" data-size="800x"><a href="/tutorials/how-to-homelab/storages/sata-drive-data-and-power-connectors.jpg" class="gallery-item" target="_blank" data-pswp-width="1024" data-pswp-height="570"><img src="/tutorials/how-to-homelab/storages/sata-drive-data-and-power-connectors_hu3aad2e9a46a87b83e8838aea6c2c29e0_250158_800x0_resize_q75_box.jpg"
+      <figure data-pswp="1024x570" data-size="800x"><a href="/tutorials/how-to-homelab/storages/sata-drive-data-and-power-connectors.jpg" class="gallery-item" target="_blank" data-pswp-width="1024" data-pswp-height="570"><img src="/tutorials/how-to-homelab/storages/sata-drive-data-and-power-connectors_hu10918019007160653018.jpg"
       alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://en.wikipedia.org/wiki/SATA">wikipedia</a>
     </p>
 
@@ -181,7 +181,7 @@
   
   
     
-      <figure data-pswp="1739x1686" data-size="800x"><a href="/tutorials/how-to-homelab/storages/m2-keys-mean.png" class="gallery-item" target="_blank" data-pswp-width="1739" data-pswp-height="1686"><img src="/tutorials/how-to-homelab/storages/m2-keys-mean_huc254688dfed818ed5e7aae2c8217656b_820735_800x0_resize_box_3.png"
+      <figure data-pswp="1739x1686" data-size="800x"><a href="/tutorials/how-to-homelab/storages/m2-keys-mean.png" class="gallery-item" target="_blank" data-pswp-width="1739" data-pswp-height="1686"><img src="/tutorials/how-to-homelab/storages/m2-keys-mean_hu6175797913292502360.png"
       alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://www.delock.de/infothek/M.2/M.2_e.html">delock</a>
     </p>
 
@@ -205,7 +205,7 @@
   
   
     
-      <figure data-pswp="960x779" data-size="800x"><a href="/tutorials/how-to-homelab/storages/m2-vs-msata.png" class="gallery-item" target="_blank" data-pswp-width="960" data-pswp-height="779"><img src="/tutorials/how-to-homelab/storages/m2-vs-msata_hu5cb2de0bbb3d3c003359644821693a50_513877_800x0_resize_box_3.png"
+      <figure data-pswp="960x779" data-size="800x"><a href="/tutorials/how-to-homelab/storages/m2-vs-msata.png" class="gallery-item" target="_blank" data-pswp-width="960" data-pswp-height="779"><img src="/tutorials/how-to-homelab/storages/m2-vs-msata_hu16524836267029390125.png"
       alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://www.reddit.com/r/gpdwin/comments/80ial8/psa_dont_buy_msata_gpd_win_2_only_supports_m2_sata/">r/gpdwin</a>
     </p>
 
@@ -229,7 +229,7 @@
   
   
     
-      <figure data-pswp="1578x620" data-size="800x"><a href="/tutorials/how-to-homelab/storages/usb-speed.png" class="gallery-item" target="_blank" data-pswp-width="1578" data-pswp-height="620"><img src="/tutorials/how-to-homelab/storages/usb-speed_huaa694c20c5931d50dbd8bbb4bd9a6cd2_128318_800x0_resize_box_3.png"
+      <figure data-pswp="1578x620" data-size="800x"><a href="/tutorials/how-to-homelab/storages/usb-speed.png" class="gallery-item" target="_blank" data-pswp-width="1578" data-pswp-height="620"><img src="/tutorials/how-to-homelab/storages/usb-speed_hu1851354113865163305.png"
       alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://zh.wikipedia.org/wiki/USB">wikipedia</a>
     </p>
 
@@ -253,7 +253,7 @@
   
   
     
-      <figure data-pswp="2080x796" data-size="800x"><a href="/tutorials/how-to-homelab/storages/usb-type-list.png" class="gallery-item" target="_blank" data-pswp-width="2080" data-pswp-height="796"><img src="/tutorials/how-to-homelab/storages/usb-type-list_hu12d0823745cb40b0572b948e6f316d6f_190806_800x0_resize_box_3.png"
+      <figure data-pswp="2080x796" data-size="800x"><a href="/tutorials/how-to-homelab/storages/usb-type-list.png" class="gallery-item" target="_blank" data-pswp-width="2080" data-pswp-height="796"><img src="/tutorials/how-to-homelab/storages/usb-type-list_hu3466075886978122923.png"
       alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://zh.wikipedia.org/wiki/USB">wikipedia</a>
     </p>
 
@@ -277,7 +277,7 @@
   
   
     
-      <figure data-pswp="1955x956" data-size="800x"><a href="/tutorials/how-to-homelab/storages/hard-drive-size.png" class="gallery-item" target="_blank" data-pswp-width="1955" data-pswp-height="956"><img src="/tutorials/how-to-homelab/storages/hard-drive-size_hu9ec337cc31c93e85754929476e3a4128_882699_800x0_resize_box_3.png"
+      <figure data-pswp="1955x956" data-size="800x"><a href="/tutorials/how-to-homelab/storages/hard-drive-size.png" class="gallery-item" target="_blank" data-pswp-width="1955" data-pswp-height="956"><img src="/tutorials/how-to-homelab/storages/hard-drive-size_hu4365511964816336925.png"
       alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://www.delock.de/infothek/M.2/M.2_e.html">delock</a>
     </p>
 
@@ -301,7 +301,7 @@
   
   
     
-      <figure data-pswp="1750x710" data-size="800x"><a href="/tutorials/how-to-homelab/storages/m2-size.png" class="gallery-item" target="_blank" data-pswp-width="1750" data-pswp-height="710"><img src="/tutorials/how-to-homelab/storages/m2-size_huc53523f3091dfc6eed4f6987160581b9_187121_800x0_resize_box_3.png"
+      <figure data-pswp="1750x710" data-size="800x"><a href="/tutorials/how-to-homelab/storages/m2-size.png" class="gallery-item" target="_blank" data-pswp-width="1750" data-pswp-height="710"><img src="/tutorials/how-to-homelab/storages/m2-size_hu766120055528915716.png"
       alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://www.delock.de/infothek/M.2/M.2_e.html">delock</a>
     </p>
 
@@ -325,7 +325,7 @@
   
   
     
-      <figure data-pswp="2234x2152" data-size="800x"><a href="/tutorials/how-to-homelab/storages/wd-red-plus-specs.png" class="gallery-item" target="_blank" data-pswp-width="2234" data-pswp-height="2152"><img src="/tutorials/how-to-homelab/storages/wd-red-plus-specs_huf1ac4b76ccf55624adb740a9768a90d1_387774_800x0_resize_box_3.png"
+      <figure data-pswp="2234x2152" data-size="800x"><a href="/tutorials/how-to-homelab/storages/wd-red-plus-specs.png" class="gallery-item" target="_blank" data-pswp-width="2234" data-pswp-height="2152"><img src="/tutorials/how-to-homelab/storages/wd-red-plus-specs_hu12396049197720664826.png"
       alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://documents.westerndigital.com/content/dam/doc-library/zh_cn/assets/public/western-digital/product/internal-drives/wd-red-plus-hdd/product-brief-western-digital-wd-red-plus-hdd.pdf">西部数据</a>
     </p>
 
@@ -348,7 +348,7 @@
   
   
     
-      <figure data-pswp="650x433" data-size="800x"><a href="/tutorials/how-to-homelab/storages/hard-disk-platter-damanged.jpeg" class="gallery-item" target="_blank" data-pswp-width="650" data-pswp-height="433"><img src="/tutorials/how-to-homelab/storages/hard-disk-platter-damanged_hu4c6ef5214192bb236a1ec4747347c046_86500_800x0_resize_q75_box.jpeg"
+      <figure data-pswp="650x433" data-size="800x"><a href="/tutorials/how-to-homelab/storages/hard-disk-platter-damanged.jpeg" class="gallery-item" target="_blank" data-pswp-width="650" data-pswp-height="433"><img src="/tutorials/how-to-homelab/storages/hard-disk-platter-damanged_hu13834302484530044264.jpeg"
       alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://blocksandfiles.com/2019/07/12/the-reasons-disk-drives-fail/">blocks&amp;files</a>
     </p>
 
@@ -386,7 +386,7 @@
   
   
     
-      <figure data-pswp="670x690" data-size="800x"><a href="/tutorials/how-to-homelab/storages/b2-drive-survival-chart-extended.jpg" class="gallery-item" target="_blank" data-pswp-width="670" data-pswp-height="690"><img src="/tutorials/how-to-homelab/storages/b2-drive-survival-chart-extended_hua67f88eccd5388ba1c4cd9818bc3d6a3_91387_800x0_resize_q75_box.jpg"
+      <figure data-pswp="670x690" data-size="800x"><a href="/tutorials/how-to-homelab/storages/b2-drive-survival-chart-extended.jpg" class="gallery-item" target="_blank" data-pswp-width="670" data-pswp-height="690"><img src="/tutorials/how-to-homelab/storages/b2-drive-survival-chart-extended_hu15525370651562412590.jpg"
       alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://www.backblaze.com/blog/how-long-do-disk-drives-last/">Backblaze</a>
     </p>
 
@@ -409,7 +409,7 @@
   
   
     
-      <figure data-pswp="2252x336" data-size="800x"><a href="/tutorials/how-to-homelab/storages/ten-years-old-hdd.png" class="gallery-item" target="_blank" data-pswp-width="2252" data-pswp-height="336"><img src="/tutorials/how-to-homelab/storages/ten-years-old-hdd_hu87688ff9891c61d39f1066243f7dc82e_99745_800x0_resize_box_3.png"/></a><figcaption>
+      <figure data-pswp="2252x336" data-size="800x"><a href="/tutorials/how-to-homelab/storages/ten-years-old-hdd.png" class="gallery-item" target="_blank" data-pswp-width="2252" data-pswp-height="336"><img src="/tutorials/how-to-homelab/storages/ten-years-old-hdd_hu13366538478887009264.png"/></a><figcaption>
 
     <p>超长时间的 HDD</p></figcaption></figure>
 
@@ -436,7 +436,7 @@
   
   
     
-      <figure data-pswp="860x657" data-size="800x"><a href="/tutorials/how-to-homelab/storages/das-nas-san.png" class="gallery-item" target="_blank" data-pswp-width="860" data-pswp-height="657"><img src="/tutorials/how-to-homelab/storages/das-nas-san_hu07252d7b79b27c7e8ac194d6a7c4773e_204231_800x0_resize_box_3.png"
+      <figure data-pswp="860x657" data-size="800x"><a href="/tutorials/how-to-homelab/storages/das-nas-san.png" class="gallery-item" target="_blank" data-pswp-width="860" data-pswp-height="657"><img src="/tutorials/how-to-homelab/storages/das-nas-san_hu18077427894698955581.png"
       alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://walker-a.com/archives/4522">挨踢路人甲</a>
     </p>
 
@@ -461,7 +461,7 @@
   
   
     
-      <figure data-pswp="3017x1533" data-size="800x"><a href="/tutorials/how-to-homelab/storages/san-network.png" class="gallery-item" target="_blank" data-pswp-width="3017" data-pswp-height="1533"><img src="/tutorials/how-to-homelab/storages/san-network_huf0f94d8372b6524ce2882fcfb70f2ced_57931_800x0_resize_box_3.png"
+      <figure data-pswp="3017x1533" data-size="800x"><a href="/tutorials/how-to-homelab/storages/san-network.png" class="gallery-item" target="_blank" data-pswp-width="3017" data-pswp-height="1533"><img src="/tutorials/how-to-homelab/storages/san-network_hu1977895853127906008.png"
       alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://walker-a.com/archives/4522">挨踢路人甲</a>
     </p>
 
@@ -495,7 +495,7 @@
   
   
     
-      <figure data-pswp="900x600" data-size="800x"><a href="/tutorials/how-to-homelab/storages/synology-name-rule.jpeg" class="gallery-item" target="_blank" data-pswp-width="900" data-pswp-height="600"><img src="/tutorials/how-to-homelab/storages/synology-name-rule_hu0b4b0fdb7df205aebd42a3da912c90bb_134591_800x0_resize_q75_box.jpeg"
+      <figure data-pswp="900x600" data-size="800x"><a href="/tutorials/how-to-homelab/storages/synology-name-rule.jpeg" class="gallery-item" target="_blank" data-pswp-width="900" data-pswp-height="600"><img src="/tutorials/how-to-homelab/storages/synology-name-rule_hu16145075307468808068.jpeg"
       alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="http://www.ptyqm.com/24518.html">PT邀请码</a>
     </p>
 
@@ -506,30 +506,30 @@
 <p><a href="https://unraid.net/product">Unraid</a> 这两年开始流行的新型虚拟化 NAS 系统，从名字就能看出来是不支持硬件 raid 阵列，底层是 slackware 系统。系统核心主打虚拟化平台，最有趣的是在他们官网的用户案例最显著的分别列的是 Minecraft 自建服务器、游戏服务器、密码管理和备份服务，反而 NFS 服务端、数据存储成了附加功能，也怪不得它们的 Slogan 是 &ldquo;More Than a NAS OS&rdquo;。</p>
 <p>截至 2023 年 07 月 21 日为止，他们的付费策略如下所示：</p>
 <table>
-<thead>
-<tr>
-<th>套餐</th>
-<th>价格</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Basic</td>
-<td>$59</td>
-<td>6 盘位</td>
-</tr>
-<tr>
-<td>Plus</td>
-<td>$89</td>
-<td>12 盘位</td>
-</tr>
-<tr>
-<td>Pro</td>
-<td>$129</td>
-<td>无限盘位</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">套餐</th>
+          <th style="text-align: left">价格</th>
+          <th style="text-align: left">说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Basic</td>
+          <td style="text-align: left">$59</td>
+          <td style="text-align: left">6 盘位</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Plus</td>
+          <td style="text-align: left">$89</td>
+          <td style="text-align: left">12 盘位</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Pro</td>
+          <td style="text-align: left">$129</td>
+          <td style="text-align: left">无限盘位</td>
+      </tr>
+  </tbody>
 </table>
 <p>2022 年官方有过一次 5 折的优惠活动，不着急的可以等等看，2023 年的现在官网有一个 85 折的 <a href="https://unraid.net/summer-sale">23 夏日特卖</a>，优惠码：<code>SUMMER23</code> （不是广告）</p>
 <h3 id="truenas">TrueNAS</h3>
@@ -580,7 +580,7 @@
   
   
     
-      <figure data-pswp="1600x900" data-size="800x"><a href="/tutorials/how-to-homelab/storages/Storage-to-Use_v04-23-21.max-1600x1600.jpeg" class="gallery-item" target="_blank" data-pswp-width="1600" data-pswp-height="900"><img src="/tutorials/how-to-homelab/storages/Storage-to-Use_v04-23-21.max-1600x1600_hu1356fd0b1756d7491d89a5d7f23816bf_1002948_800x0_resize_q75_box.jpeg"
+      <figure data-pswp="1600x900" data-size="800x"><a href="/tutorials/how-to-homelab/storages/Storage-to-Use_v04-23-21.max-1600x1600.jpeg" class="gallery-item" target="_blank" data-pswp-width="1600" data-pswp-height="900"><img src="/tutorials/how-to-homelab/storages/Storage-to-Use_v04-23-21.max-1600x1600_hu2760392102303842747.jpeg"
       alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://cloud.google.com/blog/topics/developers-practitioners/map-storage-options-google-cloud">Google Cloud</a>
     </p>
 
@@ -606,7 +606,7 @@
   
   
     
-      <figure data-pswp="1440x1006" data-size="800x"><a href="/tutorials/how-to-homelab/storages/ceph-diagramm.png" class="gallery-item" target="_blank" data-pswp-width="1440" data-pswp-height="1006"><img src="/tutorials/how-to-homelab/storages/ceph-diagramm_hud0423c5889e92e2ca8c59979a4b84d88_44584_800x0_resize_box_3.png"
+      <figure data-pswp="1440x1006" data-size="800x"><a href="/tutorials/how-to-homelab/storages/ceph-diagramm.png" class="gallery-item" target="_blank" data-pswp-width="1440" data-pswp-height="1006"><img src="/tutorials/how-to-homelab/storages/ceph-diagramm_hu7862731300261071328.png"
       alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://ceph.com/en/discover/technology">Ceph</a>
     </p>
 
@@ -668,58 +668,58 @@
 <h3 id="备份工具">备份工具</h3>
 <p>现在有太多优秀的数据备份工具可供选择，且差异化也会越来越小，绝大多数都是支持远程协议和云存储的数据同步、数据加密、压缩等功能，以下列举的都是数据备份相关的工具，并没有把单纯数据同步的工具列在内。</p>
 <table>
-<thead>
-<tr>
-<th>工具</th>
-<th>性质</th>
-<th>开发语言</th>
-<th>特色</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="https://www.borgbackup.org/">BorgBackup</a></td>
-<td>免费/开源</td>
-<td>Python</td>
-<td>异地备份</td>
-</tr>
-<tr>
-<td><a href="https://www.duplicati.com/">Duplicati</a></td>
-<td>免费/开源</td>
-<td>C#</td>
-<td>Web UI，AES 256 加密</td>
-</tr>
-<tr>
-<td><a href="https://www.synology.com/en-global/dsm/feature/hyper_backup">Hyper Backup</a></td>
-<td>商业</td>
-<td>-</td>
-<td>基于 Synology NAS</td>
-</tr>
-<tr>
-<td><a href="https://kopia.io/">Kopia</a></td>
-<td>免费/开源</td>
-<td>Go</td>
-<td>Web UI，API，块存储，增量备份，定时快照，备份策略，自建备份服务器</td>
-</tr>
-<tr>
-<td><a href="https://rclone.org/">Rclone</a></td>
-<td>免费/开源</td>
-<td>Go</td>
-<td>Web UI，分布式存储</td>
-</tr>
-<tr>
-<td><a href="https://www.resilio.com/individuals/">Resilio</a></td>
-<td>商业/免费</td>
-<td>-</td>
-<td>采用 P2P 协议同步</td>
-</tr>
-<tr>
-<td><a href="https://restic.net/">Restic</a></td>
-<td>免费/开源</td>
-<td>Go</td>
-<td>增量备份</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">工具</th>
+          <th style="text-align: left">性质</th>
+          <th style="text-align: left">开发语言</th>
+          <th style="text-align: left">特色</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><a href="https://www.borgbackup.org/">BorgBackup</a></td>
+          <td style="text-align: left">免费/开源</td>
+          <td style="text-align: left">Python</td>
+          <td style="text-align: left">异地备份</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><a href="https://www.duplicati.com/">Duplicati</a></td>
+          <td style="text-align: left">免费/开源</td>
+          <td style="text-align: left">C#</td>
+          <td style="text-align: left">Web UI，AES 256 加密</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><a href="https://www.synology.com/en-global/dsm/feature/hyper_backup">Hyper Backup</a></td>
+          <td style="text-align: left">商业</td>
+          <td style="text-align: left">-</td>
+          <td style="text-align: left">基于 Synology NAS</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><a href="https://kopia.io/">Kopia</a></td>
+          <td style="text-align: left">免费/开源</td>
+          <td style="text-align: left">Go</td>
+          <td style="text-align: left">Web UI，API，块存储，增量备份，定时快照，备份策略，自建备份服务器</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><a href="https://rclone.org/">Rclone</a></td>
+          <td style="text-align: left">免费/开源</td>
+          <td style="text-align: left">Go</td>
+          <td style="text-align: left">Web UI，分布式存储</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><a href="https://www.resilio.com/individuals/">Resilio</a></td>
+          <td style="text-align: left">商业/免费</td>
+          <td style="text-align: left">-</td>
+          <td style="text-align: left">采用 P2P 协议同步</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><a href="https://restic.net/">Restic</a></td>
+          <td style="text-align: left">免费/开源</td>
+          <td style="text-align: left">Go</td>
+          <td style="text-align: left">增量备份</td>
+      </tr>
+  </tbody>
 </table>
 <p>个人建议优先考虑支持加密备份（支持压缩更好），支持定时能够增量快照或备份，同时又有备份策略（保留最多数量，是否删除等）的工具，原因有二：</p>
 <ul>
@@ -729,45 +729,45 @@
 <h3 id="云存储服务">云存储服务</h3>
 <p>网上各厂家提供的云存储收费通常是按照占用磁盘空间大小和流量两个纬度计算费用，据我所知目前最最便宜且口碑比较好的是 Backblaze 的 <a href="https://www.backblaze.com/cloud-storage">B2 云备份</a>服务。</p>
 <table>
-<thead>
-<tr>
-<th>云存储</th>
-<th>存储</th>
-<th>下载</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Backblaze B2</td>
-<td>0.0005 美元/GB/月</td>
-<td>0.01 美元/GB</td>
-</tr>
-<tr>
-<td>亚马逊 S3</td>
-<td>0.026 美元/GB/月</td>
-<td>0.09 美元/GB</td>
-</tr>
-<tr>
-<td>Azure</td>
-<td>0.0208 美元/GB/月</td>
-<td>0.08 美元/GB</td>
-</tr>
-<tr>
-<td>Google Cloud</td>
-<td>0.0023 美元/GB/月</td>
-<td>0.11 美元/GB</td>
-</tr>
-<tr>
-<td>阿里云 OSS</td>
-<td>0.0075 ~ 0.12 元/GB/月</td>
-<td>0.25 ~ 0.50 元/GB</td>
-</tr>
-<tr>
-<td>腾讯云 COS</td>
-<td>0.01 ~ 0.099 元/GB/月</td>
-<td>0.5 元/GB</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">云存储</th>
+          <th style="text-align: left">存储</th>
+          <th style="text-align: left">下载</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Backblaze B2</td>
+          <td style="text-align: left">0.0005 美元/GB/月</td>
+          <td style="text-align: left">0.01 美元/GB</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">亚马逊 S3</td>
+          <td style="text-align: left">0.026 美元/GB/月</td>
+          <td style="text-align: left">0.09 美元/GB</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Azure</td>
+          <td style="text-align: left">0.0208 美元/GB/月</td>
+          <td style="text-align: left">0.08 美元/GB</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Google Cloud</td>
+          <td style="text-align: left">0.0023 美元/GB/月</td>
+          <td style="text-align: left">0.11 美元/GB</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">阿里云 OSS</td>
+          <td style="text-align: left">0.0075 ~ 0.12 元/GB/月</td>
+          <td style="text-align: left">0.25 ~ 0.50 元/GB</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">腾讯云 COS</td>
+          <td style="text-align: left">0.01 ~ 0.099 元/GB/月</td>
+          <td style="text-align: left">0.5 元/GB</td>
+      </tr>
+  </tbody>
 </table>
 <p>B2 服务最吸引人的地方注册直接赠送免费 10G 空间，下载头 1GB 免费，API 提供免费额度，小场景使用几乎可以一直白嫖，国内的云存储价格打法就特别眼花缭乱，大体划分为标准存储，低频，（冷）归档，深度（冷）归档。</p>
 <h2 id="小结">小结</h2>

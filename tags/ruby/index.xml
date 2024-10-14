@@ -28,7 +28,7 @@
   
   
     
-      <figure data-pswp="2270x1316" data-size="800x"><a href="/uploads/2022/11/10/jsdelivr-network.png" class="gallery-item" target="_blank" data-pswp-width="2270" data-pswp-height="1316"><img src="/uploads/2022/11/10/jsdelivr-network_hu35ca8d8b89ce669a90db33b84e39dea8_282272_800x0_resize_box_3.png"/></a><figcaption>
+      <figure data-pswp="2270x1316" data-size="800x"><a href="/uploads/2022/11/10/jsdelivr-network.png" class="gallery-item" target="_blank" data-pswp-width="2270" data-pswp-height="1316"><img src="/uploads/2022/11/10/jsdelivr-network_hu6915014520778962123.png"/></a><figcaption>
 
     <p>jsdelivr network</p></figcaption></figure>
 
@@ -59,7 +59,7 @@
   
   
     
-      <figure data-pswp="1698x582" data-size="800x"><a href="/uploads/2022/11/10/jsdelivr-github-demo.png" class="gallery-item" target="_blank" data-pswp-width="1698" data-pswp-height="582"><img src="/uploads/2022/11/10/jsdelivr-github-demo_huaeafff840bedf588ce827c05ae754f76_40041_800x0_resize_box_3.png"/></a><figcaption><p class="source"><a href="https://www.jsdelivr.com/github">生成工具</a>
+      <figure data-pswp="1698x582" data-size="800x"><a href="/uploads/2022/11/10/jsdelivr-github-demo.png" class="gallery-item" target="_blank" data-pswp-width="1698" data-pswp-height="582"><img src="/uploads/2022/11/10/jsdelivr-github-demo_hu10365139180803583141.png"/></a><figcaption><p class="source"><a href="https://www.jsdelivr.com/github">生成工具</a>
     </p>
 
     <p>Cocoapods github 仓库和 jsdelivr CDN 生成结果</p></figcaption></figure>
@@ -580,45 +580,45 @@
 </span></span></code></pre></div><p>我会随着下面每个概念的解释和展开来配合上面的命令一起讲解。</p>
 <h2 id="生命周期">生命周期</h2>
 <table>
-<thead>
-<tr>
-<th>执行顺序</th>
-<th>方法名</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>before_all</td>
-<td>在执行 lane 之前只执行一次</td>
-</tr>
-<tr>
-<td>2</td>
-<td>before_each</td>
-<td>每次执行 lane 之前都会执行一次</td>
-</tr>
-<tr>
-<td>3</td>
-<td>lane</td>
-<td>自定义的任务</td>
-</tr>
-<tr>
-<td>4</td>
-<td>after_each</td>
-<td>每次执行 lane 之后都会执行一次</td>
-</tr>
-<tr>
-<td>5</td>
-<td>after_all</td>
-<td>在执行 lane 成功结束之后执行一次</td>
-</tr>
-<tr>
-<td>6</td>
-<td>error</td>
-<td>在执行上述情况任意环境报错都会中止并执行一次</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">执行顺序</th>
+          <th style="text-align: left">方法名</th>
+          <th style="text-align: left">说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">1</td>
+          <td style="text-align: left">before_all</td>
+          <td style="text-align: left">在执行 lane 之前只执行一次</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">2</td>
+          <td style="text-align: left">before_each</td>
+          <td style="text-align: left">每次执行 lane 之前都会执行一次</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">3</td>
+          <td style="text-align: left">lane</td>
+          <td style="text-align: left">自定义的任务</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">4</td>
+          <td style="text-align: left">after_each</td>
+          <td style="text-align: left">每次执行 lane 之后都会执行一次</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">5</td>
+          <td style="text-align: left">after_all</td>
+          <td style="text-align: left">在执行 lane 成功结束之后执行一次</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">6</td>
+          <td style="text-align: left">error</td>
+          <td style="text-align: left">在执行上述情况任意环境报错都会中止并执行一次</td>
+      </tr>
+  </tbody>
 </table>
 <p>以上的部分大家在上一篇已经见识过了，有些还没接触到，不用着急都会一一说明。</p>
 <h2 id="任务lane">任务（lane）</h2>
@@ -626,40 +626,40 @@
 <h3 id="任务定义">任务定义</h3>
 <p>定义任务的方法类似于 rake 的 task，但使用上缺比前者要好用很多，见下表：</p>
 <table>
-<thead>
-<tr>
-<th>定义</th>
-<th>是否必须</th>
-<th>说明</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>desc</td>
-<td><code>false</code></td>
-<td>方法描述</td>
-<td>可多次使用打到换行的目的</td>
-</tr>
-<tr>
-<td>name</td>
-<td><code>true</code></td>
-<td>方法名</td>
-<td>符号化的方法名</td>
-</tr>
-<tr>
-<td>options</td>
-<td><code>false</code></td>
-<td>方法参数</td>
-<td>返回 Hash 类型</td>
-</tr>
-<tr>
-<td>task</td>
-<td><code>true</code></td>
-<td>方法主体</td>
-<td>参考 ruby 的方法代码且支持 ruby 代码</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">定义</th>
+          <th style="text-align: left">是否必须</th>
+          <th style="text-align: left">说明</th>
+          <th style="text-align: left">备注</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">desc</td>
+          <td style="text-align: left"><code>false</code></td>
+          <td style="text-align: left">方法描述</td>
+          <td style="text-align: left">可多次使用打到换行的目的</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">name</td>
+          <td style="text-align: left"><code>true</code></td>
+          <td style="text-align: left">方法名</td>
+          <td style="text-align: left">符号化的方法名</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">options</td>
+          <td style="text-align: left"><code>false</code></td>
+          <td style="text-align: left">方法参数</td>
+          <td style="text-align: left">返回 Hash 类型</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">task</td>
+          <td style="text-align: left"><code>true</code></td>
+          <td style="text-align: left">方法主体</td>
+          <td style="text-align: left">参考 ruby 的方法代码且支持 ruby 代码</td>
+      </tr>
+  </tbody>
 </table>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="n">desc</span> <span class="s1">&#39;定义一个 build 方法&#39;</span>
 </span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="n">desc</span> <span class="s1">&#39;参数 adhoc 判断是否为内测版本, 默认为 false&#39;</span>
@@ -916,58 +916,58 @@
 </span></span></code></pre></div><h3 id="环境变量">环境变量</h3>
 <p>从 fastlane 的设计体系上在各个地方都加入了环境变量的支持，每个扩展的参数、以及扩展需要共享给其他扩展和任务读取的数据都是通过环境变量获取，如下是我收集的比较常用的列表：</p>
 <table>
-<thead>
-<tr>
-<th>环境变量</th>
-<th>来源</th>
-<th>说明</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>FASTLANE_USER</td>
-<td>credentials_manager</td>
-<td>Apple 开发者账户名</td>
-<td>验证通过后会保存 Keychain</td>
-</tr>
-<tr>
-<td>FASTLANE_PASSWORD</td>
-<td>credentials_manager</td>
-<td>Apple 开发者账户密码</td>
-<td>验证通过后会保存 Keychain</td>
-</tr>
-<tr>
-<td>FASTLANE_TEAM_ID<!-- raw HTML omitted -->CERT_TEAM_ID</td>
-<td>produce<!-- raw HTML omitted -->sigh</td>
-<td>Apple 团队 ID</td>
-<td></td>
-</tr>
-<tr>
-<td>DELIVER_USER&lt;br &gt;PRODUCE_USERNAME</td>
-<td>deliver<!-- raw HTML omitted -->produce</td>
-<td>iTunesConnect 账户名</td>
-<td></td>
-</tr>
-<tr>
-<td>DELIVER_PASSWORD</td>
-<td>deliver</td>
-<td>iTunesConnect 账户密码</td>
-<td></td>
-</tr>
-<tr>
-<td>MATCH_PASSWORD</td>
-<td>match</td>
-<td>证书加/解密密码</td>
-<td></td>
-</tr>
-<tr>
-<td>FASTLANE_XCODE_LIST_TIMEOUT</td>
-<td>fastlane_core</td>
-<td>获取 iOS Scheme 的超时时间</td>
-<td>默认 10s</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">环境变量</th>
+          <th style="text-align: left">来源</th>
+          <th style="text-align: left">说明</th>
+          <th style="text-align: left">备注</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">FASTLANE_USER</td>
+          <td style="text-align: left">credentials_manager</td>
+          <td style="text-align: left">Apple 开发者账户名</td>
+          <td style="text-align: left">验证通过后会保存 Keychain</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">FASTLANE_PASSWORD</td>
+          <td style="text-align: left">credentials_manager</td>
+          <td style="text-align: left">Apple 开发者账户密码</td>
+          <td style="text-align: left">验证通过后会保存 Keychain</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">FASTLANE_TEAM_ID<!-- raw HTML omitted -->CERT_TEAM_ID</td>
+          <td style="text-align: left">produce<!-- raw HTML omitted -->sigh</td>
+          <td style="text-align: left">Apple 团队 ID</td>
+          <td style="text-align: left"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">DELIVER_USER&lt;br &gt;PRODUCE_USERNAME</td>
+          <td style="text-align: left">deliver<!-- raw HTML omitted -->produce</td>
+          <td style="text-align: left">iTunesConnect 账户名</td>
+          <td style="text-align: left"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">DELIVER_PASSWORD</td>
+          <td style="text-align: left">deliver</td>
+          <td style="text-align: left">iTunesConnect 账户密码</td>
+          <td style="text-align: left"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">MATCH_PASSWORD</td>
+          <td style="text-align: left">match</td>
+          <td style="text-align: left">证书加/解密密码</td>
+          <td style="text-align: left"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">FASTLANE_XCODE_LIST_TIMEOUT</td>
+          <td style="text-align: left">fastlane_core</td>
+          <td style="text-align: left">获取 iOS Scheme 的超时时间</td>
+          <td style="text-align: left">默认 10s</td>
+      </tr>
+  </tbody>
 </table>
 ]]></content:encoded></item><item><title>Gitlab API Wrapper for Crystal</title><link>https://icyleaf.com/2016/07/gitlab-api-wrapper-for-crystal/</link><pubDate>Mon, 11 Jul 2016 20:41:26 +0800</pubDate><guid>https://icyleaf.com/2016/07/gitlab-api-wrapper-for-crystal/</guid><description>学习新语音最好的途径就是造轮子</description><content:encoded><![CDATA[<h2 id="gitlabcr">Gitlab.cr</h2>
 <p><a href="https://github.com/icyleaf/gitlab.cr">gitlab.cr</a> 是我最近课下练习的新语言 <a href="http://crystal-lang.org/">Crystal</a> 写的 gitlab 包，方法和功能和 <a href="https://github.com/NARKOZ/gitlab">gitlab ruby 版本</a>基本类似。</p>
@@ -992,34 +992,34 @@
 </ul>
 <p>仅仅是这些可能大家觉得没什么，其实对我来说也不够冲击力，最重要的关键是在我从订阅的 Ruby Weekly 周刊看到 sidekiq 的作者用 crystal 重新实现了核心部分发的<a href="http://www.mikeperham.com/2016/05/25/sidekiq-for-crystal/">博文分享</a>，提到的一点：<strong>至少是比 ruby 2.3 大部分代码要快 3-5 倍，减少至少 3 倍的内存占用</strong>。怀着怀疑的态度我大概的研究了这个语言，确实看到了新希望。</p>
 <table>
-<thead>
-<tr>
-<th>库</th>
-<th>语言</th>
-<th>并发量</th>
-<th>平均响应时间</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="https://github.com/sdogruyol/fast-http-server">fast-http-server</a></td>
-<td><code>Crystal</code></td>
-<td>18348.47rpm</td>
-<td>8.67ms</td>
-</tr>
-<tr>
-<td><a href="https://github.com/indexzero/http-server">http-server</a></td>
-<td><code>Node.js</code></td>
-<td>2105.55rpm</td>
-<td>47.92ms</td>
-</tr>
-<tr>
-<td><a href="https://docs.python.org/2/library/simplehttpserver.html">SimpleHTTPServer</a></td>
-<td><code>Python</code></td>
-<td>785.14rpm</td>
-<td>1.91ms</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">库</th>
+          <th style="text-align: left">语言</th>
+          <th style="text-align: left">并发量</th>
+          <th style="text-align: left">平均响应时间</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><a href="https://github.com/sdogruyol/fast-http-server">fast-http-server</a></td>
+          <td style="text-align: left"><code>Crystal</code></td>
+          <td style="text-align: left">18348.47rpm</td>
+          <td style="text-align: left">8.67ms</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><a href="https://github.com/indexzero/http-server">http-server</a></td>
+          <td style="text-align: left"><code>Node.js</code></td>
+          <td style="text-align: left">2105.55rpm</td>
+          <td style="text-align: left">47.92ms</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><a href="https://docs.python.org/2/library/simplehttpserver.html">SimpleHTTPServer</a></td>
+          <td style="text-align: left"><code>Python</code></td>
+          <td style="text-align: left">785.14rpm</td>
+          <td style="text-align: left">1.91ms</td>
+      </tr>
+  </tbody>
 </table>
 <p>还有一份一直再更新维护的语言之间的<a href="https://github.com/kostya/benchmarks">评测</a>仅供参考，看着里面的数据还是蛮吸引人的。</p>
 <blockquote>
@@ -1589,7 +1589,28 @@ class Post &lt; ActiveRecord::Base
     &#34;#{@date_users}&#34;
   end
 end
-</code></pre>]]></content:encoded></item><item><title>利用 argparse 写的脚本命令：测试 URL 响应时间</title><link>https://icyleaf.com/2012/08/url-request-time-test-using-python-with-argparse/</link><pubDate>Thu, 02 Aug 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/08/url-request-time-test-using-python-with-argparse/</guid><description>前几天看完《Python简明教程》，预想练手，想起同事的一个 ruby 代码，尝试改写成 python，顺便看看两个语言的简练程度。下面是原始的 ruby 代码：...</description><content:encoded><![CDATA[<p>前几天看完《<a href="http://woodpecker.org.cn/abyteofpython_cn/chinese/">Python简明教程</a>》，预想练手，想起同事的一个 ruby 代码，尝试改写成 python，顺便看看两个语言的简练程度。下面是原始的 ruby 代码：</p>
+</code></pre>]]></content:encoded></item><item><title>利用 argparse 写的脚本命令：测试 URL 响应时间</title><link>https://icyleaf.com/2012/08/url-request-time-test-using-python-with-argparse/</link><pubDate>Thu, 02 Aug 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/08/url-request-time-test-using-python-with-argparse/</guid><description>&lt;p>前几天看完《&lt;a href="http://woodpecker.org.cn/abyteofpython_cn/chinese/">Python简明教程&lt;/a>》，预想练手，想起同事的一个 ruby 代码，尝试改写成 python，顺便看看两个语言的简练程度。下面是原始的 ruby 代码：&lt;/p>
+&lt;pre tabindex="0">&lt;code>#!/usr/bin/env ruby
+require &amp;#39;rubygems&amp;#39;
+require &amp;#39;net/http&amp;#39;
+urls = [&amp;#34;http://icyleaf.com&amp;#34;]
+50.times do
+urls.each do |url|
+start_at = Time.now
+Net::HTTP.get URI.parse(url)
+end_at = Time.now
+diff = end_at - start_at
+if diff &amp;lt; 0.3 then
+color_code = 32
+elsif diff &amp;gt; 0.8 then
+color_code = 31
+else
+color_code = 33
+end
+puts &amp;#34;#{url}\n time: \033[#{color_code}m#{diff}\033[0m seconds&amp;#34;
+end
+end
+&lt;/code>&lt;/pre>&lt;p>改写 python 的同时，考虑脚本的灵活性准备增加两个参数，第一个是请求测试次数，第二个是请求测试的 URL，而 python 默认提供了 &lt;a href="http://docs.python.org/dev/library/argparse.html">argparse&lt;/a> 库，可以很方便的生成 &amp;ndash;help 的帮助和解析传递的参数：&lt;/p>...</description><content:encoded><![CDATA[<p>前几天看完《<a href="http://woodpecker.org.cn/abyteofpython_cn/chinese/">Python简明教程</a>》，预想练手，想起同事的一个 ruby 代码，尝试改写成 python，顺便看看两个语言的简练程度。下面是原始的 ruby 代码：</p>
 <pre tabindex="0"><code>#!/usr/bin/env ruby
 
 require &#39;rubygems&#39;

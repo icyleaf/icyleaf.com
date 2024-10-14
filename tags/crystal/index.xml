@@ -331,34 +331,34 @@ String#{}   9.51M (105.16ns) (± 6.12%)  3.47× slower
 </ul>
 <p>仅仅是这些可能大家觉得没什么，其实对我来说也不够冲击力，最重要的关键是在我从订阅的 Ruby Weekly 周刊看到 sidekiq 的作者用 crystal 重新实现了核心部分发的<a href="http://www.mikeperham.com/2016/05/25/sidekiq-for-crystal/">博文分享</a>，提到的一点：<strong>至少是比 ruby 2.3 大部分代码要快 3-5 倍，减少至少 3 倍的内存占用</strong>。怀着怀疑的态度我大概的研究了这个语言，确实看到了新希望。</p>
 <table>
-<thead>
-<tr>
-<th>库</th>
-<th>语言</th>
-<th>并发量</th>
-<th>平均响应时间</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="https://github.com/sdogruyol/fast-http-server">fast-http-server</a></td>
-<td><code>Crystal</code></td>
-<td>18348.47rpm</td>
-<td>8.67ms</td>
-</tr>
-<tr>
-<td><a href="https://github.com/indexzero/http-server">http-server</a></td>
-<td><code>Node.js</code></td>
-<td>2105.55rpm</td>
-<td>47.92ms</td>
-</tr>
-<tr>
-<td><a href="https://docs.python.org/2/library/simplehttpserver.html">SimpleHTTPServer</a></td>
-<td><code>Python</code></td>
-<td>785.14rpm</td>
-<td>1.91ms</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">库</th>
+          <th style="text-align: left">语言</th>
+          <th style="text-align: left">并发量</th>
+          <th style="text-align: left">平均响应时间</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><a href="https://github.com/sdogruyol/fast-http-server">fast-http-server</a></td>
+          <td style="text-align: left"><code>Crystal</code></td>
+          <td style="text-align: left">18348.47rpm</td>
+          <td style="text-align: left">8.67ms</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><a href="https://github.com/indexzero/http-server">http-server</a></td>
+          <td style="text-align: left"><code>Node.js</code></td>
+          <td style="text-align: left">2105.55rpm</td>
+          <td style="text-align: left">47.92ms</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><a href="https://docs.python.org/2/library/simplehttpserver.html">SimpleHTTPServer</a></td>
+          <td style="text-align: left"><code>Python</code></td>
+          <td style="text-align: left">785.14rpm</td>
+          <td style="text-align: left">1.91ms</td>
+      </tr>
+  </tbody>
 </table>
 <p>还有一份一直再更新维护的语言之间的<a href="https://github.com/kostya/benchmarks">评测</a>仅供参考，看着里面的数据还是蛮吸引人的。</p>
 <blockquote>

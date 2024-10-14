@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>traefik on icyleaf</title><link>https://icyleaf.com/tags/traefik/</link><description>Recent content in traefik on icyleaf</description><language>zh-cn</language><lastBuildDate>Sat, 12 Feb 2022 20:00:00 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/traefik/index.xml" rel="self" type="application/rss+xml"/><item><title>如何搭建家用 homelab: 先导篇</title><link>https://icyleaf.com/2022/02/how-to-homelab-part-0/</link><pubDate>Sat, 12 Feb 2022 20:00:00 +0800</pubDate><guid>https://icyleaf.com/2022/02/how-to-homelab-part-0/</guid><description>搭建 homelab 之前都需要了解哪些背景</description><content:encoded><![CDATA[
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Traefik on icyleaf</title><link>https://icyleaf.com/tags/traefik/</link><description>Recent content in Traefik on icyleaf</description><language>zh-cn</language><lastBuildDate>Sat, 12 Feb 2022 20:00:00 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/traefik/index.xml" rel="self" type="application/rss+xml"/><item><title>如何搭建家用 homelab: 先导篇</title><link>https://icyleaf.com/2022/02/how-to-homelab-part-0/</link><pubDate>Sat, 12 Feb 2022 20:00:00 +0800</pubDate><guid>https://icyleaf.com/2022/02/how-to-homelab-part-0/</guid><description>搭建 homelab 之前都需要了解哪些背景</description><content:encoded><![CDATA[
 
 
 
@@ -32,7 +32,7 @@
   
   
     
-      <figure data-pswp="4644x3004" data-size="800x"><a href="/tutorials/how-to-homelab/part-0/homelab-diagram-v2.0.png" class="gallery-item" target="_blank" data-pswp-width="4644" data-pswp-height="3004"><img src="/tutorials/how-to-homelab/part-0/homelab-diagram-v2.0_hud6b13e642cdec1b76e4883675cc1f0da_933051_800x0_resize_box_3.png"
+      <figure data-pswp="4644x3004" data-size="800x"><a href="/tutorials/how-to-homelab/part-0/homelab-diagram-v2.0.png" class="gallery-item" target="_blank" data-pswp-width="4644" data-pswp-height="3004"><img src="/tutorials/how-to-homelab/part-0/homelab-diagram-v2.0_hu7475183235597552237.png"
       alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://twitter.com/icyleaf/status/1472036769742745603">@icyleaf@twitter.com</a>
     </p>
 
@@ -111,7 +111,7 @@
   
   
     
-      <figure data-pswp="1800x650" data-size="800x"><a href="/tutorials/how-to-homelab/part-0/container-evolution.png" class="gallery-item" target="_blank" data-pswp-width="1800" data-pswp-height="650"><img src="/tutorials/how-to-homelab/part-0/container-evolution_hu8ea4a9d2c8d13811079c0d6b4d1548e2_137401_800x0_resize_box_3.png"
+      <figure data-pswp="1800x650" data-size="800x"><a href="/tutorials/how-to-homelab/part-0/container-evolution.png" class="gallery-item" target="_blank" data-pswp-width="1800" data-pswp-height="650"><img src="/tutorials/how-to-homelab/part-0/container-evolution_hu16508291207830768754.png"
       alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://kubernetes.io/zh/docs/concepts/overview/what-is-kubernetes/">Kubernetes 是什么？</a>
     </p>
 
@@ -137,7 +137,7 @@
   
   
     
-      <figure data-pswp="1920x1080" data-size="800x"><a href="/tutorials/how-to-homelab/part-0/bare-metal.jpg" class="gallery-item" target="_blank" data-pswp-width="1920" data-pswp-height="1080"><img src="/tutorials/how-to-homelab/part-0/bare-metal_hu4b369ced3c986b922f395ae6ff16aca0_920504_800x0_resize_q75_box.jpg"
+      <figure data-pswp="1920x1080" data-size="800x"><a href="/tutorials/how-to-homelab/part-0/bare-metal.jpg" class="gallery-item" target="_blank" data-pswp-width="1920" data-pswp-height="1080"><img src="/tutorials/how-to-homelab/part-0/bare-metal_hu17895451741107794764.jpg"
       alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://thecloudgirl.dev/BareMetal.html">The Cloud Girl</a>
     </p>
 
@@ -242,7 +242,7 @@
   
   
     
-      <figure data-pswp="1186x1124" data-size="800x"><a href="/tutorials/how-to-homelab/part-0/twitter-yetone-numa-server.png" class="gallery-item" target="_blank" data-pswp-width="1186" data-pswp-height="1124"><img src="/tutorials/how-to-homelab/part-0/twitter-yetone-numa-server_hu2c6ccebbd6f151ecdcdde6085b274214_838983_800x0_resize_box_3.png"
+      <figure data-pswp="1186x1124" data-size="800x"><a href="/tutorials/how-to-homelab/part-0/twitter-yetone-numa-server.png" class="gallery-item" target="_blank" data-pswp-width="1186" data-pswp-height="1124"><img src="/tutorials/how-to-homelab/part-0/twitter-yetone-numa-server_hu65722529545420725.png"
       alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://twitter.com/yetone/status/1540235004495921152">@yetone@twitter</a>
     </p>
 
@@ -265,7 +265,7 @@
   
   
     
-      <figure data-pswp="1192x1660" data-size="800x"><a href="/tutorials/how-to-homelab/part-0/twitter-taresky-tpw-100w-nas-server.png" class="gallery-item" target="_blank" data-pswp-width="1192" data-pswp-height="1660"><img src="/tutorials/how-to-homelab/part-0/twitter-taresky-tpw-100w-nas-server_hufb1cbf63551b7d415425d25bb5adf88a_890096_800x0_resize_box_3.png"
+      <figure data-pswp="1192x1660" data-size="800x"><a href="/tutorials/how-to-homelab/part-0/twitter-taresky-tpw-100w-nas-server.png" class="gallery-item" target="_blank" data-pswp-width="1192" data-pswp-height="1660"><img src="/tutorials/how-to-homelab/part-0/twitter-taresky-tpw-100w-nas-server_hu9187105880307554898.png"
       alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://twitter.com/taresky/status/1555752846334705666">@taresky@twitter</a>
     </p>
 

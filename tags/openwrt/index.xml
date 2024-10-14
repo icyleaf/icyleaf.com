@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>openwrt on icyleaf</title><link>https://icyleaf.com/tags/openwrt/</link><description>Recent content in openwrt on icyleaf</description><language>zh-cn</language><lastBuildDate>Wed, 23 Aug 2023 10:04:13 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/openwrt/index.xml" rel="self" type="application/rss+xml"/><item><title>vector + loki 实现 mosdns 数据看板</title><link>https://icyleaf.com/2023/08/using-vector-transform-mosdns-logging-to-grafana-via-loki/</link><pubDate>Wed, 23 Aug 2023 10:04:13 +0800</pubDate><guid>https://icyleaf.com/2023/08/using-vector-transform-mosdns-logging-to-grafana-via-loki/</guid><description>快速验证规则的同时实现类似 AdGuard Home 好看的数据看板</description><content:encoded><![CDATA[
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Openwrt on icyleaf</title><link>https://icyleaf.com/tags/openwrt/</link><description>Recent content in Openwrt on icyleaf</description><language>zh-cn</language><lastBuildDate>Wed, 23 Aug 2023 10:04:13 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/openwrt/index.xml" rel="self" type="application/rss+xml"/><item><title>vector + loki 实现 mosdns 数据看板</title><link>https://icyleaf.com/2023/08/using-vector-transform-mosdns-logging-to-grafana-via-loki/</link><pubDate>Wed, 23 Aug 2023 10:04:13 +0800</pubDate><guid>https://icyleaf.com/2023/08/using-vector-transform-mosdns-logging-to-grafana-via-loki/</guid><description>快速验证规则的同时实现类似 AdGuard Home 好看的数据看板</description><content:encoded><![CDATA[
 
 
 
@@ -14,7 +14,7 @@
 <li>5.3 日志结构作者又做调整了，完整配置已更新，如果是 5.0 ~ 5.1.x 版本需要注意完整配置下面的代码对比部分。</li>
 <li>作者自己使用是把 modsns 从之前的后置改成了前置测试了好几个月，好处是某些服务挂了也不会影响 DNS 的解析，有想了解具体细节的吗？</li>
 </ul>
-<p>更新维护不易，欢迎在文章尾部打赏作者，这个对于作者很重要，感谢你的支持！
+<p>更新维护不易，欢迎在文章尾部打赏作者，这个对于作者很重要，感谢你的支持！</p>
   </article>
 </div>
 
@@ -38,7 +38,7 @@
   
   
     
-      <figure data-pswp="2552x1204" data-size="800x"><a href="/uploads/2023/08/grafana-mosdns.png" class="gallery-item" target="_blank" data-pswp-width="2552" data-pswp-height="1204"><img src="/uploads/2023/08/grafana-mosdns_hu7b3446c2932c9a82ef05eb189f85c3c2_313540_800x0_resize_box_3.png"/></a><figcaption>
+      <figure data-pswp="2552x1204" data-size="800x"><a href="/uploads/2023/08/grafana-mosdns.png" class="gallery-item" target="_blank" data-pswp-width="2552" data-pswp-height="1204"><img src="/uploads/2023/08/grafana-mosdns_hu14669541674982067454.png"/></a><figcaption>
 
     <p>实时监控 mosdns 规则解析 Grafana 看板</p></figcaption></figure>
 
@@ -80,7 +80,7 @@
   
   
     
-      <figure data-pswp="1630x736" data-size="800x"><a href="/uploads/2023/08/vector-flow.png" class="gallery-item" target="_blank" data-pswp-width="1630" data-pswp-height="736"><img src="/uploads/2023/08/vector-flow_hubd01c31007c9ec336c64593db2dd6651_89209_800x0_resize_box_3.png"/></a></figure>
+      <figure data-pswp="1630x736" data-size="800x"><a href="/uploads/2023/08/vector-flow.png" class="gallery-item" target="_blank" data-pswp-width="1630" data-pswp-height="736"><img src="/uploads/2023/08/vector-flow_hu10473946876088393779.png"/></a></figure>
 
 <p>vector 需要能够直接访问到 mosdns 的日志文件。这里有两种方式可以实现：一种是两个服务都在一台机器上运行，另外一种是通过容器化共享 volume 让 vector 可以读取 mosdns 日志。</p>
 <p>工具本身是 Go 语言开发从 Github 直接下载好对应的包解压缩就能够使用或者使用一键安装脚本：</p>
@@ -245,7 +245,7 @@
   
   
     
-      <figure data-pswp="1804x800" data-size="800x"><a href="/uploads/2023/08/import-grafana-dashboard.png" class="gallery-item" target="_blank" data-pswp-width="1804" data-pswp-height="800"><img src="/uploads/2023/08/import-grafana-dashboard_hub624a0be8631d27cc91142a38cc5db9b_78770_800x0_resize_box_3.png"/></a><figcaption>
+      <figure data-pswp="1804x800" data-size="800x"><a href="/uploads/2023/08/import-grafana-dashboard.png" class="gallery-item" target="_blank" data-pswp-width="1804" data-pswp-height="800"><img src="/uploads/2023/08/import-grafana-dashboard_hu17516823876611020524.png"/></a><figcaption>
 
     <p>Grafana 导入 Dashboard 看板</p></figcaption></figure>
 
@@ -265,7 +265,7 @@
   
   
     
-      <figure data-pswp="2138x1306" data-size="800x"><a href="/uploads/2023/08/configure-grafana-database.png" class="gallery-item" target="_blank" data-pswp-width="2138" data-pswp-height="1306"><img src="/uploads/2023/08/configure-grafana-database_hu1e22fd61c3dc8671eabbbb90328e1589_111606_800x0_resize_box_3.png"/></a><figcaption>
+      <figure data-pswp="2138x1306" data-size="800x"><a href="/uploads/2023/08/configure-grafana-database.png" class="gallery-item" target="_blank" data-pswp-width="2138" data-pswp-height="1306"><img src="/uploads/2023/08/configure-grafana-database_hu9312454246112292748.png"/></a><figcaption>
 
     <p>Grafana 配置数据源</p></figcaption></figure>
 
@@ -310,7 +310,7 @@
   
   
     
-      <figure data-pswp="1757x1080" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-packages-preview.png" class="gallery-item" target="_blank" data-pswp-width="1757" data-pswp-height="1080"><img src="/tutorials/how-to-homelab/part-2/openwrt-packages-preview_hud400891ca261fa9e07ca732397145413_435673_800x0_resize_box_3.png"
+      <figure data-pswp="1757x1080" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-packages-preview.png" class="gallery-item" target="_blank" data-pswp-width="1757" data-pswp-height="1080"><img src="/tutorials/how-to-homelab/part-2/openwrt-packages-preview_hu9624692276249078092.png"
       alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://github.com/SuLingGG/OpenWrt-Rpi">SuLingGG/OpenWrt-Rpi</a>
     </p>
 
@@ -325,45 +325,45 @@
 <li>开发版：不稳定但会包含不断的迭代增强功能的开发版本，也称之为 snapshot 版本，完成<a href="https://openwrt.org/docs/guide-developer/releases/goals/start">里程碑</a>会进入 RC 版本。</li>
 </ul>
 <table>
-<thead>
-<tr>
-<th>版本</th>
-<th>状态</th>
-<th>重大变化</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="https://openwrt.org/zh/releases/snapshot">snapshot</a></td>
-<td>开发版本</td>
-<td>-</td>
-</tr>
-<tr>
-<td><a href="https://openwrt.org/zh/releases/22.03/start">22.03</a></td>
-<td>最新版本</td>
-<td>基于 5.10 内核、防火墙迁移 nftables、黑暗模式</td>
-</tr>
-<tr>
-<td><a href="https://openwrt.org/zh/releases/21.02/start">21.02</a></td>
-<td>可看做是 LTS 版本</td>
-<td>基于 5.4 内核、DSA 初步支持</td>
-</tr>
-<tr>
-<td><a href="https://openwrt.org/docs/guide-developer/releases/goals/19.07.4">19.07</a></td>
-<td>不再支持</td>
-<td>基于 4.11 内核、WPA3 支持、客户端渲染 luci</td>
-</tr>
-<tr>
-<td><a href="https://openwrt.org/zh/releases/18.06/start">18.06</a></td>
-<td>不再支持</td>
-<td>基于 4.9 或 4.11 内核、合并 Lede 源码</td>
-</tr>
-<tr>
-<td><a href="https://openwrt.org/zh/releases/17.01/start">LEDE 17.01</a></td>
-<td>不再支持</td>
-<td>基于 4.4 内核</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">版本</th>
+          <th style="text-align: left">状态</th>
+          <th style="text-align: left">重大变化</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><a href="https://openwrt.org/zh/releases/snapshot">snapshot</a></td>
+          <td style="text-align: left">开发版本</td>
+          <td style="text-align: left">-</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><a href="https://openwrt.org/zh/releases/22.03/start">22.03</a></td>
+          <td style="text-align: left">最新版本</td>
+          <td style="text-align: left">基于 5.10 内核、防火墙迁移 nftables、黑暗模式</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><a href="https://openwrt.org/zh/releases/21.02/start">21.02</a></td>
+          <td style="text-align: left">可看做是 LTS 版本</td>
+          <td style="text-align: left">基于 5.4 内核、DSA 初步支持</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><a href="https://openwrt.org/docs/guide-developer/releases/goals/19.07.4">19.07</a></td>
+          <td style="text-align: left">不再支持</td>
+          <td style="text-align: left">基于 4.11 内核、WPA3 支持、客户端渲染 luci</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><a href="https://openwrt.org/zh/releases/18.06/start">18.06</a></td>
+          <td style="text-align: left">不再支持</td>
+          <td style="text-align: left">基于 4.9 或 4.11 内核、合并 Lede 源码</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><a href="https://openwrt.org/zh/releases/17.01/start">LEDE 17.01</a></td>
+          <td style="text-align: left">不再支持</td>
+          <td style="text-align: left">基于 4.4 内核</td>
+      </tr>
+  </tbody>
 </table>
 <p>以上版本信息是截止 2023 年 4 月底。</p>
 <h2 id="衍生及支系">衍生及支系</h2>
@@ -408,7 +408,7 @@
   
   
     
-      <figure data-pswp="2115x1848" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-file-structure.png" class="gallery-item" target="_blank" data-pswp-width="2115" data-pswp-height="1848"><img src="/tutorials/how-to-homelab/part-2/openwrt-file-structure_hu89ce50451123b48915fffad04a92e22e_139504_800x0_resize_box_3.png"/></a><figcaption>
+      <figure data-pswp="2115x1848" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-file-structure.png" class="gallery-item" target="_blank" data-pswp-width="2115" data-pswp-height="1848"><img src="/tutorials/how-to-homelab/part-2/openwrt-file-structure_hu13823974744168859868.png"/></a><figcaption>
 
     <p>Openwrt 固件文件解构</p></figcaption></figure>
 
@@ -435,7 +435,7 @@
   
   
     
-      <figure data-pswp="2290x750" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-fireware-image-files.png" class="gallery-item" target="_blank" data-pswp-width="2290" data-pswp-height="750"><img src="/tutorials/how-to-homelab/part-2/openwrt-fireware-image-files_hu4f63e536e962ff43b9fa658f4c31bfb4_224192_800x0_resize_box_3.png"/></a><figcaption>
+      <figure data-pswp="2290x750" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-fireware-image-files.png" class="gallery-item" target="_blank" data-pswp-width="2290" data-pswp-height="750"><img src="/tutorials/how-to-homelab/part-2/openwrt-fireware-image-files_hu7781832039173501890.png"/></a><figcaption>
 
     <p>Openwrt 固件镜像文件</p></figcaption></figure>
 
@@ -460,7 +460,7 @@
   
   
     
-      <figure data-pswp="1033x689" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-themes-preview.png" class="gallery-item" target="_blank" data-pswp-width="1033" data-pswp-height="689"><img src="/tutorials/how-to-homelab/part-2/openwrt-themes-preview_hu33abb04a3fc26983cc7948708958ea73_140538_800x0_resize_box_3.png"
+      <figure data-pswp="1033x689" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-themes-preview.png" class="gallery-item" target="_blank" data-pswp-width="1033" data-pswp-height="689"><img src="/tutorials/how-to-homelab/part-2/openwrt-themes-preview_hu663218415583165777.png"
       alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://blog.vpngame.com/openwrt/cara-install-dan-ganti-tema-luci-di-openwrt/">3elajar OpenWrt</a>
     </p>
 
@@ -492,7 +492,7 @@
   
   
     
-      <figure data-pswp="1910x822" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-luci.png" class="gallery-item" target="_blank" data-pswp-width="1910" data-pswp-height="822"><img src="/tutorials/how-to-homelab/part-2/openwrt-luci_hu625591b40daa7a557058fbcbacf8b92b_94153_800x0_resize_box_3.png"/></a></figure>
+      <figure data-pswp="1910x822" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-luci.png" class="gallery-item" target="_blank" data-pswp-width="1910" data-pswp-height="822"><img src="/tutorials/how-to-homelab/part-2/openwrt-luci_hu7142261069637284769.png"/></a></figure>
 
 <p>分别选择 &ldquo;网络&rdquo; -&gt; &ldquo;接口&rdquo;，找到接口 lan 右侧的编辑按钮，点开后编辑 IPv4 地址，保存再应用。</p>
 <h4 id="通过终端编辑器">通过终端编辑器</h4>
@@ -541,7 +541,7 @@
   
   
     
-      <figure data-pswp="2650x1282" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-uci.png" class="gallery-item" target="_blank" data-pswp-width="2650" data-pswp-height="1282"><img src="/tutorials/how-to-homelab/part-2/openwrt-uci_hue276e5c9fefad17390851e095847751d_229224_800x0_resize_box_3.png"
+      <figure data-pswp="2650x1282" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-uci.png" class="gallery-item" target="_blank" data-pswp-width="2650" data-pswp-height="1282"><img src="/tutorials/how-to-homelab/part-2/openwrt-uci_hu924355447412920979.png"
       alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://openwrt.org/docs/guide-user/base-system/uci">OpenWrt Wiki</a>
     </p>
 
@@ -571,7 +571,7 @@
   
   
     
-      <figure data-pswp="2143x1561" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/api-architecture-styles.jpeg" class="gallery-item" target="_blank" data-pswp-width="2143" data-pswp-height="1561"><img src="/tutorials/how-to-homelab/part-2/api-architecture-styles_hu66a712dc29cc2d0893569aae05f00fac_195912_800x0_resize_q75_box.jpeg"
+      <figure data-pswp="2143x1561" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/api-architecture-styles.jpeg" class="gallery-item" target="_blank" data-pswp-width="2143" data-pswp-height="1561"><img src="/tutorials/how-to-homelab/part-2/api-architecture-styles_hu2591862223337229523.jpeg"
       alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://twitter.com/Rapid_API/status/1567656196022181891">Rapid@twitter</a>
     </p>
 
@@ -649,7 +649,7 @@
   
   
     
-      <figure data-pswp="2300x912" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-dev-files.png" class="gallery-item" target="_blank" data-pswp-width="2300" data-pswp-height="912"><img src="/tutorials/how-to-homelab/part-2/openwrt-dev-files_hub712545ea67e7dea7998ba1f55078d39_233471_800x0_resize_box_3.png"/></a><figcaption>
+      <figure data-pswp="2300x912" data-size="800x"><a href="/tutorials/how-to-homelab/part-2/openwrt-dev-files.png" class="gallery-item" target="_blank" data-pswp-width="2300" data-pswp-height="912"><img src="/tutorials/how-to-homelab/part-2/openwrt-dev-files_hu6409894197412165701.png"/></a><figcaption>
 
     <p>Openwrt 开发包文件</p></figcaption></figure>
 

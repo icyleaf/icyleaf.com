@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>vector on icyleaf</title><link>https://icyleaf.com/tags/vector/</link><description>Recent content in vector on icyleaf</description><language>zh-cn</language><lastBuildDate>Wed, 23 Aug 2023 10:04:13 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/vector/index.xml" rel="self" type="application/rss+xml"/><item><title>vector + loki 实现 mosdns 数据看板</title><link>https://icyleaf.com/2023/08/using-vector-transform-mosdns-logging-to-grafana-via-loki/</link><pubDate>Wed, 23 Aug 2023 10:04:13 +0800</pubDate><guid>https://icyleaf.com/2023/08/using-vector-transform-mosdns-logging-to-grafana-via-loki/</guid><description>快速验证规则的同时实现类似 AdGuard Home 好看的数据看板</description><content:encoded><![CDATA[
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Vector on icyleaf</title><link>https://icyleaf.com/tags/vector/</link><description>Recent content in Vector on icyleaf</description><language>zh-cn</language><lastBuildDate>Wed, 23 Aug 2023 10:04:13 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/vector/index.xml" rel="self" type="application/rss+xml"/><item><title>vector + loki 实现 mosdns 数据看板</title><link>https://icyleaf.com/2023/08/using-vector-transform-mosdns-logging-to-grafana-via-loki/</link><pubDate>Wed, 23 Aug 2023 10:04:13 +0800</pubDate><guid>https://icyleaf.com/2023/08/using-vector-transform-mosdns-logging-to-grafana-via-loki/</guid><description>快速验证规则的同时实现类似 AdGuard Home 好看的数据看板</description><content:encoded><![CDATA[
 
 
 
@@ -14,7 +14,7 @@
 <li>5.3 日志结构作者又做调整了，完整配置已更新，如果是 5.0 ~ 5.1.x 版本需要注意完整配置下面的代码对比部分。</li>
 <li>作者自己使用是把 modsns 从之前的后置改成了前置测试了好几个月，好处是某些服务挂了也不会影响 DNS 的解析，有想了解具体细节的吗？</li>
 </ul>
-<p>更新维护不易，欢迎在文章尾部打赏作者，这个对于作者很重要，感谢你的支持！
+<p>更新维护不易，欢迎在文章尾部打赏作者，这个对于作者很重要，感谢你的支持！</p>
   </article>
 </div>
 
@@ -38,7 +38,7 @@
   
   
     
-      <figure data-pswp="2552x1204" data-size="800x"><a href="/uploads/2023/08/grafana-mosdns.png" class="gallery-item" target="_blank" data-pswp-width="2552" data-pswp-height="1204"><img src="/uploads/2023/08/grafana-mosdns_hu7b3446c2932c9a82ef05eb189f85c3c2_313540_800x0_resize_box_3.png"/></a><figcaption>
+      <figure data-pswp="2552x1204" data-size="800x"><a href="/uploads/2023/08/grafana-mosdns.png" class="gallery-item" target="_blank" data-pswp-width="2552" data-pswp-height="1204"><img src="/uploads/2023/08/grafana-mosdns_hu14669541674982067454.png"/></a><figcaption>
 
     <p>实时监控 mosdns 规则解析 Grafana 看板</p></figcaption></figure>
 
@@ -80,7 +80,7 @@
   
   
     
-      <figure data-pswp="1630x736" data-size="800x"><a href="/uploads/2023/08/vector-flow.png" class="gallery-item" target="_blank" data-pswp-width="1630" data-pswp-height="736"><img src="/uploads/2023/08/vector-flow_hubd01c31007c9ec336c64593db2dd6651_89209_800x0_resize_box_3.png"/></a></figure>
+      <figure data-pswp="1630x736" data-size="800x"><a href="/uploads/2023/08/vector-flow.png" class="gallery-item" target="_blank" data-pswp-width="1630" data-pswp-height="736"><img src="/uploads/2023/08/vector-flow_hu10473946876088393779.png"/></a></figure>
 
 <p>vector 需要能够直接访问到 mosdns 的日志文件。这里有两种方式可以实现：一种是两个服务都在一台机器上运行，另外一种是通过容器化共享 volume 让 vector 可以读取 mosdns 日志。</p>
 <p>工具本身是 Go 语言开发从 Github 直接下载好对应的包解压缩就能够使用或者使用一键安装脚本：</p>
@@ -245,7 +245,7 @@
   
   
     
-      <figure data-pswp="1804x800" data-size="800x"><a href="/uploads/2023/08/import-grafana-dashboard.png" class="gallery-item" target="_blank" data-pswp-width="1804" data-pswp-height="800"><img src="/uploads/2023/08/import-grafana-dashboard_hub624a0be8631d27cc91142a38cc5db9b_78770_800x0_resize_box_3.png"/></a><figcaption>
+      <figure data-pswp="1804x800" data-size="800x"><a href="/uploads/2023/08/import-grafana-dashboard.png" class="gallery-item" target="_blank" data-pswp-width="1804" data-pswp-height="800"><img src="/uploads/2023/08/import-grafana-dashboard_hu17516823876611020524.png"/></a><figcaption>
 
     <p>Grafana 导入 Dashboard 看板</p></figcaption></figure>
 
@@ -265,7 +265,7 @@
   
   
     
-      <figure data-pswp="2138x1306" data-size="800x"><a href="/uploads/2023/08/configure-grafana-database.png" class="gallery-item" target="_blank" data-pswp-width="2138" data-pswp-height="1306"><img src="/uploads/2023/08/configure-grafana-database_hu1e22fd61c3dc8671eabbbb90328e1589_111606_800x0_resize_box_3.png"/></a><figcaption>
+      <figure data-pswp="2138x1306" data-size="800x"><a href="/uploads/2023/08/configure-grafana-database.png" class="gallery-item" target="_blank" data-pswp-width="2138" data-pswp-height="1306"><img src="/uploads/2023/08/configure-grafana-database_hu9312454246112292748.png"/></a><figcaption>
 
     <p>Grafana 配置数据源</p></figcaption></figure>
 
