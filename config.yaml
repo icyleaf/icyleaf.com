@@ -7,9 +7,12 @@ disableHugoGeneratorInject: true
 hasCJKLanguage: true
 enableEmoji: true
 enableRobotsTXT: true
-paginate: 20
 # disqusShortname: icyleaf
 canonifyURLs: true
+
+# paginate: 20
+pagination:
+  pagerSize: 20
 
 params:
   # global settings
