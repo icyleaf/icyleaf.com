@@ -9,9 +9,7 @@ slug: "books-about-git"
 
 ---
 
-切换到 Git开发已经有一段的时间了，之前一直在使用 svn，现在部分代码还在
-Google Code 托管。不过自换了 Git 之后发现 Git 更方便且效率更高，不过用来用去常用的就拿几个命令，很多时候都要去找一些参考资料和教程。从学习到现在一个接触了一个文档，三本书。文档就是官方的文档手册，这个就不再说了，安装完 git 也都会默认内置的，对于这三本书，依次为 [Git Community Book][]，[ProGit][]，[Why Git is Better Than X][]（X 代表其他 SCM 软件，如
-svn，bzr等）。
+切换到 Git开发已经有一段的时间了，之前一直在使用 svn，现在部分代码还在 Google Code 托管。不过自换了 Git 之后发现 Git 更方便且效率更高，不过用来用去常用的就拿几个命令，很多时候都要去找一些参考资料和教程。从学习到现在一个接触了一个文档，三本书。文档就是官方的文档手册，这个就不再说了，安装完 git 也都会默认内置的，对于这三本书，依次为 [Git Community Book][]，[ProGit][]，[Why Git is Better Than X][]（X 代表其他 SCM 软件，如 svn，bzr等）。
 
 - Why Git is Better Than X 已经有国内友人翻译完毕，一一介绍了 Git 与其他 SCM 软件有什么优势和特色
 - ProGit 不久前开启了[翻译计划][]，中文目前还在[翻译过程][]中，这本书很适合作为入门使用和工具书，欢迎前来 [Fork][]

@@ -10,6 +10,12 @@ series:
   - cocoapods-collection
 slug: "speed-up-cocoapods"
 description: iOS 组件仓库超时，网络环境不畅通该如何解，我来指点一二
+image: https://images.unsplash.com/photo-1457364887197-9150188c107b?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+imageSource:
+  - name: SpaceX
+    link: https://unsplash.com/@spacex
+  - name: Unsplash
+    link: https://unsplash.com
 ---
 
 [Cocopods](http://cocoapods.org/) 本身是一个优秀的 iOS 开发的包管理工具，涵盖了 7k+ 的开源组件，包管理库是托管在 Github。

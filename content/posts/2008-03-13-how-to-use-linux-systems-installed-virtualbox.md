@@ -1,5 +1,5 @@
 ---
-title: "如何使用VirtualBox安装Linux系统"
+title: "如何使用 VirtualBox 安装 Linux 系统"
 date: "2008-03-13T12:34:56+08:00"
 categories:
   - Technology

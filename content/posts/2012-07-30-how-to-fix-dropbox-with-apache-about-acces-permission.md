@@ -1,5 +1,5 @@
 ---
-title: "Dropbox和Apache关于权限的问题"
+title: "Dropbox 和 Apache 关于权限的问题"
 date: "2012-07-30T12:34:56+08:00"
 categories:
   - Technology

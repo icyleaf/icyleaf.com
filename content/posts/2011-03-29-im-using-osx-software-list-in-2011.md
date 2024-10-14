@@ -1,12 +1,12 @@
 ---
-title: "个人常用 OS X 软件集合"
+title: "个人常用 OS X 软件集合 (2011 年版)"
 categories:
   - Technology
-tags: 
+tags:
 - Mac
 - App
 date: "2011-03-29T12:34:56+08:00"
-slug: "im-using-osx-software-list"
+slug: "im-using-osx-software-list-in-2011"
 
 ---
 

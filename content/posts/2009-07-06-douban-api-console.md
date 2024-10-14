@@ -10,12 +10,12 @@ slug: "douban-api-console"
 
 ---
 
-> 项目已开源: http://github.com/icyleaf/modou
-
 豆瓣 API 测试控制台的创造灵感来源于 Facebook Developers Tools 中的[Facebook API Console][]， 或许大家知道，魔豆是我的另外一个豆瓣 API 应用，由于是自己封装的 Douban
 API（官方提供的库类要求太多，安装繁琐，这不属于我喜爱简洁，轻便的风格），每次想查看某个
 API 接口返回的数据都要写一个 test 跑一下。麻烦不说，还容易出错，于是，使用自己封装的 Douban API，借鉴 Facebook API Console
 的界面和类似的功能显示，终于小有所成，其中为了实现此控制台，封包的库类经过两次大改，虽然改的很辛苦，但从中学到了很多开发经验。
+
+> 项目已开源: http://github.com/icyleaf/modou
 
 测试用户必须先进行用户验证才能进行测试，这主要是为了：
 

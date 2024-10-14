@@ -14,6 +14,14 @@ series:
 slug: "intro-fastlane-automation-for-ios-and-android"
 date: "2016-07-11T12:36:07+08:00"
 description: 使用 fastlane 提升构建移动应用的效率
+
+image: https://images.unsplash.com/photo-1694447850659-b86d03d151a1?q=80&w=3936&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+imageSource:
+  - name: Dmitry Tomashek
+    link: https://unsplash.com/@dmitrytomashek
+  - name: Unsplash
+    link: https://unsplash.com
+
 ---
 
 ## 前言
