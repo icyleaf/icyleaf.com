@@ -33,7 +33,7 @@
           {{ with .Description | html }}
           {{ . }}
           {{ else }}
-          {{ .Summary | safeHTML }}{{ if .Truncated }}...{{ end }}
+          {{ .Summary | plainify }}{{ if .Truncated }}...{{ end }}
           {{ end -}}
         </div>
       </article>
