@@ -1,4 +1,205 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>icyleaf</title><link>https://icyleaf.com/</link><description>Recent content on icyleaf</description><language>zh-cn</language><lastBuildDate>Thu, 12 Oct 2023 12:40:06 +0800</lastBuildDate><atom:link href="https://icyleaf.com/index.xml" rel="self" type="application/rss+xml"/><item><title>RG35XX 复古国产掌机</title><link>https://icyleaf.com/gears/rg35xx-game-console/</link><pubDate>Thu, 12 Oct 2023 12:40:06 +0800</pubDate><guid>https://icyleaf.com/gears/rg35xx-game-console/</guid><description>比 Switch 更适合外出携带的便携掌机</description><content:encoded><![CDATA[<p>高中我第一次接触了同学的 GBA 像是开启了新天地，工作之后买了 NDSi、Switch 也没能找回原来的那种感觉，但何 GB、GBC、GBA 掌机都太太太贵了。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>icyleaf</title><link>https://icyleaf.com/</link><description>Recent content on icyleaf</description><language>zh-cn</language><lastBuildDate>Wed, 16 Oct 2024 23:52:52 +0800</lastBuildDate><atom:link href="https://icyleaf.com/index.xml" rel="self" type="application/rss+xml"/><item><title>让吃灰的兄弟打印机焕发新生：无线打印</title><link>https://icyleaf.com/2024/10/setup-legacy-brother-laser-became-to-a-wireless-airprint/</link><pubDate>Wed, 16 Oct 2024 23:52:52 +0800</pubDate><guid>https://icyleaf.com/2024/10/setup-legacy-brother-laser-became-to-a-wireless-airprint/</guid><description>传统 USB 设备 DCP-7040 打印机实现无线打印以及苹果设备的 AirPrint 隔空打印</description><content:encoded><![CDATA[<h2 id="起因">起因</h2>
+<p>从老丈人家拿回来一台已经吃灰的兄弟激光 <a href="https://support.brother.com/g/b/spec.aspx?c=as_ot&amp;lang=en&amp;prod=dcp7040_us_as">DCP-7040</a> 一体机. 在 Windows 系统上测试仍然可以正常工作，本来想把它接到 Openwrt 路由器的网络打印机插件上实现无线打印，但我的路由器在弱电箱里面放着周围也没有合适可以摆放的位置，我就把它连用 USB 到了一台 Ubuntu Server 服务器上，计划用 <a href="https://www.cups.org/">CUPS</a> 实现同样的效果。</p>
+<p>这台打印机官方驱动虽然提供 Windows、macOS 甚至还有 Linux，在我安装驱动才注意到官方提供的只有 32 位，想要支持 64 位则需要<a href="https://support.brother.com/g/b/faqend.aspx?c=cn&amp;lang=zh&amp;prod=mfcj3930dw_eu_as_cn&amp;faqid=faq00100678_000">额外安装兼容库</a>（不安装的话能提交打印请求但不会执行打印任务），本想着能凑合用的心态搞了一圈下来，在 CUPS Web 控制面板测试打印页是可以执行命令，但 macOS 无论使用通用驱动还是官方驱动要么不执行打印，要么只会打印出 <code>12345X@PJL</code> 这样的一行字，只有 Windows 没问题，头疼了好久。</p>
+<h2 id="解决方案">解决方案</h2>
+<p>在接近绝望时看到了 <a href="https://github.com/pdewacht/brlaser/">brlaser</a> 这个项目，这是牛人开发激光打印机的开源驱动，支持绝大多数支持标准打印机协议（PCL/PostScript）的兄弟打印机机型：</p>
+<ul>
+<li>Brother DCP-1510 series</li>
+<li>Brother DCP-1600 series</li>
+<li>Brother DCP-7030</li>
+<li>Brother DCP-7040</li>
+<li>Brother DCP-7055</li>
+<li>Brother DCP-7055W</li>
+<li>Brother DCP-7060D</li>
+<li>Brother DCP-7065DN</li>
+<li>Brother DCP-7080</li>
+<li>Brother DCP-L2500D series</li>
+<li>Brother DCP-L2520D series</li>
+<li>Brother DCP-L2520DW series</li>
+<li>Brother DCP-L2540DW series</li>
+<li>Brother HL-1110 series</li>
+<li>Brother HL-1200 series</li>
+<li>Brother HL-2030 series</li>
+<li>Brother HL-2140 series</li>
+<li>Brother HL-2220 series</li>
+<li>Brother HL-2270DW series</li>
+<li>Brother HL-5030 series</li>
+<li>Brother HL-L2300D series</li>
+<li>Brother HL-L2320D series</li>
+<li>Brother HL-L2340D series</li>
+<li>Brother HL-L2360D series</li>
+<li>Brother HL-L2375DW series</li>
+<li>Brother HL-L2390DW</li>
+<li>Brother MFC-1910W</li>
+<li>Brother MFC-7240</li>
+<li>Brother MFC-7360N</li>
+<li>Brother MFC-7365DN</li>
+<li>Brother MFC-7420</li>
+<li>Brother MFC-7460DN</li>
+<li>Brother MFC-7840W</li>
+<li>Brother MFC-L2710DW series</li>
+<li>Lenovo M7605D</li>
+</ul>
+<p>驱动也都发布到了主流的 Linux 系统中，比如 Debian、Ubuntu、Arch Linux、NixOS、树莓派的 Raspbian 和 openSUSE。在 Ubuntu Server 上安装 <code>printer-driver-brlaser</code> 后就可以在 CUPS Web 控制面板中选择这个驱动一路下一步搞定。</p>
+<h2 id="配置-cups">配置 CUPS</h2>
+<p>配置前需要安装 CUPS 和驱动，顺便把管理员用户添加到 cups 用户组。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># 安装</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">sudo apt install cups printer-driver-brlaser
+</span></span><span class="line"><span class="ln">3</span><span class="cl">
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="c1"># 把用户 icyleaf 加入到 cups 管理组</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">sudo usermod -aG lpadmin icyleaf
+</span></span></code></pre></div><p>配置局域网内可以访问 CUPS 的 WEB 管理页面，编辑 <code>/etc/cups/cupd.conf</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="gd">- Listen 127.0.0.1:631
+</span></span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="gd"></span><span class="gi">+ Listen 0.0.0.0:631
+</span></span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="gi"></span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"># 限制局域网段 192.168.222.0/24 可访问
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">&lt;Location /&gt;
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  Order allow,deny
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="gi">+  Allow From 192.168.222.0/24
+</span></span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="gi"></span>&lt;/Location&gt;
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">
+</span></span><span class="line"><span class="ln">10</span><span class="cl">&lt;Location /admin&gt;
+</span></span><span class="line"><span class="ln">11</span><span class="cl">  Order allow,deny
+</span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="gi">+  Allow 192.168.222.0/24
+</span></span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="gi"></span>&lt;/Location&gt;
+</span></span></code></pre></div><h2 id="配置打印机">配置打印机</h2>
+<p>使用服务器的 IP (比如是 192.168.222.100) <code>https://192.168.222.100:631/admin</code> 开始添加打印机，记得先打开打印机等待预热完毕。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+      <figure data-pswp="1201x726" data-size="800x"><a href="/uploads/2024/10/add-printer.png" class="gallery-item" target="_blank" data-pswp-width="1201" data-pswp-height="726"><img src="/uploads/2024/10/add-printer_hu10132767163743862641.png"/></a></figure>
+
+<p>添加打印机时已经识别到，选择第二个进行下一步。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+      <figure data-pswp="1117x503" data-size="800x"><a href="/uploads/2024/10/set-printer-information.png" class="gallery-item" target="_blank" data-pswp-width="1117" data-pswp-height="503"><img src="/uploads/2024/10/set-printer-information_hu16195519567328272891.png"/></a></figure>
+
+<p>记得勾选 <code>Share This Printer</code> 允许局域网其他设备可以连接到这台打印机。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+      <figure data-pswp="1212x775" data-size="800x"><a href="/uploads/2024/10/set-printer-driver.png" class="gallery-item" target="_blank" data-pswp-width="1212" data-pswp-height="775"><img src="/uploads/2024/10/set-printer-driver_hu10128032967233664781.png"/></a></figure>
+
+<p>打印机的品牌已经正确识别，选择打印机对应的型号，看到 &ldquo;Printer Brother_DCP-7040 has been added successfully.&rdquo; 离成功就差最后一步。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+      <figure data-pswp="1257x746" data-size="800x"><a href="/uploads/2024/10/set-printer-metadata.png" class="gallery-item" target="_blank" data-pswp-width="1257" data-pswp-height="746"><img src="/uploads/2024/10/set-printer-metadata_hu15088787595505913060.png"/></a></figure>
+
+<p>因为还要设置好纸张类型、DPI、纸张类型&hellip;一切都设置好可以在 Manage Printer 查看打印机信息和相关维护功能。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+      <figure data-pswp="1919x888" data-size="800x"><a href="/uploads/2024/10/brother-printer.png" class="gallery-item" target="_blank" data-pswp-width="1919" data-pswp-height="888"><img src="/uploads/2024/10/brother-printer_hu379063551251061234.png"/></a></figure>
+
+<h2 id="airprint-隔空打印">AirPrint 隔空打印</h2>
+<p>尝试用 iPhone 隔空打印一张，能够顺利找到打印机。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+      <figure data-pswp="600x1300" data-size="800x"><a href="/uploads/2024/10/iphone-airprint.png" class="gallery-item" target="_blank" data-pswp-width="600" data-pswp-height="1300"><img src="/uploads/2024/10/iphone-airprint_hu10681743698282296490.png"/></a></figure>
+
+<p>提交后能够在 CUPS 的任务队列查看详情信息。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+      <figure data-pswp="2442x664" data-size="800x"><a href="/uploads/2024/10/printer-jobs.png" class="gallery-item" target="_blank" data-pswp-width="2442" data-pswp-height="664"><img src="/uploads/2024/10/printer-jobs_hu16458583105410469404.png"/></a></figure>
+
+<h2 id="意犹未尽">意犹未尽</h2>
+<p>CUPS 能够仅实现打印机的复制功能，刚好这台打印机找到了对应的驱动；还缺少无线扫描的功能正在探索中，据说可以使用 <a href="http://www.sane-project.org/">SANE</a> 配合驱动，服务器是 Server 端没有桌面环境，有点头疼，容我再想想怎么解决。</p>
+]]></content:encoded></item><item><title>RG35XX 复古国产掌机</title><link>https://icyleaf.com/gears/rg35xx-game-console/</link><pubDate>Thu, 12 Oct 2023 12:40:06 +0800</pubDate><guid>https://icyleaf.com/gears/rg35xx-game-console/</guid><description>比 Switch 更适合外出携带的便携掌机</description><content:encoded><![CDATA[<p>高中我第一次接触了同学的 GBA 像是开启了新天地，工作之后买了 NDSi、Switch 也没能找回原来的那种感觉，但何 GB、GBC、GBA 掌机都太太太贵了。
 今年 6 月份在日本旅游的时候看到了一些视频 <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> 了解到 RG35XX 是比 Miyoo mini 更适合我的掌机，综合分析后 PDD 262 元购入（包含 64GB TF 卡和收纳包）。</p>
 <ul>
 <li>基于 RetroArch 系统 <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></li>
@@ -9861,4 +10062,4 @@ of Fine Arts）将击败MBA，成为工商社会最受欢迎的学位。</p>
 </blockquote>
 <p>这是一个僵化的社会，我们做什么事情基本都是一个凭着一个标准，一个框架，一个准则，无论是上学，就业，生活这些大方面，就连编程等这些小的方面也是如此。创意不是凭空制作出来的，懂得超与格式化创造创意的人已经高高在上，成为了富豪。前几天我在网上略微看了几章《互联网草根革命》，一个新的创意也并不能说明，你立即成为富豪，还需要想办法去宣传，推广，为了我们的明天，让我们一起努力吧！</p>
 <p>工作之余可以看看这本书，我想可以消除工作的疲乏:)</p>
-]]></content:encoded></item></channel></rss>
+]]></content:encoded></item><item><title/><link>https://icyleaf.com/draft/how-to-homelab-proxmox/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://icyleaf.com/draft/how-to-homelab-proxmox/</guid><description/><content:encoded></content:encoded></item></channel></rss>
