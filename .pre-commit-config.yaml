@@ -1,10 +1,10 @@
 repos:
 - repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: v4.4.0
+  rev: v5.0.0
   hooks:
-    - id: check-yaml
+    - id: trailing-whitespac
+    # - id: check-yaml
     # - id: end-of-file-fixer
-    # - id: trailing-whitespace
 # - repo: file:///Users/icyleaf/Development/devops/pre-commit-hook-ensure-sops
 #   rev: da54e954780358cf44da59ba24035bcf3e74bddf
 #   hooks:
