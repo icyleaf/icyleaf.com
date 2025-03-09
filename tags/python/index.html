@@ -13,7 +13,7 @@
 #!/usr/bin/env ruby require 'rubygems' require 'net/http' urls = ["http://icyleaf.com"] 50.times do urls.each do |url| start_at = Time.now Net::HTTP.get URI.parse(url) end_at = Time.now diff = end_at - start_at if diff &lt; 0.3 then color_code = 32 elsif diff > 0.8 then color_code = 31 else color_code = 33 end puts "#{url}\n time: \033[#{color_code}m#{diff}\033[0m seconds" end end 改写 python 的同时，考虑脚本的灵活性准备增加两个参数，第一个是请求测试次数，第二个是请求测试的 URL，而 python 默认提供了 argparse 库，可以很方便的生成 &ndash;help 的帮助和解析传递的参数：
 ...</div></article></a><a href=https://icyleaf.com/2012/07/intro-virtualenv/><article class=post-inline><header class=post-header><h1 class=post-title>初次接触 virtualenv</h1></header><div class=post-content>python 的 virtualenv 功能看着类似于 Ruby 的 RVM，其实这两个东西我都没有用过，本身脚本语言用的最熟练的是 php，最近觉得 php 在处理一些多线程和终端繁琐的事情上有些局限性。决定熟悉下 python 并尝试用 django 做一个小应用。
 ...</div></article></a></div></div></main><footer class=footer><div class=copyright>&copy;
-<span itemprop=copyrightYear>2005 - 2024</span>
+<span itemprop=copyrightYear>2005 - 2025</span>
 <span>🍺</span>
 <span class=author itemprop=copyrightHolder><a href=https://icyleaf.com/>icyleaf</a></span></div></footer><script defer src=https://fastly.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js crossorigin=anonymous></script><script defer src=https://icyleaf.com/js/vendor_main.min.js></script><script type=module>
   

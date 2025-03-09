@@ -295,7 +295,7 @@
 </span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="c1"># src/gz icyleaf https://icyleaf-openwrt-repo.vercel.app/{{{target}}/packages/{{arch}}</span>
 </span></span><span class="line"><span class="ln">3</span><span class="cl">
 </span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="c1"># 添加 snapshot 分支 amd64 (x86/64) 平台的源</span>
-</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;src/gz icyleaf https://icyleaf-openwrt-repo.vercel.app/snapshosts/packages/x86/64&#34;</span> &gt;&gt; /etc/opkg/customfeeds.conf
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;src/gz icyleaf https://icyleaf-openwrt-repo.vercel.app/snapshots/packages/x86/64&#34;</span> &gt;&gt; /etc/opkg/customfeeds.conf
 </span></span></code></pre></div><p>安装 vector</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">opkg update
 </span></span><span class="line"><span class="ln">2</span><span class="cl">opkg install vector
