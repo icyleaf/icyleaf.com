@@ -101,7 +101,7 @@ opkg-key add key-build.pub
 # src/gz icyleaf https://icyleaf-openwrt-repo.vercel.app/{{{target}}/packages/{{arch}}
 
 # 添加 snapshot 分支 amd64 (x86/64) 平台的源
-echo "src/gz icyleaf https://icyleaf-openwrt-repo.vercel.app/snapshosts/packages/x86/64" >> /etc/opkg/customfeeds.conf
+echo "src/gz icyleaf https://icyleaf-openwrt-repo.vercel.app/snapshots/packages/x86/64" >> /etc/opkg/customfeeds.conf
 ```
 
 安装 vector
