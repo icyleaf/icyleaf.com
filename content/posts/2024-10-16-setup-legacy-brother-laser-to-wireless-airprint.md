@@ -20,6 +20,10 @@ imageSource:
     link: https://unsplash.com
 ---
 
+{{< updated at="2025-05-01" >}}
+新增局域网服务发现配置及如何修改打印机纸张规格
+{{< /updated >}}
+
 ## 起因
 
 从老丈人家拿回来一台已经吃灰的兄弟激光 [DCP-7040](https://support.brother.com/g/b/spec.aspx?c=as_ot&lang=en&prod=dcp7040_us_as) 一体机. 在 Windows 系统上测试仍然可以正常工作，本来想把它接到 Openwrt 路由器的网络打印机插件上实现无线打印，但我的路由器在弱电箱里面放着周围也没有合适可以摆放的位置，我就把它连用 USB 到了一台 Ubuntu Server 服务器上，计划用 [CUPS](https://www.cups.org/) 实现同样的效果。
@@ -100,11 +104,11 @@ sudo usermod -aG lpadmin icyleaf
 
 ## 配置打印机
 
-使用服务器的 IP (比如是 192.168.222.100) `https://192.168.222.100:631/admin` 开始添加打印机，记得先打开打印机等待预热完毕。
+使用服务器的 IP (比如是 192.168.222.100) `https://192.168.222.100:631/admin` ，第一次打开需要使用服务器配置的用户和密码授权认证后开始添加打印机，记得先打开打印机等待预热完毕。
 
 {{< figure src="/uploads/2024/10/add-printer.png" >}}
 
-添加打印机时已经识别到，选择第二个进行下一步。
+添加打印机时已经识别到打印机配置，选择第二个进行下一步。
 
 {{< figure src="/uploads/2024/10/set-printer-information.png" >}}
 
@@ -120,6 +124,14 @@ sudo usermod -aG lpadmin icyleaf
 
 {{< figure src="/uploads/2024/10/brother-printer.png" >}}
 
+## 配置服务发现
+
+如果服务器已经安装 avahi 服务则可以直接看下一章节，没有安装的只需要安装一下即可无需额外的配置。
+
+```bash
+sudo apt install avahi-daemon avahi-utils
+```
+
 ## AirPrint 隔空打印
 
 尝试用 iPhone 隔空打印一张，能够顺利找到打印机。
@@ -129,6 +141,17 @@ sudo usermod -aG lpadmin icyleaf
 提交后能够在 CUPS 的任务队列查看详情信息。
 
 {{< figure src="/uploads/2024/10/printer-jobs.png" >}}
+
+## 修改打印纸张配置
+
+用了一段时间发打印机的时候纸张一直是 US Letter。经过一段时间的研究 AirPrint 无线打印的纸张尺寸的预设是在打印机提供了而不是手机系统本身，因此无论修改系统语言是没有效果的，默认 cups 设置的是 US Letter 需要手动修改 `/etc/cups/cupsd.conf` 配置如下
+
+```
+DefaultLanguage zh_CN
+DefaultPaperSize A4
+```
+
+保存后先清除 cups 的缓存后再重启服务：`sudo rm -rf /var/cache/cups/*; sudo systemctl restart cups`
 
 ## 意犹未尽
 
