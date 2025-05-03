@@ -473,6 +473,14 @@
         border-color: $dark-border-color;
       }
     }
+    
+    ol {
+      li {
+        p {
+          margin: 0;
+        }
+      }
+    }
   }
 
   .post-donate {
