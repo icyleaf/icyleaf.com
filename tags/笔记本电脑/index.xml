@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>笔记本电脑 on icyleaf</title><link>https://icyleaf.com/tags/%E7%AC%94%E8%AE%B0%E6%9C%AC%E7%94%B5%E8%84%91/</link><description>Recent content in 笔记本电脑 on icyleaf</description><language>zh-cn</language><lastBuildDate>Fri, 02 May 2025 18:00:00 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/%E7%AC%94%E8%AE%B0%E6%9C%AC%E7%94%B5%E8%84%91/index.xml" rel="self" type="application/rss+xml"/><item><title>Arch Linux 勇闯机械革命暴风雪</title><link>https://icyleaf.com/gears/wujie-14x-laptop/</link><pubDate>Fri, 02 May 2025 18:00:00 +0800</pubDate><guid>https://icyleaf.com/gears/wujie-14x-laptop/</guid><description>Arch Linux + 机械革命 = 生产力工具吗？</description><content:encoded><![CDATA[<p>作为一个常年的 macOS 开发者用户，我的上一台笔记本还是苹果的 Macbook Pro 2015 款。除了使用 Linux 服务器作为开发之外，一直没有长时间使用把它作为日常机器， 2019 年我叫 DIY 了一台<a href="https://icyleaf.com/2019/03/asrock-z390-gaming-itx-install-hackintosh-tutorial/">黑苹果机器</a>。或许是 <a href="https://world.hey.com/dhh/linux-as-the-new-developer-default-at-37signals-ef0823b7">DHH</a> 从 Apple 彻底转向了 Ubuntu 并迅速创造出了 <a href="https://omakub.org/">omakub</a> 一键配置的开发环境的契机，在国补的加持下在 2024 年底购入一台鸡哥的 14X 暴风雪，真正在一台 Linux 日常开发机使用。</p>
+<h2 id="-机器配置">🎰 机器配置</h2>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left"><strong>名称</strong></th>
+          <th style="text-align: left"><strong>硬件</strong></th>
+          <th style="text-align: left"><strong>备注</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">主板</td>
+          <td style="text-align: left">MechRevo WuJie 14-GX4HRXL</td>
+          <td style="text-align: left">BIOS 版本 N.1.13MRO14（08/19/2024）</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">CPU</td>
+          <td style="text-align: left">AMD R7-8845HS 8C16T</td>
+          <td style="text-align: left">Phoenix， 最高 5.1GHz 主频，39 TOPS</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">内存</td>
+          <td style="text-align: left">英睿达 DDR5-5600 16Gx2</td>
+          <td style="text-align: left">Crucial CT16G56C46S5.C8D</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">硬盘</td>
+          <td style="text-align: left">英睿达 CT1000P3PSSD8 1TB</td>
+          <td style="text-align: left">M.2 2280x2，PCIE 4.0x4</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">显卡</td>
+          <td style="text-align: left">AMD Radon 780M 核显</td>
+          <td style="text-align: left">12CU，2.7GHz，RDNA 3，Phonixe 3，gfx1103</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">屏幕</td>
+          <td style="text-align: left">天马 TL140ADXP24-0</td>
+          <td style="text-align: left">14寸，IPS，2560x1600（16:10），8Bit，120Hz，100%sRGB，450nit</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">电池</td>
+          <td style="text-align: left">80Wh</td>
+          <td style="text-align: left">宽电压，支持 PD、PPS 3.3-21V 5A 最大 100W 氮化镓充电器</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">有线网卡</td>
+          <td style="text-align: left">裕太微 YT6801 千兆 RJ45</td>
+          <td style="text-align: left">国产 苏州</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">无线/蓝牙</td>
+          <td style="text-align: left">Intel AX200</td>
+          <td style="text-align: left">WiFi 6，160MHz</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">接口</td>
+          <td style="text-align: left">HDMI2.1/3.5音频</td>
+          <td style="text-align: left">USB 4/USB 全功能/UBS 3.2x2/USB 2.0可惜不支持一线通扩展坞目前测试也无法显示外接显示器</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="-初体验">🥳 初体验</h2>
+<p>如今已经有半年之久，期间有好几个月都没有再开黑苹果机器。这台机器性能整体看来还是一台很棒的机器，我将日常所有的需求都平移到了这台机器上面。显示器的在 14 寸上 2K 的分辨率效果还算不错，日常使用 1.6 倍 缩放比例，唯一不太好的是在户外阳光比较充足的下屏幕亮度太低。唯一不太习惯的是触摸板，在 Linux 上真是太难用了，我基本上使用一款罗技的鼠标配合键位定制应用还算够用。电池续航方面，在不做开发下，仅仅是看看视频、网页大概有 4-6 小时，紧急情况下还算能用吧。</p>
+<p>硬盘除了自带的还额外提供一个 M2 插槽，默认下系统是 Windows 我没有动只是配置了一些硬件开发、刷机的工具和游戏当应急使用，平时使用新硬盘跑 Arch Linux 系统。</p>
+<h2 id="-开发体验">👨‍💻 开发体验</h2>
+<p>最初是想要买 7840 CPU 但一直找不到符合需求的笔记本电脑，8845 有 NPU 加成起初我是不想要的，购买时发现这台溢价并不高，配合 32GB 内存可以用一段时间就购入了。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+      <figure data-pswp="2878x1787" data-size="800x"><a href="/gears/wujie-14x/dm.png" class="gallery-item" target="_blank" data-pswp-width="2878" data-pswp-height="1787"><img src="/gears/wujie-14x/dm_hu16585595277523795098.png"/></a></figure>
+
+<p>唯一吐槽的是作为至此了全功能 USB 和 USB 4 俩个接口居然不支持一线通外接显示器，都不舍得把供电再给足一些。<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+<h3 id="ruby-on-rails">Ruby on Rails</h3>
+<blockquote>
+<p>Ruby: &ldquo;从来没有打过这么富裕的仗&rdquo;</p>
+</blockquote>
+<p><a href="https://github.com/tryzealot/zealot">zealot</a> 项目后续的开发都是在这台机器上完成的，开发环境是使用 vscode devcontainer + docker。这配置对于做纯 Rails 项目没有任何问题。</p>
+<h3 id="llm">LLM</h3>
+<p>AMD 跑 LLM 上比较折腾，ollama 也需要一些折腾才能利用 NPU 兼容 cuda 运行，因为 ollama 本身还没有支持 780M 系显卡，官方有人提供了 <a href="https://github.com/ollama/ollama/pull/6282#issuecomment-2833333521">PR</a> 很久很久但一直没有合并，跟着操作也能利用核显 GPU 跑。我在 BIOS 里设置了 8GB 共享提供给大模型跑，7B 以内的速度还算勉强够用，这就不得不提 ollama 也不支持 GTT 灵活分配 VRAM。我尝试过 VRAM 给到 512MB，然后在 BIOS 添加 <code>amdgpu.gttsize=61440 ttm.pages_limit=15728640</code> 提高 GTT 分配显存的上限<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
+<h3 id="nodejs--react">NodeJS + React</h3>
+<p>由于开始使用 Linux 系统后无法在进行使用 Xcode 开发 iOS 应用，我开始尝试被 DHH 鄙夷的 nodejs + react 全栈开发。也就是从此开始内存开始捉衿见肘，越来越不够用&hellip;</p>
+<h2 id="-核心组件">😈 核心组件</h2>
+<ul>
+<li>操作系统: Arch Linux 🐧</li>
+<li>桌面环境: hyprland 🪟</li>
+<li>Shell: zsh 🐚</li>
+<li>终端: wezterm / kitty 📜</li>
+<li>Dock: waybar 💈</li>
+<li>应用启动器: rofi 🚀</li>
+<li>通知管理器: swaync 🔕</li>
+<li>文本编辑器: vscode / nevim ⌨</li>
+<li>浏览器: Chrome / Firefox 🌐</li>
+<li>文件管理器: dolphin / yazi 📂</li>
+</ul>
+<h2 id="-日常应用">🍄 日常应用</h2>
+<p>在 Linux 想要找到还算不错的 GUI 应用确实是一件很难的事情，再加上我使用的 wayland 目前很多应用还都多多少少有些小毛病。</p>
+<ul>
+<li>输入法： fcitx 5 + RIME + 白霜</li>
+<li>截图： grimblast (flameshot 不兼容 wayland)</li>
+<li>录屏： OBS Studio</li>
+<li>视频剪辑： 达芬奇</li>
+<li>修图： GIMP 3.x / darktable</li>
+<li>聊天： telegram-desktop / wechat-universal-bwrap / vesktop</li>
+<li>LLM GUI: Cherry Studio</li>
+<li>文件分享： LocalSend</li>
+<li>数据库管理： DBeaver Community</li>
+<li>邮件管理： Tunderbird</li>
+<li>局域网 IP 扫描： Angry IP Scanner</li>
+<li>代理抓包工具： Proxyman</li>
+<li>系统清理： BleachBit</li>
+<li>远程桌面： DeskFlow</li>
+<li>文档速查： DevDocs</li>
+<li>Office： LibreOffice</li>
+<li>MineCraft 启动器： hmcl</li>
+<li>文件同步： Syncthing</li>
+<li>键位绑定： keyd</li>
+<li>罗技鼠标定制： Logiops</li>
+</ul>
+<p>目前想到的这么些，可能会有遗漏，如果有什么想问的欢迎留言，具体内容不错的欢迎打赏。</p>
+<h2 id="资料参考">资料参考</h2>
+<ul>
+<li><a href="https://zhuanlan.zhihu.com/p/730538041">机械革命无界14X暴风雪 Arch Linux踩坑记录</a></li>
+<li><a href="https://www.panxuc.com/2024/03/17/%E6%9C%BA%E6%A2%B0%E9%9D%A9%E5%91%BD%E6%97%A0%E7%95%8C14pro%E5%AE%89%E8%A3%85archlinux%E8%AE%B0/">机械革命无界 14 Pro 安装 Arch Linux 记</a></li>
+</ul>
+<hr>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p><a href="https://nga.178.com/read.php?tid=41529222&amp;rand=721">无界14X不支持一线通便携屏??</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>参考 <a href="https://blog.hjc.im/strix-halo-local-llm.html">Strix Halo (395)本地运行LLM测试</a>的配置&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+]]></content:encoded></item></channel></rss>
