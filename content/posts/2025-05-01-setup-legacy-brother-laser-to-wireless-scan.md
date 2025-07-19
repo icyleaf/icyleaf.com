@@ -40,7 +40,7 @@ imageSource:
 
 ```shell
 curl -s https://raw.githubusercontent.com/sbs20/scanservjs/master/bootstrap.sh | sudo bash -s -- -v latest
-sudo systemctrl enable --now scanservjs
+sudo systemctl enable --now scanservjs
 ```
 
 运行服务会开启 8080 端口，第一次打开服务会使用 `scanimage -L` 获取扫描仪设备，如果获取成功就会在左上角看到，并根据自己的设备把下面的参数修改正确后即可扫描
