@@ -203,7 +203,7 @@
 
 <p>这次我们使用一键安装脚本来处理：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="ln">1</span><span class="cl">curl -s https://raw.githubusercontent.com/sbs20/scanservjs/master/bootstrap.sh <span class="p">|</span> sudo bash -s -- -v latest
-</span></span><span class="line"><span class="ln">2</span><span class="cl">sudo systemctrl <span class="nb">enable</span> --now scanservjs
+</span></span><span class="line"><span class="ln">2</span><span class="cl">sudo systemctl <span class="nb">enable</span> --now scanservjs
 </span></span></code></pre></div><p>运行服务会开启 8080 端口，第一次打开服务会使用 <code>scanimage -L</code> 获取扫描仪设备，如果获取成功就会在左上角看到，并根据自己的设备把下面的参数修改正确后即可扫描</p>
 
 
