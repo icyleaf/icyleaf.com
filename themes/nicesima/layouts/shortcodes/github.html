@@ -1,9 +1,12 @@
 {{- $repo := .Get "repo" | default (.Get 0) -}}
 {{- $full_name := .Get "fullname" | default (.Get 1) | default "true" -}}
+{{- $url := print "https://api.github.com/repos/" $repo -}}
 
-{{- with resources.GetRemote (print "https://api.github.com/repos/" $repo) -}}
-{{- if not .Err -}}
-  {{- $json := .Content | transform.Unmarshal -}}
+{{- with try (resources.GetRemote $url) -}}
+{{- with .Err -}}
+  {{ warnf "GitHub shortcode error: %v" . }}
+{{- else -}}
+  {{- $json := .Value | transform.Unmarshal -}}
   <div class="shortcode-github">
     <h4 class="title">
       <a href="{{ $json.html_url }}" target="_blank">
