@@ -70,7 +70,7 @@ params:
 
 permalinks:
   posts: /:year/:month/:slug
-  page: /:filename
+  page: /:contentbasename
 
 # disable all taxnomies
 taxonomies:
@@ -114,3 +114,6 @@ markup:
     lineNumbersInTable: false
     noClasses: true
     tabWidth: 2
+
+ignoreLogs:
+  - warning-goldmark-raw-html
