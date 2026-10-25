@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Omarchy on icyleaf</title><link>https://icyleaf.com/tags/omarchy/</link><description>Recent content in Omarchy on icyleaf</description><language>zh-cn</language><lastBuildDate>Sun, 25 Oct 2026 20:36:20 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/omarchy/index.xml" rel="self" type="application/rss+xml"/><item><title>Omawarden 是更好的 Bitwarden 客户端</title><link>https://icyleaf.com/2026/10/omawarden-is-the-better-bitwarden-app/</link><pubDate>Sun, 25 Oct 2026 20:36:20 +0800</pubDate><guid>https://icyleaf.com/2026/10/omawarden-is-the-better-bitwarden-app/</guid><description>为什么在拥有官方客户端和 rbw 之后，我还是自己写了 omawarden</description><content:encoded><![CDATA[<p>我的主力系统是 Arch Linux，桌面环境用的是基于 Hyprland 与 Quickshell 搭建的 Omarchy。日常工作里，终端、代码编辑器和浏览器切得飞快，绝大多数操作都靠键盘快捷键完成。唯独碰到输入密码、两步验证码和信用卡安全码的时候，现有的工具总会打断这种节奏。</p>
+<p>为了让密码管理能够无缝嵌入到平铺桌面的键盘流里，我写了纯 Rust 实现的后端 omawarden，以及配套的 Omarchy Bitwarden 桌面插件。</p>
+<p>很多人看到这个项目的第一反应往往是好奇。官方不仅有桌面客户端，还有命令行工具 bw，开源社区也早就有用 Rust 写的 rbw，为什么还要花时间再造一个轮子？</p>
+<p>这件事要从日常使用里碰到的具体痛点，以及性能和实际功能的缺失说起。</p>
+<h2 id="官方客户端与-cli-的局限">官方客户端与 CLI 的局限</h2>
+<p>官方的桌面客户端是典型的 Electron 应用。平时即使最小化在后台，也要占用五百兆到一吉字节的内存，拉起八到十二个进程。在平铺窗口管理器里给它分配一个浮动窗口，每次按快捷键唤醒，界面渲染都要迟疑一两秒。一个本来只想复制六位验证码的操作，开销变得极其沉重。</p>
+<p>官方提供的 Node 命令行工具 bw，解决了内存常驻的问题，却带来了另外两个麻烦。</p>
+<p>第一个麻烦是调用延迟。每次在终端敲下 bw 命令，系统都要从头启动一次 Node 运行时，冷启动耗时通常在三百到八百毫秒之间。如果要把它挂在全局快捷键后面做即时搜索，按下去之后会有明显的迟滞感。</p>
+<p>第二个麻烦是凭据和会话管理机制。bw 为了避免每次交互都要求输主密码，依赖 <code>BW_SESSION</code> 环境变量，或者把解密后的会话写在本地文件里。在实际脚本里，大家经常需要把会话密钥导出来。这不仅容易泄露到系统的环境变量与进程列表里，而且官方对会话有两个小时的硬性限制。一旦超时，命令直接报错退出，必须停下手头的事情重新走一遍登录流程。</p>
+<h2 id="性能与资源开销实测对比">性能与资源开销实测对比</h2>
+<p>在平铺桌面环境里，后台组件的开销应当尽可能克制。为了看清不同工具的实际表现，我对几款客户端在日常状态下的资源占用与响应延迟做了实测对比。</p>
+<table>
+  <thead>
+      <tr>
+          <th>工具与组件</th>
+          <th>常驻物理内存（RSS）</th>
+          <th>进程数量</th>
+          <th>搜索查询延迟</th>
+          <th>冷启动耗时</th>
+          <th>界面与交互形式</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>omawarden（守护进程 + 浮动面板）</strong></td>
+          <td><strong>5 到 15 MB</strong>（闲置基线，派生密钥时瞬间峰值 64MB）</td>
+          <td><strong>1 个进程</strong>（外加按需呼出的瞬时窗口）</td>
+          <td><strong>小于 1 毫秒</strong>（本地 IPC 套接字）</td>
+          <td><strong>小于 5 毫秒</strong></td>
+          <td>Wayland QML 硬件加速浮动层</td>
+      </tr>
+      <tr>
+          <td><strong>rbw（社区 Rust 命令行）</strong></td>
+          <td>5 到 10 MB</td>
+          <td>1 个进程</td>
+          <td>小于 5 毫秒（Unix 套接字）</td>
+          <td>小于 5 毫秒</td>
+          <td>仅限终端标准输出</td>
+      </tr>
+      <tr>
+          <td><strong>Bitwarden 官方桌面版</strong></td>
+          <td>500 MB 到 1 GB 以上</td>
+          <td>8 到 12 个进程</td>
+          <td>1.5 秒到 3 秒</td>
+          <td>2 秒到 4 秒</td>
+          <td>庞大的 Electron 与 Chromium 独立窗口</td>
+      </tr>
+      <tr>
+          <td><strong>Bitwarden 官方 CLI（bw）</strong></td>
+          <td>80 到 120 MB</td>
+          <td>每次调用独立起进程</td>
+          <td>300 到 800 毫秒</td>
+          <td>300 到 800 毫秒</td>
+          <td>无界面，每次调用均需启动 Node.js</td>
+      </tr>
+  </tbody>
+</table>
+<p>可以看到，omawarden 在保留极速响应能力的同时，把内存开销控制在了十兆字节上下。对于一台开着几个浏览器窗口、本地微服务容器与语言服务器的开发机器，这样的开销让它长期常驻在后台不会产生任何心理负担。</p>
+<h2 id="为什么优秀如-rbw-依然没有满足我">为什么优秀如 rbw 依然没有满足我</h2>
+<p>在 Linux 生态里，rbw 是一款非常出色的第三方客户端。它开创了常驻后台、零知识解密的 Rust 守护进程架构。在启动守护进程后，主密码解密出的数据留在内存中，通过 Unix 域套接字提供极快查询响应。在决定写 omawarden 之前，rbw 一直是我长期使用的主力工具，它的架构思路也直接启发了 omawarden。</p>
+<p>但在深度使用过程中，一些具体需求的分歧逐渐暴露出来。</p>
+<p>首先是对数据类型的支持深度。Bitwarden 官方支持五种核心条目类型，包括登录凭据、银行卡、个人身份、私密便签和 SSH 密钥。rbw 的核心目标是终端密码与两步验证码提取。如果你想在 rbw 里查一张信用卡的 CVV 安全码或者卡号，必须带上 raw 参数把未格式化的原始 JSON 倒出来，再自己肉眼查找。日常网购或者填写账单时，这种方式很不顺手。</p>
+<p>其次是自建服务的边界情况。很多团队和个人把自建的 Vaultwarden 放在反向代理后面，并且开启了双向 TLS 客户端证书验证（mTLS）。当网关强制验证客户端的证书包时，rbw 无法直接配置客户端证书与私钥，连接直接受阻。此外，查看条目加密附件、查看历史密码变更记录、多团队组织的密钥解密与文件夹筛选，这些在 rbw 现有的定位里也都没有覆盖。</p>
+<p>最后是桌面环境的图形化集成。rbw 的输出主要是面向终端管道的标准文本。如果要在桌面环境里做一个毫秒级响应、带实时模糊搜索和键盘导航的浮动面板，需要守护进程提供低延迟、强类型的 JSON 套接字通信。</p>
+<p>这些差异来自各自不同的设计取舍。rbw 追求极简和轻量，专注于终端管道体验，在纯命令行环境下非常优秀。而我需要的是一个能够承载完整密码库类型、能够安全驱动图形化快捷窗口、并且在安全细节上更严密的工具。</p>
+<h2 id="完全基于密码库的-openssh-agent">完全基于密码库的 OpenSSH Agent</h2>
+<p>在 omawarden 的功能规划里，内置 OpenSSH Agent 是非常核心的一环。</p>
+<p>很多开发者日常会在 GitHub、GitLab 以及多台云服务器之间使用 SSH 密钥。在以往，要么直接在磁盘 ~/.ssh 目录下保存明文私钥，要么借助官方桌面版内置的 SSH Agent。官方桌面版虽然支持 SSH Agent，但为了签名几个 git commit，后台就必须持续跑着近 1GB 内存的 Electron 窗口。rbw 后来也加入了基础的代理转发能力，但在交互确认和授权粒度上比较简单。</p>
+<p>omawarden 内部直接实现了标准 OpenSSH Agent 协议，并针对桌面安全做了深度设计。</p>
+<h3 id="零磁盘写入与即用即清">零磁盘写入与即用即清</h3>
+<p>所有私钥直接保存在 Bitwarden 密码库中，本地磁盘完全不留存任何解密后的私钥文件。</p>
+<p>当终端里的 git 或者 ssh 客户端发起签名请求时，守护进程只在内存中对请求的私钥做临时解析。在完成单次签名操作之后，包含私钥明文的内存缓冲区立刻被 Zeroize 机制擦除归零。</p>
+<h3 id="按需即时唤醒解锁">按需即时唤醒解锁</h3>
+<p>如果此时密码库处于锁定状态，终端里的 git commit 不会直接报错退出。守护进程会自动唤起 Omarchy 浮动窗口，等待用户输入主密码。在完成解锁之后，挂起的签名请求会自动恢复并完成，不需要用户手动先跑一遍解锁命令再重试 git 操作。</p>
+<h3 id="细粒度的应用授权与防误触卡片">细粒度的应用授权与防误触卡片</h3>
+<p>在授权控制上，omawarden 提供了三种模式，包括每次提示、首次使用提示和静默签名。</p>
+<p>默认的首次使用提示模式非常实用。系统不仅校验密钥本身，还会识别发起签名的客户端可执行文件路径与父级应用程序。比如在 Alacritty 终端里使用某把密钥，系统只会弹窗确认一次，本次会话内后续在同终端的操作都会放行。如果某个未授权的后台进程突然尝试使用这把密钥，系统会立刻弹出独立的授权确认卡片。</p>
+<p>为了防止误操作，弹出的授权确认卡片内置了六百毫秒的防误触保护。在卡片弹出的最初六百毫秒内，系统会主动忽略回车键与允许按钮的点击事件。这样即使你正在另一个窗口飞快打字，也不会因为刚巧敲下一个回车键而把未知的签名请求放行过去。</p>
+<p>针对远程服务器恶意转发 SSH Agent 请求的场景，omawarden还会对会话绑定扩展做校验。只要发现来自代理转发的请求，系统一律强制触发交互确认弹窗，防止跳板机在没有知会的情况下悄悄使用本地私钥。</p>
+<h2 id="omawarden-与-omarchy-插件的架构">omawarden 与 Omarchy 插件的架构</h2>
+<p><img loading="lazy" src="https://repository-images.githubusercontent.com/1349065934/570c6e5a-bfdd-4ddc-be58-3c33c6662d8d"
+  
+  
+  alt="omarchy bitwarden preview"></img>
+</p>
+<p>明确了这些需求之后，我选择用纯 Rust 从头实现 <a href="https://github.com/icyleaf/omarchy-bitwarden/">omawarden</a> 核心引擎，并用 Quickshell 与 QML 编写了匹配 Omarchy Shell 风格的浮动插件。</p>
+<h3 id="零泄漏的进程与内存安全">零泄漏的进程与内存安全</h3>
+<p>在安全边界上，omawarden 坚持把所有敏感数据从命令行参数和环境变量里拿掉。</p>
+<p>主密码、二步验证码、API 密钥和剪贴板内容，绝对不作为命令行参数传递。所有敏感数据全部通过标准输入流（stdin）或者权限为 0600 的本地 Unix 域套接字传递。这样一来，即使系统里有其他进程扫描进程参数列表，也抓不到任何凭据明文。</p>
+<p>在内存管理上，主密钥、派生对称密钥和临时加解密缓存全部实现了 Zeroize 机制。一旦变量生命周期结束或者用户锁闭密码库，对应内存区域会立刻被覆写为零，不会残留在堆栈中。</p>
+<h3 id="桌面密钥环与无感续期">桌面密钥环与无感续期</h3>
+<p>官方 CLI 动辄让会话过期的体验，在 omawarden 里被彻底改变了。</p>
+<p>omawarden 接入了 FreeDesktop 的 Secret Service 规范（比如 GNOME Keyring 或 KeePassXC）。API 密钥凭据与刷新令牌存放在密钥环里，本地磁盘文件仅保存零知识加密后的密文数据。当两小时的临时访问令牌过期时，守护进程在后台自动利用刷新令牌完成认证，不需要跳出弹窗让用户重新登录。只有当用户主动锁闭或者系统锁屏时，才需要重新输入主密码解密本地密文。</p>
+<p>同时，omawarden 监听了 Hyprlock、Omarchy 锁屏以及 systemd 的睡眠与锁屏信号。只要屏幕锁定，后台常驻的解密数据会立即被清空并安全擦除，避免设备离开视线时内存留存明文。</p>
+<h3 id="毫秒级呼出的-omarchy-浮动面板">毫秒级呼出的 Omarchy 浮动面板</h3>
+<p>有了低延迟的后台引擎，前端就能做得非常轻巧。</p>
+<p>在 Omarchy 桌面下，按下 Super 加斜杠快捷键，浮动搜索面板会立刻弹出。它的常驻内存只有十兆字节左右，查询响应在千分之一秒以内。</p>
+<p>输入关键词时，列表会实时进行模糊过滤。按下回车直接复制密码，按 Ctrl 加回车复制当前时间步的 TOTP 验证码。面板右侧有专门的展示区，银行卡的有效期与安全码、个人身份信息、多行私密便签都可以一键切换明文查看。</p>
+<p>复制到剪贴板的内容同样受到了保护。后台的剪贴板管理组件会在写入系统剪贴板三十秒后自动清空数据，防止敏感信息长期滞留在剪贴板历史记录里。</p>
+<h2 id="客观来看-rbw-依然适合哪些场景">客观来看 rbw 依然适合哪些场景</h2>
+<p>在开发 omawarden 的过程中，我始终非常敬重 rbw 的实现。即便有了 omawarden，在以下几个场景下，rbw 依然有着明显的优势。</p>
+<p>第一是多发行版的开箱即用。rbw 已经被 Arch、Debian、Fedora、Alpine、NixOS 和 macOS Homebrew 收录进官方源，一行命令就能安装完成。而 omawarden 目前主要通过 AUR 和 GitHub Releases 分发，打包覆盖面还在早期阶段。</p>
+<p>第二是无图形界面的服务器与纯 TTY 终端。rbw 可以配合 pinentry-curses 在没有桌面环境和 D-Bus 密钥环的服务器上工作得很好。omawarden 深度整合了桌面密钥环和图形化信号，在纯终端环境下没有 rbw 那么轻便。</p>
+<p>第三是终端直接编辑条目。rbw 提供了直接调用外部编辑器的修改命令。目前的 omawarden 重点优化了搜索、提取、复制、生成和 SSH 签名工作流，条目新增与编辑功能还在后续规划中。</p>
+<p>如果你的工作场景完全停留在服务器终端，或者不需要复杂的桌面浮动交互，rbw 依然是优秀的工具。</p>
+<h2 id="开源与后续">开源与后续</h2>
+<p>目前 omawarden 以及 omarchy-bitwarden 插件已经全部开源。Arch Linux 用户可以通过 AUR 直接安装 <a href="https://aur.archlinux.org/packages/omawarden-bin">omawarden-bin</a> 或 <a href="https://aur.archlinux.org/packages/omawarden-git">omawarden-git</a>，再通过 omarchy plugin 命令添加插件。</p>
+<p>接下来，我计划为 omawarden 补充条目创建和原位编辑能力，并在 Wayland 下尝试探索更加便利的无缝输入方案。如果你也在 Hyprland 或者 Omarchy 桌面下寻找一套快速、低开销且足够严谨的密码管理方案，欢迎体验并给我提建议。</p>
+]]></content:encoded></item></channel></rss>
