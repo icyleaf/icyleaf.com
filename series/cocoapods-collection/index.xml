@@ -28,7 +28,7 @@
   
   
     
-      <figure data-pswp="2270x1316" data-size="800x"><a href="/uploads/2022/11/10/jsdelivr-network.png" class="gallery-item" target="_blank" data-pswp-width="2270" data-pswp-height="1316"><img src="/uploads/2022/11/10/jsdelivr-network_hu6915014520778962123.png"/></a><figcaption>
+      <figure data-pswp="2270x1316" data-size="800x"><a href="/uploads/2022/11/10/jsdelivr-network.png" class="gallery-item" target="_blank" data-pswp-width="2270" data-pswp-height="1316"><img src="/uploads/2022/11/10/jsdelivr-network_hu_e9f1757f490fdaa.png"/></a><figcaption>
 
     <p>jsdelivr network</p></figcaption></figure>
 
@@ -59,14 +59,14 @@
   
   
     
-      <figure data-pswp="1698x582" data-size="800x"><a href="/uploads/2022/11/10/jsdelivr-github-demo.png" class="gallery-item" target="_blank" data-pswp-width="1698" data-pswp-height="582"><img src="/uploads/2022/11/10/jsdelivr-github-demo_hu10365139180803583141.png"/></a><figcaption><p class="source"><a href="https://www.jsdelivr.com/github">生成工具</a>
+      <figure data-pswp="1698x582" data-size="800x"><a href="/uploads/2022/11/10/jsdelivr-github-demo.png" class="gallery-item" target="_blank" data-pswp-width="1698" data-pswp-height="582"><img src="/uploads/2022/11/10/jsdelivr-github-demo_hu_eaa1f4cb3c488d79.png"/></a><figcaption><p class="source"><a href="https://www.jsdelivr.com/github">生成工具</a>
     </p>
 
     <p>Cocoapods github 仓库和 jsdelivr CDN 生成结果</p></figcaption></figure>
 
 <p>打开 <code>Podfile</code> 修改或添加新的地址：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="line"><span class="ln">1</span><span class="cl"><span class="gd">- source &#34;https://cdn.cocoapods.org&#34;
-</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="gd"></span><span class="gi">+ source &#34;https://cdn.jsdelivr.net/gh/CocoaPods/cdn.cocoapods.org@gh-pages&#34;
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="gi">+ source &#34;https://cdn.jsdelivr.net/gh/CocoaPods/cdn.cocoapods.org@gh-pages&#34;
 </span></span></span></code></pre></div><p>也可以手动指定 jsdelivr 不同的 CDN 供应商</p>
 <ul>
 <li>fastly.jsdelivr.net</li>
@@ -106,12 +106,12 @@
 <p>第三步，下载 <code>Cocoapods-version.yml</code> 并缓存 etag，下载 <code>/Cocoapods-version.yml</code> 并取 headers 的第一个 etag 的值存为 <code>/Cocoapods-version.yml.etag</code>，如果存在 etag 会比对一样就不需要下载， 链接支持根目录和其他目录，支持 301 跳转。</p>
 <p>Cocoapods-version.yml</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nn">---</span><span class="w">
-</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w"></span><span class="nt">min</span><span class="p">:</span><span class="w"> </span><span class="m">1.0.0</span><span class="w">
-</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="w"></span><span class="nt">last</span><span class="p">:</span><span class="w"> </span><span class="m">1.8.4</span><span class="w">
-</span></span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="w"></span><span class="nt">prefix_lengths</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="w"></span>- <span class="m">1</span><span class="w">
-</span></span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="w"></span>- <span class="m">1</span><span class="w">
-</span></span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="w"></span>- <span class="m">1</span><span class="w">
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="nt">min</span><span class="p">:</span><span class="w"> </span><span class="m">1.0.0</span><span class="w">
+</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="nt">last</span><span class="p">:</span><span class="w"> </span><span class="m">1.8.4</span><span class="w">
+</span></span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="nt">prefix_lengths</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">5</span><span class="cl">- <span class="m">1</span><span class="w">
+</span></span></span><span class="line"><span class="ln">6</span><span class="cl">- <span class="m">1</span><span class="w">
+</span></span></span><span class="line"><span class="ln">7</span><span class="cl">- <span class="m">1</span><span class="w">
 </span></span></span></code></pre></div><p>第四步，分析 Pod 并获取 pod 的版本信息，比如 Podfile 我增加了一个 <code>pod &quot;AFNetworking&quot;</code>，把 pod 名字做 MD5 后的值取 Cocoapods-version.yml 的 prefiex_length 数组长度的值单字母拆分用下划线分割按照规则拼成文件名 <code>all_pods_versions(_{fragment}).txt</code> (如果prefix_length 为 0 则只会去下载 <code>/all_pods_versions.txt</code>)</p>
 <p>比如：prefix_lengths 数组大小为 3，AFNetworking MD5 后 <code>a75d452377f396bdc4b623a5df25820</code> 则匹配前三位 a75 拆分后 a_7_5
 后查找 cdn url 路径的 <code>/all_pods_versions_a_7_5.txt</code> 下载下来后的内容：</p>

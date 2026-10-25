@@ -19,7 +19,7 @@
   
   
     
-      <figure data-pswp="1920x1221" data-size="800x"><a href="/uploads/2025/05/scanservjs-demo.jpg" class="gallery-item" target="_blank" data-pswp-width="1920" data-pswp-height="1221"><img src="/uploads/2025/05/scanservjs-demo_hu4841566340674628060.jpg"
+      <figure data-pswp="1920x1221" data-size="800x"><a href="/uploads/2025/05/scanservjs-demo.jpg" class="gallery-item" target="_blank" data-pswp-width="1920" data-pswp-height="1221"><img src="/uploads/2025/05/scanservjs-demo_hu_35dee5d5a577a903.jpg"
       alt="Copyrights"/></a><figcaption><p class="source">Copyrights<a href="https://github.com/sbs20/scanservjs">Sam Strachan</a>
     </p>
 
@@ -45,7 +45,7 @@
   
   
     
-      <figure data-pswp="1588x1152" data-size="800x"><a href="/uploads/2025/05/scanservjs-webui.png" class="gallery-item" target="_blank" data-pswp-width="1588" data-pswp-height="1152"><img src="/uploads/2025/05/scanservjs-webui_hu17414530358571396337.png"/></a></figure>
+      <figure data-pswp="1588x1152" data-size="800x"><a href="/uploads/2025/05/scanservjs-webui.png" class="gallery-item" target="_blank" data-pswp-width="1588" data-pswp-height="1152"><img src="/uploads/2025/05/scanservjs-webui_hu_5cf01164801c45f4.png"/></a></figure>
 
 <p>点击预览 （Preview）可以在 Web 看到扫描后的文件或图片，调整后可以再扫描 （Scan），扫描后的文件都会在文件列表，可以下载或编辑，根本都不需要点击机器上的扫描按键和任何配置。</p>
 
@@ -64,7 +64,7 @@
   
   
     
-      <figure data-pswp="2329x1472" data-size="800x"><a href="/uploads/2025/05/scanservjs-swagger.png" class="gallery-item" target="_blank" data-pswp-width="2329" data-pswp-height="1472"><img src="/uploads/2025/05/scanservjs-swagger_hu8827543736258685581.png"/></a></figure>
+      <figure data-pswp="2329x1472" data-size="800x"><a href="/uploads/2025/05/scanservjs-swagger.png" class="gallery-item" target="_blank" data-pswp-width="2329" data-pswp-height="1472"><img src="/uploads/2025/05/scanservjs-swagger_hu_4f7188fa9519576a.png"/></a></figure>
 
 <p>服务提供的 API 基本上满足需求，如果再有一个获得设备列表的接口就更好了 :D</p>
 <p>到此这台扫描、打印机为一体的传统机器已经焕发新生。</p>
@@ -137,18 +137,18 @@
 </span></span><span class="line"><span class="ln">5</span><span class="cl">sudo usermod -aG lpadmin icyleaf
 </span></span></code></pre></div><p>配置局域网内可以访问 CUPS 的 WEB 管理页面，编辑 <code>/etc/cups/cupd.conf</code>:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="gd">- Listen 127.0.0.1:631
-</span></span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="gd"></span><span class="gi">+ Listen 0.0.0.0:631
-</span></span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="gi"></span>
+</span></span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="gi">+ Listen 0.0.0.0:631
+</span></span></span><span class="line"><span class="ln"> 3</span><span class="cl">
 </span></span><span class="line"><span class="ln"> 4</span><span class="cl"># 限制局域网段 192.168.222.0/24 可访问
 </span></span><span class="line"><span class="ln"> 5</span><span class="cl">&lt;Location /&gt;
 </span></span><span class="line"><span class="ln"> 6</span><span class="cl">  Order allow,deny
 </span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="gi">+  Allow From 192.168.222.0/24
-</span></span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="gi"></span>&lt;/Location&gt;
+</span></span></span><span class="line"><span class="ln"> 8</span><span class="cl">&lt;/Location&gt;
 </span></span><span class="line"><span class="ln"> 9</span><span class="cl">
 </span></span><span class="line"><span class="ln">10</span><span class="cl">&lt;Location /admin&gt;
 </span></span><span class="line"><span class="ln">11</span><span class="cl">  Order allow,deny
 </span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="gi">+  Allow 192.168.222.0/24
-</span></span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="gi"></span>&lt;/Location&gt;
+</span></span></span><span class="line"><span class="ln">13</span><span class="cl">&lt;/Location&gt;
 </span></span></code></pre></div><h2 id="配置打印机">配置打印机</h2>
 <p>使用服务器的 IP (比如是 192.168.222.100) <code>https://192.168.222.100:631/admin</code> ，第一次打开需要使用服务器配置的用户和密码授权认证后开始添加打印机，记得先打开打印机等待预热完毕。</p>
 
@@ -167,7 +167,7 @@
   
   
     
-      <figure data-pswp="1201x726" data-size="800x"><a href="/uploads/2024/10/add-printer.png" class="gallery-item" target="_blank" data-pswp-width="1201" data-pswp-height="726"><img src="/uploads/2024/10/add-printer_hu10132767163743862641.png"/></a></figure>
+      <figure data-pswp="1201x726" data-size="800x"><a href="/uploads/2024/10/add-printer.png" class="gallery-item" target="_blank" data-pswp-width="1201" data-pswp-height="726"><img src="/uploads/2024/10/add-printer_hu_3ecfe523ca2dd3aa.png"/></a></figure>
 
 <p>添加打印机时已经识别到打印机配置，选择第二个进行下一步。</p>
 
@@ -186,7 +186,7 @@
   
   
     
-      <figure data-pswp="1117x503" data-size="800x"><a href="/uploads/2024/10/set-printer-information.png" class="gallery-item" target="_blank" data-pswp-width="1117" data-pswp-height="503"><img src="/uploads/2024/10/set-printer-information_hu16195519567328272891.png"/></a></figure>
+      <figure data-pswp="1117x503" data-size="800x"><a href="/uploads/2024/10/set-printer-information.png" class="gallery-item" target="_blank" data-pswp-width="1117" data-pswp-height="503"><img src="/uploads/2024/10/set-printer-information_hu_7aa0a9f2fee06eac.png"/></a></figure>
 
 <p>记得勾选 <code>Share This Printer</code> 允许局域网其他设备可以连接到这台打印机。</p>
 
@@ -205,7 +205,7 @@
   
   
     
-      <figure data-pswp="1212x775" data-size="800x"><a href="/uploads/2024/10/set-printer-driver.png" class="gallery-item" target="_blank" data-pswp-width="1212" data-pswp-height="775"><img src="/uploads/2024/10/set-printer-driver_hu10128032967233664781.png"/></a></figure>
+      <figure data-pswp="1212x775" data-size="800x"><a href="/uploads/2024/10/set-printer-driver.png" class="gallery-item" target="_blank" data-pswp-width="1212" data-pswp-height="775"><img src="/uploads/2024/10/set-printer-driver_hu_16084ffd739abf10.png"/></a></figure>
 
 <p>打印机的品牌已经正确识别，选择打印机对应的型号，看到 &ldquo;Printer Brother_DCP-7040 has been added successfully.&rdquo; 离成功就差最后一步。</p>
 
@@ -224,7 +224,7 @@
   
   
     
-      <figure data-pswp="1257x746" data-size="800x"><a href="/uploads/2024/10/set-printer-metadata.png" class="gallery-item" target="_blank" data-pswp-width="1257" data-pswp-height="746"><img src="/uploads/2024/10/set-printer-metadata_hu15088787595505913060.png"/></a></figure>
+      <figure data-pswp="1257x746" data-size="800x"><a href="/uploads/2024/10/set-printer-metadata.png" class="gallery-item" target="_blank" data-pswp-width="1257" data-pswp-height="746"><img src="/uploads/2024/10/set-printer-metadata_hu_30370f4fdb3dd65e.png"/></a></figure>
 
 <p>因为还要设置好纸张类型、DPI、纸张类型&hellip;一切都设置好可以在 Manage Printer 查看打印机信息和相关维护功能。</p>
 
@@ -243,7 +243,7 @@
   
   
     
-      <figure data-pswp="1919x888" data-size="800x"><a href="/uploads/2024/10/brother-printer.png" class="gallery-item" target="_blank" data-pswp-width="1919" data-pswp-height="888"><img src="/uploads/2024/10/brother-printer_hu379063551251061234.png"/></a></figure>
+      <figure data-pswp="1919x888" data-size="800x"><a href="/uploads/2024/10/brother-printer.png" class="gallery-item" target="_blank" data-pswp-width="1919" data-pswp-height="888"><img src="/uploads/2024/10/brother-printer_hu_48e504cb116f94fb.png"/></a></figure>
 
 <h2 id="配置服务发现">配置服务发现</h2>
 <p>如果服务器已经安装 avahi 服务则可以直接看下一章节，没有安装的只需要安装一下即可无需额外的配置。</p>
@@ -266,7 +266,7 @@
   
   
     
-      <figure data-pswp="600x1300" data-size="800x"><a href="/uploads/2024/10/iphone-airprint.png" class="gallery-item" target="_blank" data-pswp-width="600" data-pswp-height="1300"><img src="/uploads/2024/10/iphone-airprint_hu10681743698282296490.png"/></a></figure>
+      <figure data-pswp="600x1300" data-size="800x"><a href="/uploads/2024/10/iphone-airprint.png" class="gallery-item" target="_blank" data-pswp-width="600" data-pswp-height="1300"><img src="/uploads/2024/10/iphone-airprint_hu_21e0ae4b39b542c8.png"/></a></figure>
 
 <p>提交后能够在 CUPS 的任务队列查看详情信息。</p>
 
@@ -285,7 +285,7 @@
   
   
     
-      <figure data-pswp="2442x664" data-size="800x"><a href="/uploads/2024/10/printer-jobs.png" class="gallery-item" target="_blank" data-pswp-width="2442" data-pswp-height="664"><img src="/uploads/2024/10/printer-jobs_hu16458583105410469404.png"/></a></figure>
+      <figure data-pswp="2442x664" data-size="800x"><a href="/uploads/2024/10/printer-jobs.png" class="gallery-item" target="_blank" data-pswp-width="2442" data-pswp-height="664"><img src="/uploads/2024/10/printer-jobs_hu_a561d6c8915e6881.png"/></a></figure>
 
 <h2 id="修改打印纸张配置">修改打印纸张配置</h2>
 <p>用了一段时间发打印机的时候纸张一直是 US Letter。经过一段时间的研究 AirPrint 无线打印的纸张尺寸的预设是在打印机提供了而不是手机系统本身，因此无论修改系统语言是没有效果的，默认 cups 设置的是 US Letter 需要手动修改 <code>/etc/cups/cupsd.conf</code> 配置如下</p>
@@ -334,7 +334,7 @@ DefaultPaperSize A4
   
   
     
-      <figure data-pswp="2552x1204" data-size="800x"><a href="/uploads/2023/08/grafana-mosdns.png" class="gallery-item" target="_blank" data-pswp-width="2552" data-pswp-height="1204"><img src="/uploads/2023/08/grafana-mosdns_hu14669541674982067454.png"/></a><figcaption>
+      <figure data-pswp="2552x1204" data-size="800x"><a href="/uploads/2023/08/grafana-mosdns.png" class="gallery-item" target="_blank" data-pswp-width="2552" data-pswp-height="1204"><img src="/uploads/2023/08/grafana-mosdns_hu_38c04c86c25b6a53.png"/></a><figcaption>
 
     <p>实时监控 mosdns 规则解析 Grafana 看板</p></figcaption></figure>
 
@@ -376,7 +376,7 @@ DefaultPaperSize A4
   
   
     
-      <figure data-pswp="1630x736" data-size="800x"><a href="/uploads/2023/08/vector-flow.png" class="gallery-item" target="_blank" data-pswp-width="1630" data-pswp-height="736"><img src="/uploads/2023/08/vector-flow_hu10473946876088393779.png"/></a></figure>
+      <figure data-pswp="1630x736" data-size="800x"><a href="/uploads/2023/08/vector-flow.png" class="gallery-item" target="_blank" data-pswp-width="1630" data-pswp-height="736"><img src="/uploads/2023/08/vector-flow_hu_5dbeb54e81943d1.png"/></a></figure>
 
 <p>vector 需要能够直接访问到 mosdns 的日志文件。这里有两种方式可以实现：一种是两个服务都在一台机器上运行，另外一种是通过容器化共享 volume 让 vector 可以读取 mosdns 日志。</p>
 <p>工具本身是 Go 语言开发从 Github 直接下载好对应的包解压缩就能够使用或者使用一键安装脚本：</p>
@@ -397,20 +397,20 @@ DefaultPaperSize A4
 </span></span></code></pre></div><p>修改 <code>/etc/vector/config.yml</code> 的配置文件如下</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="nt">data_dir</span><span class="p">:</span><span class="w"> </span><span class="l">/tmp/vector</span><span class="w">
 </span></span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="w"></span><span class="nt">sources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="nt">sources</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="w">  </span><span class="nt">mosdns-log-file</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">file</span><span class="w">
 </span></span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="w">    </span><span class="nt">include</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="w">      </span>- <span class="l">/var/log/mosdns.log</span><span class="w">
 </span></span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="w">    </span><span class="nt">read_from</span><span class="p">:</span><span class="w"> </span><span class="l">beginning</span><span class="w">
 </span></span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="w"></span><span class="nt">transforms</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="nt">transforms</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="w">  </span><span class="nt">mosdns-input</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">filter</span><span class="w">
 </span></span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="w">    </span><span class="nt">inputs</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="w">      </span>- <span class="l">mosdns-log-file</span><span class="w">
 </span></span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="w">    </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
-</span></span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="sd">      .file == &#34;/var/log/mosdns.log&#34;</span><span class="w">      
+</span></span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="sd">      .file == &#34;/var/log/mosdns.log&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="w">  </span><span class="nt">mosdns-data</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="ln">19</span><span class="cl"><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">remap</span><span class="w">
@@ -453,9 +453,9 @@ DefaultPaperSize A4
 </span></span></span><span class="line"><span class="ln">56</span><span class="cl"><span class="sd">      if (exists(.query)) {
 </span></span></span><span class="line"><span class="ln">57</span><span class="cl"><span class="sd">        . = merge!(., .query)
 </span></span></span><span class="line"><span class="ln">58</span><span class="cl"><span class="sd">        del(.query)
-</span></span></span><span class="line"><span class="ln">59</span><span class="cl"><span class="sd">      }</span><span class="w">      
+</span></span></span><span class="line"><span class="ln">59</span><span class="cl"><span class="sd">      }</span><span class="w">
 </span></span></span><span class="line"><span class="ln">60</span><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="ln">61</span><span class="cl"><span class="w"></span><span class="nt">sinks</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">61</span><span class="cl"><span class="nt">sinks</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="ln">62</span><span class="cl"><span class="w">  </span><span class="c"># 同步到 loki，根据实际情况修改 endpoint 的值</span><span class="w">
 </span></span></span><span class="line"><span class="ln">63</span><span class="cl"><span class="w">  </span><span class="nt">loki</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="ln">64</span><span class="cl"><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">loki</span><span class="w">
@@ -480,17 +480,17 @@ DefaultPaperSize A4
 </span></span></span></code></pre></div><p>mosdns 5.3 对比 5.0 ~ 5.1.x 版本时间戳和 query 字段做了修改，需要调整配置文件：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="line"><span class="ln"> 1</span><span class="cl">...
 </span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="gd">-      .timestamp = parse_timestamp!(message_parts[0], format: &#34;%F %T&#34;)
-</span></span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="gd"></span><span class="gi">+      .timestamp = parse_timestamp!(message_parts[0], format: &#34;%FT%T%.9fZ&#34;)
-</span></span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="gi"></span>
+</span></span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="gi">+      .timestamp = parse_timestamp!(message_parts[0], format: &#34;%FT%T%.9fZ&#34;)
+</span></span></span><span class="line"><span class="ln"> 4</span><span class="cl">
 </span></span><span class="line"><span class="ln"> 5</span><span class="cl">...
 </span></span><span class="line"><span class="ln"> 6</span><span class="cl">      if (exists(.query)) {
 </span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="gd">-        . = merge!(., .query)
 </span></span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="gd">-        del(.query)
-</span></span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="gd"></span><span class="gi">+        query_parts = split!(.query, r&#39;\s&#39;)
+</span></span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="gi">+        query_parts = split!(.query, r&#39;\s&#39;)
 </span></span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="gi">+        .domain = query_parts[0]
 </span></span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="gi">+        .record = query_parts[2]
 </span></span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="gi">+        .address = query_parts[5]
-</span></span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="gi"></span>      }
+</span></span></span><span class="line"><span class="ln">13</span><span class="cl">      }
 </span></span></code></pre></div><p>运行 vector 服务（部署好 loki 后再运行）</p>
 <p>非 openwrt 用户使用</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">vector --config /etc/vector/config.yml --watch-config --verbose
@@ -541,7 +541,7 @@ DefaultPaperSize A4
   
   
     
-      <figure data-pswp="1804x800" data-size="800x"><a href="/uploads/2023/08/import-grafana-dashboard.png" class="gallery-item" target="_blank" data-pswp-width="1804" data-pswp-height="800"><img src="/uploads/2023/08/import-grafana-dashboard_hu17516823876611020524.png"/></a><figcaption>
+      <figure data-pswp="1804x800" data-size="800x"><a href="/uploads/2023/08/import-grafana-dashboard.png" class="gallery-item" target="_blank" data-pswp-width="1804" data-pswp-height="800"><img src="/uploads/2023/08/import-grafana-dashboard_hu_a7e1b3a1c0080594.png"/></a><figcaption>
 
     <p>Grafana 导入 Dashboard 看板</p></figcaption></figure>
 
@@ -561,7 +561,7 @@ DefaultPaperSize A4
   
   
     
-      <figure data-pswp="2138x1306" data-size="800x"><a href="/uploads/2023/08/configure-grafana-database.png" class="gallery-item" target="_blank" data-pswp-width="2138" data-pswp-height="1306"><img src="/uploads/2023/08/configure-grafana-database_hu9312454246112292748.png"/></a><figcaption>
+      <figure data-pswp="2138x1306" data-size="800x"><a href="/uploads/2023/08/configure-grafana-database.png" class="gallery-item" target="_blank" data-pswp-width="2138" data-pswp-height="1306"><img src="/uploads/2023/08/configure-grafana-database_hu_2bcff4f928af9458.png"/></a><figcaption>
 
     <p>Grafana 配置数据源</p></figcaption></figure>
 
@@ -1068,26 +1068,26 @@ nameserver 8.8.4.4 # 备选 DNS
 <table>
   <thead>
       <tr>
-          <th style="text-align: left">参数</th>
-          <th style="text-align: left">英文</th>
-          <th style="text-align: left">说明</th>
+          <th>参数</th>
+          <th>英文</th>
+          <th>说明</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td style="text-align: left">u</td>
-          <td style="text-align: left">Use</td>
-          <td style="text-align: left">当前用户</td>
+          <td>u</td>
+          <td>Use</td>
+          <td>当前用户</td>
       </tr>
       <tr>
-          <td style="text-align: left">g</td>
-          <td style="text-align: left">Group</td>
-          <td style="text-align: left">所属用户组</td>
+          <td>g</td>
+          <td>Group</td>
+          <td>所属用户组</td>
       </tr>
       <tr>
-          <td style="text-align: left">o</td>
-          <td style="text-align: left">Others</td>
-          <td style="text-align: left">其他人（其他用户及用户组，包含访客用户）</td>
+          <td>o</td>
+          <td>Others</td>
+          <td>其他人（其他用户及用户组，包含访客用户）</td>
       </tr>
   </tbody>
 </table>
@@ -1095,34 +1095,34 @@ nameserver 8.8.4.4 # 备选 DNS
 <table>
   <thead>
       <tr>
-          <th style="text-align: left">数字</th>
-          <th style="text-align: left">符号</th>
-          <th style="text-align: left">说明</th>
-          <th style="text-align: left">对文件</th>
-          <th style="text-align: left">对目录</th>
+          <th>数字</th>
+          <th>符号</th>
+          <th>说明</th>
+          <th>对文件</th>
+          <th>对目录</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td style="text-align: left">1</td>
-          <td style="text-align: left">x</td>
-          <td style="text-align: left">可执行权限</td>
-          <td style="text-align: left">可被系统执行的权限</td>
-          <td style="text-align: left">无</td>
+          <td>1</td>
+          <td>x</td>
+          <td>可执行权限</td>
+          <td>可被系统执行的权限</td>
+          <td>无</td>
       </tr>
       <tr>
-          <td style="text-align: left">2</td>
-          <td style="text-align: left">w</td>
-          <td style="text-align: left">写权限</td>
-          <td style="text-align: left">可以编辑或修改文件内容，但不含删除该文件</td>
-          <td style="text-align: left">增删改该目录及目录下全部文件</td>
+          <td>2</td>
+          <td>w</td>
+          <td>写权限</td>
+          <td>可以编辑或修改文件内容，但不含删除该文件</td>
+          <td>增删改该目录及目录下全部文件</td>
       </tr>
       <tr>
-          <td style="text-align: left">4</td>
-          <td style="text-align: left">r</td>
-          <td style="text-align: left">读权限</td>
-          <td style="text-align: left">可读取文件的内容</td>
-          <td style="text-align: left">可读取目录结构</td>
+          <td>4</td>
+          <td>r</td>
+          <td>读权限</td>
+          <td>可读取文件的内容</td>
+          <td>可读取目录结构</td>
       </tr>
   </tbody>
 </table>
@@ -1135,21 +1135,21 @@ nameserver 8.8.4.4 # 备选 DNS
 <table>
   <thead>
       <tr>
-          <th style="text-align: left">u</th>
-          <th style="text-align: left">g</th>
-          <th style="text-align: left">o</th>
+          <th>u</th>
+          <th>g</th>
+          <th>o</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td style="text-align: left">6</td>
-          <td style="text-align: left">4</td>
-          <td style="text-align: left">4</td>
+          <td>6</td>
+          <td>4</td>
+          <td>4</td>
       </tr>
       <tr>
-          <td style="text-align: left">rw</td>
-          <td style="text-align: left">r</td>
-          <td style="text-align: left">r</td>
+          <td>rw</td>
+          <td>r</td>
+          <td>r</td>
       </tr>
   </tbody>
 </table>
@@ -1157,21 +1157,21 @@ nameserver 8.8.4.4 # 备选 DNS
 <table>
   <thead>
       <tr>
-          <th style="text-align: left">u</th>
-          <th style="text-align: left">g</th>
-          <th style="text-align: left">o</th>
+          <th>u</th>
+          <th>g</th>
+          <th>o</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td style="text-align: left">7</td>
-          <td style="text-align: left">7</td>
-          <td style="text-align: left">7</td>
+          <td>7</td>
+          <td>7</td>
+          <td>7</td>
       </tr>
       <tr>
-          <td style="text-align: left">rwx</td>
-          <td style="text-align: left">rwx</td>
-          <td style="text-align: left">rwx</td>
+          <td>rwx</td>
+          <td>rwx</td>
+          <td>rwx</td>
       </tr>
   </tbody>
 </table>
@@ -1181,22 +1181,22 @@ nameserver 8.8.4.4 # 备选 DNS
 <table>
   <thead>
       <tr>
-          <th style="text-align: left">操作</th>
-          <th style="text-align: left">说明</th>
+          <th>操作</th>
+          <th>说明</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td style="text-align: left">-</td>
-          <td style="text-align: left">移除权限</td>
+          <td>-</td>
+          <td>移除权限</td>
       </tr>
       <tr>
-          <td style="text-align: left">+</td>
-          <td style="text-align: left">增加权限</td>
+          <td>+</td>
+          <td>增加权限</td>
       </tr>
       <tr>
-          <td style="text-align: left">=</td>
-          <td style="text-align: left">设定权限</td>
+          <td>=</td>
+          <td>设定权限</td>
       </tr>
   </tbody>
 </table>
@@ -1210,16 +1210,16 @@ nameserver 8.8.4.4 # 备选 DNS
 <pre tabindex="0"><code>$ chmod go-rw [file]
 </code></pre><h4 id="5-设置当前用户所有权限所属用户组和其他人保留读权限">5. 设置当前用户所有权限，所属用户组和其他人保留读权限</h4>
 <pre tabindex="0"><code>$ chmod u=rwx,g=r,o=r [file]
-</code></pre>]]></content:encoded></item><item><title>OSX 下 Finer 和 Terminal 相互切换</title><link>https://icyleaf.com/2010/12/switer-between-finder-and-terminal-in-osx/</link><pubDate>Wed, 08 Dec 2010 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2010/12/switer-between-finder-and-terminal-in-osx/</guid><description>&lt;p>&lt;strong>在 Finder 打开 Terminal 并切换到当前目录&lt;/strong>&lt;/p>
-&lt;p>安装一个开源的 Finder 辅助工具：&lt;a href="http://code.google.com/p/cdto/">cdto&lt;/a>。功能只有一个就是实现在 Finder 打开 Terminal 并切换到当前 Finder 目录。找到你系统的版本的 app （支持当前 OS X 10.4 以上版本）拷贝到 Applications 下并把它拖到 Finder 的工具栏上即可。&lt;/p>...</description><content:encoded><![CDATA[<p><strong>在 Finder 打开 Terminal 并切换到当前目录</strong></p>
+</code></pre>]]></content:encoded></item><item><title>OSX 下 Finer 和 Terminal 相互切换</title><link>https://icyleaf.com/2010/12/switer-between-finder-and-terminal-in-osx/</link><pubDate>Wed, 08 Dec 2010 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2010/12/switer-between-finder-and-terminal-in-osx/</guid><description>&lt;p&gt;&lt;strong&gt;在 Finder 打开 Terminal 并切换到当前目录&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;安装一个开源的 Finder 辅助工具：&lt;a href="http://code.google.com/p/cdto/"&gt;cdto&lt;/a&gt;。功能只有一个就是实现在 Finder 打开 Terminal 并切换到当前 Finder 目录。找到你系统的版本的 app （支持当前 OS X 10.4 以上版本）拷贝到 Applications 下并把它拖到 Finder 的工具栏上即可。&lt;/p&gt;...</description><content:encoded><![CDATA[<p><strong>在 Finder 打开 Terminal 并切换到当前目录</strong></p>
 <p>安装一个开源的 Finder 辅助工具：<a href="http://code.google.com/p/cdto/">cdto</a>。功能只有一个就是实现在 Finder 打开 Terminal 并切换到当前 Finder 目录。找到你系统的版本的 app （支持当前 OS X 10.4 以上版本）拷贝到 Applications 下并把它拖到 Finder 的工具栏上即可。</p>
 <p><strong>从 Terminal 中用 Finder 打开当前路径的目录</strong></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ open .
 </span></span></code></pre></div><p>PS，如果是 Ubuntu 系统的话请安装 nautilus，然后在 Terminal 里面输入</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ nautilus .
-</span></span></code></pre></div>]]></content:encoded></item><item><title>如何使用 VirtualBox 安装 Linux 系统</title><link>https://icyleaf.com/2008/03/how-to-use-linux-systems-installed-virtualbox/</link><pubDate>Thu, 13 Mar 2008 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2008/03/how-to-use-linux-systems-installed-virtualbox/</guid><description>&lt;p>&lt;a href="http://www.icyleaf.cn/2008/03/12/virtualbox-free-cross-platform-open-source-virtual-machine/">VirtualBox&lt;/a>也已经介绍过了，
-昨天是实实在在的用VirtualBox体验了一下 &lt;a href="http://www.linuxmint.com/">Linux Mint&lt;/a> 系统。
-这篇日志我就大概的说下如何用VirtualBox安装和汉化Linux Mint系统，大家先看一个经过简单设置有的效果图：&lt;/p>...</description><content:encoded><![CDATA[<p><a href="http://www.icyleaf.cn/2008/03/12/virtualbox-free-cross-platform-open-source-virtual-machine/">VirtualBox</a>也已经介绍过了，
+</span></span></code></pre></div>]]></content:encoded></item><item><title>如何使用 VirtualBox 安装 Linux 系统</title><link>https://icyleaf.com/2008/03/how-to-use-linux-systems-installed-virtualbox/</link><pubDate>Thu, 13 Mar 2008 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2008/03/how-to-use-linux-systems-installed-virtualbox/</guid><description>&lt;p&gt;&lt;a href="http://www.icyleaf.cn/2008/03/12/virtualbox-free-cross-platform-open-source-virtual-machine/"&gt;VirtualBox&lt;/a&gt;也已经介绍过了，
+昨天是实实在在的用VirtualBox体验了一下 &lt;a href="http://www.linuxmint.com/"&gt;Linux Mint&lt;/a&gt; 系统。
+这篇日志我就大概的说下如何用VirtualBox安装和汉化Linux Mint系统，大家先看一个经过简单设置有的效果图：&lt;/p&gt;...</description><content:encoded><![CDATA[<p><a href="http://www.icyleaf.cn/2008/03/12/virtualbox-free-cross-platform-open-source-virtual-machine/">VirtualBox</a>也已经介绍过了，
 昨天是实实在在的用VirtualBox体验了一下 <a href="http://www.linuxmint.com/">Linux Mint</a> 系统。
 这篇日志我就大概的说下如何用VirtualBox安装和汉化Linux Mint系统，大家先看一个经过简单设置有的效果图：</p>
 <p>这个背景是系统自带的一个，呵呵(^___^)，在介绍 <a href="http://www.icyleaf.cn/2008/03/12/virtualbox-free-cross-platform-open-source-virtual-machine/">VirtualBox</a>

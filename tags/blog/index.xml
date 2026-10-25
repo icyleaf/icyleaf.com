@@ -18,13 +18,13 @@
 
 
 <p>博客的历史文章通过几次的系统和脚本转换过，已经不堪入目。在统一 markdown 格式的时候还翻看了自己写的文字有些感触。复活记可能还要经历几次，不如就写一篇博客的迁徙记吧。</p>
-<h2 id="hugohttpgohugoio"><a href="http://gohugo.io/">Hugo</a></h2>
+<h2 id="hugo"><a href="http://gohugo.io/">Hugo</a></h2>
 <blockquote>
 <p>2016.8 ~ 至今</p>
 </blockquote>
 <p>Hugo 是用 Go 语言开发维护的，再了解和上手上着实让我研究了好一番，因为它的自由度太大了，初始化项目后居然连主题都不带的，都需要自己从 github 上安装一份之后才能运行。其实切换使用它的最根本原因是 Hexo 是满足我的绝大部分需求的尤其是原先用的 NexT 主题也很好用，但唯一比较麻烦的是它依赖 Node.js 每次用 Docker 在本地进行维护的时候都要更新好久。我也喜欢在 VPS 上也备有一套运行环境，脱离了有环境的电脑我随时可以写完同步后在服务器上面手动或自动生成。基于这点给我带来的困扰是最多的，因为我的服务器配置的最低标准，内存还不到 1G，每次 hexo 在生成静态资源的时候很容易把内存爆掉，直接抛出内存不足的异常。反观 hugo 命令编译后可以在任意平台直接使用，速度也是搜搜的，内存占用也就不用说了，虽然没有 hexo 的迁移方案，整体也很简单，因为 hugo 除了默认支持 toml 格式以为，还兼容 yaml 和 json。文章的内容都是 markdown 这个基本上是业界标配了。</p>
 <p>在整理之余，我对于 docker 和 docker-compose 有了更好的理解，同时新的博客系统会用 caddy 把 nginx 替换掉跑一段时间看看，可能还会切换成 h2o 再跑一段时间来分别看看两者的性能情况。新的 http server 都是基于 HTTP/2 协议优化的。我想后面是属于 HTTPS + HTTP/2 的时代。</p>
-<h2 id="hexohttpshexoio"><a href="https://hexo.io/">Hexo</a></h2>
+<h2 id="hexo"><a href="https://hexo.io/">Hexo</a></h2>
 <blockquote>
 <p>2013.12 ~ 2016.8</p>
 </blockquote>
@@ -34,7 +34,7 @@
 <p>博客的复活是意料之外的事情，前几天惯例的吸收网上的信息，看到推荐一个 VPS，和 DigitalOcean 类似 SSD 硬盘、最低每月 5 刀的租金。速度方面很明显，尝试一番后发现最优情况 ping 值可以稳定在 60 ~ 100 左右，下载速度也能达到 1~2Mb/s。信用卡刷钱先试 3 个月再说。自然就想到把博客迁移过来。年底将至，还要有两年的总结需要完成，提前做好准备也是件好事。</p>
 <p>从 Dropbox 找回博客系统和日志，重新本地部署环境。悲催，Hexo 不工作了。检查后发现升级到 3.0 版本，代码结构变化了的。文章的格式也做了调整。又有事情要忙活了。</p>
 <p>写好升级兼容脚本，文章没问题了，主题有崩了。脑海里立即飘出来一个曾经看到过的网站用的是 Hexo 搭建的，主题还挺好看。打开 Chrome 页面历史搜索关键字，打开目标网站快捷键切换到页面底部 &ldquo;Theme - NexT&rdquo;，一切就顺理成章的平滑过来。还顺手试了一把 <code>git subtree</code> 代替费死牛力的 <code>git submodule</code>。</p>
-<h2 id="pelicanhttpsgithubcomgetpelicanpelican"><a href="https://github.com/getpelican/pelican">Pelican</a></h2>
+<h2 id="pelican"><a href="https://github.com/getpelican/pelican">Pelican</a></h2>
 <blockquote>
 <p>2013.1 ~ 2013.12</p>
 </blockquote>
@@ -45,7 +45,7 @@
 <p>顺带提一句，Dango 自带的模板引擎和 Jinja2 用着是最爽的事情，和 Ruby 的 Haml/Slim 是不一样的 G 点。</p>
 <p>本人从小偏爱骑行，在北京漂泊的日子，也只能是户外登山扎营（装备可压缩），反复的搬家对于还要再带一个自行车和一堆配件来说有些艰巨，在更换一个相对比较大的租房一狠心入了美利达公爵 650。长时间的骑行和休闲骑车差别很明显。累！很累！尤其是和公路车一起骑更累！骑行不像是登山，后者只需要完成登山的过程享受一把自虐，骑行是全程的，从你报名一个活动开始，你要从家骑到集合点、骑到目的地、骑到腐败点、最后还要疲惫的骑回家，这个过程是值得回忆的。也就有了我第一次长距离骑行，献给了<a href="http://icyleaf.com/2013/05/riding-to-hulunbeier/">http://icyleaf.com/2013/05/riding-to-hulunbeier/</a></p>
 <p>历史快照：https://web.archive.org/web/20130201044534/http://icyleaf.com/</p>
-<h2 id="chyrphttpsgithubcomvitochyrp"><a href="https://github.com/vito/chyrp">Chyrp</a></h2>
+<h2 id="chyrp"><a href="https://github.com/vito/chyrp">Chyrp</a></h2>
 <blockquote>
 <p>2012.4 ~ 2012.12</p>
 </blockquote>
@@ -54,7 +54,7 @@
 <p>这段时间是在新浪乐居从事移动开发和团队建设的事情，文章更多的增加了针对 Android 和 iOS 开发相关的技术类文章。</p>
 <p>我是一个念旧的人，之前记录的文字总想着可以保留下来，从这里开始后面的任何的博客系统的迁徙都会把数据转换过去。懂技术也算是一个优势（笑）</p>
 <p>历史快照：<a href="https://web.archive.org/web/20120414131120/http://icyleaf.com/">https://web.archive.org/web/20120414131120/http://icyleaf.com/</a></p>
-<h2 id="wordpresshttpwwwwordpressorg"><a href="http://www.wordpress.org">WordPress</a></h2>
+<h2 id="wordpress"><a href="http://www.wordpress.org">WordPress</a></h2>
 <blockquote>
 <p>2007 ~ 2012.3</p>
 </blockquote>
@@ -69,7 +69,7 @@
 <p>使用期间也挂过 Google Ads 和阿里妈妈广告联盟试图赚些收入。收入明细甚微，到目前对自己的定义还都是技术，营销果然不是我的菜。</p>
 <p>历史快照：<a href="https://web.archive.org/web/20100701151339/http://icyleaf.com/">https://web.archive.org/web/20100701151339/http://icyleaf.com/</a> 网站界面完整当时的仿照 Delicious.com (美味书签) 全站复制过来。</p>
 <p>这里再说一个域名的小插曲，域名最开始还是 icyleaf.cn，国内为了推销 cn 域名起初大体都是 1 元第一年。用了一年之后发现之后的费用飙升到比 com 域名还贵，加上开了 Visa 信用卡立即切换过去。庆幸的是我的域名比较个性没有什么人抢注。</p>
-<h2 id="my-operahttpmyoperacom"><a href="http://my.opera.com">My Opera</a></h2>
+<h2 id="my-opera"><a href="http://my.opera.com">My Opera</a></h2>
 <blockquote>
 <p>2006 ~ 2008</p>
 </blockquote>

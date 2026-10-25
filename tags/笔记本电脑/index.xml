@@ -3,61 +3,61 @@
 <table>
   <thead>
       <tr>
-          <th style="text-align: left"><strong>名称</strong></th>
-          <th style="text-align: left"><strong>硬件</strong></th>
-          <th style="text-align: left"><strong>备注</strong></th>
+          <th><strong>名称</strong></th>
+          <th><strong>硬件</strong></th>
+          <th><strong>备注</strong></th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td style="text-align: left">主板</td>
-          <td style="text-align: left">MechRevo WuJie 14-GX4HRXL</td>
-          <td style="text-align: left">BIOS 版本 N.1.13MRO14（08/19/2024）</td>
+          <td>主板</td>
+          <td>MechRevo WuJie 14-GX4HRXL</td>
+          <td>BIOS 版本 N.1.13MRO14（08/19/2024）</td>
       </tr>
       <tr>
-          <td style="text-align: left">CPU</td>
-          <td style="text-align: left">AMD R7-8845HS 8C16T</td>
-          <td style="text-align: left">Phoenix， 最高主频 5.1GHz ，39 TOPS</td>
+          <td>CPU</td>
+          <td>AMD R7-8845HS 8C16T</td>
+          <td>Phoenix， 最高主频 5.1GHz ，39 TOPS</td>
       </tr>
       <tr>
-          <td style="text-align: left">内存</td>
-          <td style="text-align: left">英睿达 DDR5-5600 16Gx2</td>
-          <td style="text-align: left">Crucial CT16G56C46S5.C8D</td>
+          <td>内存</td>
+          <td>英睿达 DDR5-5600 16Gx2</td>
+          <td>Crucial CT16G56C46S5.C8D</td>
       </tr>
       <tr>
-          <td style="text-align: left">硬盘</td>
-          <td style="text-align: left">英睿达 CT1000P3PSSD8 1TB</td>
-          <td style="text-align: left">M.2 2280x2，PCIE 4.0x4</td>
+          <td>硬盘</td>
+          <td>英睿达 CT1000P3PSSD8 1TB</td>
+          <td>M.2 2280x2，PCIE 4.0x4</td>
       </tr>
       <tr>
-          <td style="text-align: left">显卡</td>
-          <td style="text-align: left">AMD Radon 780M 核显</td>
-          <td style="text-align: left">12CU，2.7GHz，RDNA 3，Phonixe 3，gfx1103</td>
+          <td>显卡</td>
+          <td>AMD Radon 780M 核显</td>
+          <td>12CU，2.7GHz，RDNA 3，Phonixe 3，gfx1103</td>
       </tr>
       <tr>
-          <td style="text-align: left">屏幕</td>
-          <td style="text-align: left">天马 TL140ADXP24-0</td>
-          <td style="text-align: left">14寸，IPS，2560x1600（16:10），8Bit，120Hz，100%sRGB，450nit</td>
+          <td>屏幕</td>
+          <td>天马 TL140ADXP24-0</td>
+          <td>14寸，IPS，2560x1600（16:10），8Bit，120Hz，100%sRGB，450nit</td>
       </tr>
       <tr>
-          <td style="text-align: left">电池</td>
-          <td style="text-align: left">80Wh</td>
-          <td style="text-align: left">宽电压，支持 PD、PPS 3.3-21V 5A 最大 100W 氮化镓充电器</td>
+          <td>电池</td>
+          <td>80Wh</td>
+          <td>宽电压，支持 PD、PPS 3.3-21V 5A 最大 100W 氮化镓充电器</td>
       </tr>
       <tr>
-          <td style="text-align: left">有线网卡</td>
-          <td style="text-align: left">裕太微 YT6801 千兆 RJ45</td>
-          <td style="text-align: left">国产 苏州</td>
+          <td>有线网卡</td>
+          <td>裕太微 YT6801 千兆 RJ45</td>
+          <td>国产 苏州</td>
       </tr>
       <tr>
-          <td style="text-align: left">无线/蓝牙</td>
-          <td style="text-align: left">Intel AX200</td>
-          <td style="text-align: left">WiFi 6，160MHz</td>
+          <td>无线/蓝牙</td>
+          <td>Intel AX200</td>
+          <td>WiFi 6，160MHz</td>
       </tr>
       <tr>
-          <td style="text-align: left">接口</td>
-          <td style="text-align: left">HDMI2.1/3.5音频</td>
-          <td style="text-align: left">USB 4/USB 全功能/UBS 3.2x2/USB 2.0可惜不支持一线通扩展坞目前测试也无法显示外接显示器</td>
+          <td>接口</td>
+          <td>HDMI2.1/3.5音频</td>
+          <td>USB 4/USB 全功能/UBS 3.2x2/USB 2.0可惜不支持一线通扩展坞目前测试也无法显示外接显示器</td>
       </tr>
   </tbody>
 </table>
@@ -82,7 +82,7 @@
   
   
     
-      <figure data-pswp="2878x1787" data-size="800x"><a href="/gears/wujie-14x/dm.png" class="gallery-item" target="_blank" data-pswp-width="2878" data-pswp-height="1787"><img src="/gears/wujie-14x/dm_hu16585595277523795098.png"/></a><figcaption>
+      <figure data-pswp="2878x1787" data-size="800x"><a href="/gears/wujie-14x/dm.png" class="gallery-item" target="_blank" data-pswp-width="2878" data-pswp-height="1787"><img src="/gears/wujie-14x/dm_hu_295294035e77d90a.png"/></a><figcaption>
 
     <p>arch &#43; hyprland</p></figcaption></figure>
 
@@ -154,7 +154,7 @@
   
   
     
-      <figure data-pswp="2098x1738" data-size="800x"><a href="/gears/wujie-14x/outline-screenshot.png" class="gallery-item" target="_blank" data-pswp-width="2098" data-pswp-height="1738"><img src="/gears/wujie-14x/outline-screenshot_hu17262686307689720214.png"/></a><figcaption>
+      <figure data-pswp="2098x1738" data-size="800x"><a href="/gears/wujie-14x/outline-screenshot.png" class="gallery-item" target="_blank" data-pswp-width="2098" data-pswp-height="1738"><img src="/gears/wujie-14x/outline-screenshot_hu_57a39d829bdc8804.png"/></a><figcaption>
 
     <p>冰山之下</p></figcaption></figure>
 

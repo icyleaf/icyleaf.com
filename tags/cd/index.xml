@@ -141,41 +141,41 @@
 <table>
   <thead>
       <tr>
-          <th style="text-align: left">执行顺序</th>
-          <th style="text-align: left">方法名</th>
-          <th style="text-align: left">说明</th>
+          <th>执行顺序</th>
+          <th>方法名</th>
+          <th>说明</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td style="text-align: left">1</td>
-          <td style="text-align: left">before_all</td>
-          <td style="text-align: left">在执行 lane 之前只执行一次</td>
+          <td>1</td>
+          <td>before_all</td>
+          <td>在执行 lane 之前只执行一次</td>
       </tr>
       <tr>
-          <td style="text-align: left">2</td>
-          <td style="text-align: left">before_each</td>
-          <td style="text-align: left">每次执行 lane 之前都会执行一次</td>
+          <td>2</td>
+          <td>before_each</td>
+          <td>每次执行 lane 之前都会执行一次</td>
       </tr>
       <tr>
-          <td style="text-align: left">3</td>
-          <td style="text-align: left">lane</td>
-          <td style="text-align: left">自定义的任务</td>
+          <td>3</td>
+          <td>lane</td>
+          <td>自定义的任务</td>
       </tr>
       <tr>
-          <td style="text-align: left">4</td>
-          <td style="text-align: left">after_each</td>
-          <td style="text-align: left">每次执行 lane 之后都会执行一次</td>
+          <td>4</td>
+          <td>after_each</td>
+          <td>每次执行 lane 之后都会执行一次</td>
       </tr>
       <tr>
-          <td style="text-align: left">5</td>
-          <td style="text-align: left">after_all</td>
-          <td style="text-align: left">在执行 lane 成功结束之后执行一次</td>
+          <td>5</td>
+          <td>after_all</td>
+          <td>在执行 lane 成功结束之后执行一次</td>
       </tr>
       <tr>
-          <td style="text-align: left">6</td>
-          <td style="text-align: left">error</td>
-          <td style="text-align: left">在执行上述情况任意环境报错都会中止并执行一次</td>
+          <td>6</td>
+          <td>error</td>
+          <td>在执行上述情况任意环境报错都会中止并执行一次</td>
       </tr>
   </tbody>
 </table>
@@ -187,36 +187,36 @@
 <table>
   <thead>
       <tr>
-          <th style="text-align: left">定义</th>
-          <th style="text-align: left">是否必须</th>
-          <th style="text-align: left">说明</th>
-          <th style="text-align: left">备注</th>
+          <th>定义</th>
+          <th>是否必须</th>
+          <th>说明</th>
+          <th>备注</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td style="text-align: left">desc</td>
-          <td style="text-align: left"><code>false</code></td>
-          <td style="text-align: left">方法描述</td>
-          <td style="text-align: left">可多次使用打到换行的目的</td>
+          <td>desc</td>
+          <td><code>false</code></td>
+          <td>方法描述</td>
+          <td>可多次使用打到换行的目的</td>
       </tr>
       <tr>
-          <td style="text-align: left">name</td>
-          <td style="text-align: left"><code>true</code></td>
-          <td style="text-align: left">方法名</td>
-          <td style="text-align: left">符号化的方法名</td>
+          <td>name</td>
+          <td><code>true</code></td>
+          <td>方法名</td>
+          <td>符号化的方法名</td>
       </tr>
       <tr>
-          <td style="text-align: left">options</td>
-          <td style="text-align: left"><code>false</code></td>
-          <td style="text-align: left">方法参数</td>
-          <td style="text-align: left">返回 Hash 类型</td>
+          <td>options</td>
+          <td><code>false</code></td>
+          <td>方法参数</td>
+          <td>返回 Hash 类型</td>
       </tr>
       <tr>
-          <td style="text-align: left">task</td>
-          <td style="text-align: left"><code>true</code></td>
-          <td style="text-align: left">方法主体</td>
-          <td style="text-align: left">参考 ruby 的方法代码且支持 ruby 代码</td>
+          <td>task</td>
+          <td><code>true</code></td>
+          <td>方法主体</td>
+          <td>参考 ruby 的方法代码且支持 ruby 代码</td>
       </tr>
   </tbody>
 </table>
@@ -477,54 +477,54 @@
 <table>
   <thead>
       <tr>
-          <th style="text-align: left">环境变量</th>
-          <th style="text-align: left">来源</th>
-          <th style="text-align: left">说明</th>
-          <th style="text-align: left">备注</th>
+          <th>环境变量</th>
+          <th>来源</th>
+          <th>说明</th>
+          <th>备注</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td style="text-align: left">FASTLANE_USER</td>
-          <td style="text-align: left">credentials_manager</td>
-          <td style="text-align: left">Apple 开发者账户名</td>
-          <td style="text-align: left">验证通过后会保存 Keychain</td>
+          <td>FASTLANE_USER</td>
+          <td>credentials_manager</td>
+          <td>Apple 开发者账户名</td>
+          <td>验证通过后会保存 Keychain</td>
       </tr>
       <tr>
-          <td style="text-align: left">FASTLANE_PASSWORD</td>
-          <td style="text-align: left">credentials_manager</td>
-          <td style="text-align: left">Apple 开发者账户密码</td>
-          <td style="text-align: left">验证通过后会保存 Keychain</td>
+          <td>FASTLANE_PASSWORD</td>
+          <td>credentials_manager</td>
+          <td>Apple 开发者账户密码</td>
+          <td>验证通过后会保存 Keychain</td>
       </tr>
       <tr>
-          <td style="text-align: left">FASTLANE_TEAM_ID<!-- raw HTML omitted -->CERT_TEAM_ID</td>
-          <td style="text-align: left">produce<!-- raw HTML omitted -->sigh</td>
-          <td style="text-align: left">Apple 团队 ID</td>
-          <td style="text-align: left"></td>
+          <td>FASTLANE_TEAM_ID<!-- raw HTML omitted -->CERT_TEAM_ID</td>
+          <td>produce<!-- raw HTML omitted -->sigh</td>
+          <td>Apple 团队 ID</td>
+          <td></td>
       </tr>
       <tr>
-          <td style="text-align: left">DELIVER_USER&lt;br &gt;PRODUCE_USERNAME</td>
-          <td style="text-align: left">deliver<!-- raw HTML omitted -->produce</td>
-          <td style="text-align: left">iTunesConnect 账户名</td>
-          <td style="text-align: left"></td>
+          <td>DELIVER_USER&lt;br &gt;PRODUCE_USERNAME</td>
+          <td>deliver<!-- raw HTML omitted -->produce</td>
+          <td>iTunesConnect 账户名</td>
+          <td></td>
       </tr>
       <tr>
-          <td style="text-align: left">DELIVER_PASSWORD</td>
-          <td style="text-align: left">deliver</td>
-          <td style="text-align: left">iTunesConnect 账户密码</td>
-          <td style="text-align: left"></td>
+          <td>DELIVER_PASSWORD</td>
+          <td>deliver</td>
+          <td>iTunesConnect 账户密码</td>
+          <td></td>
       </tr>
       <tr>
-          <td style="text-align: left">MATCH_PASSWORD</td>
-          <td style="text-align: left">match</td>
-          <td style="text-align: left">证书加/解密密码</td>
-          <td style="text-align: left"></td>
+          <td>MATCH_PASSWORD</td>
+          <td>match</td>
+          <td>证书加/解密密码</td>
+          <td></td>
       </tr>
       <tr>
-          <td style="text-align: left">FASTLANE_XCODE_LIST_TIMEOUT</td>
-          <td style="text-align: left">fastlane_core</td>
-          <td style="text-align: left">获取 iOS Scheme 的超时时间</td>
-          <td style="text-align: left">默认 10s</td>
+          <td>FASTLANE_XCODE_LIST_TIMEOUT</td>
+          <td>fastlane_core</td>
+          <td>获取 iOS Scheme 的超时时间</td>
+          <td>默认 10s</td>
       </tr>
   </tbody>
 </table>

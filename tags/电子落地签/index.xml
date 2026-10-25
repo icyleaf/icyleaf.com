@@ -20,41 +20,41 @@
 <table>
   <thead>
       <tr>
-          <th style="text-align: left">渠道</th>
-          <th style="text-align: left">办理机构</th>
-          <th style="text-align: left">费用</th>
-          <th style="text-align: left">停留时长</th>
-          <th style="text-align: left">备注</th>
+          <th>渠道</th>
+          <th>办理机构</th>
+          <th>费用</th>
+          <th>停留时长</th>
+          <th>备注</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td style="text-align: left">自己递签</td>
-          <td style="text-align: left">泰国大使馆</td>
-          <td style="text-align: left">签证费</td>
-          <td style="text-align: left">60天</td>
-          <td style="text-align: left">资料要求多，耗时 7 天，婴儿同大人</td>
+          <td>自己递签</td>
+          <td>泰国大使馆</td>
+          <td>签证费</td>
+          <td>60天</td>
+          <td>资料要求多，耗时 7 天，婴儿同大人</td>
       </tr>
       <tr>
-          <td style="text-align: left">代办</td>
-          <td style="text-align: left">旅行社或淘宝</td>
-          <td style="text-align: left">230 人民币签证费+中介费</td>
-          <td style="text-align: left">60天</td>
-          <td style="text-align: left">资料要求少，耗时 7 天，婴儿同大人</td>
+          <td>代办</td>
+          <td>旅行社或淘宝</td>
+          <td>230 人民币签证费+中介费</td>
+          <td>60天</td>
+          <td>资料要求少，耗时 7 天，婴儿同大人</td>
       </tr>
       <tr>
-          <td style="text-align: left">落地签</td>
-          <td style="text-align: left">机场入境处</td>
-          <td style="text-align: left">签证费</td>
-          <td style="text-align: left">60天</td>
-          <td style="text-align: left">排队办理耗时 1-2 小时</td>
+          <td>落地签</td>
+          <td>机场入境处</td>
+          <td>签证费</td>
+          <td>60天</td>
+          <td>排队办理耗时 1-2 小时</td>
       </tr>
       <tr>
-          <td style="text-align: left">电子落地签</td>
-          <td style="text-align: left">网站办理</td>
-          <td style="text-align: left">签证费+手续费 525 泰铢</td>
-          <td style="text-align: left">15天，不可延期</td>
-          <td style="text-align: left">资料整理比较蛋疼，下签时间未知</td>
+          <td>电子落地签</td>
+          <td>网站办理</td>
+          <td>签证费+手续费 525 泰铢</td>
+          <td>15天，不可延期</td>
+          <td>资料整理比较蛋疼，下签时间未知</td>
       </tr>
   </tbody>
 </table>

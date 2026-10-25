@@ -24,42 +24,42 @@
 <table>
   <thead>
       <tr>
-          <th style="text-align: left">语言</th>
-          <th style="text-align: left">转换工具</th>
+          <th>语言</th>
+          <th>转换工具</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td style="text-align: left">Objective-C 文档</td>
-          <td style="text-align: left"><a href="http://gentlebytes.com/appledoc-docs-examples-basic/">appledoc</a></td>
+          <td>Objective-C 文档</td>
+          <td><a href="http://gentlebytes.com/appledoc-docs-examples-basic/">appledoc</a></td>
       </tr>
       <tr>
-          <td style="text-align: left">Python, Sphinx, pydoctor</td>
-          <td style="text-align: left"><a href="http://pypi.python.org/pypi/doc2dash/">doc2dash</a></td>
+          <td>Python, Sphinx, pydoctor</td>
+          <td><a href="http://pypi.python.org/pypi/doc2dash/">doc2dash</a></td>
       </tr>
       <tr>
-          <td style="text-align: left">Javadoc</td>
-          <td style="text-align: left"><a href="http://kapeli.com/JavaDocset.zip">java.docset</a></td>
+          <td>Javadoc</td>
+          <td><a href="http://kapeli.com/JavaDocset.zip">java.docset</a></td>
       </tr>
       <tr>
-          <td style="text-align: left">RDoc</td>
-          <td style="text-align: left">使用 Dash 自身的 &ldquo;Ruby Installed Gems&rdquo;</td>
+          <td>RDoc</td>
+          <td>使用 Dash 自身的 &ldquo;Ruby Installed Gems&rdquo;</td>
       </tr>
       <tr>
-          <td style="text-align: left">Scaladoc</td>
-          <td style="text-align: left"><a href="https://bitbucket.org/inkytonik/mkscaladocset">mkscaldocset</a></td>
+          <td>Scaladoc</td>
+          <td><a href="https://bitbucket.org/inkytonik/mkscaladocset">mkscaldocset</a></td>
       </tr>
       <tr>
-          <td style="text-align: left">Doxygen(源码)</td>
-          <td style="text-align: left">修改参数生成</td>
+          <td>Doxygen(源码)</td>
+          <td>修改参数生成</td>
       </tr>
       <tr>
-          <td style="text-align: left">docsetutil</td>
-          <td style="text-align: left">需要创建指定目录结构</td>
+          <td>docsetutil</td>
+          <td>需要创建指定目录结构</td>
       </tr>
       <tr>
-          <td style="text-align: left">SQLite</td>
-          <td style="text-align: left">官方支持数据库索引，需要创建指定目录结构</td>
+          <td>SQLite</td>
+          <td>官方支持数据库索引，需要创建指定目录结构</td>
       </tr>
   </tbody>
 </table>

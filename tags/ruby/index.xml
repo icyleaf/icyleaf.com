@@ -28,7 +28,7 @@
   
   
     
-      <figure data-pswp="2270x1316" data-size="800x"><a href="/uploads/2022/11/10/jsdelivr-network.png" class="gallery-item" target="_blank" data-pswp-width="2270" data-pswp-height="1316"><img src="/uploads/2022/11/10/jsdelivr-network_hu6915014520778962123.png"/></a><figcaption>
+      <figure data-pswp="2270x1316" data-size="800x"><a href="/uploads/2022/11/10/jsdelivr-network.png" class="gallery-item" target="_blank" data-pswp-width="2270" data-pswp-height="1316"><img src="/uploads/2022/11/10/jsdelivr-network_hu_e9f1757f490fdaa.png"/></a><figcaption>
 
     <p>jsdelivr network</p></figcaption></figure>
 
@@ -59,14 +59,14 @@
   
   
     
-      <figure data-pswp="1698x582" data-size="800x"><a href="/uploads/2022/11/10/jsdelivr-github-demo.png" class="gallery-item" target="_blank" data-pswp-width="1698" data-pswp-height="582"><img src="/uploads/2022/11/10/jsdelivr-github-demo_hu10365139180803583141.png"/></a><figcaption><p class="source"><a href="https://www.jsdelivr.com/github">生成工具</a>
+      <figure data-pswp="1698x582" data-size="800x"><a href="/uploads/2022/11/10/jsdelivr-github-demo.png" class="gallery-item" target="_blank" data-pswp-width="1698" data-pswp-height="582"><img src="/uploads/2022/11/10/jsdelivr-github-demo_hu_eaa1f4cb3c488d79.png"/></a><figcaption><p class="source"><a href="https://www.jsdelivr.com/github">生成工具</a>
     </p>
 
     <p>Cocoapods github 仓库和 jsdelivr CDN 生成结果</p></figcaption></figure>
 
 <p>打开 <code>Podfile</code> 修改或添加新的地址：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="line"><span class="ln">1</span><span class="cl"><span class="gd">- source &#34;https://cdn.cocoapods.org&#34;
-</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="gd"></span><span class="gi">+ source &#34;https://cdn.jsdelivr.net/gh/CocoaPods/cdn.cocoapods.org@gh-pages&#34;
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="gi">+ source &#34;https://cdn.jsdelivr.net/gh/CocoaPods/cdn.cocoapods.org@gh-pages&#34;
 </span></span></span></code></pre></div><p>也可以手动指定 jsdelivr 不同的 CDN 供应商</p>
 <ul>
 <li>fastly.jsdelivr.net</li>
@@ -106,12 +106,12 @@
 <p>第三步，下载 <code>Cocoapods-version.yml</code> 并缓存 etag，下载 <code>/Cocoapods-version.yml</code> 并取 headers 的第一个 etag 的值存为 <code>/Cocoapods-version.yml.etag</code>，如果存在 etag 会比对一样就不需要下载， 链接支持根目录和其他目录，支持 301 跳转。</p>
 <p>Cocoapods-version.yml</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nn">---</span><span class="w">
-</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w"></span><span class="nt">min</span><span class="p">:</span><span class="w"> </span><span class="m">1.0.0</span><span class="w">
-</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="w"></span><span class="nt">last</span><span class="p">:</span><span class="w"> </span><span class="m">1.8.4</span><span class="w">
-</span></span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="w"></span><span class="nt">prefix_lengths</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="w"></span>- <span class="m">1</span><span class="w">
-</span></span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="w"></span>- <span class="m">1</span><span class="w">
-</span></span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="w"></span>- <span class="m">1</span><span class="w">
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="nt">min</span><span class="p">:</span><span class="w"> </span><span class="m">1.0.0</span><span class="w">
+</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="nt">last</span><span class="p">:</span><span class="w"> </span><span class="m">1.8.4</span><span class="w">
+</span></span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="nt">prefix_lengths</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">5</span><span class="cl">- <span class="m">1</span><span class="w">
+</span></span></span><span class="line"><span class="ln">6</span><span class="cl">- <span class="m">1</span><span class="w">
+</span></span></span><span class="line"><span class="ln">7</span><span class="cl">- <span class="m">1</span><span class="w">
 </span></span></span></code></pre></div><p>第四步，分析 Pod 并获取 pod 的版本信息，比如 Podfile 我增加了一个 <code>pod &quot;AFNetworking&quot;</code>，把 pod 名字做 MD5 后的值取 Cocoapods-version.yml 的 prefiex_length 数组长度的值单字母拆分用下划线分割按照规则拼成文件名 <code>all_pods_versions(_{fragment}).txt</code> (如果prefix_length 为 0 则只会去下载 <code>/all_pods_versions.txt</code>)</p>
 <p>比如：prefix_lengths 数组大小为 3，AFNetworking MD5 后 <code>a75d452377f396bdc4b623a5df25820</code> 则匹配前三位 a75 拆分后 a_7_5
 后查找 cdn url 路径的 <code>/all_pods_versions_a_7_5.txt</code> 下载下来后的内容：</p>
@@ -582,41 +582,41 @@
 <table>
   <thead>
       <tr>
-          <th style="text-align: left">执行顺序</th>
-          <th style="text-align: left">方法名</th>
-          <th style="text-align: left">说明</th>
+          <th>执行顺序</th>
+          <th>方法名</th>
+          <th>说明</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td style="text-align: left">1</td>
-          <td style="text-align: left">before_all</td>
-          <td style="text-align: left">在执行 lane 之前只执行一次</td>
+          <td>1</td>
+          <td>before_all</td>
+          <td>在执行 lane 之前只执行一次</td>
       </tr>
       <tr>
-          <td style="text-align: left">2</td>
-          <td style="text-align: left">before_each</td>
-          <td style="text-align: left">每次执行 lane 之前都会执行一次</td>
+          <td>2</td>
+          <td>before_each</td>
+          <td>每次执行 lane 之前都会执行一次</td>
       </tr>
       <tr>
-          <td style="text-align: left">3</td>
-          <td style="text-align: left">lane</td>
-          <td style="text-align: left">自定义的任务</td>
+          <td>3</td>
+          <td>lane</td>
+          <td>自定义的任务</td>
       </tr>
       <tr>
-          <td style="text-align: left">4</td>
-          <td style="text-align: left">after_each</td>
-          <td style="text-align: left">每次执行 lane 之后都会执行一次</td>
+          <td>4</td>
+          <td>after_each</td>
+          <td>每次执行 lane 之后都会执行一次</td>
       </tr>
       <tr>
-          <td style="text-align: left">5</td>
-          <td style="text-align: left">after_all</td>
-          <td style="text-align: left">在执行 lane 成功结束之后执行一次</td>
+          <td>5</td>
+          <td>after_all</td>
+          <td>在执行 lane 成功结束之后执行一次</td>
       </tr>
       <tr>
-          <td style="text-align: left">6</td>
-          <td style="text-align: left">error</td>
-          <td style="text-align: left">在执行上述情况任意环境报错都会中止并执行一次</td>
+          <td>6</td>
+          <td>error</td>
+          <td>在执行上述情况任意环境报错都会中止并执行一次</td>
       </tr>
   </tbody>
 </table>
@@ -628,36 +628,36 @@
 <table>
   <thead>
       <tr>
-          <th style="text-align: left">定义</th>
-          <th style="text-align: left">是否必须</th>
-          <th style="text-align: left">说明</th>
-          <th style="text-align: left">备注</th>
+          <th>定义</th>
+          <th>是否必须</th>
+          <th>说明</th>
+          <th>备注</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td style="text-align: left">desc</td>
-          <td style="text-align: left"><code>false</code></td>
-          <td style="text-align: left">方法描述</td>
-          <td style="text-align: left">可多次使用打到换行的目的</td>
+          <td>desc</td>
+          <td><code>false</code></td>
+          <td>方法描述</td>
+          <td>可多次使用打到换行的目的</td>
       </tr>
       <tr>
-          <td style="text-align: left">name</td>
-          <td style="text-align: left"><code>true</code></td>
-          <td style="text-align: left">方法名</td>
-          <td style="text-align: left">符号化的方法名</td>
+          <td>name</td>
+          <td><code>true</code></td>
+          <td>方法名</td>
+          <td>符号化的方法名</td>
       </tr>
       <tr>
-          <td style="text-align: left">options</td>
-          <td style="text-align: left"><code>false</code></td>
-          <td style="text-align: left">方法参数</td>
-          <td style="text-align: left">返回 Hash 类型</td>
+          <td>options</td>
+          <td><code>false</code></td>
+          <td>方法参数</td>
+          <td>返回 Hash 类型</td>
       </tr>
       <tr>
-          <td style="text-align: left">task</td>
-          <td style="text-align: left"><code>true</code></td>
-          <td style="text-align: left">方法主体</td>
-          <td style="text-align: left">参考 ruby 的方法代码且支持 ruby 代码</td>
+          <td>task</td>
+          <td><code>true</code></td>
+          <td>方法主体</td>
+          <td>参考 ruby 的方法代码且支持 ruby 代码</td>
       </tr>
   </tbody>
 </table>
@@ -918,54 +918,54 @@
 <table>
   <thead>
       <tr>
-          <th style="text-align: left">环境变量</th>
-          <th style="text-align: left">来源</th>
-          <th style="text-align: left">说明</th>
-          <th style="text-align: left">备注</th>
+          <th>环境变量</th>
+          <th>来源</th>
+          <th>说明</th>
+          <th>备注</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td style="text-align: left">FASTLANE_USER</td>
-          <td style="text-align: left">credentials_manager</td>
-          <td style="text-align: left">Apple 开发者账户名</td>
-          <td style="text-align: left">验证通过后会保存 Keychain</td>
+          <td>FASTLANE_USER</td>
+          <td>credentials_manager</td>
+          <td>Apple 开发者账户名</td>
+          <td>验证通过后会保存 Keychain</td>
       </tr>
       <tr>
-          <td style="text-align: left">FASTLANE_PASSWORD</td>
-          <td style="text-align: left">credentials_manager</td>
-          <td style="text-align: left">Apple 开发者账户密码</td>
-          <td style="text-align: left">验证通过后会保存 Keychain</td>
+          <td>FASTLANE_PASSWORD</td>
+          <td>credentials_manager</td>
+          <td>Apple 开发者账户密码</td>
+          <td>验证通过后会保存 Keychain</td>
       </tr>
       <tr>
-          <td style="text-align: left">FASTLANE_TEAM_ID<!-- raw HTML omitted -->CERT_TEAM_ID</td>
-          <td style="text-align: left">produce<!-- raw HTML omitted -->sigh</td>
-          <td style="text-align: left">Apple 团队 ID</td>
-          <td style="text-align: left"></td>
+          <td>FASTLANE_TEAM_ID<!-- raw HTML omitted -->CERT_TEAM_ID</td>
+          <td>produce<!-- raw HTML omitted -->sigh</td>
+          <td>Apple 团队 ID</td>
+          <td></td>
       </tr>
       <tr>
-          <td style="text-align: left">DELIVER_USER&lt;br &gt;PRODUCE_USERNAME</td>
-          <td style="text-align: left">deliver<!-- raw HTML omitted -->produce</td>
-          <td style="text-align: left">iTunesConnect 账户名</td>
-          <td style="text-align: left"></td>
+          <td>DELIVER_USER&lt;br &gt;PRODUCE_USERNAME</td>
+          <td>deliver<!-- raw HTML omitted -->produce</td>
+          <td>iTunesConnect 账户名</td>
+          <td></td>
       </tr>
       <tr>
-          <td style="text-align: left">DELIVER_PASSWORD</td>
-          <td style="text-align: left">deliver</td>
-          <td style="text-align: left">iTunesConnect 账户密码</td>
-          <td style="text-align: left"></td>
+          <td>DELIVER_PASSWORD</td>
+          <td>deliver</td>
+          <td>iTunesConnect 账户密码</td>
+          <td></td>
       </tr>
       <tr>
-          <td style="text-align: left">MATCH_PASSWORD</td>
-          <td style="text-align: left">match</td>
-          <td style="text-align: left">证书加/解密密码</td>
-          <td style="text-align: left"></td>
+          <td>MATCH_PASSWORD</td>
+          <td>match</td>
+          <td>证书加/解密密码</td>
+          <td></td>
       </tr>
       <tr>
-          <td style="text-align: left">FASTLANE_XCODE_LIST_TIMEOUT</td>
-          <td style="text-align: left">fastlane_core</td>
-          <td style="text-align: left">获取 iOS Scheme 的超时时间</td>
-          <td style="text-align: left">默认 10s</td>
+          <td>FASTLANE_XCODE_LIST_TIMEOUT</td>
+          <td>fastlane_core</td>
+          <td>获取 iOS Scheme 的超时时间</td>
+          <td>默认 10s</td>
       </tr>
   </tbody>
 </table>
@@ -994,30 +994,30 @@
 <table>
   <thead>
       <tr>
-          <th style="text-align: left">库</th>
-          <th style="text-align: left">语言</th>
-          <th style="text-align: left">并发量</th>
-          <th style="text-align: left">平均响应时间</th>
+          <th>库</th>
+          <th>语言</th>
+          <th>并发量</th>
+          <th>平均响应时间</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td style="text-align: left"><a href="https://github.com/sdogruyol/fast-http-server">fast-http-server</a></td>
-          <td style="text-align: left"><code>Crystal</code></td>
-          <td style="text-align: left">18348.47rpm</td>
-          <td style="text-align: left">8.67ms</td>
+          <td><a href="https://github.com/sdogruyol/fast-http-server">fast-http-server</a></td>
+          <td><code>Crystal</code></td>
+          <td>18348.47rpm</td>
+          <td>8.67ms</td>
       </tr>
       <tr>
-          <td style="text-align: left"><a href="https://github.com/indexzero/http-server">http-server</a></td>
-          <td style="text-align: left"><code>Node.js</code></td>
-          <td style="text-align: left">2105.55rpm</td>
-          <td style="text-align: left">47.92ms</td>
+          <td><a href="https://github.com/indexzero/http-server">http-server</a></td>
+          <td><code>Node.js</code></td>
+          <td>2105.55rpm</td>
+          <td>47.92ms</td>
       </tr>
       <tr>
-          <td style="text-align: left"><a href="https://docs.python.org/2/library/simplehttpserver.html">SimpleHTTPServer</a></td>
-          <td style="text-align: left"><code>Python</code></td>
-          <td style="text-align: left">785.14rpm</td>
-          <td style="text-align: left">1.91ms</td>
+          <td><a href="https://docs.python.org/2/library/simplehttpserver.html">SimpleHTTPServer</a></td>
+          <td><code>Python</code></td>
+          <td>785.14rpm</td>
+          <td>1.91ms</td>
       </tr>
   </tbody>
 </table>
@@ -1589,8 +1589,8 @@ class Post &lt; ActiveRecord::Base
     &#34;#{@date_users}&#34;
   end
 end
-</code></pre>]]></content:encoded></item><item><title>利用 argparse 写的脚本命令：测试 URL 响应时间</title><link>https://icyleaf.com/2012/08/url-request-time-test-using-python-with-argparse/</link><pubDate>Thu, 02 Aug 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/08/url-request-time-test-using-python-with-argparse/</guid><description>&lt;p>前几天看完《&lt;a href="http://woodpecker.org.cn/abyteofpython_cn/chinese/">Python简明教程&lt;/a>》，预想练手，想起同事的一个 ruby 代码，尝试改写成 python，顺便看看两个语言的简练程度。下面是原始的 ruby 代码：&lt;/p>
-&lt;pre tabindex="0">&lt;code>#!/usr/bin/env ruby
+</code></pre>]]></content:encoded></item><item><title>利用 argparse 写的脚本命令：测试 URL 响应时间</title><link>https://icyleaf.com/2012/08/url-request-time-test-using-python-with-argparse/</link><pubDate>Thu, 02 Aug 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/08/url-request-time-test-using-python-with-argparse/</guid><description>&lt;p&gt;前几天看完《&lt;a href="http://woodpecker.org.cn/abyteofpython_cn/chinese/"&gt;Python简明教程&lt;/a&gt;》，预想练手，想起同事的一个 ruby 代码，尝试改写成 python，顺便看看两个语言的简练程度。下面是原始的 ruby 代码：&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;#!/usr/bin/env ruby
 require &amp;#39;rubygems&amp;#39;
 require &amp;#39;net/http&amp;#39;
 urls = [&amp;#34;http://icyleaf.com&amp;#34;]
@@ -1610,7 +1610,7 @@ end
 puts &amp;#34;#{url}\n time: \033[#{color_code}m#{diff}\033[0m seconds&amp;#34;
 end
 end
-&lt;/code>&lt;/pre>&lt;p>改写 python 的同时，考虑脚本的灵活性准备增加两个参数，第一个是请求测试次数，第二个是请求测试的 URL，而 python 默认提供了 &lt;a href="http://docs.python.org/dev/library/argparse.html">argparse&lt;/a> 库，可以很方便的生成 &amp;ndash;help 的帮助和解析传递的参数：&lt;/p>...</description><content:encoded><![CDATA[<p>前几天看完《<a href="http://woodpecker.org.cn/abyteofpython_cn/chinese/">Python简明教程</a>》，预想练手，想起同事的一个 ruby 代码，尝试改写成 python，顺便看看两个语言的简练程度。下面是原始的 ruby 代码：</p>
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;改写 python 的同时，考虑脚本的灵活性准备增加两个参数，第一个是请求测试次数，第二个是请求测试的 URL，而 python 默认提供了 &lt;a href="http://docs.python.org/dev/library/argparse.html"&gt;argparse&lt;/a&gt; 库，可以很方便的生成 &amp;ndash;help 的帮助和解析传递的参数：&lt;/p&gt;...</description><content:encoded><![CDATA[<p>前几天看完《<a href="http://woodpecker.org.cn/abyteofpython_cn/chinese/">Python简明教程</a>》，预想练手，想起同事的一个 ruby 代码，尝试改写成 python，顺便看看两个语言的简练程度。下面是原始的 ruby 代码：</p>
 <pre tabindex="0"><code>#!/usr/bin/env ruby
 
 require &#39;rubygems&#39;

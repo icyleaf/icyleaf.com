@@ -130,7 +130,7 @@ USB3 端口</li>
   
   
     
-      <figure data-pswp="720x720" data-size="800x"><a href="/uploads/2019/03/28/m2-vs-boardcom-vs-dadapter.jpg" class="gallery-item" target="_blank" data-pswp-width="720" data-pswp-height="720"><img src="/uploads/2019/03/28/m2-vs-boardcom-vs-dadapter_hu2140254577266551733.jpg"/></a><figcaption>
+      <figure data-pswp="720x720" data-size="800x"><a href="/uploads/2019/03/28/m2-vs-boardcom-vs-dadapter.jpg" class="gallery-item" target="_blank" data-pswp-width="720" data-pswp-height="720"><img src="/uploads/2019/03/28/m2-vs-boardcom-vs-dadapter_hu_ce3d137d503d4d9f.jpg"/></a><figcaption>
 
     <p>M2 VS 博通 VS 转换器</p></figcaption></figure>
 
@@ -151,7 +151,7 @@ USB3 端口</li>
   
   
     
-      <figure data-pswp="1920x1920" data-size="800x"><a href="/uploads/2019/03/28/install-boardcom-module-to-motherboard.jpg" class="gallery-item" target="_blank" data-pswp-width="1920" data-pswp-height="1920"><img src="/uploads/2019/03/28/install-boardcom-module-to-motherboard_hu7907550017879703547.jpg"/></a><figcaption>
+      <figure data-pswp="1920x1920" data-size="800x"><a href="/uploads/2019/03/28/install-boardcom-module-to-motherboard.jpg" class="gallery-item" target="_blank" data-pswp-width="1920" data-pswp-height="1920"><img src="/uploads/2019/03/28/install-boardcom-module-to-motherboard_hu_317b566556615ab0.jpg"/></a><figcaption>
 
     <p>博通网卡更换步骤图</p></figcaption></figure>
 
@@ -265,81 +265,81 @@ USB3 端口</li>
 <table>
   <thead>
       <tr>
-          <th style="text-align: left">名称</th>
-          <th style="text-align: left">品牌型号</th>
-          <th style="text-align: left">价格</th>
-          <th style="text-align: left">备注</th>
+          <th>名称</th>
+          <th>品牌型号</th>
+          <th>价格</th>
+          <th>备注</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td style="text-align: left">CPU</td>
-          <td style="text-align: left">Intel i7 9700k</td>
-          <td style="text-align: left">2550</td>
-          <td style="text-align: left"></td>
+          <td>CPU</td>
+          <td>Intel i7 9700k</td>
+          <td>2550</td>
+          <td></td>
       </tr>
       <tr>
-          <td style="text-align: left">主板</td>
-          <td style="text-align: left">华擎 Z390 Phantom Gaming itx/ac</td>
-          <td style="text-align: left">1399</td>
-          <td style="text-align: left"></td>
+          <td>主板</td>
+          <td>华擎 Z390 Phantom Gaming itx/ac</td>
+          <td>1399</td>
+          <td></td>
       </tr>
       <tr>
-          <td style="text-align: left">散热器</td>
-          <td style="text-align: left">九州风神 船长 240 EX White RGB</td>
-          <td style="text-align: left">453</td>
-          <td style="text-align: left">更换酷里奥屠龙 240A</td>
+          <td>散热器</td>
+          <td>九州风神 船长 240 EX White RGB</td>
+          <td>453</td>
+          <td>更换酷里奥屠龙 240A</td>
       </tr>
       <tr>
-          <td style="text-align: left">内存</td>
-          <td style="text-align: left">海盗船 Vengeance LPX DDR4 3000 16G x 1</td>
-          <td style="text-align: left">719</td>
-          <td style="text-align: left"></td>
+          <td>内存</td>
+          <td>海盗船 Vengeance LPX DDR4 3000 16G x 1</td>
+          <td>719</td>
+          <td></td>
       </tr>
       <tr>
-          <td style="text-align: left">SSD</td>
-          <td style="text-align: left">三星 970 EVO 250G</td>
-          <td style="text-align: left">489</td>
-          <td style="text-align: left"></td>
+          <td>SSD</td>
+          <td>三星 970 EVO 250G</td>
+          <td>489</td>
+          <td></td>
       </tr>
       <tr>
-          <td style="text-align: left">机箱</td>
-          <td style="text-align: left">追风者 215P ITX 侧透 RGB</td>
-          <td style="text-align: left">489</td>
-          <td style="text-align: left">支持大风冷和全尺寸显卡</td>
+          <td>机箱</td>
+          <td>追风者 215P ITX 侧透 RGB</td>
+          <td>489</td>
+          <td>支持大风冷和全尺寸显卡</td>
       </tr>
       <tr>
-          <td style="text-align: left">电源</td>
-          <td style="text-align: left">讯景 XTR550</td>
-          <td style="text-align: left">354</td>
-          <td style="text-align: left"></td>
+          <td>电源</td>
+          <td>讯景 XTR550</td>
+          <td>354</td>
+          <td></td>
       </tr>
       <tr>
-          <td style="text-align: left">无线网卡/蓝牙</td>
-          <td style="text-align: left">博通 BCM94360CS2</td>
-          <td style="text-align: left">95 元</td>
-          <td style="text-align: left">需转接卡</td>
+          <td>无线网卡/蓝牙</td>
+          <td>博通 BCM94360CS2</td>
+          <td>95 元</td>
+          <td>需转接卡</td>
       </tr>
       <tr>
-          <td style="text-align: left">显卡</td>
-          <td style="text-align: left">蓝宝石 RX580 8G 1411MHz Nitro+ 超白金</td>
-          <td style="text-align: left">750</td>
-          <td style="text-align: left">后期预算，闲鱼二手矿卡</td>
+          <td>显卡</td>
+          <td>蓝宝石 RX580 8G 1411MHz Nitro+ 超白金</td>
+          <td>750</td>
+          <td>后期预算，闲鱼二手矿卡</td>
       </tr>
       <tr>
-          <td style="text-align: left">显示器</td>
-          <td style="text-align: left">LG 27UL600 4k HDR400 IPS</td>
-          <td style="text-align: left">后期单独预算</td>
-          <td style="text-align: left"></td>
+          <td>显示器</td>
+          <td>LG 27UL600 4k HDR400 IPS</td>
+          <td>后期单独预算</td>
+          <td></td>
       </tr>
       <tr>
-          <td style="text-align: left">总价</td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left">6075<div >
+          <td>总价</td>
+          <td></td>
+          <td>6075<div >
   <br />
 </div>
 6825(独立显卡)</td>
-          <td style="text-align: left"></td>
+          <td></td>
       </tr>
   </tbody>
 </table>
@@ -436,86 +436,86 @@ USB3 端口</li>
 <table>
   <thead>
       <tr>
-          <th style="text-align: left">接口</th>
-          <th style="text-align: left">模块</th>
-          <th style="text-align: left">天线</th>
-          <th style="text-align: left">无线</th>
-          <th style="text-align: left">蓝牙</th>
-          <th style="text-align: left">备注</th>
+          <th>接口</th>
+          <th>模块</th>
+          <th>天线</th>
+          <th>无线</th>
+          <th>蓝牙</th>
+          <th>备注</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td style="text-align: left">PCIe/x1</td>
-          <td style="text-align: left">BCM94360CD</td>
-          <td style="text-align: left">4</td>
-          <td style="text-align: left">2.4G 450M+/5G 1300M=1750M</td>
-          <td style="text-align: left">4.0</td>
-          <td style="text-align: left">iMac (2013) 使用，请勿购买三天线版本，三天线版本（3T3R）蓝牙和无线共用一根影响使用</td>
+          <td>PCIe/x1</td>
+          <td>BCM94360CD</td>
+          <td>4</td>
+          <td>2.4G 450M+/5G 1300M=1750M</td>
+          <td>4.0</td>
+          <td>iMac (2013) 使用，请勿购买三天线版本，三天线版本（3T3R）蓝牙和无线共用一根影响使用</td>
       </tr>
       <tr>
-          <td style="text-align: left">PCIe/x1</td>
-          <td style="text-align: left">BCM94331CD</td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left">tonymacx86 列表之一，国内没找到</td>
+          <td>PCIe/x1</td>
+          <td>BCM94331CD</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>tonymacx86 列表之一，国内没找到</td>
       </tr>
       <tr>
-          <td style="text-align: left">M.2</td>
-          <td style="text-align: left">BCM943602CS</td>
-          <td style="text-align: left">3T3R</td>
-          <td style="text-align: left">2.4G 450M+/5G 1300M=1750M</td>
-          <td style="text-align: left">4.0</td>
-          <td style="text-align: left">MacBook Pro (2015) 使用，蓝牙需要接 USB</td>
+          <td>M.2</td>
+          <td>BCM943602CS</td>
+          <td>3T3R</td>
+          <td>2.4G 450M+/5G 1300M=1750M</td>
+          <td>4.0</td>
+          <td>MacBook Pro (2015) 使用，蓝牙需要接 USB</td>
       </tr>
       <tr>
-          <td style="text-align: left">M.2/NGFF 2230, key E</td>
-          <td style="text-align: left">BCM94360CS2</td>
-          <td style="text-align: left">2T2R</td>
-          <td style="text-align: left">2.4G 300M+/5G 867M=1167M</td>
-          <td style="text-align: left">4.0</td>
-          <td style="text-align: left">MacBook Air (2013) 使用，价格低廉，性价比最好</td>
+          <td>M.2/NGFF 2230, key E</td>
+          <td>BCM94360CS2</td>
+          <td>2T2R</td>
+          <td>2.4G 300M+/5G 867M=1167M</td>
+          <td>4.0</td>
+          <td>MacBook Air (2013) 使用，价格低廉，性价比最好</td>
       </tr>
       <tr>
-          <td style="text-align: left">M.2/NGFF 2230, key E</td>
-          <td style="text-align: left">BCM94352Z/AzureWave AW-CE162NF/DW1560</td>
-          <td style="text-align: left">2T2R</td>
-          <td style="text-align: left">2.4G 300M/5.0G 867M=1167M</td>
-          <td style="text-align: left">4.0</td>
-          <td style="text-align: left"></td>
+          <td>M.2/NGFF 2230, key E</td>
+          <td>BCM94352Z/AzureWave AW-CE162NF/DW1560</td>
+          <td>2T2R</td>
+          <td>2.4G 300M/5.0G 867M=1167M</td>
+          <td>4.0</td>
+          <td></td>
       </tr>
       <tr>
-          <td style="text-align: left">M.2</td>
-          <td style="text-align: left">BCM943602BAED/DELL DW1830</td>
-          <td style="text-align: left">3T3R</td>
-          <td style="text-align: left">2.4G 450M+</td>
-          <td style="text-align: left">4.1</td>
-          <td style="text-align: left"></td>
+          <td>M.2</td>
+          <td>BCM943602BAED/DELL DW1830</td>
+          <td>3T3R</td>
+          <td>2.4G 450M+</td>
+          <td>4.1</td>
+          <td></td>
       </tr>
       <tr>
-          <td style="text-align: left">M.2</td>
-          <td style="text-align: left">BCM94350ZAE/DW1820A</td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left">tonymacx86 列表之一，国内没找到</td>
+          <td>M.2</td>
+          <td>BCM94350ZAE/DW1820A</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>tonymacx86 列表之一，国内没找到</td>
       </tr>
       <tr>
-          <td style="text-align: left">Half mini</td>
-          <td style="text-align: left">BCM94360HMB/AzureWave AW-CB160H</td>
-          <td style="text-align: left">3T3R</td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left">tonymacx86 列表之一，国内没找到</td>
+          <td>Half mini</td>
+          <td>BCM94360HMB/AzureWave AW-CB160H</td>
+          <td>3T3R</td>
+          <td></td>
+          <td></td>
+          <td>tonymacx86 列表之一，国内没找到</td>
       </tr>
       <tr>
-          <td style="text-align: left">Half mini</td>
-          <td style="text-align: left">BCM94352 HMB/AzureWave AW-CE123H</td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left">tonymacx86 列表之一，国内没找到</td>
+          <td>Half mini</td>
+          <td>BCM94352 HMB/AzureWave AW-CE123H</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>tonymacx86 列表之一，国内没找到</td>
       </tr>
   </tbody>
 </table>
@@ -537,7 +537,7 @@ USB3 端口</li>
   
   
     
-      <figure data-pswp="900x2048" data-size="800x"><a href="/uploads/2020/04/02/m2-key-list.jpeg" class="gallery-item" target="_blank" data-pswp-width="900" data-pswp-height="2048"><img src="/uploads/2020/04/02/m2-key-list_hu12425770893066929093.jpeg"/></a><figcaption>
+      <figure data-pswp="900x2048" data-size="800x"><a href="/uploads/2020/04/02/m2-key-list.jpeg" class="gallery-item" target="_blank" data-pswp-width="900" data-pswp-height="2048"><img src="/uploads/2020/04/02/m2-key-list_hu_1437dcd68f2e2ce5.jpeg"/></a><figcaption>
 
     <p>M2 规格图</p></figcaption></figure>
 

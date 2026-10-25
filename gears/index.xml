@@ -3,61 +3,61 @@
 <table>
   <thead>
       <tr>
-          <th style="text-align: left"><strong>名称</strong></th>
-          <th style="text-align: left"><strong>硬件</strong></th>
-          <th style="text-align: left"><strong>备注</strong></th>
+          <th><strong>名称</strong></th>
+          <th><strong>硬件</strong></th>
+          <th><strong>备注</strong></th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td style="text-align: left">主板</td>
-          <td style="text-align: left">MechRevo WuJie 14-GX4HRXL</td>
-          <td style="text-align: left">BIOS 版本 N.1.13MRO14（08/19/2024）</td>
+          <td>主板</td>
+          <td>MechRevo WuJie 14-GX4HRXL</td>
+          <td>BIOS 版本 N.1.13MRO14（08/19/2024）</td>
       </tr>
       <tr>
-          <td style="text-align: left">CPU</td>
-          <td style="text-align: left">AMD R7-8845HS 8C16T</td>
-          <td style="text-align: left">Phoenix， 最高主频 5.1GHz ，39 TOPS</td>
+          <td>CPU</td>
+          <td>AMD R7-8845HS 8C16T</td>
+          <td>Phoenix， 最高主频 5.1GHz ，39 TOPS</td>
       </tr>
       <tr>
-          <td style="text-align: left">内存</td>
-          <td style="text-align: left">英睿达 DDR5-5600 16Gx2</td>
-          <td style="text-align: left">Crucial CT16G56C46S5.C8D</td>
+          <td>内存</td>
+          <td>英睿达 DDR5-5600 16Gx2</td>
+          <td>Crucial CT16G56C46S5.C8D</td>
       </tr>
       <tr>
-          <td style="text-align: left">硬盘</td>
-          <td style="text-align: left">英睿达 CT1000P3PSSD8 1TB</td>
-          <td style="text-align: left">M.2 2280x2，PCIE 4.0x4</td>
+          <td>硬盘</td>
+          <td>英睿达 CT1000P3PSSD8 1TB</td>
+          <td>M.2 2280x2，PCIE 4.0x4</td>
       </tr>
       <tr>
-          <td style="text-align: left">显卡</td>
-          <td style="text-align: left">AMD Radon 780M 核显</td>
-          <td style="text-align: left">12CU，2.7GHz，RDNA 3，Phonixe 3，gfx1103</td>
+          <td>显卡</td>
+          <td>AMD Radon 780M 核显</td>
+          <td>12CU，2.7GHz，RDNA 3，Phonixe 3，gfx1103</td>
       </tr>
       <tr>
-          <td style="text-align: left">屏幕</td>
-          <td style="text-align: left">天马 TL140ADXP24-0</td>
-          <td style="text-align: left">14寸，IPS，2560x1600（16:10），8Bit，120Hz，100%sRGB，450nit</td>
+          <td>屏幕</td>
+          <td>天马 TL140ADXP24-0</td>
+          <td>14寸，IPS，2560x1600（16:10），8Bit，120Hz，100%sRGB，450nit</td>
       </tr>
       <tr>
-          <td style="text-align: left">电池</td>
-          <td style="text-align: left">80Wh</td>
-          <td style="text-align: left">宽电压，支持 PD、PPS 3.3-21V 5A 最大 100W 氮化镓充电器</td>
+          <td>电池</td>
+          <td>80Wh</td>
+          <td>宽电压，支持 PD、PPS 3.3-21V 5A 最大 100W 氮化镓充电器</td>
       </tr>
       <tr>
-          <td style="text-align: left">有线网卡</td>
-          <td style="text-align: left">裕太微 YT6801 千兆 RJ45</td>
-          <td style="text-align: left">国产 苏州</td>
+          <td>有线网卡</td>
+          <td>裕太微 YT6801 千兆 RJ45</td>
+          <td>国产 苏州</td>
       </tr>
       <tr>
-          <td style="text-align: left">无线/蓝牙</td>
-          <td style="text-align: left">Intel AX200</td>
-          <td style="text-align: left">WiFi 6，160MHz</td>
+          <td>无线/蓝牙</td>
+          <td>Intel AX200</td>
+          <td>WiFi 6，160MHz</td>
       </tr>
       <tr>
-          <td style="text-align: left">接口</td>
-          <td style="text-align: left">HDMI2.1/3.5音频</td>
-          <td style="text-align: left">USB 4/USB 全功能/UBS 3.2x2/USB 2.0可惜不支持一线通扩展坞目前测试也无法显示外接显示器</td>
+          <td>接口</td>
+          <td>HDMI2.1/3.5音频</td>
+          <td>USB 4/USB 全功能/UBS 3.2x2/USB 2.0可惜不支持一线通扩展坞目前测试也无法显示外接显示器</td>
       </tr>
   </tbody>
 </table>
@@ -82,7 +82,7 @@
   
   
     
-      <figure data-pswp="2878x1787" data-size="800x"><a href="/gears/wujie-14x/dm.png" class="gallery-item" target="_blank" data-pswp-width="2878" data-pswp-height="1787"><img src="/gears/wujie-14x/dm_hu16585595277523795098.png"/></a><figcaption>
+      <figure data-pswp="2878x1787" data-size="800x"><a href="/gears/wujie-14x/dm.png" class="gallery-item" target="_blank" data-pswp-width="2878" data-pswp-height="1787"><img src="/gears/wujie-14x/dm_hu_295294035e77d90a.png"/></a><figcaption>
 
     <p>arch &#43; hyprland</p></figcaption></figure>
 
@@ -154,7 +154,7 @@
   
   
     
-      <figure data-pswp="2098x1738" data-size="800x"><a href="/gears/wujie-14x/outline-screenshot.png" class="gallery-item" target="_blank" data-pswp-width="2098" data-pswp-height="1738"><img src="/gears/wujie-14x/outline-screenshot_hu17262686307689720214.png"/></a><figcaption>
+      <figure data-pswp="2098x1738" data-size="800x"><a href="/gears/wujie-14x/outline-screenshot.png" class="gallery-item" target="_blank" data-pswp-width="2098" data-pswp-height="1738"><img src="/gears/wujie-14x/outline-screenshot_hu_57a39d829bdc8804.png"/></a><figcaption>
 
     <p>冰山之下</p></figcaption></figure>
 
@@ -203,7 +203,7 @@
   
   
     
-      <figure data-pswp="1977x1483" data-size="800x"><a href="/gears/rg35xx/shoulder-buttons.jpg" class="gallery-item" target="_blank" data-pswp-width="1977" data-pswp-height="1483"><img src="/gears/rg35xx/shoulder-buttons_hu2517744081564990518.jpg"/></a><figcaption>
+      <figure data-pswp="1977x1483" data-size="800x"><a href="/gears/rg35xx/shoulder-buttons.jpg" class="gallery-item" target="_blank" data-pswp-width="1977" data-pswp-height="1483"><img src="/gears/rg35xx/shoulder-buttons_hu_7b2f96e77541fe42.jpg"/></a><figcaption>
 
     <p>背键改装 3D 件</p></figcaption></figure>
 
@@ -235,7 +235,7 @@
   
   
     
-      <figure data-pswp="1200x554" data-size="800x"><a href="/gears/rg35xx/cadillacs-dinosaurs-mod.jpg" class="gallery-item" target="_blank" data-pswp-width="1200" data-pswp-height="554"><img src="/gears/rg35xx/cadillacs-dinosaurs-mod_hu1547421383085253393.jpg"
+      <figure data-pswp="1200x554" data-size="800x"><a href="/gears/rg35xx/cadillacs-dinosaurs-mod.jpg" class="gallery-item" target="_blank" data-pswp-width="1200" data-pswp-height="554"><img src="/gears/rg35xx/cadillacs-dinosaurs-mod_hu_5446a1db5eaa30c7.jpg"
       alt="视频来源"/></a><figcaption><p class="source">视频来源<a href="https://www.bilibili.com/video/BV1UV4y147uC">Unity试做恐龙快打3D</a>
     </p>
 
@@ -304,7 +304,7 @@
   
   
     
-      <figure data-pswp="1973x1015" data-size="800x"><a href="/gears/xiaoxin-pad-pro-2021/version-compares.jpg" class="gallery-item" target="_blank" data-pswp-width="1973" data-pswp-height="1015"><img src="/gears/xiaoxin-pad-pro-2021/version-compares_hu2868378760011192562.jpg"
+      <figure data-pswp="1973x1015" data-size="800x"><a href="/gears/xiaoxin-pad-pro-2021/version-compares.jpg" class="gallery-item" target="_blank" data-pswp-width="1973" data-pswp-height="1015"><img src="/gears/xiaoxin-pad-pro-2021/version-compares_hu_7cbbbb578c498ac6.jpg"
       alt="图片来源"/></a><figcaption><p class="source">图片来源<a href="https://www.ithome.com/0/584/056.htm">IT 之家</a>
     </p>
 
@@ -313,8 +313,8 @@
 <h2 id="选择它的理由">选择它的理由</h2>
 <p>2021 年是国内 Android 平板重新回归的一年，也是<a href="https://www.qualcomm.com/products/application/smartphones/snapdragon-8-series-mobile-platforms/snapdragon-870-5g-mobile-platform">骁龙 870</a> 霸占 Android 平板最多的一年，直到 2022 年无论是 4 月份新出的 VIVO 平板，还是雷军良心发现小米平板 5 的硬件太过于吝啬 8 月赶紧补出的<a href="https://twitter.com/icyleaf/status/1558408826889519105">小米平板 5 Pro</a> 都是用的它。</p>
 <p>综合分析下来小新 Pad Pro 2021 最最抗打的一个选择：USB 3.1 的接口协议；仅次于 MiniLED 的最好屏幕材质，配合 2K 分辨率，日常 420 尼特，峰值 600 尼特在一些非强光环境下画面是非常优秀的，看视频配合 4 扬声器能提高观看体验；它最牛皮的是支持外接最高 1TB Micro SD 卡；8600 的电池容量看着也不高，日常使用看视频下来 2 天还是没什么问题的。</p>
-<blockquote class="twitter-tweet"><p lang="zh" dir="ltr">出去一下午3个小时的续航很抗打 <a href="https://t.co/1aFjg0O3bg">pic.twitter.com/1aFjg0O3bg</a></p>&mdash; icyleaf 🍺 (@icyleaf) <a href="https://twitter.com/icyleaf/status/1538545947608723457?ref_src=twsrc%5Etfw">June 19, 2022</a></blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet"><p lang="zh" dir="ltr">出去一下午3个小时的续航很抗打 <a href="https://t.co/1aFjg0O3bg">pic.twitter.com/1aFjg0O3bg</a></p>&mdash; icyleaf 🍺 (@icyleaf) <a href="https://x.com/icyleaf/status/1538545947608723457?ref_src=twsrc%5Etfw">June 19, 2022</a></blockquote>
+<script async src="https://platform.x.com/widgets.js" charset="utf-8"></script>
 
 
 <p>配套键盘和笔我没买没资格讲这款，网上有很多说触控笔延迟有多高从 <a href="https://www.youtube.com/watch?v=LjlYQIAUV1Y">Youtuber 画画</a>好像也没什么太大问题，键盘后面会考虑入。</p>
@@ -337,7 +337,7 @@
 
   
   
-    <figure data-pswp="1536x2048" data-size="1920x1080"><a href="/gears/xiaoxin-pad-pro-2021/tachiyomi.jpg" class="gallery-item" target="_blank" data-pswp-width="1536" data-pswp-height="2048"><img src="/gears/xiaoxin-pad-pro-2021/tachiyomi_hu9244883228918357528.jpg"/></a><figcaption>
+    <figure data-pswp="1536x2048" data-size="1920x1080"><a href="/gears/xiaoxin-pad-pro-2021/tachiyomi.jpg" class="gallery-item" target="_blank" data-pswp-width="1536" data-pswp-height="2048"><img src="/gears/xiaoxin-pad-pro-2021/tachiyomi_hu_a491dee7b7fed3df.jpg"/></a><figcaption>
 
     <p>小新 Pad Pro 2021 上看漫画</p></figcaption></figure>
 
@@ -359,7 +359,7 @@
   
   
     
-      <figure data-pswp="2560x1600" data-size="800x"><a href="/gears/xiaoxin-pad-pro-2021/video-encoder.jpg" class="gallery-item" target="_blank" data-pswp-width="2560" data-pswp-height="1600"><img src="/gears/xiaoxin-pad-pro-2021/video-encoder_hu9464014736097340267.jpg"
+      <figure data-pswp="2560x1600" data-size="800x"><a href="/gears/xiaoxin-pad-pro-2021/video-encoder.jpg" class="gallery-item" target="_blank" data-pswp-width="2560" data-pswp-height="1600"><img src="/gears/xiaoxin-pad-pro-2021/video-encoder_hu_db8bd1c93160031c.jpg"
       alt="视频来源"/></a><figcaption><p class="source">视频来源<a href="https://www.bilibili.com/video/BV1tY4y1w7GQ">Linksphotograph</a>
     </p>
 
@@ -470,7 +470,7 @@
   
   
     
-      <figure data-pswp="1280x800" data-size="800x"><a href="/gears/xiaoxin-pad-pro-2021/filesystem-role.jpg" class="gallery-item" target="_blank" data-pswp-width="1280" data-pswp-height="800"><img src="/gears/xiaoxin-pad-pro-2021/filesystem-role_hu10303410419673742394.jpg"/></a><figcaption>
+      <figure data-pswp="1280x800" data-size="800x"><a href="/gears/xiaoxin-pad-pro-2021/filesystem-role.jpg" class="gallery-item" target="_blank" data-pswp-width="1280" data-pswp-height="800"><img src="/gears/xiaoxin-pad-pro-2021/filesystem-role_hu_94e4bc42d4d3122b.jpg"/></a><figcaption>
 
     <p>令人烦恼的外部设备访问权限</p></figcaption></figure>
 
@@ -491,7 +491,7 @@
   
   
     
-      <figure data-pswp="1280x800" data-size="800x"><a href="/gears/xiaoxin-pad-pro-2021/copy-tf-photo.jpg" class="gallery-item" target="_blank" data-pswp-width="1280" data-pswp-height="800"><img src="/gears/xiaoxin-pad-pro-2021/copy-tf-photo_hu18378398785101553412.jpg"/></a><figcaption>
+      <figure data-pswp="1280x800" data-size="800x"><a href="/gears/xiaoxin-pad-pro-2021/copy-tf-photo.jpg" class="gallery-item" target="_blank" data-pswp-width="1280" data-pswp-height="800"><img src="/gears/xiaoxin-pad-pro-2021/copy-tf-photo_hu_7f28aa4698d3dfba.jpg"/></a><figcaption>
 
     <p>使用 Solid Explorer 拷贝 TF 卡到平板</p></figcaption></figure>
 
@@ -514,7 +514,7 @@
   
   
     
-      <figure data-pswp="1280x800" data-size="800x"><a href="/gears/xiaoxin-pad-pro-2021/dual-screens.jpg" class="gallery-item" target="_blank" data-pswp-width="1280" data-pswp-height="800"><img src="/gears/xiaoxin-pad-pro-2021/dual-screens_hu15889798050336384545.jpg"/></a><figcaption>
+      <figure data-pswp="1280x800" data-size="800x"><a href="/gears/xiaoxin-pad-pro-2021/dual-screens.jpg" class="gallery-item" target="_blank" data-pswp-width="1280" data-pswp-height="800"><img src="/gears/xiaoxin-pad-pro-2021/dual-screens_hu_d08a8eeb40ebe30f.jpg"/></a><figcaption>
 
     <p>分屏模式</p></figcaption></figure>
 
@@ -557,81 +557,81 @@
 <table>
   <thead>
       <tr>
-          <th style="text-align: left">名称</th>
-          <th style="text-align: left">品牌型号</th>
-          <th style="text-align: left">价格</th>
-          <th style="text-align: left">备注</th>
+          <th>名称</th>
+          <th>品牌型号</th>
+          <th>价格</th>
+          <th>备注</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td style="text-align: left">CPU</td>
-          <td style="text-align: left">Intel i7 9700k</td>
-          <td style="text-align: left">2550</td>
-          <td style="text-align: left"></td>
+          <td>CPU</td>
+          <td>Intel i7 9700k</td>
+          <td>2550</td>
+          <td></td>
       </tr>
       <tr>
-          <td style="text-align: left">主板</td>
-          <td style="text-align: left">华擎 Z390 Phantom Gaming itx/ac</td>
-          <td style="text-align: left">1399</td>
-          <td style="text-align: left"></td>
+          <td>主板</td>
+          <td>华擎 Z390 Phantom Gaming itx/ac</td>
+          <td>1399</td>
+          <td></td>
       </tr>
       <tr>
-          <td style="text-align: left">散热器</td>
-          <td style="text-align: left">九州风神 船长 240 EX White RGB</td>
-          <td style="text-align: left">453</td>
-          <td style="text-align: left">更换酷里奥屠龙 240A</td>
+          <td>散热器</td>
+          <td>九州风神 船长 240 EX White RGB</td>
+          <td>453</td>
+          <td>更换酷里奥屠龙 240A</td>
       </tr>
       <tr>
-          <td style="text-align: left">内存</td>
-          <td style="text-align: left">海盗船 Vengeance LPX DDR4 3000 16G x 1</td>
-          <td style="text-align: left">719</td>
-          <td style="text-align: left"></td>
+          <td>内存</td>
+          <td>海盗船 Vengeance LPX DDR4 3000 16G x 1</td>
+          <td>719</td>
+          <td></td>
       </tr>
       <tr>
-          <td style="text-align: left">SSD</td>
-          <td style="text-align: left">三星 970 EVO 250G</td>
-          <td style="text-align: left">489</td>
-          <td style="text-align: left"></td>
+          <td>SSD</td>
+          <td>三星 970 EVO 250G</td>
+          <td>489</td>
+          <td></td>
       </tr>
       <tr>
-          <td style="text-align: left">机箱</td>
-          <td style="text-align: left">追风者 215P ITX 侧透 RGB</td>
-          <td style="text-align: left">489</td>
-          <td style="text-align: left">支持大风冷和全尺寸显卡</td>
+          <td>机箱</td>
+          <td>追风者 215P ITX 侧透 RGB</td>
+          <td>489</td>
+          <td>支持大风冷和全尺寸显卡</td>
       </tr>
       <tr>
-          <td style="text-align: left">电源</td>
-          <td style="text-align: left">讯景 XTR550</td>
-          <td style="text-align: left">354</td>
-          <td style="text-align: left"></td>
+          <td>电源</td>
+          <td>讯景 XTR550</td>
+          <td>354</td>
+          <td></td>
       </tr>
       <tr>
-          <td style="text-align: left">无线网卡/蓝牙</td>
-          <td style="text-align: left">博通 BCM94360CS2</td>
-          <td style="text-align: left">95 元</td>
-          <td style="text-align: left">需转接卡</td>
+          <td>无线网卡/蓝牙</td>
+          <td>博通 BCM94360CS2</td>
+          <td>95 元</td>
+          <td>需转接卡</td>
       </tr>
       <tr>
-          <td style="text-align: left">显卡</td>
-          <td style="text-align: left">蓝宝石 RX580 8G 1411MHz Nitro+ 超白金</td>
-          <td style="text-align: left">750</td>
-          <td style="text-align: left">后期预算，闲鱼二手矿卡</td>
+          <td>显卡</td>
+          <td>蓝宝石 RX580 8G 1411MHz Nitro+ 超白金</td>
+          <td>750</td>
+          <td>后期预算，闲鱼二手矿卡</td>
       </tr>
       <tr>
-          <td style="text-align: left">显示器</td>
-          <td style="text-align: left">LG 27UL600 4k HDR400 IPS</td>
-          <td style="text-align: left">后期单独预算</td>
-          <td style="text-align: left"></td>
+          <td>显示器</td>
+          <td>LG 27UL600 4k HDR400 IPS</td>
+          <td>后期单独预算</td>
+          <td></td>
       </tr>
       <tr>
-          <td style="text-align: left">总价</td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left">6075<div >
+          <td>总价</td>
+          <td></td>
+          <td>6075<div >
   <br />
 </div>
 6825(独立显卡)</td>
-          <td style="text-align: left"></td>
+          <td></td>
       </tr>
   </tbody>
 </table>
@@ -728,86 +728,86 @@
 <table>
   <thead>
       <tr>
-          <th style="text-align: left">接口</th>
-          <th style="text-align: left">模块</th>
-          <th style="text-align: left">天线</th>
-          <th style="text-align: left">无线</th>
-          <th style="text-align: left">蓝牙</th>
-          <th style="text-align: left">备注</th>
+          <th>接口</th>
+          <th>模块</th>
+          <th>天线</th>
+          <th>无线</th>
+          <th>蓝牙</th>
+          <th>备注</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td style="text-align: left">PCIe/x1</td>
-          <td style="text-align: left">BCM94360CD</td>
-          <td style="text-align: left">4</td>
-          <td style="text-align: left">2.4G 450M+/5G 1300M=1750M</td>
-          <td style="text-align: left">4.0</td>
-          <td style="text-align: left">iMac (2013) 使用，请勿购买三天线版本，三天线版本（3T3R）蓝牙和无线共用一根影响使用</td>
+          <td>PCIe/x1</td>
+          <td>BCM94360CD</td>
+          <td>4</td>
+          <td>2.4G 450M+/5G 1300M=1750M</td>
+          <td>4.0</td>
+          <td>iMac (2013) 使用，请勿购买三天线版本，三天线版本（3T3R）蓝牙和无线共用一根影响使用</td>
       </tr>
       <tr>
-          <td style="text-align: left">PCIe/x1</td>
-          <td style="text-align: left">BCM94331CD</td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left">tonymacx86 列表之一，国内没找到</td>
+          <td>PCIe/x1</td>
+          <td>BCM94331CD</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>tonymacx86 列表之一，国内没找到</td>
       </tr>
       <tr>
-          <td style="text-align: left">M.2</td>
-          <td style="text-align: left">BCM943602CS</td>
-          <td style="text-align: left">3T3R</td>
-          <td style="text-align: left">2.4G 450M+/5G 1300M=1750M</td>
-          <td style="text-align: left">4.0</td>
-          <td style="text-align: left">MacBook Pro (2015) 使用，蓝牙需要接 USB</td>
+          <td>M.2</td>
+          <td>BCM943602CS</td>
+          <td>3T3R</td>
+          <td>2.4G 450M+/5G 1300M=1750M</td>
+          <td>4.0</td>
+          <td>MacBook Pro (2015) 使用，蓝牙需要接 USB</td>
       </tr>
       <tr>
-          <td style="text-align: left">M.2/NGFF 2230, key E</td>
-          <td style="text-align: left">BCM94360CS2</td>
-          <td style="text-align: left">2T2R</td>
-          <td style="text-align: left">2.4G 300M+/5G 867M=1167M</td>
-          <td style="text-align: left">4.0</td>
-          <td style="text-align: left">MacBook Air (2013) 使用，价格低廉，性价比最好</td>
+          <td>M.2/NGFF 2230, key E</td>
+          <td>BCM94360CS2</td>
+          <td>2T2R</td>
+          <td>2.4G 300M+/5G 867M=1167M</td>
+          <td>4.0</td>
+          <td>MacBook Air (2013) 使用，价格低廉，性价比最好</td>
       </tr>
       <tr>
-          <td style="text-align: left">M.2/NGFF 2230, key E</td>
-          <td style="text-align: left">BCM94352Z/AzureWave AW-CE162NF/DW1560</td>
-          <td style="text-align: left">2T2R</td>
-          <td style="text-align: left">2.4G 300M/5.0G 867M=1167M</td>
-          <td style="text-align: left">4.0</td>
-          <td style="text-align: left"></td>
+          <td>M.2/NGFF 2230, key E</td>
+          <td>BCM94352Z/AzureWave AW-CE162NF/DW1560</td>
+          <td>2T2R</td>
+          <td>2.4G 300M/5.0G 867M=1167M</td>
+          <td>4.0</td>
+          <td></td>
       </tr>
       <tr>
-          <td style="text-align: left">M.2</td>
-          <td style="text-align: left">BCM943602BAED/DELL DW1830</td>
-          <td style="text-align: left">3T3R</td>
-          <td style="text-align: left">2.4G 450M+</td>
-          <td style="text-align: left">4.1</td>
-          <td style="text-align: left"></td>
+          <td>M.2</td>
+          <td>BCM943602BAED/DELL DW1830</td>
+          <td>3T3R</td>
+          <td>2.4G 450M+</td>
+          <td>4.1</td>
+          <td></td>
       </tr>
       <tr>
-          <td style="text-align: left">M.2</td>
-          <td style="text-align: left">BCM94350ZAE/DW1820A</td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left">tonymacx86 列表之一，国内没找到</td>
+          <td>M.2</td>
+          <td>BCM94350ZAE/DW1820A</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>tonymacx86 列表之一，国内没找到</td>
       </tr>
       <tr>
-          <td style="text-align: left">Half mini</td>
-          <td style="text-align: left">BCM94360HMB/AzureWave AW-CB160H</td>
-          <td style="text-align: left">3T3R</td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left">tonymacx86 列表之一，国内没找到</td>
+          <td>Half mini</td>
+          <td>BCM94360HMB/AzureWave AW-CB160H</td>
+          <td>3T3R</td>
+          <td></td>
+          <td></td>
+          <td>tonymacx86 列表之一，国内没找到</td>
       </tr>
       <tr>
-          <td style="text-align: left">Half mini</td>
-          <td style="text-align: left">BCM94352 HMB/AzureWave AW-CE123H</td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left">tonymacx86 列表之一，国内没找到</td>
+          <td>Half mini</td>
+          <td>BCM94352 HMB/AzureWave AW-CE123H</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>tonymacx86 列表之一，国内没找到</td>
       </tr>
   </tbody>
 </table>
@@ -829,7 +829,7 @@
   
   
     
-      <figure data-pswp="900x2048" data-size="800x"><a href="/uploads/2020/04/02/m2-key-list.jpeg" class="gallery-item" target="_blank" data-pswp-width="900" data-pswp-height="2048"><img src="/uploads/2020/04/02/m2-key-list_hu12425770893066929093.jpeg"/></a><figcaption>
+      <figure data-pswp="900x2048" data-size="800x"><a href="/uploads/2020/04/02/m2-key-list.jpeg" class="gallery-item" target="_blank" data-pswp-width="900" data-pswp-height="2048"><img src="/uploads/2020/04/02/m2-key-list_hu_1437dcd68f2e2ce5.jpeg"/></a><figcaption>
 
     <p>M2 规格图</p></figcaption></figure>
 

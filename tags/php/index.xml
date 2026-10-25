@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>PHP on icyleaf</title><link>https://icyleaf.com/tags/php/</link><description>Recent content in PHP on icyleaf</description><language>zh-cn</language><lastBuildDate>Mon, 31 May 2010 12:34:56 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/php/index.xml" rel="self" type="application/rss+xml"/><item><title>Nginx+FastCGI 环境搭建 Kohana</title><link>https://icyleaf.com/2010/05/nginx-with-fastcgi-build-kohana/</link><pubDate>Mon, 31 May 2010 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2010/05/nginx-with-fastcgi-build-kohana/</guid><description>&lt;p>Kohana 默认仅对 Apache 环境提供的部署支持，其实对于 Nginx+FastCGI
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>PHP on icyleaf</title><link>https://icyleaf.com/tags/php/</link><description>Recent content in PHP on icyleaf</description><language>zh-cn</language><lastBuildDate>Mon, 31 May 2010 12:34:56 +0800</lastBuildDate><atom:link href="https://icyleaf.com/tags/php/index.xml" rel="self" type="application/rss+xml"/><item><title>Nginx+FastCGI 环境搭建 Kohana</title><link>https://icyleaf.com/2010/05/nginx-with-fastcgi-build-kohana/</link><pubDate>Mon, 31 May 2010 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2010/05/nginx-with-fastcgi-build-kohana/</guid><description>&lt;p&gt;Kohana 默认仅对 Apache 环境提供的部署支持，其实对于 Nginx+FastCGI
 也是很容易支持的。本文搭建环境是 Ubuntu 10.4 并采用 apt-get
-方式安装，喜爱编译的朋友可以自行解决 :)&lt;/p>
-&lt;h3 id="1-安装-mysql">1. 安装 MySQL&lt;/h3>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">$ sudo apt-get install mysql-server mysql-client
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>安装过程在会提示设置 root 账户的密码，如果是本机测试开发可以留空后稍候设置。&lt;/p>...</description><content:encoded><![CDATA[<p>Kohana 默认仅对 Apache 环境提供的部署支持，其实对于 Nginx+FastCGI
+方式安装，喜爱编译的朋友可以自行解决 :)&lt;/p&gt;
+&lt;h3 id="1-安装-mysql"&gt;1. 安装 MySQL&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;$ sudo apt-get install mysql-server mysql-client
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;安装过程在会提示设置 root 账户的密码，如果是本机测试开发可以留空后稍候设置。&lt;/p&gt;...</description><content:encoded><![CDATA[<p>Kohana 默认仅对 Apache 环境提供的部署支持，其实对于 Nginx+FastCGI
 也是很容易支持的。本文搭建环境是 Ubuntu 10.4 并采用 apt-get
 方式安装，喜爱编译的朋友可以自行解决 :)</p>
 <h3 id="1-安装-mysql">1. 安装 MySQL</h3>
@@ -156,13 +156,13 @@ Kohana 的 URL rewrite url 重点是 location 段的：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ sudo /etc/init.d/nginx reload
 </span></span></code></pre></div><p>至此教程结束，额外说明的是 Kohana 默认的 .htaccess 对 Nginx 无效可有可无
 :)</p>
-]]></content:encoded></item><item><title>如何获取 Element 的 XPath [PHP/Javascript]</title><link>https://icyleaf.com/2010/04/how-to-get-xpath-of-an-element-for-php-and-javascript/</link><pubDate>Fri, 02 Apr 2010 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2010/04/how-to-get-xpath-of-an-element-for-php-and-javascript/</guid><description>&lt;p>这两天研究 HTML 的 DOM 需要寻找某个 Element 元素的完整 XPath 路径，由于使用的是 &lt;a href="http://simplehtmldom.sourceforge.net/manual.htm">PHP Simple HTML DOM Parser&lt;/a> 开源库，这个库类的使用方法几乎兼容 Javascript 的 DOM 语法并附带 DOM 选择器。虽然功能强大但是并不能直接获取 Element 的 XPath。这个怎么办呢，依稀记得 Firebug 有一个功能，选择某个元素在它的控制台可以显示 XPath。嗯，着手实践一下发现不仅可以显示而且还可以复制 XPath。&lt;/p>...</description><content:encoded><![CDATA[<p>这两天研究 HTML 的 DOM 需要寻找某个 Element 元素的完整 XPath 路径，由于使用的是 <a href="http://simplehtmldom.sourceforge.net/manual.htm">PHP Simple HTML DOM Parser</a> 开源库，这个库类的使用方法几乎兼容 Javascript 的 DOM 语法并附带 DOM 选择器。虽然功能强大但是并不能直接获取 Element 的 XPath。这个怎么办呢，依稀记得 Firebug 有一个功能，选择某个元素在它的控制台可以显示 XPath。嗯，着手实践一下发现不仅可以显示而且还可以复制 XPath。</p>
+]]></content:encoded></item><item><title>如何获取 Element 的 XPath [PHP/Javascript]</title><link>https://icyleaf.com/2010/04/how-to-get-xpath-of-an-element-for-php-and-javascript/</link><pubDate>Fri, 02 Apr 2010 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2010/04/how-to-get-xpath-of-an-element-for-php-and-javascript/</guid><description>&lt;p&gt;这两天研究 HTML 的 DOM 需要寻找某个 Element 元素的完整 XPath 路径，由于使用的是 &lt;a href="http://simplehtmldom.sourceforge.net/manual.htm"&gt;PHP Simple HTML DOM Parser&lt;/a&gt; 开源库，这个库类的使用方法几乎兼容 Javascript 的 DOM 语法并附带 DOM 选择器。虽然功能强大但是并不能直接获取 Element 的 XPath。这个怎么办呢，依稀记得 Firebug 有一个功能，选择某个元素在它的控制台可以显示 XPath。嗯，着手实践一下发现不仅可以显示而且还可以复制 XPath。&lt;/p&gt;...</description><content:encoded><![CDATA[<p>这两天研究 HTML 的 DOM 需要寻找某个 Element 元素的完整 XPath 路径，由于使用的是 <a href="http://simplehtmldom.sourceforge.net/manual.htm">PHP Simple HTML DOM Parser</a> 开源库，这个库类的使用方法几乎兼容 Javascript 的 DOM 语法并附带 DOM 选择器。虽然功能强大但是并不能直接获取 Element 的 XPath。这个怎么办呢，依稀记得 Firebug 有一个功能，选择某个元素在它的控制台可以显示 XPath。嗯，着手实践一下发现不仅可以显示而且还可以复制 XPath。</p>
 <p>于是想，如果可以找到 Javascript 版的相关代码就一定可以改成 PHP 版本的，结果在 Google 搜索找到了&hellip;</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="kd">var</span> <span class="nx">elt</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;table&#39;</span><span class="p">);</span>
 </span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="kd">var</span> <span class="nx">xpath</span> <span class="o">=</span> <span class="nx">getElementXPath</span><span class="p">(</span><span class="nx">elt</span><span class="p">);</span><span class="nx">alert</span><span class="p">(</span><span class="nx">xpath</span><span class="p">);</span>
 </span></span><span class="line"><span class="ln"> 3</span><span class="cl">
 </span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="c1">// Get full XPath of an element
-</span></span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="c1"></span><span class="kd">function</span> <span class="nx">getElementXPath</span><span class="p">(</span><span class="nx">elt</span><span class="p">){</span>
+</span></span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="kd">function</span> <span class="nx">getElementXPath</span><span class="p">(</span><span class="nx">elt</span><span class="p">){</span>
 </span></span><span class="line"><span class="ln"> 6</span><span class="cl">	<span class="kd">var</span> <span class="nx">path</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span><span class="p">;</span>
 </span></span><span class="line"><span class="ln"> 7</span><span class="cl">	<span class="k">for</span> <span class="p">(;</span> <span class="nx">elt</span> <span class="o">&amp;&amp;</span> <span class="nx">elt</span><span class="p">.</span><span class="nx">nodeType</span> <span class="o">==</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">elt</span> <span class="o">=</span> <span class="nx">elt</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">)</span>
 </span></span><span class="line"><span class="ln"> 8</span><span class="cl">	<span class="p">{</span>
@@ -175,7 +175,7 @@ Kohana 的 URL rewrite url 重点是 location 段的：</p>
 </span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="ln">16</span><span class="cl">
 </span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="c1">// Get Idx of an element
-</span></span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="c1"></span><span class="kd">function</span> <span class="nx">getElementIdx</span><span class="p">(</span><span class="nx">elt</span><span class="p">){</span>
+</span></span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="kd">function</span> <span class="nx">getElementIdx</span><span class="p">(</span><span class="nx">elt</span><span class="p">){</span>
 </span></span><span class="line"><span class="ln">19</span><span class="cl">	<span class="kd">var</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 </span></span><span class="line"><span class="ln">20</span><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">sib</span> <span class="o">=</span> <span class="nx">elt</span><span class="p">.</span><span class="nx">previousSibling</span><span class="p">;</span> <span class="nx">sib</span> <span class="p">;</span> <span class="nx">sib</span> <span class="o">=</span> <span class="nx">sib</span><span class="p">.</span><span class="nx">previousSibling</span><span class="p">)</span>
 </span></span><span class="line"><span class="ln">21</span><span class="cl">	<span class="p">{</span>
@@ -185,19 +185,19 @@ Kohana 的 URL rewrite url 重点是 location 段的：</p>
 </span></span><span class="line"><span class="ln">25</span><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>PHP 改进版：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1">// Use it before import PHP Simple HTML DOM Parser
-</span></span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="c1"></span><span class="nv">$html</span> <span class="o">=</span> <span class="nx">file_get_html</span><span class="p">(</span><span class="s1">&#39;http://www.google.com/&#39;</span><span class="p">);</span>
+</span></span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="nv">$html</span> <span class="o">=</span> <span class="nx">file_get_html</span><span class="p">(</span><span class="s1">&#39;http://www.google.com/&#39;</span><span class="p">);</span>
 </span></span><span class="line"><span class="ln"> 3</span><span class="cl">
 </span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="c1">// find a sample element by id
-</span></span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="c1"></span><span class="nv">$elt1</span> <span class="o">=</span> <span class="nv">$html</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;#footer&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="nv">$elt1</span> <span class="o">=</span> <span class="nv">$html</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;#footer&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
 </span></span><span class="line"><span class="ln"> 6</span><span class="cl">
 </span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="c1">// find a sample element by tag name
-</span></span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="c1"></span><span class="nv">$elt2</span><span class="o">=</span> <span class="nv">$html</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+</span></span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="nv">$elt2</span><span class="o">=</span> <span class="nv">$html</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
 </span></span><span class="line"><span class="ln"> 9</span><span class="cl">
 </span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="c1">// it will return if found it: [@id=&#34;footer&#34;]
-</span></span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="c1"></span><span class="nv">$xpath</span> <span class="o">=</span> <span class="nx">getElementXPath</span><span class="p">(</span><span class="nv">$elt1</span><span class="p">);</span>
+</span></span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="nv">$xpath</span> <span class="o">=</span> <span class="nx">getElementXPath</span><span class="p">(</span><span class="nv">$elt1</span><span class="p">);</span>
 </span></span><span class="line"><span class="ln">12</span><span class="cl">
 </span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="c1">// it will return if found it: html/body/div[10]
-</span></span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="c1"></span><span class="nv">$xpath</span> <span class="o">=</span> <span class="nx">getElementXPath</span><span class="p">(</span><span class="nv">$elt2</span><span class="p">);</span>
+</span></span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="nv">$xpath</span> <span class="o">=</span> <span class="nx">getElementXPath</span><span class="p">(</span><span class="nv">$elt2</span><span class="p">);</span>
 </span></span><span class="line"><span class="ln">15</span><span class="cl">
 </span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="k">function</span> <span class="nf">getElementXPath</span><span class="p">(</span><span class="nv">$elt</span><span class="p">){</span>
 </span></span><span class="line"><span class="ln">17</span><span class="cl">	<span class="nv">$path</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
@@ -236,9 +236,9 @@ Kohana 的 URL rewrite url 重点是 location 段的：</p>
 </span></span><span class="line"><span class="ln">50</span><span class="cl">	<span class="k">return</span> <span class="nv">$count</span><span class="p">;</span>
 </span></span><span class="line"><span class="ln">51</span><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>大家同样可以把上面的代码直接 crack 到 PHP Simple HTML DOM Parser 库中。</p>
-]]></content:encoded></item><item><title>Douban API Package 发布！</title><link>https://icyleaf.com/2010/01/douban-api-package/</link><pubDate>Fri, 08 Jan 2010 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2010/01/douban-api-package/</guid><description>&lt;p>Douban API Package 是一个使用 PHP 开发且基于 Kohana v3 开发的一个扩展（Module）。&lt;/p>
-&lt;p>它对&lt;a href="http://www.douban.com/">豆瓣&lt;/a> &lt;a href="http://www.douban.com/service/apidoc/">API&lt;/a> 进行重新封包。它使用起来非常方便，可以快速开发一个 web 应用。&lt;/p>
-&lt;p>&lt;strong>为什么要另外封包？&lt;/strong>&lt;/p>...</description><content:encoded><![CDATA[<p>Douban API Package 是一个使用 PHP 开发且基于 Kohana v3 开发的一个扩展（Module）。</p>
+]]></content:encoded></item><item><title>Douban API Package 发布！</title><link>https://icyleaf.com/2010/01/douban-api-package/</link><pubDate>Fri, 08 Jan 2010 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2010/01/douban-api-package/</guid><description>&lt;p&gt;Douban API Package 是一个使用 PHP 开发且基于 Kohana v3 开发的一个扩展（Module）。&lt;/p&gt;
+&lt;p&gt;它对&lt;a href="http://www.douban.com/"&gt;豆瓣&lt;/a&gt; &lt;a href="http://www.douban.com/service/apidoc/"&gt;API&lt;/a&gt; 进行重新封包。它使用起来非常方便，可以快速开发一个 web 应用。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;为什么要另外封包？&lt;/strong&gt;&lt;/p&gt;...</description><content:encoded><![CDATA[<p>Douban API Package 是一个使用 PHP 开发且基于 Kohana v3 开发的一个扩展（Module）。</p>
 <p>它对<a href="http://www.douban.com/">豆瓣</a> <a href="http://www.douban.com/service/apidoc/">API</a> 进行重新封包。它使用起来非常方便，可以快速开发一个 web 应用。</p>
 <p><strong>为什么要另外封包？</strong></p>
 <p>对，豆瓣官方提供了一种 PHP 的解决方案，可是需要庞大的支持库：GData（20M左右）以及可能无法修改的环境配置（租用的空间主机会遇到这样的问题）。虽说 Douban API Package 也是基于框架开发，不过 Kohana 是一个纯 PHP5 模式且体积小巧（仅有 478KB），优秀迅捷的框架。<strong>最重要的是</strong>，Douban API Package 提供了目前官方所有功能的支持。并有线上网站：<a href="http://modou.us/">魔豆</a> 和<a href="http://modou.us/console">豆瓣 API 控制台</a>长期运营。</p>
@@ -296,10 +296,10 @@ Kohana 的 URL rewrite url 重点是 location 段的：</p>
 <p>祝你开发顺利！</p>
 <p>如果任何疑问或者 Bugs 反馈，即可以在本项目中提交 Issue
 或者给我发邮件：icyleaf.cn囧gmail.com （请替换 &ldquo;囧&rdquo; 为 @）</p>
-]]></content:encoded></item><item><title>Kohana 官方 2.3，2.4，3.0 的最终裁决！</title><link>https://icyleaf.com/2009/07/official-2-3-2-4-3-0-decisions/</link><pubDate>Fri, 24 Jul 2009 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2009/07/official-2-3-2-4-3-0-decisions/</guid><description>&lt;blockquote>
-&lt;p>更新：Kohana 官方已经做出&lt;a href="http://forum.khnfans.cn/topic/view/167/1.html">最终裁决&lt;/a>！&lt;/p>
-&lt;/blockquote>
-&lt;p>两天前我(Shadowhand)曾经&lt;a href="http://forum.kohanaphp.com/comments.php?DiscussionID=2835&amp;amp;page=6#Item_12">说过&lt;/a>关于 2.4 和 3.0 版本的问题和它们之间的关系已经做出的解答。之后的今天和其他开发者见面（with more of the devs），这似乎是错误的。所以长话短说，我们现在有两个选择：&lt;/p>...</description><content:encoded><![CDATA[<blockquote>
+]]></content:encoded></item><item><title>Kohana 官方 2.3，2.4，3.0 的最终裁决！</title><link>https://icyleaf.com/2009/07/official-2-3-2-4-3-0-decisions/</link><pubDate>Fri, 24 Jul 2009 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2009/07/official-2-3-2-4-3-0-decisions/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;更新：Kohana 官方已经做出&lt;a href="http://forum.khnfans.cn/topic/view/167/1.html"&gt;最终裁决&lt;/a&gt;！&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;两天前我(Shadowhand)曾经&lt;a href="http://forum.kohanaphp.com/comments.php?DiscussionID=2835&amp;amp;page=6#Item_12"&gt;说过&lt;/a&gt;关于 2.4 和 3.0 版本的问题和它们之间的关系已经做出的解答。之后的今天和其他开发者见面（with more of the devs），这似乎是错误的。所以长话短说，我们现在有两个选择：&lt;/p&gt;...</description><content:encoded><![CDATA[<blockquote>
 <p>更新：Kohana 官方已经做出<a href="http://forum.khnfans.cn/topic/view/167/1.html">最终裁决</a>！</p>
 </blockquote>
 <p>两天前我(Shadowhand)曾经<a href="http://forum.kohanaphp.com/comments.php?DiscussionID=2835&amp;page=6#Item_12">说过</a>关于 2.4 和 3.0 版本的问题和它们之间的关系已经做出的解答。之后的今天和其他开发者见面（with more of the devs），这似乎是错误的。所以长话短说，我们现在有两个选择：</p>
@@ -324,10 +324,10 @@ Github 放出了源码！而且声称会开发 Linux 版本并且弘扬 Linux �
 editor on Fedora 10</a></p>
 <p>不知道身为 Textmate clone 的 Intype
 会做何打算，它们目前正在全力开发新的版本（貌似内核和界面全部重新），拭目以待！</p>
-]]></content:encoded></item><item><title>豆瓣API测试控制台</title><link>https://icyleaf.com/2009/07/douban-api-console/</link><pubDate>Mon, 06 Jul 2009 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2009/07/douban-api-console/</guid><description>&lt;p>豆瓣 API 测试控制台的创造灵感来源于 Facebook Developers Tools 中的&lt;a href="http://developers.facebook.com/tools.php">Facebook API Console&lt;/a>， 或许大家知道，魔豆是我的另外一个豆瓣 API 应用，由于是自己封装的 Douban
+]]></content:encoded></item><item><title>豆瓣API测试控制台</title><link>https://icyleaf.com/2009/07/douban-api-console/</link><pubDate>Mon, 06 Jul 2009 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2009/07/douban-api-console/</guid><description>&lt;p&gt;豆瓣 API 测试控制台的创造灵感来源于 Facebook Developers Tools 中的&lt;a href="http://developers.facebook.com/tools.php"&gt;Facebook API Console&lt;/a&gt;， 或许大家知道，魔豆是我的另外一个豆瓣 API 应用，由于是自己封装的 Douban
 API（官方提供的库类要求太多，安装繁琐，这不属于我喜爱简洁，轻便的风格），每次想查看某个
 API 接口返回的数据都要写一个 test 跑一下。麻烦不说，还容易出错，于是，使用自己封装的 Douban API，借鉴 Facebook API Console
-的界面和类似的功能显示，终于小有所成，其中为了实现此控制台，封包的库类经过两次大改，虽然改的很辛苦，但从中学到了很多开发经验。&lt;/p>...</description><content:encoded><![CDATA[<p>豆瓣 API 测试控制台的创造灵感来源于 Facebook Developers Tools 中的<a href="http://developers.facebook.com/tools.php">Facebook API Console</a>， 或许大家知道，魔豆是我的另外一个豆瓣 API 应用，由于是自己封装的 Douban
+的界面和类似的功能显示，终于小有所成，其中为了实现此控制台，封包的库类经过两次大改，虽然改的很辛苦，但从中学到了很多开发经验。&lt;/p&gt;...</description><content:encoded><![CDATA[<p>豆瓣 API 测试控制台的创造灵感来源于 Facebook Developers Tools 中的<a href="http://developers.facebook.com/tools.php">Facebook API Console</a>， 或许大家知道，魔豆是我的另外一个豆瓣 API 应用，由于是自己封装的 Douban
 API（官方提供的库类要求太多，安装繁琐，这不属于我喜爱简洁，轻便的风格），每次想查看某个
 API 接口返回的数据都要写一个 test 跑一下。麻烦不说，还容易出错，于是，使用自己封装的 Douban API，借鉴 Facebook API Console
 的界面和类似的功能显示，终于小有所成，其中为了实现此控制台，封包的库类经过两次大改，虽然改的很辛苦，但从中学到了很多开发经验。</p>
@@ -372,9 +372,9 @@ id 留空或者设置为 ‘me’ （不带引号），这样调用结果显示�
 <p>由于目前为止豆瓣 API 还没有封装完成，现只提供用户，广播，书影音，豆邮和日记的不完全功能测试查询。
 其余的 API 会尽快添加进去 :)</p>
 <p>测试地址：<a href="http://ews.im/douban_console">http://ews.im/douban_console</a></p>
-]]></content:encoded></item><item><title>魔豆：豆瓣网非官方移动版本</title><link>https://icyleaf.com/2009/06/modou/</link><pubDate>Mon, 22 Jun 2009 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2009/06/modou/</guid><description>&lt;p>&lt;a href="http://modou.us" title="魔豆：豆瓣网非官方移动版本">魔豆&lt;/a>，一个&lt;a href="http://douban.com">豆瓣网&lt;/a>非官方移动版本，基于&lt;a href="http://www.douban.com/service/apidoc/" title="豆瓣 API">豆瓣
-API&lt;/a>开发的专门为移动终端（手持设备）定制的豆瓣移动版本。魔豆专注于豆瓣网的&lt;strong>广播&lt;/strong>及&lt;strong>同城活动&lt;/strong>。&lt;/p>
-&lt;p>魔豆的来历：豆瓣移动版 -&amp;gt; Douban mobile -&amp;gt; moDouban -&amp;gt; moDou -&amp;gt;魔豆&lt;/p>...</description><content:encoded><![CDATA[<p><a href="http://modou.us" title="魔豆：豆瓣网非官方移动版本">魔豆</a>，一个<a href="http://douban.com">豆瓣网</a>非官方移动版本，基于<a href="http://www.douban.com/service/apidoc/" title="豆瓣 API">豆瓣
+]]></content:encoded></item><item><title>魔豆：豆瓣网非官方移动版本</title><link>https://icyleaf.com/2009/06/modou/</link><pubDate>Mon, 22 Jun 2009 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2009/06/modou/</guid><description>&lt;p&gt;&lt;a href="http://modou.us" title="魔豆：豆瓣网非官方移动版本"&gt;魔豆&lt;/a&gt;，一个&lt;a href="http://douban.com"&gt;豆瓣网&lt;/a&gt;非官方移动版本，基于&lt;a href="http://www.douban.com/service/apidoc/" title="豆瓣 API"&gt;豆瓣
+API&lt;/a&gt;开发的专门为移动终端（手持设备）定制的豆瓣移动版本。魔豆专注于豆瓣网的&lt;strong&gt;广播&lt;/strong&gt;及&lt;strong&gt;同城活动&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;魔豆的来历：豆瓣移动版 -&amp;gt; Douban mobile -&amp;gt; moDouban -&amp;gt; moDou -&amp;gt;魔豆&lt;/p&gt;...</description><content:encoded><![CDATA[<p><a href="http://modou.us" title="魔豆：豆瓣网非官方移动版本">魔豆</a>，一个<a href="http://douban.com">豆瓣网</a>非官方移动版本，基于<a href="http://www.douban.com/service/apidoc/" title="豆瓣 API">豆瓣
 API</a>开发的专门为移动终端（手持设备）定制的豆瓣移动版本。魔豆专注于豆瓣网的<strong>广播</strong>及<strong>同城活动</strong>。</p>
 <p>魔豆的来历：豆瓣移动版 -&gt; Douban mobile -&gt; moDouban -&gt; moDou -&gt;魔豆</p>
 <blockquote>
@@ -408,14 +408,14 @@ Zend Framework 和 Gdata，使用自己维护中文化的 <a href="http://khnfan
 <blockquote>
 <p>更新于 2009年06月22日：由于 China Mobile 的原因，黑莓手机默认浏览器无法判别，请黑莓用户使用 Opera Mini 或其他浏览器访问，原因请看<a href="http://www.douban.com/group/topic/6946152/">这里</a>。</p>
 </blockquote>
-]]></content:encoded></item><item><title>Modules Library 和 DBManager Module</title><link>https://icyleaf.com/2009/03/modules-helper-and-dbmanager-module/</link><pubDate>Thu, 05 Mar 2009 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2009/03/modules-helper-and-dbmanager-module/</guid><description>&lt;blockquote>
-&lt;p>Hi, Don&amp;rsquo;t understand Chinese? ok, No problem. Here to view &lt;a href="http://forum.kohanaphp.com/comments.php?DiscussionID=2117&amp;amp;page=1">Modules Library&lt;/a> and &lt;a href="http://forum.kohanaphp.com/comments.php?DiscussionID=2156&amp;amp;page=1">DBManager Module&lt;/a>&lt;/p>
-&lt;/blockquote>
-&lt;p>或许大家可能有了解到，本人目前一直在对 &lt;a href="http://kohanaphp.com">Kohana&lt;/a>这个纯 PHP5
-框架进行文档翻译和维护，同时也建立一个站点：&lt;a href="http://khnfans.cn/" title="Kohana爱好者">Kohana爱好者&lt;/a>。
+]]></content:encoded></item><item><title>Modules Library 和 DBManager Module</title><link>https://icyleaf.com/2009/03/modules-helper-and-dbmanager-module/</link><pubDate>Thu, 05 Mar 2009 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2009/03/modules-helper-and-dbmanager-module/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;Hi, Don&amp;rsquo;t understand Chinese? ok, No problem. Here to view &lt;a href="http://forum.kohanaphp.com/comments.php?DiscussionID=2117&amp;amp;page=1"&gt;Modules Library&lt;/a&gt; and &lt;a href="http://forum.kohanaphp.com/comments.php?DiscussionID=2156&amp;amp;page=1"&gt;DBManager Module&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;或许大家可能有了解到，本人目前一直在对 &lt;a href="http://kohanaphp.com"&gt;Kohana&lt;/a&gt;这个纯 PHP5
+框架进行文档翻译和维护，同时也建立一个站点：&lt;a href="http://khnfans.cn/" title="Kohana爱好者"&gt;Kohana爱好者&lt;/a&gt;。
 站点提供中文化的文档，包含中文语言包的中文镜像下载支持以及中文化论坛。Kohana 
 凭借着基于 CodeIgniter
-框架+PHP5，赢得了一群使用者，我也希望无论是国外的还是国内的使用者都能共享自己的力量。&lt;/p>...</description><content:encoded><![CDATA[<blockquote>
+框架+PHP5，赢得了一群使用者，我也希望无论是国外的还是国内的使用者都能共享自己的力量。&lt;/p&gt;...</description><content:encoded><![CDATA[<blockquote>
 <p>Hi, Don&rsquo;t understand Chinese? ok, No problem. Here to view <a href="http://forum.kohanaphp.com/comments.php?DiscussionID=2117&amp;page=1">Modules Library</a> and <a href="http://forum.kohanaphp.com/comments.php?DiscussionID=2156&amp;page=1">DBManager Module</a></p>
 </blockquote>
 <p>或许大家可能有了解到，本人目前一直在对 <a href="http://kohanaphp.com">Kohana</a>这个纯 PHP5
@@ -431,25 +431,25 @@ Kohana 框架编写的，以后会根据自己和大家的寻求做适当的更�
 Modules，激活和关闭 Module。</p>
 <p>范例代码：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1">// Instance Module library
-</span></span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="c1"></span><span class="nv">$module</span> <span class="o">=</span> <span class="nx">Module</span><span class="o">::</span><span class="na">instance</span><span class="p">();</span>
+</span></span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="nv">$module</span> <span class="o">=</span> <span class="nx">Module</span><span class="o">::</span><span class="na">instance</span><span class="p">();</span>
 </span></span><span class="line"><span class="ln"> 3</span><span class="cl">
 </span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="c1">// list all modules of application in application/config/config.php
-</span></span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="c1"></span><span class="k">echo</span> <span class="nx">Kohana</span><span class="o">::</span><span class="na">debug</span><span class="p">(</span><span class="nv">$module</span><span class="o">-&gt;</span><span class="na">list_all</span><span class="p">());</span>
+</span></span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="k">echo</span> <span class="nx">Kohana</span><span class="o">::</span><span class="na">debug</span><span class="p">(</span><span class="nv">$module</span><span class="o">-&gt;</span><span class="na">list_all</span><span class="p">());</span>
 </span></span><span class="line"><span class="ln"> 6</span><span class="cl">
 </span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="c1">// list active modules of application in application/config/config.php
-</span></span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="c1"></span><span class="k">echo</span> <span class="nx">Kohana</span><span class="o">::</span><span class="na">debug</span><span class="p">(</span><span class="nv">$module</span><span class="o">-&gt;</span><span class="na">list_active</span><span class="p">());</span>
+</span></span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="k">echo</span> <span class="nx">Kohana</span><span class="o">::</span><span class="na">debug</span><span class="p">(</span><span class="nv">$module</span><span class="o">-&gt;</span><span class="na">list_active</span><span class="p">());</span>
 </span></span><span class="line"><span class="ln"> 9</span><span class="cl">
 </span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="c1">// list inactive modules of application in application/config/config.ph	p
-</span></span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="c1"></span><span class="k">echo</span> <span class="nx">Kohana</span><span class="o">::</span><span class="na">debug</span><span class="p">(</span><span class="nv">$module</span><span class="o">-&gt;</span><span class="na">list_inactive</span><span class="p">());</span>
+</span></span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="k">echo</span> <span class="nx">Kohana</span><span class="o">::</span><span class="na">debug</span><span class="p">(</span><span class="nv">$module</span><span class="o">-&gt;</span><span class="na">list_inactive</span><span class="p">());</span>
 </span></span><span class="line"><span class="ln">12</span><span class="cl">
 </span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="c1">// active &#39;auth&#39; module
-</span></span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="c1"></span><span class="nv">$module</span><span class="o">-&gt;</span><span class="na">active</span><span class="p">(</span><span class="s1">&#39;auth&#39;</span><span class="p">);</span>
+</span></span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="nv">$module</span><span class="o">-&gt;</span><span class="na">active</span><span class="p">(</span><span class="s1">&#39;auth&#39;</span><span class="p">);</span>
 </span></span><span class="line"><span class="ln">15</span><span class="cl">
 </span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="c1">// inactive &#39;auth&#39; module
-</span></span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="c1"></span><span class="nv">$module</span><span class="o">-&gt;</span><span class="na">inactive</span><span class="p">(</span><span class="s1">&#39;auth&#39;</span><span class="p">);</span>
+</span></span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="nv">$module</span><span class="o">-&gt;</span><span class="na">inactive</span><span class="p">(</span><span class="s1">&#39;auth&#39;</span><span class="p">);</span>
 </span></span><span class="line"><span class="ln">18</span><span class="cl">
 </span></span><span class="line"><span class="ln">19</span><span class="cl"><span class="c1">// add &#39;sample_module&#39; module with description.
-</span></span></span><span class="line"><span class="ln">20</span><span class="cl"><span class="c1"></span><span class="nv">$module</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;sample_module&#39;</span><span class="p">,</span> <span class="s1">&#39;Just a sample module&#39;</span><span class="p">);</span>
+</span></span></span><span class="line"><span class="ln">20</span><span class="cl"><span class="nv">$module</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;sample_module&#39;</span><span class="p">,</span> <span class="s1">&#39;Just a sample module&#39;</span><span class="p">);</span>
 </span></span></code></pre></div><p><strong>DBManager Module</strong>灵感来自 WordPress 插件 WP_DBManager，就连名字都很类似，其实对于其功能也是按照它实现。哈哈～～</p>
 <p>目前对于此扩展实现的功能如下：</p>
 <ul>
@@ -463,10 +463,10 @@ Modules，激活和关闭 Module。</p>
 <p>此扩展支持配置和 i18n，以及对目前来说一个简易的演示页面。</p>
 <p>目前还没有对实现自动备份后进行 Email 通知的功能，以及以后会对多种数据库支持。和限制最大化数据库备份文件。至于是否可以在进行数据库表数据的操作（比如查询，删除表，修改表等）是否还需要支持？</p>
 <p>以后对自己发布的 Kohana 相关的代码都会托管在 Google Code 上面，地址：<a href="http://code.google.com/p/kohana-fans-cn/">http://code.google.com/p/kohana-fans-cn/</a></p>
-]]></content:encoded></item><item><title>校内网，海内网，开心网用户隐私查看器</title><link>https://icyleaf.com/2008/10/the-school-network-network-happy-at-home-and-network-user-privacy-viewer/</link><pubDate>Fri, 10 Oct 2008 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2008/10/the-school-network-network-happy-at-home-and-network-user-privacy-viewer/</guid><description>&lt;blockquote>
-&lt;p>&lt;strong>更新&lt;/strong>：目前校内网已经修补了此漏洞，所以大家可以放弃了，除非你想抓住那 1% 的机会&lt;/p>
-&lt;/blockquote>
-&lt;p>你想查看他或她的私隐信息吗？如果你说的他或她是校内网，海内网，开心网的用户，那么请你尝试一下，校内网，海内网，开心网用户隐私查看器。通过这个工具，你可以轻松的获得用户的相册照片，日志文章以及状态（迷你博客）的内容。恩&amp;hellip;趁着目前都还没有打补丁之前。不要做坏事哦～&lt;/p>...</description><content:encoded><![CDATA[<blockquote>
+]]></content:encoded></item><item><title>校内网，海内网，开心网用户隐私查看器</title><link>https://icyleaf.com/2008/10/the-school-network-network-happy-at-home-and-network-user-privacy-viewer/</link><pubDate>Fri, 10 Oct 2008 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2008/10/the-school-network-network-happy-at-home-and-network-user-privacy-viewer/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;更新&lt;/strong&gt;：目前校内网已经修补了此漏洞，所以大家可以放弃了，除非你想抓住那 1% 的机会&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;你想查看他或她的私隐信息吗？如果你说的他或她是校内网，海内网，开心网的用户，那么请你尝试一下，校内网，海内网，开心网用户隐私查看器。通过这个工具，你可以轻松的获得用户的相册照片，日志文章以及状态（迷你博客）的内容。恩&amp;hellip;趁着目前都还没有打补丁之前。不要做坏事哦～&lt;/p&gt;...</description><content:encoded><![CDATA[<blockquote>
 <p><strong>更新</strong>：目前校内网已经修补了此漏洞，所以大家可以放弃了，除非你想抓住那 1% 的机会</p>
 </blockquote>
 <p>你想查看他或她的私隐信息吗？如果你说的他或她是校内网，海内网，开心网的用户，那么请你尝试一下，校内网，海内网，开心网用户隐私查看器。通过这个工具，你可以轻松的获得用户的相册照片，日志文章以及状态（迷你博客）的内容。恩&hellip;趁着目前都还没有打补丁之前。不要做坏事哦～</p>

@@ -23,7 +23,7 @@
 <li><a href="http://www.cocoanetics.com/2011/05/to-universal-or-not/">To Universal or Not</a></li>
 <li><a href="http://blog.iteleportmobile.com/the-case-for-universal-apps">The Case for Universal Apps</a></li>
 </ul>
-]]></content:encoded></item><item><title>友盟 iOS 发布渠道自动化脚本</title><link>https://icyleaf.com/2012/05/ios-publish-channel-packger-for-umeng/</link><pubDate>Thu, 10 May 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/05/ios-publish-channel-packger-for-umeng/</guid><description>&lt;p>现在公司的大多数手机项目的统计服务都是用的&lt;a href="http:///www.umeng.com">友盟&lt;/a>，而自使用之初到现在都有一个渠道管理的功能，这个最后打包的时候实际上可能会产生一点点的麻烦，最早第一个 app 发布的时候，写了一个半自动的脚本，凑合用了很久，现在觉得需要完全自动化，于是借鉴之前 &lt;a href="http://icyleaf.com/2012/04/automating-script-to-testFlight-from-xcode/">testflightapp 的自动化脚本&lt;/a>，重新改造脚本。&lt;/p>...</description><content:encoded><![CDATA[<p>现在公司的大多数手机项目的统计服务都是用的<a href="http:///www.umeng.com">友盟</a>，而自使用之初到现在都有一个渠道管理的功能，这个最后打包的时候实际上可能会产生一点点的麻烦，最早第一个 app 发布的时候，写了一个半自动的脚本，凑合用了很久，现在觉得需要完全自动化，于是借鉴之前 <a href="http://icyleaf.com/2012/04/automating-script-to-testFlight-from-xcode/">testflightapp 的自动化脚本</a>，重新改造脚本。</p>
+]]></content:encoded></item><item><title>友盟 iOS 发布渠道自动化脚本</title><link>https://icyleaf.com/2012/05/ios-publish-channel-packger-for-umeng/</link><pubDate>Thu, 10 May 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/05/ios-publish-channel-packger-for-umeng/</guid><description>&lt;p&gt;现在公司的大多数手机项目的统计服务都是用的&lt;a href="http:///www.umeng.com"&gt;友盟&lt;/a&gt;，而自使用之初到现在都有一个渠道管理的功能，这个最后打包的时候实际上可能会产生一点点的麻烦，最早第一个 app 发布的时候，写了一个半自动的脚本，凑合用了很久，现在觉得需要完全自动化，于是借鉴之前 &lt;a href="http://icyleaf.com/2012/04/automating-script-to-testFlight-from-xcode/"&gt;testflightapp 的自动化脚本&lt;/a&gt;，重新改造脚本。&lt;/p&gt;...</description><content:encoded><![CDATA[<p>现在公司的大多数手机项目的统计服务都是用的<a href="http:///www.umeng.com">友盟</a>，而自使用之初到现在都有一个渠道管理的功能，这个最后打包的时候实际上可能会产生一点点的麻烦，最早第一个 app 发布的时候，写了一个半自动的脚本，凑合用了很久，现在觉得需要完全自动化，于是借鉴之前 <a href="http://icyleaf.com/2012/04/automating-script-to-testFlight-from-xcode/">testflightapp 的自动化脚本</a>，重新改造脚本。</p>
 <p>实现分两部分：</p>
 <ul>
 <li>iOS 代码</li>
@@ -38,7 +38,7 @@
 </ol>
 <p>这样看起来其实工作也不复杂，只不过分发渠道多了就是有些浪费时间。同样还是采用了 Archive 的 Post-Action，这里面可以插入脚本以及外部的调用脚本（如果看不到下面的具体代码，请<a href="https://gist.github.com/2650508">点击这里</a>：</p>
 <!-- raw HTML omitted -->
-]]></content:encoded></item><item><title>QuickLook 感悟</title><link>https://icyleaf.com/2012/04/thinking-in-quicklook/</link><pubDate>Mon, 30 Apr 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/04/thinking-in-quicklook/</guid><description>&lt;p>前段时间对 OS X 系统的 &lt;a href="http://en.wikipedia.org/wiki/Quick_Look">QuickLook&lt;/a> 非常感兴趣，能够随着开发者的定制，针对不同的文件呈现符合用户需求的预览功能，然后认为它属于是万能的。随后可以琢磨利用它做些意思的事情。&lt;/p>...</description><content:encoded><![CDATA[<p>前段时间对 OS X 系统的 <a href="http://en.wikipedia.org/wiki/Quick_Look">QuickLook</a> 非常感兴趣，能够随着开发者的定制，针对不同的文件呈现符合用户需求的预览功能，然后认为它属于是万能的。随后可以琢磨利用它做些意思的事情。</p>
+]]></content:encoded></item><item><title>QuickLook 感悟</title><link>https://icyleaf.com/2012/04/thinking-in-quicklook/</link><pubDate>Mon, 30 Apr 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/04/thinking-in-quicklook/</guid><description>&lt;p&gt;前段时间对 OS X 系统的 &lt;a href="http://en.wikipedia.org/wiki/Quick_Look"&gt;QuickLook&lt;/a&gt; 非常感兴趣，能够随着开发者的定制，针对不同的文件呈现符合用户需求的预览功能，然后认为它属于是万能的。随后可以琢磨利用它做些意思的事情。&lt;/p&gt;...</description><content:encoded><![CDATA[<p>前段时间对 OS X 系统的 <a href="http://en.wikipedia.org/wiki/Quick_Look">QuickLook</a> 非常感兴趣，能够随着开发者的定制，针对不同的文件呈现符合用户需求的预览功能，然后认为它属于是万能的。随后可以琢磨利用它做些意思的事情。</p>
 <h1 id="范例">范例</h1>
 <p>为了大家对它有个直接的认识，我这里找了几个范例，看到图大家就非常明白了！</p>
 <p>默认系统很对 QuickTime 兼容格式的可以实现视频预览播放，如果安装了最新的 MPlayerX，同样也支持大多数格式（目前还不支持 mkv）
@@ -100,7 +100,7 @@
 </ul>
 <p>假如可以利用外部的脚本及命令的话，那是不是可以利用他们完成网络的访问及后续的格式化工作，QuickLook 只是做统一的输出？</p>
 <p>To be contiue&hellip;</p>
-]]></content:encoded></item><item><title>自动化脚本上传应用至 testflightapp</title><link>https://icyleaf.com/2012/04/automating-script-to-testflight-from-xcode/</link><pubDate>Fri, 06 Apr 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/04/automating-script-to-testflight-from-xcode/</guid><description>&lt;p>Testflightapp 是团队开发测试中起了重要的角色，尤其是到目前为止一直是免费，最近还推出的 Live 功能不仅可以统计本身的一些数据还可以把现有的一些其他的账户的数据（比如， itunesconnect，Apple iAd，admob 等）导入进一步扩大聚合。&lt;/p>...</description><content:encoded><![CDATA[<p>Testflightapp 是团队开发测试中起了重要的角色，尤其是到目前为止一直是免费，最近还推出的 Live 功能不仅可以统计本身的一些数据还可以把现有的一些其他的账户的数据（比如， itunesconnect，Apple iAd，admob 等）导入进一步扩大聚合。</p>
+]]></content:encoded></item><item><title>自动化脚本上传应用至 testflightapp</title><link>https://icyleaf.com/2012/04/automating-script-to-testflight-from-xcode/</link><pubDate>Fri, 06 Apr 2012 12:34:56 +0800</pubDate><guid>https://icyleaf.com/2012/04/automating-script-to-testflight-from-xcode/</guid><description>&lt;p&gt;Testflightapp 是团队开发测试中起了重要的角色，尤其是到目前为止一直是免费，最近还推出的 Live 功能不仅可以统计本身的一些数据还可以把现有的一些其他的账户的数据（比如， itunesconnect，Apple iAd，admob 等）导入进一步扩大聚合。&lt;/p&gt;...</description><content:encoded><![CDATA[<p>Testflightapp 是团队开发测试中起了重要的角色，尤其是到目前为止一直是免费，最近还推出的 Live 功能不仅可以统计本身的一些数据还可以把现有的一些其他的账户的数据（比如， itunesconnect，Apple iAd，admob 等）导入进一步扩大聚合。</p>
 <p>尤其是它真的重视开发着的核心需求，仅推出了唯一的一个公开 API，就是上传打包后的 ipa 文件，配合 Xcode 中 Archive 的 Post-action 可以轻松搞定自动化的操作。</p>
 <p>下面是网上搜集的脚本，算是我发现定制化比较强的<a href="https://gist.github.com/1379127">自动化脚本</a>，而且注解也写的很详细。可以在配合我的打包脚本，可以把各个发布渠道的事情一起自动化。</p>
 <blockquote>
