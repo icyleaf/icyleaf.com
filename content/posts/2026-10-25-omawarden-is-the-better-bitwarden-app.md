@@ -4,7 +4,7 @@ description: 为什么在拥有官方客户端和 rbw 之后，我还是自己�
 date: 2026-10-25T20:36:20+08:00
 slug: "omawarden-is-the-better-bitwarden-app"
 type: posts
-draft: true
+draft: false
 index: true
 comments: true
 isCJKLanguage: true
